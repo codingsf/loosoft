@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6AE1548A-E450-4197-8666-3D31D09527FD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Common</RootNamespace>
+    <AssemblyName>Common</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="adodb, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft Visual Studio 10.0\Visual Studio Tools for Office\PIA\Common\adodb.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy, Version=1.1.5.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\Castle.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Memcached.ClientLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=42c0400964dcc297, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\Memcached.ClientLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+    <Reference Include="msmdvbanet, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\msmdvbanet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminControllerActionType.cs" />
+    <Compile Include="AuthorizationCode.cs" />
+    <Compile Include="CacheManager.cs" />
+    <Compile Include="CalenderUtil.cs" />
+    <Compile Include="ChartDeviceType.cs" />
+    <Compile Include="ChartTimeIntervalType.cs" />
+    <Compile Include="ChartTimeType.cs" />
+    <Compile Include="ChartType.cs" />
+    <Compile Include="CityCode.cs" />
+    <Compile Include="CsvStreamWriter.cs" />
+    <Compile Include="ComputeType.cs" />
+    <Compile Include="DataItem.cs" />
+    <Compile Include="DataReportType.cs" />
+    <Compile Include="DeviceStatusType.cs" />
+    <Compile Include="DeviceType.cs" />
+    <Compile Include="ComConst.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="DeviceData.cs" />
+    <Compile Include="EncryptUtil.cs" />
+    <Compile Include="ExcelStreamWriter.cs" />
+    <Compile Include="ExcelUtil.cs" />
+    <Compile Include="FileLogUtil.cs" />
+    <Compile Include="FileUtil.cs" />
+    <Compile Include="HttpClientUtil.cs" />
+    <Compile Include="LogUtil.cs" />
+    <Compile Include="MemcachedClientSatat.cs" />
+    <Compile Include="MvcViewEngine.cs" />
+    <Compile Include="PicUtil.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportBuilder.cs" />
+    <Compile Include="RequestUtil.cs" />
+    <Compile Include="StringUtil.cs" />
+    <Compile Include="TableUtil.cs" />
+    <Compile Include="JsonUtil.cs" />
+    <Compile Include="LanguageUtil.cs" />
+    <Compile Include="MonitorType.cs" />
+    <Compile Include="ErrorItem.cs" />
+    <Compile Include="ErrorType.cs" />
+    <Compile Include="Currencies.cs" />
+    <Compile Include="TimeZone.cs" />
+    <Compile Include="Util.cs" />
+    <Compile Include="XmlHelper.cs" />
+    <Compile Include="CacheKeyUtil.cs" />
+    <Compile Include="ReflectionUtil.cs" />
+    <Compile Include="TempDataUtil.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

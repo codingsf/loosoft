@@ -1,0 +1,12 @@
+D:\work\project\loosoft\suninfobank\branchs\webapp\Common\obj\Debug\ResolveAssemblyReference.cache
+D:\work\project\loosoft\suninfobank\branchs\webapp\Common\bin\Debug\Common.dll
+D:\work\project\loosoft\suninfobank\branchs\webapp\Common\bin\Debug\Common.pdb
+D:\work\project\loosoft\suninfobank\branchs\webapp\Common\bin\Debug\Castle.DynamicProxy.dll
+D:\work\project\loosoft\suninfobank\branchs\webapp\Common\bin\Debug\Memcached.ClientLibrary.dll
+D:\work\project\loosoft\suninfobank\branchs\webapp\Common\bin\Debug\Microsoft.Office.Interop.Excel.dll
+D:\work\project\loosoft\suninfobank\branchs\webapp\Common\bin\Debug\msmdvbanet.dll
+D:\work\project\loosoft\suninfobank\branchs\webapp\Common\bin\Debug\log4net.dll
+D:\work\project\loosoft\suninfobank\branchs\webapp\Common\bin\Debug\log4net.xml
+D:\work\project\loosoft\suninfobank\branchs\webapp\Common\bin\Debug\Memcached.ClientLibrary.pdb
+D:\work\project\loosoft\suninfobank\branchs\webapp\Common\obj\Debug\Common.dll
+D:\work\project\loosoft\suninfobank\branchs\webapp\Common\obj\Debug\Common.pdb

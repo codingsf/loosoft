@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="AdminRole" type="Cn.Loosoft.Zhisou.SunPower.Domain.AdminRole, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="adminrole_result" class="AdminRole">
+      <result property="id"			column="id"/>
+      <result property="name"			column="name"/>
+      <result property="descr"			column="descr"/>
+      <result property="actions" lazyLoad="false" column="id" select="select_role_controller_actions" />
+
+    </resultMap>
+  </resultMaps>
+
+  <cacheModels>
+    <cacheModel id="adminrole_cache" implementation="LRU" readOnly="true" serialize="true">
+      <flushInterval minutes="30"/>
+      <property name="CacheSize" value="100"/>
+    </cacheModel>
+  </cacheModels>
+
+  <statements>
+    <select id="adminrole_get_list" resultMap="adminrole_result">
+      select *  from admin_role
+    </select>
+
+    <select id="adminrole_get" resultMap="adminrole_result">
+      select *  from admin_role where id=#id#
+    </select>
+
+    <select id="adminrole_get_lazy" resultMap="adminrole_result">
+      select *  from admin_role where id=#value#
+    </select>
+
+
+    <delete id="adminrole_delete">
+      delete from admin_role where id=#id#;
+      delete from admin_controller_action_role where roleid=#id#;
+      delete from admin_user_role where roleid=#id#;
+    </delete>
+    <update id="adminrole_update">
+      update admin_role set name=#name# where id=#id#
+    </update>
+    <insert id="adminrole_insert">
+      insert into admin_role (name,descr) values(#name#,#descr#)
+      <selectKey resultClass="int" property="id" type="post" >
+        select last_insert_id() as id
+      </selectKey>
+    </insert>
+  </statements>
+</sqlMap>

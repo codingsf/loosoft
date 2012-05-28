@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="VirtualPlant" type="Cn.Loosoft.Zhisou.SunPower.Domain.VirtualPlant, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="virtualplant_result" class="VirtualPlant">
+      <result property="id"			column="id"/>
+      <result property="name"			column="name"/>
+      <result property="parentId"			column="parent_id"/>
+      <result property="plantIds"   column="plant_ids"/>
+      <result property="child" lazyLoad="true" column="id" select="virtualplant_child_lazy" />
+      <result property="plants" lazyLoad="true" column="plantIds" select="get_plants_plantids_lazy" />
+    </resultMap>
+  </resultMaps>
+
+  <cacheModels>
+    
+  </cacheModels>
+
+  <statements>
+    <select id="virtualplant_child_lazy" resultMap="virtualplant_result">
+      select * from virtual_plant where parent_id=#value#
+    </select>
+  
+  </statements>
+</sqlMap>

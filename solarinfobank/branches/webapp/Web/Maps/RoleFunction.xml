@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="RoleFunction" type="Cn.Loosoft.Zhisou.SunPower.Domain.RoleFunction, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="rolefunction_result" class="RoleFunction">
+      <result property="id"			column="id"/>
+      <result property="roleId"			column="roleId"/>
+      <result property="functionCode"			column="function_Code"/>
+    </resultMap>
+  </resultMaps>
+  <cacheModels>
+    <cacheModel id="rolefunction_list_cache" implementation="LRU" readOnly="true" serialize="false">
+      <flushInterval minutes="30"/>
+      <property name="CacheSize" value="1000"/>
+    </cacheModel>
+  </cacheModels>
+  <statements>
+      <select id="get_functions_by_roleid"  resultMap="rolefunction_result"  paramterClass="int" cacheModel="rolefunction_list_cache">
+          select * from role_function where roleId=#value#
+      </select>
+  </statements>
+</sqlMap>

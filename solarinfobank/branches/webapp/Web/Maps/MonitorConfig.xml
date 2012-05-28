@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="MonitorConfig" type="Cn.Loosoft.Zhisou.SunPower.Domain.MonitorConfig, Domain" />
+  </alias>
+
+  <cacheModels>
+
+  </cacheModels>
+
+  <statements>
+    <insert id="monitorconfig_insert">
+      insert into monitor_config (code,items) values (#code#,#items#)
+    </insert>
+    
+    <delete id="monitorconfig_delete">
+      delete from  monitor_config where code = #code#
+    </delete>
+
+    <select id="monitorconfig_get" resultClass="MonitorConfig">
+      select * from  monitor_config where code = #code#
+    </select>
+
+
+  </statements>
+</sqlMap>

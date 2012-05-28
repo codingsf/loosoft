@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="ProductPicture" type="Cn.Loosoft.Zhisou.SunPower.Domain.ProductPicture, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="productpicture_info_result" class="ProductPicture">
+      <result property="id"			column="id"/>
+      <result property="picName"			column="picname"/>
+      <result property="picUrl"			column="picurl"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+    <!--根据id获取所有的产品图片-->
+    <select id="productpicture_get"  resultMap="productpicture_info_result" parameterClass="ProductPicture">
+      select *  from  product_picture where id=#id#
+    </select>
+    <!--获取所有的产品图片-->
+    <select id="productpicture_get_list"  resultMap="productpicture_info_result">
+      select *  from  product_picture order by id desc
+    </select>
+    <!--添加产品图片-->
+    <insert id="productpicture_insert" parameterClass="ProductPicture">
+      INSERT INTO  product_picture(picname,picurl) VALUES( #picName#,#picUrl#)
+      <selectKey resultClass="int" property="id" type="post">
+        SELECT LAST_INSERT_ID() AS id
+      </selectKey>
+    </insert>
+    <!--修改产品图片-->
+    <update id="productpicture_update" paramentClass="ProductPicture">
+      UPDATE  product_picture SET id=#id#,picname=#picName#,picurl=#picUrl# WHERE id=#id#
+    </update>
+    <!-- 删除产品图片-->
+    <delete id="productpicture_delete" paramentClass="ProductPicture">
+      DELETE FROM product_picture WHERE id=#id#
+    </delete>
+
+
+      <select id="loading_productpictures_page_list" resultMap="productpicture_info_result">
+          <![CDATA[  SELECT * from product_picture limit $Start$,$End$]]>
+      </select>
+
+      <select id="loading_productpictures_page_count" resultClass="int">
+          <![CDATA[SELECT COUNT(1) from product_picture]]>
+      </select>
+
+
+  </statements>
+</sqlMap>

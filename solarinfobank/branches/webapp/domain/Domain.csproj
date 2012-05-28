@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{62D09DAB-D223-4BD0-9FDD-F3A8F52B8510}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cn.Loosoft.Zhisou.SunPower.Domain</RootNamespace>
+    <AssemblyName>Domain</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Collector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CustomChart.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dbconfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Device.cs" />
+    <Compile Include="DeviceDayData.cs" />
+    <Compile Include="DeviceMonthDayData.cs" />
+    <Compile Include="DeviceRunData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DeviceYearData.cs" />
+    <Compile Include="DeviceYearMonthData.cs" />
+    <Compile Include="Language.cs" />
+    <Compile Include="Fault.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ItemConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Manager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="VideoMonitor.cs" />
+    <Compile Include="Pager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Plant.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PlantUnit.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ReportConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ChartGroup.cs" />
+    <Compile Include="Staticurl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CollectorDayData.cs" />
+    <Compile Include="CollectorMonthDayData.cs" />
+    <Compile Include="CollectorRunData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CollectorYearData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CollectorYearMonthData.cs" />
+    <Compile Include="User.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MonitorItem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{6AE1548A-E450-4197-8666-3D31D09527FD}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminControllerAction.cs" />
+    <Compile Include="AdminControllerActionRole.cs" />
+    <Compile Include="AdminRole.cs" />
+    <Compile Include="AdminUserRole.cs" />
+    <Compile Include="Adpic.cs" />
+    <Compile Include="BaseDayData.cs" />
+    <Compile Include="BaseLocalTime.cs" />
+    <Compile Include="CommonInfo.cs" />
+    <Compile Include="CountryCity.cs" />
+    <Compile Include="DefineReport.cs" />
+    <Compile Include="DeviceDataCount.cs" />
+    <Compile Include="DeviceModel..cs" />
+    <Compile Include="EmailQueue.cs" />
+    <Compile Include="MailConfig.cs" />
+    <Compile Include="ManagerMonitorCode.cs" />
+    <Compile Include="MonitorConfig.cs" />
+    <Compile Include="PlantUser.cs" />
+    <Compile Include="ProductPicture.cs" />
+    <Compile Include="ReportDataItem.cs" />
+    <Compile Include="ReportType.cs" />
+    <Compile Include="Role.cs" />
+    <Compile Include="RoleFunction.cs" />
+    <Compile Include="UserRole.cs" />
+    <Compile Include="LoginRecord.cs" />
+    <Compile Include="VirtualPlant.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

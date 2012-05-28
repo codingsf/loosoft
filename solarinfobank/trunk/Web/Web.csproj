@@ -2177,6 +2177,7 @@
     <Content Include="Images\map\db.gif" />
     <Content Include="Images\map\mapbg0.png" />
     <Content Include="Images\map\n.jpg" />
+    <Content Include="Images\map\touming.gif" />
     <Content Include="Images\minus.gif" />
     <Content Include="Images\minusbottom.gif" />
     <Content Include="Images\musicfolder.gif" />

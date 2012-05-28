@@ -6,19 +6,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>电站分布图 <%=Model.name %></title>
-     <link href="/style/mhcss.css" rel="stylesheet" type="text/css" />
+    <title>电站分布图
+        <%=Model.name %></title>
+    <link href="/style/mhcss.css" rel="stylesheet" type="text/css" />
+
     <script src="/script/jquery.js" type="text/javascript"></script>
 
-    <SCRIPT type="text/javascript" charset="utf-8" src="/script/jquery.hoverIntent.minified.js"></SCRIPT>
+    <script type="text/javascript" charset="utf-8" src="/script/jquery.hoverIntent.minified.js"></script>
 
-    <SCRIPT type="text/javascript" charset="utf-8" src="/script/jquery.bgiframe.min.js"></SCRIPT>
+    <script type="text/javascript" charset="utf-8" src="/script/jquery.bgiframe.min.js"></script>
+
     <!--[if IE]>
     <SCRIPT type="text/javascript" charset="utf-8" src="/script/excanvas.js"></SCRIPT>
     <![endif]-->
-    <SCRIPT type="text/javascript" charset="utf-8" src="/script/jquery.bt.min.js"></SCRIPT>
-    <!-- /STUFF --><!-- cool easing stuff for animations -->
-    <SCRIPT type="text/javascript" charset="utf-8" src="/script/jquery.easing.1.3.js"></SCRIPT>
+
+    <script type="text/javascript" charset="utf-8" src="/script/jquery.bt.min.js"></script>
+
+    <!-- /STUFF -->
+    <!-- cool easing stuff for animations -->
+
+    <script type="text/javascript" charset="utf-8" src="/script/jquery.easing.1.3.js"></script>
 
     <script>
         function changePage(pg) {
@@ -62,7 +69,8 @@
             </div>
             <div class="gf_dh">
                 <div class="gf_dhl">
-                    <table width="<%=ProtalUtil.isAutoLogin?"320":"520" %>" border="0" cellspacing="0" cellpadding="0">
+                    <table width="<%=ProtalUtil.isAutoLogin?"320":"520" %>" border="0" cellspacing="0"
+                        cellpadding="0">
                         <tr>
                             <td width="40" align="right">
                                 <img src="/images/gf/gf_ico01.jpg" width="22" height="35" />
@@ -273,46 +281,44 @@
                                         </tr>
                                     </table>
                                 </div>--%>
-                                <div id="planetmap" style="position:relative">
+                                <div id="planetmap" style="position: relative">
                                     <center>
                                         <img style="border: none;" src="/ufile/<%=Model.structPic %>" alt="" usemap="#structmap" />
                                     </center>
-                                    
-                                     <%foreach (StructPoint point in ViewData["points"] as List<StructPoint>)
-          {%>
-            
-            <div style="top:<%=point.y %>px; left:<%=point.x %>px;position:absolute;">
-                                            
-                                            <div style=""><a href="/portal/virtual/581" target="_blank"><span><img src="/images/map/db.gif" border=0 style="cursor:pointer;" alt="武汉光伏电站" onmouseover="tips('plant_tip_581');" id="plant_tip_581"/></span>
-                                            
-                                            </a></div>
-                                            
-                                            </div>
-                                            
-        <%} %>
-        
-                                       
-                                            <div id="plant_tip_581-content" style="display:none; background-color:Red;">  
-                                            <!--  
+                                    <%foreach (StructPoint point in ViewData["points"] as List<StructPoint>)
+                                      {
+                                          Plant plant = PlantService.GetInstance().GetPlantInfoById(int.Parse(point.id));
+                                    %>
+                                    <div style="top: <%=point.y %>px; left: <%=point.x %>px; position: absolute;">
+                                       <a href="<%=point.targetUrl %>" target="_blank"><span> <img src="/images/map/touming.gif" border="0" style="cursor: pointer;" alt="<%=point.displayName %>"
+                                            id="plant_tip_<%=point.id %>" onmouseover="tips('plant_tip_<%=point.id %>');" /></span></a>
+                                    </div>
+                                    <div id="plant_tip_<%=point.id %>-content" style="display: none; background-color: Red;">
+                                        <!--  
                                             <div style="FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#D7F4CB,endColorStr=#ffffff); height:0px; width:200px;">
                                             -->
-                                            <div style=" line-height:20px; padding-left:10px;"><font size=3 ><strong>武汉光伏电站</strong></font></div>
-                                            <div style=" line-height:20px; padding-left:10px;">当前功率：0 kW</div>
-                                            <div style=" line-height:20px; padding-left:10px;">今日发电：0 kWh</div>
-                                            <div style=" line-height:20px; padding-left:10px;">累计发电：0 kWh</div>
-
-                                            
-                                            <!--
+                                        <div style="line-height: 20px; padding-left: 10px;">
+                                            <font size="3"><strong>
+                                                <%=point.displayName %></strong></font></div>
+                                        <div style="line-height: 20px; padding-left: 10px;">
+                                            当前功率：<%=plant.DisplayTodayTotalPower%>
+                                            <%=plant.TodayTotalPowerUnit%></div>
+                                        <div style="line-height: 20px; padding-left: 10px;">
+                                            今日发电：<%=plant.DisplayTotalDayEnergy %>
+                                            <%=plant.TotalDayEnergyUnit%></div>
+                                        <div style="line-height: 20px; padding-left: 10px;">
+                                            累计发电：<%=plant.DisplayTotalEnergy %>
+                                            <%=plant.TotalEnergyUnit%></div>
+                                        <!--
                                             </div>
                                             <div style="background:-moz-linear-gradient(top,#D7F4CB,#ffffff); height:60px; width:200px;">
                                             
                                             </div>
                                             -->
-                                            </div>
-                                            
+                                    </div>
+                                    <%} %>
                                 </div>
                             </div>
-                            
                             <%if (!ProtalUtil.isAutoLogin)
                               { %>
                             <div>
@@ -406,7 +412,6 @@
                                     </table>
                                 </div>
                             </div>
-                            
                             <%} %>
                         </td>
                     </tr>
@@ -419,12 +424,11 @@
     <div style="clear: both;">
     </div>
     <%Html.RenderPartial("footer"); %>
-    
     <map name="structmap" id="structmap">
         <%foreach (StructPoint point in ViewData["points"] as List<StructPoint>)
           {%>
         <area shape="circle" coords="<%=point.x %>,<%=point.y %>,15" href="<%=point.targetUrl %>"
-            target="_blank" alt="<%=point.displayName %>" title="<%=point.displayName %>"  onmouseover="tips('plant_tip_581');" onclick="tips('plant_tip_581');"/>
+            target="_blank" alt="<%=point.displayName %>" onmouseover="tips('plant_tip_<%=point.id %>');" />
         <%} %>
     </map>
 </body>

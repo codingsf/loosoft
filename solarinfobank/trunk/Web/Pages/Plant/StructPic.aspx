@@ -154,7 +154,7 @@
                     <div class="sb_top">
                     </div>
                     <div class="sb_mid" style="overflow: hidden; clear: both; height: 1000px;">
-                        <div style="position: relative;" id="container">
+                        <div style="position:relative;" id="container">
                             
                             <% string path=Server.MapPath("~");
                                if (System.IO.File.Exists(string.Format("{0}/ufile/{1}", path, Model.structPic)) == false)

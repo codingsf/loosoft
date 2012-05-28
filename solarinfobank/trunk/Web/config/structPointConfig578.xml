@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfStructPoint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <StructPoint>
+    <x>202</x>
+    <y>288</y>
+    <id>540</id>
+    <type>p</type>
+  </StructPoint>
+  <StructPoint>
+    <x>499</x>
+    <y>343</y>
+    <id>544</id>
+    <type>p</type>
+  </StructPoint>
+  <StructPoint>
+    <x>323</x>
+    <y>374</y>
+    <id>539</id>
+    <type>p</type>
+  </StructPoint>
+  <StructPoint>
+    <x>247</x>
+    <y>360</y>
+    <id>538</id>
+    <type>p</type>
+  </StructPoint>
+  <StructPoint>
+    <x>323</x>
+    <y>313</y>
+    <id>542</id>
+    <type>p</type>
+  </StructPoint>
+  <StructPoint>
+    <x>266</x>
+    <y>293</y>
+    <id>541</id>
+    <type>p</type>
+  </StructPoint>
+</ArrayOfStructPoint>

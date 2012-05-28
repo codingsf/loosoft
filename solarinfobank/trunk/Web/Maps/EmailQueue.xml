@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="EmailQueue" type="Cn.Loosoft.Zhisou.SunPower.Domain.EmailQueue, Domain" />
+  </alias>
+
+  <resultMaps>
+
+  </resultMaps>
+
+  <statements>
+    <insert id="emailqueue_insert" parameterClass="EmailQueue">
+      <![CDATA[insert into email_queue (title,content,receiver,sender,state)values(#title#,#content#,#receiver#,#sender#,#state#) ]]>
+      <selectKey resultClass="int" property="id" type="post" >
+        SELECT LAST_INSERT_ID() AS id
+      </selectKey>
+    </insert>
+  </statements>
+
+
+</sqlMap>

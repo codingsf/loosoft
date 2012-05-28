@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="UserRole" type="Cn.Loosoft.Zhisou.SunPower.Domain.UserRole, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="user_role_result" class="UserRole">
+      <result property="id"			column="id"/>
+      <result property="userId"			column="userId"/>
+      <result property="roleId"			column="roleId"/>
+      <!--级联对象集合-->
+      <result property="RoleFunctions" lazyLoad="true"	column="roleId" select="get_functions_by_roleid" />
+      <result property="Role" lazyLoad="true"	column="roleId" select="get_role" />
+    </resultMap>
+  </resultMaps>
+  <cacheModels>
+    <cacheModel id="userrole_cache" implementation="LRU" readOnly="true" serialize="false">
+      <flushInterval minutes="30"/>
+      <flushOnExecute  statement="userrole_update"/>
+      <flushOnExecute  statement="userrole_insert"/>
+      <property name="CacheSize" value="1000"/>
+    </cacheModel>
+  </cacheModels>
+  <statements>
+    <select id="get_user_role"  resultMap="user_role_result"  paramterClass="int" cacheModel="userrole_cache">
+      select * from user_role where userid=#value#
+    </select>
+
+    <update id="userrole_update"  resultClass="int">
+      update user_role set  roleId=#roleId# where userId=#userId#
+    </update>
+
+    <insert id="userrole_insert"  resultClass="int">
+      insert into user_role(userId,roleId) values($userId$,$roleId$)
+    </insert>
+
+    <delete id="userrole_delete"  resultClass="int">
+      delete from  user_role where id= #id#
+    </delete>
+
+    <delete id="userrole_delete_roleId"  resultClass="int">
+      delete from  user_role where roleId= #value#
+    </delete>
+    
+    
+  </statements>
+</sqlMap>

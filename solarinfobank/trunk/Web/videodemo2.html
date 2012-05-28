@@ -1,0 +1,551 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>IP CAMERA</title>
+<link href="/style/video.css" rel="stylesheet" type="text/css" />
+<style type="text/css"> 
+html
+{
+overflow:scroll;
+overflow-x:hidden;
+overflow-x:auto !important;
+}
+</style>
+</head>
+ 
+<body onload="initpage();">
+	<div id="wrap">
+		<div id="header">
+			<h1>2#厂房</h1>
+			<div id="plug">
+				<a href="http://61.190.35.174:90/ocx/Installplug.exe">安装OCX控件</a>				
+				<span>若不能正常显示视频，请下载并完成OCX控件的安装。</span>
+			</div>
+			<div style=" float:left; margin-left:20px;">
+			<ul>
+				<li><a href="#" class="act">实时监视</a></li>
+				<!--
+				<li><a href="http://61.190.35.174:90/content/player.asp">录像回放</a></li>
+				-->
+			</ul>
+			</div>
+		</div>
+		<div id="main">
+			<div id="view" style=" float:left;">
+				<div id="sidectrl">
+					<div id="zoom">
+						<button title="缩小" id="zoom_out" onclick="chgsize(1);"><img src="http://61.190.35.174:90/images/zoom_out.gif" /></button>
+						<button title="放大" id="zoom_in" onclick="chgsize(2);"><img src="http://61.190.35.174:90/images/zoom_in.gif" /></button>
+						<button title="全屏" onclick="chgsize(0);"><img src="http://61.190.35.174:90/images/zoom_full.gif" /></button>
+					</div>
+					<label for="buf">缓冲</label>
+					<div id="buf">
+						<button id="buf0" onclick="changedt(0,this);">0</button>
+						<button id="buf1" onclick="changedt(5,this);">5</button>
+						<button id="buf2" onclick="changedt(10,this);">10</button>
+						<button id="buf3" onclick="changedt(20,this);">20</button>
+						<button id="buf4" onclick="changedt(50,this);">50</button>
+						<button id="buf5" onclick="changedt(100,this);">100</button>
+					</div>
+				</div>
+				<div id="topctrl">
+					<button onclick="ctrl_audio();"><img id="aud" src="http://61.190.35.174:90/images/aud.gif" />音频</button>
+					<button onclick="ctrl_talk();"><img id="talk" src="http://61.190.35.174:90/images/talk.gif" />对讲</button>
+					<button onclick="ctrl_cpt();"><img src="http://61.190.35.174:90/images/cap.gif" />抓拍</button>
+					<button onclick="ctrl_rcd();"><img id="rec" src="http://61.190.35.174:90/images/rec.gif" />录像</button>
+					<button onclick="ctrl_pis();"><img id="pis" src="http://61.190.35.174:90/images/pis.gif" />防裂屏</button>
+				</div>
+				<div id="camcon">
+					<object name="Camera0" id="Camera0" width="362" height="288"
+						CLASSID="CLSID:0C615F36-0C1C-497B-B9E4-833B0D7AA8CA"
+						CODEBASE="/NetViewX.cab#Version=7,7,0,0">
+					</object>
+				</div>
+			</div>
+			<div id="side" style="display:none;">
+				<div class="linktype">
+					<input type="radio" name="linktype" checked="checked" onclick="linkChg();" />TCP
+					<input type="radio" name="linktype" onclick="linkChg();" />Multicast
+				</div>
+				<p class="sep"></p>
+				<p>
+					<button id="playall" onclick="cnt_all(1);">播放</button>
+					<button id="stopall" onclick="cnt_all(0);">停止</button>
+				</p>
+				<p class="sep"></p>
+				<div id="alm">
+					开关控制
+					<button id="alm0" onclick="set_aux(0,this);"></button>
+				</div>
+				<p class="sep"></p>
+				<p>
+					<button onmousedown="ptz_iris(1, 4);" onmouseup="ptz_iris(0, 4);">光圈+</button>
+					<button onmousedown="ptz_iris(1, 6);" onmouseup="ptz_iris(0, 6);">聚焦+</button>
+					<button onmousedown="ptz_iris(1, 9);" onmouseup="ptz_iris(0, 9);">变倍+</button>
+				</p>
+				<p>
+					<button onmousedown="ptz_iris(1, 5);" onmouseup="ptz_iris(0, 5);">光圈-</button>
+					<button onmousedown="ptz_iris(1, 7);" onmouseup="ptz_iris(0, 7);">聚焦-</button>
+					<button onmousedown="ptz_iris(1, 8);" onmouseup="ptz_iris(0, 8);">变倍-</button>
+				</p>
+				<table id="ptzctrl" cellpadding="0" cellspacing="0">
+				<tr>
+					<td></td>
+					<td valign="middle" align="center">
+						<button id="ptz_up" onmousedown="ptz_mv(2,1);" onmouseup="ptz_mv(2,0); this.blur();">
+							<img src="http://61.190.35.174:90/images/ptz_up.gif" />
+						</button>
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td valign="middle" align="center">
+						<button id="ptz_left" onmousedown="ptz_mv(0,1,this);" onmouseup="ptz_mv(0,0,this); this.blur();">
+							<img src="http://61.190.35.174:90/images/ptz_left.gif" />
+						</button>
+					</td>
+					<td valign="middle" align="center">
+						<button id="ptz_auto" onclick="cruise(); this.blur();">
+							<img src="http://61.190.35.174:90/images/ptz_auto.gif" />
+						</button>
+					</td>
+					<td valign="middle" align="center">
+						<button id="ptz_right" onmousedown="ptz_mv(1,1);" onmouseup="ptz_mv(1,0);  this.blur();">
+							<img src="http://61.190.35.174:90/images/ptz_right.gif" />
+						</button>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td valign="middle" align="center">
+						<button id="ptz_down" onmousedown="ptz_mv(3,1);" onmouseup="ptz_mv(3,0); this.blur();">
+							<img src="http://61.190.35.174:90/images/ptz_down.gif" />
+						</button>
+					</td>
+					<td></td>
+				</tr>
+				</table>
+				<p class="preset">
+					<button onclick="presetPoint(11, document.all.preset.value);">预置</button>
+				</p>
+				<div class="combox">
+					<img src="http://61.190.35.174:90/images/ptz_up.gif" onclick="document.all.preset.value++;" />
+					<img src="http://61.190.35.174:90/images/ptz_down.gif" onclick="if(document.all.preset.value>1){document.all.preset.value--;}" />
+					<input type="text" name="preset" value="1" onkeydown="onlyNum();" />
+				</div>
+				<p class="preset">
+					<button onclick="presetPoint(10, document.all.preset.value);">调用</button>
+				</p>
+				<div id="ptzspd">
+					<label>云台速度</label>
+					<button onclick="ptz_speed(ptz_spd-1);"><img src="http://61.190.35.174:90/images/spd_c_btn.gif" /></button>
+					<img id="ptzspd1" src="http://61.190.35.174:90/images/ptz_spd.gif" onclick="ptz_speed(1);" />
+					<img id="ptzspd2" src="http://61.190.35.174:90/images/ptz_spd.gif" onclick="ptz_speed(2);" />
+					<img id="ptzspd3" src="http://61.190.35.174:90/images/ptz_spd.gif" onclick="ptz_speed(3);" />
+					<img id="ptzspd4" src="http://61.190.35.174:90/images/ptz_spd.gif" onclick="ptz_speed(4);" />
+					<img id="ptzspd5" src="http://61.190.35.174:90/images/ptz_spd.gif" onclick="ptz_speed(5);" />
+					<img id="ptzspd6" src="http://61.190.35.174:90/images/ptz_spd.gif" onclick="ptz_speed(6);" />
+					<img id="ptzspd7" src="http://61.190.35.174:90/images/ptz_spd.gif" onclick="ptz_speed(7);" />
+					<img id="ptzspd8" src="http://61.190.35.174:90/images/ptz_spd.gif" onclick="ptz_speed(8);" />
+					<img id="ptzspd9" src="http://61.190.35.174:90/images/ptz_spd.gif" onclick="ptz_speed(9);" />
+					<img id="ptzspd10" src="http://61.190.35.174:90/images/ptz_spd.gif" onclick="ptz_speed(10);" />
+					<button onclick="ptz_speed(ptz_spd+1);"><img src="http://61.190.35.174:90/images/spd_a_btn.gif" /></button>
+				</div>
+				<div id="alert" style="display:none; background:#FFFFCC; border:1px solid #333; padding:10px 0; width:230px; position:absolute; top:450px; margin-left:3px;">
+				<div id="alertText" style="display:block; padding:0 10px; height:80px; overflow:auto; font-size:12px;" ></div>
+				<input type="button" style="float:right; margin-right:10px;" value="关闭" onclick="document.getElementById('alert').style.display = 'none';usr_overflow = 0;" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<SCRIPT LANGUAGE="javascript" FOR="Camera0" EVENT='TalkStatus(i)'>
+	event_talk(i);
+	</SCRIPT>
+	<SCRIPT LANGUAGE="javascript" FOR="Camera0" EVENT='LinkStatus(i)'>
+	if(i==-105||i==-103)
+	{
+		if(usr_overflow==0)
+		{
+			document.getElementById('alert').style.display = 'block';
+			document.getElementById('alertText').innerText = "通道1:服务器用户满员，请稍后再试";
+			usr_overflow = 1;
+		}
+		else{document.getElementById('alertText').innerHTML += "<br/>通道1:服务器用户满员，请稍后再试" }
+	}
+	</SCRIPT>
+	<SCRIPT LANGUAGE="javascript" FOR="Camera0" EVENT='ExOutPutStatus(i)'>
+	document.domain="61.190.35.174";
+	status_alm(i);
+	wscrsz = Camera0.ImageWidth();
+	hscrsz = Camera0.ImageHeight();
+	cmr_prop = wscrsz/hscrsz;
+	chgProp(Cmr);
+	if(cmr_prop>1.6){document.getElementById("zoom_out").style.display = "none";}
+	else{document.getElementById("zoom_out").style.display = "block";}
+	</SCRIPT>
+	<script language="javascript">
+		cookieStr=unescape(document.cookie);
+		//cookieStr = 1#N11#N261.190.35.174#N3sz160sa120sb116sc0";
+		//1#N11#N261.190.35.174#N3sz160sa120sb116sc0
+		var beginPos=cookieStr.indexOf("ID");
+		var endPos1=cookieStr.indexOf("#N1");
+		var endPos2=cookieStr.indexOf("#N2");
+ 		var endPos3=cookieStr.indexOf("#N3");
+		var pwd ="1";
+		var ipads = "61.190.35.174";
+		var IDname="1";
+		var irisps = "N3sz160sa120sb116sc0";
+		if (beginPos != -1)
+		  {
+			IDname=cookieStr.substring( (beginPos+3), endPos1);
+			pwd=cookieStr.substring(endPos1+3, endPos2);
+			ipads = cookieStr.substring(endPos2 + 3, endPos3);
+			irisps=cookieStr.substring(endPos3+3);
+		  }
+
+		var serverport = 3000; var rtspport = 554;
+
+		var max_ch  = 1;//通道数
+		var ptz_spd = 5;//云台速度
+		var ort_ptz   = new Array(0, 0, 0, 0);//up ,down, left, right
+		var is_play   = 0;//监视状态
+		var is_talk   = 0;//通话状态
+		var is_aud    = 0;//音频状态
+		var is_rec    = 0;//录象状态
+		var is_aux    = new Array(0, 0, 0, 0);//报警状态
+		var is_auto   = 0;//自动转动状态
+		var is_pis   = 0;
+		var cur_ch    = 0;//当前通道
+		var usr_overflow = 0;
+		var Cmr = eval("Camera"+cur_ch);//当前选中的控件
+		var cmr_prop  = 352/288;
+ 
+		function initpage()//默认设置
+		{
+			var Cmr = eval("Camera"+cur_ch);
+			setTimeout('cnt_all(1);',500);
+			Cmr.delaytime = 0;
+			getdt();
+			ptz_speed(ptz_spd);
+			Cmr.style.border = "2px solid #ffff80";
+			Camera0.SetRecordType(1);
+			chgsize(2);
+		}
+		function linkChg()//更改TCP/MULT时，自动断开重联视频
+		{
+			var ltype = document.all.linktype[0].checked ? 3 : 2;
+			if(ltype!=Cmr.trantype)
+			{
+				setTimeout('cnt_all(0);',500);
+				setTimeout('cnt_all(1);',500);
+			}
+		}		
+		function cnt_all(onff)//预览开关(0/1)
+		{
+			if(onff)
+			{
+				Cmr.url         = ipads;
+				Cmr.wServerPort = serverport;
+				Cmr.channel     = cur_ch;//channel number
+				Cmr.username    = IDname;
+				Cmr.password    = pwd;
+				Cmr.trantype    = document.all.linktype[0].checked ? 3 : 2;//3 is TCP
+				Cmr.buffernum = 25;
+				Cmr.StartView();
+				if(is_pis==0){Cmr.PISNow(false)}
+				else{Cmr.PISNow(true)}
+				btnImgChg(document.getElementById("pis"),"pis",is_pis);
+				is_play = 1;
+				setTimeout("Cmr.SoundOff();", 800);
+				document.getElementById("playall").style.color = "#CCC";
+				document.getElementById("stopall").style.color = "#FFF";
+			}
+			else
+			{
+				Cmr.StopView();
+				is_play = 0;
+				document.getElementById("playall").style.color = "#FFF";
+				document.getElementById("stopall").style.color = "#CCC";
+				ctrl_audio();//停止音频，
+				ctrl_talk();//停止通话
+				ctrl_rcd();//停止录象
+			}
+		}
+		
+		function ctrl_rcd()//录象
+		{
+			img = document.getElementById("rec");
+			if((is_play==1) && (is_rec==0))
+			{
+				Cmr.StartRecord("");
+				is_rec = 1;
+			}
+			else
+			{
+				Cmr.StopRecord();
+				is_rec = 0;
+			}
+			btnImgChg(img,"rec",is_rec);
+        }
+		
+		function ctrl_pis()
+		{
+			img = document.getElementById("pis");
+			if(is_play==1)
+			{
+				if(is_pis==0){if(Cmr.PISNow(true)){is_pis = 1;}}
+				else{if(Cmr.PISNow(false)){is_pis = 0;}}
+			}
+			else if(is_pis==0){is_pis = 1;}
+			else if(is_pis==1){is_pis = 0;}
+			btnImgChg(img,"pis",is_pis);        }
+		
+		function ctrl_audio()//音频
+		{//opt: 0 is switch ctrl; 1 is button ctrl.
+			img = document.getElementById("aud");
+			if((is_play==1)&&(is_aud==0)&&(is_talk!=1))
+			{
+				if(Cmr.GetCurStatus()==0)
+				{
+					Cmr.SoundOn();
+					is_aud = 1;
+				}
+			}
+			else
+			{
+				Cmr.SoundOff();
+				is_aud = 0;
+			}
+			btnImgChg(img,"aud",is_aud);
+		}
+		
+		function ctrl_talk()//通话
+		{
+			img = document.getElementById("talk");
+			if((is_play==1)&&(is_talk==0))
+			{
+				Cmr.StartTalk();
+				is_talk = 1;
+			}
+			else
+			{
+				Cmr.StopTalk();
+				is_talk = 0;
+				window.status = "";
+				btnImgChg(img,"talk",is_talk);	
+			}		
+		}
+		
+		function event_talk(i)//通话状态,控件返回参数
+		{
+			if(i==0)
+			{				
+				is_talk = 0;
+				window.status = "对讲请求失败";
+				btnImgChg(document.getElementById("talk"),"talk",is_talk);	
+			}
+			else if(i==1)//old
+			{
+				is_talk = 1;
+				window.status = "通话中……";
+				btnImgChg(document.getElementById("talk"),"talk",is_talk);		
+				if(is_aud==0)
+				{
+					Cmr.SoundOn();
+					is_aud = 1;
+					btnImgChg(document.getElementById("aud"),"aud",is_aud)
+				}
+			}
+			else if(i==2)//new double
+			{
+				is_talk = 1;
+				window.status = "通话中……";
+				btnImgChg(document.getElementById("talk"),"talk",is_talk);		
+				if(is_aud==1)
+				{
+					Cmr.SoundOff();
+					is_aud = 0;
+					btnImgChg(document.getElementById("aud"),"aud",is_aud)
+				}
+			}
+		}
+		
+		function ptz_speed(value)//云台速度
+		{
+			if(value>10){ptz_spd =10;}
+			else if(value<0){ptz_spd =0;}
+			else{ptz_spd = value;}
+			
+			window.status = "PTZ Speed is " + ptz_spd;
+			
+			for(i=1; i<11; i++)
+			{		
+				img = document.getElementById("ptzspd"+i);	
+				if(i>ptz_spd){btnImgChg(img,"ptz_spd",0);}
+				else{btnImgChg(img,"ptz_spd",1);}
+			}			
+		}
+		
+		function ptz_mv(i,act)//云台转动
+		{
+			if(act != 0){
+				if(ort_ptz[i] != 0){
+					ort_ptz[i] = 0;
+				}
+				else{
+					ort_ptz[i] = 1;
+					Cmr.PTZCtrl(i, ptz_spd);
+				}
+			}
+			else{
+				ort_ptz[i] = 0;
+				Cmr.PTZCtrl(13, ptz_spd);
+			}
+		}
+		
+		function ptz_iris(i, act)
+		{//i: action or stop action; act: zoom98, iris45, focus67;
+			if(i)
+			{
+				Cmr.PTZCtrl(act, ptz_spd);
+			}
+			else
+			{
+				Cmr.PTZCtrl(13, ptz_spd);
+			}
+		}
+		function presetPoint(i, n)//预置点
+		{
+			 Cmr.PTZCtrl(i, n);
+		}
+		function status_alm(i)//报警
+		{
+			for(x=0; x<1; x++)
+			{
+				btn = document.getElementById("alm"+x);
+				if(i & Math.pow(2, x))
+				{
+					is_aux[x] = 1;
+				}
+				else
+				{
+					is_aux[x] = 0;
+				}
+				btnBgChg(btn, "alm", is_aux[x]);
+			}
+		}
+		function set_aux(i)
+		{
+			btn = document.getElementById("alm"+i);
+			if(is_aux[i] != 0){
+				Cmr.CtrolAlarmOut(i, 0);
+				is_aux[i] = 0;
+			}
+			else{
+				Cmr.CtrolAlarmOut(i, 1);
+				is_aux[i] = 1;
+			}			
+			btnBgChg(btn, "alm", is_aux[i]);
+		}
+		function chgsize(sz)//画面大小
+		{		
+			zoomout = document.getElementById("zoom_out");	
+			zoomin = document.getElementById("zoom_in");	
+			var view = document.getElementById("view");
+			if(sz == 0)
+			{
+				Cmr.FullScreen();
+			}
+			else if(sz == 1)
+			{	
+				Camera0.width  = 352;
+				Camera0.height = 288;
+				view.style.width  = "396px";
+				view.style.padding = "5px 358px 5px 5px";
+				btnBgChg(zoomout, "zoom_bg", 1);
+				btnBgChg(zoomin, "zoom_bg", 0);
+			}
+			else
+			{
+				Camera0.width  = 700;
+				Camera0.height = 576;
+				view.style.width  = "700px";
+				view.style.padding = "5px";
+				btnBgChg(zoomout, "zoom_bg", 0);
+				btnBgChg(zoomin, "zoom_bg", 1);
+			}
+			chgProp(Cmr);				
+		}
+		function cruise()//云台自动
+		{
+			if (is_auto)
+			{
+				Cmr.PTZCtrl(12, 0);
+				is_auto = 0;
+			}
+			else
+			{
+				Cmr.PTZCtrl(12, 1);
+				is_auto = 1;
+			}
+		}
+		function ctrl_cpt()//抓拍
+		{
+			Cmr.CaptureBmp("");
+		}
+		function changedt(value,obj)//流畅度,缓冲
+		{
+			for(i=0; i<6; i++)
+			{
+				btn = document.getElementById("buf"+i);				
+				btnBgChg(btn, "spd", 0);
+			}
+			Cmr.delaytime = value;
+			btnBgChg(obj, "spd", 1);
+			var version = parseFloat(navigator.appVersion.split("MSIE")[1]);
+			if(version<8)
+			{
+				zoomcon = document.getElementById("zoom");
+				zoomcon.style.marginBottom = "-3px";
+			}
+		}
+		function getdt()
+		{
+			if(Cmr.delaytime == 5){value=1;}
+			else if(Cmr.delaytime == 10){value=2;}
+			else if(Cmr.delaytime == 20){value=3;}
+			else if(Cmr.delaytime == 50){value=4;}
+			else if(Cmr.delaytime == 100){value=5;}
+			else{value=0;}
+			for(i=0; i<6; i++)
+			{
+				btn = document.getElementById("buf"+i);	
+				if(i==value){btnBgChg(btn, "spd", 1);}			
+				else {btnBgChg(btn, "spd", 0);}
+			}			
+		}
+		function btnImgChg(obj, pic, stt)//按钮图案变化(对象，图片名，状态：0/1=关/开)
+		{
+		    if (stt == 1) { obj.src = "http://61.190.35.174:90/images/" + pic + "_act.gif"; }
+		    else if (stt == 0) { obj.src = "http://61.190.35.174:90/images/" + pic + ".gif"; }
+		}
+		function btnBgChg(obj, pic, stt)//按钮背景变化
+		{
+		    if (stt == 1) { obj.style.background = "url(http://61.190.35.174:90/images/" + pic + "_act.gif) no-repeat center"; }
+		    else if (stt == 0) { obj.style.background = "url(http://61.190.35.174:90/images/" + pic + ".gif) no-repeat center"; }
+		}
+		function onlyNum()
+		{
+			var keys=event.keyCode
+			if (!((keys>=48&&keys<=57)||(keys>=96&&keys<=105)||keys==37||keys==39||keys==8||keys==46))
+			{event.returnValue=false;}
+		}
+		function chgProp(obj)
+		{
+			if(cmr_prop!=(obj.width/obj.height)&& Camera0.ImageWidth()>704){obj.height = parseInt(obj.width/cmr_prop);}
+		}
+	</script>
+</body>
+</html>
+

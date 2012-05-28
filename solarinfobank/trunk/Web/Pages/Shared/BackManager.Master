@@ -1,0 +1,196 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <% Html.RenderPartial("css"); %>
+<%if (Session[ComConst.Manager] == null)
+      Response.Redirect("/?", true); %>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#adivSelLang').click(function() {
+                $('#divSelLangon').slideToggle();
+            });
+            $(":a").each(function() {
+                if (window.location.href.indexOf($(this).attr("href")) != -1) {
+                    $(this).addClass("lefttabclick");
+                }
+            });
+        });
+    </script>
+
+    <style>
+        #menuShow a.lefttabclick
+        {
+            height: 30px;
+            line-height: 30px;
+            padding-left: 15px;
+            background: url(/images/kj/listbg04.jpg) no-repeat;
+            margin-bottom: 1px;
+            color: #4A8125;
+            font-weight: bold;
+            display: block;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="mainbody">
+        <% Html.RenderPartial("header"); %>
+        <div class="mainbox">
+            <div class="main_wz">
+                嗨, <a href="/admin/manager_edit/<%=(Session[ComConst.Manager] as Manager).id %>">
+                    <%=(Session[ComConst.Manager] as Manager).fullname%></a>!| <a href="/auth/loginout"
+                        onclick="return confirm("<%=Resources.SunResource.USER_LOGOUT_CONFIRM  %>")">注销</a>
+            </div>
+            <div>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="207" valign="top" id="menuShow">
+                            <div class="kjlbox">
+                                <div class="kjlbox_ico">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="138" height="27">
+                                        <tbody>
+                                            <tr>
+                                                <td align="center" width="39">
+                                                    <img src="/images/kj/kjico04.gif" width="16" height="16">
+                                                </td>
+                                                <td class="kjtt01" width="99">
+                                                    网站管理
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="kjmid">
+                                    <div class="kjb">
+                                        <ul>
+                                         <%if (AuthService.isAllow("admin", "userrecords"))
+                                              { %>
+                                         <li><a href="/admin/userrecords">用户登录日志</a></li>
+                                         <%} %>
+                                            <%if (AuthService.isAllow("admin", "users"))
+                                              { %>
+                                            <li><a href="/admin/users">用户列表</a></li>
+                                            <%} %>
+                                            <%if (AuthService.isAllow("admin", "allplants"))
+                                              { %>
+                                            <li><a href="/admin/allplants">电站列表</a></li>
+                                            <%} %>
+                                            <%if (AuthService.isAllow("admin", "collectors"))
+                                              { %>
+                                            <li><a href="/admin/collectors/1?sd=<%=DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd") %>&ed=<%=DateTime.Now.ToString("yyyy-MM-dd") %>">
+                                                采集器列表</a></li>
+                                            <%} %>
+                                            <%if (AuthService.isAllow("admin", "devices"))
+                                              { %>
+                                            <li><a href="/admin/devices">设备列表</a></li>
+                                            <%} %>
+                                            <%if (AuthService.isAllow("admin", "departmentlist"))
+                                              { %>
+                                            <li><a href="/admin/DepartmentList">宣传图片</a></li>
+                                            <%} %>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <div class="kjlbox">
+                                <div class="kjlbox_ico">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="138" height="27">
+                                        <tbody>
+                                            <tr>
+                                                <td align="center" width="39">
+                                                    <img src="/images/kj/kjico06.gif" width="13" height="16">
+                                                </td>
+                                                <td class="kjtt01" width="99">
+                                                    系统配置
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="kjmid">
+                                    <div class="kjb">
+                                        <ul>
+                                            <%if (AuthService.isAllow("admin", "managers"))
+                                              { %>
+                                            <li><a href="/admin/managers/">管理员列表</a></li>
+                                            <%} %>
+                                            <%if (AuthService.isAllow("admin", "dbconfig"))
+                                              { %>
+                                            <%--<li><a href="/admin/dbconfig/">配置管理</a></li>--%>
+                                            <%} %>
+                                            <%if (AuthService.isAllow("itemconfig", "edit"))
+                                              { %>
+                                            <li><a href="/itemconfig/edit/">二氧化碳</a></li>
+                                            <%} %>
+                                            
+                                              <%if (AuthService.isAllow("itemconfig", "tree"))
+                                              { %>
+                                            <li><a href="/itemconfig/tree/">等效树木</a></li>
+                                            <%} %>
+                                            
+                                            <%if (AuthService.isAllow("admin", "language"))
+                                              { %>
+                                            <li><a href="/admin/language/">语言</a></li>
+                                            <%} %>
+                                            <%if (AuthService.isAllow("devicemodel", "list"))
+                                              { %>
+                                            <li><a href="/devicemodel/list/">设备类型</a></li>
+                                            <%} %>
+                                            <%if (AuthService.isAllow("admin", "mailconfig"))
+                                              { %>
+                                            <li><a href="/admin/mailconfig/">邮箱配置</a></li>
+                                            <%} %>
+                                            <%if (AuthService.isAllow("admin", "dataitems"))
+                                              { %>
+                                            <li><a href="/admin/dataItems/">报表配置</a></li>
+                                            <%} %>
+                                            <%if (AuthService.isAllow("admin", "countries"))
+                                              { %>
+                                            <li><a href="/admin/countries/">国家/城市</a></li>
+                                            <%} %>
+                                            <%if (AuthService.isAllow("admin", "monitorconfig"))
+                                              { %>
+                                            <li><a href="/admin/monitorconfig/">测点配置</a></li>
+                                            <%} %>
+                                            <%if (AuthService.isAllow("admin", "currencies"))
+                                              { %>
+                                            <li><a href="/admin/currencies/">货币配置</a></li>
+                                            <%} %>
+                                            <%if (AuthService.isAllow("admin", "config_mge_items"))
+                                              { %>
+                                            <li><a href="/admin/config_mge_items/">电站/逆变器配置</a></li>
+                                            <%} %>
+                                            <%if (AuthService.isAllow("itemconfig", "reg_collector"))
+                                              { %>
+                                            <li><a href="/itemconfig/reg_collector/">采集器申请配置</a></li>
+                                            <%} %>
+                                          
+                                            <%if (AuthService.isAllow("admin", "roles"))
+                                              { %>
+                                            <li><a href="/admin/roles/">角色列表</a></li>
+                                            <%} %>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                         
+                        </td>
+                        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <% Html.RenderPartial("Footer"); %>
+    </div>
+</body>
+</html>

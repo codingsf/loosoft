@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="RelationConfig" type="Cn.Loosoft.Zhisou.SunPower.Domain.RelationConfig, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="relationconfig_result" class="RelationConfig">
+      <result property="id"			column="id"/>
+      <result property="uid"			column="uid"/>
+      <result property="relationId"			column="relationId"/>
+      <result property="relationType"			column="relationType"/>
+      <result property="width"			column="width"/>
+      <result property="height"   column="height"/>
+      <result property="config3"   column="config3"/>
+      <result property="config4"   column="config4"/>
+      <result property="config5"   column="config5"/>
+    </resultMap>
+  </resultMaps>
+
+  <cacheModels>
+
+  </cacheModels>
+
+  <statements>
+    <select id="relationconfig_get_uid_lazy" resultMap="relationconfig_result">
+      select * from relation_config where uid=#value#
+    </select>
+    <insert id="relationconfig_insert">
+      delete from relation_config where uid=#uid# and relationId=#relationId# and relationType=#relationType# and config5=#config5#;
+      insert into relation_config (relationId,relationType,width,height,config3,config4,uid,config5) values (#relationId#,#relationType#,#width#,#height#,#config3#,#config4#,#uid#,#config5#)
+    </insert>
+    <select id="relationconfig_get_config" resultMap="relationconfig_result" parameterClass="RelationConfig" >
+      select * from relation_config where uid=#uid# and relationId=#relationId# and relationType=#relationType# and config5=#config5#
+    </select>
+  </statements>
+</sqlMap>

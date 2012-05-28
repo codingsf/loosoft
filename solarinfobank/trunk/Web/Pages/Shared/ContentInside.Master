@@ -1,0 +1,34 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
+<%@ Import Namespace="System.Globalization" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <meta http-equiv="pragma" content="cache" />
+    <% Html.RenderPartial("css"); %>
+    <style type="text/css">
+           #menuShow a.lefttabclick{height:30px; line-height:30px; padding-left:15px; background:url(/images/kj/listbg04.jpg) no-repeat; margin-bottom:1px; color:#4A8125; font-weight:bold; display:block; text-decoration:none;}
+           #menuShow a.current{height:30px; line-height:30px; width:190px;  padding-left:15px; background:url(/images/kj/listbg03.jpg) no-repeat; margin-bottom:1px; color:#4A8125; font-weight:bold; display:block; text-decoration:none;}
+           #dl{ overflow:hidden;}
+           #dl a.lefttabclick{ height:30px; width:190px; line-height:30px; padding-left:15px; margin-bottom:1px; color:#7A9D63; font-weight:bold; display:block; text-decoration:none; background:#fff; overflow:hidden;}
+    </style>
+    <script type="text/javascript">
+        var exportButtonTitle = "<%=Resources.SunResource.CHART_EXPORT_DATA%>";
+        var exportXlsTitle = "<%=Resources.SunResource.CHART_EXPORT_XLS%>";
+        var exportCsvTitle = "<%=Resources.SunResource.CHART_EXPORT_CSV%>";
+        var exportPdfTitle = "<%=Resources.SunResource.CHART_EXPORT_PDF%>";
+        var infoTitle = "<%=Resources.SunResource.CHART_EXPORT_DATA%>";
+        var largeButtonTitle = "<%=Resources.SunResource.LARGEBUTTONTITLE %>"
+        var exportButtonTitle = "<%=Resources.SunResource.EXPORTBUTTONTITLE %>"     
+    </script>
+</head>
+<body>
+<asp:ContentPlaceHolder ID="MainContent" runat="server">
+</asp:ContentPlaceHolder>
+</body>
+</html>

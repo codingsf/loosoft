@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="User" type="Cn.Loosoft.Zhisou.SunPower.Domain.User, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="user_info_result" class="User">
+      <result property="id"			column="id"/>
+      <result property="ParentUserId"			column="parentUserId"/>
+      <result property="username"			column="username"/>
+      <result property="password"			column="password"/>
+      <result property="organize"			column="organize"/>
+      <result property="sex"			column="sex"/>
+      <result property="fullname"			column="fullname"/>
+      <result property="address"			column="address"/>
+      <result property="postalcode"			column="postalcode"/>
+      <result property="email"			column="email"/>
+      <result property="city"			column="city"/>
+      <result property="country"			column="country"/>
+      <result property="tel"			column="tel"/>
+      <result property="languageId"			column="languageId"/>
+      <result property="FirstName"			column="FirstName"/>
+      <result property="LastName"			column="LastName"/>
+      <result property="revenueRate"			column="revenueRate"/>
+      <result property="currencies"			column="currencies"/>
+      <result property="mobilePhone"			column="mobilePhone"/>
+      <result property="lastApplyCollectorDate"			column="lastApplyCollectorDate"/>
+      <result property="todayApplyCollectorCount"			column="todayApplyCollectorCount"/>
+      <result property="faxPhone"			column="faxPhone"/>
+      <result property="TemperatureType"			column="TemperatureType"/>
+      <result property="menuDisplayCount"			column="menudisplaycount"/>
+      <result property="overviewDisplayCount"			column="overviewdisplaycount"/>
+      <result property="isBigCustomer"			column="isBigCustomer"/>
+      <!--级联对象集合-->
+      <result property="Language"		lazyLoad="true"	column="languageId" select="language_get_lazy" />
+      <result property="plantUsers" lazyLoad="true"	column="id"         select="plantuser_get_by_userid" />
+      <result property="UserRole"   lazyLoad="true"	column="id"         select="get_user_role" />
+      <result property="ChildUsers" lazyLoad="true"	column="id"         select="get_child_user_by_userid" />
+      <result property="Roles" lazyLoad="true"	column="id"          select="get_role_uid" />
+      <result property="createToplevelPlants" lazyLoad="true"	column="id"         select="toplevelplant_get_uid" />
+      <result property="configs" lazyLoad="true"	column="id"         select="relationconfig_get_uid_lazy" />
+    </resultMap>
+  </resultMaps>
+  <cacheModels>
+    <cacheModel id="user_cache" implementation="LRU" readOnly="true" serialize="false">
+      <flushInterval minutes="30"/>
+      <flushOnExecute  statement="user_insert"/>
+      <flushOnExecute  statement="user_update"/>
+      <flushOnExecute  statement="user_update_pass"/>
+      <flushOnExecute  statement="password_update_by_id"/>
+      <flushOnExecute  statement="user_delete"/>
+      <flushOnExecute  statement="update_todayapplycollector_count"/>
+      <flushOnExecute  statement="closeplant"/>
+      <flushOnExecute  statement="plantuser_insert"/>
+      <flushOnExecute  statement="plantuser_update"/>
+      <flushOnExecute  statement="plantuser_delete"/>
+      <flushOnExecute  statement="plantuser_delete_by_plantid"/>
+      <flushOnExecute  statement="plantuser_delete_by_userid"/>
+      <flushOnExecute  statement="plant_insert"/>
+      <flushOnExecute  statement="plant_delete"/>
+      <flushOnExecute  statement="plant_update_pic"/>
+      <flushOnExecute  statement="update_bigcustomer_enable"/>
+      <flushOnExecute  statement="plant_update"/>
+      <flushOnExecute  statement="virtualplant_insert"/>
+      <flushOnExecute  statement="virtualplant_delete"/>
+      <flushOnExecute  statement="relationconfig_insert"/>
+      <property name="CacheSize" value="1000"/>
+    </cacheModel>
+  </cacheModels>
+
+  <statements>
+    <!--根据用户id取得用户 或单位不能及时缓过来 但是没道理的啊 先注释掉cacheModel="user_get_object_cache"-->
+    <select id="user_get"  resultMap="user_info_result"  paramterClass="User" cacheModel="user_cache">
+      select *  from  userinfo where id=#id#
+    </select>
+
+    <select id="user_get_lazy"  resultMap="user_info_result" cacheModel="user_cache">
+      SELECT *  FROM  userinfo where id=#value#
+    </select>
+
+    <select id="define_report_lazy"  resultMap="user_info_result" cacheModel="user_cache">
+      SELECT *  FROM  userinfo where id=#value#
+    </select>
+
+    <!--获取所以用户信息，需要翻页功能-->
+    <select id="user_get_list" resultMap="user_info_result" cacheModel="user_cache">
+      SELECT * FROM userinfo
+    </select>
+
+    <!--根据用户名取得用户-->
+    <select id="get_user_by_name"  resultMap="user_info_result" paramterClass="string">
+      SELECT  *  FROM  userinfo where username=#username#
+    </select>
+
+    <!-- 插入用户-->
+    <insert id="user_insert" parameterClass="User">
+      insert into  userinfo(UserName,PassWord,Organize,Sex,FullName,Address,Postalcode,Email,City,Country,Tel,LanguageId,revenueRate,currencies,mobilePhone,faxPhone,temperatureType,firstname,lastname,ParentUserId,menuDisplayCount,overviewDisplayCount) VALUES(#username#,#password#,#organize#,#sex#,#fullname#,#address#,#postalcode#,#email#,#city#,#country#,#tel#,#languageId#,#revenueRate#,#currencies#,#mobilePhone#,#faxPhone#,#TemperatureType#,#FirstName#,#LastName#,#ParentUserId#,4,10)
+      <selectKey resultClass="int" property="id" type="post" >
+        SELECT LAST_INSERT_ID() AS id
+      </selectKey>
+    </insert>
+    <!-- 更新用户所有信息-->
+    <update id="user_update" parameterClass="User">
+      UPDATE USERINFO SET USERNAME=#username#,firstname=#FirstName#,lastname=#LastName#,TemperatureType=#TemperatureType#,ORGANIZE=#organize#,SEX=#sex#,Fullname=#fullname#,Address=#address#,Postalcode=#postalcode#,Email=#email#,Country=#country#,City=#city#,Tel=#tel#,LanguageId=#languageId#,revenueRate=#revenueRate#,currencies=#currencies#,mobilePhone=#mobilePhone#,faxPhone=#faxPhone#,TemperatureType=#TemperatureType# ,menuDisplayCount=#menuDisplayCount#,overviewDisplayCount=#overviewDisplayCount# WHERE ID=#id#
+    </update>
+    <!-- 更新用户除密码外的其他信息-->
+    <update id="user_update_pass" parameterClass="User">
+      UPDATE USERINFO SET USERNAME=#username#,firstname=#FirstName#,lastname=#LastName#,TemperatureType=#TemperatureType#,ORGANIZE=#organize#,SEX=#sex#,Fullname=#fullname#,Address=#address#,Postalcode=#postalcode#,Email=#email#,Country=#country#,City=#city#,Tel=#tel#,LanguageId=#languageId#,revenueRate=#revenueRate#,currencies=#currencies#,mobilePhone=#mobilePhone#,faxPhone=#faxPhone#,TemperatureType=#TemperatureType# WHERE ID=#id#
+    </update>
+
+    <update id="password_update_by_id" parameterClass="Hashtable">
+      UPDATE USERINFO SET PASSWORD=#pwd# WHERE ID=#uid#
+    </update>
+    <!--设置是否为大客户-->
+    <update id="update_bigcustomer_enable" parameterClass="Hashtable">
+      update userinfo set isbigcustomer=#isBigCustomer# where id=#id#
+    </update>
+
+    <select id="user_get_by_email"  resultClass="User"  paramterClass="Hashtable" >
+      SELECT *  FROM  userinfo where email=#email# and username=#uname# LIMIT 0,1
+    </select>
+    <!--cacheModel="user_get_list_cache"-->
+
+    <select id="get_child_user_by_userid"  resultMap="user_info_result"  paramterClass="int" >
+      SELECT *  FROM  userinfo where parentUserid=#value#
+    </select>
+
+    <select id="loading_users_page_list" resultMap="user_info_result" cacheModel="user_cache">
+      <![CDATA[  SELECT * from userinfo limit $Start$,$End$]]>
+    </select>
+
+    <select id="loading_users_page_count" resultClass="int" >
+      <![CDATA[SELECT COUNT(1) from userinfo 　]]>
+    </select>
+
+    <select id="user_get_languageId_by_id" resultClass="int" >
+      select languageId from userInfo where id=#value#
+    </select>
+    <delete id="user_delete" resultClass="int">
+      delete from userinfo where id=#id#;
+      delete from user_role where userId=#id#
+    </delete>
+
+    <select id="load_user_like_uname" resultMap="user_info_result" cacheModel="user_cache">
+      <![CDATA[  SELECT * from userinfo where username like '%$value$%']]>
+    </select>
+
+    <update id="update_todayapplycollector_count">
+      <![CDATA[  update userinfo set todayapplycollectorcount=#todayApplyCollectorCount#,lastApplyCollectorDate=#lastApplyCollectorDate# where id=#id#]]>
+    </update>
+  </statements>
+
+
+</sqlMap>

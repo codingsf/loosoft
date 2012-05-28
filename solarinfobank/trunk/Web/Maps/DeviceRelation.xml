@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="DeviceRelation" type="Cn.Loosoft.Zhisou.SunPower.Domain.DeviceRelation, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="devicerelation_result" class="DeviceRelation">
+      <result property="id"			column="id"/>
+      <result property="deviceId"			column="deviceId"/>
+      <result property="plantId"			column="plantId"/>
+      <result property="name"			column="name"/>
+      <result property="parentDeviceId"			column="parentDeviceId"/>
+      <result property="monitorCode"			column="monitorCode"/>
+      <!--<result property="childDevices" lazyLoad="false" column="deviceId" select="devicerelation_get_childdevices_lazy" />-->
+      <!--<result property="parentDevice" lazyLoad="false" column="parentDeviceId" select="devicerelation_get_device_lazy" />-->
+      <result property="device" lazyLoad="false" column="deviceId" select="devicerelation_get_device_lazy" />
+      <result property="childRelation" lazyLoad="false" column="deviceId" select="devicerelation_get_childrelation_lazy" />
+    </resultMap>
+  </resultMaps>
+
+  <cacheModels>
+
+  </cacheModels>
+
+  <statements>
+    <insert id="devicerelation_insert">
+      insert into device_relation (name,deviceId,parentDeviceId,monitorCode,plantId) values (#name#,#deviceId#,#parentDeviceId#,#monitorCode#,#plantId#)
+    </insert>
+
+    <delete id="devicerelation_delete">
+      delete from device_relation where deviceId=#deviceId# and parentDeviceId=0;
+    </delete>
+
+    <delete id="devicerelation_delete_dids" parameterClass ="Hashtable">
+      delete from device_relation where  deviceid in ($ids$-1) and name=#name#
+    </delete>
+
+
+    <select id="devicerelation_get_list" resultMap="devicerelation_result">
+      select * from  device_relation where plantId=#plantId# and parentDeviceId>0
+    </select>
+
+    <select id="devicerelation_get" resultMap="devicerelation_result">
+      select * from  device_relation where deviceid=#deviceId#
+    </select>
+
+    <select id="devicerelation_get_list_parentdeviceId" resultMap="devicerelation_result">
+      select * from  device_relation where deviceId=#parentDeviceId# <!--and parentDeviceId=0-->
+    </select>
+
+    <select id="devicerelation_get_childrelation_lazy" resultMap="devicerelation_result">
+      select * from  device_relation where parentDeviceId=#value# and parentDeviceId>0
+    </select>
+
+    <!--<select id="devicerelation_get_childdevices_lazy" resultMap="DeviceResult">
+      select * from device where id in (select deviceId from  device_relation where parentDeviceId=#value# and  parentDeviceId>0)
+    </select>-->
+
+    <select id="devicerelation_get_device_lazy" resultMap="DeviceResult">
+      select * from device where id = #value#
+    </select>
+
+    <select id="devicerelation_get_firstdevice" resultMap="devicerelation_result" parameterClass="Hashtable">
+      select * from device_relation where parentDeviceId=0 and deviceid not in (select deviceid from device_relation where parentDeviceId>0 and name=#name#) and plantId=#plantId# and name=#name#
+    </select>
+
+    <select id="devicerelation_get_name_pid" resultMap="devicerelation_result">
+      select * from device_relation where plantId=#value# group by name
+    </select>
+  </statements>
+</sqlMap>

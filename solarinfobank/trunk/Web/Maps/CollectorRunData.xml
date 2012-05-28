@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="CollectorRunData" type="Cn.Loosoft.Zhisou.SunPower.Domain.CollectorRunData, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="collector_run_data_result" class="CollectorRunData">
+      <result property="collectorID"			column="collectorID"/>
+      <result property="sendTime"			column="sendTime"/>
+      <result property="dayEnergy"			column="day_energy"/>
+      <result property="totalEnergy"			column="total_energy"/>
+      <result property="power"			column="power"/>
+      <result property="sunStrength"			column="sun_strength"/>
+      <result property="windSpeed"			column="wind_speed"/>
+      <result property="windDirection"			column="wind_direction"/>
+      <result property="temperature"			column="temperature"/>
+    </resultMap>
+  </resultMaps>
+  <cacheModels>
+    <cacheModel id="collector_rundata_cache" implementation="LRU">
+      <flushInterval minutes="30"/>
+      <property name="CacheSize" value="1000"/>
+    </cacheModel>
+  </cacheModels>
+  <statements>
+    <select id="collectorrundata_get"  resultMap="collector_run_data_result" parameterClass="int">
+      select *  from  collector_run_data where collectorID=#value#
+    </select>
+    <select id="collectorrundata_get_by_collectorid"  resultMap="collector_run_data_result" parameterClass="int">
+      select *  from  collector_run_data where collectorID=#value#
+    </select>
+
+    <select id="collectorrundata_get_dayenergy"  resultClass="float"  parameterClass="string">
+      <![CDATA[Select case  when count(*)=0 then 0 else Sum(day_energy) end as dayEenergy from collector_run_data where DATE_FORMAT(sendtime,'%Y%m%d') = #value#]]>
+    </select>
+    <!--add by qian hb in 20120204 for取得今日总实时功率-->
+    <select id="collectorrundata_get_power"  resultClass="float"  parameterClass="string">
+      <![CDATA[Select case  when count(*)=0 then 0 else Sum(power) end as power from collector_run_data where DATE_FORMAT(sendtime,'%Y%m%d') = #value#]]>
+    </select>
+    <!-- 测试-->
+    <!--<select id="collectorrundata_get_dayenergy"  resultClass="int">
+        <![CDATA[Select case  when count(*)  = 0 then 0 else Sum(day_energy) end as dayEenergy From collector_run_data where DATE_FORMAT(now(), 
+'%Y-%m-%d')=DATE_FORMAT(sendtime, '%Y-%m-%d')]]>
+      </select>-->
+    <!-- 插入一条记录-->
+    <insert id="collectorrundata_insert" paramsClass="CollectorRunData">
+      INSERT INTO collector_run_data
+      (collectorID,SendTime,day_energy,total_energy,Power,Sun_Strength,Wind_Speed,Wind_Direction,Temperature)
+      VALUES(#collectorID#,#sendTime#,#dayEnergy#,#totalEnergy#,#power#,#sunStrength#,#windSpeed#,#windDirection#,#temperature#)
+    </insert>
+    <!-- 更新一条记录-->
+    <update id="collectorrundata_update" paramsClass="CollectorRunData">
+      update collector_run_data set sendTime=#sendTime#,day_energy=#dayEnergy#,total_energy=#totalEnergy#,Power=#power#,Sun_Strength=#sunStrength#,Wind_Speed=#windSpeed#,Wind_Direction=#windDirection#,Temperature=#temperature# where collectorID=#collectorID#
+    </update>
+  </statements>
+</sqlMap>

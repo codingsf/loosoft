@@ -1,0 +1,24 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
+<%@ Register Src="Header.ascx" TagName="Header" TagPrefix="uc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+<asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+
+</title>
+<meta http-equiv="pragma" content="cache" />
+
+</head>
+
+<body>
+
+<asp:ContentPlaceHolder ID="CustomHead" runat="server" />
+<asp:ContentPlaceHolder ID="MainContent" runat="server">
+</asp:ContentPlaceHolder>
+</body>
+</html>
+  

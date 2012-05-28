@@ -1,0 +1,439 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
+<%@ Import Namespace="System.Globalization" %>
+<%@ Register Src="Header.ascx" TagName="Header" TagPrefix="uc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <% Html.RenderPartial("css"); %>
+    <meta http-equiv="pragma" content="cache" />
+    <asp:ContentPlaceHolder ID="CustomHead" runat="server" />
+    <style type="text/css">
+        #menuShow a.lefttabclick
+        {
+            height: 25px;
+            line-height: 25px;
+            padding-left: 15px;
+            background: url(/images/kj/listbg04.jpg) no-repeat;
+            margin-bottom: 1px;
+            color: #4A8125;
+            font-weight: bold;
+            display: block;
+            text-decoration: none;
+        }
+        #menuShow a.current
+        {
+            height: 30px;
+            line-height: 30px;
+            width: 190px;
+            padding-left: 15px;
+            background: url(/images/kj/listbg03.jpg) no-repeat;
+            margin-bottom: 1px;
+            color: #4A8125;
+            font-weight: bold;
+            display: block;
+            text-decoration: none;
+        }
+        #dl a.lefttabclick
+        {
+            height: 30px;
+            width: 190px;
+            line-height: 30px;
+            padding-left: 15px;
+            margin-bottom: 1px;
+            color: #7A9D63;
+            font-weight: bold;
+            display: block;
+            text-decoration: none;
+            background: #fff;
+        }
+    </style>
+
+    <script src="../../script/cookie.js" type="text/javascript"></script>
+
+    <link href="/style/colorbox.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript">
+    
+        function logout()
+        {
+            if( confirm("<%=Resources.SunResource.USER_LOGOUT_CONFIRM  %>"))
+            {
+                setCookie("uinside","");
+                return true;
+            }
+            return false;
+        }
+        var exportXlsTitle = "<%=Resources.SunResource.CHART_EXPORT_XLS%>";
+        var exportCsvTitle = "<%=Resources.SunResource.CHART_EXPORT_CSV%>";
+        var exportPdfTitle = "<%=Resources.SunResource.CHART_EXPORT_PDF%>";  
+        var infoTitle = "<%=Resources.SunResource.CHART_EXPORT_DATA%>";   
+        var largeButtonTitle = "<%=Resources.SunResource.LARGEBUTTONTITLE %>"
+        var exportButtonTitle = "<%=Resources.SunResource.EXPORTBUTTONTITLE %>"
+        $(document).ready(function() {
+        var tabs=getCookie("uinside");
+        if(tabs==undefined)
+        tabs=",";
+        tabs=tabs.split(',');
+         for(var i=0;i<tabs.length;i++)
+         {
+            if(tabs[i]!="")
+            {
+            $(".kjlbox_ico").each(function()
+                {
+                if ($(this).parent().find(".kjmid").attr("ref")==tabs[i])
+                {
+                    $(this).parent().find(".kjmid").show();
+                }
+            });
+            }
+        }
+            
+            $(".kjlbox_ico").click(function() {
+                if ($(this).parent().find(".kjmid").is(":hidden")) {
+                    $(this).parent().find(".kjmid").slideDown(1000);
+                } else {
+                    $(this).parent().find(".kjmid").slideUp(1000);
+                }
+                var stabs="";
+                $(".kjlbox_ico").each(function()
+                {
+                if (!$(this).parent().find(".kjmid").is(":hidden"))
+                    stabs+=$(this).parent().find(".kjmid").attr("ref")+",";
+                });
+                setCookie("uinside",stabs);
+            });
+            
+            
+            
+            $(":a").each(function() {
+                if (window.location.href.indexOf($(this).attr("href")) != -1) {
+                    $(this).addClass("lefttabclick");
+                }
+            });
+            <%if(Request.Url.ToString().ToLower().EndsWith("allplants")) {%>
+                loadContent('content_ajax','/user/IncludeAllPlants','iframe','GET');
+            <%}else if(Request.Url.ToString().ToLower().EndsWith("overview")){%>
+                loadContent('content_ajax','/user/IncludeOverview','ajax','GET');
+            <%}else if(Request.Url.ToString().ToLower().EndsWith("addoneplant")){%>
+                loadContent('content_ajax','/user/addplant','iframe','GET');
+            <%}%>
+        });
+        var currentSel;
+
+        function deviceHidden(li) {
+            if (li == currentSel) {
+                $(li).toggle();
+                $(li + "_link").addClass("current");
+                if (($(li).is(":hidden"))) {
+                    $(li + "_link").removeClass("current");
+                }
+                return;
+            }
+            currentSel = li;
+            $("div[rel='de']").each(function() {
+                $(this).hide();
+            });
+            $(li).show();
+            $(li + "_link").addClass("current");
+
+        }
+        
+        ///设置当前菜单
+        function setcurrent(obj)
+        {
+         $("#current_uri").val(obj.href);
+         $("#defaultLink").addClass("lefttabclick");
+            var current=obj.href;
+            $(".nav :a").each(function() {
+                if (current.indexOf($(this).attr("href")) != -1) {
+                    $(this).addClass("lefttabclick");
+                }else{
+                    if($(this).attr("href")&&$(this).attr("href").indexOf("user/allplants")==-1)
+                        $(this).removeClass("lefttabclick");
+                }
+            });
+            window.parent.scroll(0,0);
+            
+         }
+         
+        //加载右边内容
+        function loadContent(curContainer, url, type,method) {
+         $("#loading_type").val(type);
+            if(url.indexOf("?")>-1)
+                url=url+"&rnd="+Math.random();
+            else{
+                url=url+"?rnd="+Math.random();
+            }
+            if (type == "ajax") {
+                $.ajax({
+                    type: method,
+                    url: url,
+                    data: {},
+                    success: function(result) {
+                        $('#' + curContainer).html(result);
+                        readyinit();
+                    },
+                    beforeSend: function() {
+                        $('#' + curContainer).empty();
+                    }
+                });
+            } else {
+                var ifurl = "<iframe src='"+url+"' id='mainFrame' name='mainFrame'onLoad='iFrameHeight()'  frameborder='0' width='793' scrolling=no style='text-align:right;'> </iframe>";
+                $('#' + curContainer).html(ifurl);
+            }
+        }
+
+        //ifame自适应高度,被包含的页面，内部有影响页面长度的要在页面中完成操作好再次调用这个方法。如:parent.iFrameHeight();
+        function iFrameHeight() {
+            //set current page title 
+            document.title=(document.getElementById('mainFrame').contentWindow.document.title);
+            var ifm = document.getElementById("mainFrame");
+            var subWeb = document.frames ? document.frames["mainFrame"].document : ifm.contentDocument;
+            if (ifm != null && subWeb != null) {
+                ifm.height = subWeb.body.scrollHeight;
+            }
+        } 
+        
+        //查看大图
+        function previewImage(picname){
+            $.colorbox({ href: picname });
+        }
+        
+        //请求预览
+        function previewReports(userId,curContainer, dataitems, repType, rName, vTime,PlantId) {
+            $("#outpreview").colorbox({ width: "100%", inline: true, href: "#large_container" });
+            document.getElementById("outpreview").click();
+            $.ajax({
+                type: "POST",
+                url: "/Reports/PreviewReport",
+                data: "userId="+userId+"&dataItem=" + dataitems + "&tId=" + repType + "&rName=" + rName + "&cTime=" + vTime + "&plantId=" + PlantId,
+                success: function(result) {
+                    $("#" + curContainer).html(result)
+                },
+                beforeSend: function() {
+                     $('#' + curContainer).empty();
+                     $('#' + curContainer).append("<center><img src=\"../../images/ajax_loading.gif\" style=\"margin-top: " + 150 + "px;\" /></center>");
+                }
+            });
+        }
+    </script>
+
+    <script src="/script/DatePicker/WdatePicker.js" type="text/javascript"></script>
+
+    <script src="/script/Highcharts-2.1.3/js/highcharts.js" type="text/javascript"></script>
+
+    <script src="/script/Highcharts-2.1.3/js/modules/exporting.src.js" type="text/javascript"></script>
+
+    <script src="/Script/SetChart.js" type="text/javascript"></script>
+
+    <script src="/Script/jquery.colorbox.js" type="text/javascript"></script>
+
+</head>
+<body>
+    <div class="mainbody">
+        <% Html.RenderPartial("header"); %>
+        <div class="mainbox">
+            <div class="main_wz">
+                <a href="/user/record/<%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().id %>"
+                    onclick="loadContent('content_ajax','/user/record','iframe','GET');setcurrent(this);return false;">
+                    <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().displayNick %></a>
+                ,
+                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_WELCOME_TO_COME  %>! | <a onclick="return logout()"
+                    href="/auth/loginout">
+                    <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_LOGOUT  %></a>
+            </div>
+            <div>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="207" valign="top" id="menuShow">
+                            <div class="kjlbox">
+                                <div class="kjlbox_ico">
+                                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td width="40" align="center">
+                                                <img src="/images/kj/fico01.jpg" />
+                                            </td>
+                                            <td class="kjtt01">
+                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_PLANT_LIST%>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="kjmid">
+                                    <div class="kjb">
+                                        <ul>
+                                            <li class="nav"><a id="defaultlink" href="/user/allplants">
+                                                <%=Resources.SunResource.PAGESHARED_ALLPLANTS%></a></li>
+                                            <%
+                                                User user = UserUtil.getCurUser();
+                                                int idx = 0;
+                                                int configCount = user.menuDisplayCount;
+                                                int totalPlant = user.displayPlants.Count;
+                                                foreach (Plant plant in user.displayPlants)
+                                                {
+
+                                                    if (idx++ >= configCount)
+                                                        break;
+                                            %>
+                                            <li><a href="/<%=plant.isVirtualPlant?"virtual/plantrelationstruct":"plant/overview" %>/<%=plant.id %>"
+                                                title="<%=plant.name%>">
+                                                <%=StringUtil.cutStr(plant.name.ToString(), 16, "...")%>
+                                                <%if (plant.hasFaultDevice)
+                                                  { %>
+                                                <img src="/images/warning_16.gif" alt="">
+                                                <%} %>
+                                            </a></li>
+                                            <%}%>
+                                            <%if (configCount < totalPlant)
+                                              { %>
+                                            <li class="nav"><a title="<%=Resources.SunResource.PAGE_SHARED_ALLPLANTS_TIPS%>"
+                                                onclick="loadContent('content_ajax','/user/includeAllplants','iframe','GET');setcurrent(this);$('#defaultlink').removeClass('lefttabclick');return false;"
+                                                href="/user/more">
+                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_ALL_PLANTS%>>></a></li>
+                                            <%} %>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kjlbox nav">
+                                <div class="kjlbox_ico">
+                                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td width="40" align="center">
+                                                <img src="/images/kj/fico02.jpg" />
+                                            </td>
+                                            <td class="kjtt01">
+                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_PLANT_DATA  %>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="kjmid" id="plantlist">
+                                    <div class="kjb">
+                                        <ul>
+                                            <li><a onclick="loadContent('content_ajax','/user/includeoverview','ajax','GET');setcurrent(this);return false;"
+                                                href="/user/includeoverview">
+                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_PLANT_OVERVIEW%></a></li>
+                                            <li><a onclick="loadContent('content_ajax','/user/map','iframe','GET');setcurrent(this);return false;"
+                                                href="/user/map">
+                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_PLANT_MAPS%></a></li>
+                                            <%if (AuthService.isAllow(AuthorizationCode.LOGS_LIST))
+                                              { %>
+                                            <li><a onclick="loadContent('content_ajax','/user/log','iframe','GET');setcurrent(this);return false;"
+                                                href="/user/log">
+                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_LOGS%>(<%=Cn.Loosoft.Zhisou.SunPower.Service.FaultService.GetInstance().GetUserNoConfirmLogsCount(Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser())%>)</a></li>
+                                            <%} %>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <%if (AuthService.isAllow(AuthorizationCode.YEAR_ENERGY_COMPARE))
+                              { %>
+                            <div class="kjlbox nav">
+                                <div class="kjlbox_ico">
+                                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td width="40" align="center">
+                                                <img src="/images/kj/fico03.jpg" />
+                                            </td>
+                                            <td class="kjtt01">
+                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_ANALYSIS_CHART%>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="kjmid" style="display: none" ref="3">
+                                    <div class="kjb">
+                                        <ul>
+                                            <li><a onclick="loadContent('content_ajax','/user/EnergyYearCompare','ajax','GET');setcurrent(this);return false;"
+                                                href="/user/EnergyYearCompare">
+                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_YEARS_ENERGY_COMPARED%></a></li>
+                                            <li><a onclick="loadContent('content_ajax','/user/PEnergyCompare','ajax','GET');setcurrent(this);return false;"
+                                                href="/user/PEnergyCompare">
+                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_INVEST_INCOME_COMPARED%></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <%}%>
+                            <%if (Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().ParentUserId == 0)
+                              { %>
+                            <div class="kjlbox nav">
+                                <div class="kjlbox_ico">
+                                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td width="40" align="center">
+                                                <img src="/images/kj/fico04.jpg" />
+                                            </td>
+                                            <td class="kjtt01">
+                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_CONFIGURATION  %>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="kjmid" style="display: none" ref="4">
+                                    <div class="kjb">
+                                        <ul>
+                                            <li><a onclick="loadContent('content_ajax','/user/AllPlantsReport','iframe','GET');setcurrent(this);return false;"
+                                                href="/user/AllPlantsReport">
+                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_REPORT_CONFIGURATION  %></a></li>
+                                            <%--<li><a onclick="loadContent('content_ajax','/user/auth','iframe','GET');setcurrent(this);return false;" href="/user/auth">权限配置</a></li>--%>
+                                            <%--<li><a onclick="loadContent('content_ajax','/user/roles','iframe','GET');setcurrent(this);return false;" href="/user/roles">角色列表</a></li>--%>
+                                            <li><a onclick="loadContent('content_ajax','/user/edit','iframe','GET');setcurrent(this);return false;"
+                                                href="/user/edit">
+                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_USER_INFORMATION  %></a></li>
+                                            <li><a onclick="loadContent('content_ajax','/user/changepassword','iframe','GET');setcurrent(this);return false;"
+                                                href="/user/changepassword">
+                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_CHANGE_PASSWORD  %></a></li>
+                                            <li><a onclick="loadContent('content_ajax','/user/pageconfig','iframe','GET');setcurrent(this);return false;"
+                                                href="/user/pageconfig">
+                                                <%=Resources.SunResource.PAGECONFIG_TITLE %></a></li>
+                                            <li><a onclick="loadContent('content_ajax','/user/record','iframe','GET');setcurrent(this);return false;"
+                                                href="/user/record">
+                                                <%=Resources.SunResource.PAGE_USER_LOGINRECORD%></a></li>
+                                            <%if (Cn.Loosoft.Zhisou.SunPower.Service.ProtalUtil.isBigCustomer())
+                                              { %>
+                                            <li><a onclick="loadContent('content_ajax','/portal/manage','iframe','GET');setcurrent(this);return false;"
+                                                href="/portal/manage">门户管理</a></li>
+                                            <%} %>
+                                            <%if (AuthService.isAllow(AuthorizationCode.USER_LIST)&&ProtalUtil.isBigCustomer())
+                                              { %>
+                                            <li><a onclick="loadContent('content_ajax','/user/plantuser','iframe','GET');setcurrent(this);return false;"
+                                                href="/user/plantuser">
+                                                <%=Resources.SunResource.SHARED_INSIDE_PLANT_USER%></a></li>
+                                            <%} %>
+                                            <%if (AuthService.isAllow(AuthorizationCode.APPLY_DATASOURCE) && Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().username != UserUtil.demousername)
+                                              { %>
+                                            <li><a onclick="loadContent('content_ajax','/user/regsource','iframe','GET');setcurrent(this);return false;"
+                                                href="/user/regsource">
+                                                <%=Resources.SunResource.USER_APPLAY_COLLECTOR_NOTICE%></a></li>
+                                            <%} %>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <%} %>
+                            <div class="kjlbu00 nav">
+                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_ANY_QUESTIONS  %>?<br />
+                                <a href="/help/<%=(Session["Culture"] as CultureInfo).Name%>/SolarInfo Bank User Manual.pdf"
+                                    target="_blank" class="green" style="text-decoration: underline;">
+                                    <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_CLICK_HERE_FOR_HELP  %>!</a>
+                            </div>
+                        </td>
+                        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <% Html.RenderPartial("Footer"); %>
+    </div>
+</body>
+</html>

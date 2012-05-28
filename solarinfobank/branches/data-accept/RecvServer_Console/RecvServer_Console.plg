@@ -1,0 +1,66 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: RecvServer_Console - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x804 /fo"Release/RecvServer_Console.res" /d "NDEBUG" /d "_AFXDLL" "E:\RecvServer_Console\RecvServer_Console.rc"" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPB8.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /I "mysql/include" /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /D "_AFXDLL" /Fp"Release/RecvServer_Console.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"E:\RecvServer_Console\CriticalSection.cpp"
+"E:\RecvServer_Console\DataManage.cpp"
+"E:\RecvServer_Console\DLLLoader.cpp"
+"E:\RecvServer_Console\Exception.cpp"
+"E:\RecvServer_Console\MySQLUtil.cpp"
+"E:\RecvServer_Console\RecvServer_Console.cpp"
+"E:\RecvServer_Console\TCPServer.cpp"
+"E:\RecvServer_Console\UserSession.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPB8.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPB9.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /I "mysql/include" /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /D "_AFXDLL" /Fp"Release/RecvServer_Console.pch" /Yc"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"E:\RecvServer_Console\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPB9.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPBA.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/RecvServer_Console.pdb" /machine:I386 /out:"bin/RecvServer_Console.exe" /libpath:"mysql/Lib/Opt" 
+.\Release\CriticalSection.obj
+.\Release\DataManage.obj
+.\Release\DLLLoader.obj
+.\Release\Exception.obj
+.\Release\MySQLUtil.obj
+.\Release\RecvServer_Console.obj
+.\Release\StdAfx.obj
+.\Release\TCPServer.obj
+.\Release\UserSession.obj
+.\Release\RecvServer_Console.res
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPBA.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+CriticalSection.cpp
+DataManage.cpp
+DLLLoader.cpp
+Exception.cpp
+MySQLUtil.cpp
+RecvServer_Console.cpp
+TCPServer.cpp
+UserSession.cpp
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+RecvServer_Console.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

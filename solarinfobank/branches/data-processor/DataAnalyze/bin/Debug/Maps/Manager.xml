@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="Manager" type="Cn.Loosoft.Zhisou.SunPower.Domain.Manager, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="ManagerResult" class="Manager">
+      <result property="id"			column="id"/>
+      <result property="username"			column="username"/>
+      <result property="password"			column="password"/>
+      <result property="fullname"	column="fullname"/>
+      <result property="department"			column="department"/>
+      <result property="email"			column="email"/>
+      <result property="locked"			column="isLocked"/>
+      <result property="type"			column="m_type"/>
+      <result property="create_date"			column="create_date"/>
+      <result property="roles" lazyLoad="false" column="id" select="adminuserrole_get_byuid" />
+
+    </resultMap>
+  </resultMaps>
+  <cacheModels>
+    <cacheModel id="manager_cache" implementation="LRU" readOnly="true" serialize="true">
+      <flushInterval minutes="30"/>
+      <flushOnExecute  statement="manager_insert"/>
+      <flushOnExecute  statement="manager_update"/>
+      <flushOnExecute  statement="manager_delete"/>
+      <flushOnExecute  statement="admincontrolleractionrole_insert"/>
+      <flushOnExecute  statement="admincontrolleractionrole_delete"/>
+      <flushOnExecute  statement="adminuserrole_delete"/>
+      <flushOnExecute  statement="adminuserrole_insert"/>
+      <flushOnExecute  statement="adminrole_update"/>
+      <flushOnExecute  statement="adminrole_delete"/>
+      <property name="CacheSize" value="1000"/>
+    </cacheModel>
+  </cacheModels>
+  <statements>
+
+    <!-- 根据用户名取得管理员-->
+    <select id="manager_get_byusername"  resultMap="ManagerResult" parameterClass="string" cacheModel="manager_cache">
+      SELECT * FROM MANAGER WHERE USERNAME=#value#
+    </select>
+
+    <!-- 判断管理员是否锁定 -->
+    <select id="manager_get_bylocked" resultMap="ManagerResult" parameterClass="string" cacheModel="manager_cache">
+      SELECT * FROM MANAGER WHERE USERNAME=#value# and ISLOCKED=0
+    </select>
+
+    <!--请修改为翻页sql-->
+    <select id="manager_get_list" resultMap="ManagerResult" cacheModel="manager_cache">
+      SELECT * FROM MANAGER
+    </select>
+
+    <select id="manager_get_list_para" resultMap="ManagerResult" cacheModel="manager_cache">
+      <![CDATA[SELECT * FROM MANAGER ]]>
+      <dynamic prepend="where">
+        <isParameterPresent>
+          <isNotEmpty prepend="and" property="sd">
+            <![CDATA[create_date>=#sd# ]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="ed">
+            <![CDATA[create_date<=#ed#]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="type">
+            <![CDATA[m_type=#type#]]>
+          </isNotEmpty>
+        </isParameterPresent>
+      </dynamic>
+    </select>
+
+    <!-- 根据id取得一条管理员记录-->
+    <select id="manager_get"  resultMap="ManagerResult" parameterClass="int" cacheModel="manager_cache">
+      SELECT * FROM MANAGER WHERE ID=#value#
+    </select>
+
+    <!--插入一条管理员记录，并返回id-->
+    <insert id="manager_insert">
+      insert into manager (username,password,department,fullname,islocked,email,m_type,create_date)values(#username#,#password#,#department#,#fullname#,#locked#,#email#,#type#,#create_date#);
+      <selectKey resultClass="int" property="id" type="post" >
+        select last_insert_id() as id
+      </selectKey>
+    </insert>
+
+    <!--更新一条管理员记录-->
+    <update id="manager_update" parameterClass="Manager">
+      UPDATE MANAGER SET USERNAME=#username#,PASSWORD=#password#,Fullname=#fullname#,Department=#department#,Email=#email#,isLocked=#locked#,m_type=#type# WHERE ID=#id#
+    </update>
+
+    <!-- 删除一条管理员记录-->
+    <delete id="manager_delete" parameterClass="Manager">
+      delete from manager where id=#id#;
+      delete from admin_user_role where userid=#id#
+    </delete>
+  </statements>
+</sqlMap>

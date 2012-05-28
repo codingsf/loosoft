@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+  
+    <typeAlias alias="DeviceYearMonthdata" type="Cn.Loosoft.Zhisou.SunPower.Domain.DeviceYearMonthdata, Domain" />
+  </alias>
+  
+  <statements>
+    <!--取得某个单元跨年度的发电量记录-->
+    <select id="deviceyearmonthdata_list_between" resultClass="DeviceYearMonthdata" parameterClass="Hashtable">
+      <![CDATA[SELECT * FROM device_yearmonth_data WHERE deviceID=#deviceId# and year>=#startYear# and year<=#endYear#]]>
+    </select>.
+
+    <!--取得最小工作年份-->
+    <select id="deviceyearmonthdata_min_year" resultClass="int" parameterClass="int">
+      <![CDATA[SELECT case when count(*)  = 0 then 0 else min(year) end as year FROM device_yearmonth_data WHERE deviceID=#value#)]]>
+    </select>
+
+    <!-- 取得一条记录-->
+    <select id="GetDeviceYearMonthData"  resultClass="DeviceYearMonthdata" parameterClass="Hashtable">
+      SELECT *
+      FROM device_yearmonth_data
+      where year=#year# and deviceID=#deviceID#
+    </select>
+    
+    <update id="UpdateDeviceYearMonthData"   parameterClass="Hashtable">
+      UPDATE device_yearmonth_data
+      SET $d_Column$=#d_Value#
+      where id=#id#
+    </update>
+    
+    <insert id="InsertDeviceYearMonthData" parameterClass="Hashtable">
+      INSERT device_yearmonth_data(deviceID,year,$d_Column$)
+      VALUE(#deviceID#,#year#,#d_Value#)
+    </insert>
+  </statements>
+</sqlMap>

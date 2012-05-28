@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="Device" type="Cn.Loosoft.Zhisou.SunPower.Domain.Device, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="DeviceResult" class="Device">
+      <result property="id"			column="id"/>
+      <result property="deviceTypeCode"			column="deviceTypeCode"/>
+      <result property="deviceModelCode"			column="deviceModelCode"/>
+      <result property="deviceAddress"			column="deviceAddress"/>
+      <result property="collectorID"			column="collectorID"/>
+      <result property="currentPower"			column="currentPower"/>
+      <result property="isHidden"			column="isHidden"/>
+      <result property="name"			column="name"/>
+      <result property="status"			column="status"/>
+      <!--级联对象-->
+      <result property="deviceModel" lazyLoad="true" column="deviceModelCode" select="devicemodel_get" />
+      <!--避免在非懒加载的情况下循环递归加载
+      <result property="collector"	 lazyLoad="true" column="collectorID"     select="collector_get" />
+      -->
+      <result property="runData"	   lazyLoad="true" column="id"              select="devicerundata_get" />
+    </resultMap>
+  </resultMaps>
+  
+  <cacheModels>
+    <cacheModel id="device_cache" implementation="LRU" readOnly="true" serialize="false">
+      <flushInterval minutes="30"/>
+      <flushOnExecute  statement="device_delete"/>
+      <flushOnExecute  statement="device_update"/>
+      <flushOnExecute  statement="device_update_currentpower"/>
+      <flushOnExecute  statement="device_update_status"/>
+      <flushOnExecute  statement="updateDevice"/>
+      <flushOnExecute  statement="device_insert"/>
+      <property name="CacheSize" value="100000"/>
+    </cacheModel>
+  </cacheModels>
+  
+  
+  <statements>
+    <select id="device_get_list"  resultMap="DeviceResult" parameterClass="int" cacheModel="device_cache">
+      SELECT *  FROM device where collectorID=#collectorID#
+    </select>
+    
+    <!-- 取得所有设备-->
+    <select id="device_get_all_list"  resultMap="DeviceResult">
+      SELECT *  FROM device
+    </select>
+    
+    <!-- 只取未影藏的设备 add by qhb-->
+    <select id="displaydevice_get_list_byCollectorID"  resultMap="DeviceResult" parameterClass="int" cacheModel="device_cache">
+      SELECT *  FROM device where collectorID=#collectorID# and isHidden=0
+    </select>
+    
+    <select id="GET_INVERTER_TYPE"  resultMap="DeviceResult" parameterClass="string" cacheModel="device_cache">
+      SELECT  * FROM device  WHERE collectorID=#value# GROUP BY TYPE
+    </select>
+    <select id="device_get"  resultMap="DeviceResult" parameterClass="int" cacheModel="device_cache">
+      SELECT *  FROM  device WHERE ID=#value#
+    </select>
+    <select id="INVERTER_GET_BY_PLANTID" resultMap="DeviceResult" parameterClass="string" cacheModel="device_cache">
+      SELECT *  FROM  device WHERE collectorID=#value#
+    </select>
+    <delete id="device_delete" parameterClass="Device">
+      DELETE FROM device WHERE ID=#id#
+    </delete>
+    <update id="device_update">
+      UPDATE device SET deviceTypeCode=#deviceTypeCode#,deviceModelCode=#deviceModel.code# WHERE id=#id#
+    </update>
+    
+    <update id="device_update_currentpower" parameterClass="Hashtable">
+        UPDATE device SET currentPower=#power# WHERE id=#id#
+    </update>
+
+    <update id="device_update_status" parameterClass="Hashtable">
+        UPDATE device SET isHidden=$status$ WHERE id=#id#
+    </update>
+
+    <update id="updateDevice" parameterClass="Hashtable">
+      update device set name=#name#,currentPower=#currentPower# where id=#id#
+    </update>
+
+    <!--根据采集器id和设备地址取得设备-->
+    <select id="device_get_bycollectorId2address"  resultMap="DeviceResult" parameterClass="Hashtable" cacheModel="device_cache">
+      SELECT *  FROM  device WHERE collectorID=#collectorID# and deviceAddress=#deviceAddress#
+    </select>
+    <!--插入设备-->
+    <insert id="device_insert">
+      INSERT INTO device (deviceTypeCode,deviceModelCode,deviceAddress,collectorID,status,isHidden) VALUES(#deviceTypeCode#,#deviceModel.code#,#deviceAddress#,#collectorID#,#status#,#isHidden#)
+      <selectKey resultClass="int" property="id" type="post" >
+        SELECT LAST_INSERT_ID() AS id
+      </selectKey>
+    </insert>
+    <!-- 根据类型和型号取得设备-->
+    <select id="device_get_list_type_xh_page_list" resultMap="DeviceResult" cacheModel="device_cache">
+          <![CDATA[SELECT *  FROM device ]]>
+          <dynamic prepend="WHERE">
+              <isNotEqual prepend="AND"  property="device.deviceTypeCode" compareValue="-1">
+                  <![CDATA[ deviceTypeCode = #device.deviceTypeCode# ]]>
+              </isNotEqual>
+              <isNotEqual prepend="AND"  property="device.deviceModel.code" compareValue="-1">
+                  <![CDATA[ deviceModelCode = #device.deviceModel.code# ]]>
+              </isNotEqual>
+          </dynamic>
+          <![CDATA[limit $page.Start$,$page.End$]]>
+    </select>
+   
+    <select id="device_get_list_type_xh_page_count" resultClass="int" cacheModel="device_cache">
+          <![CDATA[SELECT count(1)  FROM device ]]>
+          <dynamic prepend="WHERE">
+              <isNotEqual prepend="AND"  property="device.deviceTypeCode" compareValue="-1">
+                  <![CDATA[ deviceTypeCode = #device.deviceTypeCode# ]]>
+              </isNotEqual>
+              <isNotEqual prepend="AND"  property="device.deviceModel.code" compareValue="-1">
+                  <![CDATA[ deviceModelCode = #device.deviceModel.code# ]]>
+              </isNotEqual>
+          </dynamic>
+      </select>
+  </statements>
+</sqlMap>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="ManagerMonitorCode" type="Cn.Loosoft.Zhisou.SunPower.Domain.ManagerMonitorCode, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="managermonitorcode_result" class="ManagerMonitorCode">
+      <result property="id"			column="id"/>
+      <result property="name"			column="name"/>
+      <result property="type"			column="type"/>
+      <result property="display"			column="isdisplay"/>
+      <result property="sortOrder"			column="sort_order"/>
+    </resultMap>
+  </resultMaps>
+
+  <cacheModels>
+    <cacheModel id="managermonitorcode_cache" implementation="LRU" readOnly="true" serialize="true">
+      <flushInterval hours="2"/>
+      <property name="CacheSize" value="100"/>
+    </cacheModel>
+  </cacheModels>
+
+  <statements>
+    <select id="managermonitorcode_get" resultMap="managermonitorcode_result">
+      select top 1 * from manager_monitor_code where id=#id#
+    </select>
+    <select id="managermonitorcode_get_list" resultMap="managermonitorcode_result">
+      select * from manager_monitor_code order by sort_order desc
+    </select>
+    <update id="managermonitorcode_update">
+      update manager_monitor_code set isdisplay=1 where id=#id#
+    </update>
+    <update id="managermonitorcode_set_all_hide">
+      update manager_monitor_code set isdisplay=0 where type=#value#
+    </update>
+    
+  </statements>
+</sqlMap>

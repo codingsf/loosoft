@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="CollectorMonthDayData" type="Cn.Loosoft.Zhisou.SunPower.Domain.CollectorMonthDayData, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="CollectorMonthDayDataResult" class="CollectorMonthDayData">
+      <result property="id" column="Id"/>
+      <result property="collectorID"			column="collectorID"/>
+      <result property="month"			column="Month"/>
+      <result property="d_1"	column="d_1"/>
+      <result property="d_2"	column="d_2"/>
+      <result property="d_3"	column="d_3"/>
+      <result property="d_4"	column="d_4"/>
+      <result property="d_5"	column="d_5"/>
+      <result property="d_6"	column="d_6"/>
+      <result property="d_7"	column="d_7"/>
+      <result property="d_8"	column="d_8"/>
+      <result property="d_9"	column="d_9"/>
+      <result property="d_10"	column="d_10"/>
+      <result property="d_11"	column="d_11"/>
+      <result property="d_12"	column="d_12"/>
+      <result property="d_13"	column="d_13"/>
+      <result property="d_14"	column="d_14"/>
+      <result property="d_15"	column="d_15"/>
+      <result property="d_16"	column="d_16"/>
+      <result property="d_17"	column="d_17"/>
+      <result property="d_18"	column="d_18"/>
+      <result property="d_19"	column="d_19"/>
+      <result property="d_20"	column="d_20"/>
+      <result property="d_21"	column="d_21"/>
+      <result property="d_22"	column="d_22"/>
+      <result property="d_23"	column="d_23"/>
+      <result property="d_24"	column="d_24"/>
+      <result property="d_25"	column="d_25"/>
+      <result property="d_26"	column="d_26"/>
+      <result property="d_27"	column="d_27"/>
+      <result property="d_28"	column="d_28"/>
+      <result property="d_29"	column="d_29"/>
+      <result property="d_30"	column="d_30"/>
+      <result property="d_31"	column="d_31"/>
+
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+    <!--根据年度，起止月份取得月天测点数据-->
+    <select id="collectormonthdaydata_list_by_year_startendmm" resultMap="CollectorMonthDayDataResult" parameterClass="Hashtable">
+      <![CDATA[SELECT * FROM collector_monthday_data_$year$ WHERE collectorID=#collectorID# AND month>=#startMM#  and month<=#endMM#]]>
+    </select>
+
+    <!-- 搬家统计-->
+    <select id="GetCollectorMonthDayData"  resultMap="CollectorMonthDayDataResult" parameterClass="Hashtable">
+      SELECT *
+      FROM collector_monthday_data_$year$
+      where collectorID=#collectorID# and month=#month#
+    </select>
+    
+    <update id="UpdateCollectorMonthDayData" parameterClass="Hashtable">
+      UPDATE collector_monthday_data_$year$
+      SET $d_Column$=#d_Value#
+      where id=#id#
+    </update>
+    
+    <insert id="InsertCollectorMonthDayData" parameterClass="Hashtable">
+      INSERT collector_monthday_data_$year$ (collectorID,month,$d_Column$)
+      VALUE(#collectorID#,#month#,#d_Value#)
+    </insert>
+  </statements>
+</sqlMap>

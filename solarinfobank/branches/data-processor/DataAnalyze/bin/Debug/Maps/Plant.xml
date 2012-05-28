@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- namespace="Plant" -->
+<sqlMap  namespace=""  xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="Plant" type="Cn.Loosoft.Zhisou.SunPower.Domain.Plant, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="plant_info_result" class="Plant">
+      <result property="id"			column="id"/>
+      <result property="name"			column="name"/>
+      <result property="postcode"			column="postcode"/>
+      <result property="location"			column="location"/>
+      <result property="country"			column="country"/>
+      <result property="city"			column="city"/>
+      <result property="timezone"			column="timezone"/>
+      <result property="street"			column="street"/>
+      <result property="installdate"			column="installdate"/>
+      <result property="operater"			column="operater"/>
+      <result property="email"			column="email"/>
+      <result property="phone"			column="phone"/>
+      <result property="direction"			column="direction"/>
+      <result property="angle"			column="angle"/>
+      <result property="manufacturer"			column="manufacturer"/>
+      <result property="module_type"			column="module_type"/>
+      <result property="pic"			column="pic"/>
+      <result property="isNewPlant"			column="isNewPlant"/>
+      <result property="longitude"			column="longitude"/>
+      <result property="userID"			column="userID"/>
+      <result property="latitude"			column="latitude"/>
+      <result property="description"			column="description"/>
+      <result property="design_power"			column="design_power"/>
+      <result property="example_plant"			column="example_plant"/>
+      <result property="revenueRate"			column="revenueRate"/>
+      <result property="startDate"			column="startDate"/>
+      <result property="endDate"			column="endDate"/>
+      <result property="hours"			column="hours"/>
+      <result property="area"			column="area"/>
+      <result property="dst_enable"			column="dst_enable"/>
+      <result property="VideoMonitorEnable"			column="videoMonitorEnable"/>
+      <!-- 级联部分-->
+      <result property="plantUnits"	lazyLoad="false"	column="id" select="plantunit_get_list_by_plantid" />
+      <result property="monitores"	lazyLoad="false"	column="id" select="videomonitor_get_list_lazy" />
+    </resultMap>
+  </resultMaps>
+
+  <cacheModels>
+    <cacheModel id="plant_cache" implementation="LRU" readOnly="true" serialize="false">
+      <flushInterval minutes="30"/>
+      <flushOnExecute  statement="plant_insert"/>
+      <flushOnExecute  statement="plant_delete"/>
+      <flushOnExecute  statement="plant_update_pic"/>
+      <flushOnExecute  statement="plant_update"/>
+      <flushOnExecute  statement="plantunit_delete"/>
+      <flushOnExecute  statement="plantunit_delete_by_plantid"/>
+      <flushOnExecute  statement="plantunit_insert"/>
+      <flushOnExecute  statement="plantunit_update"/>
+      <flushOnExecute  statement="device_delete"/>
+      <flushOnExecute  statement="device_update"/>
+      <flushOnExecute  statement="device_update_currentpower"/>
+      <flushOnExecute  statement="device_update_status"/>
+      <flushOnExecute  statement="updateDevice"/>
+      <flushOnExecute  statement="device_insert"/>
+      <flushOnExecute  statement="videomonitor_delete"/>
+      <flushOnExecute  statement="videomonitor_insert"/>
+      <property name="CacheSize" value="10000"/>
+    </cacheModel>
+  </cacheModels>
+
+  <statements>
+    <!--获取当前用户下所有电站列表 陈波-->
+    <select id="plant_get_list"  resultMap="plant_info_result" paramterClass="int" cacheModel="plant_cache">
+      select *  from  plant_info where userid=#value#
+    </select>
+    <!--取得前几个电站-->
+    <select id="plant_list_top"  resultMap="plant_info_result" paramterClass="Hashtable" cacheModel="plant_cache">
+      select * from plant_info where isnewplant=1 order by $order$ limit #top#
+    </select>
+
+    <select id="plant_info_get_lazy"  resultClass="Plant" cacheModel="plant_cache">
+      select * from plant_info where id=#value#
+    </select>
+
+    <select id="loading_plant_page_list" resultMap="plant_info_result" cacheModel="plant_cache">
+      <![CDATA[  SELECT * from plant_info limit $Start$,$End$]]>
+    </select>
+    <select id="plant_get_mult" resultMap="plant_info_result" cacheModel="plant_cache">
+      <![CDATA[  SELECT * from plant_info where id in ($value$)]]>
+    </select>
+    <select id="loading_plant_page_count" resultClass="int" cacheModel="plant_cache">
+      <![CDATA[SELECT COUNT(1) FROM plant_info 　]]>
+    </select>
+
+    <!--根据id查询电站信息（张月）-->
+    <select id="plant_get"  resultMap="plant_info_result" parameterClass="int" cacheModel="plant_cache">
+      SELECT *  FROM  PLANT_INFO WHERE id=#value#
+    </select>
+    <!--添加电站 返回新增列的id （张月）-->
+    <insert id="plant_insert" parameterClass="Plant">
+      INSERT INTO  PLANT_INFO( name,postcode,location,country,city,timezone,street,revenueRate,installdate,operater,email,phone,direction,angle,manufacturer,module_type,pic,longitude,userID,latitude,description,design_power,example_plant,videoMonitorEnable,startdate,enddate,hours,dst_enable,area) VALUES( #name#,#postcode#,#location#,#country#,#city#,#timezone#,#street#,#revenueRate#,#installdate#,#operater#,#email#,#phone#,#direction#,#angle#,#manufacturer#,#module_type#,#pic#,#longitude#,#userID#,#latitude#,#description#,#design_power#,#example_plant#,#VideoMonitorEnable#,#startDate#,#endDate#,#hours#,#dst_enable#,#area#)
+      <selectKey resultClass="int" property="id" type="post">
+        SELECT LAST_INSERT_ID() AS id
+      </selectKey>
+    </insert>
+    <!-- 根据id删除电站 （张月）-->
+    <delete id="plant_delete" parameterClass="Plant">
+      DELETE FROM PLANT_INFO WHERE id=#id#
+    </delete>
+    <!--修改电站图片（张月）-->
+    <update id="plant_update_pic" paramentClass="Plant">
+      UPDATE  PLANT_INFO(pic) SET pic=#pic# WHERE id=#id#
+    </update>
+    <!--修改电站信息（张月）-->
+    <update id="plant_update" paramentClass="Plant">
+      UPDATE  PLANT_INFO SET id=#id#,name=#name#,revenueRate=#revenueRate#,videoMonitorEnable=#VideoMonitorEnable#,postcode=#postcode#,location=#location#,country=#country#,city=#city#,timezone=#timezone#,street=#street#,installdate=#installdate#,operater=#operater#,email=#email#,phone=#phone#,direction=#direction#,angle=#angle#,manufacturer=#manufacturer#,module_type=#module_type#,pic=#pic#,longitude=#longitude#,userID=#userID#,latitude=#latitude#,description=#description#,design_power=#design_power#,example_plant=#example_plant#,isNewPlant=#isNewPlant#,startdate=#startDate#,enddate=#endDate#,hours=#hours#,dst_enable=#dst_enable#,area=#area# WHERE id=#id#
+    </update>
+
+    <!--获取所有的电站(张月改)-->
+    <select id="plant_get_all" resultClass="Plant" cacheModel="plant_cache">
+      select *  from  plant_info
+    </select>
+
+    <!--获取所有的电站的个数(张月)-->
+    <select id="plant_get_all_num" resultClass="int">
+      select count(*)  from  plant_info
+    </select>
+
+
+    <select id="admin_plant_query_list" parameterClass="Hashtable" resultMap="plant_info_result">
+      select * from plant_info
+      <dynamic prepend="where">
+        <isParameterPresent>
+          <isNotEmpty prepend="and" property="plant.area">
+            area = #plant.area#
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="plant.country">
+            country = #plant.country#
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="plant.city">
+            city = #plant.city#
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="design_power_start" >
+            <![CDATA[ design_power >= #design_power_start#]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="design_power_end">
+            <![CDATA[ design_power <= #design_power_end#]]>
+          </isNotEmpty>
+          <isNotEqual prepend="and" property="uids" compareValue="0,0">
+            <![CDATA[ userid in ($uids$)]]>
+          </isNotEqual>
+        </isParameterPresent>
+      </dynamic>
+       limit  $page.Start$,$page.End$
+    </select>
+
+    <select id="admin_plant_query_list_count" parameterClass="Hashtable" resultClass="int">
+      select count(1) from plant_info
+      <dynamic prepend="where">
+        <isParameterPresent>
+          <isNotEmpty prepend="and" property="plant.area">
+            area = #plant.area#
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="plant.country">
+            country = #plant.country#
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="plant.city">
+            city = #plant.city#
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="design_power_start" >
+            <![CDATA[ design_power >= #design_power_start#]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="design_power_end">
+            <![CDATA[ design_power <= #design_power_end#]]>
+          </isNotEmpty>
+          <isNotEqual prepend="and" property="uids" compareValue="0,0">
+            <![CDATA[ userid in ($uids$)]]>
+          </isNotEqual>
+        </isParameterPresent>
+      </dynamic>
+    </select>
+    <select id="plant_get_list_like_pname"  resultMap="plant_info_result" >
+      select *  from  plant_info where upper(name) like upper('%$value$%')
+    </select>
+    
+  </statements>
+</sqlMap>

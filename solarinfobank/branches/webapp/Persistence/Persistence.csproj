@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{46EF4BEC-0CF6-40C4-8D55-DBEEAB0E12F3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cn.Loosoft.Zhisou.SunPower.Persistence</RootNamespace>
+    <AssemblyName>Persistence</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.DynamicProxy, Version=1.1.5.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\Castle.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="FredCK.FCKeditorV2, Version=2.2.2106.29420, Culture=neutral, PublicKeyToken=4f86767c9b519a06">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\FredCK.FCKeditorV2.dll</HintPath>
+    </Reference>
+    <Reference Include="IBatisNet.Common, Version=1.4.1.0, Culture=neutral, PublicKeyToken=ed781d9fc396c6ca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\IBatisNet.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="IBatisNet.Common.Logging.Log4Net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\IBatisNet.Common.Logging.Log4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="IBatisNet.DataAccess, Version=1.8.1.0, Culture=neutral, PublicKeyToken=ed781d9fc396c6ca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\IBatisNet.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="IBatisNet.DataMapper, Version=1.5.1.0, Culture=neutral, PublicKeyToken=ed781d9fc396c6ca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\IBatisNet.DataMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Memcached.ClientLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=42c0400964dcc297, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\Memcached.ClientLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="msmdvbanet, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\msmdvbanet.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.3.2.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interfaces\IAdminControllerActionDao.cs" />
+    <Compile Include="Interfaces\IAdminControllerActionRoleDao.cs" />
+    <Compile Include="Interfaces\IAdminRoleDao.cs" />
+    <Compile Include="Interfaces\IAdminUserRoleDao.cs" />
+    <Compile Include="Interfaces\ICommonInfoDao.cs" />
+    <Compile Include="Interfaces\ICountryCityDao.cs" />
+    <Compile Include="Interfaces\IManagerMonitorCodeSqlMapDao.cs" />
+    <Compile Include="Interfaces\IMonitorConfigDao.cs" />
+    <Compile Include="Interfaces\IUserRoleDao.cs" />
+    <Compile Include="Interfaces\IAdpic.cs" />
+    <Compile Include="Interfaces\IbaseDao.cs" />
+    <Compile Include="Interfaces\ICollectorDao.cs" />
+    <Compile Include="Interfaces\ICustomChartDao.cs" />
+    <Compile Include="Interfaces\IReportDataItemDao.cs" />
+    <Compile Include="Interfaces\IDbConfigDao.cs" />
+    <Compile Include="Interfaces\IDeviceDao.cs" />
+    <Compile Include="Interfaces\IDeviceDataCountDao.cs" />
+    <Compile Include="Interfaces\IDeviceDayDataDao.cs" />
+    <Compile Include="Interfaces\IDeviceMonthDayDataDao.cs" />
+    <Compile Include="Interfaces\IDeviceRunDataDao.cs" />
+    <Compile Include="Interfaces\IDeviceYearDataDao.cs" />
+    <Compile Include="Interfaces\IDeviceYearMonthDataDao.cs" />
+    <Compile Include="Interfaces\IEmailQueueDao.cs" />
+    <Compile Include="Interfaces\ILanguageDao.cs" />
+    <Compile Include="Interfaces\IFaultDao.cs" />
+    <Compile Include="Interfaces\IItemConfigDao.cs" />
+    <Compile Include="Interfaces\IManagerDao.cs" />
+    <Compile Include="Interfaces\IPlantUserDao.cs" />
+    <Compile Include="Interfaces\IReportDao.cs" />
+    <Compile Include="Interfaces\IVideoMonitorDao.cs" />
+    <Compile Include="Interfaces\IMonitorItemDao .cs" />
+    <Compile Include="Interfaces\IPlantDao.cs" />
+    <Compile Include="Interfaces\IPlantUnitDao.cs" />
+    <Compile Include="Interfaces\IChartGroupDao.cs" />
+    <Compile Include="Interfaces\IProductPictureDao.cs" />
+    <Compile Include="Interfaces\IReportConfigDao.cs" />
+    <Compile Include="Interfaces\ICollectorDayDataDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\ICollectorMonthDayDataDao.cs" />
+    <Compile Include="Interfaces\ICollectorRunDataDao.cs" />
+    <Compile Include="Interfaces\ICollectorYearDataDao.cs" />
+    <Compile Include="Interfaces\ICollectorYearMonthDataDao.cs" />
+    <Compile Include="Interfaces\IUserDao.cs" />
+    <Compile Include="Interfaces\IDeviceModelDao.cs" />
+    <Compile Include="Interfaces\IMailConfigDao.cs" />
+    <Compile Include="Interfaces\ILoginRecordDao.cs" />
+    <Compile Include="Interfaces\ICacheDao.cs" />
+    <Compile Include="Interfaces\IVirtualPlantDao.cs" />
+    <Compile Include="MapperDao\AdminControllerActionRoleSqlMapDao.cs" />
+    <Compile Include="MapperDao\AdminControllerActionSqlMapDao.cs" />
+    <Compile Include="MapperDao\AdminRoleSqlMapDao.cs" />
+    <Compile Include="MapperDao\AdminUserRoleSqlMapDao.cs" />
+    <Compile Include="MapperDao\AdpicSqlMapDao.cs" />
+    <Compile Include="MapperDao\BaseSqlDao.cs" />
+    <Compile Include="MapperDao\BaseSqlMapDao.cs" />
+    <Compile Include="MapperDao\CollectorSqlMapDao.cs" />
+    <Compile Include="MapperDao\CommonInfoSqlMapDao.cs" />
+    <Compile Include="MapperDao\CountryCitySqlMapDao.cs" />
+    <Compile Include="MapperDao\CustomChartSqlMapDao.cs" />
+    <Compile Include="MapperDao\DataItemSqlMapDao.cs" />
+    <Compile Include="MapperDao\DbConfigSqlMapDao.cs" />
+    <Compile Include="MapperDao\DeviceDataCountSqlMapDao.cs" />
+    <Compile Include="MapperDao\DeviceDayDataSqlMapDao.cs" />
+    <Compile Include="MapperDao\DeviceMonthDayDataSqlMapDao.cs" />
+    <Compile Include="MapperDao\DeviceRunDataSqlMapDao.cs" />
+    <Compile Include="MapperDao\DeviceYearDataSqlMapDao.cs" />
+    <Compile Include="MapperDao\DeviceYearMonthDataSqlMapDao.cs" />
+    <Compile Include="MapperDao\EmailQueueSqlMapDao.cs" />
+    <Compile Include="MapperDao\DeviceSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\LanguageSqlMapDao.cs" />
+    <Compile Include="MapperDao\FaultSqlMapDao.cs" />
+    <Compile Include="MapperDao\ManagerMonitorCodeSqlMapDao.cs" />
+    <Compile Include="MapperDao\MonitorConfigSqlMapDao.cs" />
+    <Compile Include="MapperDao\MonitorItemSqlMapDao.cs" />
+    <Compile Include="MapperDao\PlantUserSqlMapDao.cs" />
+    <Compile Include="MapperDao\ReportDataItemSqlMapDao.cs" />
+    <Compile Include="MapperDao\ReportSqlMapDao.cs" />
+    <Compile Include="MapperDao\UserRoleSqlMapDao.cs" />
+    <Compile Include="MapperDao\VideoMonitorSqlMapDao.cs" />
+    <Compile Include="MapperDao\PlantUnitSqlMapDao.cs" />
+    <Compile Include="MapperDao\ProductPictureSqlMapDao.cs" />
+    <Compile Include="MapperDao\ReportConfigSqlMapDao.cs" />
+    <Compile Include="MapperDao\ItemConfigSqlMapDao.cs" />
+    <Compile Include="MapperDao\ManagerSqlMapDao.cs" />
+    <Compile Include="MapperDao\PlantSqlMapDao.cs" />
+    <Compile Include="MapperDao\ChartGroupSqlMapDao.cs" />
+    <Compile Include="MapperDao\CollectorDayDataSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\CollectorMonthDayDataSqlMapDao.cs" />
+    <Compile Include="MapperDao\CollectorRunDataSqlMapDao.cs" />
+    <Compile Include="MapperDao\CollectorYearDataSqlMapDao.cs" />
+    <Compile Include="MapperDao\CollectorYearMonthDataSqlMapDao.cs" />
+    <Compile Include="MapperDao\UserSqlMapDao.cs" />
+    <Compile Include="MapperDao\DeviceModelSqlMapDao.cs" />
+    <Compile Include="MapperDao\MailConfigSqlMapDao.cs" />
+    <Compile Include="MapperDao\LoginRecordSqlMapDao.cs" />
+    <Compile Include="MapperDao\CacheSqlMapDao.cs" />
+    <Compile Include="MapperDao\VirtualPlantSqlMapDao.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{6AE1548A-E450-4197-8666-3D31D09527FD}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\domain\Domain.csproj">
+      <Project>{62D09DAB-D223-4BD0-9FDD-F3A8F52B8510}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="Role" type="Cn.Loosoft.Zhisou.SunPower.Domain.Role, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="role_result" class="Role">
+      <result property="id"			column="id"/>
+      <result property="uid"			column="uid"/>
+      <result property="name"			column="name"/>
+      <result property="descr"			column="descr"/>
+      <result property="RoleFunctions" lazyLoad="true"	column="roleId" select="get_functions_by_roleid" />
+    </resultMap>
+  </resultMaps>
+  <cacheModels>
+    <cacheModel id="role_cache" implementation="LRU" readOnly="true" serialize="false">
+      <flushInterval minutes="30"/>
+      <flushOnExecute  statement="role_insert"/>
+      <flushOnExecute  statement="role_delete"/>
+      <flushOnExecute  statement="role_update"/>
+      <flushOnExecute  statement="rolefunction_delete"/>
+      <flushOnExecute  statement="rolefunction_insert"/>
+
+      <property name="CacheSize" value="1000"/>
+    </cacheModel>
+  </cacheModels>
+  <statements>
+    <select id="get_role"  resultClass="Role"  paramterClass="int" cacheModel="role_cache">
+      select * from role where id=#value#
+    </select>
+    <select id="role_get"  resultClass="Role" cacheModel="role_cache">
+      select * from role where id=#id#
+    </select>
+    <insert id="role_insert"   paramterClass="Role">
+      insert into role(uid,name,descr) values(#uid#,#name#,#descr#)
+      <selectKey resultClass="int" property="id" type="post" >
+        SELECT LAST_INSERT_ID() AS id
+      </selectKey>
+    </insert>
+    <select id="get_role_uid"  resultClass="Role"  paramterClass="int" cacheModel="role_cache">
+      select * from role where uid=#value#
+    </select>
+    <delete id="role_delete">
+      delete from role where id=#id#
+    </delete>
+
+    <update id="role_update">
+      update role set name=#name# where id=#id#
+    </update>
+  </statements>
+</sqlMap>

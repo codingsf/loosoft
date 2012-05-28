@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="ErrorCode" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="ErrorCode" type="Cn.Loosoft.Zhisou.SunPower.Domain.ErrorCode, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="ErrorCodeResult" class="ErrorCode">
+      <result property="id"			column="id"/>
+      <result property="code"			column="code"/>
+      <result property="name"			column="name"/>
+      <result property="isDisplay"			column="isDisplay"/>
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+    <select id="errorcode_get_list"  resultMap="ErrorCodeResult">
+      select * from error_code where isdisplay=#isDisplay#
+    </select>
+  </statements>
+</sqlMap>

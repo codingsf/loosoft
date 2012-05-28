@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="Collector" type="Cn.Loosoft.Zhisou.SunPower.Domain.Collector, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="collector_result" class="Collector">
+      <result property="id"			column="id"/>
+      <result property="code"			column="code"/>
+      <result property="password"			column="password"/>
+      <result property="importDate"			column="import_date"/>
+      <result property="limitDate"			column="limit_date"/>
+      <result property="isUsed"			column="isUsed"/>
+      <result property="userId"			column="userId"/>
+      <result property="Descr"			column="descr"/>
+      <result property="MAC"			column="mac"/>
+      <result property="PNO"			column="pno"/>
+      <result property="Encryption"			column="encryption"/>
+      <result property="Date"			column="createDate"/>
+      <result property="Key"			column="pwd_key"/>
+      <!--级联对象-->
+      <result property="runData"	  lazyLoad="true"	column="id" select="collectorrundata_get_by_collectorid" />
+      <result property="plantID"	  lazyLoad="true"	column="id" select="plantunit_get_plant_by_collectorid" />
+      <result property="devices"	  lazyLoad="true"	column="id" select="device_get_list" />
+    </resultMap>
+  </resultMaps>
+
+  <cacheModels>
+    <cacheModel id="collector_cache" implementation="LRU" readOnly="true" serialize="false">
+      <flushInterval minutes="30"/>
+      <flushOnExecute  statement="collector_delete"/>
+      <flushOnExecute  statement="collector_update"/>
+      <flushOnExecute  statement="collector_insert"/>
+      <flushOnExecute  statement="device_delete"/>
+      <flushOnExecute  statement="device_update"/>
+      <flushOnExecute  statement="device_update_currentpower"/>
+      <flushOnExecute  statement="device_update_status"/>
+      <flushOnExecute  statement="updateDevice"/>
+      <flushOnExecute  statement="device_insert"/>
+      <property name="CacheSize" value="1000"/>
+    </cacheModel>
+  </cacheModels>
+
+  <statements>
+    <select id="collector_get_list" resultMap="collector_result" cacheModel="collector_cache">
+      select * from collector_info order by id desc
+    </select>
+
+    <select id="collector_get_list_byuid" resultMap="collector_result" cacheModel="collector_cache">
+      select * from collector_info where userId=#value# order by id desc
+    </select>
+
+    <select id="get_page_list" resultMap="collector_result">
+      select * from collector_info order by id desc
+    </select>
+
+    <select id="collector_get"  resultMap="collector_result" parameterClass="int" cacheModel="collector_cache">
+      select *  from  collector_info where id=#value#
+    </select>
+
+    <!-- 根据采集编码ID取得数据库中的id-->
+    <select id="collector_get_id_bycode"  resultClass="int" parameterClass="string">
+      select id  from collector_info where code=#value#
+    </select>
+
+    <!--根据设备ID和设备密码查询 张月-->
+    <select id="COLLECTOR_GET_BY_CODE_PASS"  resultMap="collector_result" parameterClass="Collector">
+      select *  from  collector_info where code=#code# and password=#password#
+    </select>
+    <!--陈波添加-->
+    <delete id="collector_delete" parameterClass="string">
+      delete from collector_info where id=#id#
+    </delete>
+    <update id="collector_update">
+      UPDATE COLLECTOR_INFO SET pwd_key=#Key#, password=#password#,isUsed=#isUsed#,code=#code# ,import_date=#importDate# ,descr=#Descr# ,mac=#MAC#,pno=#PNO#,encryption=#Encryption#,createDate=#Date# where id=#id#
+    </update>
+    <!--陈波 插入采集器信息-->
+    <insert id="collector_insert">
+      INSERT INTO COLLECTOR_INFO (pwd_key,code,password,isused,import_date,limit_date,descr,userid,mac,pno,encryption,createdate) VALUES(#Key#,#code#,#password#,#isUsed#,#importDate#,#limitDate#,#Descr#,#userId#,#MAC#,#PNO#,#Encryption#,#Date#)
+      <selectKey resultClass="int" property="id" type="post" >
+        SELECT LAST_INSERT_ID() AS id
+      </selectKey>
+    </insert>
+
+    <select id="loading_collector_page_list" resultMap="collector_result">
+      <![CDATA[  SELECT * from collector_info where import_date >=#sd# and  import_date <=#ed#  order by id desc limit $page.Start$,$page.End$]]>
+    </select>
+
+    <select id="loading_collector_page_count" resultClass="int">
+      <![CDATA[SELECT COUNT(1) FROM collector_info  where import_date >=#sd# and  import_date <#ed# 　]]>
+    </select>
+
+    <select id="check_collector_exists_bycode" resultClass="int">
+      <![CDATA[SELECT COUNT(1) FROM collector_info where code=#value#　]]>
+    </select>
+
+  </statements>
+</sqlMap>

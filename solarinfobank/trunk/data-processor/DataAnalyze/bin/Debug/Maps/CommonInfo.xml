@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="CommonInfo" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="CommonInfo" type="Cn.Loosoft.Zhisou.SunPower.Domain.CommonInfo, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="commoninfo_result" class="CommonInfo">
+      <result property="id"			column="id"/>
+      <result property="pid"			column="pid"/>
+      <result property="code"			column="code"/>
+      <result property="name"			column="name"/>
+    </resultMap>
+  </resultMaps>
+
+  <cacheModels>
+    <cacheModel id="commoninfo_cache" implementation="LRU" readOnly="true" serialize="true">
+      <flushInterval minutes="30"/>
+      <property name="CacheSize" value="100"/>
+    </cacheModel>
+  </cacheModels>
+
+  <statements>
+    
+    <select id="commoninfo_get_list" resultMap="commoninfo_result">
+      select * from commoninfo where pid= #pid#
+    </select>
+
+    <select id="commoninfo_get" resultMap="commoninfo_result">
+      select * from commoninfo where id=#id#
+    </select>
+
+    <insert id="commoninfo_insert">
+      insert into commoninfo (pid,name,code) values (#pid#,#name#,#code#)
+    </insert>
+
+    <update id="commoninfo_update">
+      update commoninfo set name=#name#, code=#code#, pid=#pid# where id=#id#
+    </update>
+
+    <delete id="commoninfo_delete">
+      delete from commoninfo where id=#id#
+    </delete>
+  </statements>
+</sqlMap>

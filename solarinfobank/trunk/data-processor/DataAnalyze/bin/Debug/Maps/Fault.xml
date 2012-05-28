@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="Fault" type="Cn.Loosoft.Zhisou.SunPower.Domain.Fault, Domain" />
+    <typeAlias alias="Pager" type="Cn.Loosoft.Zhisou.SunPower.Domain.Pager, Domain" />
+
+  </alias>
+
+  <resultMaps>
+    <resultMap id="FaultResult" class="Fault">
+      <result property="id"			column="Id"/>
+      <result property="collectorID"			column="collectorID"/>
+      <result property="address"			column="Address"/>
+      <result property="errorCode"			column="errorCode"/>
+      <result property="errorTypeCode"			column="errorTypeCode"/>
+      <result property="sendTime"			column="sendTime"/>
+      <result property="confirm"			column="isConfirmed"/>
+      <result property="device"	lazyLoad="true"	column="deviceID" select="device_get" />
+    </resultMap>
+
+  </resultMaps>
+
+  <statements>
+    <select id="loading_pager_page_list" resultMap="FaultResult" parameterClass="Pager">
+      SELECT fault.* FROM fault_$fault.year$ as fault  where  ORDER BY fault.sendTime DESC LIMIT $Start$,$End$
+    </select>
+
+    <select id="loading_pager_page_count" resultClass="int" parameterClass="Hashtable">
+      <![CDATA[SELECT COUNT(1) FROM fault_$fault.year$]]>
+    </select>
+
+    <select id="get_user_not_confirm_logs_count" resultClass="int" parameterClass="Hashtable">
+      <![CDATA[SELECT COUNT(1) FROM fault_$year$ where collectorid in ($ids$) and isconfirmed=0]]>
+    </select>
+    <select id="loading_hashtable_page_list" resultMap="FaultResult" parameterClass="Hashtable">
+      <![CDATA[SELECT fault.* FROM fault_$fault.year$ fault WHERE  fault.errorTypeCode IN ($fault.inforank$)  AND SENDTIME >= #fault.sendTime# and SENDTIME < #endTime# AND fault.collectorID in ($fault.collectorString$) AND fault.isConfirmed in ($fault.confirmed$) ORDER BY fault.sendTime DESC LIMIT $page.Start$,$page.End$　]]>
+    </select>
+
+    <select id="loading_hashtable_page_count" resultClass="int" parameterClass="Hashtable">
+      <![CDATA[SELECT COUNT(1) FROM fault_$fault.year$  WHERE errorTypeCode IN ($fault.inforank$) AND SENDTIME >= #fault.sendTime# and SENDTIME < #endTime# AND collectorID in ($fault.collectorString$)  AND isConfirmed in ($fault.confirmed$) 　]]>
+    </select>
+
+    <update id="FAULT_UPDATE">
+      <![CDATA[UPDATE fault_$year$ SET ISCONFIRMED =1 ]]>
+    </update>
+
+    <!--批量更新-->
+    <update id="FAULT_HASHTABLE_UPDATE" parameterClass="Hashtable">
+      <![CDATA[UPDATE  fault_$year$ SET ISCONFIRMED=1 WHERE errorTypeCode IN ($fault.InfoRank$) AND SENDTIME <= #fault.sendTime# ]]>
+    </update>
+
+    <update id="FAULT_ID_UPDATE" parameterClass="String">
+      <![CDATA[UPDATE  fault_$year$ SET ISCONFIRMED=1 WHERE ID IN ($value$) ]]>
+    </update>
+
+    <!--取得多个单元的未确认告警数量-->
+    <select id="log_noconfirmed_num" resultClass="int" parameterClass="Hashtable">
+      <![CDATA[SELECT count(*) FROM fault_$year$ WHERE collectorID in ($ids$) and isconfirmed = 0 ]]>
+    </select>
+
+    <!--设备日志分页开始-->
+    <select id="device_fault_list" resultMap="FaultResult" parameterClass="Hashtable">
+      <![CDATA[SELECT * FROM fault_$fault.year$ WHERE isConfirmed in ($fault.confirmed$) and deviceid=#fault.device.id# order by SENDTIME desc  limit $page.Start$,$page.End$]]>
+    </select>
+    <select id="device_fault_list_count" resultClass="int" parameterClass="Hashtable">
+      <![CDATA[SELECT count(1) FROM fault_$fault.year$ WHERE isConfirmed in ($fault.confirmed$) and deviceid=#fault.device.id# ]]>
+    </select>
+    <update id="device_fault_confirm_selected" resultClass="int"  parameterClass="Hashtable" >
+      <![CDATA[update fault_$year$ set isconfirmed=1 where id in($logIds$) ]]>
+    </update>
+    <update id="device_fault_confirm_all" resultClass="int"   parameterClass="Hashtable">
+      <![CDATA[update fault_$year$ set isconfirmed=1 where collectorid in($unitId$) ]]>
+    </update>
+
+    <!--设备日志分页结束-->
+    <update id="Plant_fault_confirm" parameterClass="Hashtable">
+      <![CDATA[UPDATE  fault_$year$ SET isconfirmed=1 where id in ($ids$) ]]>
+    </update>
+    <update id="Plant_fault_confirmed_all">
+      <![CDATA[update fault_$year$ set ISCONFIRMED =1 where collectorId in ($ids$)]]>
+    </update>
+
+
+    <insert id="fault_insert">
+      <![CDATA[insert into fault_$year$ (collectorID,address,errorCode,errorTypeCode,sendTime,isConfirmed,deviceID) 
+      values(#collectorID#,#address#,#errorCode#,#errorTypeCode#,#sendTime#,#confirm#,#device.id#)]]>
+    </insert>
+
+
+
+    <!--发送报告后台需要-->
+
+    <select id="interval_sender_load_logs" resultMap="FaultResult" parameterClass="Hashtable">
+      <![CDATA[SELECT * FROM fault_$year$ WHERE  sendTime > #lastModified# and collectorid in ($cids$) and isconfirmed=0]]>
+    </select>
+    
+    <!-- 根据设备id，告警代码和是否确认来取得最新一条告警记录 add by qhb in 20120309 for 数据解析器能更新为确认的同类型的告警 -->
+    <select id="GetFaultbyDeviceIdTypeStatus" resultMap="FaultResult" parameterClass="Hashtable">
+      <![CDATA[SELECT * FROM fault_$year$ WHERE  deviceID = $deviceID$ and errorCode = $errorCode$ and isconfirmed=$confirm$ order by sendTime desc  limit 1]]>
+    </select>
+    <!-- 根据某个告警日志的发送时间 add by qhb in 20120309 for 数据解析器能更新为确认的同类型的告警 -->
+    <update id="updateFaultTime"  parameterClass="Hashtable">
+      <![CDATA[UPDATE fault_$year$ SET sendTime =#sendTime# WHERE  id = $id$ ]]>
+    </update>
+  </statements>
+</sqlMap>

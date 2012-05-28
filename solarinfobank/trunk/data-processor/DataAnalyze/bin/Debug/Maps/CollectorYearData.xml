@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="CollectorYearData" type="Cn.Loosoft.Zhisou.SunPower.Domain.CollectorYearData, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="CollectorYearDataResult" class="CollectorYearData">
+      <result property="id"			column="id"/>
+      <result property="collectorID" column="collectorID"/>
+      <result property="year" column="year"/>
+      <result property="dataValue" column="dataValue"/>
+    </resultMap>
+  </resultMaps>
+  <cacheModels>
+    <cacheModel id="collector_year_data_cache" implementation="LRU">
+      <flushInterval hours="2"/>
+      <property name="CacheSize" value="1000"/>
+    </cacheModel>
+  </cacheModels>
+  <statements>
+
+    <select id="collectoryeardata_get" resultMap="CollectorYearDataResult" parameterClass="CollectorYearData">
+      SELECT * FROM collector_year_data WHREE id = #id# and year= #year#
+    </select>
+
+    <insert id="collectoryeardata_insert" parameterClass="CollectorYearData">
+      INSERT INTO  collector_year_data (collectorID,year,dataValue) VALUES(#collectorID#,#year#,#dataValue#)
+      <selectKey resultClass="int" property="id" type="post">
+        SELECT LAST_INSERT_ID() AS Id
+      </selectKey>
+    </insert>
+
+    <delete id="collectoryeardata_DELETE" parameterClass="int">
+      DELETE FROM collector_year_data WHERE id=#value#
+    </delete>
+
+    <update id="collectoryeardata_update" parameterClass="CollectorYearData">
+      UPDATE  collector_year_data SET collectorID=#collectorID#,year=#year#,dataValue=#dataValue#
+      WHERE id=#id#
+    </update>
+
+    <!--根据单元id和测点取得所有年度的发电量记录-->
+    <select id="collectoryeardata_get_list_by_collectorid" resultMap="CollectorYearDataResult" parameterClass="Hashtable">
+      SELECT * FROM collector_year_data WHERE collectorID = #collectorID#  ORDER BY Id DESC
+    </select>
+
+    <!--取得最小工作年份-->
+    <select id="collectoryeardata_min_year" resultClass="int" parameterClass="string">
+      <![CDATA[SELECT case when count(*)  = 0 then 0 else min(year) end as year FROM collector_year_data WHERE collectorID in ($value$)]]>
+    </select>
+
+    <!--取得年数据-->
+    <select id="GetCollectorYearData" resultMap="CollectorYearDataResult" parameterClass="Hashtable">
+      SELECT * FROM collector_year_data WHERE collectorID =#collectorID# and year=#year#
+    </select>
+  </statements>
+</sqlMap>
+

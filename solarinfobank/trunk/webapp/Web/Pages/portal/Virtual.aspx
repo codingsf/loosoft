@@ -282,9 +282,16 @@
                                     </table>
                                 </div>--%>
                                 <div id="planetmap" style="position: relative">
-                                    <center>
-                                        <img style="border: none;" src="/ufile/<%=Model.structPic %>" alt="" usemap="#structmap" />
-                                    </center>
+                                            <% string path=Server.MapPath("~");
+                               if (System.IO.File.Exists(string.Format("{0}/ufile/{1}", path, Model.structPic)) == false)
+                               { Response.Write("<font color='red'>未上传分布图</font>"); }
+                               else
+                               { %>
+                                <center><img src="/ufile/<%=Model.structPic %>" alt="" ondblclick="vControl('GETMOUSEPOSINPIC',this,event)" /></center>
+                                <%} %>
+                                
+                                    
+                                    
                                     <%foreach (StructPoint point in ViewData["points"] as List<StructPoint>)
                                       {
                                           Plant plant = PlantService.GetInstance().GetPlantInfoById(int.Parse(point.id));

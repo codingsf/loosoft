@@ -149,7 +149,7 @@
                                             <td width="20%" align="center">
                                                 <%if (AuthService.isAllow(AuthorizationCode.EDIT_PLANT))
                                                   { %>
-                                                <a href="/plant/<%=plant.isVirtualPlant?"virtual":"" %>edit/<%=plant.id %>?fromurl=/user/includeallplants">
+                                                <a href="/plant/<%=plant.isVirtualPlant?"virtual":"" %>edit/<%=plant.id %>?fromurl=/virtual/includeplantrelationstruct/<%=Model.id %>">
                                                     <img src="/images/sub/pencil.gif" width="16" height="16" border="0" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
                                                         title="<%=Resources.SunResource.MONITORITEM_EDIT%>" /></a>
                                                 <%}
@@ -174,7 +174,7 @@
                                                 <%} %>
                                                 <%if (AuthService.isAllow(AuthorizationCode.ADD_UNIT) && !plant.isVirtualPlant)
                                                   { %>
-                                                <a href="/unit/bind/<%=plant.id%>?fromurl=/user/includeallplants">
+                                                <a href="/unit/bind/<%=plant.id%>?fromurl=/virtual/includeplantrelationstruct/<%=Model.id %>">
                                                     <img src="/images/sub/subico016.gif" alt="<%=Resources.SunResource.PLANT_UNIT_BIND_BIND%>"
                                                         title="<%=Resources.SunResource.PLANT_UNIT_BIND_BIND%>" /></a>
                                                 <%}

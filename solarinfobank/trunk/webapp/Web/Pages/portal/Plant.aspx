@@ -832,19 +832,28 @@
                                     </td>
                                 </tr>
                             </table>
-                            <div id="planetmap" style="position: relative">
-                                <center>
-                                    <img style="border: none;" src="/ufile/<%=Model.structPic %>" alt="" usemap="#structmap" />
-                                </center>
+                            <div id="planetmap" style="position: relative">                                
+                                 <% string path=Server.MapPath("~");
+                               if (System.IO.File.Exists(string.Format("{0}/ufile/{1}", path, Model.structPic)) == false)
+                               { Response.Write("<font color='red'>未上传分布图</font>"); }
+                               else
+                               { %>
+                                <center><img src="/ufile/<%=Model.structPic %>" alt="" ondblclick="vControl('GETMOUSEPOSINPIC',this,event)" /></center>
+                                <%} %>
+                                
+                                
+                                
+                                
+                                
                                 <%foreach (StructPoint point in ViewData["points"] as List<StructPoint>)
                                   {
                                       PlantUnit unit = Model.plantUnits.Where(m => m.id.ToString().Equals(point.id)).FirstOrDefault<PlantUnit>();
                                       if (unit == null) unit = new PlantUnit();
                                 %>
                                 <div style="top: <%=point.y %>px; left: <%=point.x %>px; position: absolute;">
-                                    <a href="<%=point.targetUrl %>" target="_blank"><span>
+                                   
                                         <img src="/images/map/db.gif" border="0" style="cursor: pointer;" alt="<%=point.displayName %>"
-                                            id="plant_tip_<%=point.id %>" onmouseover="tips('plant_tip_<%=point.id %>');" /></span></a>
+                                            id="plant_tip_<%=point.id %>" onmouseover="tips('plant_tip_<%=point.id %>');" />
                                 </div>
                                 <div id="plant_tip_<%=point.id %>-content" style="display: none; background-color: Red;">
                                     <!--  
@@ -944,9 +953,8 @@
                                                                     <%} %>
                                                                 </td>
                                                                 <td width="92%">
-                                                                    <span class="xxbox_tt"><a target="_blank" href="/portal/unit?uid=<%=plantUnit.id %>&pid=<%=Model.id %>"
-                                                                        class="dbl">
-                                                                        <%=plantUnit.displayname%></a> </span>
+                                                                    <span class="xxbox_tt">
+                                                                        <%=plantUnit.displayname%></span>
                                                                     <br />
                                                                     <%if (plantUnit.collector.runData != null)
                                                                       { %>
@@ -1023,7 +1031,7 @@
     <map name="unitmap" id="unitmap">
         <%foreach (StructPoint point in ViewData["points"] as List<StructPoint>)
           {%>
-        <area shape="circle" coords="<%=point.x %>,<%=point.y %>,15" href="<%=point.targetUrl %>"
+        <area shape="circle" coords="<%=point.x %>,<%=point.y %>,15" href="javascript:void(0);"
             target="_blank" title="<%=point.displayName %>" />
         <%} %>
     </map>

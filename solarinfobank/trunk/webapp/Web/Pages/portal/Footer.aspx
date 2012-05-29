@@ -10,4 +10,5 @@
             <%=ViewData["footer"] %></span> <span class="tspanr">版权 @ 2012 SolarInfo Bank , v1.0.18
                 Alpha, 分辨率: 1024x768 </span>
     </div>
+
 </div>

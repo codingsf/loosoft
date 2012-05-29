@@ -228,7 +228,7 @@
                                 <td style="padding-right: 25px;" align="right">
                                     <input name="btnSave" type="button" class="subbu01" value="保存" id="btnSave" />
                                     <input name="Submit23" type="button" class="subbu01" value="取消" style="margin-left: 50px;"
-                                        onclick="window.location.href='/user/includeallplants'" />
+                                        onclick="window.history.go(-1);" />
                                 </td>
                             </tr>
                         </table>

@@ -41,19 +41,19 @@
     </Reference>
     <Reference Include="IBatisNet.Common, Version=1.6.2.0, Culture=neutral, PublicKeyToken=ed781d9fc396c6ca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Project\trunk\dll\IBatisNet.Common.dll</HintPath>
+      <HintPath>..\..\dll\IBatisNet.Common.dll</HintPath>
     </Reference>
     <Reference Include="IBatisNet.Common.Logging.Log4Net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Project\trunk\dll\IBatisNet.Common.Logging.Log4Net.dll</HintPath>
+      <HintPath>..\..\dll\IBatisNet.Common.Logging.Log4Net.dll</HintPath>
     </Reference>
     <Reference Include="IBatisNet.DataAccess, Version=1.9.2.0, Culture=neutral, PublicKeyToken=ed781d9fc396c6ca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Project\trunk\dll\IBatisNet.DataAccess.dll</HintPath>
+      <HintPath>..\..\dll\IBatisNet.DataAccess.dll</HintPath>
     </Reference>
     <Reference Include="IBatisNet.DataMapper, Version=1.6.2.0, Culture=neutral, PublicKeyToken=ed781d9fc396c6ca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Project\trunk\dll\IBatisNet.DataMapper.dll</HintPath>
+      <HintPath>..\..\dll\IBatisNet.DataMapper.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
       <SpecificVersion>False</SpecificVersion>

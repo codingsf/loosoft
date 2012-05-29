@@ -143,64 +143,15 @@ namespace Web.Controllers
                 IList<PlantUser> plant = PlantUserService.GetInstance().GetAllPlantUserByUserID(new PlantUser { userID = userinfo.id });
                 ViewData["examplePlant"] = plant;
             }
-            float alltotalenergy = DeviceRunDataService.GetInstance().GetAllTotalEnergy();
-            double totalEnergy = Math.Round(Convert.ToDouble(alltotalenergy), 2);
-            double dayEnergy = Math.Round(Convert.ToDouble(CollectorRunDataService.GetInstance().GetAllDayEnergy()), 2);
-
-            double co2Value = Math.Round((alltotalenergy * co2Rate), 2);
-            ViewData["co2Unit"] = "kg";
-            ViewData["energyUnit"] = "kWh";
-            ViewData["dayenergyUnit"] = "kWh";
-            if (co2Value >= 1000000000000)
-            {
-                co2Value = Math.Round(co2Value / 1000000000, 2);
-                ViewData["co2Unit"] = "Gt";
-            }
-            else if (co2Value >= 1000000000)
-            {
-                co2Value = Math.Round(co2Value / 1000000000, 2);
-                ViewData["co2Unit"] = "Mt";
-            }
-            else
-                if (co2Value >= 1000000)
-                {
-                    co2Value = Math.Round(co2Value / 1000000, 2);
-                    ViewData["co2Unit"] = "kt";
-                }
-                else
-                    if (co2Value >= 1000)
-                    {
-                        co2Value = Math.Round(co2Value / 1000, 2);
-                        ViewData["co2Unit"] = "t";
-                    }
-
-            if (totalEnergy >= 1000000)
-            {
-                totalEnergy = totalEnergy / 1000000;
-                ViewData["energyUnit"] = "GWh";
-            }
-            else
-                if (totalEnergy >= 1000)
-                {
-                    totalEnergy = totalEnergy / 1000;
-                    ViewData["energyUnit"] = "MWh";
-                }
-            if (dayEnergy >= 1000000)
-            {
-                dayEnergy = dayEnergy / 1000000;
-                ViewData["dayenergyUnit"] = "GWh";
-            }
-            else
-                if (dayEnergy >= 1000)
-                {
-                    dayEnergy = dayEnergy / 1000;
-                    ViewData["dayenergyUnit"] = "MWh";
-                }
-            totalEnergy = Math.Round(totalEnergy, 2);
-            dayEnergy = Math.Round(dayEnergy, 2);
-            ViewData["AllTotalEnergy"] = totalEnergy.ToString();
-            ViewData["AlldayTotalEnergy"] = dayEnergy.ToString();
-            ViewData["AllCO2"] = co2Value;
+            double alltotalenergy = DeviceRunDataService.GetInstance().GetAllTotalEnergy();
+            double dayEnergy = CollectorRunDataService.GetInstance().GetAllDayEnergy();
+            double co2Value = alltotalenergy * co2Rate;
+            ViewData["co2Unit"] = Util.upCo2Unit(co2Value);
+            ViewData["energyUnit"] = Util.upEnergyUnit(alltotalenergy);
+            ViewData["dayenergyUnit"] = Util.upEnergyUnit(dayEnergy);
+            ViewData["AllTotalEnergy"] = StringUtil.formatDouble(Util.upDigtal(alltotalenergy));
+            ViewData["AlldayTotalEnergy"] = StringUtil.formatDouble(Util.upDigtal(dayEnergy));
+            ViewData["AllCO2"] = StringUtil.formatDouble(Util.upDigtal(co2Value));
 
             //取得产品图片
             getPPics();
@@ -268,65 +219,15 @@ namespace Web.Controllers
             float co2Rate = ItemConfigService.GetInstance().getCO2Config();
             ViewData["AllPlant"] = PlantService.GetInstance().GetPlantNum();
 
-            float alltotalenergy = DeviceRunDataService.GetInstance().GetAllTotalEnergy();
-            double totalEnergy = Math.Round(Convert.ToDouble(alltotalenergy), 2);
-            double dayEnergy = Math.Round(Convert.ToDouble(CollectorRunDataService.GetInstance().GetAllDayEnergy()), 2);
-
-            double co2Value = Math.Round((alltotalenergy * co2Rate), 2);
-            ViewData["co2Unit"] = "kg";
-            ViewData["energyUnit"] = "kWh";
-            ViewData["dayenergyUnit"] = "kWh";
-
-            if (co2Value >= 1000000000000)
-            {
-                co2Value = Math.Round(co2Value / 1000000000, 2);
-                ViewData["co2Unit"] = "Gt";
-            }
-            else if (co2Value >= 1000000000)
-            {
-                co2Value = Math.Round(co2Value / 1000000000, 2);
-                ViewData["co2Unit"] = "Mt";
-            }
-            else
-                if (co2Value >= 1000000)
-                {
-                    co2Value = Math.Round(co2Value / 1000000, 2);
-                    ViewData["co2Unit"] = "kt";
-                }
-                else
-                    if (co2Value >= 1000)
-                    {
-                        co2Value = Math.Round(co2Value / 1000, 2);
-                        ViewData["co2Unit"] = "t";
-                    }
-            if (totalEnergy >= 1000000)
-            {
-                totalEnergy = totalEnergy / 1000000;
-                ViewData["energyUnit"] = "GWh";
-            }
-            else
-                if (totalEnergy >= 1000)
-                {
-                    totalEnergy = totalEnergy / 1000;
-                    ViewData["energyUnit"] = "MWh";
-                }
-            if (dayEnergy >= 1000000)
-            {
-                dayEnergy = dayEnergy / 1000000;
-                ViewData["dayenergyUnit"] = "GWh";
-            }
-            else
-                if (dayEnergy >= 1000)
-                {
-                    dayEnergy = dayEnergy / 1000;
-                    ViewData["dayenergyUnit"] = "MWh";
-                }
-
-            totalEnergy = Math.Round(totalEnergy, 2);
-            dayEnergy = Math.Round(dayEnergy, 2);
-            ViewData["AllTotalEnergy"] = totalEnergy.ToString();
-            ViewData["AlldayTotalEnergy"] = dayEnergy.ToString();
-            ViewData["AllCO2"] = co2Value;
+            double alltotalenergy = DeviceRunDataService.GetInstance().GetAllTotalEnergy();
+            double dayEnergy = CollectorRunDataService.GetInstance().GetAllDayEnergy();
+            double co2Value = alltotalenergy * co2Rate;
+            ViewData["co2Unit"] = Util.upCo2Unit(co2Value);
+            ViewData["energyUnit"] = Util.upEnergyUnit(alltotalenergy);
+            ViewData["dayenergyUnit"] = Util.upEnergyUnit(dayEnergy);
+            ViewData["AllTotalEnergy"] = StringUtil.formatDouble(Util.upDigtal(alltotalenergy));
+            ViewData["AlldayTotalEnergy"] = StringUtil.formatDouble(Util.upDigtal(dayEnergy));
+            ViewData["AllCO2"] = StringUtil.formatDouble(Util.upDigtal(co2Value));
 
             getPPics();
 

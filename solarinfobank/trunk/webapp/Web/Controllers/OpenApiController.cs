@@ -237,7 +237,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             TotalInfo tinfo = new TotalInfo();
             if (string.IsNullOrEmpty(username))
             {
-                float allTotalEnergy = DeviceRunDataService.GetInstance().GetAllTotalEnergy();
+                double allTotalEnergy = DeviceRunDataService.GetInstance().GetAllTotalEnergy();
                 double allDayEnergy = CollectorRunDataService.GetInstance().GetAllDayEnergy();
                 double allDayPower = CollectorRunDataService.GetInstance().getAllPower();
                 tinfo.totalDayEnergy = Util.upDigtal(allDayEnergy);

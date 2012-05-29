@@ -7,11 +7,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>电站信息
+    <title><%=ProtalUtil.isAutoLogin?"电站信息":"电站单元" %>
         <%=Model.name %></title>
     <link href="../../style/mhcss.css" rel="stylesheet" type="text/css" />
     <link href="/style/mhcss.css" rel="stylesheet" type="text/css" />
-
+    <style> #structimg{ border:none;}</style>
     <script src="/script/jquery.js" type="text/javascript"></script>
 
     <script type="text/javascript" charset="utf-8" src="/script/jquery.hoverIntent.minified.js"></script>
@@ -125,6 +125,11 @@
             });
 
         }
+        $(document).ready(function() {
+            var imgwidth = $("#structimg").attr("width");
+            $("#planetmap").css("left", (635 - imgwidth) / 2);
+            $("#planetmap").css("width", imgwidth);
+        });
         
     </script>
 
@@ -832,13 +837,13 @@
                                     </td>
                                 </tr>
                             </table>
-                            <div id="planetmap" style="position: relative">                                
+                            <div id="planetmap" style="position: relative;">                                
                                  <% string path=Server.MapPath("~");
                                if (System.IO.File.Exists(string.Format("{0}/ufile/{1}", path, Model.structPic)) == false)
-                               { Response.Write("<font color='red'>未上传分布图</font>"); }
+                               { Response.Write("<center><font color='red'>未上传分布图</font></center>"); }
                                else
                                { %>
-                                <center><img src="/ufile/<%=Model.structPic %>" alt="" ondblclick="vControl('GETMOUSEPOSINPIC',this,event)" /></center>
+                                <img id="structimg" src="/ufile/<%=Model.structPic %>" alt=""/>
                                 <%} %>
                                 
                                 
@@ -852,7 +857,7 @@
                                 %>
                                 <div style="top: <%=point.y %>px; left: <%=point.x %>px; position: absolute;">
                                    
-                                        <img src="/images/map/db.gif" border="0" style="cursor: pointer;" alt="<%=point.displayName %>"
+                                        <img src="/images/map/touming.gif" border="0" style="cursor: pointer;" alt="<%=point.displayName %>"
                                             id="plant_tip_<%=point.id %>" onmouseover="tips('plant_tip_<%=point.id %>');" />
                                 </div>
                                 <div id="plant_tip_<%=point.id %>-content" style="display: none; background-color: Red;">

@@ -9,6 +9,7 @@
     <title>电站分布图
         <%=Model.name %></title>
     <link href="/style/mhcss.css" rel="stylesheet" type="text/css" />
+    <style> #structimg{ border:none;}</style>
 
     <script src="/script/jquery.js" type="text/javascript"></script>
 
@@ -284,10 +285,10 @@
                                 <div id="planetmap" style="position: relative">
                                             <% string path=Server.MapPath("~");
                                if (System.IO.File.Exists(string.Format("{0}/ufile/{1}", path, Model.structPic)) == false)
-                               { Response.Write("<font color='red'>未上传分布图</font>"); }
+                               { Response.Write("<center><font color='red'>未上传分布图</font></center>"); }
                                else
                                { %>
-                                <center><img src="/ufile/<%=Model.structPic %>" alt="" ondblclick="vControl('GETMOUSEPOSINPIC',this,event)" /></center>
+                                <center><img src="/ufile/<%=Model.structPic %>" alt="" usemap="#structmap" id="structimg"/></center>
                                 <%} %>
                                 
                                     

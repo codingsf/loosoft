@@ -207,7 +207,7 @@
                                                 <%if (AuthService.isAllow(AuthorizationCode.DELETE_PLANT))
                                                   { %>
                                                 <a onclick="return confirm('<%=Resources.SunResource.MONITORITEM_SURE_DELETE%>')"
-                                                    href="/user/detele/<%=plant.id%>?t=<%=plant.isVirtualPlant?1:0%>" target="_parent">
+                                                    href="/user/detele/<%=plant.id%>?t=<%=plant.isVirtualPlant?1:0%>?&fromurl=/user/allplants" target="_parent">
                                                     <img src="/images/sub/cross.gif" width="16" height="16" border="0" alt="<%=Resources.SunResource.MONITORITEM_DELETE%>"
                                                         title="<%=Resources.SunResource.MONITORITEM_DELETE%>" /></a>
                                                 <%}

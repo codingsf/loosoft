@@ -8,17 +8,48 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>电站单元 <%=this.Model.name %></title>
-    <link href="../../style/mhcss.css" rel="stylesheet" type="text/css" />
+    <title>电站单元
+        <%=this.Model.name %></title>
+    <link href="/style/mhcss.css" rel="stylesheet" type="text/css" />
+    <style> #structimg{ border:none;}</style>
+    <script src="/script/jquery.js" type="text/javascript"></script>
 
-    <script src="../../script/jquery-1.3.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8" src="/script/jquery.hoverIntent.minified.js"></script>
 
-    <script src="../../script/slide.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8" src="/script/jquery.bgiframe.min.js"></script>
 
-    <script src="../../script/dtree.js" type="text/javascript"></script>
+    <!--[if IE]>
+    <SCRIPT type="text/javascript" charset="utf-8" src="/script/excanvas.js"></SCRIPT>
+    <![endif]-->
 
-    <link href="../../style/dtree.css" rel="stylesheet" type="text/css" />
-    <link href="../../style/lrtk.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" charset="utf-8" src="/script/jquery.bt.min.js"></script>
+
+    <!-- /STUFF -->
+    <!-- cool easing stuff for animations -->
+
+    <script type="text/javascript" charset="utf-8" src="/script/jquery.easing.1.3.js"></script>
+
+    <script>
+        function tips(id) {
+            var newid = id;
+            if (id.indexOf("-1") > -1) newid = id.substring(0, id.indexOf("-1"));
+            $('#' + newid + '-content').hide();
+            $('#' + id).bt({ contentSelector: "$('#" + newid + "-content').html()", /*get text of inner 
+                content of hidden div*/
+                width: 200, fill: 'white', strokeWidth: 1, /*no stroke*/strokeStyle: '#118529',
+                spikeLength: 30, spikeGirth: 30, padding: 0, cornerRadius: 10, positions: ['top'],
+                cssStyles: { fontFamily: '"lucida grande",tahoma,verdana,arial,sans-serif', fontSize: '15px' }
+            });
+
+        }
+
+        $(document).ready(function() {
+            var imgwidth = $("#structimg").attr("width");
+            $("#imgcontainer").css("left", (1000 - imgwidth) / 2);
+            $("#imgcontainer").css("width", imgwidth);
+        });
+    </script>
+
 </head>
 <body style="background: url(/images/gf/gf_tcbg.jpg) top repeat-x;">
     <div class="gf_boxb">
@@ -36,9 +67,54 @@
     </div>
     <div class="gf_midbody">
         <div class="gf_boxb">
-            <div style="position: relative;">
-                <center>
-                    <img src="/ufile/<%=Model.structPic %>" usemap="#unitmap" alt="" /></center>
+            <div style="position: relative;" id="imgcontainer">
+                <% string path = Server.MapPath("~");
+                   if (System.IO.File.Exists(string.Format("{0}/ufile/{1}", path, Model.structPic)) == false)
+                   { Response.Write("<center><font color='red'>未上传分布图</font></center>"); }
+                   else
+                   { %>
+               
+                    <img src="/ufile/<%=Model.structPic %>" alt="" usemap="#unitmap" id="structimg" />
+                <%} %>
+                <%foreach (StructPoint point in ViewData["points"] as List<StructPoint>)
+                  {
+                      PlantUnit unit = Model.plantUnits.Where(m => m.id.ToString().Equals(point.id)).FirstOrDefault<PlantUnit>();
+                      if (unit == null) unit = new PlantUnit();
+                %>
+                <div style="top: <%=point.y %>px; left: <%=point.x %>px; position: absolute;">
+               <a href="<%=point.targetUrl %>" target="_blank"><span><img src="/images/map/touming.gif" border="0" style="cursor: pointer;" alt="<%=point.displayName %>"
+                        id="plant_tip_<%=point.id %>" onmouseover="tips('plant_tip_<%=point.id %>');" /></span>  </a>
+                </div>
+                <div id="plant_tip_<%=point.id %>-content" style="display: none; background-color: Red;">
+                    <!--  
+                                            <div style="FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#D7F4CB,endColorStr=#ffffff); height:0px; width:200px;">
+                                            -->
+                    <div style="line-height: 20px; padding-left: 10px;">
+                        <font size="3"><strong>
+                            <%=point.displayName %></strong></font></div>
+                    <div style="line-height: 20px; padding-left: 10px;">
+                        <%=Resources.SunInfoResource.USER_OVERVIEW_PLANT_CURRENT_POWER%>:
+                        <%=unit.TodayPower(Model.timezone)%>
+                        kW
+                    </div>
+                    <div style="line-height: 20px; padding-left: 10px;">
+                        <%=Resources.SunInfoResource.PLANT_OVERVIEW_TODAY_ENERGRY%>:
+                        <%=unit.TodayEnergy(Model.timezone)%>
+                        kWh
+                    </div>
+                    <div style="line-height: 20px; padding-left: 10px;">
+                        累计发电:
+                        <%=unit.displayTotalEnergyDigtal%>
+                        <%=unit.displayTotalEnergyUnit%>
+                    </div>
+                    <!--
+                                            </div>
+                                            <div style="background:-moz-linear-gradient(top,#D7F4CB,#ffffff); height:60px; width:200px;">
+                                            
+                                            </div>
+                                            -->
+                </div>
+                <%} %>
                 <%--    <%foreach (StructPoint point in ViewData["points"] as List<StructPoint>)
                   {%>
                 <div style="position:absolute; top:<%=point.y %>px; left:<%=point.x %>px; color:Red;"><%=point.displayName %></div>
@@ -111,33 +187,33 @@
                                                     <%} %>
                                                 </td>
                                                 <td width="92%">
-                                                    <span class="xxbox_tt"><a target="_blank" href="/portal/unit?uid=<%=plantUnit.id %>&pid=<%=Model.id %>" class="dbl">
+                                                    <span class="xxbox_tt"><a target="_blank" href="/portal/unit?uid=<%=plantUnit.id %>&pid=<%=Model.id %>"
+                                                        class="dbl">
                                                         <%=plantUnit.displayname %></a> </span>
                                                     <br />
                                                     <%if (plantUnit.collector.runData != null)
                                                       { %>
                                                     <span class="lbl">
-                                                       
                                                         <%=Resources.SunInfoResource.USER_OVERVIEW_PLANT_CURRENT_POWER%>:
                                                         <%=plantUnit.TodayPower(Model.timezone)%>
                                                         kW
                                                         <br />
-                                                         <%=Resources.SunInfoResource.PLANT_OVERVIEW_TODAY_ENERGRY%>:
+                                                        <%=Resources.SunInfoResource.PLANT_OVERVIEW_TODAY_ENERGRY%>:
                                                         <%=plantUnit.TodayEnergy(Model.timezone)%>
                                                         kWh
                                                         <br />
                                                         累计发电:
                                                         <%=plantUnit.displayTotalEnergyDigtal%>
-                                                        <%=plantUnit.displayTotalEnergyUnit%> </span>
+                                                        <%=plantUnit.displayTotalEnergyUnit%>
+                                                    </span>
                                                     <%}
                                                       else
                                                       {%>
                                                     <span class="lbl">
-                                                    <%=Resources.SunInfoResource.USER_OVERVIEW_PLANT_CURRENT_POWER%>: 0 kW
+                                                        <%=Resources.SunInfoResource.USER_OVERVIEW_PLANT_CURRENT_POWER%>: 0 kW
                                                         <br />
                                                         <%=Resources.SunInfoResource.PLANT_OVERVIEW_TODAY_ENERGRY%>: 0 kWh
                                                         <br />
-                                                        
                                                         累计发电: 0 kW </span>
                                                     <%}%>
                                                 </td>
@@ -176,12 +252,11 @@
         </div>
     </div>
     <%Html.RenderPartial("footer"); %>
-    
     <map name="unitmap" id="unitmap">
         <%foreach (StructPoint point in ViewData["points"] as List<StructPoint>)
           {%>
         <area shape="circle" coords="<%=point.x %>,<%=point.y %>,15" href="<%=point.targetUrl %>"
-            target="_blank" title="<%=point.displayName %>" />
+            target="_blank" alt="<%=point.displayName %>" onmouseover="javascript:tips('plant_tip_<%=point.id %>');" />
         <%} %>
     </map>
 </body>

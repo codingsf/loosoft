@@ -255,6 +255,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         public ActionResult Save(Plant plant)
         {
             plant.structPic = Request["sutpic"];
+
+            if (string.IsNullOrEmpty(Request["structPic"]) == false && Request["structPic"].Equals(plant.structPic) == false)
+                removeStructPicConfig(plant.id + "");
             string long1 = Request.Form["long1"];
             string long2 = Request.Form["long2"];
             string long3 = Request.Form["long3"];

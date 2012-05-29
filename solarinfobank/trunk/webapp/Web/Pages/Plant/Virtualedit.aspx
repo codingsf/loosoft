@@ -1124,7 +1124,8 @@
                                         s1: $("#s1").val(),
                                         s2: $("#s2").val(),
                                         guid: $("#pic").val(),
-                                        structPic: $("#sutpic").val()
+                                        structPic: $("#sutpic").val(),
+                                        file: $("#structPic").val()
 
                                     },
                                     success: function(result) {

@@ -441,5 +441,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             s = Math.Round(s * 10000) / 10000;
             return s;
         }
+
+        public void removeStructPicConfig(string id)
+        {
+            string path = Server.MapPath("~") + "/config/";
+            path = string.Format("{1}structPointConfig{0}.xml", id, path);
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+            }
+        }
     }
+
+
+
 }

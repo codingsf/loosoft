@@ -24,8 +24,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         ReportConfigService reportConfigService = ReportConfigService.GetInstance();
         PlantUserService plantUserService = PlantUserService.GetInstance();
         // GET: /User/
-        private static string singlemark_true="1";//是分配单个电站
-        private static string singlemark_false="0";//分配多个电站
+        private static string singlemark_true = "1";//是分配单个电站
+        private static string singlemark_false = "0";//分配多个电站
 
         [HandleError]
         [IsLoginAttribute]
@@ -481,7 +481,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             UserUtil.ResetLogin(UserUtil.getCurUser());
 
-            return RedirectToAction("AllPlants", "user");
+            string fromurl = Request["fromurl"];
+            return Redirect(fromurl);
         }
 
         [IsLoginAttribute]
@@ -1755,6 +1756,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             string[] pid = pids.Split(',');
             string guid = Request["guid"];
             string structPic = Request["structPic"];
+            string file = Request["file"];
+            if (string.IsNullOrEmpty(file) && file.Equals(structPic) == false)
+                removeStructPicConfig(id);
             if (string.IsNullOrEmpty(guid))
             {
                 guid = "npr.jpg";
@@ -1776,15 +1780,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             #endregion
 
             //先取得当前电站
-            vid = plantService.Save(new Plant { id = vid, name = name, plantIds = pids, description = descr, userID = user.id, parentId = 0, country = country, city = city, pic = guid, isVirtualPlant = true, structPic= structPic });
-            ReportService.GetInstance().batchCreateSysRunReport(0,vid);
+            vid = plantService.Save(new Plant { id = vid, name = name, plantIds = pids, description = descr, userID = user.id, parentId = 0, country = country, city = city, pic = guid, isVirtualPlant = true, structPic = structPic });
+            ReportService.GetInstance().batchCreateSysRunReport(0, vid);
             //先批量清楚原有父id
             plantService.UpdateParentId(vid);
             //删除组合电站的用户和电站对应关系
             plantUserService.ClosePlant(vid, user.id);
             //建立创建的
             plantUserService.AddPlantUser(new PlantUser() { plantID = vid, userID = user.id });
-            
+
             string[] array = pids.Split(',');
 
             foreach (string item in array)
@@ -1880,7 +1884,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             string singlemark = Request.Form["singlemark"];
             //如果不是报仇分配单个电站，那么要先清空改用户的已分配电站
-            if (singlemark_false.Equals(singlemark)) {
+            if (singlemark_false.Equals(singlemark))
+            {
                 plantUserService.DelPlantUserByUserId(uid);
             }
 

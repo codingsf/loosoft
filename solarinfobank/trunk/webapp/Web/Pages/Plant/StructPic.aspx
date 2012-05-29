@@ -92,7 +92,12 @@
                 $.get("/plant/savestructpic", { x: x, y: y, cat: $("#cat").val(), pid: <%=Model.id %>, id: id }, function(data) {
                     //alert(data);
                 });
-            });
+            })
+            
+            var imgwidth=$("#structimg").attr("width");
+            $("#container").css("width",imgwidth);
+            $("#container").css("left",(750-imgwidth)/2);
+            
         })
     </script>
 
@@ -158,10 +163,10 @@
                             
                             <% string path=Server.MapPath("~");
                                if (System.IO.File.Exists(string.Format("{0}/ufile/{1}", path, Model.structPic)) == false)
-                               { Response.Write("<font color='red'>未上传分布图</font>"); }
+                               { Response.Write("<center><font color='red'>未上传分布图</font></center>"); }
                                else
                                { %>
-                                <center><img src="/ufile/<%=Model.structPic %>" alt="" ondblclick="vControl('GETMOUSEPOSINPIC',this,event)" /></center>
+                               <img src="/ufile/<%=Model.structPic %>" alt="" ondblclick="vControl('GETMOUSEPOSINPIC',this,event)" id="structimg" />
                                 <%} %>
                                   <%foreach (StructPoint point in ViewData["points"] as List<StructPoint>)
                                   {%>

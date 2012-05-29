@@ -1757,7 +1757,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             string guid = Request["guid"];
             string structPic = Request["structPic"];
             string file = Request["file"];
-            if (string.IsNullOrEmpty(file) && file.Equals(structPic) == false)
+            if (string.IsNullOrEmpty(file)==false && file.Equals(structPic) == false)
                 removeStructPicConfig(id);
             if (string.IsNullOrEmpty(guid))
             {

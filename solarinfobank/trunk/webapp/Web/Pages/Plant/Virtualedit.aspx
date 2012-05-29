@@ -1264,7 +1264,7 @@
                                     <table>
                                         <tr>
                                             <td>
-                                                <input type="text" id="structPic" class="txtbu01" style="width: 150px" />
+                                                <input type="text" id="structPic" class="txtbu01" style="width: 150px" value="" />
                                             </td>
                                             <td>
                                                 <div id="spanButtonPlaceholder1" style="margin-top: 10px; border: solid 1px red;

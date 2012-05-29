@@ -2315,12 +2315,40 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
         public ActionResult StructPic(string id)
         {
             string path = Server.MapPath("~") + "/config/";
-
             int pid = 0;
             int.TryParse(id, out pid);
+            path = string.Format("{1}structPointConfig{0}.xml", pid, path);
+
             Plant plant = plantService.GetPlantInfoById(pid);
+
             List<StructPoint> points = new List<StructPoint>();
-            XmlHelper.DeserializerXML(string.Format("{1}structPointConfig{0}.xml", pid, path), ref points);
+            XmlHelper.DeserializerXML(path, ref points);
+
+            List<StructPoint> tmppoints = new List<StructPoint>();
+            if (plant.isVirtualPlant)
+            {
+                foreach (Plant pnt in plant.childs)
+                {
+                    StructPoint point = points.Where(m => m.id.Equals(pnt.id.ToString())).FirstOrDefault<StructPoint>();
+                    if (point != null)
+                        tmppoints.Add(point);
+                }
+                points = tmppoints;
+                XmlHelper.SerializerXML(path, points);
+            }
+
+            else
+            {
+                foreach (PlantUnit unit in plant.plantUnits)
+                {
+                    StructPoint point = points.Where(m => m.id.Equals(unit.id.ToString())).FirstOrDefault<StructPoint>();
+                    if (point != null)
+                        tmppoints.Add(point);
+                }
+                points = tmppoints;
+                XmlHelper.SerializerXML(path, points);
+            }
+
             foreach (StructPoint point in points)
             {
                 if (plant.isVirtualPlant)

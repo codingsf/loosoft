@@ -1185,7 +1185,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 for (int i = 0; i < topDirectoryInfo.Count; i++)
                 {
                     tmpDir = topDirectoryInfo[i];
-                    if (tmpDir.GetDirectories().Length == 0 && tmpDir.GetFiles().Length == 0)//没有下级目录并且当前目录没有文件  不显示
+                    if (tmpDir.GetDirectories().Length == 0 && tmpDir.GetFiles().Length == 0 && displayName == null)//没有下级目录并且当前目录没有文件不显示
                         continue;
                     curLevel = ((uplevel + 1) * 10 + i);
                     string path = string.Empty;
@@ -1198,13 +1198,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     }
                     bool createLink = true;
                     path = string.Format("{0}{1}", path, tmpDir.Name);
-                    foreach (string str in rootFolder)
-                        if (tmpDir.Parent.FullName.Equals(str))
-                        {
-                            createLink = false;
-                            break;
-                        }
-
+                    if (displayName != null && displayName.Count > 0)
+                        createLink = false;
+                    else
+                        foreach (string str in rootFolder)
+                            if (tmpDir.Parent.FullName.Equals(str))
+                            {
+                                createLink = false;
+                                break;
+                            }
                     path = Convert.ToBase64String(ASCIIEncoding.UTF8.GetBytes(path));
                     jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '/images/tree/folder.gif');", curLevel, uplevel, (displayName != null && displayName.Count > 0) ? displayName[i] : tmpDir.Name, !createLink ? "javascript:void(0);" : string.Format("/portal/video/?path={0}&id={1}", path, pid));
                     if (tmpDir.GetDirectories() != null && tmpDir.GetDirectories().Length > 0)

@@ -10,7 +10,7 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            window.setTimeout("goIndex()", 20000);
+          //  window.setTimeout("goIndex()", 20000);
         });
 
         function goIndex() {

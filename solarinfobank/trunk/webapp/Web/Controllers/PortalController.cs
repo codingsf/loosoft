@@ -1218,6 +1218,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
         public ActionResult Video(string path, string id)
         {
+            if (string.IsNullOrEmpty(path) == false)
+                path = path.Replace(' ', '+');
             User user = UserUtil.getCurUser();
             Protal protal = ProtalService.GetInstance().GetByUser(user.ParentUserId);
             int pid = 0;

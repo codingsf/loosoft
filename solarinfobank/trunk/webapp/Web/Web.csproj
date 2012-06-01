@@ -220,7 +220,7 @@
     <Content Include="SqlMap.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="E:\working\SunInfoBank\trunk\email-sf\EmailService\EmailService.csproj">
+    <ProjectReference Include="..\..\email-sf\EmailService\EmailService.csproj">
       <Project>{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}</Project>
       <Name>EmailService</Name>
     </ProjectReference>
@@ -2687,6 +2687,7 @@
     <Content Include="videodemo.html" />
     <Content Include="videodemo2.html" />
     <Content Include="video\earth.swf" />
+    <Content Include="video\earth2.swf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\" />

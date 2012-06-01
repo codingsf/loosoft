@@ -203,6 +203,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
+            //如果是要求登录，那么取消自动登录标识
+            string isLogin = Request.Params["isLogin"];
+            if (!string.IsNullOrEmpty(isLogin) && isLogin.Equals("1"))
+            {
+                Session[Common.ComConst.portalautoLogin] = null;
+            }
             User user = UserUtil.getCurUser();
             ViewData["currency"] = string.IsNullOrEmpty(user.currencies) ? "￥" : user.currencies;
             ViewData["plants"] = user.assignedPlants;

@@ -1,36 +1,47 @@
-ï»¿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
+<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>å…‰ä¼ç”µç«™å…¨çƒåˆ†å¸ƒ</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=uft-8" />
+
+    <title>¹â·üµçÕ¾È«Çò·Ö²¼</title>
 
     <script src="/script/jquery.js" type="text/javascript"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
-          //  window.setTimeout("goIndex()", 20000);
+
         });
 
-        function goIndex() {
-            window.location.href = "/portal/index";
+        function goIndex(isLogin) {
+            window.location.href = "/portal/index" + "?isLogin=" + isLogin;
         }
     </script>
 
 </head>
 <body bgcolor="#ffffff">
-    <!-- å½±ç‰‡ä¸­ä½¿ç”¨çš„ URL-->
-    <!-- å½±ç‰‡ä¸­ä½¿ç”¨çš„æ–‡æœ¬-->
+<<<<<<< .mine
+<div style=" background-color:black;">
+    <!-- Ó°Æ¬ÖĞÊ¹ÓÃµÄ URL-->
+    <!-- Ó°Æ¬ÖĞÊ¹ÓÃµÄÎÄ±¾-->
     <!-- saved from url=(0013)about:internet -->
     <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"
-        width="1200" height="768" id="earth" align="middle">
+        width="1340" height="768" id="earth" align="middle">
         <param name="allowScriptAccess" value="sameDomain" />
-        <param name="movie" value="/video/earth.swf" />
+        <param name="movie" value="/video/earth2.swf" />
         <param name="quality" value="high" />
         <param name="bgcolor" value="#ffffff" />
-        <embed src="/video/earth.swf" quality="high" bgcolor="#ffffff" width="1366" height="768"
+        <embed src="/video/earth2.swf" quality="high" bgcolor="#ffffff" width="1366" height="768"
             name="earth" align="middle" allowscriptaccess="sameDomain" type="application/x-shockwave-flash"
             pluginspage="http://www.macromedia.com/go/getflashplayer" />
     </object>
+</div>
+<div style="text-align:center;">
+<br/>
+µÇÂ¼½øÈë£ºÓÃ»§Ãû<input name="username" class="insy01" value="">&nbsp;&nbsp;ÃÜÂë<input name="password" class="insy01" value="">  
+<input type="submit" class="loginbu" value="µÇÂ¼" onclick="goIndex(1)" id="btnLogin", tabindex ="3" />
+<br/>
+</div>
 </body>
 </html>

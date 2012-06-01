@@ -1921,5 +1921,17 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             ViewData["plantYear"] = plantYearsList;
             return View(plant);
         }
+
+        public ActionResult deviceStructTree(string id)
+        {
+            int pid = 0;
+            int.TryParse(id, out pid);
+            Plant plant = PlantService.GetInstance().GetPlantInfoById(pid);
+            string jsstr = base.createDeviceContructTree(plant, -1);
+            ViewData["jsstr"] = jsstr;
+            return View();
+        }
+
+
     }
 }

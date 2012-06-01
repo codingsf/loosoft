@@ -2249,6 +2249,7 @@
     <Content Include="Pages\Plant\DeviceMonitor.aspx" />
     <Content Include="Pages\Plant\ChangePassword.aspx" />
     <Content Include="Pages\Plant\deviceStructChart.aspx" />
+    <Content Include="Pages\Plant\deviceStructTree.aspx" />
     <Content Include="Pages\Plant\Device\CurrentCount.aspx" />
     <Content Include="Pages\Plant\Map.aspx" />
     <Content Include="Pages\Plant\AmmeterList.aspx" />
@@ -2391,9 +2392,11 @@
     <Content Include="script\DatePicker\skin\whyGreen\datepicker.css" />
     <Content Include="script\DatePicker\skin\whyGreen\img.gif" />
     <Content Include="script\DatePicker\WdatePicker.js" />
+    <Content Include="script\dtree.js" />
     <Content Include="script\ECOTree.js" />
     <Content Include="script\SetDateTime.js" />
     <Content Include="script\cookie.js" />
+    <Content Include="style\dtree.css" />
     <Content Include="style\kj.css" />
     <Content Include="style\css.css" />
     <Content Include="style\css.zh-cn.css" />

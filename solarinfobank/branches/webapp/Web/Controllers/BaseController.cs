@@ -25,13 +25,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     filterContext.HttpContext.Response.End();
                     return;
                 }
-                else { 
+                else
+                {
                     User user = UserService.GetInstance().GetUserByName(autologinName);
                     UserUtil.login(user);
 
                     //记录登录记录
                     string ip = WebUtil.getClientIp(filterContext.HttpContext.Request);
-                    LoginRecordService.GetInstance().Save(user.id, autologinName, ip,0);
+                    LoginRecordService.GetInstance().Save(user.id, autologinName, ip, 0);
 
                     base.OnActionExecuting(filterContext);
                 }
@@ -57,16 +58,16 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (filterContext.HttpContext.Session[ComConst.User]!=null&&(UserUtil.getCurUser()).plantUsers.Count <= 0)
-                {
-                    filterContext.HttpContext.Response.Redirect("/user/addplant");
-                }
+            if (filterContext.HttpContext.Session[ComConst.User] != null && (UserUtil.getCurUser()).plantUsers.Count <= 0)
+            {
+                filterContext.HttpContext.Response.Redirect("/user/addplant");
+            }
             base.OnActionExecuting(filterContext);
         }
     }
 
-    public class UserAuthorizeAttribute : AuthorizeAttribute 
-     {
+    public class UserAuthorizeAttribute : AuthorizeAttribute
+    {
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             var user = filterContext.HttpContext.Session[ComConst.User] as User;
@@ -78,21 +79,21 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 foreach (RoleFunction function in user.UserRole.RoleFunctions)
                 {
                     var role = AuthorizationCode.GetRole(function.functionCode);
-                    if (role!=null&&role.action.Equals(action) && role.controller.Equals(controller))
+                    if (role != null && role.action.Equals(action) && role.controller.Equals(controller))
                     {
-                        filterContext.RequestContext.HttpContext.Response.Redirect("/auth/deny",true);
+                        filterContext.RequestContext.HttpContext.Response.Redirect("/auth/deny", true);
                     }
                 }
             }
 
         }
-   }
+    }
 
-   /// <summary>
-   /// 根据session设置线程语言
-   /// </summary>
-   public class SetLanAttribute : ActionFilterAttribute
-   {
+    /// <summary>
+    /// 根据session设置线程语言
+    /// </summary>
+    public class SetLanAttribute : ActionFilterAttribute
+    {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             object obj = filterContext.HttpContext.Session["Culture"];
@@ -103,45 +104,46 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             base.OnActionExecuting(filterContext);
         }
     }
-    
+
     /// <summary>
     /// web 工具
     /// </summary>
-   public static class WebUtil {
+    public static class WebUtil
+    {
 
-       public static string getClientIp(HttpRequestBase request)
-       {
-           string ip = "";
-           if (request.ServerVariables["HTTP_VIA"] != null) // using proxy
-           {
-               ip = request.ServerVariables["HTTP_X_FORWARDED_FOR"].ToString();  // Return real client IP.
-           }
-           else// not using proxy or can't get the Client IP
-           {
-               ip = request.ServerVariables["REMOTE_ADDR"].ToString(); //While it can't get the Client IP, it will return proxy IP.
-           }
-           return ip;
-       }
+        public static string getClientIp(HttpRequestBase request)
+        {
+            string ip = "";
+            if (request.ServerVariables["HTTP_VIA"] != null) // using proxy
+            {
+                ip = request.ServerVariables["HTTP_X_FORWARDED_FOR"].ToString();  // Return real client IP.
+            }
+            else// not using proxy or can't get the Client IP
+            {
+                ip = request.ServerVariables["REMOTE_ADDR"].ToString(); //While it can't get the Client IP, it will return proxy IP.
+            }
+            return ip;
+        }
 
 
-   }
+    }
 
-   public class SetLanguage : ActionFilterAttribute
-   {
-       public override void OnActionExecuting(ActionExecutingContext filterContext)
-       {
-           string language = filterContext.HttpContext.Request["language"];
-           if (string.IsNullOrEmpty(language))
-           {
-               language = Language.enUS;
-               CultureInfo cultureInfo = new CultureInfo(language);
-               filterContext.HttpContext.Session["Culture"] = cultureInfo;
-               Thread.CurrentThread.CurrentCulture = cultureInfo;
-           }
+    public class SetLanguage : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            string language = filterContext.HttpContext.Request["language"];
+            if (string.IsNullOrEmpty(language))
+            {
+                language = Language.enUS;
+                CultureInfo cultureInfo = new CultureInfo(language);
+                filterContext.HttpContext.Session["Culture"] = cultureInfo;
+                Thread.CurrentThread.CurrentCulture = cultureInfo;
+            }
 
-           base.OnActionExecuting(filterContext);
-       }
-   }
+            base.OnActionExecuting(filterContext);
+        }
+    }
 
     /// <summary>
     /// 基类控制器
@@ -159,13 +161,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         /// </summary>
         /// <param name="strname"></param>
         /// <returns></returns>
-        protected string urlcode(string strname) { 
+        protected string urlcode(string strname)
+        {
             //火狐不处理
 
             string btype = Request.UserAgent;
             if (btype.IndexOf("MSIE") > 0)
                 return Server.UrlEncode(strname);
-            else {
+            else
+            {
                 return strname;
             }
         }
@@ -191,8 +195,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             IList<SelectListItem> plantYearsList = Currencies.FillYearItems(yearList);
             ViewData[ComConst.WorkYears] = plantYearsList;
         }
-     
-    
+
+
         /// <summary>
         /// 
         /// 设置管理员登录状态
@@ -231,7 +235,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         {
             get
             {
-                return UserUtil.getCurUser().plants.Count>0?UserUtil.getCurUser().plants[0]:null;
+                return UserUtil.getCurUser().plants.Count > 0 ? UserUtil.getCurUser().plants[0] : null;
             }
         }
 
@@ -333,7 +337,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         private string generateDeviceNode(IList<Device> devices, int deviceLevel, int topLevel, string typeName)
         {
             string jsstr = string.Empty;
-            jsstr += "myTree.add(" + deviceLevel + "," + topLevel + ",'" + typeName + "',80,20,'#FFDFAE','#F18216');";
+            // jsstr += "myTree.add(" + deviceLevel + "," + topLevel + ",'" + typeName + "',80,20,'#FFDFAE','#F18216');";
+            jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '/images/tree/folder.gif');", deviceLevel, topLevel, typeName, "javascript:void(0);");
 
             if (devices != null && devices.Count > 0)
             {
@@ -342,7 +347,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 {
                     device = devices[i];
                     int tmpLevel = deviceLevel * 10 + i;
-                    jsstr += "myTree.add(" + tmpLevel + "," + deviceLevel + ",'" + device.fullName + "',80,20,'#FFDFAE','#F18216','javascript:parent.loadRunData(" + device.id + ")');";
+                    // jsstr += "myTree.add(" + tmpLevel + "," + deviceLevel + ",'" + device.fullName + "',80,20,'#FFDFAE','#F18216','javascript:parent.loadRunData(" + device.id + ")');";
+                    jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '/images/tree/folder.gif');", tmpLevel, deviceLevel, device.fullName, "javascript:parent.loadRunData(" + device.id + ")");
+
                 }
             }
             return jsstr;

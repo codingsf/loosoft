@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "service\Service.csproj", "{326C59B0-0FED-4B56-BE49-8149877228B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailService", "..\email-sf\EmailService\EmailService.csproj", "{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailService", "..\..\branchs\email-sf\EmailService\EmailService.csproj", "{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

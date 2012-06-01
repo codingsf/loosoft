@@ -1246,7 +1246,6 @@
         upload_success_handler: function(file, responseText) {
             document.getElementById("structPic").value = file.name;
             document.getElementById("sutpic").value = responseText;
-            alert('添加成功');
         },
 
         // Button settings

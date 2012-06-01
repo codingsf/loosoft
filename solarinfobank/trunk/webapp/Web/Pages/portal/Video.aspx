@@ -122,9 +122,8 @@
                                                    foreach (FileInfo image in array)
                                                    {  %>
                                                 <div id="image_xixi-0<%=++i %>" class="image">
-                                                    <a href="#" target="_blank">
                                                         <img alt="" src="/content/ashx/drawing.ashx?path=<%=image.FullName %>" width="772"
-                                                            height="434"></a>
+                                                            height="434">
                                                     <div class="word">
                                                         <h3>
                                                         </h3>

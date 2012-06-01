@@ -459,7 +459,7 @@
                                             <%foreach (VideoMonitor monitor in Model.monitores)
                                               {%>
                                             <li><a onclick="loadContent('content_ajax','/plant/includemonitor/<%=Model.id %>?id=<%=monitor.id %>','iframe','GET');setcurrent(this);return false;"
-                                                href="/plant/monitor/<%=Model.id %>?id=<%=monitor.id %>">
+                                                href="/plant/includemonitor/<%=Model.id %>?id=<%=monitor.id %>">
                                                 <%=monitor.name %></a></li>
                                             <%} %>
                                         </ul>

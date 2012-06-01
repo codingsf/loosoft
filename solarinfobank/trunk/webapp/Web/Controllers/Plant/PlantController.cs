@@ -2196,7 +2196,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             RelationConfig config = curUser.configs.Where(m => m.relationType.Equals(RelationConfig.DeviceType) && m.relationId.Equals(pid) && m.config5.Equals(name)).FirstOrDefault<RelationConfig>();
             if (portal != null && portal.ToLower().Equals("true"))
                 config = RelationConfigService.GetInstance().GetConfig(curUser.ParentUserId, pid, RelationConfig.DeviceType, name);
-            if (config == null) config = new RelationConfig { width = "100", height = "30", config3 = "20", config4 = "15" };
+            if (config == null) config = new RelationConfig { width = "100", height = "100", config3 = "20", config4 = "15" };
             string jsstr = string.Empty;
             IList<DeviceRelation> relations = DeviceRelationService.GetInstance().getFirstDeviceRelation(pid, name);
             if (string.IsNullOrEmpty(portal) == false && portal.Equals("true"))

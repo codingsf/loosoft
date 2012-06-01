@@ -1757,7 +1757,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             string guid = Request["guid"];
             string structPic = Request["structPic"];
             string file = Request["file"];
-            if (string.IsNullOrEmpty(file)==false && file.Equals(structPic) == false)
+            if (string.IsNullOrEmpty(file) == false && file.Equals(structPic) == false)
                 removeStructPicConfig(id);
             if (string.IsNullOrEmpty(guid))
             {
@@ -1781,7 +1781,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             //先取得当前电站
             vid = plantService.Save(new Plant { id = vid, name = name, plantIds = pids, description = descr, userID = user.id, parentId = 0, country = country, city = city, pic = guid, isVirtualPlant = true, structPic = structPic });
-            ReportService.GetInstance().batchCreateSysRunReport(0, vid);
+            if (string.IsNullOrEmpty(id))
+                ReportService.GetInstance().batchCreateSysRunReport(0, vid);
             //先批量清楚原有父id
             plantService.UpdateParentId(vid);
             //删除组合电站的用户和电站对应关系

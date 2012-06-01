@@ -331,6 +331,7 @@
         }
     }
     </script>
+    <link href="/style/colorbox.css" rel="stylesheet" type="text/css" />
 
     <script src="/script/jquery.colorbox.js" type="text/javascript"></script>
 

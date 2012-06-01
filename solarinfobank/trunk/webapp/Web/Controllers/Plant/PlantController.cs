@@ -1981,7 +1981,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             User curUser = UserUtil.getCurUser();
             string width = "100"; string height = "30";
             RelationConfig config = curUser.configs.Where(m => m.relationType.Equals(RelationConfig.DeviceType) && m.relationId.Equals(pid) && m.config5.Equals(groupName)).FirstOrDefault<RelationConfig>();
-            if (config == null) config = new RelationConfig { width = "100", height = "30", config3 = "20", config4 = "15" };
+            if (config == null) config = new RelationConfig { width = "100", height = "100", config3 = "20", config4 = "15" };
             if (config != null)
             {
                 width = config.width;

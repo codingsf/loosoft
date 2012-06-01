@@ -79,7 +79,8 @@
         }
 
         function confirmsubmit() {
-            if ($("#name").val().trim() == "") {
+            var name = $.trim($("#name").val());
+            if (name == "") {
                 alert('请输入接线图名称');
                 return false;
             }

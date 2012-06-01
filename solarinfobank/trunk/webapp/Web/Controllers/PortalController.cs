@@ -93,6 +93,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             User portalUser = UserUtil.getCurUser();
             //门户用户的管理者
             User parentUser = UserService.GetInstance().Get(portalUser.ParentUserId);
+            if (string.IsNullOrEmpty(itemStr)) itemStr = ",";
             string[] items = itemStr.Split(',');
             IList<Hashtable> tableIcos = new List<Hashtable>();
             Hashtable ico = null;

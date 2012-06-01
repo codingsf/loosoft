@@ -22,7 +22,7 @@
         var ttl3 = '% <%= Resources.SunResource.USER_LOG_SELECTED%> ';
         $(document).ready(function() {
             $("#btnsaveconfig").click(function() {
-                $.get('/user/relationconfig/',
+            $.get('/user/relationconfig/',
                   {
                       relationId: <%=ViewData["pid"] %>,
                       relationType: '<%=RelationConfig.DeviceType %>',
@@ -75,6 +75,13 @@
             var subWeb = document.frames ? obj.document : ifm.contentDocument;
             if (ifm != null && subWeb != null) {
                 ifm.height = subWeb.body.scrollHeight;
+            }
+        }
+
+        function confirmsubmit() {
+            if ($("#name").val().trim() == "") {
+                alert('请输入接线图名称');
+                return false;
             }
         }
         
@@ -142,7 +149,7 @@
                             </td>
                             <td width="200" align="right">
                                 <input name="Submit" type="submit" disabled="disabled" class="subbu01" value="确定"
-                                    id="btnsubmit" />
+                                    id="btnsubmit" onclick="return confirmsubmit()" />
                             </td>
                         </tr>
                         <tr height="40">

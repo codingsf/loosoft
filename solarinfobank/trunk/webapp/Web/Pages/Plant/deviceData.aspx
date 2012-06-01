@@ -176,7 +176,7 @@
                         <div>
                         <!--左边设备导航-->
                         <div style="float:left;">                   
-                            <iframe src="/plant/devicestructchart/<%=Model.id %>" width="250" scrolling="auto" frameborder="0"
+                            <iframe src="/plant/devicestructtree/<%=Model.id %>" width="250" scrolling="auto" frameborder="0"
                                         height="650">
                             </iframe>
                         </div>

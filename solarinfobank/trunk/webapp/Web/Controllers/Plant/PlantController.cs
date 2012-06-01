@@ -2386,5 +2386,16 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             XmlHelper.SerializerXML(string.Format("{1}structPointConfig{0}.xml", pid, path), points);
             return Content("ok");
         }
+
+
+        public ActionResult deviceStructTree(string id)
+        {
+            int pid = 0;
+            int.TryParse(id, out pid);
+            Plant plant = PlantService.GetInstance().GetPlantInfoById(pid);
+            string jsstr = base.createDeviceContructTree(plant, -1);
+            ViewData["jsstr"] = jsstr;
+            return View();
+        }
     }
 }

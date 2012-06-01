@@ -350,6 +350,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 firstRun = "parent.loadRunData(" + devices[0].id + ");";
                 jsstr += firstRun;
                 jsstr += generateDeviceNode(devices, deviceLevel, topLevel, DeviceData.getDeviceTypeByCode(DeviceData.INVERTER_CODE).name);
+
+
             }
 
             //汇流箱类型设备节点
@@ -406,7 +408,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         private string generateDeviceNode(IList<Device> devices, int deviceLevel, int topLevel, string typeName)
         {
             string jsstr = string.Empty;
-            jsstr += "myTree.add(" + deviceLevel + "," + topLevel + ",'" + typeName + "',80,20,'#FFDFAE','#F18216');";
+           // jsstr += "myTree.add(" + deviceLevel + "," + topLevel + ",'" + typeName + "',80,20,'#FFDFAE','#F18216');";
+            jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '/images/tree/folder.gif');", deviceLevel, topLevel, typeName, "javascript:void(0);");
 
             if (devices != null && devices.Count > 0)
             {
@@ -415,7 +418,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 {
                     device = devices[i];
                     int tmpLevel = deviceLevel * 10 + i;
-                    jsstr += "myTree.add(" + tmpLevel + "," + deviceLevel + ",'" + device.fullName + "',80,20,'#FFDFAE','#F18216','javascript:parent.loadRunData(" + device.id + ")');";
+                    //jsstr += "myTree.add(" + tmpLevel + "," + deviceLevel + ",'" + device.fullName + "',80,20,'#FFDFAE','#F18216','javascript:parent.loadRunData(" + device.id + ")');";
+                    jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '/images/tree/folder.gif');", tmpLevel, deviceLevel, device.fullName, "javascript:parent.loadRunData(" + device.id + ")");
+
                 }
             }
             return jsstr;

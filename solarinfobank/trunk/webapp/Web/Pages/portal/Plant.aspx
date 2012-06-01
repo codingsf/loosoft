@@ -24,6 +24,7 @@
 
     <script type="text/javascript" charset="utf-8" src="/script/jquery.bt.min.js"></script>
 
+    <link href="/style/colorbox.css" rel="stylesheet" type="text/css" />
     <!-- /STUFF -->
     <!-- cool easing stuff for animations -->
 

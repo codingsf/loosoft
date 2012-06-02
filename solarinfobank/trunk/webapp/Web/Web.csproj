@@ -2508,8 +2508,7 @@
     <Content Include="Pages\portal\Unit.aspx" />
     <Content Include="Pages\portal\PlantInfo.aspx" />
     <Content Include="Pages\portal\Footer.aspx" />
-    <Content Include="Pages\p\Index1.aspx" />
-    <Content Include="Pages\p\Manage.aspx" />
+    <Content Include="Pages\p\Index.aspx" />
     <Content Include="Pages\User\Overview.aspx" />
     <Content Include="Pages\Plant\Device\DataCount.aspx" />
     <Content Include="Pages\Plant\Device\EnergyCount.aspx" />

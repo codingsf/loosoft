@@ -209,6 +209,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 Session[Common.ComConst.portalautoLogin] = null;
             }
+            else {
+                Session[Common.ComConst.portalautoLogin] = true;
+            }
             User user = UserUtil.getCurUser();
             ViewData["currency"] = string.IsNullOrEmpty(user.currencies) ? "￥" : user.currencies;
             ViewData["plants"] = user.assignedPlants;

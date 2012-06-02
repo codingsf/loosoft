@@ -229,5 +229,23 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 return Util.upEnergyUnit(displayTotalEnergy).ToString();
             }
         }
+        /// <summary>
+        /// 根据传入的设备类型代码取得相应的设备
+        /// </summary>
+        /// <param name="deviceType">设备类型代码，参见DeviceData.INVERTER_CODE DeviceData.HUILIUXIANG_CODE等</param>
+        /// <returns></returns>
+        public IList<Device> typeDevices(int deviceType, bool isHidden)
+        {
+            IList<Device> typeDevices = new List<Device>();
+            if (devices == null) return typeDevices;
+            foreach (Device device in devices)
+            {
+                if (device.deviceTypeCode == deviceType && device.isHidden == isHidden) 
+                {
+                    typeDevices.Add(device);
+                }
+            }
+            return typeDevices;
+        }
     }
 }

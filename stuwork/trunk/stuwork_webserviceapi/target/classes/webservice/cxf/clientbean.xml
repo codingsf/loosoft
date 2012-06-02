@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="UTF-8"?> 
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-2.0.xsd 
+http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd"> 
+
+	
+	<!-- 创建学区实例  --> 
+	<bean id="schereaWebService" class="cn.loosoft.data.webservice.api.school.SchareaWebService" factory-bean="schareaClientFactory" 
+	factory-method="create" />
+	
+	<!-- 定义一个学区工厂  --> 
+	<bean id="schareaClientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean"> 
+		<property name="serviceClass" value="cn.loosoft.data.webservice.api.school.SchareaWebService" /> 
+		<property name="address" value="${webservice.base.url}/services/scharea" /> 
+	</bean>
+	
+	<!-- 创建学院实例  --> 
+	<bean id="instituteWebService" class="cn.loosoft.data.webservice.api.school.InstituteWebService" factory-bean="instituteClientFactory" 
+	factory-method="create" />
+	
+	<!-- 定义一个学院工厂  --> 
+	<bean id="instituteClientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean"> 
+		<property name="serviceClass" value="cn.loosoft.data.webservice.api.school.InstituteWebService" /> 
+		<property name="address" value="${webservice.base.url}/services/institute" /> 
+	</bean>
+	
+	<!-- 创建系实例  --> 
+	<bean id="departmentWebService" class="cn.loosoft.data.webservice.api.school.DepartmentWebService" factory-bean="departmentClientFactory" 
+	factory-method="create" />
+	
+	<!-- 定义一个系工厂  --> 
+	<bean id="departmentClientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean"> 
+		<property name="serviceClass" value="cn.loosoft.data.webservice.api.school.DepartmentWebService" /> 
+		<property name="address" value="${webservice.base.url}/services/department" /> 
+	</bean>
+	
+	<!-- 创建专业实例  --> 
+	<bean id="specialtyWebService" class="cn.loosoft.data.webservice.api.school.SpecialtyWebService" factory-bean="specialtyClientFactory" 
+	factory-method="create" />
+	
+	<!-- 定义一个专业工厂  --> 
+	<bean id="specialtyClientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean"> 
+		<property name="serviceClass" value="cn.loosoft.data.webservice.api.school.SpecialtyWebService" /> 
+		<property name="address" value="${webservice.base.url}/services/specialty" /> 
+	</bean>
+	
+	<!-- 创建班级实例  --> 
+	<bean id="clazzWebService" class="cn.loosoft.data.webservice.api.school.ClazzWebService" factory-bean="clazzClientFactory" 
+	factory-method="create" />
+	
+	<!-- 定义一个班级工厂  --> 
+	<bean id="clazzClientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean"> 
+		<property name="serviceClass" value="cn.loosoft.data.webservice.api.school.ClazzWebService" /> 
+		<property name="address" value="${webservice.base.url}/services/clazz" /> 
+	</bean>
+
+	
+	<!-- 创建用户实例  --> 
+	<bean id="userWebService" class="cn.loosoft.data.webservice.api.user.UserWebService" factory-bean="userClientFactory" 
+	factory-method="create" />
+	
+	<!-- 定义一个用户工厂  --> 
+	<bean id="userClientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean"> 
+		<property name="serviceClass" value="cn.loosoft.data.webservice.api.user.UserWebService" /> 
+		<property name="address" value="${webservice.base.url}/services/user" /> 
+	</bean>
+	
+	<!-- 创建学生实例  --> 
+	<bean id="studentWebService" class="cn.loosoft.data.webservice.api.student.StudentWebService" factory-bean="studentClientFactory" 
+	factory-method="create" />
+	
+	<!-- 定义一个学生工厂  --> 
+	<bean id="studentClientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean"> 
+		<property name="serviceClass" value="cn.loosoft.data.webservice.api.student.StudentWebService" /> 
+		<property name="address" value="${webservice.stuinfo.url}/services/student" /> 
+	</bean>
+	
+		
+	<!-- 创建学生档案实例  --> 
+	<bean id="archivesWebService" class="cn.loosoft.data.webservice.api.student.ArchivesWebService" factory-bean="archivesClientFactory" 
+	factory-method="create" />
+	
+	<!-- 定义一个学生档案工厂  --> 
+	<bean id="archivesClientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean"> 
+		<property name="serviceClass" value="cn.loosoft.data.webservice.api.student.ArchivesWebService" /> 
+		<property name="address" value="${webservice.archives.url}/services/archives" /> 
+	</bean>
+	
+
+	
+	<!-- 创建批次实例  --> 
+	<bean id="batchWebService" class="cn.loosoft.data.webservice.api.batch.BatchWebService" factory-bean="batchClientFactory" 
+	factory-method="create" />
+	
+	<!-- 定义一个批次工厂  --> 
+	<bean id="batchClientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean"> 
+		<property name="serviceClass" value="cn.loosoft.data.webservice.api.batch.BatchWebService" /> 
+		<property name="address" value="${webservice.base.url}/services/batch" /> 
+	</bean>
+	
+	<!-- 创建新闻实例  --> 
+	<bean id="newsWebService" class="cn.loosoft.data.webservice.api.news.NewsWebService" factory-bean="newsClientFactory" 
+	factory-method="create" />
+	
+	<!-- 定义一个新闻工厂  --> 
+	<bean id="newsClientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean"> 
+		<property name="serviceClass" value="cn.loosoft.data.webservice.api.news.NewsWebService" /> 
+		<property name="address" value="${webservice.workstudy.url}/services/news" /> 
+	</bean>
+
+	
+	<!-- 创建岗位实例  --> 
+	<bean id="jobsWebService" class="cn.loosoft.data.webservice.api.jobs.JobsWebService" factory-bean="jobsClientFactory" 
+	factory-method="create" />
+	
+	<!-- 定义一个新闻工厂  --> 
+	<bean id="jobsClientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean"> 
+		<property name="serviceClass" value="cn.loosoft.data.webservice.api.jobs.JobsWebService" /> 
+		<property name="address" value="${webservice.workstudy.url}/services/jobs" /> 
+	</bean>
+
+	<!-- 创建学生申请岗位实例  --> 
+	<bean id="studentJobsWebService" class="cn.loosoft.data.webservice.api.query.StudentJobsWebService" factory-bean="studentJobsClientFactory" 
+	factory-method="create" />
+	
+	<!-- 定义一个学生申请岗位工厂  --> 
+	<bean id="studentJobsClientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean"> 
+		<property name="serviceClass" value="cn.loosoft.data.webservice.api.query.StudentJobsWebService" /> 
+		<property name="address" value="${webservice.workstudy.url}/services/studentJobs" /> 
+	</bean>
+	
+	<!-- 创建学生工资实例  --> 
+	<bean id="salaryWebService" class="cn.loosoft.data.webservice.api.query.SalaryWebService" factory-bean="salaryClientFactory" 
+	factory-method="create" />
+	
+	<!-- 定义一个学生工资工厂  --> 
+	<bean id="salaryClientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean"> 
+		<property name="serviceClass" value="cn.loosoft.data.webservice.api.query.SalaryWebService" /> 
+		<property name="address" value="${webservice.workstudy.url}/services/salary" /> 
+	</bean>
+	
+	
+	<!-- 创建学生缴费实例  --> 
+	<bean id="payWebService" class="cn.loosoft.data.webservice.api.student.PayWebService" factory-bean="payClientFactory" 
+	factory-method="create" />
+	
+	<!-- 定义一个学生缴费工厂  --> 
+	<bean id="payClientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean"> 
+		<property name="serviceClass" value="cn.loosoft.data.webservice.api.student.PayWebService" /> 
+		<property name="address" value="${webservice.welnew.url}/services/pay" /> 
+	</bean>
+	
+	<!-- 创建学生注册实例  --> 
+	<bean id="registWebService" class="cn.loosoft.data.webservice.api.regist.RegistWebService" factory-bean="registClientFactory" 
+	factory-method="create" />
+	
+	<!-- 定义一个学生注册工厂  --> 
+	<bean id="registClientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean"> 
+		<property name="serviceClass" value="cn.loosoft.data.webservice.api.regist.RegistWebService" /> 
+		<property name="address" value="${webservice.welnew.url}/services/regist" /> 
+	</bean>
+
+</beans>

@@ -117,7 +117,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// 取得所有设备总发电量
         /// </summary>
         /// <returns></returns>
-        public float GetAllTotalEnergy() {
+        public double GetAllTotalEnergy() {
             return _deviceRunDataDao.GetAllTotalEnergy();
         }
 

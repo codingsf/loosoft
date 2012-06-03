@@ -469,7 +469,7 @@
                             <td width="79%" class="kjli">
                                 <%=Resources.SunResource.PLANT_OVERVIEW_TODAY_ENERGRY%><br />
                                 <span class="sz_fb">
-                                    <%=Model.DisplayTotalDayEnergy%></span>
+                                    <%=StringUtil.formatDouble(Model.DisplayTotalDayEnergy)%></span>
                                 <%=Model.TotalDayEnergyUnit%>
                             </td>
                         </tr>
@@ -514,7 +514,7 @@
                             <td width="79%" class="kjli">
                                 <%=Resources.SunResource.PLANT_OVERVIEW_TOTAL_ENERGRY%><br />
                                 <span class="sz_fb">
-                                    <% = Model.DisplayTotalEnergy%></span>
+                                    <% = StringUtil.formatDouble(Model.DisplayTotalEnergy)%></span>
                                 <%=Model.TotalEnergyUnit%>
                             </td>
                         </tr>
@@ -530,7 +530,7 @@
                                 <%=Resources.SunResource.PLANT_OVERVIEW_CO2_AVOIDED%>
                                 <br />
                                 <span class="sz_fb">
-                                    <%=Model.Reductiong %></span>
+                                    <%=StringUtil.formatDouble(Model.Reductiong) %></span>
                                 <%=Model.ReductiongUnit%>
                             </td>
                         </tr>

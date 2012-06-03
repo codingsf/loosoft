@@ -2245,7 +2245,7 @@
     <Content Include="Pages\PlantChart\YearComparePage.aspx" />
     <Content Include="Pages\Plant\AddPlant.aspx" />
     <Content Include="Pages\Plant\CustomChart.aspx" />
-    <Content Include="Pages\Plant\deviceData.aspx" />
+    <Content Include="Pages\Plant\DeviceData.aspx" />
     <Content Include="Pages\Plant\DeviceMonitor.aspx" />
     <Content Include="Pages\Plant\ChangePassword.aspx" />
     <Content Include="Pages\Plant\deviceStructChart.aspx" />

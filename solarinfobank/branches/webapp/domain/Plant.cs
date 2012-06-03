@@ -335,20 +335,27 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             }
             return deviceList;
         }
-
-
+        /// <summary>
+        /// 显示的 类型设备
+        /// </summary>
+        /// <param name="deviceType"></param>
+        /// <returns></returns>
+        public IList<Device> typeDevices(int deviceType)
+        {
+            return typeDevices(deviceType, false);
+        }
         /// <summary>
         /// 根据传入的设备类型代码取得相应的设备
         /// </summary>
         /// <param name="deviceType">设备类型代码，参见DeviceData.INVERTER_CODE DeviceData.HUILIUXIANG_CODE等</param>
         /// <returns></returns>
-        public IList<Device> typeDevices(int deviceType)
+        public IList<Device> typeDevices(int deviceType,bool isHidden)
         {
             IList<Device> typeDevices = new List<Device>();
             if (plantUnits == null) return typeDevices;
             foreach (Device device in this.deviceList())
             {
-                if (device.deviceTypeCode == deviceType)
+                if (device.deviceTypeCode == deviceType && isHidden == device.isHidden)
                 {
                     typeDevices.Add(device);
                 }

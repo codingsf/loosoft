@@ -1,0 +1,1793 @@
+/********************************************* CSS reset ********************************/
+html {
+	background: none repeat scroll 0 0 #FFFFFF;
+	color: #333;
+	font: 12px Tahoma, Geneva, Arial, sans-serif;
+	margin: 0;
+}
+
+body, ul, li, ol, dt, dd, dl, p, h1, h2, h3, h4, h5, h6, h7, input, select {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	scrollbar-face-color:#f7f7f7;
+	scrollbar-highlight-color:#ccc;
+	scrollbar-3dlight-color:#fff;
+	scrollbar-shadow-color:#ccc;
+	scrollbar-darkshadow-color:#fff;
+	scrollbar-track-color:#fafafa;
+	scrollbar-arrow-color:#b3b3b3;
+}
+
+img {
+	border: 0 none;
+	vertical-align: top;
+}
+
+ul, ol {
+	list-style: none outside none;
+	padding: 0;
+	margin: 0;
+}
+
+input {
+	vertical-align: middle;
+	height: 24px;
+	line-height: 24px;
+}
+
+select {
+	height: 26px;
+	line-height: 16px;
+	vertical-align: middle;
+	color: #666;
+	font-size: 12px;
+	padding: 4px 0;
+	border: 1px solid #ddd;
+}
+
+textarea {
+	border: 1px solid #ddd;
+	font: 12px Tahoma, Geneva, Arial, sans-serif;
+	background-color: #fff;
+	padding: 5px;
+}
+
+label {
+	font-family: Tahoma;
+	vertical-align: middle;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/*********************************** top bar style ***********************************/
+#header{
+	width:960px;
+	margin:auto;
+	height:150px;
+	margin-top: 10px;
+	}
+#top {
+	width: 960px;
+}
+
+#menu {
+	width: 960px;
+	margin-top: 10px;
+}
+
+
+/*logo area*/
+.logo {
+	height: 64px;
+	float: left;
+	width: 740px;
+}
+
+.logo a {
+	height: 64px;
+	background: url(../image/img/top.gif) no-repeat scroll 0 0;
+	float: left;
+	width: 166px;
+	margin-left: 10px;
+	display: block;
+	text-indent: -9999999px;
+}
+
+.logo img {
+	width: 515px;
+	height: 65px;
+	border: solid 1px #0066cc;
+	margin-left: 33px;
+	float: left;
+}
+
+.sidebar {
+	margin-left: 20px;
+	width: 200px;
+	float: left;
+	height: 64px;
+	color: #7f7f7f;
+}
+
+.sidebar li {
+	line-height: 20px;
+}
+
+/*main nav bar*/
+.menu_bg_l {
+	background: url(../image/img/top.gif) no-repeat scroll 0 -105px;
+	width: 2px;
+	height: 37px;
+}
+
+.menu_bg {
+	width: 800px;
+}
+
+.menu_bg_r {
+	background: url(../image/img/top.gif) no-repeat scroll -102px -68px;
+	width: 158px;
+	height: 37px;
+	position: relative;
+	z-index: 10;
+}
+
+.menu_bg li {
+	width: 100px;
+	line-height: 40px;
+	height: 37px;
+	background: url(../image/img/top.gif) no-repeat scroll 0 -236px;
+	float: left;
+	text-align: center;
+}
+
+.menu_bg li a {
+	margin-top: 2px;
+	padding-top: 2px;
+	margin-left: 6px;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+.nav_hover {
+	width: 86px;
+	height: 34px;
+	display: block;
+	background: url(../image/img/top.gif) no-repeat scroll 0 -201px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 32px;
+	color: #017cc8;
+	margin: 3px 0 0 4px;
+	font-weight: 900;
+	float: left;
+	padding-top: 3px;
+}
+
+.nav_selected {
+	width: 86px;
+	height: 32px;
+	background: url(../image/img/top.gif) no-repeat 0 -167px;
+	display: block;
+	margin: 3px 0 0 4px;
+	line-height: 30px;
+	color: #fff;
+	font-weight: 900;
+	float: left;
+	padding-top: 3px;
+}
+
+.top_button {
+	right: 118px;
+	top: 6px;
+	position: absolute;
+}
+
+.top_button a {
+	background: url(../image/img/top.gif) no-repeat scroll 0 -142px;
+	width: 104px;
+	height: 25px;
+	position: absolute;
+	text-indent: -9999999px;
+}
+
+.top_button a:hover {
+	background: url(../image/img/top.gif) no-repeat scroll -104px -142px;
+	width: 104px;
+	height: 25px;
+	position: absolute;
+	text-indent: -9999999px;
+}
+
+.rightsideBar {
+	border: 1px solid #61befb;
+	border-bottom:none;
+	width: 102px;
+	position: absolute;
+	margin-top: 25px;
+	background: #fff;
+	z-index: 1000;
+	top: 4px;
+	right: 14px;
+}
+
+.rightsideBar li {
+	border-bottom: 1px solid #61befb;
+	height: 30px;
+	width: 102px;
+	line-height: 30px;
+	display: block;
+	float:left;
+}
+
+.rightsideBar_icon {
+	background: url(../image/img/top.gif) no-repeat 0 -406px;
+	width: 8px;
+	height: 7px;
+	margin-top: 12px;
+	margin-right: 5px;
+	float:right;
+}
+
+.rightsideBar a {
+	width: 75px;
+	margin-left: 5px;
+    float:left;
+}
+
+.rightsideBar li:hover {
+	width: 102px;
+	background: #c1e5fd;
+	font-weight: bold;
+	text-decoration: none;
+	display: block;
+}
+
+.submenu{
+	border: 1px solid #61befb;
+	width: 90px;
+	padding: 0 3px;
+	line-height: 24px;
+	position: absolute;
+	background: #c1e5fd;
+	right: 117px;
+	top: 29px;
+	z-index: 1001;
+	overflow: hidden;
+}
+
+.submenu li {
+	border-top: 1px dotted #fff;
+	margin-top: -2px;
+	padding: 3px;
+}
+
+.submenu li a {
+	color: #666;
+	line-height: 25px;
+}
+
+.bottom_nav {
+	background: #e6f1f8;
+	height: 36px;
+	width: 960px;
+	position: relative;
+	z-index: 1;
+}
+
+/*welcombox on main nav bar*/
+.welcomebox {
+	float: right;
+	padding: 3px 15px 0 0;
+	height: 22px;
+	margin-top: 7px;
+	color: #666;
+}
+
+/*loginadmin on main nav bar*/
+.login_admin {
+	color: #666;
+	padding: 6px 0 7px 12px;
+}
+
+.adimin_button {
+	border: 1px solid #ccc;
+	width: 110px;
+	height: 24px;
+	line-height: 24px;
+	background-color: #fff;
+	position: relative;
+}
+
+.adimin_arrow {
+	background: url(../image/img/top.gif) 0 -380px;
+	width: 7px;
+	height: 8px;
+	margin-top: 8px;
+	cursor: pointer;
+	position: relative;
+	margin-right: 5px;
+}
+
+.adimin_button a:hover {
+	border: 1px solid #61befb;
+	width: 105px;
+	height: 24px;
+	line-height: 24px;
+	background-color: #93d2fb;
+	color: #fff;
+	position: absolute;
+	top: -1px;
+	left: -1px;
+	text-decoration: none;
+	padding-left: 5px;
+}
+
+.admin_box {
+	width: 190px;
+	border: 2px solid #61befb;
+	background: #fff;
+	padding: 5px;
+	z-index: 1000;
+	position: absolute;
+	top: 26px;
+	left: -1px;
+}
+
+.admin_boxlist {
+	border-bottom: 1px dotted #ccc;
+	width: 190px;
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+}
+
+.admin_new {
+	background: url(../image/img/top.gif) no-repeat 0 -388px;
+	width: 20px;
+	height: 8px;
+}
+
+/*loginbox on main nav bar*/
+.loginbox {
+	margin-top: 5px;
+	width: 200px;
+	height: 25px;
+}
+
+.log_btn {
+	width: 54px;
+	height: 25px;
+	margin-left: 10px;
+	background: url(../image/img/top.gif) no-repeat scroll 0 -274px;
+	float: left;
+	border:none;
+	cursor:pointer;
+}
+
+.reg_btn {
+	width: 82px;
+	height: 25px;
+	margin-left: 10px;
+	background: url(../image/img/top.gif) no-repeat scroll -54px -274px;
+	float: left;
+	border:none;
+	cursor:pointer;
+}
+
+/*search box on main nav bar*/
+.searchbox {
+	height: 28px;
+	padding: 4px 12px 4px 0;
+	width: 253px;
+}
+
+.search_select {
+	background: url(../image/img/top.gif) no-repeat scroll 0 -299px;
+	float: left;
+	cursor: pointer;
+	width: 56px;
+	height: 28px;
+	position: relative;
+	z-index: 10;
+}
+
+.ds_list {
+	width: 50px;
+	line-height: 120%;
+	position: absolute;
+	z-index: 1001;
+	border: solid 1px #ddd;
+	background-color: #fff;
+	padding: 3px;
+	top: 0;
+	left: 0;
+}
+
+.ds_list li {
+	line-height: 22px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.ds_current {
+	color: #79caff;
+	background-color: #eee;
+}
+
+.search_select input {
+	border: none;
+	background: none;
+	margin: 2px 2px 0 8px;
+	line-height: 25px;
+	height: 25px;
+	vertical-align: middle;
+}
+
+.search_an {
+	height: 26px;
+	border: solid 1px #ddd;
+	border-left:none;
+	border-right:none;
+	float: left;
+	width: 25px;
+	margin-left: -1px;
+	overflow: hidden;
+	background-color: #fff;
+	background: url(../image/img/top.gif) no-repeat scroll -130px -354px;
+	cursor: pointer;
+}
+
+.search_btn input {
+	border:1px solid #ddd;
+	border-left:none;
+	background-color: #fff;
+	width: 126px;
+	padding: 1px 2px;
+}
+
+.ad_search {
+	border: solid 1px #ddd;
+	width: 40px;
+	margin-left: -1px;
+	text-align: center;
+	line-height: 24px;
+	text-decoration: underline;
+	float: right;
+	background-color: #fff;
+	height: 26px;
+}
+
+/*search box  main*/
+.right_searchbox {
+	height: 30px;
+	/*padding: 4px 12px 4px 0;*/
+	width: 228px;
+	border: 1px solid #79caff;
+}
+
+.right_search_select {
+	background: url(../image/img/index.gif) no-repeat scroll 0 -595px;
+	float: left;
+	cursor: pointer;
+	width: 55px;
+	height: 30px;
+	position: relative;
+	z-index: 1000;
+}
+
+.right_ds_list {
+	width: 50px;
+	line-height: 120%;
+	position: absolute;
+	z-index: 1001;
+	border: solid 1px #ddd;
+	background-color: #fff;
+	padding: 3px;
+	top: 0;
+	left: 0;
+}
+
+.right_ds_list li {
+	line-height: 22px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.right_ds_current {
+	color: #79caff;
+	background-color: #eee;
+}
+
+.right_search_select input {
+	border: none;
+	background: none;
+	margin: 2px 2px 0 8px;
+	line-height: 25px;
+	height: 25px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.right_search_an{
+	height: 30px;
+	float: left;
+	width: 26px;
+	overflow: hidden;
+	background: url(../image/img/index.gif) no-repeat scroll -110px -625px;
+	cursor: pointer;
+}
+
+.right_search_btn input {
+	background: url(../image/img/index.gif) no-repeat scroll 0 -625px;
+	border: none;
+	line-height:30px;
+	width: 110px;
+	height:30px;
+	
+}
+
+.right_ad_search {
+	width: 37px;
+	text-align: center;
+	line-height: 30px;
+	text-decoration: underline;
+	float: right;
+	background: url(../image/img/index.gif) no-repeat scroll 0 -655px;
+	height: 30px;
+}
+
+/*sub-menu on nav bar*/
+.sub_nav {
+	border-left: 1px solid #4caeeb;
+	border-right: 1px solid #4caeeb;
+	border-bottom: 1px solid #4caeeb;
+	background: #fff;
+	height: 35px;
+	width: 958px;
+	position: absolute;
+	text-align: center;
+	top: 0;
+	left: 0;
+	z-index: 10000;
+}
+
+.sub_nav a {
+	margin-right: 20px;
+	line-height: 35px;
+}
+
+/********************************* footer style **********************************/
+#footer {
+	width: 960px;
+	margin: auto;
+	margin-top: 10px;
+}
+
+#footer ul {
+	border-top: 2px solid #ccc;
+	padding-top: 5px;
+}
+
+#footer li {
+	line-height: 20px;
+	width: 960px;
+}
+
+/********************************CSS pool***************************************/
+.ll {
+	float: left;
+}
+
+.rr {
+	float: right;
+}
+
+.ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	-moz-binding: url('ellipsis.xml#ellipsis');
+	display: block;
+}
+
+.del_float {
+	clear: both;
+	height: 0;
+	font-size: 0;
+	overflow: hidden;
+}
+
+.wordbreak {
+	word-wrap: break-word;
+	overflow: hidden;
+}
+
+.clearit {
+	clear: both
+}
+
+.clearr {
+	clear: right
+}
+
+.clearl {
+	clear: left;
+}
+
+.ta_c {
+	text-align: center;
+}
+
+.ta_r {
+	text-align: right;
+}
+
+.ta_l {
+	text-align: left;
+}
+
+.m0auto {
+	margin: 0 auto;
+}
+
+.m0 {
+	margin: 0;
+}
+
+.m10 {
+	margin: 10px;
+}
+
+.m15 {
+	margin: 15px;
+}
+
+.m20 {
+	margin: 20px;
+}
+
+.ml1 {
+	margin-left: 1px;
+}
+
+.ml2 {
+	margin-left: 2px;
+}
+
+.ml5 {
+	margin-left: 5px;
+}
+
+.ml10 {
+	margin-left: 10px;
+}
+
+.ml15 {
+	margin-left: 15px;
+}
+
+.ml20 {
+	margin-left: 20px;
+}
+
+.ml50 {
+	margin-left: 50px;
+}
+
+.ml60 {
+	margin-left: 60px;
+}
+
+.ml100 {
+	margin-left: 100px;
+}
+
+.mr1 {
+	margin-right: 1px;
+}
+
+.mr2 {
+	margin-right: 2px;
+}
+
+.mr5 {
+	margin-right: 5px;
+}
+
+.mr6 {
+	margin-right: 6px;
+}
+
+.mr4 {
+	margin-right: 4px;
+}
+
+.mr10 {
+	margin-right: 10px;
+}
+
+.mr14 {
+	margin-right: 14px;
+}
+
+.mr20 {
+	margin-right: 20px;
+}
+
+.mr25 {
+	margin-right: 25px;
+}
+
+.mr35 {
+	margin-right: 35px;
+}
+
+.mr45 {
+	margin-right: 45px;
+}
+
+.mt1 {
+	margin-top: 1px;
+}
+
+.mt2 {
+	margin-top: 2px;
+}
+
+.mt5 {
+	margin-top: 5px;
+}
+
+.mt10 {
+	margin-top: 10px;
+}
+
+.mt15 {
+	margin-top: 15px;
+}
+
+.mt20 {
+	margin-top: 20px;
+}
+
+.mt30 {
+	margin-top: 30px;
+}
+
+.mb1 {
+	margin-bottom: 1px;
+}
+
+.mb2 {
+	margin-bottom: 2px;
+}
+
+.mb5 {
+	margin-bottom: 5px;
+}
+
+.mb10 {
+	margin-bottom: 10px;
+}
+
+.mb15 {
+	margin-bottom: 15px;
+}
+
+.mb20 {
+	margin-bottom: 20px;
+}
+
+.ml-1 {
+	margin-left: -1px;
+}
+
+.mt-1 {
+	margin-top: -1px;
+}
+
+.p1 {
+	padding: 1px;
+}
+
+.pl1 {
+	padding-left: 1px;
+}
+
+.pt1 {
+	padding-top: 1px;
+}
+
+.pr1 {
+	padding-right: 1px;
+}
+
+.pb1 {
+	padding-bottom: 1px;
+}
+
+.p2 {
+	padding: 2px;
+}
+
+.pl2 {
+	padding-left: 2px;
+}
+
+.pt2 {
+	padding-top: 2px;
+}
+
+.pr2 {
+	padding-right: 2px;
+}
+
+.pb2 {
+	padding-bottom: 2px;
+}
+
+.pl5 {
+	padding-left: 5px;
+}
+
+.p5 {
+	padding: 5px;
+}
+
+.pt5 {
+	padding-top: 5px;
+}
+
+.pr5 {
+	padding-right: 5px;
+}
+
+.pb5 {
+	padding-bottom: 5px;
+}
+
+.p10 {
+	padding: 10px;
+}
+
+.pl10 {
+	padding-left: 10px;
+}
+
+.pt10 {
+	padding-top: 10px;
+}
+
+.pr10 {
+	padding-right: 10px;
+}
+
+.pb10 {
+	padding-bottom: 10px;
+}
+
+.p20 {
+	padding: 20px;
+}
+
+.p40 {
+	padding: 40px;
+}
+
+.pl20 {
+	padding-left: 20px;
+}
+
+.pt20 {
+	padding-top: 20px;
+}
+
+.pt30 {
+	padding-top: 30px;
+}
+
+.pr20 {
+	padding-right: 20px;
+}
+
+.pb20 {
+	padding-bottom: 20px;
+}
+
+.rel {
+	position: relative;
+}
+
+.abs {
+	position: absolute;
+}
+
+.dn {
+	display: none;
+}
+
+.db {
+	display: block;
+}
+
+.dib {
+	-moz-inline-stack: inline-block;
+	display: inline-block;
+}
+
+.di {
+	display: inline;
+}
+
+.ovh {
+	overflow: hidden;
+}
+
+.ovs {
+	overflow: scroll;
+}
+
+.indent24 {
+	text-indent: 24px;
+}
+
+.db {
+	display: block;
+}
+
+.noborder {
+	border: none;
+}
+
+/*************************************** font style ***************************************/
+/*a = texts with link*/
+a {
+	color: #017cc8;
+	text-decoration: none;
+}
+
+/*.nlink = unimportant text with link*/
+.nlink {
+	color: #333;
+	text-decoration: underline;
+}
+
+/*h2 = 栏目标题*/
+h2 {
+	font-size: 14px;
+	color: #017cc8;
+	font-weight: bold;
+}
+
+/*???±???*/
+h3 {
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 130%;
+	color: #017cc8;
+}
+
+h5 {
+	font-size: 12px;
+	font-weight: bold;
+	color: #017cc8;
+}
+
+h6 {
+	font-size: 12px;
+	font-weight: bold;
+	color: #808080;
+}
+
+/*???????*/
+h4 {
+	font-size: 14px;
+	font-weight: bold;
+	color: #017cc8;
+	text-align: center;
+	line-height: 22px;
+}
+
+/*strong = numbers which needs emphasized*/
+strong {
+	font-size: 12px;
+	font-weight: bold;
+	color: #fe8c1a;
+	vertical-align: baseline;
+}
+
+/*em = date or nubmers (normal)*/
+em {
+	font-size: 11px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #999;
+	padding: 0 2px;
+}
+
+/*cite = " * "(stars)  */
+cite {
+	color: #ff6600;
+	font-weight: bold;
+}
+
+/*grey or black fonts */
+.font666 {
+	color: #666;
+	font-size: 12px;
+	text-align: left;
+}
+
+.font333 {
+	color: #333;
+}
+
+.font999 {
+	color: #999;
+}
+
+.fontccc {
+	color: #ccc;
+}
+
+.fontddd {
+	color: #ddd;
+}
+
+.fonteee {
+	color: #eee;
+}
+
+/*主色调的字体颜色 */
+.fontmain {
+	color: #017CC8;
+}
+
+/*选修课程title色 */
+.fontyellow {
+	color: #fe8c1a;
+}
+
+/*必修课程title色 */
+.fontblue {
+	color: #40b4fc;
+}
+
+/*辅修课程title色 */
+.fontgreen {
+	color: #93dc05;
+}
+
+/*红色 add by Mad.JonIrenicus */
+.fontred {
+	color: red;
+}
+
+.fontfff {
+	color: #fff;
+}
+
+.fontblod {
+	font-weight: bold;
+}
+
+.font_s12 {
+	font-size: 12px;
+}
+
+.font_s14 {
+	font-size: 14px;
+}
+
+.font_s16 {
+	font-size: 16px;
+}
+
+/*fontinfo = text with info icon*/
+.fontinfo {
+	color: #808080;
+	font-size: 12px;
+	text-align: left;
+	vertical-align: middle;
+	background: url(../image/img/icon.gif) no-repeat scroll -90px 0;
+	height: 20px;
+	padding: 0 0 0 15px;
+}
+
+/*defaultfont = default text in inputbox */
+.defaultfont {
+	color: #999;
+	font-size: 12px;
+}
+
+/******************************** button style **************************************/
+/*button01 = 用于100×35的大按钮 */
+.button01 {
+	height: 35px;
+	width: 100px;
+	vertical-align: middle;
+	text-align: center;
+	margin: 15px auto;
+}
+
+.button01 input {
+	background: url(../image/img/button_common.gif) no-repeat 0 0;
+	height: 35px;
+	width: 100px;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: bolder;
+	text-align: center;
+	line-height: 35px;
+	margin: 0 auto;
+	border: none;
+	color: #029ffd;
+}
+
+.button01 input:hover {
+	text-decoration: none;
+	background: url(../image/img/button_common.gif) no-repeat -100px 0px;
+	color: #017CC8;
+	cursor: pointer;
+}
+
+/*button02 = 用于60×25的蓝色小按钮 */
+.button02 {
+	height: 25px;
+	width: 60px;
+}
+
+.button02 input {
+	background: url(../image/img/course.gif) no-repeat 0 -290px;
+	height: 25px;
+	width: 60px;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: bolder;
+	text-align: center;
+	line-height: 25px;
+	border: none;
+	color: #017CC8;
+}
+
+/*button03 = 用于100×25的长形按钮 */
+.button03 {
+	height: 25px;
+	width: 100px;
+}
+
+.button03 input {
+	background: url(../image/img/course.gif) no-repeat;
+	height: 25px;
+	width: 100px;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: bolder;
+	text-align: center;
+	line-height: 25px;
+	border: none;
+	color: #017CC8;
+}
+
+/*button04 = 用于60×25的灰色小按钮 */
+.button04 {
+	height: 25px;
+	width: 60px;
+}
+
+.button04 input {
+	background: url(../image/img/course.gif) no-repeat 0 -400px;
+	height: 25px;
+	width: 60px;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: bolder;
+	text-align: center;
+	line-height: 25px;
+	border: none;
+	color: #999;
+}
+
+/*新用户注册按钮*/
+.reg_button input {
+	background: url(../image/img/button_common.gif) no-repeat 0px -40px;
+	height: 33px;
+	width: 108px;
+	float: left;
+	border: none;
+	cursor: pointer;
+}
+
+/*用于浮动层*/
+.layer_box {
+	border: 5px solid #ddd;
+	background: none repeat scroll 0 0 #cfe9f8;
+	width: 420px;
+	line-height: 220%;
+	padding: 30px;
+	position: fixed;
+	left: 360px;
+	top: 100px;
+	-moz-border-radius: 6px 6px 6px 6px;
+	opacity: none;
+}
+
+/*用于登录浮动层*/
+.layer_box2 {
+	border: 5px solid #ddd;
+	background: none repeat scroll 0 0 #fff;
+	width: 420px;
+	line-height: 220%;
+	padding: 30px;
+	position: fixed;
+	left: 360px;
+	top: 100px;
+	-moz-border-radius: 6px 6px 6px 6px;
+	opacity: none;
+}
+
+.login_box2 {
+	float: left;
+	width: 420px;
+}
+
+.login_boxtop {
+	border-bottom: 1px dotted #ccc;
+	float: left;
+	width: 420px;
+}
+
+.loign_b {
+	width: 420px;
+	border-top: dotted 1px #ccc;
+	padding-top: 10px;
+	margin: 20px auto 0;
+}
+
+.login_box2 ul {
+	float: left;
+	border: none;
+	font-size: 14px;
+	padding-top: 20px;
+}
+
+.login_box2 li {
+	height: 40px;
+	line-height: 40px;
+}
+
+.close_button {
+	background: url(../image/img/icon.gif) no-repeat scroll 0 -340px;
+	height: 20px;
+	cursor: pointer;
+	padding-left: 20px;
+	vertical-align: middle;
+}
+
+/*用于浮动层中的按钮*/
+.btnbox {
+	width: 200px;
+	height: 35px;
+	margin: 0 auto 5px;
+	vertical-align: middle;
+}
+
+.btnblue {
+	height: 26px;
+	color: #fff;
+	font-weight: bold;
+	vertical-align: middle;
+	cursor: pointer;
+	background-color: #3399ff;
+	line-height: 26px;
+	border-style: solid;
+	border-width: 0;
+	padding: 5px;
+}
+
+.btngrey {
+	height: 26px;
+	color: #fff;
+	font-weight: bold;
+	vertical-align: middle;
+	cursor: pointer;
+	background-color: #5b5b5c;
+	border-style: solid;
+	border-width: 0;
+	line-height: 26px;
+	padding: 5px;
+}
+
+/*breadcurmb style*/
+.title {
+	height: 22px;
+	margin-bottom: 15px;
+	border-bottom: 2px solid #ccc;
+	padding-bottom: 8px;
+}
+
+.title ul li {
+	text-align: center;
+	line-height: 19px;
+	margin-left: 5px;
+}
+
+/******************************** widget style **************************************/
+/*input = used on inputbox with blue background */
+.input {
+	border: 1px solid #ddd;
+	background: #f3f7f9;
+	color: #666;
+}
+
+/*input_w = used on all other inputboxs without background-color */
+.input_w {
+	border: 1px solid #ddd;
+	color: #666;
+}
+
+/******************************** they are useful **************************************/
+/*fontinfo = text with info icon*/
+.fontinfo {
+	color: #999;
+	font-size: 12px;
+	text-align: left;
+	vertical-align: middle;
+	background: url(../image/img/icon.gif) no-repeat scroll -90px 0;
+	height: 20px;
+	padding: 0 0 0 15px;
+}
+
+/*sheer = little sheer line */
+.sheer {
+	background: url(../image/img/icon.gif) no-repeat scroll -90px -20px;
+	padding-left: 15px;
+}
+
+.sheer2 {
+	background: url(../image/img/icon.gif) no-repeat scroll -90px -20px;
+	padding: 0 10px 0 25px;
+	margin-left: -12px;
+	overflow: hidden;
+}
+
+/* mo = text + more-arrow icon */
+.mo {
+	background: url(../image/img/icon.gif) no-repeat scroll 50px 0px;
+	color: #fe8c1a;
+	padding: 0 13px 0 0px;
+}
+
+/* mo = used as more btn(blue plus and blue more) */
+.mo4 {
+	background: url(../image/img/index.gif) no-repeat scroll 0 -859px;
+	width: 33px;
+	height: 7px;
+	margin: 5px 0 0 10px;
+	cursor: pointer;
+}
+
+/* mo_for14 = 14 font size text + more-arrow icon */
+.mo_for14 {
+	background: url(../image/img/icon.gif) no-repeat scroll 75px 0px;
+	color: #fe8c1a;
+	padding: 0 50px 0 0px;
+}
+
+/* mo2 = arrows used on breadcrumb nav */
+.mo2 {
+	background: url(../image/img/icon.gif) no-repeat scroll 0 -20px;
+	height: 16px;
+	width: 13px;
+	float: left;
+	text-indent: -999999px;
+}
+
+/* icon1 = used on breadcrumb nav */
+.icon1 {
+	background: url(../image/img/icon.gif) no-repeat -85px -40px;
+	display: block;
+	width: 15px;
+	height: 18px;
+	float: left;
+}
+
+/* icon2 = used as more button  */
+.icon2 {
+	background: url(../image/img/icon.gif) no-repeat 0px -40px;
+	display: block;
+	width: 37px;
+	height: 13px;
+	float: left;
+}
+
+/* icon3 = left indicating arrow */
+.icon3 {
+	background: url(../image/img/icon.gif) no-repeat 0px -140px;
+	width: 10px;
+	height: 20px;
+	margin: 30px 10px 0 10px;
+}
+
+/* icon2 = right indicating arrow */
+.icon4 {
+	background: url(../image/img/icon.gif) no-repeat 0px -160px;
+	float: right;
+	width: 10px;
+	height: 20px;
+	margin: 30px 10px 0 10px;
+}
+
+/* ccate_icon = used in course catergory nav*/
+.ccate_icon {
+	background: url(../image/img/course.gif) no-repeat scroll -140px 0;
+	height: 20px;
+	width: 20px;
+	float: left;
+	text-indent: -999999px;
+	color: #333;
+}
+
+/* -----------------------------------------------------  by Mad.Jonirenicus start -------------------------------------------------------------------------------------- */
+/* icon_bulb = 灯泡，用于提醒 craeted by Mad.Jonirenicus 2010.12.15 */
+.icon_bulb {
+	background: url(../image/img/icon.gif) no-repeat scroll 0px -400px;
+	height: 16px;
+	width: 16px;
+	line-height: 22px;
+}
+
+/* icon_speaker = 喇叭，用于提醒 craeted by Mad.Jonirenicus 2010.12.15 */
+.icon_speaker {
+	background: url(../image/img/icon.gif) no-repeat scroll 0px -440px;
+	height: 16px;
+	width: 16px;
+	line-height: 22px;
+}
+
+/* icon_cor = 成功提示 ，用于提示成功 图标是绿色勾 craeted by Mad.Jonirenicus 2010.12.15  */
+.icon_cor {
+	background: url(../image/img/icon.gif) no-repeat -82px -181px;
+	height: 18px;
+	width: 18px;
+	vertical-align: middle;
+}
+
+/* icon_err = 错误提示 ，用于提示错误 图标是X craeted by Mad.Jonirenicus 2010.12.15  */
+.icon_err {
+	background: url(../image/img/icon.gif) no-repeat -84px -142px;
+	height: 18px;
+	width: 18px;
+	vertical-align: middle;
+}
+
+.d_block {
+	display: block
+}
+
+/* -----------------------------------------------------  by Mad.Jonirenicus end -------------------------------------------------------------------------------------- */
+/* tdicon = 小喇叭，用于说明文字前*/
+.tdicon {
+	background: url(../image/img/icon.gif) no-repeat scroll -80px -60px;
+	height: 18px;
+	width: 18px;
+	line-height: 18px;
+	vertical-align: middle;
+}
+
+/* trail_icon = 试读 icon + 文字*/
+.trail_icon {
+	background: url(../image/img/course.gif) no-repeat 0 -70px;
+	height: 20px;
+	padding-left: 20px;
+	color: #333;
+}
+
+/* review_icon = 继续学习 icon + 文字*/
+.review_icon {
+	background: url(../image/img/course.gif) no-repeat 0 -360px;
+	height: 20px;
+	padding-left: 20px;
+	color: #333;
+}
+
+/* learning_icon = 已学的状态表示（check+文字）*/
+.learning_icon {
+	background: url(../image/img/course.gif) no-repeat 0 -380px;
+	height: 20px;
+	line-height: 20px;
+	color: #999;
+}
+
+/*collect on the small icon   */
+.collect_icon {
+	background: url(../image/img/course.gif) no-repeat 0px -50px;
+	padding-left: 20px;
+	color: #333;
+}
+
+/*comment on the small icon   */
+.comments_icon {
+	background: url(../image/img/course.gif) no-repeat 0 -30px;
+	padding-left: 20px;
+	height: 20px;
+	color: #333;
+}
+
+/*evaluation several star */
+.stars {
+	background: url(../image/img/course.gif) no-repeat 0 -430px;
+	padding-left: 15px;
+	height: 20px;
+}
+.stars1 {
+	background: url(../image/img/course.gif) no-repeat 0 -90px;
+	padding-left: 70px;
+	height: 20px;
+}
+
+.stars2 {
+	background: url(../image/img/course.gif) no-repeat 0 -110px;
+	padding-left: 70px;
+	height: 20px;
+}
+
+.stars3 {
+	background: url(../image/img/course.gif) no-repeat 0 -130px;
+	padding-left: 70px;
+	height: 20px;
+}
+
+.stars4 {
+	background: url(../image/img/course.gif) no-repeat 0 -150px;
+	padding-left: 70px;
+	height: 20px;
+}
+
+.stars5 {
+	background: url(../image/img/course.gif) no-repeat 0 -170px;
+	padding-left: 70px;
+	height: 20px;
+}
+.starsnone1 {
+	background: url(../image/img/course.gif) no-repeat 0 -190px;
+	padding-left: 15px;
+	height: 20px;
+}
+.starsnone {
+	background: url(../image/img/course.gif) no-repeat 0 -270px;
+	padding-left: 70px;
+	height: 20px;
+}
+.starsnone1:hover{
+	background: url(../image/img/course.gif) no-repeat 0 -430px;
+	padding-left: 15px;
+	height: 20px;
+}
+/* prompt thing = used as a prompt with cross or check icon  */
+.prompt {
+	height: 40px;
+	vertical-align: middle;
+}
+
+.prompt2 {
+	height: 40px;
+	vertical-align: middle;
+	margin: 0 auto;
+}
+
+/* prompt_err = 出错提示  */
+.prompt_err {
+	color: #ff2020;
+	background: url(../image/img/icon.gif) no-repeat -80px -130px;
+	line-height: 40px;
+	text-indent: 28px;
+	vertical-align: middle;
+}
+
+/* prompt_cor = 成功提示  */
+.prompt_cor {
+	color: #63cb54;
+	background: url(../image/img/icon.gif) no-repeat -80px -170px;
+	text-indent: 28px;
+	line-height: 40px;
+	vertical-align: middle;
+}
+
+/*list style with little arrow bullet*/
+.news_list_b {
+	background: url(../image/img/icon.gif) no-repeat scroll -90px -80px;
+	overflow: hidden;
+	height: 22px;
+	line-height: 22px;
+	padding: 0 0 0 15px;
+}
+
+.news_list_b a {
+	color: #333;
+}
+
+.list_b {
+	background: url(../image/img/icon.gif) no-repeat scroll -90px -80px;
+	margin-top: 4px;
+	height: 20px;
+	line-height:20px;
+	overflow: hidden;
+	padding: 0 0 0 15px;
+}
+
+.list_b a {
+	color: #333;
+}
+
+/*list style serial number icon */
+.list_b2 {
+	height: 200px;
+	background: url(../image/img/icon.gif) no-repeat -80px -220px;
+	line-height: 22px;
+	float: left;
+}
+
+/*article small icon */
+.list_b3 {
+	background: url(../image/img/icon.gif) no-repeat scroll -80px -100px;
+	height: 20px;
+	padding: 0 40px 0 20px;
+}
+
+/*???2??????*/
+.linegrey {
+	color: #ccc;
+	border-style: solid;
+	overflow: hidden;
+	clear: both;
+	height: 2px;
+	background: #ccc;
+}
+
+/*pager*/
+.pager {
+	margin: 15px auto;
+	padding: 15px 0;
+	text-align: center;
+	color: #666;
+	clear: both;
+	font-size: 12px;
+	clear: both;
+	height: 25px;
+	line-height: 25px;
+}
+
+.pager a {
+	color: #666;
+}
+
+.pager a:hover {
+	color: #017CC8;
+	text-decoration: none;
+}
+
+/*.linedot {
+ color: #ccc;
+ border-style: dotted;
+ overflow: hidden;
+ clear: both;
+ height: 1px;
+ }*/
+/*a dotted line*/
+.dotline {
+	border-bottom: 1px dotted #ccc;
+}
+
+/*a solid line*/
+.solidline {
+	border-bottom: 1px solid #ccc;
+}
+
+/******************************** width pool **************************************/
+.w680 {
+	width: 680px;
+}
+
+.w668 {
+	width: 668px;
+}
+
+.w560 {
+	width: 560px;
+}
+
+.w510 {
+	width: 510px;
+}
+
+.w360 {
+	width: 360px;
+}
+
+.w320 {
+	width: 320px;
+}
+
+.w310 {
+	width: 310px;
+}
+
+.w260 {
+	width: 260px;
+}
+
+.w140 {
+	width: 140px;
+}
+
+.w130 {
+	width: 130px;
+}
+
+.w150 {
+	width: 150px;
+}
+
+.w190 {
+	width: 190px;
+}
+
+.w100 {
+	width: 100px;
+}
+
+.w80 {
+	width: 80px;
+}
+
+.w70 {
+	width: 70px;
+}
+
+/******************************** height pool **************************************/
+.h16 {
+	height: 16px;
+}
+
+.h19 {
+	height: 19px;
+}
+
+.h500 {
+	height: 500px;
+}
+
+/******************************** line height pool **************************************/
+.lh0 {
+	line-height: 100%;
+}
+
+.lh160 {
+	line-height: 160%;
+}
+
+.lh180 {
+	line-height: 180%;
+}
+
+.lh210 {
+	line-height: 210%;
+}
+
+.lh270 {
+	line-height: 270%;
+}
+
+.lh400 {
+	line-height: 400%;
+}
+
+.fontbold {
+	font-weight: 700;
+}

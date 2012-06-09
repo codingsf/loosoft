@@ -1,0 +1,153 @@
+.form_reg3{
+	    width: 740px;
+    margin: 15px auto;
+    border: solid 2px #EBEBE9;
+    padding: 10px 30px;
+    min-height: 400px;
+}
+
+
+
+
+.tologin {
+    width: 200px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding-top: 20px;
+    text-align: right;
+}
+
+.iperror p {
+    font-size: 14px;
+    text-align: center;
+}
+
+
+
+
+
+.regterm {
+    height: 30px;
+    line-height: 30px;
+    margin-top: 5px;
+    padding-left: 10px;
+    clear: right;
+}
+
+.regterm input {
+    margin-right: 5px;
+}
+
+
+
+/*注册完成页*/
+.tdl_l {
+    width: 350px;
+    border-right: solid 2px #eee;
+    float: left;
+    padding-right: 23px;
+    margin: 10px 0;
+}
+
+.tdl_r {
+    width: 350px;
+    float: right;
+    margin: 10px 0;
+}
+
+.tdtitle {
+    color: #017CC8;
+    font-size: 18px;
+    font-family: "微软雅黑", Tahoma, sans-serif;
+}
+
+.tdicon {
+    background: url(../../image/img/icon.gif) no-repeat scroll -80px -60px;
+    height: 18px;
+    width: 18px;
+    line-height: 18px;
+    vertical-align: middle;
+}
+
+.reg_img {
+    width: 340px;
+    background: url(../../image/img/flow.gif) no-repeat;
+    height: 305px;
+    text-indent: -99999px;
+    border-bottom: dotted 1px #eee;
+}
+
+.reg_buttons {
+    width: 340px;
+    margin: 0 auto;
+}
+
+.reg_buttons ul {
+    width: 100%;
+    height: 45px;
+    padding: 15px 0;
+    border-bottom: dotted 1px #eee;
+}
+
+.reg_buttons li {
+    background: url(../../image/img/button3.gif) no-repeat;
+    height: 41px;
+    line-height: 41px;
+    width: 83px;
+    margin-left: 25px;
+    text-align: center;
+}
+
+.reg_buttons ul li a{
+	color:#222;
+}
+
+/***********************copy from login.css**************************/
+/*��¼*/
+
+.login_box {
+    width: 70%;
+    float: left;
+    margin: 30px auto;
+    border-right: 2px solid #eee;
+}
+
+.login_box ul {
+    float: left;
+    border: none;
+    padding-left: 20px;
+    font-size: 14px;
+	margin:0 auto;
+}
+
+.login_box li {
+    height: 40px;
+    line-height: 40px;
+
+}
+
+.toreg {
+    float: right;
+    width: 25%;
+    margin: 30px auto;
+   
+}
+
+.rememberme {
+    padding-left: 60px;
+}
+
+.loign_f {
+    width: 95%;
+    border-top: dotted 1px #ccc;
+    margin: 20px auto 0;
+    line-height: 300%
+	}
+
+
+.getpw{
+	width:80%;
+	height:40%;
+	margin:70px auto;
+	}

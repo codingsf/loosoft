@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:jaxws="http://cxf.apache.org/jaxws"  
+    xsi:schemaLocation="http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans.xsd"  
+    default-autowire="byType" default-lazy-init="true">
+
+	<description>apache cxf web services</description>
+
+	<import resource="classpath*:META-INF/cxf/cxf.xml" />  
+	<import resource="classpath*:META-INF/cxf/cxf-extension-soap.xml" />  
+	<import resource="classpath*:META-INF/cxf/cxf-servlet.xml" />
+	  
+  	<jaxws:endpoint id="schareaWebService"
+        address="/scharea">
+        <jaxws:implementor>
+        	<bean id="schareaWebServiceImpl" class="cn.loosoft.stuwork.backmanage.webservice.school.SchareaWebServiceImpl">
+        		<!--
+        		<property name="schareaManager" ref="schareaManager"></property>
+        		-->
+        	</bean>
+        </jaxws:implementor>
+    </jaxws:endpoint>
+   
+  	<jaxws:endpoint id="instituteWebService"
+        address="/institute">
+        <jaxws:implementor>
+        	<bean id="instituteWebServiceImpl" class="cn.loosoft.stuwork.backmanage.webservice.school.InstituteWebServiceImpl">
+        		<!--
+        		<property name="instituteManager" ref="instituteManager"></property>
+        		-->
+        	</bean>
+        </jaxws:implementor>
+   </jaxws:endpoint>
+   
+   <jaxws:endpoint id="departmentWebService"
+        address="/department">
+        <jaxws:implementor>
+        	<bean id="departmentWebServiceImpl" class="cn.loosoft.stuwork.backmanage.webservice.school.DepartmentWebServiceImpl">
+        		<!--
+        		<property name="departmentManager" ref="departmentManager"></property>
+        		-->
+        	</bean>
+        </jaxws:implementor>
+   </jaxws:endpoint>
+   
+  	<jaxws:endpoint id="specialtyWebService"
+        address="/specialty">
+        <jaxws:implementor>
+        	<bean id="specialtyWebServiceImpl" class="cn.loosoft.stuwork.backmanage.webservice.school.SpecialtyWebServiceImpl">
+        		<!--
+        		<property name="specialtyManager" ref="specialtyManager"></property>
+        		-->
+        	</bean>
+        </jaxws:implementor>
+   </jaxws:endpoint>
+   
+   <jaxws:endpoint id="clazzWebService"
+        address="/clazz">
+        <jaxws:implementor>
+        	<bean id="clazzWebServiceImpl" class="cn.loosoft.stuwork.backmanage.webservice.school.ClazzWebServiceImpl">
+        		<!--
+        		<property name="clazzManager" ref="clazzManager"></property>
+        		-->
+        	</bean>
+        </jaxws:implementor>
+   </jaxws:endpoint>
+   
+   <jaxws:endpoint id="userWebService"
+        address="/user">
+        <jaxws:implementor>
+        	<bean id="userWebServiceImpl" class="cn.loosoft.stuwork.backmanage.webservice.user.UserWebServiceImpl">
+        		<!--
+        		<property name="clazzManager" ref="clazzManager"></property>
+        		-->
+        	</bean>
+        </jaxws:implementor>
+   </jaxws:endpoint>
+   
+   
+   <jaxws:endpoint id="batchWebService"
+        address="/batch">
+        <jaxws:implementor>
+        	<bean id="batchWebServiceImpl" class="cn.loosoft.stuwork.backmanage.webservice.batch.BatchWebServiceImpl">
+        		<!--
+        		<property name="clazzManager" ref="clazzManager"></property>
+        		-->
+        	</bean>
+        </jaxws:implementor>
+   </jaxws:endpoint>
+   
+   
+
+</beans>

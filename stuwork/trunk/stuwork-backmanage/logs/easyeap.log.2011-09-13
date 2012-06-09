@@ -1,0 +1,43 @@
+2010-11-28 11:31:45,718 [main] WARN  [cn.loosoft.stuwork.backmanage.service.account.AccountManager] - 操作员尝试删除超级管理员用户
+2010-11-28 11:31:48,875 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.school.Specialty]; using defaults.
+2010-11-28 11:31:49,015 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.school.Clazz]; using defaults.
+2010-11-28 11:31:49,031 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.school.Institute]; using defaults.
+2010-11-28 11:31:49,031 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.school.Department]; using defaults.
+2010-11-28 11:31:49,046 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.school.Scharea]; using defaults.
+2010-11-28 11:31:49,156 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.account.Role]; using defaults.
+2010-11-28 11:31:49,156 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.account.Authority]; using defaults.
+2010-11-28 11:31:49,156 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.notice.NoticeManager]; using defaults.
+2010-11-28 11:31:49,171 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.account.User]; using defaults.
+2010-11-28 11:31:49,171 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.account.Role.authorityList]; using defaults.
+2010-11-28 11:31:49,187 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.account.User.clazzList]; using defaults.
+2010-11-28 11:31:49,187 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.account.User.roleList]; using defaults.
+2010-11-28 11:31:49,281 [main] WARN  [org.springframework.aop.framework.Cglib2AopProxy] - Unable to proxy method [public final void org.springside.modules.test.spring.SpringContextTestCase.setApplicationContext(org.springframework.context.ApplicationContext)] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+2010-11-28 11:31:49,546 [main] WARN  [org.springframework.aop.framework.Cglib2AopProxy] - Unable to proxy method [public final void org.springside.modules.test.spring.SpringContextTestCase.setApplicationContext(org.springframework.context.ApplicationContext)] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+2010-11-28 11:31:49,578 [main] WARN  [org.hibernate.util.JDBCExceptionReporter] - SQL Error: 42122, SQLState: 42S22
+2010-11-28 11:31:49,578 [main] ERROR [org.hibernate.util.JDBCExceptionReporter] - Column "CREATEDATE" not found; SQL statement:
+insert into acct_user (id, createDate, departmentID, email, instituteID, loginName, name, password) values (null, ?, ?, ?, ?, ?, ?, ?) [42122-133]
+2010-11-28 11:31:49,593 [main] WARN  [org.hibernate.util.JDBCExceptionReporter] - SQL Error: 42122, SQLState: 42S22
+2010-11-28 11:31:49,593 [main] ERROR [org.hibernate.util.JDBCExceptionReporter] - Column "CREATEDATE" not found; SQL statement:
+insert into acct_user (id, createDate, departmentID, email, instituteID, loginName, name, password) values (null, ?, ?, ?, ?, ?, ?, ?) [42122-133]
+2010-11-28 11:31:51,000 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.school.Specialty]; using defaults.
+2010-11-28 11:31:51,015 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.school.Clazz]; using defaults.
+2010-11-28 11:31:51,015 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.school.Institute]; using defaults.
+2010-11-28 11:31:51,015 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.school.Department]; using defaults.
+2010-11-28 11:31:51,015 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.school.Scharea]; using defaults.
+2010-11-28 11:31:51,015 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.account.Role]; using defaults.
+2010-11-28 11:31:51,015 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.account.Authority]; using defaults.
+2010-11-28 11:31:51,015 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.notice.NoticeManager]; using defaults.
+2010-11-28 11:31:51,031 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.account.User]; using defaults.
+2010-11-28 11:31:51,031 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.account.Role.authorityList]; using defaults.
+2010-11-28 11:31:51,031 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.account.User.clazzList]; using defaults.
+2010-11-28 11:31:51,031 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.backmanage.entity.account.User.roleList]; using defaults.
+2010-11-28 11:31:52,828 [main] WARN  [org.mortbay.log] - failed SocketConnector@0.0.0.0:8080: java.net.BindException: Address already in use: JVM_Bind
+2010-11-28 11:31:52,828 [main] WARN  [org.mortbay.log] - failed Server@f1b25e: java.net.BindException: Address already in use: JVM_Bind
+2010-11-28 11:31:52,890 [main] WARN  [org.springframework.aop.framework.Cglib2AopProxy] - Unable to proxy method [public final void org.springside.modules.test.spring.SpringContextTestCase.setApplicationContext(org.springframework.context.ApplicationContext)] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+2010-11-28 11:31:53,281 [main] WARN  [org.hibernate.util.JDBCExceptionReporter] - SQL Error: 42102, SQLState: 42S02
+2010-11-28 11:31:53,281 [main] ERROR [org.hibernate.util.JDBCExceptionReporter] - Table "BM_CLASS" not found; SQL statement:
+select clazz0_.id as col_0_0_ from bm_class clazz0_ [42102-133]
+2010-11-28 11:31:53,312 [main] WARN  [org.springframework.aop.framework.Cglib2AopProxy] - Unable to proxy method [public final void org.springside.modules.test.spring.SpringContextTestCase.setApplicationContext(org.springframework.context.ApplicationContext)] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+2010-11-28 11:31:53,328 [main] WARN  [org.hibernate.util.JDBCExceptionReporter] - SQL Error: 42122, SQLState: 42S22
+2010-11-28 11:31:53,328 [main] ERROR [org.hibernate.util.JDBCExceptionReporter] - Column "USER0_.CREATEDATE" not found; SQL statement:
+select user0_.id as id2_0_, user0_.createDate as createDate2_0_, user0_.departmentID as departme7_2_0_, user0_.email as email2_0_, user0_.instituteID as institut8_2_0_, user0_.loginName as loginName2_0_, user0_.name as name2_0_, user0_.password as password2_0_ from acct_user user0_ where user0_.id=? [42122-133]

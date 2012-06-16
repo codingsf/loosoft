@@ -1,9 +1,13 @@
 package cn.loosoft.stuwork.leave.dao;
 
+import java.util.Map;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springside.modules.orm.Page;
 import org.springside.modules.orm.hibernate.HibernateDao;
+
+import com.google.common.collect.Maps;
 
 import cn.loosoft.stuwork.leave.entity.Student;
 
@@ -33,4 +37,10 @@ public class StudentDao extends HibernateDao<Student, Long> {
 
 		return super.findPage(page, hql);
 	}
+
+	public void DeleteAll() {
+		Map<String, String> maps = Maps.newHashMap();
+		super.batchExecute("delete from Student", maps);
+	}
+
 }

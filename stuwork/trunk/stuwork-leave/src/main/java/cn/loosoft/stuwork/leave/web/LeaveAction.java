@@ -6,17 +6,18 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springside.modules.orm.Page;
-import org.springside.modules.orm.hibernate.HibernateUtils;
 import org.springside.modules.security.springsecurity.SpringSecurityUtils;
 import org.springside.modules.web.struts2.Struts2Utils;
 
 import cn.common.lib.util.web.PropertyUtils;
 import cn.loosoft.common.security.springsecurity.user.User;
+import cn.loosoft.common.util.web.ParamUtils;
 import cn.loosoft.data.webservice.api.batch.BatchWebService;
 import cn.loosoft.data.webservice.api.batch.dto.BatchDTO;
 import cn.loosoft.data.webservice.api.school.ClazzWebService;
@@ -138,6 +139,8 @@ public class LeaveAction extends ActionSupport {
 	 * 
 	 */
 	public String stuinitsave() throws Exception {
+		
+		studentService.DeleteAll();
 		// 取得哪些部门需要参入审核
 		String dfile = PropertyUtils.getProperty("departmentfile.path",
 				"E:\\java\\department.txt");
@@ -167,7 +170,7 @@ public class LeaveAction extends ActionSupport {
 				student.setClasscode(dto.getClassCode());
 				student.setClassname(dto.getClassName());
 				student.setComname(dto.getComname());
-				List<StudentCheck> studentChecks=Lists.newArrayList();
+				List<StudentCheck> studentChecks = Lists.newArrayList();
 				for (String s : strs) {
 					StudentCheck studentCheck = new StudentCheck();
 					studentCheck.setCheckdate("");
@@ -247,14 +250,21 @@ public class LeaveAction extends ActionSupport {
 	 * 
 	 */
 	public String check() throws Exception {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String studentId = ParamUtils.getParameter(request, "sid", "");// 获取studentid
+
 		User user = (User) SpringSecurityUtils.getCurrentUser();
 		UserDTO userDTO = userWebService.getUser(user.getUsername());
 		String departmentcode = userDTO.getCollegeCode();
-		StudentCheck studentCheck = studentCheckService.get("201000000000083",
+		// 获取当前用户所在的部门
+
+		StudentCheck studentCheck = studentCheckService.get(studentId,
 				departmentcode);
-		studentCheck.setCheckdate("2012-6-13");
-		studentCheck.setStatus(StudentCheck.STATUS_ENABLE);
-		studentCheckService.save(studentCheck);
+		if (studentCheck != null) {
+			studentCheck.setCheckdate("2012-6-13");
+			studentCheck.setStatus(StudentCheck.STATUS_ENABLE);
+			studentCheckService.save(studentCheck);
+		}
 		return list();
 	}
 

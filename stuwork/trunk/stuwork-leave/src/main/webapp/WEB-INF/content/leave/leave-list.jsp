@@ -166,7 +166,7 @@
 						class="<s:if test='#status.even'>br05</s:if><s:else>br03</s:else>">${majorname
 					}&nbsp;</td>
 					<td class="<s:if test='#status.even'>br05</s:if><s:else>br03</s:else>">
-					<a href="../leave/leave!check.action?id=${obj.id}" onclick="return confirm('注意：请仔细操作，一旦审批通过将禁止修改！')">审批</a>
+					<a href="../leave/leave!check.action?sid=${obj.id}" onclick="return confirm('注意：请仔细操作，一旦审批通过将禁止修改！')">审批</a>
 					</td>
 				</tr>
 			</s:iterator>

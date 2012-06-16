@@ -43,4 +43,7 @@ public class StudentService extends EntityManager<Student, Long> {
 
 	}
 
+	public void DeleteAll() {
+		studentDao.DeleteAll();
+	}
 }

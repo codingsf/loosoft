@@ -120,7 +120,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 CityCodeService codeService = CityCodeService.GetInstance();
                 ViewData["temp"] = Math.Round(codeService.GetTemperature(plant.city), 1) ;
             }
-            if (!double.IsNaN(((double)ViewData["temp"])))
+            if (!double.IsNaN(((double)ViewData["temp"])) && (double)ViewData["temp"]!=0)
             {
                 User user = UserUtil.getCurUser();
                 if (user != null && !user.TemperatureType.ToLower().Equals("c"))

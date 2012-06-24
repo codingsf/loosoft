@@ -138,7 +138,7 @@
                                      <div style=" width:100px; overflow:hidden; " title="<%=plant.city%>"><%=plant.city%></div>
                                     </td>
                                     <td width="14%" align="center">
-                                    <div style=" width:100px; overflow:hidden; " title="<%=StringUtil.formatDouble(plant.DisplayTotalEnergy)%>"><%=StringUtil.formatDouble(plant.DisplayTotalEnergy) + "(" + plant.TotalEnergyUnit + ")"%></div>
+                                    <div style=" width:100px; overflow:hidden; " title="<%=plant.DisplayTotalEnergy%>"><%=plant.DisplayTotalEnergy%>(<%=plant.TotalEnergyUnit%>)</div>
                                     </td>
                                     <td width="20%" align="center">
                                     <%if (AuthService.isAllow(AuthorizationCode.EDIT_PLANT))

@@ -337,7 +337,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     datahash.Add(DataItem.TODAY_REVENUE, user.currencies+" " +Currencies.format(user.currencies, energy * user.revenueRate));
 
                     //累计总发电量
-                    datahash.Add(DataItem.TODAY_TOTAL_ENERGY, StringUtil.formatDouble(user.DisplayTotalEnergy) + " " + user.TotalEnergyUnit);
+                    datahash.Add(DataItem.TODAY_TOTAL_ENERGY, user.DisplayTotalEnergy + " " + user.TotalEnergyUnit);
                     //累计总收入
                     datahash.Add(DataItem.TODAY_TOTAL_REVENUE, user.currencies+" "+user.DisplayRevenue);
 
@@ -368,7 +368,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     //周收益
                     datahash.Add(DataItem.WEEK_REVENUE, user.currencies+" "+Currencies.format(user.currencies, w_revenue));
                     //累计总发电量
-                    datahash.Add(DataItem.WEEK_TOTAL_ENERGY, StringUtil.formatDouble(user.DisplayTotalEnergy) + " " + user.TotalEnergyUnit);
+                    datahash.Add(DataItem.WEEK_TOTAL_ENERGY, user.DisplayTotalEnergy + " " + user.TotalEnergyUnit);
                     //累计总收入
                     datahash.Add(DataItem.WEEK_TOTAL_REVENUE, user.currencies+" "+user.DisplayRevenue);
                     //累计CO2减排
@@ -397,7 +397,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     //月收益
                     datahash.Add(DataItem.MONTH_REVENUE,user.currencies+" "+ Currencies.format(user.currencies, m_revenue));
                     //累计总发电量
-                    datahash.Add(DataItem.MONTH_TOTAL_ENERGY, StringUtil.formatDouble(user.DisplayTotalEnergy) + " " + user.TotalEnergyUnit);
+                    datahash.Add(DataItem.MONTH_TOTAL_ENERGY, user.DisplayTotalEnergy + " " + user.TotalEnergyUnit);
                     //累计总收入
                     datahash.Add(DataItem.MONTH_TOTAL_REVENUE, user.currencies+" "+user.DisplayRevenue);
                     //累计CO2减排
@@ -429,7 +429,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     //年收益
                     datahash.Add(DataItem.YEAR_REVENUE, user.currencies+" "+Currencies.format(user.currencies, y_revenue));
                     //累计总发电量
-                    datahash.Add(DataItem.YEAR_TOTAL_ENERGY, StringUtil.formatDouble(user.DisplayTotalEnergy) + " " + user.TotalEnergyUnit);
+                    datahash.Add(DataItem.YEAR_TOTAL_ENERGY, user.DisplayTotalEnergy + " " + user.TotalEnergyUnit);
                     //累计总收入
                     datahash.Add(DataItem.YEAR_TOTAL_REVENUE, user.currencies+" "+user.DisplayRevenue);
                     //累计CO2减排
@@ -438,7 +438,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 //------总量报表-----------------
                 case DataReportType.TOTAL_REPORT_CODE:
                     //累计总发电量
-                    datahash.Add(DataItem.TOTAL_ENERGY, StringUtil.formatDouble(user.DisplayTotalEnergy) + " " + user.TotalEnergyUnit);
+                    datahash.Add(DataItem.TOTAL_ENERGY, user.DisplayTotalEnergy + " " + user.TotalEnergyUnit);
                     //累计总收入
                     datahash.Add(DataItem.TOTAL_REVENUE, user.currencies+" "+user.DisplayRevenue);
                     //累计CO2减排
@@ -487,7 +487,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     datahash.Add(DataItem.TODAY_REVENUE, plant.currencies+" " +Currencies.format(plant.currencies,energy * plant.revenueRate));
  
                     //累计总发电量
-                    datahash.Add(DataItem.TODAY_TOTAL_ENERGY,StringUtil.formatDouble(plant.DisplayTotalEnergy) + " " + plant.TotalEnergyUnit);
+                    datahash.Add(DataItem.TODAY_TOTAL_ENERGY,plant.DisplayTotalEnergy + " " + plant.TotalEnergyUnit);
                     //累计总收入
                     datahash.Add(DataItem.TODAY_TOTAL_REVENUE, plant.currencies + " " +plant.DisplayRevenue);
 
@@ -514,7 +514,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     //周收益
                     datahash.Add(DataItem.WEEK_REVENUE, plant.currencies+" "+Currencies.format(plant.currencies, w_energy * plant.revenueRate));
                     //累计总发电量
-                    datahash.Add(DataItem.WEEK_TOTAL_ENERGY, StringUtil.formatDouble(plant.DisplayTotalEnergy) + " " + plant.TotalEnergyUnit);
+                    datahash.Add(DataItem.WEEK_TOTAL_ENERGY, plant.DisplayTotalEnergy + " " + plant.TotalEnergyUnit);
                     //累计总收入
                     datahash.Add(DataItem.WEEK_TOTAL_REVENUE, plant.currencies+" "+plant.DisplayRevenue);
                     //累计CO2减排
@@ -538,7 +538,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     //月收益
                     datahash.Add(DataItem.MONTH_REVENUE, plant.currencies+" "+Currencies.format(plant.currencies, m_energy * plant.revenueRate));
                     //累计总发电量
-                    datahash.Add(DataItem.MONTH_TOTAL_ENERGY, StringUtil.formatDouble(plant.DisplayTotalEnergy) + " " + plant.TotalEnergyUnit);
+                    datahash.Add(DataItem.MONTH_TOTAL_ENERGY, plant.DisplayTotalEnergy + " " + plant.TotalEnergyUnit);
                     //累计总收入
                     datahash.Add(DataItem.MONTH_TOTAL_REVENUE,plant.currencies+" "+plant.DisplayRevenue);
                     //累计CO2减排
@@ -564,7 +564,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     //年收益
                     datahash.Add(DataItem.YEAR_REVENUE, plant.currencies+" "+Currencies.format(plant.currencies, y_energy * plant.revenueRate));
                     //累计总发电量
-                    datahash.Add(DataItem.YEAR_TOTAL_ENERGY, StringUtil.formatDouble(plant.DisplayTotalEnergy) + " " + plant.TotalEnergyUnit);
+                    datahash.Add(DataItem.YEAR_TOTAL_ENERGY, plant.DisplayTotalEnergy + " " + plant.TotalEnergyUnit);
                     //累计总收入
                     datahash.Add(DataItem.YEAR_TOTAL_REVENUE, plant.currencies+" "+plant.DisplayRevenue);
                     //累计CO2减排
@@ -575,7 +575,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 //------总量报表-----------------
                 case DataReportType.TOTAL_REPORT_CODE:
                     //累计总发电量
-                    datahash.Add(DataItem.TOTAL_ENERGY, StringUtil.formatDouble(plant.DisplayTotalEnergy) + " " + plant.TotalEnergyUnit);
+                    datahash.Add(DataItem.TOTAL_ENERGY, plant.DisplayTotalEnergy + " " + plant.TotalEnergyUnit);
                     //累计总收入
                     datahash.Add(DataItem.TOTAL_REVENUE, plant.currencies+" "+plant.DisplayRevenue);
                     //累计CO2减排

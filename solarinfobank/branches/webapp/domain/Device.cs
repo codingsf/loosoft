@@ -200,11 +200,23 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// <summary>
         /// 显示设备的总发电量，待进制
         /// </summary>
-        public float DisplayTotalEnergy
+        public double upTotalEnergy
         {
             get
             {
-                return float.Parse(Util.upDigtal(TotalEnergy).ToString());
+                return Util.upDigtal(TotalEnergy);
+            }
+        }
+
+
+        /// <summary>
+        /// 显示设备的总发电量，待进制
+        /// </summary>
+        public string DisplayTotalEnergy
+        {
+            get
+            {
+                return StringUtil.formatDouble(Util.upDigtal(TotalEnergy),"0.00");
             }
         }
 

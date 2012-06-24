@@ -301,13 +301,22 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             }
         }
 
-        public double DisplayTotalDayEnergy
+        public double upTotalDayEnergy
         {
             get
             {
                 return Util.upDigtal(TotalDayEnergy);
             }
         }
+
+        public string DisplayTotalDayEnergy
+        {
+            get
+            {
+                return StringUtil.formatDouble(Util.upDigtal(TotalDayEnergy),"0.00");
+            }
+        }
+
 
         public float TotalDayEnergy
         {
@@ -324,11 +333,19 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             }
         }
 
-        public double DisplayTotalEnergy
+        public double upTotalEnergy
         {
             get
             {
                 return Util.upDigtal(TotalEnergy);
+            }
+        }
+
+        public string DisplayTotalEnergy
+        {
+            get
+            {
+                return StringUtil.formatDouble(Util.upDigtal(TotalEnergy),"0.00");
             }
         }
 
@@ -391,11 +408,19 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             }
         }
 
-        public double DisplayTotalPower
+        public double upTotalPower
         {
             get
             {
                 return Util.upDigtal(TotalPower);
+            }
+        }
+
+        public string DisplayTotalPower
+        {
+            get
+            {
+                return StringUtil.formatDouble(Util.upDigtal(TotalPower),"0.00");
             }
         }
 

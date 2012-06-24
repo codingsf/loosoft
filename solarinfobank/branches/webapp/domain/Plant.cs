@@ -407,7 +407,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
         }
 
-        public double DisplayTotalDayEnergy
+        public double upTotalDayEnergy
         {
             get
             {
@@ -415,6 +415,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             }
         }
 
+        public string DisplayTotalDayEnergy
+        {
+            get
+            {
+                return StringUtil.formatDouble(Util.upDigtal(TotalDayEnergy),"0.00");
+            }
+        }
         //----- business method ------
         /// <summary>
         /// 取得电站的总发电量
@@ -441,11 +448,19 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             }
         }
 
-        public double DisplayTotalEnergy
+        public double upTotalEnergy
         {
             get
             {
                 return Util.upDigtal(TotalEnergy);
+            }
+        }
+
+        public string DisplayTotalEnergy
+        {
+            get
+            {
+                return StringUtil.formatDouble(Util.upDigtal(TotalEnergy),"0.00");
             }
         }
 

@@ -71,6 +71,7 @@
         }
         
         function displayDayChart() {
+            $('#intervalMins').val(60);
             curChart = "DayChart";
             dayCompareChart("container", 150, false);
             $("#monthdatatable").hide();
@@ -79,6 +80,7 @@
         }
 
         function displayMonthChart() {
+            $('#intervalMins').val(60);
             curChart = "MonthChart";
             monthCompareChart("container", 150, false);
             $("#daydatatable").hide();
@@ -87,6 +89,7 @@
             changeALT();
         }
         function displayYearChart() {
+            $('#intervalMins').val(60);
             curChart = "YearChart";
             yearCompareChart("container", 160, false);
             $("#daydatatable").hide();
@@ -108,12 +111,13 @@
                         return;
                     }     
                     showDetails(result, $("#endYYYYMMDDHH").val());
+                    defineChartWithDetail(curContainer,false);                    
                     var data = eval('(' + result + ')')
                     setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#startYYYYMMDDHH").val().substring(0,8),data.name);
                     setyAxis(data);
                     setySeriesArr(data.series);
                     setCategories(data.categories, isLarge);
-                    defineChartWithDetail(curContainer,false);
+
                     //修改标题
                     chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
                     if(!isLarge){
@@ -144,13 +148,14 @@
                         return;
                     }             
                     showDetails(result, $("#endYYYYMMDD").val());
-                      
+                    defineChartWithDetail(curContainer,false);  
                     var data = eval('(' + result + ')')
                     setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#startYYYYMMDD").val().substring(0,6),data.name);
+                  
                     setyAxis(data);
                     setySeriesArr(data.series);
                     setCategories(data.categories, isLarge);
-                    defineChartWithDetail(curContainer,false);
+
                     //修改标题
                     chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
                     if(!isLarge){
@@ -181,12 +186,12 @@
                         return;
                     }               
                     showDetails(result);
+                    defineChartWithDetail(curContainer,false);
                     var data = eval('(' + result + ')')
                     setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#year").val(),data.name);
                     setyAxis(data);
                     setySeriesArr(data.series);
                     setCategories(data.categories, isLarge);
-                    defineChartWithDetail(curContainer,false);
                     //修改标题
                     chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
                     if(!isLarge){

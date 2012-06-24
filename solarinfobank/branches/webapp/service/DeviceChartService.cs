@@ -213,7 +213,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             KeyValuePair<string, float?[]> data = new KeyValuePair<string, float?[]>();
             if (powerHash.Count > 0)
             {
-                this.FirstHandleChartData(ic, powerHash);
+                //先屏蔽了，因为两天跨度的中间部分平滑有问题，但不是对原来是否有影响测试后才知道
+                //this.FirstHandleChartData(ic, powerHash);
                 data = GenerateChartData(monitorType.name, ic, powerHash, 1.0F);
             }
 

@@ -60,19 +60,19 @@
             {
                 $('#intervalMins').val(60);
                 loadInvertCompare(1);
-                $('#type_container').show();
+                //$('#type_container').show();
             }
             else
             {
                 loadContent('content_container_control','/plant/device/'+pid+'/'+did+'/'+uid,'ajax','GET');
-                $('#type_container').hide();
+               // $('#type_container').hide();
             
             }
         }
         
         function unitDeviceInit()
         {   
-                $('#type_container').show();
+                //$('#type_container').show();
                 var uid=$('#uid').val();
                 $.ajax({
                 type: "POST",
@@ -96,6 +96,7 @@
             var uid=$('#uid').val();
 		    //var type = $("input[name='deviceType']:checked").val()+"";
            // alert(type);
+            $('#content_container_control').html();
             if(type==1){
                 loadContent('content_container_control','/devicechart/InverterComparePage/'+uid,'ajax','GET');
             }else {

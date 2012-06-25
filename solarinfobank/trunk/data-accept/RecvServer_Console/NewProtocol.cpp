@@ -182,8 +182,10 @@ int Protocol69Dealer::AnalysisPacket(TCP_DATA* pTCPData, CUserSession* pSession,
 		//获取SN与密码
 		memcpy(dataBody, pTCPData->pDataContent + 18, 16);
 		dataInfo.m_pRegisterInfo->m_strSerialNum = dataBody;
+        dataInfo.m_pRegisterInfo->m_strSerialNum = Ltrim(dataInfo.m_pRegisterInfo->m_strSerialNum);
 		memcpy(dataBody, pTCPData->pDataContent + 34, 32);
 		dataInfo.m_pRegisterInfo->m_strPwd = dataBody;
+        dataInfo.m_pRegisterInfo->m_strPwd = Ltrim(dataInfo.m_pRegisterInfo->m_strPwd);
 		return New_Session_Errror_Success;
 	}
 
@@ -205,9 +207,11 @@ int Protocol69Dealer::AnalysisPacket(TCP_DATA* pTCPData, CUserSession* pSession,
 		memset(dataBody, 0, sizeof(dataBody));
 		memcpy(dataBody, pTCPData->pDataContent + 18, 16);
 		dataInfo.m_pRegisterInfo->m_strSerialNum = dataBody;
+        dataInfo.m_pRegisterInfo->m_strSerialNum = Ltrim(dataInfo.m_pRegisterInfo->m_strSerialNum);
 		memset(dataBody, 0, sizeof(dataBody));
 		memcpy(dataBody, pTCPData->pDataContent + 34, 32);
 		dataInfo.m_pRegisterInfo->m_strPwd = dataBody;
+        dataInfo.m_pRegisterInfo->m_strPwd = Ltrim(dataInfo.m_pRegisterInfo->m_strPwd);
 		return New_Session_Errror_Success;
 	
 	//已登录，必须为验证码验证AES128
@@ -955,4 +959,20 @@ void Protocol69Dealer::DealOffLine(CUserSession * pSession)
 	TCP_DATA * pTCPData=new TCP_DATA;
 	Add2Mem(pTCPData, key, strval.c_str(), strval.length(), false);
 	tcp_svr.dataManage.AddToMemBuf(pTCPData);
+}
+
+//自定义trim函数
+//add by qhb in 20120626 for 解决sn有空格的问题，又空格导致生产的memcached key有空格不能 put
+string Protocol69Dealer::Ltrim(string& str)
+{
+    string::size_type pos = str.find_last_not_of(' ');
+    if(pos != string::npos)
+    {
+        str.erase(pos + 1);
+        pos = str.find_first_not_of(' ');
+        if(pos != string::npos) str.erase(0, pos);
+    }
+    else 
+        str.erase(str.begin(), str.end());
+    return str;
 }

@@ -79,6 +79,10 @@ private:
 	//获取校验码
 	unsigned short ConCRC(byte* bufin, int n);
 
+    //自定义trim函数
+    //add by qhb in 20120626 for 解决sn有空格的问题，又空格导致生产的memcached key有空格不能 put
+    string Protocol69Dealer::Ltrim(string& str);
+
 	//存mem的方法，此处将key与value存入pTCPData
 	void Add2Mem(TCP_DATA* pTCPData, string strkey, const char* strval, int iLen, bool isHex)
 	{

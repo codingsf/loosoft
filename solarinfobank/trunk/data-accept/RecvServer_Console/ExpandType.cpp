@@ -118,15 +118,19 @@ bool NewRegisterInfo::CheckPwd()
             {
                 pwd =  ConvertCode::G2U(row[0]);//此处将数据库查询到的转换为UTF8格式
             }
-            
-            if(sizeof(row)>1 && row[1] != "")
-            {
-			    m_strKey = row[1];
-            }
-            else
-            {
-                m_strKey = "";
-            }
+            try{
+                if(row[1]!=NULL)
+                {
+			        m_strKey = row[1];
+                }
+                else
+                {
+                    m_strKey = "";
+                }
+            }catch(...)
+	        {
+		        m_strKey = "";//如果key为null 会出异常 那么就付“”
+	        }
 			ui.s_strKey = this->m_strKey;
 			ui.s_strPwd = this->m_strPwd;
 			ui.s_strSerialNum = this->m_strSerialNum;

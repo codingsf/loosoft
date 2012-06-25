@@ -118,7 +118,8 @@ bool NewRegisterInfo::CheckPwd()
             {
                 pwd =  ConvertCode::G2U(row[0]);//此处将数据库查询到的转换为UTF8格式
             }
-            if( row[1] != "")
+            
+            if(sizeof(row)>1 && row[1] != "")
             {
 			    m_strKey = row[1];
             }

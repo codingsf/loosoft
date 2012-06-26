@@ -341,7 +341,7 @@ namespace Web.Controllers
                             return View(user);
                         }
 
-                        Session[ComConst.portalautoLogin] = null;
+                        Session[ComConst.portalautoLogin] = true;//标识可以查询详细数的门户用户
                         if (loginUser.relatedPlants.Count==1)
                         {
                             return RedirectToAction(loginUser.relatedPlants[0].isVirtualPlant ? "virtual" : "plant", "portal", new { @id = loginUser.plantUsers[0].plantID });

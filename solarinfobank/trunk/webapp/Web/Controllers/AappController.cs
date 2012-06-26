@@ -62,9 +62,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     MonitorType energyMt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE);
                     MonitorType powerMt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_POWER_CODE);
                     UserPlantVO userPlantVO = new UserPlantVO();
-                    userPlantVO.totalEnergy = user.DisplayTotalEnergy;
+                    userPlantVO.totalEnergy = user.upTotalEnergy;
                     userPlantVO.totalEnergyUnit = user.TotalEnergyUnit;
-                    userPlantVO.todayEnergy = user.DisplayTotalDayEnergy;
+                    userPlantVO.todayEnergy = user.upTotalDayEnergy;
                     userPlantVO.todayEnergyUnit = user.TotalDayEnergyUnit;
                     userPlantVO.userId = user.id;
                     userPlantVO.username = user.username;
@@ -72,7 +72,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     userPlantVO.co2ReductionUnit = user.TotalReductiongUnit;
                     userPlantVO.revenue = Math.Round(user.revenue, 2);
                     userPlantVO.revenueUnit = user.currencies;
-                    userPlantVO.power = user.DisplayTotalPower;
+                    userPlantVO.power = user.upTotalPower;
                     userPlantVO.powerUnit = user.TotalPowerUnit;
                     userPlantVO.families = user.TotalFamilies.ToString();
                     IList<int> workYears = CollectorYearDataService.GetInstance().GetWorkYears(user.relatedPlants);
@@ -741,11 +741,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 MonitorType powerMt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_POWER_CODE);
                 PlantInfoVO plantvo = new PlantInfoVO();
 
-                plantvo.totalEnergy = float.Parse(plant.DisplayTotalEnergy.ToString());
-                plantvo.todayEnergy = float.Parse(plant.DisplayTotalDayEnergy.ToString());
+                plantvo.totalEnergy = plant.upTotalEnergy;
+                plantvo.todayEnergy = plant.upTotalDayEnergy;
                 plantvo.pId = plant.id;
                 plantvo.name = plant.name;
-                plantvo.co2Reduction = float.Parse(plant.Reductiong.ToString());
+                plantvo.co2Reduction = plant.Reductiong;
                 plantvo.revenue = user.revenue * plantvo.totalEnergy;
                 plantvo.designPower = plant.design_power;
                 plantvo.powerUnit = "KWp";
@@ -891,8 +891,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 User user = UserService.GetInstance().Get((int)plant.userID);
 
                 Plant2UnitVO userPlantVO = new Plant2UnitVO();
-                userPlantVO.totalEnergy = float.Parse(plant.DisplayTotalEnergy.ToString());
-                userPlantVO.todayEnergy = plant.DisplayTotalDayEnergy;
+                userPlantVO.totalEnergy = plant.upTotalEnergy;
+                userPlantVO.todayEnergy = plant.upTotalDayEnergy;
                 userPlantVO.plantId = plant.id;
                 userPlantVO.name = plant.name;
                 userPlantVO.co2Reduction = this.getCO2Rate() * plant.TotalEnergy;

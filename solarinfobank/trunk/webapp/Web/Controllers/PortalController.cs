@@ -124,7 +124,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                             ico.Add("displayName", ProtalItems.powerDisplayName);
                             break;
                         case ProtalItems.totalCo2://总CO2
-                            ico.Add(string.Format("data"), plant == null ? portalUser.TotalReductiong.ToString("0.00") : plant.Reductiong.ToString("0.00"));
+                            ico.Add(string.Format("data"), plant == null ? StringUtil.formatDouble(portalUser.TotalReductiong, "0.00") : StringUtil.formatDouble(plant.Reductiong,"0.00"));
                             ico.Add(string.Format("unit"), plant == null ? portalUser.TotalReductiongUnit : plant.ReductiongUnit);
                             ico.Add("displayName", ProtalItems.totalCo2DisplayName);
                             break;

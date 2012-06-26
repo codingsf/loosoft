@@ -298,14 +298,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         {
             string reportCode = string.Empty;
             PlantUnit unit = PlantUnitService.GetInstance().GetPlantUnitById(uId);
-            IList<Device> deviceList = unit.displayDevices;
+            IList<Device> deviceList = unit.typeDevices(DeviceData.HUILIUXIANG_CODE,false);
             MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.MIC_BUSBAR_TOTALCURRENT);
             if (deviceList != null && deviceList.Count > 0)
             {
                 IList<DeviceStuct> devices = new List<DeviceStuct>();
                 foreach (Device device in deviceList)
                 {
-                    if (device.deviceTypeCode != DeviceData.INVERTER_CODE) continue;
                     float rate = 1.0F;
                     devices.Add(new DeviceStuct() { deviceId = device.id.ToString(), rate = rate, name = device.fullName, unit = mt.unit, chartType = chartType, monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.DEVICE, intervalMins = intervalMins });
                 }

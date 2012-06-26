@@ -123,13 +123,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service.vo
         [DataMember(Order = 1)]
         public string name { get; set; }//电站名称
         [DataMember(Order = 2)]
-        public float totalEnergy { get; set; } //总发电量
+        public double totalEnergy { get; set; } //总发电量
         [DataMember(Order = 3)]
-        public float todayEnergy { get; set; } //今日发电量
+        public double todayEnergy { get; set; } //今日发电量
         [DataMember(Order = 4)]
-        public float power { get; set; }       //电站功率
+        public double power { get; set; }       //电站功率
         [DataMember(Order = 5)]
-        public float co2Reduction { get; set; }//CO2减排
+        public double co2Reduction { get; set; }//CO2减排
         [DataMember(Order = 6)]
         public double revenue { get; set; }    //收益
         [DataMember(Order = 7)]
@@ -284,9 +284,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service.vo
         [DataMember(Order = 14)]
         public string weather { get; set; }      //天气
         [DataMember(Order = 15)]
-        public float totalEnergy { get; set; }  //总发电量
+        public double totalEnergy { get; set; }  //总发电量
         [DataMember(Order = 16)]
-        public float todayEnergy { get; set; }  //今日发电量
+        public double todayEnergy { get; set; }  //今日发电量
         [DataMember(Order = 17)]
         public float designPower { get; set; }  //电站设计功率
         [DataMember(Order = 18)]
@@ -307,7 +307,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service.vo
         public string revenueRate { get; set; }   //收益折算率
 
         [DataMember(Order = 26)]
-        public float co2Reduction { get; set; } //CO2减排
+        public double co2Reduction { get; set; } //CO2减排
         [DataMember(Order = 27)]
         public double revenue { get; set; }     //收益
         [DataMember(Order = 28)]

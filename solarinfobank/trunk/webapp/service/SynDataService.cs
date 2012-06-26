@@ -89,7 +89,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 vo.CQ2reduceUnit = plant.ReductiongUnit;
                 vo.curPower = plant.TodayTotalPower.ToString();
                 vo.curPowerUnit = "kW";
-                vo.dayEnergy = plant.DisplayTotalDayEnergy.ToString();
+                vo.dayEnergy = plant.DisplayTotalDayEnergy;
                 vo.dayEnergyUnit = plant.TotalDayEnergyUnit;
                 IList<int> workYears = CollectorYearDataService.GetInstance().GetWorkYears(new List<Plant>() { plant });
                 vo.logCount = FaultService.GetInstance().getNewLogNums(new List<Plant>() { plant }, workYears);
@@ -115,8 +115,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 }
                 vo.temprature = t.ToString();
                 vo.tempratureUnit = user.TemperatureType==null?"c".ToUpper():user.TemperatureType.ToUpper();
-                vo.totalEnergy = plant.DisplayTotalEnergy.ToString();
-                vo.totalEnergyUnit = plant.TotalEnergyUnit.ToString();
+                vo.totalEnergy = plant.DisplayTotalEnergy;
+                vo.totalEnergyUnit = plant.TotalEnergyUnit;
                 //vo.imageArray = "http://" + Request.Url.Authority + "/ufile/" + (string.IsNullOrEmpty(plant.onePic) ? "Nopic/nopico02.gif" : plant.onePic);
                 vo.DesignPower = plant.design_power + " kWp";
                 vo.Country = plant.country;

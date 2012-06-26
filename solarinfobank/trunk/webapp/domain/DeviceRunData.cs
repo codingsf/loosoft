@@ -59,10 +59,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             {
                 if (_todayEnergy == 0)
                 {
-                    return this.getMonitorValue(MonitorType.MIC_INVERTER_TODAYENERGY);
+                    float d = this.getMonitorValue(MonitorType.MIC_INVERTER_TODAYENERGY);
+                    if (float.IsNaN(d)) _todayEnergy = 0f;
+                    else
+                        _todayEnergy = d;
                 }
-                else
-                    return _todayEnergy;
+                return _todayEnergy;
             }
             set
             {
@@ -81,7 +83,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 if (_energy == 0)
                 {
                     float tmp = this.getMonitorValue(MonitorType.MIC_INVERTER_TOTALENERGY);
-                    if (float.IsNaN(tmp)) return this.getMonitorValue(MonitorType.MIC_INVERTER_ACENERGY);
+                    if (float.IsNaN(tmp)) tmp = this.getMonitorValue(MonitorType.MIC_INVERTER_ACENERGY);
+                    if (float.IsNaN(tmp)) tmp = 0f;
                     return tmp;
                 }
                 else

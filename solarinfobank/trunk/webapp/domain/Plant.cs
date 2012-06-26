@@ -424,7 +424,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 return total;
             }
         }
-
+        /// <summary>
+        /// 日发电量单位，做了单位进制处理
+        /// </summary>
         public string TotalDayEnergyUnit
         {
             get
@@ -434,14 +436,26 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
         }
 
-        public float DisplayTotalDayEnergy
+        /// <summary>
+        /// 显示今日总发电量，做了单位进制处理，格式化为2位小数，返回字符串
+        /// </summary>
+        public string DisplayTotalDayEnergy
         {
             get
             {
-                return float.Parse(Util.upDigtal(TotalDayEnergy).ToString());
+                return StringUtil.formatDouble(Util.upDigtal(TotalDayEnergy),"0.00");
             }
         }
-
+        /// <summary>
+        /// 进制日发电量，返回两位小数数值
+        /// </summary>
+        public double upTotalDayEnergy
+        {
+            get
+            {
+                return Util.upDigtal(TotalDayEnergy);
+            }
+        }
 
         //----- business method ------
         /// <summary>
@@ -482,7 +496,21 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             }
         }
 
-        public double DisplayTotalEnergy
+        /// <summary>
+        /// 电站总发电量，做了单位进制处理，格式化为两位小数,返回字符串
+        /// </summary>
+        public string DisplayTotalEnergy
+        {
+            get
+            {
+                return StringUtil.formatDouble(Util.upDigtal(TotalEnergy),"0.00");
+            }
+        }
+
+        /// <summary>
+        /// 电站总发电量，做了单位进制处理，格式化为两位小数,返回数值
+        /// </summary>
+        public double upTotalEnergy
         {
             get
             {
@@ -499,18 +527,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
-        /// 用户页面显示的总功率，做了单位进制
+        /// 用户页面显示的总功率，做了单位进制,返回两位小数的字符串
         /// </summary>
-        public double DisplayTodayTotalPower
+        public string DisplayTodayTotalPower
         {
             get
             {
-                return Util.upDigtal(TodayTotalPower);
+                return StringUtil.formatDouble(Util.upDigtal(TodayTotalPower),"0.00");
             }
         }
 
         /// <summary>
-        /// 今日功率
+        /// 今日实时功率
         /// </summary>
         public float TodayTotalPower
         {
@@ -638,6 +666,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             double res = co2ReducationRate * energy;
             return Util.upDigtal(res);
         }
+
         #endregion Model
 
         public int parentId { get; set; }

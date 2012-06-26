@@ -330,13 +330,24 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
-        /// 进制显示总今日发电量
+        /// 进制显示总今日发电量，凡是字符串
         /// </summary>
-        public float DisplayTotalDayEnergy
+        public string DisplayTotalDayEnergy
         {
             get
             {
-                return float.Parse(Util.upDigtal(TotalDayEnergy).ToString());
+                return StringUtil.formatDouble(Util.upDigtal(TotalDayEnergy), "0.00") ;
+            }
+        }
+
+        /// <summary>
+        /// 进制总今日发电量，返回数值型
+        /// </summary>
+        public double upTotalDayEnergy
+        {
+            get
+            {
+                return Util.upDigtal(TotalDayEnergy);
             }
         }
 
@@ -357,10 +368,22 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 return total;
             }
         }
+
         /// <summary>
         /// 进制显示总发电量
         /// </summary>
-        public double DisplayTotalEnergy
+        public string DisplayTotalEnergy
+        {
+            get
+            {
+                return StringUtil.formatDouble(Util.upDigtal(TotalEnergy),"0.00");
+            }
+        }
+
+        /// <summary>
+        /// 进制总发电量
+        /// </summary>
+        public double upTotalEnergy
         {
             get
             {
@@ -432,8 +455,21 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 return total;
             }
         }
+        /// <summary>
+        /// 用于前台显示的总实时功率
+        /// </summary>
+        public string DisplayTotalPower
+        {
+            get
+            {
+                return StringUtil.formatDouble(Util.upDigtal(TotalPower),"0.00");
+            }
+        }
 
-        public double DisplayTotalPower
+        /// <summary>
+        /// 进制实时功率，返回数值型
+        /// </summary>
+        public double upTotalPower
         {
             get
             {

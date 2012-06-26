@@ -142,7 +142,10 @@ namespace DataAnalyze
                             this.messageHeader.TimeNow = new DateTime(year, moth, day, hh, mm, ss);
                             //设备实时数据
                             DeviceDataBase ddb = new DynamicDevice(data, this);
-                            listTcpbody.Add(ddb);
+                            if (ddb.deviceType > -1)//设备的所有信息单元都不符合要求则忽略
+                            {
+                                listTcpbody.Add(ddb);
+                            }
                             //故障数据
                             foreach(string[] fault in ddb.faultList){
                                 Bug tcpb = new TcpBug20(fault, deviceAddress.ToString());

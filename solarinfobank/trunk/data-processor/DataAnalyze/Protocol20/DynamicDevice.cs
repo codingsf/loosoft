@@ -23,7 +23,7 @@ namespace Protocol20
         /// </summary>
         public void analysis()
         {
-            //deviceData
+            //deviceData="2900010000001E3B0A1A060C050003031900000000010305190000000001010619000000000101071900000000010108190000000001";
             //地址即新协议中的公共地址 u16
             base.deviceAddress = SystemCode.HexNumberToDenary(deviceData.Substring(2 * 2, 2 * 2), true, 16, 'u').ToString();
             //设备版本

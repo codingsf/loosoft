@@ -1,0 +1,50 @@
+.onShow
+{
+    background:url(../images/onShow.gif) no-repeat; 
+    padding-left:25px; 
+	font-size: 12px;
+	line-height:25px; 
+	vertical-align:middle;
+	display:inline;
+	padding:8px 10px 2px 30px;
+}
+.onFocus
+{
+    background:#E9F0FF url(../images/onFocus.gif) no-repeat; 
+    padding-left:25px; 
+	font-size: 12px;
+	line-height:25px; 
+	vertical-align:middle;
+	display:inline;
+	padding:8px 10px 2px 30px;
+}
+.onError
+{
+    background:#FFF2E9 url(../images/onError.gif) no-repeat;
+    padding-left:25px;
+	font-size: 12px;
+	line-height:25px; 
+	vertical-align:middle;
+	display:inline;
+	padding:8px 10px 2px 30px;
+}
+.onCorrect
+{
+    background:#E9FFEB url(../images/onCorrect.gif) no-repeat;
+    padding-left:25px;
+	font-size: 12px;
+	line-height:25px; 
+	vertical-align:middle;
+	display:inline;
+	padding:8px 10px 2px 30px;
+}
+.onLoad
+{
+    background:#E9FFEB url(../images/onLoad.gif) no-repeat;
+    padding-left:25px;
+	font-size: 12px;
+	line-height:25px; 
+	vertical-align:middle;
+	display:inline;
+	padding:8px 10px 2px 30px;
+} 

@@ -1,0 +1,711 @@
+﻿@charset "utf-8";
+* {
+	margin:0;
+	padding:0;
+	font:12px "宋体", arial;
+}
+body {
+	background:#fff;
+	color:#333;
+}
+html {
+	scrollbar-face-color:#f6f6f6;
+	scrollbar-shadow-color:#ccc;
+	scrollbar-highlight-color:#fff;
+	scrollbar-3dlight-color:#ccc;
+	scrollbar-darkshadow-color:#fff;
+	scrollbar-track-color:#f6f6f6;
+	scrollbar-arrow-color: #3300;
+}
+body, html {
+	height:100%;
+	width:100%;
+}
+ul, li, dl, dt {
+	list-style:none;
+	line-height:24px;
+}
+body, img, form {
+	border:0;
+}
+table {
+	border-spacing:0;
+	border-collapse:collapse;
+}
+address, caption, cite, code, dfn, th, var, h1, h2, h3, h4, h5, h6 {
+	font-weight:normal;
+	font-style:normal;
+	font-size:100%;
+}
+caption, th, td {
+	text-align:left;
+}
+h6, h5 {
+	text-align:right;
+}
+h1 {
+	font-size:14px;
+	font-weight:bold;
+}
+h2 {
+	font-weight:bold;
+}
+h6 {
+	padding:6px 12px;
+}
+form {
+	display:inline;
+}
+input, select {
+	line-height:16px;
+}
+fieldset {
+	padding:0px 22px;
+	border:0px solid #BCDAE9;
+	background:url(fieldset.jpg) no-repeat 0 14px ;
+	border-bottom:1px dashed #B7D3AB;
+	
+}
+fieldset p {
+	line-height:22px;
+}
+legend {
+	padding:5px;
+	font-size:14px;
+	font-weight:bold;
+	color:#333;
+	
+}
+fieldset th{ color:#06C;}
+fieldset table{}
+.flf {
+	float:left;
+}
+.frt {
+	float:right;
+}
+a:link, a:visited {
+	color:#333;
+	text-decoration: none;
+}
+a:hover {
+	color:#063;
+	text-decoration:underline;
+}
+a:active, a:focus {
+	outline:none;
+	color: #060;
+}
+
+.center {
+	margin:0 auto;
+}
+/*հ*/
+.pad15 {
+	padding-top:15px;
+}
+.pad20 {
+	padding-top:20px;
+}
+.pad10 {
+	padding-top:10px;
+}
+.pad8 {
+	padding-top:8px;
+}
+.pad6 {
+	padding:3px;
+}
+.pad5 {
+	padding-top:5px;
+}
+.pad4 {
+	padding:2px;
+}
+.pad3 {
+	padding-top:3px;
+}
+.pad2 {
+	padding:1px;
+}
+.clear {
+	clear:both;
+	line-height:0;
+	overflow:hidden;
+}
+/*ıı*/
+textarea {
+	border: #eee 1px solid;
+}
+.ipt, .ipth {
+	border:1px solid #B2C5BB;
+	height:14px;
+	line-height:14px;
+	padding:2px;
+	background:#F1F5F4;
+}
+.ipt:hover, .ipth {
+	border:1px solid #6A690E;
+	color:#000;
+	background:#ffc
+}
+.ipt18px {
+	width:18px;
+}
+.wid13 {
+	width:13%;
+}
+.wid37 {
+	width:37%;
+}
+.wid10 {
+	width:10%;
+}
+.wid20 {
+	width:20%;
+}
+.wid30 {
+	width:30%;
+}
+.wid40 {
+	width:40%;
+}
+.wid50 {
+	width:50%;
+}
+.wid60 {
+	width:60%;
+}
+.wid70 {
+	width:70%;
+}
+.wid80 {
+	width:80%;
+}
+.wid90 {
+	width:90%;
+}
+.wid92 {
+	width:92%;
+}
+.wid98 {
+	width:98%;
+	margin:0 auto;
+}
+.wid10px {
+	width:10px;
+}
+.wid20px {
+	width:20px;
+}
+.wid28px {
+	width:28px;
+}
+.wid30px {
+	width:30px;
+}
+.wid50px {
+	width:50px;
+}
+.wid70px {
+	width:70px;
+}
+.wid100px {
+	width:100px;
+}
+
+.timeipt{ background:url(../images/time.gif) no-repeat 120px 1px ;
+	width:135px;}
+.dateipt{ background:url(../images/date.gif) no-repeat 85px 1px ;
+	width:100px;}	
+	
+.wid130px {
+	width:130px;
+}
+.wid150px {
+	width:150px;
+}
+.wid400px {
+	width:400px;
+}
+.hei40 {
+	height:40px;
+	overflow:visible;
+}
+.hei100 {
+	height:100px;
+	overflow:visible;
+}
+.hei80 {
+	height:60px;
+	overflow:visible;
+}
+.hei300 {
+	height:300px;
+	overflow:visible;
+}
+.loginipt {
+	background:#E8F5EE;
+	color:#000;
+	border:#80BA94 1px solid;
+	width:150px;
+	height:19px;
+	line-height:19px;
+	padding-top:3px;
+	padding-left:5px;
+}
+/*按钮*/
+html>body .btn {
+	outline:none;
+}/*FF, Opera*/
+ .btn:focus::-moz-focus-inner {
+ border-color:transparent;
+}/*FF去按钮虚线框*/
+.btn {
+	padding:1px 14px;
+	*padding:0px 7px;
+	height:25px;
+	line-height:25px;
+	*height:25px;
+	*line-height:22px;
+	font-size:12px;
+	color:#333;
+	border:1px solid #818487;
+	background:#fff url(btn.jpg) repeat-x left -34px;
+	*background:#fff url(btn.jpg) repeat-x left -37px;
+}/*按钮形状*/
+.btn:hover, .btnh {
+	background:url(../images/btn.jpg) repeat-x left top;
+	border:1px solid #7398B3;
+	color:#292D30;
+	border:1px solid #3C80B1;
+	outline:none;
+}
+.btn2 {
+	height:20px;
+	line-height:21px;
+	font-weight:bold;
+}
+.btn2 a {
+	background:url(../images/btn2.gif) no-repeat left top;
+	padding:3px 0px 3px 5px;
+ 	*padding:0px 0 0px 5px;
+}
+.btn2 a span {
+	background:url(../images/btn2.gif) no-repeat right top;
+	padding:3px 13px 3px 7px;
+	color:#000;
+}
+.btn2 a:hover {
+	background:url(../images/btn2h.gif) no-repeat left top;
+}
+.btn2 a:hover span {
+	background:url(../images/btn2h.gif) no-repeat right top;
+	text-decoration:none;
+	padding:3px 13px 3px 7px;
+	cursor:pointer;
+	color:#000;
+}
+/*½ʽ趨*/
+#logintop {
+	height: 290px;
+	width: 954px;
+}
+#login {
+	background: url(../images/loginbg.jpg) no-repeat;
+	height: 167px;
+	width: 622px;
+	padding:90px 0 0 75px;
+}
+#login label, #login select {
+	font-size:14px;
+	font-weight:bold;
+	line-height:24px;
+	margin-left:15px;
+	height:24px;
+}
+#login option {
+	line-height:25px;
+}
+#login h1 {
+	padding:20px 0 0 372px
+}
+#foot {
+	background:#E0E0E0;
+	line-height:30px;
+	height:30px;
+	text-align:center;
+	position:absolute;
+	bottom:0;
+	width:100%;
+}
+/*******ǹheadĶ --------------------------------------*******/
+#head {
+	background:url(../images/topbg.jpg) repeat-x top;
+}
+#headlf {
+	background:url(../images/topl.jpg) no-repeat left top;
+	width:568px;
+	height:78px;
+	float:left;
+}/*ͷ*/
+#headuser {
+}
+#headrt {
+	background:url(../images/topr.jpg) no-repeat right top;
+	height:78px;
+	line-height:78px;
+	white-space:nowrap;
+}
+/******* --------------------------------------ǹnav ڶеĶ*******/
+.subnav {
+	background:#fff url(../images/subnavbg.jpg) repeat-x;
+}
+
+div.sdmenu {
+	width: 150px;
+	font-weight:bold;
+	text-align:center;
+	margin:0px 10px 10px;
+	_margin:0px 5px 10px;
+	border:1px solid #ADC2D7;
+	overflow:visible;
+	float:left;
+}
+div.sdmenu div {
+	overflow: hidden;
+	cursor:pointer;
+}
+div.sdmenu div:first-child {
+}
+div.sdmenu div.collapsed {
+	height: 30px;
+	cursor:pointer;
+	border-bottom:1px solid #ADC2D7;
+}
+div.sdmenu div span{
+	display: block;
+	font-weight: bold;
+	font-size: 14px;
+	line-height:30px;
+	background:#E1ECFE;
+	cursor: default;
+	border-bottom:1px solid #AEC1D7;
+	cursor:pointer;
+}
+div.sdmenu div.collapsed span { 
+}
+div.sdmenu div a:link,div.sdmenu div a:visited {
+	display: block;
+	color: #066;
+	font-weight:bold;
+	background :url(../images/navicon.jpg) no-repeat center 10px;
+	padding:50px 0 15px 0;
+	color:#0051E0;
+}
+div.sdmenu div a:hover {
+	color: #009F3E;
+	text-decoration:none;
+	background :url(../images/naviconh.jpg) no-repeat center 10px;
+}
+div.sdmenu div span a:link,div.sdmenu div span a:visited {
+	display: block;
+	font-weight: bold;
+	font-size: 14px;
+	line-height:30px;
+	background:#E1ECFE;
+	cursor:default;
+	padding:0;
+	height:30px;
+	color:#333;}
+div.sdmenu div span a:hover{color: #009F3E; background:#F7F8E6;}
+div.sdmenu div a.current {
+}
+/* 现在位置*/
+.xzwz {
+	padding-left:10px;
+	height:25px;
+}
+.xzwz, .caozuo h6, .xzwz a, .caozuo h6 a, .fenye h6, .fenye h6 a {
+	color:#0070B7;
+}
+.xzwz a:hover, .caozuo h6 a:hover, .fenye h6 a:hover {
+	color:#00A571;
+}
+.xzwz h1 {
+	float:left;
+	line-height:20px;
+}
+.xzwz h6 {
+	padding-top:-2px;
+}
+/*操作区域*/	  	
+.caozuo {
+	background:url(../images/czbg.jpg) repeat-x;
+	border:1px solid #D1D1D1;
+	height:28px;
+	overflow:hidden;
+	padding-top:4px;
+	margin-bottom:10px;
+	width:98%;
+}
+.caozuo ul {
+	padding-left:10px;
+	float:left;
+}
+.caozuo li {
+	display:inline;
+}
+.caozuo li a {
+	background:url(../images/czbtn.gif) no-repeat left top;
+	padding:6px 0px 5px 3px;
+	 *padding:0px 0 0 3px;
+	line-height:24px;
+	*line-height:25px;
+}
+.caozuo li a span {
+	padding:6px 10px 5px 8px;
+	text-decoration:none;
+	white-space:nowrap;
+	background:url(../images/czbtn.gif) no-repeat right top;
+}
+.caozuo li a:hover {
+	background:url(../images/czbtn.gif) no-repeat left -33px;
+	text-decoration:none;
+	cursor:pointer;
+	color:#039;
+}
+.caozuo li a:hover span {
+	background:url(../images/czbtn.gif) no-repeat right -33px;
+}
+/*表格 列表数据型的表格*/
+
+.tbhs, .tbhs1, .tbhs2 , .tbhsno {
+	width:98%;
+}
+.tbhs td, .tbhs th, .tbhs1 td, .tbhs1 th, .tbhs caption, .tbhs1 caption,.tbhs2 td,.tbhs2 th ,.tbhsno td,.tbhsno th{
+	border:1px solid #DEDEDE;
+	padding:3px 5px;
+	line-height:18px;
+}
+.tbhsno td,.tbhsno th,.tbhs1 td td td, .tbhs1 th  td th{ border:0;}
+.tbhs1 td td td{ border-bottom:1px solid #DEDEDE;}
+.tbhs1 td td table{width:90%;
+	padding:-5px;}
+.tbhsno td,.tbhsno th{ border:0;}
+.tbhs td p,.tbhs1 td p{line-height:18px;}
+.tbhs th, .tbhs1 th,.tbhs2 th {
+	color:#037AA2;
+	background:#E6F0F6;
+}
+.tbhs1 th {
+	text-align:right;
+	padding-right:10px;
+}
+.tbhs caption, .tbhs1 caption {
+	font-weight:bold;
+	background:#fff;
+	border:none;
+}
+.tbhs tr:hover {
+	background:#F9FAE4;
+	color:#000;
+}
+.tbhs, .tbhs1 {
+	border-left:2px solid #DEDEDE;
+	*border-left:1px solid #DEDEDE;
+	border-left:1px solid #DEDEDE\9;/* ie8兼容*/
+	border-top:2px solid #037AA2;
+	border-bottom:2px solid #037AA2
+}
+.tbhs1 {
+	border-bottom:0;
+}
+.tbhs1 tfoot {
+	border-top:2px solid #037AA2;
+}
+.tbhs1 tfoot td {
+	/*border:0*/
+	padding:10px 5px;
+}
+.tbhs2 td,.tbhs2 th{padding:2px;
+	text-align:left;}
+.tbhs1 th td{ color:#333;}
+.tbtext {
+	width:98%;
+}
+.tbtext td, .tbtext th {
+	padding:5px;
+	border:#ddd solid 1px;
+}
+.tbtext th, .tbtext lable {
+	color:#222;
+	text-align:right;
+	background:#EFEEE9;
+}
+.tbtext caption {
+	font-weight:bold;
+	padding-bottom:10px;
+	color:#900;
+}
+.find {
+	margin-bottom:5px;
+}
+.find td, .find th {
+	padding:2px 5px;
+	white-space: nowrap;
+}
+.find th { text-align:right;
+	min-width:60px;}
+/*分页效果的当前文字样式*/
+.fenye {
+	width:98%;
+}
+.fenye h3 {
+	float:left;
+	color:#666;
+}
+.fenye h6, .fenye h3 {
+	padding:8px;
+}
+.fenye h3 input{ vertical-align: middle;}
+/*******ǹڲ˵tabĶ --------------------------------------*******/
+ #tabs1 {
+	width:100%;
+	line-height:25px;
+	margin:0 auto;
+}
+#tabs1 ul {
+	margin-left:5%;
+}
+#tabs1 li {
+	display:inline;
+	float:left;
+	margin-right:2px;
+	font-weight:bold;
+	color:#fff;
+}
+#tabs1 a {
+	float:left;
+	background:url(../images/navf.jpg) no-repeat left top;
+	padding:0 0 0 5px;
+	line-height:25px;
+	text-decoration:none;
+	color:#fff;
+	white-space:normal;
+}
+#tabs1 a span {
+	float:left;
+	display:block;
+	padding:4px 15px 5px 10px;
+	overflow:hidden;
+	font-size:14px;
+	float:none;
+	cursor:pointer;
+}
+#tabs1 a:hover, #tabs1 li.hover {
+	background:url(../images/navon.jpg) no-repeat left top;
+}
+#tabs1 a:hover span, #tabs1 li.hover span {
+	background:url(../images/navon.jpg) no-repeat right top;
+	color:#0070B7;
+	font-weight:bold
+	cursor:pointer;
+}
+#tabs1 li.hover {
+	padding-left:5px;
+}
+#tabs1 li.hover a {
+	background:#fff
+}
+/*Ķ*/
+.fbold {
+	font-weight:bold;
+}
+.f14 {
+	font-size:14px;
+}
+.fwhite, .fwhite a:link, .fwhite a:visited {
+	color:#fff;
+}
+.fwhite a:hover {
+	color:#a00;
+}
+.fhs, .fhs a:link, .fhs a:visited {
+	color:#999;
+}
+.fhs a:hover {
+	color:#a00;
+}
+.fred, .fred a:link, .fred a:visited {
+	color:#f33;
+}
+.fred a:hover {
+	color:#a00;
+}
+.fred1, .fred1 a:link, .fred1 a:visited {
+	color:#7F0000;
+}
+.fred1 a:hover {
+	color:#a00;
+}
+.fblue, .fblue a:link, .fblue a:visited {
+	color:#4077BF;
+}
+.fblue a:hover {
+	color:#a00;
+}
+.fblue2, .fblue2 a:link, .fblue2 a:visited {
+	color:#036;
+}
+.fblue2 a:hover {
+	color:#c60;
+}
+.fu, .fu a {
+	text-decoration:underline;
+}
+.flh30{ line-height:30px;}
+input[type=”text”]:focus, input[type=”password”]:focus,textarea:focus, input[type=”file”]:focus {
+	background:#F8FFDC;
+}
+/* ie6不支持 */
+
+/*弹出层样式*/
+#container div{margin-top:5px;}
+#select_city h3{float:left;}
+#main_city,#all_province {clear:both;}
+#main_city div,#all_province div{width:600px;clear:left;}
+#main_city h4,#all_province h4{float:left;display:inline;font-size:16px;}
+#main_city div span,#all_province div span{margin:10px;cursor:pointer;font-size:12px;}
+#float_lay,.float_lay{width:200px;height:120px;border:3px #147BC1 solid;position:absolute;background:#fff;z-index:999;display:none;}
+.divipt input{ vertical-align:middle; }
+.tcdiv{ width:670px;
+	height:430px;
+	overflow: auto;}
+	
+.displaysq{ 
+	cursor:pointer; 
+	background:url(../images/displays.gif) no-repeat 0 5px ; 
+	width:14px; height:14px;
+	display:inline;
+	display:inline-block;
+	float:left; }
+.displayzk{ 
+	cursor:pointer; 
+	background:url(../images/displayz.gif) no-repeat 0 5px ; 
+	width:14px; height:14px;
+	display:inline;
+	display:inline-block;
+	float:left; 
+}
+	
+/*add by qhb for display error message*/
+.errormsg{
+	color:red;
+	text-align:center;
+	height:12px;
+	display:block;
+	padding-top:5px;	
+	padding-bottom:5px;	
+	font-size:12px;
+}

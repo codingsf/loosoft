@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:s="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd"
+	default-lazy-init="true">
+	<!-- 用工企业人登陆权限控制配置文件 -->
+	<description>SpringSecurity安全配置</description>
+
+	<!-- http安全配置 -->
+	<s:http auto-config="true" use-expressions="true">
+		<s:intercept-url pattern="/css/**" filters="none" />
+		<s:intercept-url pattern="/img/**" filters="none" />
+		<s:intercept-url pattern="/js/**" filters="none" />
+		<s:intercept-url pattern="/salary/group-audit-salary.action" filters="none" />
+
+		<s:intercept-url pattern="/index.*" access="hasAnyRole('ROLE_勤工助学系统')" />
+		
+		<s:intercept-url pattern="/news/news.action" access="hasAnyRole('ROLE_勤工助学_后台_新闻浏览')" />
+		<s:intercept-url pattern="/news/news!input.action" access="hasAnyRole('ROLE_勤工助学_新闻新增')" />
+		
+		<s:intercept-url pattern="/company/company.action" access="hasAnyRole('ROLE_勤工助学_单位浏览')" />
+		<s:intercept-url pattern="/company/company!input.action" access="hasAnyRole('ROLE_勤工助学_单位新增')" />
+		
+		<s:intercept-url pattern="/account/user.action" access="hasAnyRole('ROLE_勤工助学_用户浏览')" />
+		<s:intercept-url pattern="/account/user!input.action" access="hasAnyRole('ROLE_勤工助学_用户新增')" />
+		<s:intercept-url pattern="/account/role.action" access="hasAnyRole('ROLE_勤工助学_角色浏览')" />
+		<s:intercept-url pattern="/account/role!input.action" access="hasAnyRole('ROLE_勤工助学_角色新增')" />
+		
+		<s:intercept-url pattern="/job/jobs-apply.action" access="hasAnyRole('ROLE_勤工助学_岗位浏览')" />
+		<s:intercept-url pattern="/job/jobs-apply!input.action" access="hasAnyRole('ROLE_勤工助学_岗位新增')" />
+		
+		<s:intercept-url pattern="/job/jobs-pub.action" access="hasAnyRole('ROLE_勤工助学_岗位浏览')" />
+		
+		<s:intercept-url pattern="/job/stucheck.action" access="hasAnyRole('ROLE_勤工助学_申请审核')" />
+		
+	    <s:intercept-url pattern="/job/sturecheck.action" access="hasAnyRole('ROLE_勤工助学_申请复审')" />
+	    
+	    <s:intercept-url pattern="/job/chose.action" access="hasAnyRole('ROLE_勤工助学_用工选择')" />
+	    
+	    <s:intercept-url pattern="/job/create-stu-jobs.action" access="hasAnyRole('ROLE_勤工助学_工资核发_工资提交')" />
+	    <s:intercept-url pattern="/salary/create-salary!modifyList.action" access="hasAnyRole('ROLE_勤工助学_工资核发_工资修改')" />
+
+	    <s:intercept-url pattern="/salary/center-audit-salary.action" access="hasAnyRole('ROLE_勤工助学_工资核发_中心审核工资')" />
+	    <s:intercept-url pattern="/salary/print-salary.action" access="hasAnyRole('ROLE_勤工助学_工资核发_中心工资打印')" />
+	    <s:intercept-url pattern="/file/upload.action" access="hasAnyRole('ROLE_勤工助学_资料上传')" />
+	    <s:intercept-url pattern="/file/upload!down.action" access="hasAnyRole('ROLE_勤工助学_资料下载')" />
+	    
+		<s:intercept-url pattern="/sys/news-type.action" access="hasAnyRole('ROLE_勤工助学_系统设置')" />
+		<s:form-login login-page="/login.action" default-target-url="/" authentication-failure-url="/login.action?error=true" />
+		<s:logout logout-success-url="/" logout-url="/logout" />
+		<s:remember-me key="e37f4b31-0c45-11dd-bd0b-0800200c9a66" />		
+	</s:http>
+
+	<!-- 认证配置, 使用userDetailsService提供的用户信息 -->
+	<s:authentication-manager alias="authenticationManager">
+		<s:authentication-provider user-service-ref="userDetailsService">
+			<s:password-encoder hash="plaintext" />
+		</s:authentication-provider>
+	</s:authentication-manager>
+
+
+	<!-- 项目实现的用户查询服务 -->
+	<bean id="userDetailsService" class="cn.loosoft.stuwork.workstudy.service.account.UserDetailsServiceImpl" />
+</beans>

@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:s="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd"
+	default-lazy-init="true">
+
+	<description>SpringSecurity安全配置</description>
+
+	<!-- http安全配置 
+	<s:http auto-config="true" use-expressions="true">
+		<s:intercept-url pattern="/css/**" filters="none" />
+		<s:intercept-url pattern="/img/**" filters="none" />
+		<s:intercept-url pattern="/js/**" filters="none" />
+		
+		<s:intercept-url pattern="/index.*" access="hasAnyRole('ROLE_勤工助学系统')" />
+		
+		<s:intercept-url pattern="/news/news.action" access="hasAnyRole('ROLE_勤工助学_后台_新闻浏览')" />
+		<s:intercept-url pattern="/news/news!input.action" access="hasAnyRole('ROLE_勤工助学_新闻新增')" />
+		
+		<s:intercept-url pattern="/company/company.action" access="hasAnyRole('ROLE_勤工助学_单位浏览')" />
+		<s:intercept-url pattern="/company/company!input.action" access="hasAnyRole('ROLE_勤工助学_单位新增')" />
+		
+		<s:intercept-url pattern="/account/user.action" access="hasAnyRole('ROLE_勤工助学_用户浏览')" />
+		<s:intercept-url pattern="/account/user!input.action" access="hasAnyRole('ROLE_勤工助学_用户新增')" />
+		<s:intercept-url pattern="/account/role.action" access="hasAnyRole('ROLE_勤工助学_角色浏览')" />
+		<s:intercept-url pattern="/account/role!input.action" access="hasAnyRole('ROLE_勤工助学_角色新增')" />
+		
+		<s:intercept-url pattern="/job/jobs-apply.action" access="hasAnyRole('ROLE_勤工助学_岗位浏览')" />
+		<s:intercept-url pattern="/job/jobs-apply!input.action" access="hasAnyRole('ROLE_勤工助学_岗位新增')" />
+		
+		<s:intercept-url pattern="/job/jobs-pub.action" access="hasAnyRole('ROLE_勤工助学_岗位发布')" />
+		
+		<s:intercept-url pattern="/job/stucheck.action" access="hasAnyRole('ROLE_勤工助学_申请审核')" />
+		
+	    <s:intercept-url pattern="/job/sturecheck.action" access="hasAnyRole('ROLE_勤工助学_申请复审')" />
+	    
+	    <s:intercept-url pattern="/job/chose.action" access="hasAnyRole('ROLE_勤工助学_用工选择')" />
+	    
+	    <s:intercept-url pattern="/job/create-stu-jobs.action" access="hasAnyRole('ROLE_勤工助学_工资核发_工资提交')" />
+	    <s:intercept-url pattern="/salary/create-salary!modifyList.action" access="hasAnyRole('ROLE_勤工助学_工资核发_工资修改')" />
+	    <s:intercept-url pattern="/salary/group-audit-salary.action" access="hasAnyRole('ROLE_勤工助学_工资核发_小组审核工资')" />
+	    <s:intercept-url pattern="/salary/center-audit-salary.action" access="hasAnyRole('ROLE_勤工助学_工资核发_中心审核工资')" />
+	    <s:intercept-url pattern="/salary/print-salary.action" access="hasAnyRole('ROLE_勤工助学_工资核发_中心工资打印')" />
+	    <s:intercept-url pattern="/file/upload.action" access="hasAnyRole('ROLE_勤工助学_资料上传')" />
+	    <s:intercept-url pattern="/file/upload!down.action" access="hasAnyRole('ROLE_勤工助学_资料下载')" />
+	    
+		<s:intercept-url pattern="/sys/news-type.action" access="hasAnyRole('ROLE_勤工助学_系统设置')" />
+		
+		<s:form-login login-page="/login.action" default-target-url="/" authentication-failure-url="/login.action?error=true" />
+		<s:logout logout-success-url="/" logout-url="/logout" />
+		<s:remember-me key="e37f4b31-0c45-11dd-bd0b-0800200c9a66" />		
+	</s:http>
+
+
+	<s:authentication-manager alias="authenticationManager">
+		<s:authentication-provider user-service-ref="userDetailsService">
+			<s:password-encoder hash="plaintext" />
+		</s:authentication-provider>
+	</s:authentication-manager>
+	-->
+	
+	<!--Enable security, let the casAuthenticationEntryPoint handle all intercepted urls. 
+		 The CAS_FILTER needs to be in the right position within the filter chain.
+     -->
+     <s:http entry-point-ref="casAuthenticationEntryPoint" auto-config="false">
+     	<s:intercept-url pattern="/css/**" filters="none" />
+		<s:intercept-url pattern="/img/**" filters="none" />
+		<s:intercept-url pattern="/js/**" filters="none" />
+		
+		<s:intercept-url pattern="/index.*" access="ROLE_勤工助学系统" />
+		
+		<s:intercept-url pattern="/news/news.action" access="ROLE_勤工助学_后台_新闻浏览" />
+		<s:intercept-url pattern="/news/news!input.action" access="ROLE_勤工助学_新闻新增" />
+		
+		<s:intercept-url pattern="/company/company.action" access="ROLE_勤工助学_单位浏览" />
+		<s:intercept-url pattern="/company/company!input.action" access="ROLE_勤工助学_单位新增" />
+		
+		<s:intercept-url pattern="/account/user.action" access="ROLE_勤工助学_用户浏览" />
+		<s:intercept-url pattern="/account/user!input.action" access="ROLE_勤工助学_用户新增" />
+		<s:intercept-url pattern="/account/role.action" access="ROLE_勤工助学_角色浏览" />
+		<s:intercept-url pattern="/account/role!input.action" access="ROLE_勤工助学_角色新增" />
+		
+		<s:intercept-url pattern="/job/jobs-apply.action" access="ROLE_勤工助学_岗位浏览" />
+		<s:intercept-url pattern="/job/jobs-apply!input.action" access="ROLE_勤工助学_岗位新增" />
+		
+		<s:intercept-url pattern="/job/jobs-pub.action" access="ROLE_勤工助学_岗位审核" />
+		
+		<s:intercept-url pattern="/job/stucheck.action" access="ROLE_勤工助学_申请审核" />
+		
+	    <s:intercept-url pattern="/job/sturecheck.action" access="ROLE_勤工助学_申请复审" />
+	    
+	    <s:intercept-url pattern="/job/chose.action" access="ROLE_勤工助学_用工选择" />
+	    
+	    <s:intercept-url pattern="/job/create-stu-jobs.action" access="ROLE_勤工助学_工资核发_工资提交" />
+	    <s:intercept-url pattern="/salary/create-salary!modifyList.action" access="ROLE_勤工助学_工资核发_工资修改" />
+	    <s:intercept-url pattern="/salary/group-audit-salary.action" access="ROLE_勤工助学_工资核发_小组审核工资" />
+	    <s:intercept-url pattern="/salary/center-audit-salary.action" access="ROLE_勤工助学_工资核发_中心审核工资" />
+	    <s:intercept-url pattern="/salary/print-salary.action" access="ROLE_勤工助学_工资核发_中心工资打印" />
+	    <s:intercept-url pattern="/file/upload.action" access="ROLE_勤工助学_资料上传" />
+	    <s:intercept-url pattern="/file/upload!down.action" access="ROLE_勤工助学_资料下载" />
+	    
+		<s:intercept-url pattern="/sys/news-type.action" access="ROLE_勤工助学_系统设置" />
+		
+			
+	    <s:custom-filter position="CAS_FILTER" ref="casAuthenticationFilter"></s:custom-filter>
+	 	<s:logout logout-success-url="${cas.securityContext.logoutUrl}" logout-url="/logout" />
+	 </s:http>
+
+	<!--  Required for the casProcessingFilter, so define it explicitly set and
+	      specify an Id Even though the authenticationManager is created by 
+			 default when namespace based config is used.-->
+	<s:authentication-manager alias="authenticationManager">
+		<s:authentication-provider ref="casAuthenticationProvider"></s:authentication-provider>
+	</s:authentication-manager> 
+	
+	<bean id="authenticationSuccessHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+		<property name="defaultTargetUrl" value="/index.jsp"></property>
+		<property name="targetUrlParameter" value="targetUrl"></property>		
+	</bean>
+	  
+	<!-- This section is used to configure CAS. The service is the 
+		 actual redirect that will be triggered after the CAS login sequence. 22     -->
+	<bean id="serviceProperties" class="org.springframework.security.cas.ServiceProperties">
+		<property name="service" value="${cas.securityContext.serviceProperties.service}"></property>
+		<property name="sendRenew" value="false"></property>
+	</bean>  
+	
+	 <!-- The CAS filter handles the redirect from the CAS server and starts the ticket validation. 29     --> 
+	<bean id="casAuthenticationFilter" class="org.springframework.security.cas.web.CasAuthenticationFilter">
+		<property name="authenticationManager" ref="authenticationManager"></property>
+		<property name="filterProcessesUrl" value="${cas.securityContext.filterProcessesUrl}"></property>
+		<property name="authenticationSuccessHandler" ref="authenticationSuccessHandler"></property>
+    </bean> 
+    
+	<!--The entryPoint intercepts all the CAS authentication requests.
+		It redirects to the CAS loginUrl for the CAS login page. 36     -->
+	<bean id="casAuthenticationEntryPoint" class="org.springframework.security.cas.web.CasAuthenticationEntryPoint">
+		<property name="loginUrl" value="${cas.securityContext.casProcessingFilterEntryPoint.loginUrl}"></property>
+		<property name="serviceProperties" ref="serviceProperties"></property> 
+	</bean> 
+	<!--  42         Handles the CAS ticket processing. 43      --> 
+	<bean id="casAuthenticationProvider" class="org.springframework.security.cas.authentication.CasAuthenticationProvider">
+		<property name="userDetailsService" ref="userDetailsService"></property>
+		<property name="serviceProperties" ref="serviceProperties"></property>
+		<property name="ticketValidator">
+			<bean class="org.jasig.cas.client.validation.Cas20ServiceTicketValidator">
+			<constructor-arg index="0" value="${cas.securityContext.ticketValidator.casServerUrlPrefix}"></constructor-arg>
+			</bean>
+		</property>
+		<property name="key" value="cas"></property>
+	</bean>
+	
+	
+
+	<!-- 项目实现的用户查询服务 -->
+	<bean id="userDetailsService" class="cn.loosoft.stuwork.workstudy.service.account.UserDetailsServiceImpl" />
+</beans>

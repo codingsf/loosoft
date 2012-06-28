@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:jaxws="http://cxf.apache.org/jaxws"  
+    xsi:schemaLocation="http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans.xsd"  
+    default-autowire="byType" default-lazy-init="true">
+
+	<description>apache cxf web services</description>
+
+	<import resource="classpath*:META-INF/cxf/cxf.xml" />  
+	<import resource="classpath*:META-INF/cxf/cxf-extension-soap.xml" />  
+	<import resource="classpath*:META-INF/cxf/cxf-servlet.xml" />
+	  
+
+   
+      <jaxws:endpoint id="newsWebService"
+        address="/news">
+        <jaxws:implementor>
+        	<bean id="newsWebServiceImpl" class="cn.loosoft.stuwork.workstudy.webservice.news.NewsWebServiceImpl">
+        		<!--
+        		<property name="clazzManager" ref="clazzManager"></property>
+        		-->
+        	</bean>
+        </jaxws:implementor>
+      </jaxws:endpoint>
+        
+      <jaxws:endpoint id="jobsWebService"
+      address="/jobs">
+      <jaxws:implementor>
+      	<bean id="jobsWebServiceImpl" class="cn.loosoft.stuwork.workstudy.webservice.jobs.JobsWebServiceImpl">
+      	</bean>
+      </jaxws:implementor>
+   </jaxws:endpoint>
+   
+   <jaxws:endpoint id="studentJobsWebService"
+        address="/studentJobs">
+        <jaxws:implementor>
+        	<bean id="studentJobsWebServiceImpl" class="cn.loosoft.stuwork.workstudy.webservice.query.StudentJobsWebServiceImpl">
+        		<!--
+        		<property name="clazzManager" ref="clazzManager"></property>
+        		-->
+        	</bean>
+        </jaxws:implementor>
+   </jaxws:endpoint>
+   
+    <jaxws:endpoint id="salaryWebService"
+        address="/salary">
+        <jaxws:implementor>
+        	<bean id="salaryWebServiceImpl" class="cn.loosoft.stuwork.workstudy.webservice.query.SalaryWebServiceImpl">
+        		<!--
+        		<property name="clazzManager" ref="clazzManager"></property>
+        		-->
+        	</bean>
+        </jaxws:implementor>
+   </jaxws:endpoint>
+   
+</beans>

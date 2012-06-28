@@ -1,0 +1,98 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/common/taglibs.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>学生申请岗位查询</title>
+<%@ include file="/common/meta.jsp"%>
+<%@ include file="/common/jscss.jsp"%>
+<script type="text/javascript" src="${ctx }/js/headerQuery.js"></script>
+<script type="text/javascript">
+	<!--
+	    $(document).ready(function(){
+	         $("#queryButton").click(function(){
+	                var helloDivObj = $("#filter");   
+	                var buttonObj = $("#queryButton");   
+	                var val = buttonObj.text();
+	               if(val=="隐藏查询"){
+	                    helloDivObj.hide(); 
+	                    buttonObj.text("显示查询");  
+	                }else{   
+	                    helloDivObj.show();  
+	                    buttonObj.text("隐藏查询"); 
+	                }   
+	          });
+	          
+			$("#delbut").click(
+			   function(){
+			       if($("input:checked").length==0) {
+			            alert("没有可删除记录,请勾选");
+			            return false;
+			       } 
+			       if(!confirm('您确定要删除吗?')) return  false;
+	
+				   $("#deleteForm").submit();
+			 });  
+
+			$("#queryButton").click();
+			
+		   $("#checkboxall").click(function(){
+			     $("input[name='ids']").attr("checked",$(this).attr("checked"));
+			});
+	    }); 
+	-->
+	</script>
+</head>
+<body>
+<div class="xzwz">
+<h1>学生申请岗位查询</h1>
+</div>
+<div class="caozuo">
+<ul>
+	<li><a><span id="queryButton">显示查询</span></a></li>
+</ul>
+</div>
+<form id="searchForm" action="${ctx}/query/student-apply-jobs!list.action" method="post">
+<div id="filter" class="fenye" style="display: none">
+	<h3>
+	 姓名: <input type="text" name="filter_LIKES_studentName" value="${param['filter_LIKES_studentName']}" style="width: 100px"/>
+	 学号: <input type="text" name="filter_EQS_studentNo" value="${param['filter_EQS_studentNo']}" style="width: 100px"/>
+	 申请时间:<input name="filter_EQD_applyDate" id="applyDate"
+			value="${param['filter_EQD_applyDate']}" 
+			type="text" class="Wdate" class="ipt wid20 " onclick="WdatePicker()" />
+	<span class="btn2"><a href="javascript:search();"   title="查 询"><span>查 询</span></a>&nbsp;<a href="javascript:void(0);" id="mainformreset" href="javascript:search();" title="重置查询条件"><span>重置查询条件</span></a></span>
+	<input type="reset" style="display:none;" id="resetbutton"/>
+	</h3>
+ <div class="clear"></div>
+</div> 
+<input type="hidden" name="page.pageNo" id="pageNo" value="${page.pageNo}" /> 
+<input type="hidden" name="page.orderBy" id="orderBy" value="${page.orderBy}" /> 
+<input type="hidden" name="page.order" id="order" value="${page.order}" />
+</form>
+<div id="message"><s:actionmessage theme="custom" cssClass="success" /></div>
+<table class="tbhs" width="95%">
+	<tr>
+		<th>姓名</th>
+		<th>学号</th>
+		<th>申请岗位</th>
+		<th>申请时间</th>
+		<th>通过时间</th>		
+		<th>申请原因</th>
+	</tr>
+	
+	<s:iterator value="page.result">
+		<tr>
+			<td>${studentName}</td>		
+			<td>${studentNo}</td>
+			<td>${jobsName}&nbsp;</td>
+			<td><fmt:formatDate value="${applyDate}" type="date" pattern="yyyy-MM-dd"/>&nbsp;</td>
+			<td><fmt:formatDate value="${choseDate}" type="date" pattern="yyyy-MM-dd"/>&nbsp;</td>			
+			<td>${applyReason}&nbsp;</td>
+		</tr>
+	</s:iterator>
+</table>
+<%@ include file="/common/turnpage.jsp"%>
+</body>
+</html>

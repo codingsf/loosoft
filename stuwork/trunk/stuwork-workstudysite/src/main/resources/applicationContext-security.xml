@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:s="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd"
+	default-lazy-init="true">
+
+	<description>SpringSecurity安全配置</description>
+
+	<!-- http安全配置 -->
+	<s:http auto-config="true" use-expressions="true">
+		<s:intercept-url pattern="/css/**" filters="none" />
+		<s:intercept-url pattern="/img/**" filters="none" />
+		<s:intercept-url pattern="/js/**" filters="none" />
+		
+		<s:intercept-url pattern="/index.*" access="hasAnyRole('ROLE_勤工助学系统_前台')" />
+		<s:intercept-url pattern="/news/news.action" access="hasAnyRole('ROLE_勤工助学_前台_新闻浏览')" />
+		<s:intercept-url pattern="/jobs/jobs-apply.action" access="hasAnyRole('ROLE_勤工助学_前台_岗位申请')" />
+		
+		<s:intercept-url pattern="/jobs/student-apply-jobs.action" access="hasAnyRole('ROLE_勤工助学_信息查询_学生申请岗位查询')" />
+		<s:intercept-url pattern="/query/jobs-query.action" access="hasAnyRole('ROLE_勤工助学_信息查询_岗位查询')" />
+	    <s:intercept-url pattern="/query/salary-query.action" access="hasAnyRole('ROLE_勤工助学_信息查询_学生工资查询')" />
+	    <s:intercept-url pattern="/query/student-apply-jobs.action" access="hasAnyRole('ROLE_勤工助学_信息查询_学生申请岗位查询')" />
+	    
+	    <s:intercept-url pattern="/query/jobs-check-query.action" access="hasAnyRole('ROLE_勤工助学_状态查询_岗位审批进度查询')" />
+	    <s:intercept-url pattern="/query/student-check-query.action" access="hasAnyRole('ROLE_勤工助学_状态查询_学生审批进度查询')" />
+		
+		<s:form-login login-page="/login.action" default-target-url="/" authentication-failure-url="/login.action?error=true" />
+		<s:logout logout-success-url="/" logout-url="/logout" />
+		<s:remember-me key="e37f4b31-0c45-11dd-bd0b-0800200c9a66" />
+	</s:http>
+
+	<!-- 认证配置, 使用userDetailsService提供的用户信息 -->
+	<s:authentication-manager alias="authenticationManager">
+		<s:authentication-provider user-service-ref="userDetailsService">
+			<s:password-encoder hash="plaintext" />
+		</s:authentication-provider>
+	</s:authentication-manager>
+
+
+	<!-- 项目实现的用户查询服务 -->
+	<bean id="userDetailsService" class="cn.loosoft.stuwork.workstudysite.service.account.UserDetailsServiceImpl" />
+</beans>

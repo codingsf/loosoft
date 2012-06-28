@@ -1,0 +1,16 @@
+2011-11-14 13:56:20,823 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.workstudysite.entity.file.FileUpDown]; using defaults.
+2011-11-14 13:56:21,417 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.workstudysite.entity.company.Company]; using defaults.
+2011-11-14 13:56:21,426 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.workstudysite.entity.account.User]; using defaults.
+2011-11-14 13:56:21,514 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.workstudysite.entity.account.Role]; using defaults.
+2011-11-14 13:56:21,519 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.workstudysite.entity.account.Authority]; using defaults.
+2011-11-14 13:56:21,525 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.workstudysite.entity.sys.Commitment]; using defaults.
+2011-11-14 13:56:21,530 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.workstudysite.entity.job.Jobs]; using defaults.
+2011-11-14 13:56:21,542 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.workstudysite.entity.news.News]; using defaults.
+2011-11-14 13:56:21,547 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.workstudysite.entity.job.StudentJobs]; using defaults.
+2011-11-14 13:56:21,559 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.workstudysite.entity.salary.Salary]; using defaults.
+2011-11-14 13:56:21,594 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.workstudysite.entity.account.User.roleList]; using defaults.
+2011-11-14 13:56:21,636 [main] WARN  [org.hibernate.cache.EhCacheProvider] - Could not find configuration [cn.loosoft.stuwork.workstudysite.entity.account.Role.authorityList]; using defaults.
+2011-11-14 13:56:21,819 [main] WARN  [org.springframework.aop.framework.Cglib2AopProxy] - Unable to proxy method [public final void org.springside.modules.test.spring.SpringContextTestCase.setApplicationContext(org.springframework.context.ApplicationContext)] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+2011-11-14 13:56:22,836 [main] WARN  [org.hibernate.util.JDBCExceptionReporter] - SQL Error: 42102, SQLState: 42S02
+2011-11-14 13:56:22,837 [main] ERROR [org.hibernate.util.JDBCExceptionReporter] - Table "STUJOB_FILE" not found; SQL statement:
+select fileupdown0_.id as col_0_0_ from stujob_file fileupdown0_ [42102-133]

@@ -1,0 +1,26 @@
+body {font-family: Arial, Helvetica, sans-serif; font-size:12px; margin:0px; background:#D9EBFB url(../images/login/l/body_bg.jpg) repeat-x;}
+td {font-family: Arial, Helvetica, sans-serif;}
+th {font-family: Arial, Helvetica, sans-serif;}
+form,ul,li{margin:0px;}
+
+#login_box{ width:859px; margin:0px auto; height:479px;}
+#login_boxup{height:222px; background:url(../images/login/l/login_bg01.jpg) no-repeat;}
+#login_boxdown{ height:257px; background:url(../images/login/l/login_bg02.jpg) no-repeat;}
+#login_boxtxt{margin:0px auto; width:245px;padding-top:88px;}
+
+.txtsy{ background:url(../images/login/l/txtsy_bg.jpg); height:17px; border:1px solid #D0D0D0;}
+.sytt{ color:#35383A; padding-right:10px;}
+.bu01{ background:url(../images/login/l/bubg01.jpg) no-repeat; width:72px; height:23px; color:#FFFFFF; font-weight:bold; text-align:center; border:none; cursor:pointer;}
+
+#total_box{width:954px; margin:0px auto; height:479px;}
+#total_box01{height:255px; background:url(../images/login/l/total_bg01.jpg) no-repeat;}
+#total_box02{ padding-top:5px;}
+
+#login01{ height:542px; width:1004px; margin:0px auto;}
+#login02{ background:url(../images/login/login0.jpg) no-repeat; height:242px;}
+
+#login03{ background:url(../images/login/login1.jpg) no-repeat; height:300px;}
+#login04{ background:url(../images/login/login03.jpg) no-repeat; height:242px;}
+
+#login05{ background:url(../images/login/login05.jpg) no-repeat; height:242px;}
+#login06{ background:url(../images/login/login06.jpg) no-repeat; height:348px;}

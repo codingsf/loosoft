@@ -154,7 +154,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     object ovalue = oncerHas[key];
                     if (ovalue == null)
                     {
-                        oncerHas[key] = data.Equals("0") ? null : data;
+                        oncerHas[key] = data.Equals("0") ? 0 : float.Parse(data);//?为何要将0赋为null?
                     }
                     else
                     {

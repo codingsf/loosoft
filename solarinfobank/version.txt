@@ -1,0 +1,5 @@
+项目的版本说明：
+目前开发中的是solarinfobank1.18版本
+分支中的是solarinfobank1.17版本
+tags中的是solarinfobank1.16版本代码
+发行包中包括的是1.17版的发行包

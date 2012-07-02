@@ -189,9 +189,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                     if (float.IsNaN(tmp))
                     {
                         tmp = getMonitorValue(MonitorType.MIC_INVERTER_ACENERGY);
-                        if (float.IsNaN(tmp))
-                            return 0;
-                        return tmp;
+                        return float.IsNaN(tmp) ? 0 : tmp;
                     }
                     return tmp;
                 }
@@ -207,7 +205,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             get
             {
                 if (this.deviceTypeCode == DeviceData.INVERTER_CODE && runData != null)
-                    return runData.getMonitorValue(MonitorType.MIC_INVERTER_TOTALYGPOWER);
+                {
+                    float res = runData.getMonitorValue(MonitorType.MIC_INVERTER_TOTALYGPOWER);
+                    return float.IsNaN(res) ? 0 : res;
+                }
                 return 0;
             }
         }
@@ -220,7 +221,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             get
             {
                 if (this.deviceTypeCode == DeviceData.ENVRIOMENTMONITOR_CODE && runData != null)
-                    return runData.getMonitorValue(MonitorType.MIC_DETECTOR_SUNLINGHT);
+                {
+                    float res = runData.getMonitorValue(MonitorType.MIC_DETECTOR_SUNLINGHT);
+                    return float.IsNaN(res) ? 0 : res;
+                }
                 return 0;
             }
         }
@@ -231,7 +235,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public float RenderSunlight()
         {
             if (this.deviceTypeCode == DeviceData.ENVRIOMENTMONITOR_CODE && runData != null)
-                return runData.getMonitorValue(MonitorType.MIC_DETECTOR_DAYRADIATION);
+            {
+                float res = runData.getMonitorValue(MonitorType.MIC_DETECTOR_DAYRADIATION);
+                return float.IsNaN(res) ? 0 : res;
+            }
             return 0;
         }
 
@@ -241,7 +248,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public float TodayEnergy(int timezone)
         {
             if (this.deviceTypeCode == DeviceData.INVERTER_CODE && runData != null && CalenderUtil.formatDate(runData.updateTime, "yyyyMMdd").Equals(CalenderUtil.curDateWithTimeZone(timezone, "yyyyMMdd")))
-                return runData.getMonitorValue(MonitorType.MIC_INVERTER_TODAYENERGY);
+            {
+                float res = runData.getMonitorValue(MonitorType.MIC_INVERTER_TODAYENERGY);
+                return float.IsNaN(res) ? 0 : res;
+            }
             return 0;
         }
 
@@ -251,7 +261,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public float TodayEnergy(string yyyyMMdd)
         {
             if (this.deviceTypeCode == DeviceData.INVERTER_CODE && runData != null && CalenderUtil.formatDate(runData.updateTime, "yyyyMMdd").Equals(yyyyMMdd))
-                return runData.getMonitorValue(MonitorType.MIC_INVERTER_TODAYENERGY);
+            {
+                float res = runData.getMonitorValue(MonitorType.MIC_INVERTER_TODAYENERGY);
+                return float.IsNaN(res) ? 0 : res;
+            }
             return 0;
         }
 

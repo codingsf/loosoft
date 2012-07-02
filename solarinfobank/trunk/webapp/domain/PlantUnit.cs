@@ -159,7 +159,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
-        /// 今日功率
+        /// 今日当前功率
         /// </summary>
         public float TodayPower(int timezone)
         {
@@ -175,15 +175,20 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// 今日发电量
         /// 现为设备的累加起来
         /// 原来是直接去采集器的实时数据中得今日发电量，那样不准确，因为那个实时数据中的发电量本来就不准确
+        /// modify by qhb in 20120629 for 当设备没有今日发电量时，则取得对应采集器的相关数据，需求变更来自周辉
         /// </summary>
         public float TodayEnergy(int timezone)
         {
             float total = 0;
-            if (devices == null) return total;
-            //if (this.collector.runData != null && CalenderUtil.formatDate(collector.runData.sendTime, "yyyyMMdd").Equals(CalenderUtil.curDateWithTimeZone(timezone, "yyyyMMdd")))
-            //    total = collector.runData.dayEnergy;
-            foreach (Device device in devices) {
-                total+=device.TodayEnergy(timezone);
+            if (devices != null){
+                foreach (Device device in devices) {
+                    total+=device.TodayEnergy(timezone);
+                }
+            }
+            //如果设备没有今日发电量则取下采集的实时数据中的今日发电量
+            if (total == 0) { 
+                if (this.collector.runData != null && CalenderUtil.formatDate(collector.runData.sendTime, "yyyyMMdd").Equals(CalenderUtil.curDateWithTimeZone(timezone, "yyyyMMdd")))
+                    total = collector.runData.dayEnergy;
             }
             return float.Parse(Math.Round(total, 2).ToString());
         }

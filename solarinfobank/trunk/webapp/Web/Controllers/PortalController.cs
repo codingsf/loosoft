@@ -174,7 +174,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                             ico.Add("displayName", ProtalItems.temperatureDispalyName);
                             break;
                         case ProtalItems.plantCount://电站数量
-                            ico.Add("data", plant == null ? portalUser.assignedPlants.Count : plant.childs.Count);
+                            ico.Add("data", plant == null ? portalUser.allAssignedFactPlants.Count : plant.childs.Count);
                             ico.Add(string.Format("unit"), "个");
                             ico.Add("displayName", ProtalItems.plantCountDisplayName);
                             break;

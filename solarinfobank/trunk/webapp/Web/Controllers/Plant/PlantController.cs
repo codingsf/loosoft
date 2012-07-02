@@ -118,7 +118,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 CityCodeService codeService = CityCodeService.GetInstance();
                 ViewData["temp"] = codeService.GetTemperature(plant.city);
             }
-            if (!double.IsNaN(((double)ViewData["temp"])))
+            //修正了温度不存在显示0的问题
+            if (!double.IsNaN(((double)ViewData["temp"])) && (double)ViewData["temp"] != 0)
             {
                 User user = UserUtil.getCurUser();
                 if (user != null && !user.TemperatureType.ToLower().Equals("c"))

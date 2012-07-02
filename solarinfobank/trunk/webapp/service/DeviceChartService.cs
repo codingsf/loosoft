@@ -201,11 +201,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <returns></returns>
         public ChartData DayChart(Device device, string chartName, string startYYYYMMDDHH, string endYYYYMMDDHH, string chartType, string unit, int monitorCode, int intervalMins)
         {
-            ///结果需要按时间先后排序
-            Hashtable powerHash = DeviceDayDataService.GetInstance().GetDaydataList(device, startYYYYMMDDHH, endYYYYMMDDHH, intervalMins, monitorCode);
-
             //将整天的数据截断头尾
             string[] ic = base.getXseriesFromYYYYMMDDHH(startYYYYMMDDHH, endYYYYMMDDHH, intervalMins).ToArray();
+
+            ///结果需要按时间先后排序
+            Hashtable powerHash = DeviceDayDataService.GetInstance().GetDaydataList(ic, device, startYYYYMMDDHH, endYYYYMMDDHH, intervalMins, monitorCode);
 
             string[] xAxis = formatXaxis(ic, this.fromApp ? ChartTimeType.Hour : ChartTimeType.Day);
             MonitorType monitorType = MonitorType.getMonitorTypeByCode(monitorCode);
@@ -213,7 +213,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             KeyValuePair<string, float?[]> data = new KeyValuePair<string, float?[]>();
             if (powerHash.Count > 0)
             {
-                this.FirstHandleChartData(ic, powerHash);
+                //先屏蔽了，因为两天跨度的中间部分平滑有问题，但不是对原来是否有影响测试后才知道
+                //this.FirstHandleChartData(ic, powerHash);
                 data = GenerateChartData(monitorType.name, ic, powerHash, 1.0F);
             }
 

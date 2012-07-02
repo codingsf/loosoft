@@ -520,6 +520,11 @@
                                                 <%} %>
                                             </a></li>
                                             <%} %>
+                                            <li>
+                                            <a rel="treemenu" onclick="loadContent('content_ajax','/plant/devicedata/<%=Model.id%>','ajax','GET');setcurrent(this);return false;"
+                                                href="/plant/devicedata/<%=Model.id%>" title="R<%=Resources.SunResource.DEVICE_RUN_DATA %>"><%=Resources.SunResource.DEVICE_RUN_DATA %>
+                                            </a>
+                                            </li>
                                             <%if (AuthService.isAllow(AuthorizationCode.LOGS_LIST))
                                               { %>
                                             <li><a onclick="loadContent('content_ajax','/plant/log/<%=Model.id %>','iframe','GET');setcurrent(this);return false;"

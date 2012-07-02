@@ -483,7 +483,7 @@
                             </td>
                             <td width="79%" class="kjli">
                                 <%=Resources.SunResource.PLANT_OVERVIEW_TODAY_ENERGRY %><br />
-                                <span class="sz_fb"><%=StringUtil.formatDouble(Model.DisplayTotalDayEnergy,"0.00")%></span>                                
+                                <span class="sz_fb"><%=Model.DisplayTotalDayEnergy%></span>                                
                                 <%=Model.TotalDayEnergyUnit %>
                             </td>
                         </tr>
@@ -696,9 +696,9 @@
                                         <%=StringUtil.cutStr(plant.name,22,"...")%></a> </span>
                                     <br />
                                     <span class="lbl">
-                                        <%=Resources.SunResource.USER_OVERVIEW_PLANT_TODAYENERGY%>:&nbsp;<%=StringUtil.formatDouble(plant.DisplayTotalDayEnergy) + " " + plant.TotalDayEnergyUnit%>
+                                        <%=Resources.SunResource.USER_OVERVIEW_PLANT_TODAYENERGY%>:&nbsp;<%=plant.DisplayTotalDayEnergy + " " + plant.TotalDayEnergyUnit%>
                                         <br />
-                                        <%=Resources.SunResource.USER_OVERVIEW_PLANT_CURRENT_POWER%>:&nbsp;<%=StringUtil.formatDouble(plant.TodayTotalPower)%>&nbsp;kW<br />
+                                        <%=Resources.SunResource.USER_OVERVIEW_PLANT_CURRENT_POWER%>:&nbsp;<%=plant.TodayTotalPower%>&nbsp;kW<br />
                                         <%=Resources.SunResource.USER_OVERVIEW_PLANT_INSTALL_POWER%>:&nbsp;<%=StringUtil.formatDouble(plant.TotalDegignPower)%>&nbsp;kW
                                     </span>
                                 </td>

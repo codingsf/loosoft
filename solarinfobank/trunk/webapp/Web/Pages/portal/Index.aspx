@@ -379,16 +379,5 @@
     <div style="clear: both;">
     </div>
     <%Html.RenderPartial("footer"); %>
-    <map name="planetmap" id="planetmap">
-        <!--郑州-->
-        <area shape="circle" coords="570,225,25" href="/portal/virtual/578" target="_blank"
-            alt="郑州光伏电站" />
-        <!--武汉-->
-        <area shape="circle" coords="590,280,25" href="/portal/virtual/581" target="_blank"
-            alt="武汉光伏电站" />
-        <!--南宁-->
-        <area shape="circle" coords="530,365,25" href="/portal/virtual/561" target="_blank"
-            alt="南宁光伏电站" />
-    </map>
 </body>
 </html>

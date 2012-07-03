@@ -245,7 +245,7 @@
     <comment>环境检测仪设备类型</comment>
   </data>
   <data name="HOME_INDEX_AVOIDED_CO2" xml:space="preserve">
-    <value>CO2 Reduction</value>
+    <value>CO₂ Reduction</value>
   </data>
   <data name="HOME_INDEX_PLANT_DISTRIBUTION" xml:space="preserve">
     <value>Plant Distribution</value>
@@ -636,7 +636,7 @@
     <value>All Units</value>
   </data>
   <data name="PLANT_OVERVIEW_CO2_AVOIDED" xml:space="preserve">
-    <value>CO2 Reduction</value>
+    <value>CO₂ Reduction</value>
   </data>
   <data name="PLANT_OVERVIEW_ENERGY" xml:space="preserve">
     <value>Energy</value>
@@ -1082,7 +1082,7 @@
     <value>All Plants</value>
   </data>
   <data name="USER_OVERVIEW_CO2_REDUCTION" xml:space="preserve">
-    <value>CO2 Reduction</value>
+    <value>CO₂ Reduction</value>
   </data>
   <data name="USER_OVERVIEW_ENERGY" xml:space="preserve">
     <value>Energy</value>
@@ -1124,7 +1124,7 @@
     <value>All Plants</value>
   </data>
   <data name="USER_PORTAL_CO2_REDUCTIONG" xml:space="preserve">
-    <value>CO2 Reduction</value>
+    <value>CO₂ Reduction</value>
   </data>
   <data name="USER_PORTAL_DATE" xml:space="preserve">
     <value>Date</value>
@@ -1316,7 +1316,7 @@
     <value>Click Here For Help</value>
   </data>
   <data name="SHARED_BACKMANAGERMASTERPAGE_CO2" xml:space="preserve">
-    <value>CO2</value>
+    <value>CO₂</value>
   </data>
   <data name="SHARED_BACKMANAGERMASTERPAGE_COLLECTOR_IMPORT" xml:space="preserve">
     <value>Import datalogger</value>
@@ -3496,7 +3496,7 @@
     <value>Plants{0}</value>
   </data>
   <data name="REPORT_CONFIG_TODAY_CO2" xml:space="preserve">
-    <value>Today CO2 reduction:{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
+    <value>Today CO₂ reduction:{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
   </data>
   <data name="REPORT_CONFIG_TODAY_ENERGY" xml:space="preserve">
     <value>Today Energy:{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
@@ -3505,7 +3505,7 @@
     <value>Today Revenue:{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
   </data>
   <data name="REPORT_CONFIG_TOTAL_CO2" xml:space="preserve">
-    <value>Total CO2 reduction:{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
+    <value>Total CO₂ reduction:{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
   </data>
   <data name="REPORT_CONFIG_TOTAL_ENERGY" xml:space="preserve">
     <value>Total Energy:{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
@@ -3606,7 +3606,7 @@
     <value>Operation</value>
   </data>
   <data name="DATAITEM_3104" xml:space="preserve">
-    <value>CO2 reduction of this month</value>
+    <value>CO₂ reduction of this month</value>
   </data>
   <data name="DATAITEM_3100" xml:space="preserve">
     <value>This Month Energy</value>
@@ -3615,7 +3615,7 @@
     <value>This Monthly Income</value>
   </data>
   <data name="DATAITEM_3105" xml:space="preserve">
-    <value>Total CO2 reduction</value>
+    <value>Total CO₂ reduction</value>
   </data>
   <data name="DATAITEM_3101" xml:space="preserve">
     <value>Total Energy</value>
@@ -3646,7 +3646,7 @@
     <comment>Send Time</comment>
   </data>
   <data name="DATAITEM_5" xml:space="preserve">
-    <value>Today CO2 Reduction</value>
+    <value>Today CO₂ Reduction</value>
   </data>
   <data name="DATAITEM_1" xml:space="preserve">
     <value>Today Energy</value>
@@ -3667,7 +3667,7 @@
     <value>Today Revenue</value>
   </data>
   <data name="DATAITEM_6" xml:space="preserve">
-    <value>Total CO2 Reduction</value>
+    <value>Total CO₂ Reduction</value>
   </data>
   <data name="DATAITEM_2" xml:space="preserve">
     <value>Total Energy</value>
@@ -3676,16 +3676,16 @@
     <value>Total Revenue</value>
   </data>
   <data name="DATAITEM_2098" xml:space="preserve">
-    <value>CO2 reduction the last 7 days</value>
+    <value>CO₂ reduction the last 7 days</value>
   </data>
   <data name="DATAITEM_2099" xml:space="preserve">
-    <value>Total CO2 reduction</value>
+    <value>Total CO₂ reduction</value>
   </data>
   <data name="DATAITEM_2097" xml:space="preserve">
     <value>Total Revenue</value>
   </data>
   <data name="DATAITEM_4110" xml:space="preserve">
-    <value>Year CO2 Reduction</value>
+    <value>Year CO₂ Reduction</value>
   </data>
   <data name="DATAITEM_4106" xml:space="preserve">
     <value>Year Energy</value>
@@ -3694,7 +3694,7 @@
     <value>This Year Income</value>
   </data>
   <data name="DATAITEM_4111" xml:space="preserve">
-    <value>Total  CO2 Reduction</value>
+    <value>Total  CO₂ Reduction</value>
   </data>
   <data name="DATAITEM_4107" xml:space="preserve">
     <value>Total Energy</value>
@@ -4055,8 +4055,8 @@
     <comment>累计发电量</comment>
   </data>
   <data name="DATAITEM_5117" xml:space="preserve">
-    <value>Total CO2 Reduction</value>
-    <comment>累计CO2减排</comment>
+    <value>Total CO₂ Reduction</value>
+    <comment>累计CO₂减排</comment>
   </data>
   <data name="DATAITEM_5118" xml:space="preserve">
     <value>The device total yield</value>

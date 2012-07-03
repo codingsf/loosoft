@@ -1817,7 +1817,7 @@
     <comment>直流电流3</comment>
   </data>
   <data name="DEVICEMONITORITEM_115" xml:space="preserve">
-    <value>总直流功率</value>
+    <value>直流功率</value>
     <comment>总直流功率</comment>
   </data>
   <data name="DEVICEMONITORITEM_116" xml:space="preserve">
@@ -1857,7 +1857,7 @@
     <comment>C相有功功率</comment>
   </data>
   <data name="DEVICEMONITORITEM_125" xml:space="preserve">
-    <value>总有功功率</value>
+    <value>有功功率</value>
     <comment>总有功功率</comment>
   </data>
   <data name="DEVICEMONITORITEM_126" xml:space="preserve">
@@ -1865,7 +1865,7 @@
     <comment>总无功功率</comment>
   </data>
   <data name="DEVICEMONITORITEM_127" xml:space="preserve">
-    <value>总功率因数</value>
+    <value>功率因数</value>
     <comment>总功率因数</comment>
   </data>
   <data name="MONITORITEM_F_GRID" xml:space="preserve">
@@ -2266,7 +2266,7 @@
     <value>您确认要设置吗</value>
   </data>
   <data name="MONITORITEM_CO2_REDUCE" xml:space="preserve">
-    <value>CO2减排</value>
+    <value>CO₂减排</value>
   </data>
   <data name="MONITORITEM_COM_PARAM" xml:space="preserve">
     <value>通讯参数</value>
@@ -3679,7 +3679,7 @@
     <value>斜面日照强(W/m2)</value>
   </data>
   <data name="DATAITEM_3104" xml:space="preserve">
-    <value>当月CO2减排</value>
+    <value>当月CO₂减排</value>
   </data>
   <data name="DATAITEM_3100" xml:space="preserve">
     <value>当月发电量</value>
@@ -3688,7 +3688,7 @@
     <value>当月收入</value>
   </data>
   <data name="DATAITEM_3105" xml:space="preserve">
-    <value>累计CO2减排</value>
+    <value>累计CO₂减排</value>
   </data>
   <data name="DATAITEM_3101" xml:space="preserve">
     <value>累计总发电量</value>
@@ -3718,7 +3718,7 @@
     <value>今日功率最大值发送时间</value>
   </data>
   <data name="DATAITEM_5" xml:space="preserve">
-    <value>今日CO2减排</value>
+    <value>今日CO₂减排</value>
   </data>
   <data name="DATAITEM_1" xml:space="preserve">
     <value>今日发电量</value>
@@ -3739,7 +3739,7 @@
     <value>今日收入</value>
   </data>
   <data name="DATAITEM_6" xml:space="preserve">
-    <value>累计CO2减排</value>
+    <value>累计CO₂减排</value>
   </data>
   <data name="DATAITEM_2" xml:space="preserve">
     <value>累计总发电量</value>
@@ -3748,7 +3748,7 @@
     <value>累计总收入</value>
   </data>
   <data name="DATAITEM_2098" xml:space="preserve">
-    <value>近7日CO2减排</value>
+    <value>近7日CO₂减排</value>
   </data>
   <data name="DATAITEM_2094" xml:space="preserve">
     <value>近7日发电量</value>
@@ -3757,7 +3757,7 @@
     <value>近7日收入</value>
   </data>
   <data name="DATAITEM_2099" xml:space="preserve">
-    <value>累计CO2减排</value>
+    <value>累计CO₂减排</value>
   </data>
   <data name="DATAITEM_2095" xml:space="preserve">
     <value>累计总发电量</value>
@@ -3766,7 +3766,7 @@
     <value>总收入</value>
   </data>
   <data name="DATAITEM_4110" xml:space="preserve">
-    <value>当年CO2减排</value>
+    <value>当年CO₂减排</value>
   </data>
   <data name="DATAITEM_4106" xml:space="preserve">
     <value>当年发电量</value>
@@ -3775,7 +3775,7 @@
     <value>当年收入</value>
   </data>
   <data name="DATAITEM_4111" xml:space="preserve">
-    <value>累计CO2减排</value>
+    <value>累计CO₂减排</value>
   </data>
   <data name="DATAITEM_4107" xml:space="preserve">
     <value>累计总发电量</value>
@@ -3991,7 +3991,7 @@
     <value>累计总收入</value>
   </data>
   <data name="DATAITEM_5117" xml:space="preserve">
-    <value>累计CO2减排</value>
+    <value>累计CO₂减排</value>
   </data>
   <data name="REPORT_BUTTON_PREVIEW" xml:space="preserve">
     <value>预览</value>

@@ -128,8 +128,8 @@ namespace DataAnalyze
             deviceTypeMap.Add(plant_power, new InfoUnitAddress(7, MonitorType.PLANT_MONITORITEM_POWER_CODE, "功率", InfoUnitAddress.sign_type_s, 1, yaoce, DeviceData.PLANT_CODE, SystemCode.ReversionType_all));
 
             //-------------------逆变器数据信息单元地址定义--------
-            deviceTypeMap.Add(201, new InfoUnitAddress(201, MonitorType.MIC_INVERTER_TODAYENERGY, "日发电量", InfoUnitAddress.sign_type_u, 0, yaomai, DeviceData.INVERTER_CODE, SystemCode.ReversionType_all));
-            deviceTypeMap.Add(202, new InfoUnitAddress(202, MonitorType.MIC_INVERTER_TOTALENERGY, "总发电量", InfoUnitAddress.sign_type_u, 0, yaomai, DeviceData.INVERTER_CODE, SystemCode.ReversionType_all));
+            deviceTypeMap.Add(201, new InfoUnitAddress(201, MonitorType.MIC_INVERTER_TODAYENERGY, "日发电量", InfoUnitAddress.sign_type_u, 1, yaomai, DeviceData.INVERTER_CODE, SystemCode.ReversionType_all));
+            deviceTypeMap.Add(202, new InfoUnitAddress(202, MonitorType.MIC_INVERTER_TOTALENERGY, "总发电量", InfoUnitAddress.sign_type_u, 1, yaomai, DeviceData.INVERTER_CODE, SystemCode.ReversionType_all));
             deviceTypeMap.Add(203, new InfoUnitAddress(203, MonitorType.MIC_INVERTER_RUNTIME, "总运行时间", InfoUnitAddress.sign_type_u, 0, yaomai, DeviceData.INVERTER_CODE, SystemCode.ReversionType_all));
             deviceTypeMap.Add(204, new InfoUnitAddress(204, MonitorType.MIC_INVERTER_JNKQTEMPRATURE, "机内空气温度", InfoUnitAddress.sign_type_s, 1, yaoce, DeviceData.INVERTER_CODE, SystemCode.ReversionType_all));
             deviceTypeMap.Add(205, new InfoUnitAddress(205, MonitorType.MIC_INVERTER_JNBYQTEMPRATURE, "机内变压器温度", InfoUnitAddress.sign_type_s, 1, yaoce, DeviceData.INVERTER_CODE, SystemCode.ReversionType_all));
@@ -195,7 +195,7 @@ namespace DataAnalyze
             deviceTypeMap.Add(405, new InfoUnitAddress(405, MonitorType.MIC_DETECTOR_ENRIONMENTTEMPRATURE, "环境温度", InfoUnitAddress.sign_type_s, 1, yaoce, DeviceData.ENVRIOMENTMONITOR_CODE, SystemCode.ReversionType_all));
             deviceTypeMap.Add(406, new InfoUnitAddress(406, MonitorType.MIC_DETECTOR_PANELTEMPRATURE, "电池板温度", InfoUnitAddress.sign_type_s, 1, yaoce, DeviceData.ENVRIOMENTMONITOR_CODE, SystemCode.ReversionType_all));
             deviceTypeMap.Add(407, new InfoUnitAddress(407, MonitorType.MIC_DETECTOR_WINDSPEED, "风速", InfoUnitAddress.sign_type_u, 1, yaoce, DeviceData.ENVRIOMENTMONITOR_CODE, SystemCode.ReversionType_all));
-            deviceTypeMap.Add(408, new InfoUnitAddress(408, MonitorType.MIC_DETECTOR_WINDSPEEDHIGH, "风向", InfoUnitAddress.sign_type_u, 0, yaoce, DeviceData.ENVRIOMENTMONITOR_CODE, SystemCode.ReversionType_all));
+            deviceTypeMap.Add(408, new InfoUnitAddress(408, MonitorType.MIC_DETECTOR_WINDDIRECTION, "风向", InfoUnitAddress.sign_type_u, 0, yaoce, DeviceData.ENVRIOMENTMONITOR_CODE, SystemCode.ReversionType_all));
 
             //-----------------------电表信息单元地址定义------------------------
             deviceTypeMap.Add(501, new InfoUnitAddress(501, MonitorType.MIC_AMMETER_SYSFREQUENCY, "系统频率", InfoUnitAddress.sign_type_u, 2, yaoce, DeviceData.AMMETER_CODE, SystemCode.ReversionType_all));

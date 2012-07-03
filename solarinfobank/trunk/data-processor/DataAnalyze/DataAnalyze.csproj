@@ -145,10 +145,7 @@
     <Compile Include="DataProcess.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\dao.config" />
     <None Include="bin\Debug\App.config" />
-    <Content Include="bin\Debug\providers.config" />
-    <Content Include="bin\Debug\SqlMap.config" />
     <None Include="DataAnalyze_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +194,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\dao.config" />
     <Content Include="bin\Debug\Maps\AdminControllerAction.xml" />
     <Content Include="bin\Debug\Maps\AdminControllerActionRole.xml" />
     <Content Include="bin\Debug\Maps\AdminRole.xml" />
@@ -250,6 +248,8 @@
     <Content Include="bin\Debug\Maps\UserRole.xml" />
     <Content Include="bin\Debug\Maps\VideoMonitor.xml" />
     <Content Include="bin\Debug\Maps\VirtualPlant.xml" />
+    <Content Include="bin\Debug\providers.config" />
+    <Content Include="bin\Debug\SqlMap.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

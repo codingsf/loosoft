@@ -438,44 +438,52 @@ namespace DataAnalyze
                 dsrd.totalEnergy = messageHeader.TotalEnergy;
 
             //只有电站数据才更新功率
-            if (!messageHeader.issub)
-            {
-                dsrd.power = messageHeader.Power;
-            }
+            //if (!messageHeader.issub)
+            //{
+            dsrd.power = messageHeader.Power;
+            //}
             dsrd.sendTime = messageHeader.TimeNow;
 
-            if (realMonitorMap.ContainsKey(MonitorType.PLANT_MONITORITEM_WINDSPEED))
-            {
-                string str = this.realMonitorMap[MonitorType.PLANT_MONITORITEM_WINDSPEED].ToString();
-                dsrd.windSpeed = str.IndexOf(".") > 0 ? int.Parse(str.Substring(0, str.IndexOf("."))) : int.Parse(str);
-            }
-            else {
-                dsrd.windSpeed = null;
-            }
+            //if (realMonitorMap.ContainsKey(MonitorType.PLANT_MONITORITEM_WINDSPEED))
+            //{
+                //string str = this.realMonitorMap[MonitorType.PLANT_MONITORITEM_WINDSPEED].ToString();
+                //dsrd.windSpeed = str.IndexOf(".") > 0 ? int.Parse(str.Substring(0, str.IndexOf("."))) : int.Parse(str);
+           // }
+            //else {
+                //dsrd.windSpeed = null;
+            //}
 
-            if (realMonitorMap.ContainsKey(MonitorType.PLANT_MONITORITEM_WINDDIRECTION))
-            {
-                string str = this.realMonitorMap[MonitorType.PLANT_MONITORITEM_WINDDIRECTION].ToString();
-                dsrd.windDirection = str.IndexOf(".") > 0 ? int.Parse(str.Substring(0, str.IndexOf("."))) : int.Parse(str);
-            }
-            else {
-                dsrd.windDirection = null;
-            }
+            //if (realMonitorMap.ContainsKey(MonitorType.PLANT_MONITORITEM_WINDDIRECTION))
+            //{
+                //string str = this.realMonitorMap[MonitorType.PLANT_MONITORITEM_WINDDIRECTION].ToString();
+                //dsrd.windDirection = str.IndexOf(".") > 0 ? int.Parse(str.Substring(0, str.IndexOf("."))) : int.Parse(str);
+            //}
+            //else {
+                //dsrd.windDirection = null;
+            //}
 
-            if (realMonitorMap.ContainsKey(MonitorType.PLANT_MONITORITEM_AMBIENTTEMP_CODE))
-                dsrd.temperature = float.Parse(this.realMonitorMap[MonitorType.PLANT_MONITORITEM_AMBIENTTEMP_CODE].ToString());
-            else {
-                dsrd.temperature = null;
-            }
-
-            if (realMonitorMap.ContainsKey(MonitorType.PLANT_MONITORITEM_LINGT_CODE))
-            {
-                string str = this.realMonitorMap[MonitorType.PLANT_MONITORITEM_LINGT_CODE].ToString();
-                dsrd.sunStrength = str.IndexOf(".") > 0 ? int.Parse(str.Substring(0, str.IndexOf("."))) : int.Parse(str);
-            }
-            else {
-                dsrd.sunStrength = null;
-            }
+            //if (realMonitorMap.ContainsKey(MonitorType.PLANT_MONITORITEM_AMBIENTTEMP_CODE))
+                //dsrd.temperature = float.Parse(this.realMonitorMap[MonitorType.PLANT_MONITORITEM_AMBIENTTEMP_CODE].ToString());
+            //else {
+                //只有电站数据才用其数据更新实时数据
+                //if (!messageHeader.issub)
+                //{
+                    dsrd.temperature = messageHeader.temperature;
+                //}
+            //}
+            //不在从环境监测仪取数据，该有前台显示时判断 先去环境建议侧
+            //if (realMonitorMap.ContainsKey(MonitorType.PLANT_MONITORITEM_LINGT_CODE))
+            //{
+                //string str = this.realMonitorMap[MonitorType.PLANT_MONITORITEM_LINGT_CODE].ToString();
+                //dsrd.sunStrength = str.IndexOf(".") > 0 ? int.Parse(str.Substring(0, str.IndexOf("."))) : int.Parse(str);
+            //}
+            //else {
+                //只有电站数据才用其数据更新实时数据
+                //if (!messageHeader.issub)
+                //{
+                    dsrd.sunStrength = messageHeader.sunStrength;
+                //}
+            //}
             //dsrd.changed = true;
         }
 
@@ -568,6 +576,10 @@ namespace DataAnalyze
         protected float _dayEnergy;
         public bool hasData;
         public bool issub;//是否分支
+        public int? sunStrength { get; set; } //日照强度 可为空
+        public int? windSpeed { get; set; }    //风速（保留） 可为空
+        public int? windDirection { get; set; }//风向 可为空
+        public float? temperature { get; set; }//环境温度 可为空
         public float DayEnergy
         {
             get { return _dayEnergy; }
@@ -685,7 +697,7 @@ namespace DataAnalyze
         public override void analyze(string header)
         {
             this._Header = header;
-
+            this.hasData = true;
             //StringBuilder sbUnitID = new StringBuilder();
             //for (int i = 4; i < 19; i++)
             //{
@@ -742,6 +754,7 @@ namespace DataAnalyze
 
             BugNum = (int)SystemCode.HexNumberToDenary(this._Header.Substring(40 * 2, 1 * 2), false, 8, 'u');
             base.hasData = true;
+            this.issub = false;
         }
 
 
@@ -760,6 +773,8 @@ namespace DataAnalyze
         /// <param name="header"></param>
         public override void analyze(string header)
         {
+            this.issub = false;
+            this.hasData = true;
             this._Header = header;
             _CollectorCode = _CollectorCode.Replace("\0", "0");//临时处理非法测试数据
             if (debug_collector.Equals(_CollectorCode)) {
@@ -792,6 +807,7 @@ namespace DataAnalyze
             //逐个取出信息体
             string info;
             string[] infoResult;
+            base.hasData = false;
             while (infoData.Length > 0)
             {
                 infotype = InfoBodyUtil.getInfotype(infoData);
@@ -814,14 +830,35 @@ namespace DataAnalyze
                             _dayEnergy = float.Parse(infoResult[1]);
                             LogUtil.info("collector energy " + _dayEnergy);
                             break;
-                        //发电量
+                        //功率
                         case DataType.plant_power:
                             _power = float.Parse(infoResult[1]);
-                            _power = float.Parse(Math.Round(_power / 1000, 3).ToString());//换算成kw
+                            //_power = float.Parse(Math.Round(_power / 1000, 3).ToString());//新协议无需换算成kw
+                            break;
+                        //日照
+                        case DataType.plant_sunlight:
+                            try
+                            {
+                                this.sunStrength = int.Parse(infoResult[1]);
+                            }
+                            catch (Exception e) {
+                                this.sunStrength = null;
+                            }
+                            break;
+                        //环境温度
+                        case DataType.plant_temperature:
+                            try
+                            {
+                                this.temperature = float.Parse(infoResult[1]);
+                            }
+                            catch (Exception e) {
+                                this.temperature = null;
+                            }
                             break;
                         default:
                             break;
                     }
+                    base.hasData = true;
                 }
                 infoData = infoData.Substring(endIndex * 2);
             }
@@ -831,7 +868,6 @@ namespace DataAnalyze
             _DevicesNum = 0;
 
             BugNum = 0;
-            base.hasData = true;
         }
 
     }

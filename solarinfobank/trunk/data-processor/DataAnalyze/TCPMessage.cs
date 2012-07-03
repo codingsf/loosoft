@@ -140,6 +140,8 @@ namespace DataAnalyze
                             int ss = (int)SystemCode.HexNumberToDenary(ssss.Substring(0, 2), false, 8, 'u');
                             if (ss > 60) ss = 59;
                             this.messageHeader.TimeNow = new DateTime(year, moth, day, hh, mm, ss);
+                            this.messageHeader.issub = true;
+                            this.messageHeader.hasData = false;
                             //设备实时数据
                             DeviceDataBase ddb = new DynamicDevice(data, this);
                             if (ddb.deviceType > -1)//设备的所有信息单元都不符合要求则忽略
@@ -374,8 +376,16 @@ namespace DataAnalyze
                     istart = this.messageContent.Length - ProtocolConst.LENGTH_BUG * 2 * (this.messageHeader.BugNum);
                     for (int i = 0; i < this.messageHeader.BugNum; i++)
                     {
-                        Bug tcpb = new TcpBug(this.messageContent.Substring(istart + i * ProtocolConst.LENGTH_BUG * 2, ProtocolConst.LENGTH_BUG * 2));
-                        listTcpbug.Add(tcpb);
+                        string bugmsg = this.messageContent.Substring(istart + i * ProtocolConst.LENGTH_BUG * 2, ProtocolConst.LENGTH_BUG * 2);
+                        try
+                        {
+                            Bug tcpb = new TcpBug(bugmsg);
+                            listTcpbug.Add(tcpb);
+                        }
+                        catch (Exception buge) {
+                            LogUtil.error("告警信息解析错误：" +bugmsg+":"+ buge.Message);
+                        }
+                        
                     }
                 }
             }

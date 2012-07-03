@@ -23,6 +23,7 @@ namespace Protocol20
         /// </summary>
         public void analysis()
         {
+            message.messageHeader.hasData = false;//设备数据是头部标识为无数据，不再处理
             //deviceData="2900010000001E3B0A1A060C050003031900000000010305190000000001010619000000000101071900000000010108190000000001";
             //地址即新协议中的公共地址 u16
             base.deviceAddress = SystemCode.HexNumberToDenary(deviceData.Substring(2 * 2, 2 * 2), true, 16, 'u').ToString();
@@ -42,12 +43,15 @@ namespace Protocol20
             string info;
             string[] infoResult;
             int mcode;
+            base.deviceType = -1;
             while (infoData.Length > 0)
             {
                 //取得不同信息单元地址对应的解析规则
                 infotype = InfoBodyUtil.getInfotype(infoData);
                 endIndex = InfoBodyUtil.getInfotypeLen(infotype);
                 info = infoData.Substring(startIndex * 2, endIndex * 2);
+                //没有数据就退出
+                if (string.IsNullOrEmpty(info)) break;
                 InfoUnitAddress infoUnitAddress = InfoBodyUtil.getInfoUnitAddress(info);
 
                 //没有解析规则跳过
@@ -78,7 +82,6 @@ namespace Protocol20
                             //最近环境监测仪数据到header数据中
                             message.realMonitorMap[MonitorType.PLANT_MONITORITEM_LINGT_CODE] = infoResult[1];
                             message.historyMonitorMap[MonitorType.PLANT_MONITORITEM_LINGT_CODE] = infoResult[1];
-                            message.messageHeader.hasData = true;
                             message.messageHeader.issub = true;
                         }
                         if (mcode == MonitorType.MIC_DETECTOR_ENRIONMENTTEMPRATURE)
@@ -86,7 +89,6 @@ namespace Protocol20
                             //最近环境监测仪数据到header数据中
                             message.realMonitorMap[MonitorType.PLANT_MONITORITEM_AMBIENTTEMP_CODE] = infoResult[1];
                             message.historyMonitorMap[MonitorType.PLANT_MONITORITEM_AMBIENTTEMP_CODE] = infoResult[1];
-                            message.messageHeader.hasData = true;
                             message.messageHeader.issub = true;
                         }
                         //记录日发电量，用于年月汇总

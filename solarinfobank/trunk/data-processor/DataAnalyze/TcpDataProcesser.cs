@@ -116,22 +116,22 @@ namespace DataAnalyze
                     //汇总实时数据
                     //string tcptest = "69 69 01 00 1E 00 00 00 01 00 01 00 00 00 04 00 29 00 0B 00 00 00 1D 39 0F 0A 05 0C 01 00 03 06 00 0D 00 00 00 01 FB 0C";
                     //逆变器实时数据
-                    //string tcptest = "69 69 01 00 9e 00 00 00 01 00 01 00 00 00 04 00 29 00 18 00 02 00 37 23 0d 03 05 0c 11 00 03 c9 00 4c 00 00 00 01 03 ca 00 8f 13 00 00 01 01 cb 00 00 00 00 00 01 01 cc 00 05 02 00 00 01 01 cf 00 ca 0f 00 00 01 01 d0 00 00 00 00 00 01 01 d1 00 00 00 00 00 01 01 d2 00 05 00 00 00 01 01 d3 00 0e 00 00 00 01 01 d4 00 03 00 00 00 01 01 d5 00 00 00 00 00 01 01 d6 00 01 00 00 00 01 01 d7 00 00 00 00 00 01 01 db 00 00 00 00 00 01 01 dd 00 de 03 00 00 01 01 dd 00 00 00 00 00 01 01 dd 00 00 00 00 00 01 31 0c";
-                    //TcpMessagePool.Enqueue(new MessageVo() { key = "tcp_20_run_DT30435456028_565", message = tcptest });
+                    //string tcptest = "68 68 95 00 73 67 74 73 74 30 30 30 32 00 00 00 00 00 00 01 00 0C 07 03 0E 11 21 00 00 00 00 00 00 00 00 00 00 00 00 01 01 64 04 02 01 00 00 23 00 32 00 00 00 00 00 4A 00 00 02 60 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 25 00 07 D0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04 25 00 00 00 00 00 00 00";
+                    //TcpMessagePool.Enqueue(new MessageVo() { key = "tcp234324324", message = tcptest });
                     //从消息缓存中取得所有数据的key
                     MemcachedClientSatat msgMcs = MemcachedClientSatat.getInstance(msgmemchached);
 
                     //object o = msgMcs.Get("alldevices");
                     //object obj = msgMcs.Get(CacheKeyUtil.buildCollectorRunDataKey(227));
                     //Console.WriteLine(obj);
-                    List<string> Keys = null;
+                    List<string> Keys = new List<string>();
                     if (protocol_version.IndexOf(",1,")>-1)
                     {
                         Keys = msgMcs.GetAllKeys("tcp"+DateTime.Now.Year);
                     }
                     if (protocol_version.IndexOf(",2,") > -1)
                     {
-                        Keys = msgMcs.GetAllKeys("tcp_20_plant_,tcp_20_device_,tcp_20_run_");
+                        Keys.AddRange(msgMcs.GetAllKeys("tcp_20_plant_,tcp_20_device_,tcp_20_run_"));
                     }
                     Console.WriteLine("keys count:"+Keys.Count);
                     //顺排key

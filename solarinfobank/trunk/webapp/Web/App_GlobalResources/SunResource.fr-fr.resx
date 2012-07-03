@@ -249,7 +249,7 @@
     <comment>逆变器设备类型</comment>
   </data>
   <data name="HOME_INDEX_AVOIDED_CO2" xml:space="preserve">
-    <value>Réduction CO2</value>
+    <value>Réduction CO₂</value>
   </data>
   <data name="HOME_INDEX_PLANT_DISTRIBUTION" xml:space="preserve">
     <value>Distribution de la Centrale électrique</value>
@@ -634,7 +634,7 @@
     <value>Toutes les unités</value>
   </data>
   <data name="PLANT_OVERVIEW_CO2_AVOIDED" xml:space="preserve">
-    <value>Réduction CO2</value>
+    <value>Réduction CO₂</value>
   </data>
   <data name="PLANT_OVERVIEW_ENERGY" xml:space="preserve">
     <value>Energie</value>
@@ -1075,7 +1075,7 @@
     <value>Toutes les centrales</value>
   </data>
   <data name="USER_OVERVIEW_CO2_REDUCTION" xml:space="preserve">
-    <value>Réduction CO2</value>
+    <value>Réduction CO₂</value>
   </data>
   <data name="USER_OVERVIEW_ENERGY" xml:space="preserve">
     <value>Energie</value>
@@ -1117,7 +1117,7 @@
     <value>Toutes les centrales</value>
   </data>
   <data name="USER_PORTAL_CO2_REDUCTIONG" xml:space="preserve">
-    <value>Réduction CO2</value>
+    <value>Réduction CO₂</value>
   </data>
   <data name="USER_PORTAL_DATE" xml:space="preserve">
     <value>Date</value>
@@ -1309,7 +1309,7 @@
     <value>Obtenez de l'aide</value>
   </data>
   <data name="SHARED_BACKMANAGERMASTERPAGE_CO2" xml:space="preserve">
-    <value>CO2</value>
+    <value>CO₂</value>
   </data>
   <data name="SHARED_BACKMANAGERMASTERPAGE_COLLECTOR_IMPORT" xml:space="preserve">
     <value>Importation de l'enregistreur de données</value>
@@ -2268,7 +2268,7 @@
     <value>Confirmez-vous que vous souhaitez configurer</value>
   </data>
   <data name="MONITORITEM_CO2_REDUCE" xml:space="preserve">
-    <value>Réduction des émissions de CO2</value>
+    <value>Réduction des émissions de CO₂</value>
   </data>
   <data name="MONITORITEM_COM_PARAM" xml:space="preserve">
     <value>Paramètres de communication</value>
@@ -3563,7 +3563,7 @@
     <value>Centrale électrique {0}</value>
   </data>
   <data name="REPORT_CONFIG_TODAY_CO2" xml:space="preserve">
-    <value>Réduction CO2 aujourd'hui :{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
+    <value>Réduction CO₂ aujourd'hui :{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
   </data>
   <data name="REPORT_CONFIG_TODAY_ENERGY" xml:space="preserve">
     <value>Puissance aujourd'hui:{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
@@ -3572,7 +3572,7 @@
     <value>Recette aujourd'hui:{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
   </data>
   <data name="REPORT_CONFIG_TOTAL_CO2" xml:space="preserve">
-    <value>Réduction CO2 totale:{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
+    <value>Réduction CO₂ totale:{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
   </data>
   <data name="REPORT_CONFIG_TOTAL_ENERGY" xml:space="preserve">
     <value>Totale d'énergie:{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
@@ -3684,7 +3684,7 @@
     <value>Isolation oblique(W/m2)</value>
   </data>
   <data name="DATAITEM_3104" xml:space="preserve">
-    <value>Réduction de CO2 du mois courant</value>
+    <value>Réduction de CO₂ du mois courant</value>
   </data>
   <data name="DATAITEM_3100" xml:space="preserve">
     <value>Production d'électricité du mois courant</value>
@@ -3693,7 +3693,7 @@
     <value>Revenu du mois courant</value>
   </data>
   <data name="DATAITEM_3105" xml:space="preserve">
-    <value>Réduction CO2 totale</value>
+    <value>Réduction CO₂ totale</value>
   </data>
   <data name="DATAITEM_3101" xml:space="preserve">
     <value>Totale d'énergie</value>
@@ -3723,7 +3723,7 @@
     <value>Heure de transformation de la puissance maximale aujourd'hui</value>
   </data>
   <data name="DATAITEM_5" xml:space="preserve">
-    <value>Réduction CO2 aujourd'hui</value>
+    <value>Réduction CO₂ aujourd'hui</value>
   </data>
   <data name="DATAITEM_1" xml:space="preserve">
     <value>Puissance aujourd'hui</value>
@@ -3746,7 +3746,7 @@
     <value>Recette aujourd'hui</value>
   </data>
   <data name="DATAITEM_6" xml:space="preserve">
-    <value>Réduction CO2 totale</value>
+    <value>Réduction CO₂ totale</value>
   </data>
   <data name="DATAITEM_2" xml:space="preserve">
     <value>Totale d'énergie</value>
@@ -3755,7 +3755,7 @@
     <value>Recette total</value>
   </data>
   <data name="DATAITEM_2098" xml:space="preserve">
-    <value>Réduction CO2 dans les 7 jours derniers</value>
+    <value>Réduction CO₂ dans les 7 jours derniers</value>
   </data>
   <data name="DATAITEM_2094" xml:space="preserve">
     <value>Capacité de production dans les 7 jours derniers</value>
@@ -3764,7 +3764,7 @@
     <value>Recette dans les 7 jours derniers</value>
   </data>
   <data name="DATAITEM_2099" xml:space="preserve">
-    <value>Réduction CO2 totale</value>
+    <value>Réduction CO₂ totale</value>
   </data>
   <data name="DATAITEM_2095" xml:space="preserve">
     <value>Totale d'énergie</value>
@@ -3773,7 +3773,7 @@
     <value>Revenus totaux</value>
   </data>
   <data name="DATAITEM_4110" xml:space="preserve">
-    <value>Réduction de CO2 de l'année courante</value>
+    <value>Réduction de CO₂ de l'année courante</value>
   </data>
   <data name="DATAITEM_4106" xml:space="preserve">
     <value>Production d'électricité de l'année courante</value>
@@ -3782,7 +3782,7 @@
     <value>Revenu de l'année courante</value>
   </data>
   <data name="DATAITEM_4111" xml:space="preserve">
-    <value>Réduction CO2 totale</value>
+    <value>Réduction CO₂ totale</value>
   </data>
   <data name="DATAITEM_4107" xml:space="preserve">
     <value>Totale d'énergie</value>
@@ -3998,7 +3998,7 @@
     <value>Recette total</value>
   </data>
   <data name="DATAITEM_5117" xml:space="preserve">
-    <value>Réduction CO2 totale</value>
+    <value>Réduction CO₂ totale</value>
   </data>
   <data name="REPORT_BUTTON_PREVIEW" xml:space="preserve">
     <value>Aperçu</value>

@@ -2266,7 +2266,7 @@
     <value>設置を確定しますか。</value>
   </data>
   <data name="MONITORITEM_CO2_REDUCE" xml:space="preserve">
-    <value>CO2排出低減</value>
+    <value>CO₂排出低減</value>
   </data>
   <data name="MONITORITEM_COM_PARAM" xml:space="preserve">
     <value>通信仕様</value>
@@ -3679,7 +3679,7 @@
     <value>斜面日照強度（W／㎡）</value>
   </data>
   <data name="DATAITEM_3104" xml:space="preserve">
-    <value>今月のCO2排出低減</value>
+    <value>今月のCO₂排出低減</value>
   </data>
   <data name="DATAITEM_3100" xml:space="preserve">
     <value>今月の発電量</value>
@@ -3688,7 +3688,7 @@
     <value>今月の収入</value>
   </data>
   <data name="DATAITEM_3105" xml:space="preserve">
-    <value>累計CO2排出低減</value>
+    <value>累計CO₂排出低減</value>
   </data>
   <data name="DATAITEM_3101" xml:space="preserve">
     <value>累計トータル発電量</value>
@@ -3718,7 +3718,7 @@
     <value>本日電力最大値の発信時間</value>
   </data>
   <data name="DATAITEM_5" xml:space="preserve">
-    <value>本日のCO2排出低減</value>
+    <value>本日のCO₂排出低減</value>
   </data>
   <data name="DATAITEM_1" xml:space="preserve">
     <value>本日の発電量</value>
@@ -3740,7 +3740,7 @@
     <value>本日の収入</value>
   </data>
   <data name="DATAITEM_6" xml:space="preserve">
-    <value>累計CO2排出低減</value>
+    <value>累計CO₂排出低減</value>
   </data>
   <data name="DATAITEM_2" xml:space="preserve">
     <value>累計トータル発電量</value>
@@ -3749,7 +3749,7 @@
     <value>累計トータル収入</value>
   </data>
   <data name="DATAITEM_2098" xml:space="preserve">
-    <value>最近7日間のCO2排出低減</value>
+    <value>最近7日間のCO₂排出低減</value>
   </data>
   <data name="DATAITEM_2094" xml:space="preserve">
     <value>最近7日間の発電量</value>
@@ -3758,7 +3758,7 @@
     <value>最近7日間の収入</value>
   </data>
   <data name="DATAITEM_2099" xml:space="preserve">
-    <value>累計CO2排出低減</value>
+    <value>累計CO₂排出低減</value>
   </data>
   <data name="DATAITEM_2095" xml:space="preserve">
     <value>累計トータル発電量</value>
@@ -3767,7 +3767,7 @@
     <value>トータル収入</value>
   </data>
   <data name="DATAITEM_4110" xml:space="preserve">
-    <value>今年のCO2排出低減</value>
+    <value>今年のCO₂排出低減</value>
   </data>
   <data name="DATAITEM_4106" xml:space="preserve">
     <value>今年の発電量</value>
@@ -3776,7 +3776,7 @@
     <value>今年の収入</value>
   </data>
   <data name="DATAITEM_4111" xml:space="preserve">
-    <value>累計CO2排出低減</value>
+    <value>累計CO₂排出低減</value>
   </data>
   <data name="DATAITEM_4107" xml:space="preserve">
     <value>累計トータル発電量</value>
@@ -3992,7 +3992,7 @@
     <value>累計トータル収入</value>
   </data>
   <data name="DATAITEM_5117" xml:space="preserve">
-    <value>累計CO2排出低減</value>
+    <value>累計CO₂排出低減</value>
   </data>
   <data name="REPORT_BUTTON_PREVIEW" xml:space="preserve">
     <value>プレビュー</value>

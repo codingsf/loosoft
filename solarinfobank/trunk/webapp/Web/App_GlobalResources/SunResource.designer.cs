@@ -2230,7 +2230,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 CO2 reduction the last 7 days 的本地化字符串。
+        ///   查找类似 CO₂ reduction the last 7 days 的本地化字符串。
         /// </summary>
         internal static string DATAITEM_2098 {
             get {
@@ -2239,7 +2239,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Total CO2 reduction 的本地化字符串。
+        ///   查找类似 Total CO₂ reduction 的本地化字符串。
         /// </summary>
         internal static string DATAITEM_2099 {
             get {
@@ -2311,7 +2311,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 CO2 reduction of this month 的本地化字符串。
+        ///   查找类似 CO₂ reduction of this month 的本地化字符串。
         /// </summary>
         internal static string DATAITEM_3104 {
             get {
@@ -2320,7 +2320,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Total CO2 reduction 的本地化字符串。
+        ///   查找类似 Total CO₂ reduction 的本地化字符串。
         /// </summary>
         internal static string DATAITEM_3105 {
             get {
@@ -2392,7 +2392,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Year CO2 Reduction 的本地化字符串。
+        ///   查找类似 Year CO₂ Reduction 的本地化字符串。
         /// </summary>
         internal static string DATAITEM_4110 {
             get {
@@ -2401,7 +2401,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Total  CO2 Reduction 的本地化字符串。
+        ///   查找类似 Total CO₂ Reduction 的本地化字符串。
         /// </summary>
         internal static string DATAITEM_4111 {
             get {
@@ -2428,7 +2428,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Today CO2 Reduction 的本地化字符串。
+        ///   查找类似 Today CO₂ Reduction 的本地化字符串。
         /// </summary>
         internal static string DATAITEM_5 {
             get {
@@ -2455,7 +2455,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Total CO2 Reduction 的本地化字符串。
+        ///   查找类似 Total CO₂ Reduction 的本地化字符串。
         /// </summary>
         internal static string DATAITEM_5117 {
             get {
@@ -2482,7 +2482,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Total CO2 Reduction 的本地化字符串。
+        ///   查找类似 Total CO₂ Reduction 的本地化字符串。
         /// </summary>
         internal static string DATAITEM_6 {
             get {
@@ -4894,7 +4894,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 CO2 Reduction 的本地化字符串。
+        ///   查找类似 CO₂ Reduction 的本地化字符串。
         /// </summary>
         internal static string HOME_INDEX_AVOIDED_CO2 {
             get {
@@ -7502,7 +7502,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 CO2 Reduction 的本地化字符串。
+        ///   查找类似 CO₂ Reduction 的本地化字符串。
         /// </summary>
         internal static string PLANT_OVERVIEW_CO2_AVOIDED {
             get {
@@ -8846,7 +8846,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Today CO2 reduction:{0} {1}&lt;br/&gt;&lt;br/&gt; 的本地化字符串。
+        ///   查找类似 Today CO₂ reduction:{0} {1}&lt;br/&gt;&lt;br/&gt; 的本地化字符串。
         /// </summary>
         internal static string REPORT_CONFIG_TODAY_CO2 {
             get {
@@ -8873,7 +8873,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Total CO2 reduction:{0} {1}&lt;br/&gt;&lt;br/&gt; 的本地化字符串。
+        ///   查找类似 Total CO₂ reduction:{0} {1}&lt;br/&gt;&lt;br/&gt; 的本地化字符串。
         /// </summary>
         internal static string REPORT_CONFIG_TOTAL_CO2 {
             get {
@@ -9503,7 +9503,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 CO2 的本地化字符串。
+        ///   查找类似 CO₂ 的本地化字符串。
         /// </summary>
         internal static string SHARED_BACKMANAGERMASTERPAGE_CO2 {
             get {
@@ -12360,7 +12360,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 CO2 Reduction 的本地化字符串。
+        ///   查找类似 CO₂ Reduction 的本地化字符串。
         /// </summary>
         internal static string USER_OVERVIEW_CO2_REDUCTION {
             get {
@@ -12567,7 +12567,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 CO2 Reduction 的本地化字符串。
+        ///   查找类似 CO₂ Reduction 的本地化字符串。
         /// </summary>
         internal static string USER_PORTAL_CO2_REDUCTIONG {
             get {

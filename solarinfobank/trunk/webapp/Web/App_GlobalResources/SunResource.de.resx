@@ -250,7 +250,7 @@
     <comment>逆变器设备类型</comment>
   </data>
   <data name="HOME_INDEX_AVOIDED_CO2" xml:space="preserve">
-    <value>CO2 Einsparung</value>
+    <value>CO₂ Einsparung</value>
   </data>
   <data name="HOME_INDEX_PLANT_DISTRIBUTION" xml:space="preserve">
     <value>Verteilung Kraftwerk</value>
@@ -637,7 +637,7 @@
     <value>Alle Einheiten</value>
   </data>
   <data name="PLANT_OVERVIEW_CO2_AVOIDED" xml:space="preserve">
-    <value>CO2 Einsparung</value>
+    <value>CO₂ Einsparung</value>
   </data>
   <data name="PLANT_OVERVIEW_ENERGY" xml:space="preserve">
     <value>Energieerzeugung</value>
@@ -1081,7 +1081,7 @@
     <comment>所有电站</comment>
   </data>
   <data name="USER_OVERVIEW_CO2_REDUCTION" xml:space="preserve">
-    <value>CO2 Einsparung</value>
+    <value>CO₂ Einsparung</value>
   </data>
   <data name="USER_OVERVIEW_ENERGY" xml:space="preserve">
     <value>Energieerzeugung</value>
@@ -1125,7 +1125,7 @@
     <comment>所有电站</comment>
   </data>
   <data name="USER_PORTAL_CO2_REDUCTIONG" xml:space="preserve">
-    <value>CO2 Einsparung</value>
+    <value>CO₂ Einsparung</value>
   </data>
   <data name="USER_PORTAL_DATE" xml:space="preserve">
     <value>Datum</value>
@@ -1319,7 +1319,7 @@
     <value>Klicke hier für Hilfe</value>
   </data>
   <data name="SHARED_BACKMANAGERMASTERPAGE_CO2" xml:space="preserve">
-    <value>CO2</value>
+    <value>CO₂</value>
   </data>
   <data name="SHARED_BACKMANAGERMASTERPAGE_COLLECTOR_IMPORT" xml:space="preserve">
     <value>Import Datenlogger</value>
@@ -2287,7 +2287,7 @@
     <value>Sind Sie sicher?</value>
   </data>
   <data name="MONITORITEM_CO2_REDUCE" xml:space="preserve">
-    <value>CO2 Einsparung</value>
+    <value>CO₂ Einsparung</value>
   </data>
   <data name="MONITORITEM_COM_PARAM" xml:space="preserve">
     <value>Kommunikationsparameter</value>
@@ -3628,7 +3628,7 @@
     <value>Kraftwerke {0}</value>
   </data>
   <data name="REPORT_CONFIG_TODAY_CO2" xml:space="preserve">
-    <value>CO2 Einsparung Heute:{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
+    <value>CO₂ Einsparung Heute:{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
   </data>
   <data name="REPORT_CONFIG_TODAY_ENERGY" xml:space="preserve">
     <value>Energie Heute:{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
@@ -3637,7 +3637,7 @@
     <value>Gesamtertrag:{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
   </data>
   <data name="REPORT_CONFIG_TOTAL_CO2" xml:space="preserve">
-    <value>CO2 Einsparung:{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
+    <value>CO₂ Einsparung:{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
   </data>
   <data name="REPORT_CONFIG_TOTAL_ENERGY" xml:space="preserve">
     <value>Gesamtenergie:{0} {1}&lt;br/&gt;&lt;br/&gt;</value>
@@ -3747,7 +3747,7 @@
     <value>Slant Sonnenschein Intensität (W/m2)</value>
   </data>
   <data name="DATAITEM_3104" xml:space="preserve">
-    <value>CO2 Einsparung diesen Monat</value>
+    <value>CO₂ Einsparung diesen Monat</value>
   </data>
   <data name="DATAITEM_3100" xml:space="preserve">
     <value>Energie in diesem Monat</value>
@@ -3756,7 +3756,7 @@
     <value>Einkommen in diesem Monat</value>
   </data>
   <data name="DATAITEM_3105" xml:space="preserve">
-    <value>CO2 Gesamteinsparung</value>
+    <value>CO₂ Gesamteinsparung</value>
   </data>
   <data name="DATAITEM_3101" xml:space="preserve">
     <value>Gesamtenergie</value>
@@ -3788,7 +3788,7 @@
     <comment>今日功率最大值发送时间</comment>
   </data>
   <data name="DATAITEM_5" xml:space="preserve">
-    <value>CO2 Einsparung Heute</value>
+    <value>CO₂ Einsparung Heute</value>
   </data>
   <data name="DATAITEM_1" xml:space="preserve">
     <value>Energie Heute</value>
@@ -3811,7 +3811,7 @@
     <comment>总收入</comment>
   </data>
   <data name="DATAITEM_6" xml:space="preserve">
-    <value>CO2 Gesamteinsparung</value>
+    <value>CO₂ Gesamteinsparung</value>
   </data>
   <data name="DATAITEM_2" xml:space="preserve">
     <value>Gesamtenergie</value>
@@ -3820,8 +3820,8 @@
     <value>Gesamtertrag</value>
   </data>
   <data name="DATAITEM_2098" xml:space="preserve">
-    <value>CO2-Minderung der letzten 7 Tage</value>
-    <comment>近7日CO2减排</comment>
+    <value>CO₂-Minderung der letzten 7 Tage</value>
+    <comment>近7日CO₂减排</comment>
   </data>
   <data name="DATAITEM_2094" xml:space="preserve">
     <value>Yield der letzten 7 Tage</value>
@@ -3832,7 +3832,7 @@
     <comment>近7日收入</comment>
   </data>
   <data name="DATAITEM_2099" xml:space="preserve">
-    <value>CO2 Gesamteinsparung</value>
+    <value>CO₂ Gesamteinsparung</value>
   </data>
   <data name="DATAITEM_2095" xml:space="preserve">
     <value>Gesamtenergie</value>
@@ -3842,7 +3842,7 @@
     <comment>总收入</comment>
   </data>
   <data name="DATAITEM_4110" xml:space="preserve">
-    <value>CO2 Einsparung dieses Jahr</value>
+    <value>CO₂ Einsparung dieses Jahr</value>
   </data>
   <data name="DATAITEM_4106" xml:space="preserve">
     <value>Ertrag dieses Jahr</value>
@@ -3851,7 +3851,7 @@
     <value>Jahreseinkommen</value>
   </data>
   <data name="DATAITEM_4111" xml:space="preserve">
-    <value>CO2 Gesamteinsparung</value>
+    <value>CO₂ Gesamteinsparung</value>
   </data>
   <data name="DATAITEM_4107" xml:space="preserve">
     <value>Gesamtenergie</value>
@@ -4075,7 +4075,7 @@
     <value>Gesamtertrag</value>
   </data>
   <data name="DATAITEM_5117" xml:space="preserve">
-    <value>CO2 Gesamteinsparung</value>
+    <value>CO₂ Gesamteinsparung</value>
   </data>
   <data name="REPORT_BUTTON_PREVIEW" xml:space="preserve">
     <value>Vorschau</value>

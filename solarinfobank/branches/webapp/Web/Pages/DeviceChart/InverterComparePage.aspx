@@ -71,27 +71,27 @@
         }
         
         function displayDayChart() {
-                                $('#intervalMins').val(60);
+            $('#intervalMins').val(60);
             curChart = "DayChart";
-            dayCompareChart("container", 150, false);
+            dayCompareChart("container_unit", 150, false);
             $("#monthdatatable").hide();
             $("#yeardatatable").hide(); 
             changeALT();
         }
 
         function displayMonthChart() {
-                                $('#intervalMins').val(60);
+            $('#intervalMins').val(60);
             curChart = "MonthChart";
-            monthCompareChart("container", 150, false);
+            monthCompareChart("container_unit", 150, false);
             $("#daydatatable").hide();
             $("#yeardatatable").hide();                   
             $("#monthdatadiv").html($("#monthdatadiv_html").html());
             changeALT();
         }
         function displayYearChart() {
-                                $('#intervalMins').val(60);
+            $('#intervalMins').val(60);
             curChart = "YearChart";
-            yearCompareChart("container", 160, false);
+            yearCompareChart("container_unit", 160, false);
             $("#daydatatable").hide();
             $("#monthdatatable").hide();              
             $("#yeardatadiv").html($("#yeardatadiv_html").html());
@@ -109,14 +109,15 @@
                         $("#daydatadiv").html($("#daydatadiv_html").html());
                         $("#chart_tip").hide();
                         return;
-                    }     
-                    showDetails(result, $("#endYYYYMMDDHH").val());
-                    defineChartWithDetail(curContainer,false);
+                    }
+                    
                     var data = eval('(' + result + ')')
                     setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#startYYYYMMDDHH").val().substring(0,8),data.name);
                     setyAxis(data);
                     setySeriesArr(data.series);
                     setCategories(data.categories, isLarge); 
+                    defineChartWithDetail(curContainer,false);
+                    showDetails(result, $("#endYYYYMMDDHH").val());
                     //修改标题
                     chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
                     if(!isLarge){
@@ -147,13 +148,13 @@
                         return;
                     }             
                     showDetails(result, $("#endYYYYMMDD").val());
-                    defineChartWithDetail(curContainer,false);
                     var data = eval('(' + result + ')')
                     setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#startYYYYMMDD").val().substring(0,6),data.name);
                     setyAxis(data);
                     setySeriesArr(data.series);
                     setCategories(data.categories, isLarge);
-
+                    defineChartWithDetail(curContainer,false);//提上去有问题，每次都是前一次的图表
+                    
                     //修改标题
                     chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
                     if(!isLarge){
@@ -184,13 +185,13 @@
                         return;
                     }               
                     showDetails(result);
-                    defineChartWithDetail(curContainer,false);  
+                    //defineChartWithDetail(curContainer,false);  
                     var data = eval('(' + result + ')')
                     setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#year").val(),data.name);
                     setyAxis(data);
                     setySeriesArr(data.series);
                     setCategories(data.categories, isLarge);
-
+                    defineChartWithDetail(curContainer,false);//提上去有问题，每次都是前一次的图表,但是以前为何要提上去呢，忘了是啥原因
                     //修改标题
                     chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
                     if(!isLarge){
@@ -472,7 +473,7 @@
         <div class="chart">
             <div class="chart_box">
                 <div id="chartDiv">
-                    <div id='container' style='width: 100%; height: 550px; margin-left: 2px; margin-right: 2px;'>
+                    <div id='container_unit' style='width: 100%; height: 550px; margin-left: 2px; margin-right: 2px;'>
                     </div>
                 </div>
                 <div id="chart_tip" style="display: none; margin-left: 20px;">

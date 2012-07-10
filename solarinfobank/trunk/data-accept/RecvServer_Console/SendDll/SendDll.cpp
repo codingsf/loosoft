@@ -111,3 +111,16 @@ extern "C" __declspec(dllexport) int Append2MC(char * strKey,char * strContent)
 	return req.mResult;
 }
 
+//检查主键是否存在
+extern "C" __declspec(dllexport) int IsExist(char * strKey)
+{
+	MemCacheClient::MemRequest req;
+	req.mKey  = strKey;
+
+	int iRet = pClient->CheckSet(req);
+	if(iRet <= 0)
+		return -1;
+;
+	return iRet;
+}
+

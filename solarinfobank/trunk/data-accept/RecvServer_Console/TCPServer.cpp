@@ -794,7 +794,7 @@ void TCPServer::DealNewProtocol(TCP_DATA * pTCPData, CUserSession * pSession)
 DWORD WINAPI CMDThreadProc(LPVOID pParam)
 {
 	TCPServer* pThis = reinterpret_cast<TCPServer*>(pParam );
-	while(false)
+	while(true)//add by bloodhunter at 2012-07-11 for  isExistKey  如果存在问题，则先将此处的true更改为false
 	{	
 		try
 		{
@@ -808,44 +808,58 @@ DWORD WINAPI CMDThreadProc(LPVOID pParam)
 				memset(content, 0, sizeof(content));
 				//历史数据请求
 				char* contentkey = const_cast<char*>(itIndex->second->strCmd_Req_HistoryStart.c_str());
-				int res = dllLoader.pReadFromMC(contentkey, content);
+				int res = dllLoader.pIsExistKey(contentkey);//判断是否存在
 				if(res != -1)
 				{
-					CString strID = itIndex->second->strCmd_Req_HistoryStart.c_str();
-					CString strContent = content;
-					SENDMEMLOG(strID, strContent, false);
-					data.iLen = TCPServer::CString2Hex(data.data, strContent);
-					if(protocol69Dealer.DealHistoryDataReq(data, itIndex->second) == 1)//如果命令成功，则memcache中擦除该项
+					res = dllLoader.pReadFromMC(contentkey, content);
+					if(res != -1)
 					{
-						dllLoader.pRemoveFromMC(const_cast<char*>(itIndex->second->strCmd_Req_HistoryStart.c_str()));
+						CString strID = itIndex->second->strCmd_Req_HistoryStart.c_str();
+						CString strContent = content;
+						SENDMEMLOG(strID, strContent, false);
+						data.iLen = TCPServer::CString2Hex(data.data, strContent);
+						if(protocol69Dealer.DealHistoryDataReq(data, itIndex->second) == 1)//如果命令成功，则memcache中擦除该项
+						{
+							dllLoader.pRemoveFromMC(const_cast<char*>(itIndex->second->strCmd_Req_HistoryStart.c_str()));
+						}
 					}
 				}
 
 				//历史数据终止
-				res = dllLoader.pReadFromMC(const_cast<char*>(itIndex->second->strCmd_Req_HistoryStop.c_str()), content);
+				contentkey = const_cast<char*>(itIndex->second->strCmd_Req_HistoryStop.c_str());
+				res = dllLoader.pIsExistKey(contentkey);//判断是否存在
 				if(res != -1)
 				{
-					CString strID = itIndex->second->strCmd_Req_HistoryStart.c_str();
-					CString strContent = content;
-					SENDMEMLOG(strID, strContent, false);
-					data.iLen = TCPServer::CString2Hex(data.data, strContent);
-					if(protocol69Dealer.DealHistoryDataStopReq(data, itIndex->second) == 1)//如果命令成功，则memcache中擦除该项
+					res = dllLoader.pReadFromMC(contentkey, content);
+					if(res != -1)
 					{
-						dllLoader.pRemoveFromMC(const_cast<char*>(itIndex->second->strCmd_Req_HistoryStop.c_str()));
+						CString strID = itIndex->second->strCmd_Req_HistoryStart.c_str();
+						CString strContent = content;
+						SENDMEMLOG(strID, strContent, false);
+						data.iLen = TCPServer::CString2Hex(data.data, strContent);
+						if(protocol69Dealer.DealHistoryDataStopReq(data, itIndex->second) == 1)//如果命令成功，则memcache中擦除该项
+						{
+							dllLoader.pRemoveFromMC(const_cast<char*>(itIndex->second->strCmd_Req_HistoryStop.c_str()));
+						}
 					}
 				}
 
 				//参数设置
-				res = dllLoader.pReadFromMC(const_cast<char*>(itIndex->second->cmd_Req_ParameterSet.c_str()), content);
+				contentkey = const_cast<char*>(itIndex->second->cmd_Req_ParameterSet.c_str());
+				res = dllLoader.pIsExistKey(contentkey);//判断是否存在
 				if(res != -1)
 				{
-					CString strID = itIndex->second->strCmd_Req_HistoryStart.c_str();
-					CString strContent = content;
-					SENDMEMLOG(strID, strContent, false);
-					data.iLen = TCPServer::CString2Hex(data.data, strContent);
-					if(protocol69Dealer.DealParameterSetReq(data, itIndex->second) == 1)//如果命令成功，则memcache中擦除该项
+					res = dllLoader.pReadFromMC(contentkey, content);
+					if(res != -1)
 					{
-						dllLoader.pRemoveFromMC(const_cast<char*>(itIndex->second->cmd_Req_ParameterSet.c_str()));
+						CString strID = itIndex->second->strCmd_Req_HistoryStart.c_str();
+						CString strContent = content;
+						SENDMEMLOG(strID, strContent, false);
+						data.iLen = TCPServer::CString2Hex(data.data, strContent);
+						if(protocol69Dealer.DealParameterSetReq(data, itIndex->second) == 1)//如果命令成功，则memcache中擦除该项
+						{
+							dllLoader.pRemoveFromMC(const_cast<char*>(itIndex->second->cmd_Req_ParameterSet.c_str()));
+						}
 					}
 				}
 			}
@@ -853,9 +867,10 @@ DWORD WINAPI CMDThreadProc(LPVOID pParam)
 		}
 		catch(...)
 		{
+			Sleep(1000);
 			continue;
 		}
-		Sleep(1000);
+		Sleep(3000);
 	}
 	
 	return 1L;

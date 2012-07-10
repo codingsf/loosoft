@@ -21,7 +21,9 @@ public:
 	PFUN_SEND2MC pReadFromMC;
 	PFUN_INIT     pRemoveFromMC;
 	PFUN_SEND2MC pAppend2MC;
+	PFUN_INIT pIsExistKey; 
 	//END:add by bloodhunter for new protocol at 2012-3-23
+
 
 	DLLLoader();
 	virtual ~DLLLoader();

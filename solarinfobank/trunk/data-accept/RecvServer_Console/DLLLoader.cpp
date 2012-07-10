@@ -33,6 +33,7 @@ DLLLoader::DLLLoader()
 	pReadFromMC = (PFUN_SEND2MC)::GetProcAddress(hDll,"GetFromMC");
 	pRemoveFromMC = (PFUN_INIT)::GetProcAddress(hDll,"Remove");
 	pAppend2MC =  (PFUN_SEND2MC)::GetProcAddress(hDll,"Append2MC");//×·¼ÓÊý¾Ý
+	pIsExistKey = (PFUN_INIT)::GetProcAddress(hDll,"IsExist");
 	//END:add by bloodhunter for new protocol at 2012-3-23
 	GetPrivateProfileString("Memcached","Host","127.0.0.1:11211",strMCServer,50,"./config.ini");
 	BOOL bInit=pInit(strMCServer);

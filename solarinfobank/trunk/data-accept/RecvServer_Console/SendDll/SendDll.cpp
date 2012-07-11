@@ -116,11 +116,19 @@ extern "C" __declspec(dllexport) int IsExist(char * strKey)
 {
 	MemCacheClient::MemRequest req;
 	req.mKey  = strKey;
+	char strContent[2];
+	strContent[0] = '0';
+	strContent[1] = '\0';
+	req.mData.WriteBytes(strContent, strlen(strContent));
+	req.mCas = 0;
+	
 
 	int iRet = pClient->CheckSet(req);
+	//printf("查找结果为%d\n", req.mResult);
 	if(iRet <= 0)
 		return -1;
-;
-	return iRet;
+	if(req.mResult == MCERR_NOTFOUND)
+		return -1;
+	else return 0;
 }
 

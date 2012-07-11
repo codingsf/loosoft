@@ -635,7 +635,8 @@ MemCacheClient::CreateKeyHash(
     SHA1(output.as_char, (const sha1_byte *) a_pszKey, (unsigned int) strlen(a_pszKey));
     return output.as_long[LONG_COUNT-1];
 }
-
+//BEGIN: modify by bloodhunter at 2012-07-11 
+//我们此处只存在一个memecachesrv，所以此处直接返回第一个即可。不用去查找。
 MemCacheClient::Server *
 MemCacheClient::FindServer(
     const string_t & a_sKey
@@ -698,6 +699,7 @@ MemCacheClient::Combine(
         }
         else {
             a_rgItem[n].mResult = MCERR_NOSERVER;
+			//printf("MemCacheClient::Combine findserver\n");
         }
     }
     if (nItemCount == 0) return 0;
@@ -751,6 +753,7 @@ MemCacheClient::Combine(
             for (int n = nItem; n < nNext; ++n) {
                 rgpItem[n]->mServer = NULL;
                 rgpItem[n]->mResult = MCERR_NOSERVER;
+				//printf("MemCacheClient::Combine exception\n");
             }
         }
         nItem = nNext;
@@ -785,6 +788,7 @@ MemCacheClient::Combine(
                 if (rgpItem[nItem]->mServer != rgpItem[n]->mServer) continue;
                 rgpItem[n]->mServer = NULL;
                 rgpItem[n]->mResult = MCERR_NOSERVER;
+				//printf("MemCacheClient::Combine exception2\n");
             }
         }
     }
@@ -1070,6 +1074,17 @@ MemCacheClient::HandleStoreResponse(
         a_oItem.mResult = MCERR_NOTSTORED;
         return;
     }
+	if(sValue == "EXISTS\r\n")
+	{
+		a_oItem.mResult = MCERR_OK;
+		return;
+	}
+
+	if(sValue == "NOT_FOUND\r\n")
+	{
+		a_oItem.mResult = MCERR_NOTFOUND;
+		return;
+	}
 
     // unknown response, connection may be bad
     a_pServer->Disconnect();

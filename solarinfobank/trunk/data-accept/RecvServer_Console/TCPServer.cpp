@@ -794,7 +794,7 @@ void TCPServer::DealNewProtocol(TCP_DATA * pTCPData, CUserSession * pSession)
 DWORD WINAPI CMDThreadProc(LPVOID pParam)
 {
 	TCPServer* pThis = reinterpret_cast<TCPServer*>(pParam );
-	while(false)//add by bloodhunter at 2012-07-11 for  isExistKey  如果存在问题，则先将此处的true更改为false
+	while(true)//add by bloodhunter at 2012-07-11 for  isExistKey  如果存在问题，则先将此处的true更改为false
 	{	
 		try
 		{
@@ -802,13 +802,34 @@ DWORD WINAPI CMDThreadProc(LPVOID pParam)
 			map<string, CUserSession*>::iterator itIndex;
 			for (itIndex = pThis->m_mapSession.begin(); itIndex !=  pThis->m_mapSession.end(); itIndex++)
 			{
+
+
 				DataInfoStructor data;
 
 				char content[10240];
 				memset(content, 0, sizeof(content));
+
+				char* contentkey;
+				int res;
+				
+#if 0
+				//测试
+				contentkey = const_cast<char*>(itIndex->second->strState_Online.c_str());
+				res = dllLoader.pIsExistKey(contentkey);//判断是否存在
+				if(res != -1)
+				{
+					res = dllLoader.pReadFromMC(contentkey, content);
+					if(res != -1)
+					{
+						CString strID = itIndex->second->strCmd_Req_HistoryStart.c_str();
+						CString strContent = content;
+					}
+				}
+#endif
+
 				//历史数据请求
-				char* contentkey = const_cast<char*>(itIndex->second->strCmd_Req_HistoryStart.c_str());
-				int res = dllLoader.pIsExistKey(contentkey);//判断是否存在
+				contentkey = const_cast<char*>(itIndex->second->strCmd_Req_HistoryStart.c_str());
+				res = dllLoader.pIsExistKey(contentkey);//判断是否存在
 				if(res != -1)
 				{
 					res = dllLoader.pReadFromMC(contentkey, content);

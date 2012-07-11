@@ -215,6 +215,7 @@ DWORD WINAPI SaveToMemThread(LPVOID param)
 		{
 			//此处记载日志，写入memcache的内容
 			SENDMEMLOG(strID, strContent, true);
+			cout << "KEY:[" << (LPTSTR)(LPCTSTR)strID<< "]:" << dwRet << ",input to Memcached Server success!" << endl;
 #if 0//此处不再需要，保留
 			CString memkeyList_key;
 			//此处更改为每秒一个key，以保证不会出现value过大的问题

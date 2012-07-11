@@ -794,7 +794,7 @@ void TCPServer::DealNewProtocol(TCP_DATA * pTCPData, CUserSession * pSession)
 DWORD WINAPI CMDThreadProc(LPVOID pParam)
 {
 	TCPServer* pThis = reinterpret_cast<TCPServer*>(pParam );
-	while(true)//add by bloodhunter at 2012-07-11 for  isExistKey  如果存在问题，则先将此处的true更改为false
+	while(false)//add by bloodhunter at 2012-07-11 for  isExistKey  如果存在问题，则先将此处的true更改为false
 	{	
 		try
 		{

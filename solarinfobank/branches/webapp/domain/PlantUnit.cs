@@ -163,8 +163,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public float TodayPower(int timezone)
         {
             float total = 0;
-
-            if (this.collector != null && this.collector.runData != null && CalenderUtil.formatDate(collector.runData.sendTime, "yyyyMMdd").Equals(CalenderUtil.curDateWithTimeZone(timezone, "yyyyMMdd")))
+            //功率也去相差1小时的范围的值
+            if (this.collector != null && this.collector.runData != null && this.collector.runData.sendTime.AddHours(1) >= CalenderUtil.curDateWithTimeZone(timezone))
                 total = collector.runData.power;
 
             return total;

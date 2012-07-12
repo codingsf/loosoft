@@ -264,12 +264,12 @@
     <script src="/script/DatePicker/WdatePicker.js" type="text/javascript"></script>
     <input type="hidden" value="5" id="intervalMins" />
     <input type="hidden" value="<%=Model.id%>" id="pid" />
-    <input type="hidden" value="<%=DateTime.Now.Year%>" id="year" />
-    <input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+DateTime.Now.Day.ToString("00") %>00" id="startYYYYMMDDHH" />
-    <input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+DateTime.Now.Day.ToString("00") %>23" id="endYYYYMMDDHH" />
-    <input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")%>01" id="startYYYYMMDD" />
-    <input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+CalenderUtil.getCurMonthDays() %>" id="endYYYYMMDD" />
-    <input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")%>" id="month" />
+    <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy")%>" id="year" />
+    <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>00" id="startYYYYMMDDHH" />
+    <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>23" id="endYYYYMMDDHH" />
+    <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")%>01" id="startYYYYMMDD" />
+    <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")+CalenderUtil.getCurMonthDays(Model.timezone) %>" id="endYYYYMMDD" />
+    <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"MM")%>" id="month" />
     <input type="hidden" value="column" id="chartType" />
     <td width="793" valign="top" background="/images/kj/kjbg01.jpg">
         <table width="100%" height="63" border="0" cellpadding="0" cellspacing="0" background="/images/kj/kjbg02.jpg">

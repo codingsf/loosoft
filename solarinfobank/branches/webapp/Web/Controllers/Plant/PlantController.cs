@@ -1885,22 +1885,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             ViewData["hlx"] = hlxArray;
             ViewData["db"] = dbArray;
             return View();
-
-
         }
-
-        /// <summary>
-        /// 电站设备结构图
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult deviceStructChart(int id)
-        {
-            Plant plant = plantService.GetPlantInfoById(id);
-            string jsstr = base.createDeviceContructTree(plant, -1);
-            ViewData["jsstr"] = jsstr;
-            return View();
-        }
-
 
         /// <summary>
         /// 电站的设备数据
@@ -1922,6 +1907,11 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             return View(plant);
         }
 
+        /// <summary>
+        /// 电站设备树
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult deviceStructTree(string id)
         {
             int pid = 0;
@@ -1931,7 +1921,5 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             ViewData["jsstr"] = jsstr;
             return View();
         }
-
-
     }
 }

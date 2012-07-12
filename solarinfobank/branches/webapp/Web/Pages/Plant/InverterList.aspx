@@ -117,7 +117,7 @@
                                     <%=device.designPower%>
                                     </td>
                                     <td align="center" width="100">
-                                         <%=fault ? 0 : device.getMonitorValue(MonitorType.MIC_INVERTER_TOTALYGPOWER)%>
+                                         <%=fault ? "0" : StringUtil.formatDouble(device.getMonitorValue(MonitorType.MIC_INVERTER_TOTALYGPOWER),"0.00")%>
                                     </td>
                                     <td align="center" width="100">
                                          
@@ -153,7 +153,7 @@
                                     <%=Math.Round(curMonthEnergy/device.chartPower,2) %>
                                     </td>
                                     <td width="100" align="center">
-                                    <%=device.TotalEnergy %>
+                                    <%=StringUtil.formatFloat(device.TotalEnergy,"0.00") %>
                                     </td>
                                     <td width="100" align="center">
                                      <%if (fault)
@@ -227,7 +227,7 @@
                                     <%=device.designPower%>
                                     </td>
                                     <td align="center" width="100">
-                                         <%=fault ? 0 : device.getMonitorValue(MonitorType.MIC_INVERTER_TOTALYGPOWER)%>
+                                         <%=fault ? "0" : StringUtil.formatDouble(device.getMonitorValue(MonitorType.MIC_INVERTER_TOTALYGPOWER),"0.00")%>
                                     </td>
                                     <td align="center" width="100">
                                          
@@ -250,10 +250,10 @@
                                     <%} %>
                                     </td>
                                     <td width="100" align="center">
-                                        <%=device.TodayEnergy(Model.timezone)%>
+                                        <%=StringUtil.formatDouble(device.TodayEnergy(Model.timezone),"0.00")%>
                                     </td> 
                                     <td width="150" align="center">
-                                    <%=curMonthEnergy.ToString("0.00")%>
+                                    <%=StringUtil.formatDouble(curMonthEnergy,"0.00")%>
                                     
                                     </td>
                                     <td width="100" align="center">
@@ -262,7 +262,7 @@
                                     
                                     </td>
                                     <td width="100" align="center">
-                                 <%=device.TotalEnergy %>
+                                 <%=StringUtil.formatDouble(device.TotalEnergy,"0.00") %>
                                     </td>
                                     <td width="100" align="center">
                                      <%if (fault)
@@ -337,7 +337,7 @@
                                     <%=device.designPower%>
                                     </td>
                                     <td align="center" width="100">
-                                         <%=fault ? 0 : device.getMonitorValue(MonitorType.MIC_INVERTER_TOTALYGPOWER)%>
+                                         <%=fault ? "0" :  StringUtil.formatDouble(device.getMonitorValue(MonitorType.MIC_INVERTER_TOTALYGPOWER),"0.00")%>
                                     </td>
                                     <td align="center" width="100">
                                          
@@ -360,10 +360,10 @@
                                     <%} %>
                                     </td>
                                     <td width="100" align="center">
-                                    <%=device.TodayEnergy(Model.timezone)%>
+                                    <%=StringUtil.formatDouble(device.TodayEnergy(Model.timezone),"0.00")%>
                                     </td> 
                                     <td width="150" align="center">
-                                    <%=curMonthEnergy.ToString("0.00")%>
+                                    <%=StringUtil.formatDouble(curMonthEnergy,"0.00")%>
                                     
                                     </td>
                                     <td width="100" align="center">
@@ -372,12 +372,12 @@
                                     
                                     </td>
                                     <td width="100" align="center">
-                                 <%=device.TotalEnergy %>
+                                    <%=StringUtil.formatDouble(device.TotalEnergy,"0.00") %>
                                     </td>
                                     <td width="100" align="center">
                                      <%if (fault)
                                       { %>
-                                  <font color="red"> <%=device.runData == null ? "-" : device.runData.updateTime.ToString("MM-dd HH:mm:ss")%></font> 
+                                    <font color="red"> <%=device.runData == null ? "-" : device.runData.updateTime.ToString("MM-dd HH:mm:ss")%></font> 
                                       
                                       <%}
                                       else
@@ -394,67 +394,14 @@
                                     </td>
                                     
                                 </tr>
-
-
-
-
-
-
-
-
                             </tbody></table>
                         </td>
                     </tr>
                            
                            <%}
-                        } %> 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                        } %>
 
                 </tbody></table>
                 
                 </div>
-                
+           

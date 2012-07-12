@@ -19,11 +19,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
     {
         static IDictionary<string, IList<int>> sortGroup = new Dictionary<string, IList<int>>();
 
+        private static IList<int> notDisplayMonitor = new List<int>();//不用显示出来的测点
       
         static DeviceRunData()
         {
-            sortGroup.Add("group1", new List<int>() { MonitorType.MIC_INVERTER_POWER, MonitorType.MIC_INVERTER_OUTTYPE, MonitorType.MIC_INVERTER_DEVICESTATUS, MonitorType.MIC_INVERTER_STATUSTIME, MonitorType.MIC_INVERTER_RUNTIME, MonitorType.MIC_INVERTER_JNKQTEMPRATURE, MonitorType.MIC_INVERTER_JNBYQTEMPRATURE, MonitorType.MIC_INVERTER_JNSRQTEMPRATURE, MonitorType.MIC_INVERTER_STATUSDATA1,MonitorType.MIC_INVERTER_STATUSDATA2, MonitorType.MIC_INVERTER_STATUSDATA3, 
-                MonitorType.MIC_AMMETER_SYSFREQUENCY,MonitorType.MIC_AMMETER_PHASEVOLTAGE1,MonitorType.MIC_AMMETER_PHASEVOLTAGE2,MonitorType.MIC_AMMETER_PHASEVOLTAGE3,MonitorType.MIC_AMMETER_PHASECURRENT1,MonitorType.MIC_AMMETER_PHASECURRENT2,MonitorType.MIC_AMMETER_PHASECURRENT3 });
+            sortGroup.Add("group1", new List<int>() { MonitorType.MIC_INVERTER_POWER, MonitorType.MIC_INVERTER_OUTTYPE, MonitorType.MIC_INVERTER_DEVICESTATUS, MonitorType.MIC_INVERTER_RUNTIME, MonitorType.MIC_INVERTER_JNKQTEMPRATURE, MonitorType.MIC_AMMETER_SYSFREQUENCY,MonitorType.MIC_AMMETER_PHASEVOLTAGE1,MonitorType.MIC_AMMETER_PHASEVOLTAGE2,MonitorType.MIC_AMMETER_PHASEVOLTAGE3,MonitorType.MIC_AMMETER_PHASECURRENT1,MonitorType.MIC_AMMETER_PHASECURRENT2,MonitorType.MIC_AMMETER_PHASECURRENT3 });
             sortGroup.Add("group2", new List<int>() { MonitorType.MIC_INVERTER_TODAYENERGY, MonitorType.MIC_INVERTER_TOTALENERGY, MonitorType.MIC_INVERTER_TOTALDPOWER, MonitorType.MIC_INVERTER_TOTALYGPOWER, MonitorType.MIC_INVERTER_TOTALWGPOWER, MonitorType.MIC_INVERTER_TOTALPOWERFACTOR, MonitorType.MIC_INVERTER_DWPL,
                 MonitorType.MIC_AMMETER_PHASEACTIVEPOWER1,MonitorType.MIC_AMMETER_PHASEACTIVEPOWER2,MonitorType.MIC_AMMETER_PHASEACTIVEPOWER3,MonitorType.MIC_AMMETER_SYSACTIVEPOWER
                 ,MonitorType.MIC_AMMETER_PHASEREACTIVEPOWER1,MonitorType.MIC_AMMETER_PHASEREACTIVEPOWER2,MonitorType.MIC_AMMETER_PHASEREACTIVEPOWER3,MonitorType.MIC_AMMETER_SYSREACTIVEPOWER
@@ -33,7 +33,31 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                  ,MonitorType.MIC_AMMETER_REVERSEREACTIVEPOWERDEGREE,MonitorType.MIC_AMMETER_ABSOLUTEACTIVEPOWERDEGREE,MonitorType.MIC_AMMETER_PUREACTIVEPOWERDEGREE
                 ,MonitorType.MIC_AMMETER_ABSOLUTEREACTIVEPOWERDEGREE,MonitorType.MIC_AMMETER_PUREREACTIVEPOWERDEGREE });
             sortGroup.Add("group4", new List<int>() { MonitorType.MIC_INVERTER_ADIRECTVOLT, MonitorType.MIC_INVERTER_BDIRECTVOLT, MonitorType.MIC_INVERTER_CDIRECTVOLT, MonitorType.MIC_INVERTER_ADIRECTCURRENT, MonitorType.MIC_INVERTER_BDIRECTCURRENT, MonitorType.MIC_INVERTER_CDIRECTCURRENT, MonitorType.MIC_INVERTER_ADIRECTPOWER, MonitorType.MIC_INVERTER_BDIRECTPOWER, MonitorType.MIC_INVERTER_CDIRECTPOWER });
+
+            notDisplayMonitor.Add(MonitorType.MIC_INVERTER_JNBYQTEMPRATURE);
+            notDisplayMonitor.Add(MonitorType.MIC_INVERTER_JNSRQTEMPRATURE);
+            notDisplayMonitor.Add(MonitorType.MIC_INVERTER_INVERTERXL);
+            notDisplayMonitor.Add(MonitorType.MIC_INVERTER_STATUSTIME);
+            notDisplayMonitor.Add(MonitorType.MIC_INVERTER_STATUSDATA1);
+            notDisplayMonitor.Add(MonitorType.MIC_INVERTER_STATUSDATA2);
+            notDisplayMonitor.Add(MonitorType.MIC_INVERTER_STATUSDATA3);
+            notDisplayMonitor.Add(MonitorType.MIC_INVERTER_DV3);
+            notDisplayMonitor.Add(MonitorType.MIC_INVERTER_DC3);
+            notDisplayMonitor.Add(MonitorType.MIC_INVERTER_TOTALWGPOWER);
+            
+            notDisplayMonitor.Add(MonitorType.MIC_DETECTOR_SOI);
         }
+        //根据输出类型判断是否要显示A、B、c项电压是否显示
+        private static IList<int> getnotDisplayMonitor(float outtype)
+        {
+            IList<int> notDisplayMonitor = new List<int>();//不用显示出来的测点
+            if (float.IsNaN(outtype)) return notDisplayMonitor;
+            if(outtype == 0){
+                notDisplayMonitor.Add(MonitorType.MIC_INVERTER_CDIRECTVOLT);
+            }
+            return notDisplayMonitor;
+        }
+
 
         /// <summary>
         /// 设备id 主键
@@ -82,8 +106,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 if (_energy == 0)
                 {
                     float tmp = this.getMonitorValue(MonitorType.MIC_INVERTER_TOTALENERGY);
-                    if (tmp == 0) return this.getMonitorValue(MonitorType.MIC_INVERTER_ACENERGY);
-                    return tmp;
+                    if (float.IsNaN(tmp) || tmp == 0) tmp = this.getMonitorValue(MonitorType.MIC_INVERTER_ACENERGY);
+                    return float.IsNaN(tmp) ? 0 : tmp;
                 }
                 else
                     return _energy;
@@ -127,7 +151,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             IList<KeyValuePair<MonitorType, string>> resGroup3 = new List<KeyValuePair<MonitorType, string>>();
             IList<KeyValuePair<MonitorType, string>> resGroup4 = new List<KeyValuePair<MonitorType, string>>();
             IList<KeyValuePair<MonitorType, string>> resGroup5 = new List<KeyValuePair<MonitorType, string>>();
-
+            //先取得逆变器的输出类型
+            float outtype = this.getMonitorValue(MonitorType.MIC_INVERTER_OUTTYPE);
             string rundatastr = this.rundatastr;
             string[] rundatas = rundatastr.Split('#');
             string[] datas = null;
@@ -136,9 +161,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 datas = data.Split(':');
                 int monitorCode = int.Parse(datas[0]);
                 MonitorType mt = MonitorType.getMonitorTypeByCode(monitorCode);
-                if (mt.code == MonitorType.MIC_DETECTOR_SOI) continue;
                 if (mt == null) continue;
+                //排除不显示的测点
+                if (notDisplayMonitor.Contains(mt.code) || getnotDisplayMonitor(outtype).Contains(mt.code)) continue;
+
                 string value = datas[1];
+                //如果值为-表示该值无效，不显示该测点，“-”，数据解析器会把发送的无效值固定设为“-”
+                if ("-".Equals(value)) continue;
+
                 value = getStatusValue(monitorCode, value);
                 if ("0".Equals(value) && MonitorType.getMonitorTypeByCode(monitorCode).zerotoline)
                 {
@@ -164,16 +194,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                     }
                     else
                     {
-                        //排除逆变器效率不显示
-                        if (mt.code != MonitorType.MIC_INVERTER_INVERTERXL)
-                            resGroup5.Add(new KeyValuePair<MonitorType, string>(mt, value));
+                        resGroup5.Add(new KeyValuePair<MonitorType, string>(mt, value));
                     }
                 }
                 else
                 {
-                    //排除逆变器效率不显示
-                    if (mt.code != MonitorType.MIC_INVERTER_INVERTERXL)
-                        resGroup5.Add(new KeyValuePair<MonitorType, string>(mt, value));
+                    resGroup5.Add(new KeyValuePair<MonitorType, string>(mt, value));
                 }
             }
             if (resGroup1.Count > 0)

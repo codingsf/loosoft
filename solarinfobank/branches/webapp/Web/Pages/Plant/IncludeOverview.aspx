@@ -334,19 +334,19 @@
 </script>
 
 <input type="hidden" value="<%=Model.id%>" id="pid" />
-<input type="hidden" value="<%=System.DateTime.Now.Year%>" id="year" />
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy")%>" id="year" />
 <input type="hidden" value="column" id="chartType" />
 <input type="hidden" value="5" id="intervalMins" />
-<input type="hidden" value="<%=CalenderUtil.getBeforeDay(DateTime.Now,"yyyyMMdd")%>00"
+<input type="hidden" value="<%=CalenderUtil.getBeforeDay(CalenderUtil.curDateWithTimeZone(Model.timezone),"yyyyMMdd")%>00"
     id="startYYYYMMDDHH" />
-<input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>23"
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>23"
     id="endYYYYMMDDHH" />
-<input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")%>01"
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")%>01"
     id="startYYYYMMDD" />
-<input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+CalenderUtil.getCurMonthDays()%>"
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")+CalenderUtil.getCurMonthDays(Model.timezone)%>"
     id="endYYYYMMDD" />
-<input type="hidden" value="<%=DateTime.Now.Year%>01" id="startYM" />
-<input type="hidden" value="<%=DateTime.Now.Year%>12" id="endYM" />
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy")%>01" id="startYM" />
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy")%>12" id="endYM" />
 <table width="100%" height="63" border="0" cellpadding="0" cellspacing="0" background="/images/kj/kjbg02.jpg">
     <tr>
         <td width="8">

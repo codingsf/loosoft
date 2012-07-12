@@ -2107,11 +2107,19 @@
     <Content Include="Images\tc_topbg.jpg" />
     <Content Include="Images\Tree\base.gif" />
     <Content Include="Images\Tree\cd.gif" />
+    <Content Include="Images\Tree\dianbiao.png" />
+    <Content Include="Images\Tree\dianbiaoopen.png" />
     <Content Include="Images\Tree\empty.gif" />
     <Content Include="Images\Tree\folder.gif" />
     <Content Include="Images\Tree\folderopen.gif" />
     <Content Include="Images\Tree\globe.gif" />
+    <Content Include="Images\Tree\hjjcy.png" />
+    <Content Include="Images\Tree\hjjcyopen.png" />
+    <Content Include="Images\Tree\hlx.png" />
+    <Content Include="Images\Tree\hlxopen.png" />
     <Content Include="Images\Tree\imgfolder.gif" />
+    <Content Include="Images\Tree\inverter.png" />
+    <Content Include="Images\Tree\inverteropen.png" />
     <Content Include="Images\Tree\join.gif" />
     <Content Include="Images\Tree\joinbottom.gif" />
     <Content Include="Images\Tree\line.gif" />
@@ -2125,6 +2133,8 @@
     <Content Include="Images\Tree\plusbottom.gif" />
     <Content Include="Images\Tree\question.gif" />
     <Content Include="Images\Tree\trash.gif" />
+    <Content Include="Images\Tree\unit.gif" />
+    <Content Include="Images\Tree\unitopen.gif" />
     <Content Include="Images\tx.jpg" />
     <Content Include="Images\tzimh.gif" />
     <Content Include="Images\usa.jpg" />
@@ -2275,7 +2285,7 @@
     <Content Include="Pages\Plant\DeviceData.aspx" />
     <Content Include="Pages\Plant\DeviceMonitor.aspx" />
     <Content Include="Pages\Plant\ChangePassword.aspx" />
-    <Content Include="Pages\Plant\deviceStructChart.aspx" />
+    <Content Include="Pages\Plant\deviceStructChart-废弃.aspx" />
     <Content Include="Pages\Plant\deviceStructTree.aspx" />
     <Content Include="Pages\Plant\Device\CurrentCount.aspx" />
     <Content Include="Pages\Plant\Map.aspx" />

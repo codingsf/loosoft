@@ -421,20 +421,20 @@
 </script>
 
 <input type="hidden" value="<%=(ViewData["plantUnit"] as PlantUnit).id%>" id="uid" />
-<input type="hidden" value="<%=DateTime.Now.Year%>" id="year" />
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy")%>" id="year" />
 <input type="hidden" value="<%=ChartType.line %>" id="chartType" />
-<input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")%>"
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"MM")%>"
     id="month" />
-<input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+DateTime.Now.Day.ToString("00")%>"
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>"
     id="YYYYMMDD" />
-<input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>06"
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>06"
     id="startYYYYMMDDHH" />
-<input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>20"
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>20"
     id="endYYYYMMDDHH" />
 <input type="hidden" value="60" id="intervalMins" />
-<input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")%>01"
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")%>01"
     id="startYYYYMMDD" />
-<input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+CalenderUtil.getCurMonthDays() %>"
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")+CalenderUtil.getCurMonthDays(Model.timezone) %>"
     id="endYYYYMMDD" />
 
 <%--

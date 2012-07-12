@@ -117,39 +117,55 @@ dTree.prototype.addNode = function(pNode) {
 	return str;
 };
 
-// Creates the node icon, url and text
-dTree.prototype.node = function(node, nodeId) {
-	var str = '<div class="dTreeNode">' + this.indent(node, nodeId);
-	if (this.config.useIcons) {
-		if (!node.icon) node.icon = (this.root.id == node.pid) ? this.icon.root : ((node._hc) ? this.icon.folder : this.icon.node);
-		if (!node.iconOpen) node.iconOpen = (node._hc) ? this.icon.folderOpen : this.icon.node;
-		if (this.root.id == node.pid) {
-			node.icon = this.icon.root;
-			node.iconOpen = this.icon.root;
-		}
-		str += '<img id="i' + this.obj + nodeId + '" src="' + ((node._io) ? node.iconOpen : node.icon) + '" alt="" />';
-	}
-	if (node.url) {
-		str += '<a id="s' + this.obj + nodeId + '" class="' + ((this.config.useSelection) ? ((node._is ? 'nodeSel' : 'node')) : 'node') + '" href="' + node.url + '"';
-		if (node.title) str += ' title="' + node.title + '"';
-		if (node.target) str += ' target="' + node.target + '"';
-		if (this.config.useStatusText) str += ' onmouseover="window.status=\'' + node.name + '\';return true;" onmouseout="window.status=\'\';return true;" ';
-		if (this.config.useSelection && ((node._hc && this.config.folderLinks) || !node._hc))
-			str += ' onclick="javascript: ' + this.obj + '.s(' + nodeId + ');"';
-		str += '>';
-	}
-	else if ((!this.config.folderLinks || !node.url) && node._hc && node.pid != this.root.id)
-		str += '<a href="javascript: ' + this.obj + '.o(' + nodeId + ');" class="node">';
-	str += node.name;
-	if (node.url || ((!this.config.folderLinks || !node.url) && node._hc)) str += '</a>';
-	str += '</div>';
-	if (node._hc) {
-		str += '<div id="d' + this.obj + nodeId + '" class="clip" style="display:' + ((this.root.id == node.pid || node._io) ? 'block' : 'none') + ';">';
-		str += this.addNode(node);
-		str += '</div>';
-	}
-	this.aIndent.pop();
-	return str;
+// Creates the node icon, url and text
+dTree.prototype.node = function(node, nodeId) {
+    var str = '<div class="dTreeNode">' + this.indent(node, nodeId);
+    if (this.config.useIcons) {
+
+        if (!node.icon) node.icon = (this.root.id == node.pid) ? (node.icon == '' ? '' : this.icon.root) : ((node._hc) ? (node.icon == '' ?'':this.icon.folder) : (node.icon == '' ? '' : this.icon.node));
+        var folderOpen = this.icon.folderOpen;
+
+        if (!node.iconOpen) node.iconOpen = (node._hc) ? folderOpen : this.icon.node;
+        if (this.root.id == node.pid && node.icon != '') {
+            node.icon = this.icon.root;
+            node.iconOpen = this.icon.root;
+        }
+        if (node.icon != "") {//add by qhb for 节点的图片打开后的图为元图片追加open
+            var pos = node.icon.lastIndexOf("/")
+            var iconname = pos > -1 ? node.icon.substring(pos) : node.icon;
+            var affix = node.icon.substring(0, pos);
+            pos = iconname.lastIndexOf(".")
+            folderOpen = affix + iconname.substring(0, pos) + "open" + iconname.substring(pos);
+        } else { 
+        
+        }
+        node.iconOpen = folderOpen;
+
+        if (node.icon != "") {//modify by qhb for 支持空图片就不在显示img元素了
+            str += '<img id="i' + this.obj + nodeId + '" src="' + ((node._io) ? node.iconOpen : node.icon) + '" alt="" />';
+        }
+    }
+    if (node.url) {
+        str += '<a id="s' + this.obj + nodeId + '" class="' + ((this.config.useSelection) ? ((node._is ? 'nodeSel' : 'node')) : 'node') + '" href="' + node.url + '"';
+        if (node.title) str += ' title="' + node.title + '"';
+        if (node.target) str += ' target="' + node.target + '"';
+        if (this.config.useStatusText) str += ' onmouseover="window.status=\'' + node.name + '\';return true;" onmouseout="window.status=\'\';return true;" ';
+        if (this.config.useSelection && ((node._hc && this.config.folderLinks) || !node._hc))
+            str += ' onclick="javascript: ' + this.obj + '.s(' + nodeId + ');"';
+        str += '>';
+    }
+    else if ((!this.config.folderLinks || !node.url) && node._hc && node.pid != this.root.id)
+        str += '<a href="javascript: ' + this.obj + '.o(' + nodeId + ');" class="node">';
+    str += node.name;
+    if (node.url || ((!this.config.folderLinks || !node.url) && node._hc)) str += '</a>';
+    str += '</div>';
+    if (node._hc) {
+        str += '<div id="d' + this.obj + nodeId + '" class="clip" style="display:' + ((this.root.id == node.pid || node._io) ? 'block' : 'none') + ';">';
+        str += this.addNode(node);
+        str += '</div>';
+    }
+    this.aIndent.pop();
+    return str;
 };
 
 // Adds the empty and line icons
@@ -264,18 +280,20 @@ dTree.prototype.closeAllChildren = function(node) {
 	}
 }
 
-// Change the status of a node(open or closed)
-dTree.prototype.nodeStatus = function(status, id, bottom) {
-	eDiv	= document.getElementById('d' + this.obj + id);
-	eJoin	= document.getElementById('j' + this.obj + id);
-	if (this.config.useIcons) {
-		eIcon	= document.getElementById('i' + this.obj + id);
-		eIcon.src = (status) ? this.aNodes[id].iconOpen : this.aNodes[id].icon;
-	}
-	eJoin.src = (this.config.useLines)?
-	((status)?((bottom)?this.icon.minusBottom:this.icon.minus):((bottom)?this.icon.plusBottom:this.icon.plus)):
-	((status)?this.icon.nlMinus:this.icon.nlPlus);
-	eDiv.style.display = (status) ? 'block': 'none';
+// Change the status of a node(open or closed)
+dTree.prototype.nodeStatus = function(status, id, bottom) {
+    eDiv = document.getElementById('d' + this.obj + id);
+    eJoin = document.getElementById('j' + this.obj + id);
+    if (this.config.useIcons) {
+        if (this.aNodes[id].icon != '') {
+            eIcon = document.getElementById('i' + this.obj + id);
+            eIcon.src = (status) ? this.aNodes[id].iconOpen : this.aNodes[id].icon;
+        }
+    }
+    eJoin.src = (this.config.useLines) ?
+	((status) ? ((bottom) ? this.icon.minusBottom : this.icon.minus) : ((bottom) ? this.icon.plusBottom : this.icon.plus)) :
+	((status) ? this.icon.nlMinus : this.icon.nlPlus);
+    eDiv.style.display = (status) ? 'block' : 'none';
 };
 
 

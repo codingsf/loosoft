@@ -15,9 +15,9 @@
         d = new dTree('d');
 
         <%=ViewData["jsstr"] %>
-        
         document.write(d);
-
+        d.openAll();
+        d.s(3);
 		//-->
     </script>
 

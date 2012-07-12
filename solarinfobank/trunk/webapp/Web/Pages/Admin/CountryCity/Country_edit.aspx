@@ -127,18 +127,11 @@
                         <td width="36%">
                             <%=Html.DropDownList("weather_code", new List<SelectListItem> {
                                                 new SelectListItem { Text = "全部", Value = "", Selected=Model.weather_code.Equals("")},
-                                                new SelectListItem { Text = "东亚", Value = "东亚", Selected=Model.weather_code.Equals("东亚")},
-                                                new SelectListItem { Text = "东南亚", Value = "东南亚", Selected=Model.weather_code.Equals("东南亚")},
-                                                new SelectListItem { Text = "南亚", Value = "南亚", Selected=Model.weather_code.Equals("南亚")},
-                                                new SelectListItem { Text = "中亚", Value = "中亚", Selected=Model.weather_code.Equals("中亚")},
-                                                new SelectListItem { Text = "西亚", Value = "西亚", Selected=Model.weather_code.Equals("西亚")},
-                                                new SelectListItem { Text = "北非", Value = "北非", Selected=Model.weather_code.Equals("北非")},
+                                                new SelectListItem { Text = "亚洲", Value = "亚洲", Selected=Model.weather_code.Equals("亚洲")},
+                                                new SelectListItem { Text = "欧洲", Value = "欧洲", Selected=Model.weather_code.Equals("欧洲")},
+                                                new SelectListItem { Text = "北美洲", Value = "北美洲", Selected=Model.weather_code.Equals("北美洲")},
+                                                new SelectListItem { Text = "南美洲", Value = "南美洲", Selected=Model.weather_code.Equals("南美洲")},
                                                 new SelectListItem { Text = "非洲", Value = "非洲", Selected=Model.weather_code.Equals("非洲")},
-                                                new SelectListItem { Text = "东欧", Value = "东欧", Selected=Model.weather_code.Equals("东欧")},
-                                                new SelectListItem { Text = "西欧", Value = "西欧", Selected=Model.weather_code.Equals("西欧")},
-                                                new SelectListItem { Text = "北亚", Value = "北亚", Selected=Model.weather_code.Equals("北亚")},
-                                                new SelectListItem { Text = "北美", Value = "北美", Selected=Model.weather_code.Equals("北美")},
-                                                new SelectListItem { Text = "拉丁美洲", Value = "拉丁美洲", Selected=Model.weather_code.Equals("拉丁美洲")},
                                                 new SelectListItem { Text = "大洋洲", Value = "大洋洲", Selected=Model.weather_code.Equals("大洋洲")},
                                                 new SelectListItem { Text = "南极洲", Value = "南极洲", Selected=Model.weather_code.Equals("南极洲")}
                                                 

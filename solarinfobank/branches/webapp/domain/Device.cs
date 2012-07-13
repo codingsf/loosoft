@@ -142,6 +142,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                     {
                         return "SG";
                     }
+                    else if (this.deviceTypeCode == DeviceData.AMMETER_CODE)
+                    {
+                        return "METER";
+                    }
+                    else if (this.deviceTypeCode == DeviceData.CABINET_CODE)
+                    {
+                        return "CABINET";
+                    }
                     else
                     {
                         return LanguageUtil.getDesc("UNKNOWN");

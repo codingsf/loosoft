@@ -541,11 +541,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 string[] intervalMinArr = intervalMins.Split(',');
                 devices.Add(new DeviceStuct() { deviceId = plant.id.ToString(), rate = rate, name = Resources.SunResource.CHART_TITLE_INVEST_INCOME, comareObj = plant.name, unit = "kWh/kWp", chartType = chartTypes[0], monitorType = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE), cVal = ComputeType.Avg, deviceType = ChartDeviceType.PLANT, intervalMins = int.Parse(intervalMinArr[0]) });
                 //如果有光照强度添加关照对比
-                //if (plant.Sunstrength > 0) {
-                rate = 1F;
-                MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE);
-                devices.Add(new DeviceStuct() { deviceId = plant.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = chartTypes[1], monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.PLANT, intervalMins = int.Parse(intervalMinArr[1]) });
-                //}
+                Device device = plant.getFirstDetector();
+                if (device != null)
+                {
+                    rate = 1F;
+                    MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE);
+                    devices.Add(new DeviceStuct() { deviceId = plant.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = chartTypes[1], monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.PLANT, intervalMins = int.Parse(intervalMinArr[1]) });
+                }
 
                 string chartName = LanguageUtil.getDesc("PLANT_CHART_PERFORMANCE_INVESTMENT_COMPARE_CHART");
                 //取得用户年度发电量图表数据

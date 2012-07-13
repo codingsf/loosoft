@@ -840,9 +840,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 Hashtable dataHash = CollectorDayDataService.GetInstance().GetUnitDaydataList(plant.plantUnits, startYYYYMMDDHH, endYYYYMMDDHH, intervalMins, MonitorType.PLANT_MONITORITEM_POWER_CODE);
                 if (dataHash.Count > 0)
                 {
-                    float rate = 1F;
-                    MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE);
-                    devices.Add(new DeviceStuct() { deviceId = plant.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = ChartType.line, monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.PLANT, intervalMins = intervalMins });
+                    Device device = plant.getFirstDetector();
+                    if (device != null)
+                    {
+                      float rate = 1F;
+                      MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE);
+                      devices.Add(new DeviceStuct() { deviceId = plant.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = ChartType.line, monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.PLANT, intervalMins = intervalMins });
+                    }
                 }
                 else
                 {
@@ -887,9 +891,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 Hashtable dataHash = CollectorDayDataService.GetInstance().GetUnitDaydataList(plant.plantUnits, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), MonitorType.PLANT_MONITORITEM_POWER_CODE);
                 if (dataHash.Count > 0)
                 {
-                    float rate = 1F;
-                    MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE);
-                    devices.Add(new DeviceStuct() { deviceId = plant.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = chartTypes[0], monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.PLANT, intervalMins = int.Parse(intervals[1]) });
+                      Device device = plant.getFirstDetector();
+                      if (device != null)
+                      {
+                          float rate = 1F;
+                          MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE);
+                          devices.Add(new DeviceStuct() { deviceId = plant.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = chartTypes[0], monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.PLANT, intervalMins = int.Parse(intervals[1]) });
+                      }
                 }
                 else
                 {
@@ -925,9 +933,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 Hashtable dataHash = CollectorDayDataService.GetInstance().GetUnitDaydataList(plant.plantUnits, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), MonitorType.PLANT_MONITORITEM_ENERGY_CODE);
                 if (dataHash.Count > 0)
                 {
-                    float rate = 1F;
-                    MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE);
-                    devices.Add(new DeviceStuct() { deviceId = plant.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = chartTypes[0], monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.PLANT, intervalMins = int.Parse(intervals[1]) });
+                      Device device = plant.getFirstDetector();
+                      if (device != null)
+                      {
+                          float rate = 1F;
+                          MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE);
+                          devices.Add(new DeviceStuct() { deviceId = plant.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = chartTypes[0], monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.PLANT, intervalMins = int.Parse(intervals[1]) });
+                      }
                 }
                 else
                 {

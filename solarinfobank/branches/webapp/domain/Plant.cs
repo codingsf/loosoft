@@ -514,7 +514,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// <returns></returns>
         public Device getFirstDetector()
         {
-            foreach (Device device in this.deviceList())
+            foreach (Device device in this.displayDevices())
             {
                 if (device.deviceTypeCode == DeviceData.ENVRIOMENTMONITOR_CODE)
                     return device;

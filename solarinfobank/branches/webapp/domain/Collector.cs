@@ -140,6 +140,23 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         public string Key { get; set; }
+
+        /// <summary>
+        /// 取得采集器的环境监测仪设备
+        /// </summary>
+        /// <returns></returns>
+        public Device envdetector()
+        {
+            foreach (Device device in this.devices)
+            {
+                //十分环境检测仪
+                if (device.deviceTypeCode == DeviceData.ENVRIOMENTMONITOR_CODE && !device.isHidden)
+                {
+                    return device;
+                }
+            }
+            return null;
+        }
     }
 }
 

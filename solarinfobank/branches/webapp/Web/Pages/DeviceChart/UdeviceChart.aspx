@@ -91,7 +91,8 @@
                 }
             });
         }
-        //更加单元和类型加载相应的比较图表
+        
+        //根据单元和类型加载相应的比较图表
         function loadInvertCompare(type){
             var uid=$('#uid').val();
 		    //var type = $("input[name='deviceType']:checked").val()+"";

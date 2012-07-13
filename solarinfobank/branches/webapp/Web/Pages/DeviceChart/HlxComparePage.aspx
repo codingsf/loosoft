@@ -100,6 +100,8 @@
 
         function dayCompareChart(curContainer, ajaxImgTop, isLarge) {
             changeStyle("DayChart");
+            //改变类型，因为切换到设备的运行时数据时被篡改了，这时要恢复
+            $("#chartType").val("line");
             $.ajax({
                 type: "POST",
                 url: "/deviceChart/CompareDayCurrentChartByUnit",
@@ -137,6 +139,8 @@
         
         function monthCompareChart(curContainer, ajaxImgTop, isLarge) {
             changeStyle("MonthChart");
+            //改变类型，因为切换到设备的运行时数据时被篡改了，这时要恢复
+            $("#chartType").val("line");
             $.ajax({
                 type: "POST",
                 url: "/deviceChart/CompareMonthkWpChartByUnit",
@@ -175,6 +179,8 @@
         
        function yearCompareChart(curContainer, ajaxImgTop, isLarge) {
             changeStyle("YearChart");
+            //改变类型，因为切换到设备的运行时数据时被篡改了，这时要恢复
+            $("#chartType").val("line");
             $.ajax({
                 type: "POST",
                 url: "/deviceChart/CompareYearkWpChartByUnit",

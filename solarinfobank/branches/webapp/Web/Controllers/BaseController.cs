@@ -7,6 +7,8 @@ using Cn.Loosoft.Zhisou.SunPower.Domain;
 using System.Configuration;
 using System.Threading;
 using System.Globalization;
+using System;
+using System.Linq;
 namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 {
 
@@ -101,6 +103,30 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 Thread.CurrentThread.CurrentCulture = (CultureInfo)obj;
             }
+            else {//取得浏览器语言 modify by qhb in 2012 session 过期就浏览器语言
+                if (HttpContext.Current.Request.UserLanguages != null && HttpContext.Current.Request.UserLanguages.Length != 0)
+                {
+                    string langName = HttpContext.Current.Request.UserLanguages[0].ToLower();
+                    if (langName.StartsWith("de", StringComparison.OrdinalIgnoreCase))
+                        langName = "de-de";//德文
+                    else
+                        if (langName.StartsWith("it", StringComparison.OrdinalIgnoreCase))
+                            langName = "it-ch";//意大利
+                        else if (langName.StartsWith("zh", StringComparison.OrdinalIgnoreCase))
+                            langName = "zh-cn";
+                        else
+                            langName = "en-us";//默认英文
+
+                    CultureInfo cultureInfo = new CultureInfo(langName);
+                    Thread.CurrentThread.CurrentCulture = cultureInfo;
+                    filterContext.HttpContext.Session["Culture"] = cultureInfo;
+
+                    LanguageService languageservice = LanguageService.GetInstance();
+                    IList<Language> languages = languageservice.GetList();
+                    string displayName = languages.OrderByDescending(lang => lang.codename.ToLower().Equals(langName)).First<Language>().name;
+                    filterContext.HttpContext.Session["display"] = displayName;
+                }
+            }
             base.OnActionExecuting(filterContext);
         }
     }
@@ -126,23 +152,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         }
 
 
-    }
-
-    public class SetLanguage : ActionFilterAttribute
-    {
-        public override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            string language = filterContext.HttpContext.Request["language"];
-            if (string.IsNullOrEmpty(language))
-            {
-                language = Language.enUS;
-                CultureInfo cultureInfo = new CultureInfo(language);
-                filterContext.HttpContext.Session["Culture"] = cultureInfo;
-                Thread.CurrentThread.CurrentCulture = cultureInfo;
-            }
-
-            base.OnActionExecuting(filterContext);
-        }
     }
 
     /// <summary>

@@ -189,9 +189,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 Hashtable dataHash = DeviceDayDataService.GetInstance().GetDaydataList(device, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), mt.code);
                 if (dataHash.Count > 0)
                 {
-                    rate = 1F;
-                    MonitorType smt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE);
-                    devices.Add(new DeviceStuct() { deviceId = device.collectorID.ToString(), rate = rate, comareObj = device.fullName, name = smt.name, unit = "", chartType = chartTypes[1], monitorType = smt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.COLLECTOR, intervalMins = int.Parse(intervals[1]) });
+                      Collector collector = CollectorInfoService.GetInstance().Get(device.collectorID);
+                      Device sundevice = collector.envdetector();
+                      if (sundevice != null)
+                      {
+                          rate = 1F;
+                          MonitorType smt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE);
+                          devices.Add(new DeviceStuct() { deviceId = device.collectorID.ToString(), rate = rate, comareObj = device.fullName, name = smt.name, unit = "", chartType = chartTypes[1], monitorType = smt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.COLLECTOR, intervalMins = int.Parse(intervals[1]) });
+                      }
                 }
                 else
                 {
@@ -230,9 +235,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 Hashtable dataHash = DeviceDayDataService.GetInstance().GetDaydataList(device, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), mt.code);
                 if (dataHash.Count > 0)
                 {
-                    rate = 1F;
-                    MonitorType smt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE);
-                    devices.Add(new DeviceStuct() { deviceId = device.collectorID.ToString(), rate = rate, comareObj = device.fullName, name = smt.name, unit = "", chartType = chartTypes[1], monitorType = smt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.COLLECTOR, intervalMins = int.Parse(intervals[1]) });
+                      Collector collector = CollectorInfoService.GetInstance().Get(device.collectorID);
+                      Device sundevice = collector.envdetector();
+                      if (sundevice != null)
+                      {
+                          rate = 1F;
+                          MonitorType smt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE);
+                          devices.Add(new DeviceStuct() { deviceId = device.collectorID.ToString(), rate = rate, comareObj = device.fullName, name = smt.name, unit = "", chartType = chartTypes[1], monitorType = smt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.COLLECTOR, intervalMins = int.Parse(intervals[1]) });
+                      }
                 }
                 else
                 {

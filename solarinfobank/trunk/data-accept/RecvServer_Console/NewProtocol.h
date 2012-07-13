@@ -72,6 +72,8 @@ private:
 	string GenerateTimeStamp1();
 	//获取随机码
 	string GetRand();
+    //取得一个唯一值
+    string GetOnlyone();
 	//发送内容
 	void SendNewProtocol(CUserSession* pSession, char* pstrContent, int iLen, int iType, int iParentType);
 	//发送错误码

@@ -6,6 +6,8 @@
 extern DLLLoader dllLoader;
 extern TCPServer tcp_svr;
 
+//全局累计的量
+static unsigned int addnum = 0;
 //16位CRC校验表
 const  static unsigned char auchCRCHi[] = {
 	0x00,0xc1,0x81,0x40,0x01,0xc0,0x80,0x41,
@@ -133,8 +135,26 @@ string Protocol69Dealer::GenerateTimeStamp1()
 string Protocol69Dealer::GetRand()
 {
 	char ranstr[5];
-	srand(unsigned(time(NULL)));
+	//srand(unsigned(time(NULL)));
 	sprintf(ranstr, "%04d", rand() % 1000);
+	/*itoa(rand() % 1000, ranstr, 10);
+	ranstr[4] = '\0';*/
+	string strRand = ranstr;
+	return strRand;
+}
+
+//获取一个唯一的量 add by qhb
+string Protocol69Dealer::GetOnlyone()
+{
+	//if(addnum>=100000)addnum=0;
+    //addnum+=1;
+    //char dest[14];
+    //_itoa(addnum,dest,100000);
+
+    //return dest;
+    char ranstr[7];
+	//srand(unsigned(time(NULL)));
+	sprintf(ranstr, "%06d", rand() % 100000);
 	/*itoa(rand() % 1000, ranstr, 10);
 	ranstr[4] = '\0';*/
 	string strRand = ranstr;
@@ -623,7 +643,7 @@ int Protocol69Dealer::DealStationInfo(DataInfoStructor& dataInfo, CUserSession *
 	string timestamp = GenerateTimeStamp();
 	key += timestamp;
 	//随机码
-	string randstr = GetRand();
+	string randstr = GetOnlyone();//GetRand();
 	key += randstr;
 	//电站数据信息存memcache
 	TCP_DATA * pTCPData=new TCP_DATA;
@@ -653,7 +673,7 @@ int Protocol69Dealer::DealDeviceInfo(DataInfoStructor& dataInfo, CUserSession * 
 	string timestamp = GenerateTimeStamp();
 	key += timestamp;
 	//随机码
-	string randstr = GetRand();	
+	string randstr = GetOnlyone();//GetRand();	
 	key += randstr;
 	//设备数据存储memcache
 	TCP_DATA * pTCPData=new TCP_DATA;
@@ -690,7 +710,7 @@ int Protocol69Dealer::DealRunInfo(DataInfoStructor& dataInfo, CUserSession * pSe
 	string timestamp = GenerateTimeStamp();
 	key += timestamp;
 	//随机码
-	string randstr = GetRand();
+	string randstr = GetOnlyone();//GetRand();
 	key += randstr;
 	//实时数据信息存memcache
 	TCP_DATA * pTCPData=new TCP_DATA;
@@ -733,7 +753,7 @@ int Protocol69Dealer::DealHistoryData(DataInfoStructor& dataInfo, CUserSession *
 	string timestamp = GenerateTimeStamp();
 	key += timestamp;
 	//随机码
-	string randstr = GetRand();
+	string randstr = GetOnlyone();//GetRand();
 	key += randstr;
 	//历史数据存memcache
 	TCP_DATA * pTCPData=new TCP_DATA;
@@ -770,7 +790,7 @@ int Protocol69Dealer::DealHistoryFault(DataInfoStructor& dataInfo, CUserSession 
 	string timestamp = GenerateTimeStamp();
 	key += timestamp;
 	//随机码
-	string randstr = GetRand();
+	string randstr = GetOnlyone();//GetRand();
 	key += randstr;
 	//历史故障信息存memcache
 	TCP_DATA * pTCPData=new TCP_DATA;

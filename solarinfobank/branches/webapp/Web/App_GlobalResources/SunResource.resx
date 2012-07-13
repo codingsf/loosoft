@@ -1448,10 +1448,10 @@
     <value>Home</value>
   </data>
   <data name="SHARED_USERMASTERPAGE_ALL_PLANT" xml:space="preserve">
-    <value>All Plants</value>
+    <value>Show All Plants</value>
   </data>
   <data name="SHARED_USERMASTERPAGE_ALL_PLANTS" xml:space="preserve">
-    <value>All Plants</value>
+    <value>Show All Plants</value>
   </data>
   <data name="SHARED_USERMASTERPAGE_ANALYSIS_CHART" xml:space="preserve">
     <value>Analysis Chart</value>
@@ -4862,7 +4862,7 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <value>Page Configuration</value>
   </data>
   <data name="PAGESHARED_ALLPLANTS" xml:space="preserve">
-    <value>All Plants</value>
+    <value>Show All Plants</value>
   </data>
   <data name="PAGE_ADDPLANT_ENDDATE" xml:space="preserve">
     <value>Please enter "Start time"</value>

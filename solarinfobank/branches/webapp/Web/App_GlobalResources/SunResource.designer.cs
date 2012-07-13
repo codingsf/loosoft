@@ -5791,7 +5791,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 All Plants 的本地化字符串。
+        ///   查找类似 Show All Plants 的本地化字符串。
         /// </summary>
         internal static string PAGESHARED_ALLPLANTS {
             get {
@@ -10097,7 +10097,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 All Plants 的本地化字符串。
+        ///   查找类似 Show All Plants 的本地化字符串。
         /// </summary>
         internal static string SHARED_USERMASTERPAGE_ALL_PLANT {
             get {
@@ -10106,7 +10106,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 All Plants 的本地化字符串。
+        ///   查找类似 Show All Plants 的本地化字符串。
         /// </summary>
         internal static string SHARED_USERMASTERPAGE_ALL_PLANTS {
             get {

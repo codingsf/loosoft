@@ -8,7 +8,7 @@
 
         <script>
             function changePage(page) {
-                window.location.href = '/admin/countries/' + page;
+                window.location.href = '/admin/countries/?pid=' + page;
             }
         </script>
 <style type="text/css">

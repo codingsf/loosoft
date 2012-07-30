@@ -470,7 +470,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 {
                     total += unit.TodayPower(this.timezone);
                 }
-                return float.Parse(Math.Round(total, 2).ToString());
+                return StringUtil.stringtoFloat(Math.Round(total, 2).ToString());
             }
         }
 
@@ -497,7 +497,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                     {
                         if (unit.collector.runData != null && unit.collector.runData.temperature != null && unit.collector.runData.sendTime.AddHours(1) >= CalenderUtil.curDateWithTimeZone(this.timezone))
                         {
-                            _temperature = float.Parse(unit.collector.runData.temperature.ToString());
+                            _temperature = StringUtil.stringtoFloat(unit.collector.runData.temperature.ToString());
 
                             break;
                         }
@@ -848,7 +848,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             get
             {
-                IList<Device> devices = this.deviceList();
+                IList<Device> devices = this.displayDevices();
                 if (devices != null)
                     foreach (Device dce in devices)
                     {

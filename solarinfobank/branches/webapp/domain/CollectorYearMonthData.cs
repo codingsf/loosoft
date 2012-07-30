@@ -61,7 +61,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 (this.m_10 == null ? 0 : this.m_10) +
                 (this.m_11 == null ? 0 : this.m_11) +
                 (this.m_12 == null ? 0 : this.m_12);
-            return float.Parse(cvalue.ToString());
+            return StringUtil.stringtoFloat(cvalue.ToString());
         }
 
 

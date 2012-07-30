@@ -50,7 +50,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                         return deviceModel.designPower;
                 }
                 else
-                    return float.Parse(currentPower);
+                    return StringUtil.stringtoFloat(currentPower);
             }
         }
         public string faulttype { get; set; }

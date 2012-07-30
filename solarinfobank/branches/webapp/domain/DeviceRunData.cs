@@ -298,7 +298,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 datas = data.Split(':');
                 if (code == int.Parse(datas[0]))
                 { 
-                    return float.Parse(datas[1]);
+                    return StringUtil.stringtoFloat(datas[1]);
                 }
             }
             //没有该测点的值则返回-

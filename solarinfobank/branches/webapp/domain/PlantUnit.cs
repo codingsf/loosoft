@@ -192,7 +192,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                     total = collector.runData.dayEnergy;
             }
 
-            return float.Parse(Math.Round(total, 2).ToString());
+            return StringUtil.stringtoFloat(Math.Round(total, 2).ToString());
         }
 
         /// <summary>

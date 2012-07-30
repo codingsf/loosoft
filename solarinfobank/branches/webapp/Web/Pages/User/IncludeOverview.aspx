@@ -698,7 +698,7 @@
                                     <span class="lbl">
                                         <%=Resources.SunResource.USER_OVERVIEW_PLANT_TODAYENERGY%>:&nbsp;<%=plant.DisplayTotalDayEnergy + " " + plant.TotalDayEnergyUnit%>
                                         <br />
-                                        <%=Resources.SunResource.USER_OVERVIEW_PLANT_CURRENT_POWER%>:&nbsp;<%=plant.TodayTotalPower%>&nbsp;kW<br />
+                                        <%=Resources.SunResource.USER_OVERVIEW_PLANT_CURRENT_POWER%>:&nbsp;<%=StringUtil.formatFloat(plant.TodayTotalPower)%>&nbsp;kW<br />
                                         <%=Resources.SunResource.USER_OVERVIEW_PLANT_INSTALL_POWER%>:&nbsp;<%=StringUtil.formatDouble(plant.design_power,"0.00") %>&nbsp;kW
                                     </span>
                                 </td>

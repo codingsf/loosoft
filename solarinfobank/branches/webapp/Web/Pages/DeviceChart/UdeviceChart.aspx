@@ -106,18 +106,21 @@
         }
         
 </script>
-
+<input type="hidden" value="<%=CalenderUtil.getBeforeDay(CalenderUtil.curDateWithTimeZone(Model.timezone),"yyyyMMdd")%>06"
+    id="startYYYYMMDDHH" />
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>20"
+    id="endYYYYMMDDHH" />
 <input type="hidden" value="<%=(ViewData["plantUnit"] as PlantUnit).id%>" id="uid" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy")%>" id="year" />
 <input type="hidden" value="<%=ChartType.line %>" id="chartType" />
-<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"MM")%>"
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")%>"
     id="month" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>"
     id="YYYYMMDD" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>06"
-    id="startYYYYMMDDHH" />
+    id="unitstartYYYYMMDDHH" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>20"
-    id="endYYYYMMDDHH" />
+    id="unitendYYYYMMDDHH" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")%>01"
     id="startYYYYMMDD" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")+CalenderUtil.getCurMonthDays(Model.timezone)%>"
@@ -169,7 +172,7 @@
                 <select name="dces" id="dces" class="subselect02" style="width:150px">
               <option><%=Resources.SunResource.UDEVICE_PAGE_PLEASESELECT%></option>
               </select>
-                            </td>
+              </td>
               <td width="auto" align="right" style="padding-left:100px"><span style="white-space:nowrap"><%--<%=Resources.SunResource.UDEVICE_PAGE_SELECT_DEVICE%>:--%></span></td>
               <td width="auto"style="padding-left:5px">
              

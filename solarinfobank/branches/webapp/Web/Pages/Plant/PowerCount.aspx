@@ -17,17 +17,17 @@
     </tr>
     <tr>
       <td height="22" class="line_b"  align=center><%=Resources.SunResource.PLANT_OVERVIEW_DAY%></td>
-      <td class="line_b"  align=center><%=ViewData["dayddc"] ==null?"":(ViewData["dayddc"] as DeviceDataCount).maxValue.ToString()%> kW</td>
+      <td class="line_b"  align=center><%=ViewData["dayddc"] ==null?"":StringUtil.formatFloat((ViewData["dayddc"] as DeviceDataCount).maxValue,"0.00")%> kW</td>
       <td class="line_b"  align=center><%=ViewData["dayddc"] == null ? "" : (ViewData["dayddc"] as DeviceDataCount).maxTime.ToString("yyyy-MM-dd HH:mm:ss")%></td>
     </tr>
     <tr>
       <td height="22" class="line_b"  align=center><%=Resources.SunResource.PLANT_OVERVIEW_MONTH%></td>
-      <td class="line_b" align=center><%=ViewData["monthddc"] == null ? "" : (ViewData["monthddc"] as DeviceDataCount).maxValue.ToString()%> kW</td>
+      <td class="line_b" align=center><%=ViewData["monthddc"] == null ? "" : StringUtil.formatFloat((ViewData["monthddc"] as DeviceDataCount).maxValue,"0.00")%> kW</td>
       <td class="line_b" align=center><%=ViewData["monthddc"] == null ? "" : (ViewData["monthddc"] as DeviceDataCount).maxTime.ToString("yyyy-MM-dd HH:mm:ss")%></td>
     </tr>
     <tr>
       <td height="22" class="line_b" align=center><%=Resources.SunResource.PLANT_OVERVIEW_YEAR%></td>
-      <td class="line_b" align=center><%=ViewData["yearddc"] == null ? "" : (ViewData["yearddc"] as DeviceDataCount).maxValue.ToString()%> kW</td>
+      <td class="line_b" align=center><%=ViewData["yearddc"] == null ? "" : StringUtil.formatFloat((ViewData["yearddc"] as DeviceDataCount).maxValue,"0.00")%> kW</td>
       <td class="line_b" align=center><%=ViewData["yearddc"] == null ? "" : (ViewData["yearddc"] as DeviceDataCount).maxTime.ToString("yyyy-MM-dd HH:mm:ss")%></td>
     </tr>                
   </table>

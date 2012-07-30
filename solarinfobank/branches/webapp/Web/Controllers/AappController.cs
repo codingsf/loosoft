@@ -745,7 +745,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 plantvo.todayEnergy = plant.upTotalDayEnergy;
                 plantvo.pId = plant.id;
                 plantvo.name = plant.name;
-                plantvo.co2Reduction = float.Parse(plant.Reductiong.ToString());
+                plantvo.co2Reduction = plant.Reductiong;
                 plantvo.revenue = user.revenue * plantvo.totalEnergy;
                 plantvo.designPower = plant.design_power;
                 plantvo.powerUnit = "KWp";

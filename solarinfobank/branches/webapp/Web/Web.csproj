@@ -142,6 +142,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SunResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\SunResource.fr-fr.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SunResource.fr-fr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\SunResource.ja-jp.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SunResource.ja-jp.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\SunResource.zh-cn.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -436,9 +446,7 @@
     <Content Include="script\Highcharts-2.1.3\js\adapters\prototype-adapter.js" />
     <Content Include="script\Highcharts-2.1.3\js\adapters\prototype-adapter.src.js" />
     <Content Include="script\Highcharts-2.1.3\js\highcharts.js" />
-    <Content Include="script\Highcharts-2.1.3\js\highcharts.src.js" />
-    <Content Include="script\Highcharts-2.1.3\js\modules\exporting.js" />
-    <Content Include="script\Highcharts-2.1.3\js\modules\exporting.src.js" />
+    <Content Include="script\Highcharts-2.1.3\js\modules\exporting.src-b2.js" />
     <Content Include="script\Highcharts-2.1.3\js\themes\dark-blue.js" />
     <Content Include="script\Highcharts-2.1.3\js\themes\dark-green.js" />
     <Content Include="script\Highcharts-2.1.3\js\themes\gray.js" />
@@ -1068,6 +1076,14 @@
     <EmbeddedResource Include="App_GlobalResources\SunInfoResource.it-ch.resources" />
     <EmbeddedResource Include="App_GlobalResources\suninforesource.resources" />
     <EmbeddedResource Include="App_GlobalResources\suninforesource.zh-cn.resources" />
+    <Content Include="App_GlobalResources\SunResource.fr-fr.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>SunResource.fr-fr.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\SunResource.ja-jp.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>SunResource.ja-jp.designer.cs</LastGenOutput>
+    </Content>
     <Content Include="App_GlobalResources\SunResource.it-ch.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>SunResource.it-ch.designer.cs</LastGenOutput>
@@ -2434,6 +2450,11 @@
     <Content Include="script\DatePicker\WdatePicker.js" />
     <Content Include="script\dtree.js" />
     <Content Include="script\ECOTree.js" />
+    <Content Include="script\Highcharts-2.1.3\js\highcharts-more.js" />
+    <Content Include="script\Highcharts-2.1.3\js\highcharts2.2.5.js" />
+    <Content Include="script\Highcharts-2.1.3\js\highcharts2.2.5.src.js" />
+    <Content Include="script\Highcharts-2.1.3\js\modules\exporting.js" />
+    <Content Include="script\Highcharts-2.1.3\js\modules\exporting2.2.5.src.js" />
     <Content Include="script\SetDateTime.js" />
     <Content Include="script\cookie.js" />
     <Content Include="style\dtree.css" />

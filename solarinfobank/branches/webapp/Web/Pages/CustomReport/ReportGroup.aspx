@@ -42,7 +42,7 @@
     <link href="../../style/css.css" rel="stylesheet" type="text/css" />
     <link href="../../style/sub.css" rel="stylesheet" type="text/css" />
 
-    <script src="../../Scripts/Highcharts-2.1.3/js/highcharts.js" type="text/javascript"></script>
+    <script src="../../Scripts/Highcharts-2.1.3/js/highcharts2.2.5.src.js" type="text/javascript"></script>
 
     <script src="../../Script/SetChart.js" type="text/javascript"></script>
 

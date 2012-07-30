@@ -19,6 +19,8 @@
             $('#TotalChart').click(displayyearChart);
             $('#DayChart').click(displayDayChart);
             $('#DaykWpChart').click(displayDaykWpChart);
+            //
+            $("#startYYYYMMDDHH").val($("#startYYYYMMDDHHbefore").val());
             displayDayChart();
         });
         function changeALT() {
@@ -351,7 +353,6 @@
             else
                 displayDaykWpChart();
         }
- 
 
         function PreviouNextChange(oper) {
 

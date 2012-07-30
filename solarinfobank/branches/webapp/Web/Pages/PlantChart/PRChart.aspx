@@ -211,8 +211,8 @@
 </script>
 <script src="/script/jquery.colorbox.js" type="text/javascript"></script>   
 <script src="/script/DatePicker/WdatePicker.js" type="text/javascript"></script>
-<script src="/script/Highcharts-2.1.3/js/highcharts.js" type="text/javascript"></script>
-<script src="/script/Highcharts-2.1.3/js/modules/exporting.src.js" type="text/javascript"></script>
+<script src="/script/Highcharts-2.1.3/js/highcharts2.2.5.src.js" type="text/javascript"></script>
+<script src="/script/Highcharts-2.1.3/js/modules/exporting2.2.5.src.js" type="text/javascript"></script>
 <script src="/script/SetChart.js" type="text/javascript"></script>
 <% Html.RenderPartial("css"); %>
 

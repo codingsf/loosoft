@@ -356,7 +356,7 @@
     <value>Installation date</value>
   </data>
   <data name="PLANT_ADDPLANT_LATITUDE" xml:space="preserve">
-    <value>Latitude</value>
+    <value>North latitude</value>
   </data>
   <data name="PLANT_ADDPLANT_LATITUDE_DIGITS" xml:space="preserve">
     <value>Must input number</value>
@@ -365,7 +365,7 @@
     <value>Location</value>
   </data>
   <data name="PLANT_ADDPLANT_LONGITUDE" xml:space="preserve">
-    <value>Longitude</value>
+    <value>East longitude</value>
   </data>
   <data name="PLANT_ADDPLANT_LONGITUDE_DIGITS" xml:space="preserve">
     <value>Must input number</value>
@@ -480,7 +480,7 @@
     <value>Installation date</value>
   </data>
   <data name="PLANT_EDIT_LATITUDE" xml:space="preserve">
-    <value>Latitude</value>
+    <value>North latitude</value>
   </data>
   <data name="PLANT_EDIT_LATITUDE_DIGITS" xml:space="preserve">
     <value>Must input number</value>
@@ -489,7 +489,7 @@
     <value>Location</value>
   </data>
   <data name="PLANT_EDIT_LONGITUDE" xml:space="preserve">
-    <value>Longitude</value>
+    <value>East longitude</value>
   </data>
   <data name="PLANT_EDIT_LONGITUDE_DIGITS" xml:space="preserve">
     <value>Must input number</value>
@@ -618,10 +618,10 @@
     <value>Go to</value>
   </data>
   <data name="PLANT_MAP_LATITUDE" xml:space="preserve">
-    <value>Latitude</value>
+    <value>North latitude</value>
   </data>
   <data name="PLANT_MAP_LONGITUD" xml:space="preserve">
-    <value>Longitude</value>
+    <value>East longitude</value>
   </data>
   <data name="PLANT_MAP_PLANT_MAP" xml:space="preserve">
     <value>Plant Map</value>
@@ -681,10 +681,10 @@
     <value>Installation date</value>
   </data>
   <data name="PLANT_PROFILE_LATITUDE" xml:space="preserve">
-    <value>Latitude</value>
+    <value>North latitude</value>
   </data>
   <data name="PLANT_PROFILE_LONGITUDE" xml:space="preserve">
-    <value>Longitude</value>
+    <value>East longitude</value>
   </data>
   <data name="PLANT_PROFILE_NAME" xml:space="preserve">
     <value>Name</value>
@@ -862,7 +862,7 @@
     <value>Installation date</value>
   </data>
   <data name="USER_ADDPLANT_LATITUDE" xml:space="preserve">
-    <value>Latitude</value>
+    <value>North latitude</value>
   </data>
   <data name="USER_ADDPLANT_LATITUDE_DIGITS" xml:space="preserve">
     <value>Must input number</value>
@@ -871,7 +871,7 @@
     <value>Location</value>
   </data>
   <data name="USER_ADDPLANT_LONGITUDE" xml:space="preserve">
-    <value>Longitude</value>
+    <value>East longitude</value>
   </data>
   <data name="USER_ADDPLANT_LONGITUDE_DIGITS" xml:space="preserve">
     <value>Must input number</value>
@@ -4588,7 +4588,7 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <comment>直流配电柜设备类型</comment>
   </data>
   <data name="ERRORITEM_9472" xml:space="preserve">
-    <value>Com-err</value>
+    <value>DSP Com-err</value>
     <comment>通讯异常</comment>
   </data>
   <data name="DEVICE_MONITOR_CABINET" xml:space="preserve">

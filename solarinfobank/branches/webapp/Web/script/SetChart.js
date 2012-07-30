@@ -74,7 +74,7 @@ function createSerie() {
         name: '',
         data: [],
         color: '',
-        yAxis: '0',
+        yAxis: 1,
         type: 'line'
     }
     return serie;
@@ -234,7 +234,7 @@ function setySeriesArr(series) {
         serie.name = tmpSerie.name;
         serie.data = handleMinData(tmpSerie.data, getMax(series, tmpSerie.yAxis), getMin(series, tmpSerie.yAxis), tmpSerie.name);
         serie.type = tmpSerie.type;
-        serie.yAxis = tmpSerie.yAxis;
+        serie.yAxis = parseInt(tmpSerie.yAxis);
 
         if (tmpSerie.min < yAxisArr[tmpSerie.yAxis].min)
             yAxisArr[tmpSerie.yAxis].min = tmpSerie.min;
@@ -454,7 +454,8 @@ function defineChartWithDetail(curContainer, isDetail) {
     chart = new Highcharts.Chart({
         chart: {
             renderTo: curContainer,
-            defaultSeriesType: 'line',
+            //defaultSeriesType: 'line',
+            type: 'line',
             marginTop: 70
         },
         title: {

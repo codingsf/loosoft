@@ -93,8 +93,8 @@
     <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy")%>" id="year" />
     <input type="hidden" value="<%=ChartType.line %>" id="chartType" />
     <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"MM")%>" id="month" />   
-    <script src="/script/Highcharts-2.1.3/js/highcharts.js" type="text/javascript"></script>
-	<script src="/script/Highcharts-2.1.3/js/modules/exporting.src.js" type="text/javascript"></script>    
+    <script src="/script/Highcharts-2.1.3/js/highcharts2.2.5.src.js" type="text/javascript"></script>
+	<script src="/script/Highcharts-2.1.3/js/modules/exporting2.2.5.src.js" type="text/javascript"></script>    
     <script src="/Script/SetChart.js" type="text/javascript"></script> 
     <script src="/script/DatePicker/WdatePicker.js" type="text/javascript"></script>
 

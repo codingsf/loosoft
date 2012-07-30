@@ -545,8 +545,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 if (device != null)
                 {
                     rate = 1F;
-                    MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE);
-                    devices.Add(new DeviceStuct() { deviceId = plant.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = chartTypes[1], monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.PLANT, intervalMins = int.Parse(intervalMinArr[1]) });
+                    Hashtable dataHash = DeviceDayDataService.GetInstance().GetDaydataList(null, device, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervalMinArr[1]), MonitorType.MIC_DETECTOR_SUNLINGHT);
+                      if (dataHash.Keys.Count > 0)//有日照数据
+                      {
+                          MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.MIC_DETECTOR_SUNLINGHT);
+                          devices.Add(new DeviceStuct() { deviceId = device.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = chartTypes[1], monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.DEVICE, intervalMins = int.Parse(intervalMinArr[1]) });
+                      }
                 }
 
                 string chartName = LanguageUtil.getDesc("PLANT_CHART_PERFORMANCE_INVESTMENT_COMPARE_CHART");
@@ -845,9 +849,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     Device device = plant.getFirstDetector();
                     if (device != null)
                     {
-                      float rate = 1F;
-                      MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE);
-                      devices.Add(new DeviceStuct() { deviceId = plant.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = ChartType.line, monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.PLANT, intervalMins = intervalMins });
+                        dataHash = DeviceDayDataService.GetInstance().GetDaydataList(null, device, startYYYYMMDDHH, endYYYYMMDDHH, intervalMins, MonitorType.MIC_DETECTOR_SUNLINGHT);
+                          if (dataHash.Keys.Count > 0)//有日照数据
+                          {
+                              float rate = 1F;
+                              MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.MIC_DETECTOR_SUNLINGHT);
+                              devices.Add(new DeviceStuct() { deviceId = device.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = ChartType.line, monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.DEVICE, intervalMins = intervalMins });
+                          }
                     }
                 }
                 else
@@ -896,9 +904,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                       Device device = plant.getFirstDetector();
                       if (device != null)
                       {
-                          float rate = 1F;
-                          MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE);
-                          devices.Add(new DeviceStuct() { deviceId = plant.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = chartTypes[0], monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.PLANT, intervalMins = int.Parse(intervals[1]) });
+                            dataHash = DeviceDayDataService.GetInstance().GetDaydataList(null, device, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), MonitorType.MIC_DETECTOR_SUNLINGHT);
+                            if (dataHash.Keys.Count > 0)//有日照数据
+                            {
+                                float rate = 1F;
+                                MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.MIC_DETECTOR_SUNLINGHT);
+                                devices.Add(new DeviceStuct() { deviceId = device.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = chartTypes[0], monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.DEVICE, intervalMins = int.Parse(intervals[1]) });
+                            }
                       }
                 }
                 else
@@ -938,9 +950,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                       Device device = plant.getFirstDetector();
                       if (device != null)
                       {
-                          float rate = 1F;
-                          MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE);
-                          devices.Add(new DeviceStuct() { deviceId = plant.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = chartTypes[0], monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.PLANT, intervalMins = int.Parse(intervals[1]) });
+                          dataHash = DeviceDayDataService.GetInstance().GetDaydataList(null, device, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), MonitorType.MIC_DETECTOR_SUNLINGHT);
+                          if (dataHash.Keys.Count > 0)//有日照数据
+                          {
+                              float rate = 1F;
+                              MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.MIC_DETECTOR_SUNLINGHT);
+                              devices.Add(new DeviceStuct() { deviceId = device.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = chartTypes[0], monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.DEVICE, intervalMins = int.Parse(intervals[1]) });
+                          }
                       }
                 }
                 else

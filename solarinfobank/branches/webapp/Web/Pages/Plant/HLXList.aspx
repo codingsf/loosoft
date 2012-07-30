@@ -175,12 +175,12 @@
                                  
                                     </td>
                                     <td align="center" width="160">
-                                          <%=device.getMonitor(MonitorType.MIC_BUSBAR_DCUXVOLT)%> 
+                                    <%=device.getMonitor(MonitorType.MIC_BUSBAR_DCUXVOLT)%> 
                                           
                                     </td>
                                     
                                     <td width="160" align="center">
-                               <%=device.getMonitor(MonitorType.MIC_BUSBAR_TOTALCURRENT)%>  
+                                    <%=device.getMonitor(MonitorType.MIC_BUSBAR_TOTALCURRENT)%>  
                                     </td> 
                                     <td width="160" align="center">
                                     <%=device.getMonitor(MonitorType.MIC_BUSBAR_JNTEMPRATURE)%>

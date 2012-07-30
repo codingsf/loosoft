@@ -145,12 +145,10 @@
                                   
                                     </td> 
                                     <td width="150" align="center">
-                                    <%=curMonthEnergy.ToString("0.00")%>
-                                    
+                                    <%=StringUtil.formatFloat(curMonthEnergy,"0.00")%>   
                                     </td>
                                     <td width="100" align="center">
-                                    
-                                    <%=Math.Round(curMonthEnergy/device.chartPower,2) %>
+                                    <%=StringUtil.formatDouble(Math.Round(curMonthEnergy/device.chartPower,2),"0.00") %>
                                     </td>
                                     <td width="100" align="center">
                                     <%=StringUtil.formatFloat(device.TotalEnergy,"0.00") %>
@@ -258,11 +256,11 @@
                                     </td>
                                     <td width="100" align="center">
                                     
-                                    <%=Math.Round(curMonthEnergy/device.chartPower,2) %>
+                                    <%=StringUtil.formatDouble(Math.Round(curMonthEnergy/device.chartPower,2),"0.00") %>
                                     
                                     </td>
                                     <td width="100" align="center">
-                                 <%=StringUtil.formatDouble(device.TotalEnergy,"0.00") %>
+                                    <%=StringUtil.formatDouble(device.TotalEnergy,"0.00") %>
                                     </td>
                                     <td width="100" align="center">
                                      <%if (fault)
@@ -368,7 +366,7 @@
                                     </td>
                                     <td width="100" align="center">
                                     
-                                    <%=Math.Round(curMonthEnergy/device.chartPower,2) %>
+                                    <%=StringUtil.formatDouble(Math.Round(curMonthEnergy/device.chartPower,2),"0.00") %>
                                     
                                     </td>
                                     <td width="100" align="center">

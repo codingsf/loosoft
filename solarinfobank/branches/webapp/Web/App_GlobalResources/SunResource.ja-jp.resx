@@ -351,7 +351,7 @@
     <value>据付け期日</value>
   </data>
   <data name="PLANT_ADDPLANT_LATITUDE" xml:space="preserve">
-    <value>緯度</value>
+    <value>北緯</value>
   </data>
   <data name="PLANT_ADDPLANT_LATITUDE_DIGITS" xml:space="preserve">
     <value>数字を入力して下さい</value>
@@ -360,7 +360,7 @@
     <value>位置</value>
   </data>
   <data name="PLANT_ADDPLANT_LONGITUDE" xml:space="preserve">
-    <value>経度</value>
+    <value>東経</value>
   </data>
   <data name="PLANT_ADDPLANT_LONGITUDE_DIGITS" xml:space="preserve">
     <value>数字を入力して下さい</value>
@@ -477,7 +477,7 @@
     <value>据付け期日</value>
   </data>
   <data name="PLANT_EDIT_LATITUDE" xml:space="preserve">
-    <value>緯度</value>
+    <value>北緯</value>
   </data>
   <data name="PLANT_EDIT_LATITUDE_DIGITS" xml:space="preserve">
     <value>数字を入力して下さい</value>
@@ -486,7 +486,7 @@
     <value>位置</value>
   </data>
   <data name="PLANT_EDIT_LONGITUDE" xml:space="preserve">
-    <value>経度</value>
+    <value>東経</value>
   </data>
   <data name="PLANT_EDIT_LONGITUDE_DIGITS" xml:space="preserve">
     <value>数字を入力して下さい</value>
@@ -615,10 +615,10 @@
     <value>へ移動します</value>
   </data>
   <data name="PLANT_MAP_LATITUDE" xml:space="preserve">
-    <value>緯度</value>
+    <value>北緯</value>
   </data>
   <data name="PLANT_MAP_LONGITUD" xml:space="preserve">
-    <value>経度</value>
+    <value>東経</value>
   </data>
   <data name="PLANT_MAP_PLANT_MAP" xml:space="preserve">
     <value>発電所の地図</value>
@@ -678,10 +678,10 @@
     <value>据付け期日</value>
   </data>
   <data name="PLANT_PROFILE_LATITUDE" xml:space="preserve">
-    <value>緯度</value>
+    <value>北緯</value>
   </data>
   <data name="PLANT_PROFILE_LONGITUDE" xml:space="preserve">
-    <value>経度</value>
+    <value>東経</value>
   </data>
   <data name="PLANT_PROFILE_NAME" xml:space="preserve">
     <value>名称</value>
@@ -855,7 +855,7 @@
     <value>据付け期日</value>
   </data>
   <data name="USER_ADDPLANT_LATITUDE" xml:space="preserve">
-    <value>緯度</value>
+    <value>北緯</value>
   </data>
   <data name="USER_ADDPLANT_LATITUDE_DIGITS" xml:space="preserve">
     <value>数字を入力して下さい</value>
@@ -864,7 +864,7 @@
     <value>位置</value>
   </data>
   <data name="USER_ADDPLANT_LONGITUDE" xml:space="preserve">
-    <value>経度</value>
+    <value>東経</value>
   </data>
   <data name="USER_ADDPLANT_LONGITUDE_DIGITS" xml:space="preserve">
     <value>数字を入力して下さい</value>
@@ -4417,7 +4417,7 @@
     <comment>直流配电柜设备类型</comment>
   </data>
   <data name="ERRORITEM_9472" xml:space="preserve">
-    <value>通信例外</value>
+    <value>DSP 通信例外</value>
     <comment>通讯异常</comment>
   </data>
   <data name="DEVICE_MONITOR_CABINET" xml:space="preserve">

@@ -209,7 +209,7 @@
                                     </td>
                                     -->
                                     <td align="center" width="15%">
-                                    <%=plantUnit.TodayPower(Model.timezone) %>
+                                    <%=StringUtil.formatFloat(plantUnit.TodayPower(Model.timezone),"0.00") %>
                                     </td>
                                     <td align="center" width="15%">
                                     <%=plantUnit.collector.runData==null?0:plantUnit.collector.runData.totalEnergy%>

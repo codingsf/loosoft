@@ -4804,7 +4804,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Com-err 的本地化字符串。
+        ///   查找类似 DSP Com-err 的本地化字符串。
         /// </summary>
         internal static string ERRORITEM_9472 {
             get {
@@ -6107,7 +6107,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Latitude 的本地化字符串。
+        ///   查找类似 North latitude 的本地化字符串。
         /// </summary>
         internal static string PLANT_ADDPLANT_LATITUDE {
             get {
@@ -6134,7 +6134,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Longitude 的本地化字符串。
+        ///   查找类似 East longitude 的本地化字符串。
         /// </summary>
         internal static string PLANT_ADDPLANT_LONGITUDE {
             get {
@@ -6773,7 +6773,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Latitude 的本地化字符串。
+        ///   查找类似 North latitude 的本地化字符串。
         /// </summary>
         internal static string PLANT_EDIT_LATITUDE {
             get {
@@ -6800,7 +6800,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Longitude 的本地化字符串。
+        ///   查找类似 East longitude 的本地化字符串。
         /// </summary>
         internal static string PLANT_EDIT_LONGITUDE {
             get {
@@ -7250,7 +7250,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Latitude 的本地化字符串。
+        ///   查找类似 North latitude 的本地化字符串。
         /// </summary>
         internal static string PLANT_MAP_LATITUDE {
             get {
@@ -7259,7 +7259,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Longitude 的本地化字符串。
+        ///   查找类似 East longitude 的本地化字符串。
         /// </summary>
         internal static string PLANT_MAP_LONGITUD {
             get {
@@ -7889,7 +7889,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Latitude 的本地化字符串。
+        ///   查找类似 North latitude 的本地化字符串。
         /// </summary>
         internal static string PLANT_PROFILE_LATITUDE {
             get {
@@ -7907,7 +7907,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Longitude 的本地化字符串。
+        ///   查找类似 East longitude 的本地化字符串。
         /// </summary>
         internal static string PLANT_PROFILE_LONGITUDE {
             get {
@@ -10979,7 +10979,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Latitude 的本地化字符串。
+        ///   查找类似 North latitude 的本地化字符串。
         /// </summary>
         internal static string USER_ADDPLANT_LATITUDE {
             get {
@@ -11006,7 +11006,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Longitude 的本地化字符串。
+        ///   查找类似 East longitude 的本地化字符串。
         /// </summary>
         internal static string USER_ADDPLANT_LONGITUDE {
             get {

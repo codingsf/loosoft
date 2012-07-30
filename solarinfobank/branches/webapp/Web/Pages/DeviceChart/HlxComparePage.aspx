@@ -105,7 +105,7 @@
             $.ajax({
                 type: "POST",
                 url: "/deviceChart/CompareDayCurrentChartByUnit",
-                data: { uId: $("#uid").val(), startYYYYMMDDHH: $("#startYYYYMMDDHH").val(), endYYYYMMDDHH: $("#endYYYYMMDDHH").val(), chartType: $("#chartType").val(), intervalMins: $("#intervalMins").val() },
+                data: { uId: $("#uid").val(), startYYYYMMDDHH: $("#unitstartYYYYMMDDHH").val(), endYYYYMMDDHH: $("#unitendYYYYMMDDHH").val(), chartType: $("#chartType").val(), intervalMins: $("#intervalMins").val() },
                 success: function(result) {
                     if (appendChartError(curContainer, result, ajaxImgTop)) {
                         $("#daydatadiv").html($("#daydatadiv_html").html());
@@ -388,8 +388,8 @@
             if (aimDay) {
                 aimDay = aimDay.replace("-", "").replace("-", "");
             }
-            $("#startYYYYMMDDHH").val(aimDay + "06")
-            $("#endYYYYMMDDHH").val(aimDay + "20")
+            $("#unitstartYYYYMMDDHH").val(aimDay + "06")
+            $("#unitendYYYYMMDDHH").val(aimDay + "20")
             displayDayChart();
               aimDay = getBeforDay(aimDay);
             aimDay = aimDay.substring(0, 4) + "-" + aimDay.substring(4, 6) + "-" + aimDay.substring(6, 8);
@@ -429,14 +429,14 @@
 <input type="hidden" value="<%=(ViewData["plantUnit"] as PlantUnit).id%>" id="uid" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy")%>" id="year" />
 <input type="hidden" value="<%=ChartType.line %>" id="chartType" />
-<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"MM")%>"
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")%>"
     id="month" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>"
     id="YYYYMMDD" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>06"
-    id="startYYYYMMDDHH" />
+    id="unitstartYYYYMMDDHH" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>20"
-    id="endYYYYMMDDHH" />
+    id="unitendYYYYMMDDHH" />
 <input type="hidden" value="60" id="intervalMins" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")%>01"
     id="startYYYYMMDD" />

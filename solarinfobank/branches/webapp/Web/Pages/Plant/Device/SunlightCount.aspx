@@ -17,17 +17,17 @@
     </tr>
     <tr>
       <td height="22" class="line_b" align="center"><%=Resources.SunResource.PLANT_OVERVIEW_DAY%></td>
-      <td class="line_b" align="center"><%=ViewData["dayddc"] ==null?0:(ViewData["dayddc"] as DeviceDataCount).maxValue%> W/m2</td>
+      <td class="line_b" align="center"><%=ViewData["dayddc"] == null ? "0" : (ViewData["dayddc"] as DeviceDataCount).maxValue.ToString("0.00")%> W/m2</td>
       <td class="line_b" align="center"><%=ViewData["dayddc"] == null ? "" : (ViewData["dayddc"] as DeviceDataCount).maxTime.ToString()%></td>
     </tr>
     <tr>
       <td height="22" class="line_b" align="center"><%=Resources.SunResource.PLANT_OVERVIEW_MONTH%></td>
-      <td class="line_b" align="center"><%=ViewData["monthddc"] == null ? 0 : (ViewData["monthddc"] as DeviceDataCount).maxValue%> W/m2</td>
+      <td class="line_b" align="center"><%=ViewData["monthddc"] == null ? "0" : (ViewData["monthddc"] as DeviceDataCount).maxValue.ToString("0.00")%> W/m2</td>
       <td class="line_b" align="center"><%=ViewData["monthddc"] == null ? "" : (ViewData["monthddc"] as DeviceDataCount).maxTime.ToString()%></td>
     </tr>
     <tr>
       <td height="22" class="line_b" align="center"><%=Resources.SunResource.PLANT_OVERVIEW_YEAR%></td>
-      <td class="line_b" align="center"><%=ViewData["yearddc"] == null ? 0 : (ViewData["yearddc"] as DeviceDataCount).maxValue%> W/m2</td>
+      <td class="line_b" align="center"><%=ViewData["yearddc"] == null ? "0" : (ViewData["yearddc"] as DeviceDataCount).maxValue.ToString("0.00")%> W/m2</td>
       <td class="line_b" align="center"><%=ViewData["yearddc"] == null ? "": (ViewData["yearddc"] as DeviceDataCount).maxTime.ToString()%></td>
     </tr>                   
   </table>

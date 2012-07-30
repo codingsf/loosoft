@@ -121,22 +121,22 @@
                                        <%=plantUnit.displayname%>
                                     </td>
                                     <td align="center" width="120px">
-                                    <%=plantUnit.TodayPower(Model.timezone) %>
+                                    <%=StringUtil.formatFloat(plantUnit.TodayPower(Model.timezone),"0.00") %>
                                     </td>
                                     <td width="120px" align="center">
-                                      <%= currentYearEnergy%>
+                                      <%=StringUtil.formatFloat(currentYearEnergy,"0.00")%>
                                     </td>
                                     <td align="center" width="120px">
                                     <%=plantUnit.displayTotalEnergy%>
                                     </td>
                                     <td width="120px" align="center">
-                                        <%=currentMonthEnergy%>
+                                    <%=StringUtil.formatFloat(currentMonthEnergy)%>
                                     </td>
                                     <td width="135px" align="center">
-                                       <%=Math.Round(currentMonthEnergy / designPower, 2).Equals(double.NaN) ? 0 : Math.Round(currentMonthEnergy / designPower, 2)%>
+                                       <%=StringUtil.formatDouble(Math.Round(currentMonthEnergy / designPower, 2).Equals(double.NaN) ? 0 : Math.Round(currentMonthEnergy / designPower, 2))%>
                                     </td>
                                     <td width="135px" align="center">
-                                        <%=Math.Round(currentYearEnergy / designPower, 2).Equals(double.NaN) ? 0 : Math.Round(currentYearEnergy / designPower, 2)%>
+                                        <%=StringUtil.formatDouble(Math.Round(currentYearEnergy / designPower, 2).Equals(double.NaN) ? 0 : Math.Round(currentYearEnergy / designPower, 2))%>
                                     </td>
                                 </tr>
                             </tbody></table>

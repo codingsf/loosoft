@@ -2767,5 +2767,46 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             userService.UpdateBigCustomer(uid, !user.isBigCustomer);
             return Redirect("/admin/users");
         }
+
+
+        public ActionResult Errorcode(string pn)
+        {
+            IList<Errorcode> errorList = ErrorcodeService.GetInstance().GetList();
+
+            Pager page = new Pager() { PageIndex = 1, PageSize = ComConst.PageSize, RecordCount = errorList.Count };
+            int pageNo = 0;
+            int.TryParse(pn, out pageNo);
+            page.PageIndex = pageNo < 1 ? 1 : pageNo; ;
+            page.RecordCount = errorList.Count;
+            errorList = errorList.Skip((pageNo - 1) * page.PageSize).Take(page.PageSize).ToList<Errorcode>();
+            ViewData["page"] = page;
+            return View(@"Errorcode/list", errorList);
+        }
+
+        public ActionResult Errorcode_delete(int id)
+        {
+            ErrorcodeService.GetInstance().Remove(id);
+            return Errorcode(string.Empty);
+        }
+
+        public ActionResult Errorcode_edit(int id)
+        {
+            Errorcode errorCode = ErrorcodeService.GetInstance().Get(id);
+            return View(@"Errorcode/edit", errorCode);
+        }
+
+        public ActionResult Errorcode_save(Errorcode errorcode)
+        {
+            ErrorcodeService.GetInstance().Save(errorcode);
+            return Errorcode(string.Empty);
+        }
+
+        public ActionResult CheckErrorcode(string code)
+        {
+            if (string.IsNullOrEmpty(code)) return Content("true");
+            return Content(ErrorcodeService.GetInstance().GetList().Where(m => m.code.Equals(code.Trim())).Count() == 0 ? "true" : "false");
+        }
+
+
     }
 }

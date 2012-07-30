@@ -125,6 +125,7 @@
     <Compile Include="CustomChartService.cs" />
     <Compile Include="DeviceRelationService.cs" />
     <Compile Include="ElecPriceService.cs" />
+    <Compile Include="ErrorcodeService.cs" />
     <Compile Include="ManagerMonitorCodeService.cs" />
     <Compile Include="MonitorConfigService.cs" />
     <Compile Include="ProtalService.cs" />

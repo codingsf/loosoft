@@ -322,7 +322,6 @@
                                         <%=mmc.name %></label>
                                 </td>
                                 <%
-                                
                                     if ((++index) % 4 == 0)
                                         Response.Write("</tr><tr>");
                                     } %>

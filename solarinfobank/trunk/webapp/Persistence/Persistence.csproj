@@ -104,6 +104,7 @@
     <Compile Include="Interfaces\ICountryCityDao.cs" />
     <Compile Include="Interfaces\IDeviceRelationDao.cs" />
     <Compile Include="Interfaces\IElecPriceDao.cs" />
+    <Compile Include="Interfaces\IErrorcodeDao.cs" />
     <Compile Include="Interfaces\IManagerMonitorCodeSqlMapDao.cs" />
     <Compile Include="Interfaces\IMonitorConfigDao.cs" />
     <Compile Include="Interfaces\IProtalDao.cs" />
@@ -175,6 +176,7 @@
     <Compile Include="MapperDao\DeviceSqlMapDao.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MapperDao\ErrorcodeSqlMapDao.cs" />
     <Compile Include="MapperDao\LanguageSqlMapDao.cs" />
     <Compile Include="MapperDao\FaultSqlMapDao.cs" />
     <Compile Include="MapperDao\ManagerMonitorCodeSqlMapDao.cs" />

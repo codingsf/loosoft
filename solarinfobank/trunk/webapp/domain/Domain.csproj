@@ -130,6 +130,7 @@
     <Compile Include="DeviceRelation.cs" />
     <Compile Include="ElecPrice.cs" />
     <Compile Include="EmailQueue.cs" />
+    <Compile Include="Errorcode.cs" />
     <Compile Include="MailConfig.cs" />
     <Compile Include="ManagerMonitorCode.cs" />
     <Compile Include="MonitorConfig.cs" />

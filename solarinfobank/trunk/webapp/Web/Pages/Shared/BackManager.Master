@@ -119,6 +119,7 @@
                                 <div class="kjmid">
                                     <div class="kjb">
                                         <ul>
+                                              <li><a href="/admin/errorcode/">故障码管理</a></li>
                                             <%if (AuthService.isAllow("admin", "managers"))
                                               { %>
                                             <li><a href="/admin/managers/">管理员列表</a></li>

@@ -48,6 +48,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\dll\Dimac.JMail.Smtp.dll</HintPath>
     </Reference>
+    <Reference Include="EmailService, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\webapp17\Web\bin\EmailService.exe</HintPath>
+    </Reference>
     <Reference Include="ExcelLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\dll\ExcelLibrary.dll</HintPath>
@@ -220,10 +224,6 @@
     <Content Include="SqlMap.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\email-sf\EmailService\EmailService.csproj">
-      <Project>{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}</Project>
-      <Name>EmailService</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{6AE1548A-E450-4197-8666-3D31D09527FD}</Project>
       <Name>Common</Name>
@@ -990,6 +990,10 @@
     <None Include="m_img\img\Thumbs.db" />
     <Content Include="Pages\Shared\Virtual.Master" />
     <Content Include="Pages\portal\Index.aspx" />
+    <None Include="Pages\Admin\Errorcode\.svn\all-wcprops" />
+    <None Include="Pages\Admin\Errorcode\.svn\entries" />
+    <None Include="Pages\Admin\Errorcode\.svn\text-base\Edit.aspx.svn-base" />
+    <None Include="Pages\Admin\Errorcode\.svn\text-base\List.aspx.svn-base" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1943,6 +1947,7 @@
     <Content Include="editor\_whatsnew.html" />
     <Content Include="editor\_whatsnew_history.html" />
     <Content Include="favicon.ico" />
+    <Content Include="HTMLPage1.htm" />
     <Content Include="Images\201104121018141864img01.jpg" />
     <Content Include="Images\201104121018227785img01.jpg" />
     <Content Include="Images\42766101.jpg" />
@@ -2349,6 +2354,7 @@
     <Content Include="Maps\DeviceDataCount.xml" />
     <Content Include="Maps\ElecPrice.xml" />
     <Content Include="Maps\EmailQueue.xml" />
+    <Content Include="Maps\Errorcode.xml" />
     <Content Include="Maps\MonitorConfig.xml" />
     <Content Include="Maps\PlantUser.xml" />
     <Content Include="Maps\ProductPicture.xml" />
@@ -2433,6 +2439,8 @@
     <Content Include="Pages\Admin\Device\cabinet.aspx" />
     <Content Include="Pages\Admin\Device\inv_Counter.aspx" />
     <Content Include="Pages\Admin\Device\ammeter.aspx" />
+    <Content Include="Pages\Admin\Errorcode\Edit.aspx" />
+    <Content Include="Pages\Admin\Errorcode\List.aspx" />
     <Content Include="Pages\Admin\Index.aspx" />
     <Content Include="Pages\Admin\ItemConfig\Reg_collector.aspx" />
     <Content Include="Pages\Admin\ItemConfig\Tree.aspx" />
@@ -2719,6 +2727,11 @@
     <Folder Include="Images\sub\.svn\tmp\prop-base\" />
     <Folder Include="Images\sub\.svn\tmp\props\" />
     <Folder Include="Images\sub\.svn\tmp\text-base\" />
+    <Folder Include="Pages\Admin\Errorcode\.svn\prop-base\" />
+    <Folder Include="Pages\Admin\Errorcode\.svn\props\" />
+    <Folder Include="Pages\Admin\Errorcode\.svn\tmp\prop-base\" />
+    <Folder Include="Pages\Admin\Errorcode\.svn\tmp\props\" />
+    <Folder Include="Pages\Admin\Errorcode\.svn\tmp\text-base\" />
     <Folder Include="Properties\DataSources\" />
     <Folder Include="tempexportfile\" />
     <Folder Include="ufile\Nopic\" />

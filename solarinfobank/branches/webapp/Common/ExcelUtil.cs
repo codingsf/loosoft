@@ -67,7 +67,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
                 css.Add(cs);
                // xlSheet.get_Range(xlApp.Cells[1, 1], xlApp.Cells[2, 5]).NumberFormat = "@";
                 //xlSheet.get_Range(xlApp.Cells[1, 1], xlApp.Cells[2, 5]).HorizontalAlignment = Excel.XlVAlign.xlVAlignCenter;
-                               
+
+
                 createInnerChart(xlSheet, css, "设备功率图", "dd");
 
                 xlBook.SaveAs("d:\\Analysis.xls", Missing.Value,
@@ -121,22 +122,50 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
 
             Excel.ChartObjects ChartObjects = (Excel.ChartObjects)dataSheet.ChartObjects(Missing.Value);
 
-            int cols = 0;
-            foreach(ChartStuct chartStuct in charts){
-                cols += chartStuct.dataRange.Columns.Count;
-            }
-
-            Excel.ChartObject chartObject = ChartObjects.Add(cols * 60, 30 , 800, 350);
-
             if (charts.Count < 1) return;//无数不处理
 
             //绘制第一维图表
             Excel.Range firstRange = charts[0].dataRange;
             Excel.XlChartType chartType = charts[0].chartType;
             string yname = charts[0].yname;
+            int cols = 0;
+            foreach (ChartStuct chartStuct in charts)
+            {
+                cols += chartStuct.dataRange.Columns.Count;
+            }
+
+            Excel.ChartObject chartObject = ChartObjects.Add(cols * 60, 30, 800, 350);
             chartObject.Chart.ChartWizard(firstRange, chartType, Missing.Value, Excel.XlRowCol.xlColumns, 1, 1, true, chartName, categoryName, yname, Missing.Value);
 
+            chartObject.Chart.ChartArea.ClearFormats();
+            chartObject.Chart.ChartType = chartType;
+            chartObject.Chart.ChartArea.Fill.BackColor.SchemeColor = 2;//整个图表区背景
+            //Console.WriteLine(chartObject.Chart.ChartArea.Fill.ForeColor.SchemeColor);
+            //Console.WriteLine(chartObject.Chart.ChartArea.Fill.ForeColor.RGB);
+            chartObject.Chart.ChartArea.Fill.ForeColor.SchemeColor = 2;
+            //Console.WriteLine(chartObject.Chart.ChartArea.Fill.ForeColor.RGB);
+            //Console.WriteLine(chartObject.Chart.PlotArea.Interior.ColorIndex);
+            //chartObject.Chart.PlotArea.Interior.PatternColorIndex = 19;
+            chartObject.Chart.PlotArea.Interior.ColorIndex = 2;//图例区域背景
+            
+            Excel.Axis firstAxis = (Excel.Axis)chartObject.Chart.Axes(Excel.XlAxisType.xlValue, Excel.XlAxisGroup.xlPrimary);
+            firstAxis.HasMajorGridlines = true;//不显示横向网格线
+            
+            //firstAxis.HasTickLabels = false;
+
+            //chartObject.Chart.PlotArea.Border.LineStyle = Excel.XlLineStyle.xlLineStyleNone;//设置绘图区边框线条
+
             Excel.SeriesCollection seriesCollection = (Excel.SeriesCollection)chartObject.Chart.SeriesCollection(Type.Missing);
+
+            //xlSeries1.Fill=Microsoft.Office.Interop.Excel.ChartFillFormat.
+            if (seriesCollection.Count > 0)
+            {
+                Excel.Series seires1 = (Excel.Series)seriesCollection.Item(1);//具体数据图表区颜色
+                //seires1.Fill.BackColor.SchemeColor = 18;
+                seires1.Fill.ForeColor.SchemeColor = 46;
+                seires1.MarkerForegroundColorIndex = Excel.XlColorIndex.xlColorIndexNone;
+                seires1.HasLeaderLines = false;
+            }
             int sc = seriesCollection.Count;
             //绘制第二维图表
             //修改第一维图表的各个序列的图例,这里有个bug，会用最后的标题覆盖前面的
@@ -156,6 +185,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
                 Excel.Series xlSeries = (Excel.Series)seriesCollection.NewSeries();
                 xlSeries.Name = stitle;
                 xlSeries.HasLeaderLines = true;
+                xlSeries.Fill.ForeColor.SchemeColor = 46;
                 //xlSeries.Has3DEffect = true;
                 //xlSeries.HasDataLabels = true;
                 try

@@ -55,7 +55,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     {
                         obj = 0;
                     }
-                    yearDataMap[key] = float.Parse(obj.ToString()) + unitTotalData.dataValue;
+                    yearDataMap[key] = StringUtil.stringtoFloat(obj.ToString()) + unitTotalData.dataValue;
                 }
             }
             return yearDataMap;

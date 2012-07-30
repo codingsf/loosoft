@@ -154,12 +154,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     object ovalue = oncerHas[key];
                     if (ovalue == null)
                     {
-                        oncerHas[key] = data.Equals("0") ? 0 : float.Parse(data);//?为何要将0赋为null?
+                        oncerHas[key] = data.Equals("0") ? 0 : StringUtil.stringtoFloat(data);//?为何要将0赋为null?
                     }
                     else
                     {
-                        if (float.Parse(data.Trim()) > float.Parse(ovalue.ToString().Trim()))
-                            oncerHas[key] = float.Parse(data);
+                        if (StringUtil.stringtoFloat(data.Trim()) > StringUtil.stringtoFloat(ovalue.ToString().Trim()))
+                            oncerHas[key] = StringUtil.stringtoFloat(data);
                     }
                     hasHandleList.Add(hhmmss);
                 }
@@ -183,7 +183,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     {
                         if (curValue != null)
                         {
-                            float cha = float.Parse(curValue.ToString()) - float.Parse(preValue.ToString());
+                            float cha = StringUtil.stringtoFloat(curValue.ToString()) - StringUtil.stringtoFloat(preValue.ToString());
                             if (cha >= 0)
                             {
                                 preValue = curValue;
@@ -202,7 +202,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 }
                 else
                 {
-                    float newValue = float.Parse(ovalue.ToString()) + (curValue == null ? 0 : float.Parse(curValue.ToString()));
+                    float newValue = StringUtil.stringtoFloat(ovalue.ToString()) + (curValue == null ? 0 : StringUtil.stringtoFloat(curValue.ToString()));
                     hhpowerHash[key] = newValue;
                 }
             }
@@ -227,6 +227,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 {
                     if (lastValue != -1)
                     {
+                        //将当前坐标前置为一个有上一个有值的下标
+                        i--;
                         //取得下一个值的坐标
                         int nextX = getNextValueX(XAxis, i, dataHash);
                         if (nextX == 0)//没有下一个值
@@ -239,7 +241,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                             if (int.Parse(XAxis[nextX].Substring(2, 4)) - int.Parse(XAxis[i].Substring(2, 4)) < 100)
                             {
                                 //当前值
-                                float curValue = float.Parse(dataHash[XAxis[nextX]].ToString());
+                                float curValue = StringUtil.stringtoFloat(dataHash[XAxis[nextX]].ToString());
                                 float? avg = computAvg(curValue, lastValue, nextX - i + 1);
                                 if (curValue < lastValue) avg = avg * -1;
                                 for (int n = i; n < nextX; n++)
@@ -255,7 +257,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 else
                 {
                     dataHash[XAxis[i]] = obj;
-                    lastValue = float.Parse(obj.ToString());
+                    lastValue = StringUtil.stringtoFloat(obj.ToString());
                 }
                 i++;
             }

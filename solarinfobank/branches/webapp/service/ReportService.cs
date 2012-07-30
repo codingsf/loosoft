@@ -355,7 +355,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                         float tmpenergy = 0;
                         foreach (Object o in w_dataHash.Values)
                         {
-                            tmpenergy += float.Parse(o.ToString());
+                            tmpenergy += StringUtil.stringtoFloat(o.ToString());
                         }
                         w_energy += tmpenergy;
                         w_revenue += tmpenergy * plant.revenueRate;
@@ -384,7 +384,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                         float tmpenergy = 0;
                         foreach (Object o in m_dataHash.Values)
                         {
-                            tmpenergy += float.Parse(o.ToString());
+                            tmpenergy += StringUtil.stringtoFloat(o.ToString());
                         }
                         m_energy += tmpenergy;
                         m_revenue += tmpenergy * plant.revenueRate;
@@ -415,7 +415,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                         float tmpenergy = 0;
                         foreach (Object o in y_dataHash.Values)
                         {
-                            tmpenergy += float.Parse(o.ToString());
+                            tmpenergy += StringUtil.stringtoFloat(o.ToString());
                         }
                         y_energy += tmpenergy;
                         y_revenue += tmpenergy * plant.revenueRate;
@@ -468,7 +468,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     //日发电量
                     float energy = CollectorMonthDayDataService.GetInstance().getDayData(plant.plantUnits, startTime);
                     //add发电量
-                    datahash.Add(DataItem.TODAY_ENERGY,StringUtil.formatDouble(energy)+" "+MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE).unit);
+                    datahash.Add(DataItem.TODAY_ENERGY,StringUtil.formatDouble(energy,"0.00")+" "+MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE).unit);
                     //add日最大功率 和发生时间
                     int year = int.Parse(startTime.Substring(0,4));
                     int month = int.Parse(startTime.Substring(4, 2));
@@ -505,9 +505,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     float w_energy = 0;
                     foreach (Object o in w_dataHash.Values)
                     {
-                        w_energy += float.Parse(o.ToString());
+                        w_energy += StringUtil.stringtoFloat(o.ToString());
                     }
-                    datahash.Add(DataItem.WEEK_ENERGY,StringUtil.formatDouble(w_energy) + " " + MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE).unit);
+                    datahash.Add(DataItem.WEEK_ENERGY,StringUtil.formatDouble(w_energy,"0.00") + " " + MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE).unit);
                     //周CO2减排
                     double co2reduce1 = Plant.computeCO2Reduce(co2Rate, w_energy);
                     datahash.Add(DataItem.WEEK_AVOIDED_CO2, co2reduce1 + " " + Plant.computeReduceUnit(co2reduce1));
@@ -529,9 +529,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     float m_energy = 0;
                     foreach (Object o in m_dataHash.Values)
                     {
-                        m_energy += float.Parse(o.ToString());
+                        m_energy += StringUtil.stringtoFloat(o.ToString());
                     }
-                    datahash.Add(DataItem.MONTH_ENERGY,StringUtil.formatDouble(m_energy) + " " + MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE).unit);
+                    datahash.Add(DataItem.MONTH_ENERGY,StringUtil.formatDouble(m_energy,"0.00") + " " + MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE).unit);
                     //月CO2减排
                     double co2reduce_m = Plant.computeCO2Reduce(co2Rate, m_energy);
                     datahash.Add(DataItem.MONTH_AVOIDED_CO2, StringUtil.formatDouble(co2reduce_m) + " " + Plant.computeReduceUnit(co2reduce_m));
@@ -555,9 +555,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     float y_energy = 0;
                     foreach (Object o in y_dataHash.Values)
                     {
-                        y_energy += float.Parse(o.ToString());
+                        y_energy += StringUtil.stringtoFloat(o.ToString());
                     }
-                    datahash.Add(DataItem.YEAR_ENERGY, StringUtil.formatDouble(y_energy) + " " + MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE).unit);
+                    datahash.Add(DataItem.YEAR_ENERGY, StringUtil.formatDouble(y_energy,"0.00") + " " + MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE).unit);
                     //年CO2减排
                     double co2reduce_y = Plant.computeCO2Reduce(co2Rate, y_energy);
                     datahash.Add(DataItem.YEAR_AVOIDED_CO2, StringUtil.formatDouble(co2reduce_y) + " " + Plant.computeReduceUnit(co2reduce_y));

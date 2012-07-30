@@ -123,6 +123,7 @@
     <Compile Include="CompareChartService.cs" />
     <Compile Include="CountryCityService.cs" />
     <Compile Include="CustomChartService.cs" />
+    <Compile Include="ErrorcodeService.cs" />
     <Compile Include="ManagerMonitorCodeService.cs" />
     <Compile Include="MonitorConfigService.cs" />
     <Compile Include="ReportDataItemService.cs" />

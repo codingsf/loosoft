@@ -102,6 +102,7 @@
     <Compile Include="Interfaces\IAdminUserRoleDao.cs" />
     <Compile Include="Interfaces\ICommonInfoDao.cs" />
     <Compile Include="Interfaces\ICountryCityDao.cs" />
+    <Compile Include="Interfaces\IErrorcodeDao.cs" />
     <Compile Include="Interfaces\IManagerMonitorCodeSqlMapDao.cs" />
     <Compile Include="Interfaces\IMonitorConfigDao.cs" />
     <Compile Include="Interfaces\IUserRoleDao.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="MapperDao\DeviceSqlMapDao.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MapperDao\ErrorcodeSqlMapDao.cs" />
     <Compile Include="MapperDao\LanguageSqlMapDao.cs" />
     <Compile Include="MapperDao\FaultSqlMapDao.cs" />
     <Compile Include="MapperDao\ManagerMonitorCodeSqlMapDao.cs" />

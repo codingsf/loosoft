@@ -2180,6 +2180,7 @@
     <Content Include="Maps\AdminControllerActionRole.xml" />
     <Content Include="Maps\AdminUserRole.xml" />
     <Content Include="Maps\VirtualPlant.xml" />
+    <Content Include="Maps\Errorcode.xml" />
     <Content Include="m_img\bg004.jpg" />
     <Content Include="m_img\bg01.jpg" />
     <Content Include="m_img\bg010.jpg" />
@@ -2246,6 +2247,8 @@
     <Content Include="Pages\Admin\Device\cabinet.aspx" />
     <Content Include="Pages\Admin\Device\inv_Counter.aspx" />
     <Content Include="Pages\Admin\Device\ammeter.aspx" />
+    <Content Include="Pages\Admin\Errorcode\Edit.aspx" />
+    <Content Include="Pages\Admin\Errorcode\List.aspx" />
     <Content Include="Pages\Admin\Index.aspx" />
     <Content Include="Pages\Admin\ItemConfig\Reg_collector.aspx" />
     <Content Include="Pages\Admin\ItemConfig\Tree.aspx" />

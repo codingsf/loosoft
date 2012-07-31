@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="News" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="News" type="Cn.Loosoft.Zhisou.Tenghu.Domain.News, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="newsresult" class="News">
+      <result property="id"			column="id"/>
+      <result property="categoryid"			column="categoryid"/>
+      <result property="title"			column="title"/>
+      <result property="descr"			column="descr"/>
+      <result property="publicuser"			column="publicuser"/>
+      <result property="publictime"			column="publictime"/>
+      <result property="ishot"			column="ishot"/>
+      <result property="sortorder"			column="sortorder"/>
+      <result property="category"	lazyLoad="true"	column="categoryid" select="category_get_lazy" />
+
+    </resultMap>
+  </resultMaps>
+  
+  
+  <cacheModels>
+
+  </cacheModels>
+  
+  
+  <statements>
+  
+
+    <select id="news_get_list"   resultMap="newsresult">
+      select *  from  news
+    </select>
+
+    <select id="news_search" resultMap="newsresult">
+      SELECT * FROM news where title  like "%$value$%"
+    </select>
+    
+    <select id="news_get_hot_cid"   resultMap="newsresult">
+      select *  from  news where categoryid=#cid# order by publictime desc limit 0,$count$
+    </select>
+
+    <select id="news_get_hot"   resultMap="newsresult">
+      select *  from  news where title !='null' order by publictime desc limit 0,$count$
+    </select>
+    
+    
+    <select id="news_get"  resultMap="newsresult">
+      select *  from  news where id=#id# 
+    </select>
+
+    <select id="news_get_categoryid"   resultMap="newsresult">
+      select *  from  news where categoryid=#value# limit 0,1
+    </select>
+
+    <select id="news_get_pre"   resultMap="newsresult">
+    <![CDATA[ select *  from  news where categoryid=#cid# and id<#id# order by id desc limit 0,1]]>
+  </select>
+
+    <select id="news_get_next"   resultMap="newsresult">
+      <![CDATA[ select *  from  news where categoryid=#cid# and  id>#id# order by id asc limit 0,1]]>
+    </select>
+
+    <delete id="news_delete">
+      delete   from  news where id=#id#
+    </delete>
+
+
+
+    <update id="news_update">
+      update  news set categoryId=#categoryid#,title=#title#,descr=#descr#,publicUser=#publicuser#,publicTime=#publictime#,isHot=#ishot#,sortOrder=#sortorder# where id=#id#
+    </update>
+
+
+    <insert id="news_insert">
+      insert into  news (categoryId,title,descr,publicUser,publicTime,isHot,sortOrder) values (#categoryid#,#title#,#descr#,#publicuser#,#publictime#,#ishot#,#sortorder#)
+    </insert>
+
+    <select id="news_page_list"  resultMap="newsresult">
+      <![CDATA[  SELECT * from news limit $Start$,$End$]]>
+    </select>
+
+    <select id="news_page_count" resultClass="int">
+      <![CDATA[select count(1) from news]]>
+    </select>
+    
+    
+    
+  </statements>
+</sqlMap>

@@ -2757,12 +2757,37 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
 
         public ActionResult Errorcode_edit(int id)
         {
+            IList<Language> langs = LanguageService.GetInstance().GetList();
             Errorcode errorCode = ErrorcodeService.GetInstance().Get(id);
+            IList<Hashtable> tables = new List<Hashtable>();
+            Hashtable table = null;
+            foreach (Language language in langs)
+            {
+                table = new Hashtable();
+                table["langcode"] = language.codename;
+                table["langName"] = language.displayName;
+                table["langValue"] = errorCode == null ? string.Empty :
+                    errorCode.getCodeName(language.codename);
+                tables.Add(table);
+            }
+            ViewData["list"] = tables;
+
             return View(@"Errorcode/edit", errorCode);
         }
 
         public ActionResult Errorcode_save(Errorcode errorcode)
         {
+            string lang = Request.Form["lang"];
+            string langValue = Request.Form["langValue"];
+            List<string> array = lang.Split(',').ToList<string>();
+            List<string> arrayValue = langValue.Split(',').ToList<string>();
+            string name = string.Empty;
+            for (int x = 0; x < array.Count; x++)
+            {
+                name += string.Format("{0}:{1},", array[x], arrayValue[x]);
+            }
+            if (name.LastIndexOf(',') > 0) name = name.Substring(0, name.Length - 1);
+            errorcode.name = name;
             ErrorcodeService.GetInstance().Save(errorcode);
             return Errorcode(string.Empty);
         }

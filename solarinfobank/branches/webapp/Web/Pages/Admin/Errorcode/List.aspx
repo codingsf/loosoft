@@ -65,7 +65,7 @@
                                         错误代码
                                     </td>
                                     <td width="25%" align="center" class="lir">
-                                        错误名称
+                                        默认名称
                                     </td>
                                   
                                     <td width="25%" align="center" class="lir">
@@ -91,7 +91,7 @@
                                         <%= errorCode.code%>
                                     </td>
                                     <td width="25%" align="center" class="am_line0<%=i%2 %>">
-                                        <%= errorCode.name%>
+                                        <%= errorCode.defaultName%>
                                     </td>
                                  
                                     <td width="25%" align="center" class="am_line0<%=i%2 %>">

@@ -36,7 +36,7 @@
                             }
                         }
                     },
-                    name: {
+                    defaultName: {
                         required: true
                     }
                 },
@@ -45,9 +45,9 @@
                         $("#error_code").text('');
                         error.appendTo("#error_code");
                     }
-                    if (element.attr("name") == "name") {
-                        $("#error_name").text('');
-                        error.appendTo("#error_name");
+                    if (element.attr("name") == "defaultName") {
+                        $("#error_defaultname").text('');
+                        error.appendTo("#error_defaultname");
                     }
 
                 },
@@ -57,8 +57,8 @@
                         required: "<span class='error'>&nbsp;请输入故障码</span>",
                         remote: "<span class='error'>&nbsp;此故障码已存在</span>"
                     },
-                    name: {
-                        required: "<span class='error'>&nbsp;请输入故障名称</span>"
+                    defaultName: {
+                        required: "<span class='error'>&nbsp;请输入默认故障名称</span>"
                     }
                 },
                 success: function(em) {
@@ -135,16 +135,31 @@
                     </tr>
                     <tr>
                         <td height="36" class="pr_10">
-                            故障名称：
+                            默认名称：
                         </td>
                         <td>
-                            <%= Html.TextBoxFor(model => model.name, new { @class = "txtbu01", @size = "30" })%>
+                            <%= Html.TextBoxFor(model => model.defaultName, new { @class = "txtbu01", @size = "30" })%>
                             <span class="red">*</span>
                         </td>
                         <td>
-                            <span id="error_name"></span>
+                            <span id="error_defaultname"></span>
                         </td>
                     </tr>
+                    <%foreach (Hashtable table in (ViewData["list"] as List<Hashtable>))
+                      {%>
+                    <tr>
+                        <td height="36" class="pr_10">
+                            <%=table["langName"] %>：
+                        </td>
+                        <td>
+                            <%= Html.Hidden("lang", table["langcode"], new { @class = "txtbu01", @size = "30" })%>
+                            <%= Html.TextBox("langValue",table["langValue"], new { @class = "txtbu01", @size = "30" })%>
+                        </td>
+                        <td>
+                            <span id="Span1"></span>
+                        </td>
+                    </tr>
+                    <%} %>
                 </table>
             </div>
             <div class="sb_down">

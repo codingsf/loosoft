@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="600" pageHeight="842" columnWidth="560" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<style name="Crosstab Data Text" isDefault="false" hAlign="Center"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="collegeName" class="java.lang.String"/>
+	<field name="majorName" class="java.lang.String"/>
+	<field name="year" class="java.lang.String"/>
+	<field name="roombed" class="java.lang.String"/>
+	<field name="month" class="java.lang.String"/>
+	<field name="day" class="java.lang.String"/>
+	<field name="regOperator" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement x="92" y="32" width="381" height="38"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[安徽科技学院新生入学报到注册表]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="700" splitType="Stretch">
+			<textField>
+				<reportElement x="132" y="30" width="178" height="32"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{collegeName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="27" y="72" width="65" height="32"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[姓名：]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="92" y="72" width="79" height="32"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="190" y="72" width="64" height="32"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[宿舍：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="30" width="70" height="32"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[班级：]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="390" y="30" width="150" height="32"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{majorName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="27" y="30" width="105" height="32"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[院（部）：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="402" y="72" width="27" height="30"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[年]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="458" y="72" width="27" height="30"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[月]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="510" y="72" width="27" height="30"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[日]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="357" y="72" width="43" height="32"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{year}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="429" y="72" width="28" height="32"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{month}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="485" y="72" width="25" height="32"/>
+				<textElement>
+					<font size="16" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{day}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="25" y="109" width="511" height="1"/>
+			</line>
+			<line>
+				<reportElement x="25" y="109" width="1" height="447"/>
+			</line>
+			<line>
+				<reportElement x="536" y="109" width="1" height="447"/>
+			</line>
+			<line>
+				<reportElement x="25" y="174" width="511" height="1"/>
+			</line>
+			<line>
+				<reportElement x="26" y="233" width="510" height="1"/>
+			</line>
+			<line>
+				<reportElement x="25" y="556" width="511" height="1"/>
+			</line>
+			<line direction="BottomUp">
+				<reportElement x="161" y="110" width="1" height="446"/>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="419" y="110" width="1" height="446"/>
+			</line>
+			<staticText>
+				<reportElement x="80" y="131" width="22" height="31"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[一]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="203" y="131" width="22" height="31"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[二]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="347" y="131" width="22" height="31"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[三]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="188" width="104" height="30"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[报    到    组]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="188" width="109" height="30"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[财    务    组]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="188" width="90" height="30"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[公  寓  组]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="246" width="123" height="149"/>
+				<textElement verticalAlignment="Middle" lineSpacing="1_1_2">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[交验录取通知书、准考证，办理饭卡等
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="246" width="83" height="149"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Double">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[交学费]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="169" y="440" width="100" height="29"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[经办人：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="440" width="100" height="29"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[经办人：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="440" width="100" height="29"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[经办人：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="246" width="102" height="149"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Double">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[领取公寓用品
+(凭缴费单)]]></text>
+			</staticText>
+			<line>
+				<reportElement x="25" y="434" width="511" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="26" y="557" width="245" height="36"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[注：此表存放各院（部）]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="36" y="493" width="100" height="28"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{regOperator}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="300" y="246" width="110" height="177"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Double">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[交验户口迁移证。（未转户口者，此项不用办理）]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="289" y="112" width="1" height="444"/>
+			</line>
+			<staticText>
+				<reportElement x="300" y="440" width="100" height="29"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[经办人：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="473" y="131" width="22" height="31"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[四]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="312" y="188" width="88" height="30"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[户  籍   组]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

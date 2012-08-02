@@ -1,0 +1,36 @@
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.action.extension" value="action" />
+
+	<package name="jasperReport"
+		extends="struts-default,jasperreports-default">
+		<action name="noticecert" class="com.drcl.report.web.NoticecertAction">
+			<result name="success">noticecert.jsp</result>
+		</action>
+		<action name="regtable" class="com.drcl.report.web.RegTableAction">
+			<result name="success">regtable.jsp</result>
+		</action>	
+		<!-- 
+			location：是指我们刚才用iReport编译生成的jasper文件
+			dataSource：是指我们执行的数据库查询结果，在testAction类里把这个结果查询出来，这个参数必须要有
+			format：是指需要输出的类型，默认是PDF，其他的输出类型有：XML、HTML、XLS、CSV、RTF ，注意这里一定要大写
+			reportParameters：jasperreport中的Parameters
+			除了这几个参数，还有下列参数：
+			delimiter：是指如果输出类型为CSV的话，指定分割符，默认为“,”
+			parse：是指是否解析location参数中的EL表达式，默认为 true
+			contentDisposition：指定disposition，默认为“inline”，如果设为“attachment”就是强制下载
+			documentName：输出的文件名
+			imageServletUrl：生成图形的路径
+		-->
+		<action name="noticecertprint"
+			class="com.drcl.report.web.NoticecertPrintAction">
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="regtableprint"
+			class="com.drcl.report.web.RegPrintAction">
+			<result name="success">/index.jsp</result>
+		</action>		
+	</package>
+</struts>

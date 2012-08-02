@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="550" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="BaseDir" class="java.lang.String"/>
+	<field name="leftContent" class="java.lang.String"/>
+	<field name="rightContent" class="java.lang.String"/>
+	<field name="length" class="java.lang.String"/>
+	<field name="examineeNo" class="java.lang.String"/>
+	<field name="IDcard" class="java.lang.String"/>
+	<field name="noticeId" class="java.lang.String"/>
+	<field name="tiaoma" class="java.lang.String"/>
+	<field name="leftName" class="java.lang.String"/>
+	<field name="rightName" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="51" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="442" splitType="Stretch">
+			<textField>
+				<reportElement x="109" y="186" width="596" height="148" forecolor="#000000"/>
+				<textElement lineSpacing="1_1_2" markup="html">
+					<font fontName="宋体" size="24" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{leftContent}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="271" y="109" width="61" height="23"/>
+				<textElement textAlignment="Right">
+					<font fontName="宋体" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[考生号：]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="332" y="109" width="125" height="23"/>
+				<textElement>
+					<font fontName="宋体" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{examineeNo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="459" y="109" width="77" height="23"/>
+				<textElement textAlignment="Right">
+					<font fontName="宋体" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[身份证号：]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="536" y="109" width="169" height="23"/>
+				<textElement>
+					<font fontName="宋体" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{IDcard}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="109" y="109" width="52" height="23"/>
+				<textElement>
+					<font fontName="宋体" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[编号：]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="159" y="109" width="97" height="23"/>
+				<textElement>
+					<font fontName="宋体" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{noticeId}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="null" hyperlinkType="Reference">
+				<reportElement x="109" y="334" width="213" height="46"/>
+				<imageExpression class="java.io.File"><![CDATA[new File($P{BaseDir}, $F{tiaoma})]]></imageExpression>
+				<hyperlinkReferenceExpression><![CDATA["Welcome To Visit Me"]]></hyperlinkReferenceExpression>
+			</image>
+			<textField>
+				<reportElement x="109" y="150" width="476" height="36" forecolor="#000000"/>
+				<textElement markup="html">
+					<font fontName="宋体" size="24" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{leftName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="536" y="334" width="169" height="30"/>
+				<textElement>
+					<font fontName="宋体" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[二○一二年八月四日]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

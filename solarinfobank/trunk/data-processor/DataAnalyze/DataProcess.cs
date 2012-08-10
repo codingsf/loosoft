@@ -67,12 +67,13 @@ namespace DataAnalyze
                         }
                         catch (Exception ee)
                         {
-                            LogUtil.error("解析消息" + messageVO.key + ",消息内容：" + messageVO.message + "异常:" + ee.Message);
+                            LogUtil.error("解析消息" + messageVO.key +",sn:" + TcpHeader.getSn(messageVO.message)+ ",消息内容：" + messageVO.message + "异常:" + ee.Message);
                             //处理错误的消息入队
                             //处理完从memched中删除此消息
                             if (messageVO.key != null)
                             {
-                                MemcachedClientSatat.getInstance(TcpDataProcesser.msgmemchached).deleteAnalyzed(messageVO.key);
+                                IList<string> analyzedKeys = (List<string>)MemcachedClientSatat.getInstance().Get(MemcachedClientSatat.analyzedkey);
+                                MemcachedClientSatat.getInstance(TcpDataProcesser.msgmemchached).deleteAnalyzed(messageVO.key, analyzedKeys);
                                 MemcachedClientSatat.getInstance().remember(messageVO.key);
                             }
                             continue;
@@ -111,8 +112,9 @@ namespace DataAnalyze
                             string ekey = tcpmessage.GetCollectorId() + ":" + tcpmessage.messageHeader.year + ":" + tcpmessage.messageHeader.month + ":" + tcpmessage.messageHeader.day;
                             //if (!TcpDataProcesser.collectorEnergyMap.ContainsKey(ekey) || (TcpDataProcesser.collectorEnergyMap.ContainsKey(ekey) && TcpDataProcesser.collectorEnergyMap[ekey] < tcpmessage.messageHeader.DayEnergy))
                             //{
-                                //现在 tcpmessage.messageHeader.DayEnergy已经废弃不用了，放进去是无意义，暂时保留
-                                TcpDataProcesser.collectorEnergyMap[ekey] = tcpmessage.messageHeader.DayEnergy;
+                            //必须添加hasData作为条件，否则会出现新协议的发电量被设备数据产生的空messageHeader冲成0了。
+                            if (tcpmessage.messageHeader.hasData && tcpmessage.messageHeader.DayEnergy != null)
+                                TcpDataProcesser.collectorEnergyMap[ekey] = tcpmessage.messageHeader.DayEnergy.Value;
                             //}
                         }catch (Exception e223){
                             LogUtil.error("collectorEnergyMap energy map error:" + e223.Message);
@@ -132,7 +134,8 @@ namespace DataAnalyze
                             //处理完从memched中删除此消息
                             if (messageVO.key != null)
                             {
-                                MemcachedClientSatat.getInstance(TcpDataProcesser.msgmemchached).deleteAnalyzed(messageVO.key);
+                                IList<string> analyzedKeys = (List<string>)MemcachedClientSatat.getInstance().Get(MemcachedClientSatat.analyzedkey);
+                                MemcachedClientSatat.getInstance(TcpDataProcesser.msgmemchached).deleteAnalyzed(messageVO.key,analyzedKeys);
                                 MemcachedClientSatat.getInstance().remember(messageVO.key);
                             }
                             continue;
@@ -146,7 +149,7 @@ namespace DataAnalyze
                         //
                         AnalyzeCount.lasttime = tcpmessage.messageHeader.TimeNow;
                         //
-                        LogUtil.writeline("成功处理：" + messageVO.key);
+                        LogUtil.writeline("成功处理：" + "sn:" + TcpHeader.getSn(messageVO.message) +",key:" +messageVO.key);
                     }
                     catch (Exception ee)
                     {
@@ -161,7 +164,8 @@ namespace DataAnalyze
                     //处理完从memched中删除此消息
                     if (messageVO.key != null)
                     {
-                        MemcachedClientSatat.getInstance(TcpDataProcesser.msgmemchached).deleteAnalyzed(messageVO.key);
+                        IList<string> analyzedKeys = (List<string>)MemcachedClientSatat.getInstance().Get(MemcachedClientSatat.analyzedkey);
+                        MemcachedClientSatat.getInstance(TcpDataProcesser.msgmemchached).deleteAnalyzed(messageVO.key, analyzedKeys);
                         MemcachedClientSatat.getInstance().remember(messageVO.key);
                     }
                 }

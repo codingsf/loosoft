@@ -27,19 +27,19 @@ namespace DataAnalyze
         /// <summary>
         /// 定时从缓存中取得要持久化的数据进行定时持久化
         /// </summary>
-        public void Processing()
-        {
-            Console.WriteLine("启动持久化线程");
-            while (1 == 1)
-            {
-                persistent_interval = ConfigurationSettings.AppSettings["persistent_interval"] == null ? 60 : int.Parse(ConfigurationSettings.AppSettings["persistent_interval"]);
-                Thread.Sleep(persistent_interval * 60 * 1000);
-                //持久化数据
-                peristentData();
-            }
-        }
+        //public void Processing()
+        //{
+        //    Console.WriteLine("启动持久化线程");
+        //    while (1 == 1)
+        //    {
+        //        persistent_interval = ConfigurationSettings.AppSettings["persistent_interval"] == null ? 60 : int.Parse(ConfigurationSettings.AppSettings["persistent_interval"]);
+        //        Thread.Sleep(persistent_interval * 60 * 1000);
+        //        //持久化数据
+        //        peristentData();
+        //    }
+        //}
   
-        public void peristentData(){
+        public static void peristentData(){
             Console.WriteLine("开始持久化");
             //持久化设备天数据
             try
@@ -62,6 +62,7 @@ namespace DataAnalyze
 
             //持久化设备实时数据
             try{
+
                 DeviceRunDataService.GetInstance().batchSave();
             }
             catch (Exception ee)
@@ -111,7 +112,7 @@ namespace DataAnalyze
             catch (Exception ee)
             {
                 LogUtil.error("持久化设备年月数据异常：" + ee.Message);
-                DeviceYearMonthDataService.GetInstance().batchSave();
+                //DeviceYearMonthDataService.GetInstance().batchSave();
             }
             //持久化采集器年月数据
             try{
@@ -139,14 +140,24 @@ namespace DataAnalyze
                 LogUtil.error("持久化采集器总体数据异常：" + ee.Message);
             }
 
-            //add by qhb in 20120415 for 2.0协议持久化电站信息
+            //add by qhb in 20120415 for 2.0协议持久化电站信息，持久化后不删除，
             try
             {
-                PlantService.GetInstance().batchSave(BaseMessage.plantInfoList);
+                PlantService.GetInstance().batchSave(BaseMessage.plantInfoMap);
             }
             catch (Exception ee)
             {
-                LogUtil.error("持久化采集器总体数据异常：" + ee.Message);
+                LogUtil.error("持久化电站信息数据异常：" + ee.Message);
+            }
+
+            //add by qhb in 20120715 for 2.0协议持久化设备信息，持久化后不删除，
+            try
+            {
+                DeviceService.GetInstance().batchSave(BaseMessage.deviceInfoMap);
+            }
+            catch (Exception ee)
+            {
+                LogUtil.error("持久化设备信息数据异常：" + ee.Message);
             }
         }
     }

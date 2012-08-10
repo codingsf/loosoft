@@ -101,9 +101,10 @@
     <Compile Include="Protocol20\DataType.cs" />
     <Compile Include="Protocol20\InfoBodyUtil.cs" />
     <Compile Include="Protocol20\InfoUnitAddress.cs" />
-    <Compile Include="Protocol20\PlantInfoHandler11.cs" />
+    <Compile Include="Protocol20\PlantInfoHandler31.cs" />
     <Compile Include="Protocol20\DynamicDevice.cs" />
     <Compile Include="Protocol20\TcpBug20.cs" />
+    <Compile Include="Protocol20\DeviceInfoHandler11.cs" />
     <Compile Include="Protocol\Modbus15Busbar.cs" />
     <Compile Include="Protocol\Modbus16Cabinet.cs" />
     <Compile Include="Protocol\ModbusCabinet.cs" />

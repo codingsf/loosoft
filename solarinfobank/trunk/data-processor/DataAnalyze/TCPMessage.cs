@@ -35,7 +35,8 @@ namespace DataAnalyze
         public TCPMessage(string msgkey,string content)
         {
             this.msgkey = msgkey;
-            this.messageContent = content.Replace("0x", string.Empty).Replace(" ", string.Empty).Replace("\r", string.Empty).Replace("\n", string.Empty);
+            content = content.Replace("0x", string.Empty).Replace(" ", string.Empty).Replace("\r", string.Empty).Replace("\n", string.Empty);
+            this.messageContent = content;
             string headbefore = this.messageContent.Substring(0, 4);//用头部分4个字符表示协议版本
             //add by qhb in 20120415 for 2.0新协议，暂时不处理小版本号，等以后有升级了在做区分
             if (headbefore.Equals("6969"))
@@ -159,6 +160,14 @@ namespace DataAnalyze
                 case DataType.DataType_historydata://历史数据
                     break;
                 case DataType.DataType_deviceinfo: //设备数据
+                    if (innertypemark == 31)
+                    {
+                        //从key中取得sn
+                        this.messageHeader = new TcpHeader20();
+                        this.messageHeader.CollectorCode = msgkey.Substring(DataType.memcacheddata_affix_deviceinfo.Length);
+                        this.messageHeader.CollectorCode = this.messageHeader.CollectorCode.Substring(0, this.messageHeader.CollectorCode.IndexOf("_"));
+                        this.deviceInfos = DeviceInfoHandler31.analysis(data);
+                    }
                     break;
                 default:
                     //do nothing

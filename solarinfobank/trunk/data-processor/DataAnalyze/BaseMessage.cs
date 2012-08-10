@@ -36,6 +36,9 @@ namespace DataAnalyze
         public DeviceDataCount collectorDataCount = null;
         //for 2.0电站信息
         public Cn.Loosoft.Zhisou.SunPower.Domain.PlantInfo plantInfo = null;
+
+        //for 2.0临时设备信息
+        public IList<DeviceInfo> deviceInfos = null;
         
         protected int largeVersion;//协议大版本号
         protected int smallVersion;//协议小版本号
@@ -60,8 +63,12 @@ namespace DataAnalyze
         public static IList<Fault> faultList = new List<Fault>();
 
         //for 2.0
-        //电站信息map key 采集器id，value 电站对象，来源于plantInfo累计后进行批量处理
-        public static IList<PlantInfo> plantInfoList = new List<PlantInfo>();
+        //电站信息map key 采集器id，value 电站对象，来源于plantInfo累计后进行批量处理,key 为采集器数据库id
+        public static IDictionary<int, PlantInfo> plantInfoMap = new Dictionary<int, PlantInfo>();
+
+        //for 2.0
+        //设备信息map key 设备id，value 设备对象，来源于plantInfo累计后进行批量处理,key 为采集器数据库id
+        public static IDictionary<int, DeviceInfo> deviceInfoMap = new Dictionary<int, DeviceInfo>();
 
         static BaseMessage() {
             DeviceService.GetInstance().init();
@@ -301,8 +308,10 @@ namespace DataAnalyze
             //将单元头部的发电量加入历史测点数据map中，然后统一处理
             if (!messageHeader.issub)//只有电站数据加入者两个电站测点
             {
-                historyMonitorMap[MonitorType.PLANT_MONITORITEM_ENERGY_CODE] = messageHeader.DayEnergy;
-                historyMonitorMap[MonitorType.PLANT_MONITORITEM_POWER_CODE] = messageHeader.Power;
+                if(messageHeader.DayEnergy!=null)
+                    historyMonitorMap[MonitorType.PLANT_MONITORITEM_ENERGY_CODE] = messageHeader.DayEnergy;
+                if(messageHeader.Power!=null)
+                    historyMonitorMap[MonitorType.PLANT_MONITORITEM_POWER_CODE] = messageHeader.Power;
             }
             int collectorID = GetCollectorId();
             //根据历史测点数据构建设备天数据
@@ -395,8 +404,9 @@ namespace DataAnalyze
                     fault = new Fault();
                     fault.address = bug.deviceAddress.ToString();
                     fault.errorCode = bug.faultType;
-                    ErrorItem errorItem = ErrorItem.getErrotItemByCode(bug.faultType);
-                    fault.errorTypeCode = errorItem == null?ErrorType.ERROR_TYPE_FAULT:errorItem.errorType;
+                    //ErrorItem errorItem = ErrorItem.getErrotItemByCode(bug.faultType);
+                    //fault.errorTypeCode = errorItem == null?ErrorType.ERROR_TYPE_FAULT:errorItem.errorType;
+                    fault.errorTypeCode = ErrorItem.getErrorTypefromMemcached(bug.faultType);
                     fault.sendTime = bug.faultTime;
                     fault.collectorID = colllectorID;
                     fault.confirm = false;
@@ -431,17 +441,17 @@ namespace DataAnalyze
                 dsrd = collectorRunDataMap[collectorID];
             }
 
-            if ((dsrd.dayEnergy < messageHeader.DayEnergy || dsrd.sendTime.Day != messageHeader.TimeNow.Day) || (messageHeader.TimeNow.Hour<6 && messageHeader.DayEnergy==0))
-                dsrd.dayEnergy = messageHeader.DayEnergy;
+            if ((messageHeader.DayEnergy!=null && dsrd.dayEnergy < messageHeader.DayEnergy) || (messageHeader.DayEnergy!=null && dsrd.sendTime.Day != messageHeader.TimeNow.Day))
+                dsrd.dayEnergy = messageHeader.DayEnergy.Value;
 
-            if (dsrd.totalEnergy < messageHeader.TotalEnergy)
-                dsrd.totalEnergy = messageHeader.TotalEnergy;
+            if (messageHeader.TotalEnergy!=null && dsrd.totalEnergy < messageHeader.TotalEnergy)
+                dsrd.totalEnergy = messageHeader.TotalEnergy.Value;
 
-            //只有电站数据才更新功率
-            //if (!messageHeader.issub)
-            //{
-            dsrd.power = messageHeader.Power;
-            //}
+            if(messageHeader.Power!=null)
+            {
+                dsrd.power = messageHeader.Power.Value;
+            }
+
             dsrd.sendTime = messageHeader.TimeNow;
 
             //if (realMonitorMap.ContainsKey(MonitorType.PLANT_MONITORITEM_WINDSPEED))
@@ -491,11 +501,39 @@ namespace DataAnalyze
         /// 将本次消息解析后的临时电站信息，转换成plant的业务对象存入list中已被批量处理程序处理的memcached和db
         /// 电站信息是无需从db或memcached还原的
         /// </summary>
-        public void getPlantInfo() { 
+        public void getPlantInfo() {
+            if (this.plantInfo == null) return;
             //取得当前电站数据对应的采集器id
             int collectorId = this.GetCollectorId();
             this.plantInfo.collectorId = collectorId;
-            plantInfoList.Add(this.plantInfo);
+            if(plantInfoMap.ContainsKey(collectorId)){
+                plantInfoMap[collectorId] = this.plantInfo;
+            }else
+                plantInfoMap.Add(collectorId,this.plantInfo);
+        }
+
+        /// <summary>
+        /// 将本次消息解析后的临时设备信息，转换成plant的业务对象存入list中已被批量处理程序处理的memcached和db
+        /// 电站信息是无需从db或memcached还原的
+        /// </summary>
+        public void getDeviceInfos()
+        {
+            if (deviceInfos == null) return;
+            //取得当前电站数据对应的采集器id
+            int collectorId = this.GetCollectorId();
+            int deviceId = 0;
+            foreach (DeviceInfo dinfo in this.deviceInfos)
+            {
+                deviceId = this.GetDeviceId(collectorId, dinfo.address.ToString());
+                if (deviceId == 0) continue;
+                dinfo.deviceid = deviceId;
+                if (deviceInfoMap.ContainsKey(deviceId))
+                {
+                    deviceInfoMap[deviceId] = dinfo;
+                }
+                else
+                    deviceInfoMap.Add(deviceId, dinfo);
+            }
         }
 
         /// <summary>
@@ -505,12 +543,12 @@ namespace DataAnalyze
         /// <returns></returns>
         public void GetDeviceRunDataList()
         {
-            if (ListTcpbody == null) return;
+            if (ListTcpbody == null || ListTcpbody.Count==0) return;
             List<DeviceRunData> dayDatalist = new List<DeviceRunData>();
             DeviceRunData mdd = null;
             int collectorID = GetCollectorId();
             int deviceID;
-            StringBuilder sb;
+            //StringBuilder sb;
             foreach (DeviceDataBase ddb in ListTcpbody)
             {
                 deviceID = GetDeviceId(collectorID, ddb.deviceAddress);
@@ -525,30 +563,78 @@ namespace DataAnalyze
                 {
                     mdd = deviceRunDataMap[deviceID];
                 }
+
+                //就的数据不再更新实时数据,20120714修改为 当原有时间是超前的仍然更新，这里用服务器时间判断没有考虑时差，还是有点不准确
+                if (messageHeader.TimeNow < mdd.updateTime && mdd.updateTime < DateTime.Now) continue;
+
                 mdd.energy = 0;
                 mdd.todayEnergy = 0;
-                //就的数据不再更新实时数据
-                if (mdd.updateTime > messageHeader.TimeNow) continue;
-                sb = new StringBuilder();
 
-                //测点代码:数据#代码:数据..
+                //sb = new StringBuilder();
+
+                //原数据dic
+                IDictionary<int, object> odic = getDicfromstring(mdd.rundatastr);
+
+                //测点代码:数据#代码:数据.
                 foreach (int key in ddb.realMonitorMap.Keys)
                 {
-                    sb.Append("#").Append(key + ":").Append(ddb.realMonitorMap[key]);
+                    //sb.Append("#").Append(key + ":").Append(ddb.realMonitorMap[key]);
+                    if (odic.ContainsKey(key))
+                    {
+                        odic[key] = ddb.realMonitorMap[key];
+                    }
+                    else {
+                        odic.Add(key, ddb.realMonitorMap[key]);
+                    }
                     if (key == MonitorType.MIC_INVERTER_TOTALENERGY || key == MonitorType.MIC_INVERTER_ACENERGY)
                         mdd.energy = float.Parse(ddb.realMonitorMap[key].ToString());
                     if (key == MonitorType.MIC_INVERTER_TODAYENERGY)
                         mdd.todayEnergy = float.Parse(ddb.realMonitorMap[key].ToString());
                 }
                 
-                mdd.rundatastr = sb.Length>0?sb.ToString(1,sb.Length-1):"";
+                mdd.rundatastr = convertDictoString(odic);
                 mdd.updateTime = messageHeader.TimeNow;
                 mdd.collectorID = collectorID;
                 mdd.changed = true;
 
             }
         }
+
+        /// <summary>
+        /// 将测点代码:数据#代码:数据..字符串转换成数据字典
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        private IDictionary<int, object> getDicfromstring(string str)
+        {
+            IDictionary<int, object> res = new Dictionary<int, object>();
+            if (str == null) return res;
+            string[] arr = str.Split('#');
+            string[] tmparr = null;
+            foreach(string arrs in arr){
+                tmparr = arrs.Split(':');
+                if(tmparr.Count()!=2)continue;
+                res.Add(int.Parse(tmparr[0]), tmparr[1]);
+            }
+            return res;
+        }
+        /// <summary>
+        /// 将数据字典转换成字符串，格式代码:数据#代码:数据
+        /// </summary>
+        /// <param name="dic"></param>
+        /// <returns></returns>
+        private string convertDictoString(IDictionary<int, object> dic)
+        {
+            
+            StringBuilder sb = new StringBuilder();
+            foreach (int key in dic.Keys) {
+                sb.Append("#").Append(key + ":").Append(dic[key]);
+            }
+            return sb.Length > 0 ? sb.ToString(1, sb.Length - 1) : "";
+        }
     }
+
+ 
 
     /// <summary>
     /// TCP消息头
@@ -573,28 +659,28 @@ namespace DataAnalyze
         public string hour;
         public string minute;
         public string second;
-        protected float _dayEnergy;
+        protected float? _dayEnergy;
         public bool hasData;
         public bool issub;//是否分支
         public int? sunStrength { get; set; } //日照强度 可为空
         public int? windSpeed { get; set; }    //风速（保留） 可为空
         public int? windDirection { get; set; }//风向 可为空
         public float? temperature { get; set; }//环境温度 可为空
-        public float DayEnergy
+        public float? DayEnergy
         {
             get { return _dayEnergy; }
             set { _dayEnergy = value; }
         }
-        protected float _totalEnergy;
+        protected float? _totalEnergy;
 
-        public float TotalEnergy
+        public float? TotalEnergy
         {
             get { return _totalEnergy; }
             set { _totalEnergy = value; }
         }
-        protected float _power;
+        protected float? _power;
 
-        public float Power
+        public float? Power
         {
             get { return _power; }
             set { _power = value; }
@@ -621,6 +707,7 @@ namespace DataAnalyze
             }
             set { _Version = value; }
         }
+
         /// <summary>
         /// 设备单元ID
         /// </summary>
@@ -691,25 +778,20 @@ namespace DataAnalyze
         public TcpHeader()
         { }
         /// <summary>
-        /// 覆写解析方法
+        /// 取得1.0协议的sn
         /// </summary>
-        /// <param name="header"></param>
-        public override void analyze(string header)
-        {
-            this._Header = header;
-            this.hasData = true;
-            //StringBuilder sbUnitID = new StringBuilder();
-            //for (int i = 4; i < 19; i++)
-            //{
-            //    sbUnitID.Append(ASCII.Chr((int)SystemCode.HexNumberToDenary(this._Header.Substring(i * 2, 2), false, 8, 'u')));
-            //}
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public static string getSn(string msg) {
+            if (msg.StartsWith("6969")) return "";//2.0协议返回空
+            string _CollectorCode;
             string sbUnitID = "";
             bool isNormal = false;
             string tmpchar;
             //将后面是00的抛弃
             for (int i = 18; i >= 4; i--)
             {
-                tmpchar = this._Header.Substring(i * 2, 2);
+                tmpchar = msg.Substring(i * 2, 2);
                 if (!isNormal && !tmpchar.Equals("00"))
                 {
                     isNormal = true;
@@ -719,6 +801,17 @@ namespace DataAnalyze
             }
             _CollectorCode = sbUnitID.ToString();
             _CollectorCode = _CollectorCode.Replace("\0", "0");//临时处理非法测试数据
+            return _CollectorCode;
+        }
+        /// <summary>
+        /// 覆写解析方法
+        /// </summary>
+        /// <param name="header"></param>
+        public override void analyze(string header)
+        {
+            this._Header = header;
+            this.hasData = true;
+            CollectorCode = getSn(header);
             _Version = SystemCode.HexNumberToDenary(this._Header.Substring(19 * 2, 2 * 2), true, 16, 'u').ToString();
             if (debug_collector.Equals(_CollectorCode))
             {
@@ -736,6 +829,9 @@ namespace DataAnalyze
             if (mm > 60) mm = 59;
             int ss = (int)SystemCode.HexNumberToDenary(ssss.Substring(10, 2), true, 16, 'u');
             if (ss > 60) ss = 59;
+            //临时代码
+            //if (day == 2) day = 4;
+            //else if (day == 3) day = 5;
             this.TimeNow = new DateTime(year, moth, day, hh, mm, ss);
 
             string dayestr = SystemCode.ReversionAll(this._Header.Substring(31 * 2, 4 * 2));
@@ -748,7 +844,7 @@ namespace DataAnalyze
             _totalEnergy = SystemCode.HexNumberToDenary(totalstr, false, 32, 'U');
             string powerstr = SystemCode.ReversionAll(this._Header.Substring(27 * 2, 4 * 2));
             _power = (int)SystemCode.HexNumberToDenary(powerstr, false, 32, 'u');
-            _power = float.Parse(Math.Round(_power / 1000, 3).ToString());//换算成kw
+            _power = float.Parse(Math.Round(_power.Value / 1000, 3).ToString());//换算成kw
 
             _DevicesNum = (int)SystemCode.HexNumberToDenary(this._Header.Substring(39 * 2, 1 * 2), false, 8, 'u');
 
@@ -827,8 +923,19 @@ namespace DataAnalyze
                     switch(int.Parse(infoResult[0])){
                         //发电量
                         case  DataType.plant_dayenergy:
-                            _dayEnergy = float.Parse(infoResult[1]);
+                            this.DayEnergy = float.Parse(infoResult[1]);
                             LogUtil.info("collector energy " + _dayEnergy);
+                            break;
+                        //总发电量
+                        case DataType.plant_totalenergy:
+                            try
+                            {
+                                this.TotalEnergy = float.Parse(infoResult[1]);
+                            }
+                            catch (Exception e)
+                            {
+                                this.TotalEnergy = 0;
+                            }
                             break;
                         //功率
                         case DataType.plant_power:

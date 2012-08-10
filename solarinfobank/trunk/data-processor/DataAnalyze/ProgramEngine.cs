@@ -22,6 +22,9 @@ namespace DataAnalyze
     {
         static void Main(string[] args)
         {
+            //从后台维护数据表中设置错误码静态数据
+            //ErrorcodeService.GetInstance().setErrorStaticData();
+
             string syndata = ConfigurationSettings.AppSettings["syndata"];//是否同步数据
             //MemcachedClientSatat.getInstance("60.166.14.38:11211");
             //SystemCode.HexNumberToDenary("FC27", false, 16, 's');
@@ -36,15 +39,16 @@ namespace DataAnalyze
             //m_thread2.Start();
             
             //启动持久化线程
-            PersistentProcesser persistProcess = new PersistentProcesser();
-            Thread m_thread3 = new Thread(new ThreadStart(persistProcess.Processing));
-            m_thread3.Start();
+            //PersistentProcesser persistProcess = new PersistentProcesser();
+            //Thread m_thread3 = new Thread(new ThreadStart(persistProcess.Processing));
+            //m_thread3.Start();
 
 
             //启动同步数据业务类
             if (syndata != null && syndata.Equals("true")) {
                 SynDataService.GetInstance().startupforAnalyze();
             }
+
             //DataProcess.DataProcessingEmail();
 
             LogUtil.info("数据解析服务启动成功！");
@@ -57,14 +61,14 @@ namespace DataAnalyze
             LogUtil.info("正在退出数据解析服务...");
             LogUtil.info("持久化剩余缓存数据...");
             //持久化尚未持久化的缓存数据后退出
-            persistProcess.peristentData();
+            PersistentProcesser.peristentData();
             LogUtil.info("剩余数据持久化完成...");
 
             //kill thread
             if (m_thread.IsAlive)
                 m_thread.Abort();
-            if (m_thread3.IsAlive)
-                m_thread3.Abort();
+            //if (m_thread3.IsAlive)
+               // m_thread3.Abort();
         }
     }
 }

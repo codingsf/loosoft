@@ -52,6 +52,11 @@ namespace DataAnalyze
         public const string memcacheddata_affix_plantinfo = "tcp_20_plant_";
 
         /// <summary>
+        /// tcp_20_device_sn+”_”+系统毫秒时间戳+四位随机数
+        /// </summary>
+        public const string memcacheddata_affix_deviceinfo = "tcp_20_device_";
+
+        /// <summary>
         /// tcp_20_run_sn_公共地址_系统毫秒时间戳+四位随机数
         /// </summary>
         public const string memcacheddata_affix_run = "tcp_20_run_";
@@ -102,6 +107,10 @@ namespace DataAnalyze
         /// </summary>
         public const int plant_dayenergy = 1;
         /// <summary>
+        /// 累计发电量
+        /// </summary>
+        public const int plant_totalenergy = 2;
+        /// <summary>
         /// 水平日照幅度
         /// </summary>
         public const int plant_sunlight = 3;
@@ -119,8 +128,8 @@ namespace DataAnalyze
         {
             if (deviceTypeMap.Keys.Count > 0) return;
             //-------------------电站数据信息单元地址定义------------------
-            deviceTypeMap.Add(plant_dayenergy, new InfoUnitAddress(1, MonitorType.PLANT_MONITORITEM_DAYRADIATION, "日发电量", InfoUnitAddress.sign_type_u, 1, yaomai, DeviceData.PLANT_CODE, SystemCode.ReversionType_all));
-            //deviceTypeMap.Add(2, new InfoUnitAddress(2, 0, "累计发电", InfoUnitAddress.sign_type_u, 1, yaomai, DeviceData.PLANT_CODE, false));
+            deviceTypeMap.Add(plant_dayenergy, new InfoUnitAddress(1, MonitorType.PLANT_MONITORITEM_ENERGY_CODE, "日发电量", InfoUnitAddress.sign_type_u, 1, yaomai, DeviceData.PLANT_CODE, SystemCode.ReversionType_all));
+            deviceTypeMap.Add(plant_totalenergy, new InfoUnitAddress(2, MonitorType.PLANT_MONITORITEM_TOTALENERGY_CODE, "总发电量", InfoUnitAddress.sign_type_u, 1, yaomai, DeviceData.PLANT_CODE, SystemCode.ReversionType_all));
             deviceTypeMap.Add(plant_sunlight, new InfoUnitAddress(3, MonitorType.PLANT_MONITORITEM_LINGT_CODE, "水平日照幅度", InfoUnitAddress.sign_type_u, 0, yaoce, DeviceData.PLANT_CODE, SystemCode.ReversionType_all));
             //deviceTypeMap.Add(4, new InfoUnitAddress(4, MonitorType.p, "斜面日照幅度", InfoUnitAddress.sign_type_u, 0, yaoce, DeviceData.PLANT_CODE, false));
             deviceTypeMap.Add(plant_temperature, new InfoUnitAddress(5, MonitorType.PLANT_MONITORITEM_AMBIENTTEMP_CODE, "环境温度", InfoUnitAddress.sign_type_s, 1, yaoce, DeviceData.PLANT_CODE, SystemCode.ReversionType_all));

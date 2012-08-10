@@ -9,12 +9,12 @@ namespace Protocol
 {
 
     /// <summary>
-    /// 类别标识为11的电站信息解析处理
+    /// 类别标识为31的设备信息解析处理
     /// </summary>
     public class PlantInfoHandler11
     {
         private const int hexbytecharnum = 2;//一个十六进制字节占得字符数
-        public string DevName = "电站";
+        public string DevName = "电站信息";
         int deviceDataHeadLength = 5;//5字节
         private string deviceData = "";
         /// <summary>
@@ -47,7 +47,8 @@ namespace Protocol
             plant.postCode = postCode;
 
             //电站时区
-            int timezone = (int)SystemCode.HexNumberToDenary(deviceData.Substring(178 * hexbytecharnum, 2 * hexbytecharnum), true, 16, 'u');
+            int timezone = (int)SystemCode.HexNumberToDenary(deviceData.Substring(178 * hexbytecharnum, 2 * hexbytecharnum), true, 16, 's');
+            timezone = timezone / 100;
             plant.timezone = timezone;
 
             //夏令时支持
@@ -55,16 +56,20 @@ namespace Protocol
             plant.isxls = xls==1?true:false;
             //电站经纬度  6*U8 = 6字节
             //纬度秒
-            int ws = (int)SystemCode.HexNumberToDenary(deviceData.Substring(181 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 'u');
-            int wm = (int)SystemCode.HexNumberToDenary(deviceData.Substring(182 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 'u');
-            int wh = (int)SystemCode.HexNumberToDenary(deviceData.Substring(183 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 'u');
-            plant.latitudeString = wh + "," + wm + "," + ws;
+            int ws = (int)SystemCode.HexNumberToDenary(deviceData.Substring(181 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 's');
+            int wm = (int)SystemCode.HexNumberToDenary(deviceData.Substring(182 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 's');
+            int wh = (int)SystemCode.HexNumberToDenary(deviceData.Substring(183 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 's');
+            plant.latd = wh;
+            plant.latm = wm;
+            plant.lats = ws;
 
             //精度秒
-            int js = (int)SystemCode.HexNumberToDenary(deviceData.Substring(184 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 'u');
-            int jm = (int)SystemCode.HexNumberToDenary(deviceData.Substring(185 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 'u');
-            int jh = (int)SystemCode.HexNumberToDenary(deviceData.Substring(186 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 'u');
-            plant.longitudeString = jh + "," + jm + "," + js;
+            int js = (int)SystemCode.HexNumberToDenary(deviceData.Substring(184 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 's');
+            int jm = (int)SystemCode.HexNumberToDenary(deviceData.Substring(185 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 's');
+            int jh = (int)SystemCode.HexNumberToDenary(deviceData.Substring(186 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 's');
+            plant.longd = jh;
+            plant.longm = jm;
+            plant.longs = js;
             return plant;
         }
 

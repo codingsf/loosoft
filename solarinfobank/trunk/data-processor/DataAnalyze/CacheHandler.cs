@@ -84,6 +84,29 @@ namespace DataAnalyze
             {
                 LogUtil.info("Cache " + tcpmessage.messageHeader.TimeNow + " fualt error:" + e.Message);
             }
+
+            //取得电站信息到全局列表变量，供后续持久化只用
+            try
+            {
+                tcpmessage.getPlantInfo();
+            }
+            catch (Exception e)
+            {
+                LogUtil.info("Add Plant Info to List error："+e.Message);
+            }
+
+           //取得设备信息到全局列表变量，供后续持久化只用
+            try
+            {
+                tcpmessage.getDeviceInfos();
+            }
+            catch (Exception e)
+            {
+                LogUtil.info("Add Device Info to List error："+e.Message);
+            }
+
+
+            
         }
 
         /// <summary>
@@ -181,7 +204,8 @@ namespace DataAnalyze
                 LogUtil.error("save max value error:" + e.Message);
             }
 
-            clearDayDataMap();
+            //将本地内存数据放入缓存后，就要清理本地内存，否有内存溢出问题
+            //clearDayDataMap();
 
             //每次缓存后 同时将同步到memcahced
             if (syndata != null && syndata.Equals("true")) {
@@ -191,16 +215,18 @@ namespace DataAnalyze
 
         /// <summary>
         /// 清理两天前的天数据map中得对象，否则天数据map会越来越多
+        /// 当发送数据强度太大，两天也是多了，其实只要保证清理的时间跨度大于缓存，改为删除前2分钟的
+        /// 废弃，由于对于历史数据来说，会删除了，代替用于在持久化后删除天数据key
         /// </summary>
         private static void clearDayDataMap()
         {
-            if (DateTime.Now > lastClear.AddDays(2))
+            if (DateTime.Now > lastClear.AddMinutes(2))
             {
-                DateTime compare = DateTime.Now.AddDays(-1);
+                DateTime compare = DateTime.Now.AddMinutes(-2);
                 string[] keys = BaseMessage.collectordayDataMap.Keys.ToArray();
                 foreach (string key in keys)
                 {
-                    //删除前天的
+                    //删除前2分钟的
                     if (BaseMessage.collectordayDataMap[key].sendtime < compare) BaseMessage.collectordayDataMap.Remove(key);
                 }
 
@@ -222,7 +248,7 @@ namespace DataAnalyze
         /// 将采集器和个设备的发电量数据进行统计后放入环境对象中
         /// </summary>
         /// <param name="tcpmessage"></param>
-        public static void CacheCountData(IDictionary<string, double> deviceEnergyMap, IDictionary<string, double> collectorEnergyMap)
+        public static void CacheCountData(IDictionary<string, double> deviceEnergyMap, IDictionary<string, double?> collectorEnergyMap)
         {
             try
             {
@@ -260,60 +286,66 @@ namespace DataAnalyze
             //string[] keys = deviceEnergyMap.Keys.ToArray();
             foreach (string ekey in deviceEnergyMap.Keys)
             {
-                deviceID = int.Parse(ekey.Split(':')[0]);
-                yearMonth = ekey.Split(':')[1];
-                year = int.Parse(yearMonth.Substring(0, 4));
-                month = int.Parse(yearMonth.Substring(4, 2));
-                day = int.Parse(yearMonth.Substring(6, 2));
-                data = float.Parse(deviceEnergyMap[ekey].ToString());
-                string d_column = "d_" + day;
-
-                //取得月天数据对象
-                DeviceMonthDayData deviceMonthDayData = DeviceMonthDayDataService.GetInstance().GetDeviceMonthDayData(year, deviceID, month);
-                deviceMonthDayData.curDay = day;
-                //给相应属性赋值
-                if (deviceMonthDayData != null)
+                try
                 {
-                    object ovalue = ReflectionUtil.getProperty(deviceMonthDayData, d_column);
-                    if (ovalue == null || float.Parse(ovalue.ToString()) < data)
-                    {
-                        ReflectionUtil.setProperty(deviceMonthDayData, d_column, data);
-                    }
-                }
-                DeviceMonthDayDataService.GetInstance().Cache(deviceMonthDayData);
+                    deviceID = int.Parse(ekey.Split(':')[0]);
+                    yearMonth = ekey.Split(':')[1];
+                    year = int.Parse(yearMonth.Substring(0, 4));
+                    month = int.Parse(yearMonth.Substring(4, 2));
+                    day = int.Parse(yearMonth.Substring(6, 2));
+                    data = float.Parse(deviceEnergyMap[ekey].ToString());
+                    string d_column = "d_" + day;
 
-                //更新年月发电量数据
-                //统计年月
-                string m_column = "m_" + month;
-                float? m_value = deviceMonthDayData.count();
-                DeviceYearMonthData ymdData = DeviceYearMonthDataService.GetInstance().GetDeviceYearMonthData(deviceID, year);
-                ymdData.curMonth = month;
-                //给年月数据对象相应属性赋值
-                if (ymdData != null)
-                {
-                    object ovalue = ReflectionUtil.getProperty(ymdData, m_column);
-                    if (ovalue == null || float.Parse(ovalue.ToString()) < m_value)
+                    //取得月天数据对象
+                    DeviceMonthDayData deviceMonthDayData = DeviceMonthDayDataService.GetInstance().GetDeviceMonthDayData(year, deviceID, month);
+                    deviceMonthDayData.curDay = day;
+                    //给相应属性赋值
+                    if (deviceMonthDayData != null)
                     {
-                        ReflectionUtil.setProperty(ymdData, m_column, m_value);
+                        object ovalue = ReflectionUtil.getProperty(deviceMonthDayData, d_column);
+                        if (ovalue == null || float.Parse(ovalue.ToString()) < data)
+                        {
+                            ReflectionUtil.setProperty(deviceMonthDayData, d_column, data);
+                        }
                     }
-                }
-                DeviceYearMonthDataService.GetInstance().Cache(ymdData);
+                    DeviceMonthDayDataService.GetInstance().Cache(deviceMonthDayData);
 
-                //统计总体发电量
-                float? y_value = ymdData.count();
-                DeviceYearData yd = DeviceYearDataService.GetInstance().GetDeviceYearData(deviceID, year);
-                if (yd == null) yd = new DeviceYearData() { dataValue = 0, deviceID = deviceID, year = year };
-                yd.localAcceptTime = DateTime.Now;
-                //给年月数据对象相应属性赋值
-                if (yd != null)
-                {
-                    object ovalue = yd.dataValue;
-                    if (ovalue == null || float.Parse(ovalue.ToString()) < y_value)
+                    //更新年月发电量数据
+                    //统计年月
+                    string m_column = "m_" + month;
+                    float? m_value = deviceMonthDayData.count();
+                    DeviceYearMonthData ymdData = DeviceYearMonthDataService.GetInstance().GetDeviceYearMonthData(deviceID, year);
+                    ymdData.curMonth = month;
+                    //给年月数据对象相应属性赋值
+                    if (ymdData != null)
                     {
-                        yd.dataValue = y_value == null ? 0 : float.Parse(y_value.ToString());
+                        object ovalue = ReflectionUtil.getProperty(ymdData, m_column);
+                        if (ovalue == null || float.Parse(ovalue.ToString()) < m_value)
+                        {
+                            ReflectionUtil.setProperty(ymdData, m_column, m_value);
+                        }
                     }
+                    DeviceYearMonthDataService.GetInstance().Cache(ymdData);
+
+                    //统计总体发电量
+                    float? y_value = ymdData.count();
+                    DeviceYearData yd = DeviceYearDataService.GetInstance().GetDeviceYearData(deviceID, year);
+                    if (yd == null) yd = new DeviceYearData() { dataValue = 0, deviceID = deviceID, year = year };
+                    yd.localAcceptTime = DateTime.Now;
+                    //给年月数据对象相应属性赋值
+                    if (yd != null)
+                    {
+                        object ovalue = yd.dataValue;
+                        if (ovalue == null || float.Parse(ovalue.ToString()) < y_value)
+                        {
+                            yd.dataValue = y_value == null ? 0 : float.Parse(y_value.ToString());
+                        }
+                    }
+                    DeviceYearDataService.GetInstance().Cache(yd);
                 }
-                DeviceYearDataService.GetInstance().Cache(yd);
+                catch (Exception onee) {//捕获单个异常，保证一个错误不影响其他设备数据处理
+                    LogUtil.error("Cache deviceEnergyMap of ekey is " + ekey + " error:" + onee.Message);
+                }
             }
         }
 
@@ -323,7 +355,7 @@ namespace DataAnalyze
         /// 
         /// </summary>
         /// <param name="tcpmessage"></param>
-        private static void CacheCollectorEnergyData(IDictionary<string, double> collectorEnergyMap)
+        private static void CacheCollectorEnergyData(IDictionary<string, double?> collectorEnergyMap)
         {
             int collectorID;
             string[] keyArr;
@@ -335,67 +367,75 @@ namespace DataAnalyze
             //string[] keys = collectorEnergyMap.Keys.ToArray();
             foreach (string ekey in collectorEnergyMap.Keys)
             {
-                //原来是通过消息头部取得，现在改为
-                //data = float.Parse(collectorEnergyMap[ekey].ToString());
-                //现在改为通过采集器的设备的今日电量来累加
-                keyArr = ekey.Split(':');
-                collectorID = int.Parse(keyArr[0]);
-                collector = CollectorInfoService.GetInstance().Get(collectorID);
-                if (keyArr.Length<4 || (string.IsNullOrEmpty(keyArr[1]) || string.IsNullOrEmpty(keyArr[2]) || string.IsNullOrEmpty(keyArr[3]))) continue;
-                data = collector.TodayEnergy(keyArr[1] + keyArr[2] + keyArr[3]);
-
-                //改为通过所含设备的
-                year = int.Parse(keyArr[1]);
-                month = int.Parse(keyArr[2]);
-                day = int.Parse(keyArr[3]);
-                string d_column = "d_" + day;
-
-                //取得月天数据对象
-                CollectorMonthDayData collectorMonthDayData = CollectorMonthDayDataService.GetInstance().GetCollectorMonthDayData(year, collectorID, month);
-                collectorMonthDayData.curDay = day;
-                //给相应属性赋值
-                if (collectorMonthDayData != null)
+                try
                 {
-                    object ovalue = ReflectionUtil.getProperty(collectorMonthDayData, d_column);
-                    //if (ovalue == null || float.Parse(ovalue.ToString()) < data)
-                    //{
-                        ReflectionUtil.setProperty(collectorMonthDayData, d_column, data);
-                    //}
-                }
-                CollectorMonthDayDataService.GetInstance().Cache(collectorMonthDayData);
+                    keyArr = ekey.Split(':');
 
-                //更新年月发电量数据
-                //统计年月
-                string m_column = "m_" + month;
-                float? m_value = collectorMonthDayData.count();
-                CollectorYearMonthData ymdData = CollectorYearMonthDataService.GetInstance().GetCollectorYearMonthData(collectorID, year); ;
-                ymdData.curMonth = month;
-                //给年月数据对象相应属性赋值
-                if (ymdData != null)
-                {
-                    object ovalue = ReflectionUtil.getProperty(ymdData, m_column);
-                    if (ovalue == null || float.Parse(ovalue.ToString()) < m_value)
+                    collectorID = int.Parse(keyArr[0]);
+                    //原来是通过消息头部取得，现在改为
+                    data = collectorEnergyMap[ekey] == null ? 0 : float.Parse(collectorEnergyMap[ekey].ToString());
+                    if (data == 0)//如果头部未传或者为0则再从设备累计下看看
                     {
-                        ReflectionUtil.setProperty(ymdData, m_column, m_value);
+                        //现在改为通过采集器的设备的今日电量来累加
+                        collector = CollectorInfoService.GetInstance().Get(collectorID);
+                        if (keyArr.Length < 4 || (string.IsNullOrEmpty(keyArr[1]) || string.IsNullOrEmpty(keyArr[2]) || string.IsNullOrEmpty(keyArr[3]))) continue;
+                        data = collector.deviceTodayEnergy(keyArr[1] + keyArr[2] + keyArr[3]);
                     }
-                }
-                CollectorYearMonthDataService.GetInstance().Cache(ymdData);
+                    year = int.Parse(keyArr[1]);
+                    month = int.Parse(keyArr[2]);
+                    day = int.Parse(keyArr[3]);
+                    string d_column = "d_" + day;
 
-                //统计总体发电量
-                float? y_value = ymdData.count();
-                CollectorYearData yd = CollectorYearDataService.GetInstance().GetCollectorYearData(collectorID, year);
-                if (yd == null) yd = new CollectorYearData() { dataValue = 0, collectorID = collectorID, year = year };
-                yd.localAcceptTime = DateTime.Now;
-                //给年月数据对象相应属性赋值
-                if (yd != null)
-                {
-                    object ovalue = yd.dataValue;
-                    if (ovalue == null || float.Parse(ovalue.ToString()) < y_value)
+                    //取得月天数据对象
+                    CollectorMonthDayData collectorMonthDayData = CollectorMonthDayDataService.GetInstance().GetCollectorMonthDayData(year, collectorID, month);
+                    collectorMonthDayData.curDay = day;
+                    //给相应属性赋值
+                    if (collectorMonthDayData != null)
                     {
-                        yd.dataValue = y_value == null ? 0 : float.Parse(y_value.ToString());
+                        object ovalue = ReflectionUtil.getProperty(collectorMonthDayData, d_column);
+                        if (ovalue == null || float.Parse(ovalue.ToString()) < data)
+                        {
+                            ReflectionUtil.setProperty(collectorMonthDayData, d_column, data);
+                        }
                     }
+                    CollectorMonthDayDataService.GetInstance().Cache(collectorMonthDayData);
+
+                    //更新年月发电量数据
+                    //统计年月
+                    string m_column = "m_" + month;
+                    float? m_value = collectorMonthDayData.count();
+                    CollectorYearMonthData ymdData = CollectorYearMonthDataService.GetInstance().GetCollectorYearMonthData(collectorID, year); ;
+                    ymdData.curMonth = month;
+                    //给年月数据对象相应属性赋值
+                    if (ymdData != null)
+                    {
+                        object ovalue = ReflectionUtil.getProperty(ymdData, m_column);
+                        if (ovalue == null || float.Parse(ovalue.ToString()) < m_value)
+                        {
+                            ReflectionUtil.setProperty(ymdData, m_column, m_value);
+                        }
+                    }
+                    CollectorYearMonthDataService.GetInstance().Cache(ymdData);
+
+                    //统计总体发电量
+                    float? y_value = ymdData.count();
+                    CollectorYearData yd = CollectorYearDataService.GetInstance().GetCollectorYearData(collectorID, year);
+                    if (yd == null) yd = new CollectorYearData() { dataValue = 0, collectorID = collectorID, year = year };
+                    yd.localAcceptTime = DateTime.Now;
+                    //给年月数据对象相应属性赋值
+                    if (yd != null)
+                    {
+                        object ovalue = yd.dataValue;
+                        if (ovalue == null || float.Parse(ovalue.ToString()) < y_value)
+                        {
+                            yd.dataValue = y_value == null ? 0 : float.Parse(y_value.ToString());
+                        }
+                    }
+                    CollectorYearDataService.GetInstance().Cache(yd);
                 }
-                CollectorYearDataService.GetInstance().Cache(yd);
+                catch (Exception onee) {//捕获单个异常，保证一个错误不影响其他采集器数据处理
+                    LogUtil.error("Cache collectorEnergyMap of ekey is " + ekey+" error:"+onee.Message);
+                }
             }
         }
     }
@@ -435,15 +475,21 @@ namespace DataAnalyze
 
             foreach (string key in keys)
             {
-                if (key == null || !devicedayDataMapList.ContainsKey(key)) continue;
-                dayData = devicedayDataMapList[key];
-                if (dayData == null || !dayData.changed) continue;
-                //加入缓存，设置两天为缓存过期时间，避免时差问题
-                cachekey = CacheKeyUtil.buildDeviceDayDataKey(dayData.deviceID, dayData.yearmonth, dayData.sendDay, dayData.monitorCode);
-                MemcachedClientSatat.getInstance().Set(cachekey, dayData, DateTime.Now.AddDays(2));
-                //这里当数量大得时候，list结构插入很慢
-                //if (!DeviceDayDataService.persistentListKey.Contains(cachekey)) DeviceDayDataService.persistentListKey.Add(cachekey);
-                //dayData.changed = false;
+                try{
+                    if (key == null || !devicedayDataMapList.ContainsKey(key)) continue;
+                    dayData = devicedayDataMapList[key];
+                    if (dayData == null || !dayData.changed) continue;
+                    //加入缓存，设置两天为缓存过期时间，避免时差问题
+                    cachekey = CacheKeyUtil.buildDeviceDayDataKey(dayData.deviceID, dayData.yearmonth, dayData.sendDay, dayData.monitorCode);
+                    MemcachedClientSatat.getInstance().Set(cachekey, dayData, DateTime.Now.AddDays(2));
+                    //这里当数量大得时候，list结构插入很慢
+                    //if (!DeviceDayDataService.persistentListKey.Contains(cachekey)) DeviceDayDataService.persistentListKey.Add(cachekey);
+                    //dayData.changed = false;
+                }
+                catch (Exception onee)
+                {
+                    LogUtil.writeline("handle one devicedayDataMapList of " + key + "error:" + onee.Message);
+                }
             }
             iswork=false;
         }

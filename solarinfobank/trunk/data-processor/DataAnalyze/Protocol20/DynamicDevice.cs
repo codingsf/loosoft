@@ -60,10 +60,10 @@ namespace Protocol20
                     infoData = infoData.Substring(endIndex * 2);
                     continue;
                 }
-                if (infoUnitAddress.address == 203)
-                {
-                    Console.WriteLine("");
-                }
+                //if (infoUnitAddress.address == 203)
+                //{
+                //    Console.WriteLine("");
+                //}
                 //解析单个信息体
                 infoResult = InfoBodyUtil.analyze(info, infotype,infoUnitAddress);
                 mcode = infoUnitAddress.mcode;

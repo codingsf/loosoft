@@ -169,6 +169,8 @@ class DataInfoStructor
 public:
 	int iProtocolType;
 	int iProtocolSubType;
+	int iProtocolvarH; //zhouh 2012-8-7 协议版本高
+	int iProtocolvarL; //zhouh 2012-8-7 协议版本低
 	NewRegisterInfo* m_pRegisterInfo;
 	//char* data;//此处为需要直接存入memcache的数据包，不需要解压
 	char data[RECV_BUF_LEN * 8];

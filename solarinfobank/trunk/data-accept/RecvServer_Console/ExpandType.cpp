@@ -148,6 +148,12 @@ bool NewRegisterInfo::CheckPwd()
 void NewRegisterInfo::GenerateAuthText()
 {
 	char random[33];
+
+	//设置时间戳
+	time_t time1;
+	time1 = time(NULL);
+	struct tm tm1;
+	tm1 = *localtime(&time1);
 	//for(int i = 0; i < 32; i++)
 	//{
 	//	//srand(unsigned(time(NULL))); 
@@ -159,9 +165,12 @@ void NewRegisterInfo::GenerateAuthText()
 	//	}
 	//	random[i] = AUTH_TEXT_SOURCE[idIndex];
 	//}
-	for (int i = 0; i < 32; i++)
+	for (int i = 0; i < 8; i++) //zhouh 2012-8-7 
 	{
-		random[i] = 'A';
+		random[4*i] = 'A'+tm1.tm_sec%16;
+		random[4*i+1] = 'B'+tm1.tm_min%16;
+		random[4*i+2] = 'F'+tm1.tm_sec%4;
+		random[4*i+3] = 'F'+tm1.tm_min%4;
 	}
 	random[32] = '\0';
 	this->m_strAutonClearText = random;//将明文输出

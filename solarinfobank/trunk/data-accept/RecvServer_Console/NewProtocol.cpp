@@ -187,8 +187,12 @@ int Protocol69Dealer::AnalysisPacket(TCP_DATA* pTCPData, CUserSession* pSession,
 
 	char dataBody[1024];
 	memset(dataBody, 0, sizeof(dataBody));
+
 	dataInfo.iProtocolType = (int)(pTCPData->pDataContent[14]) +  (int)(pTCPData->pDataContent[15]) * 256;		//数据类型
 	dataInfo.iProtocolSubType = (int)(pTCPData->pDataContent[16]) + (int)(pTCPData->pDataContent[17]) * 256;	//类别标识
+	
+	dataInfo.iProtocolvarH =  (int)(pTCPData->pDataContent[10]);//zhouh 2012-8-7 
+	dataInfo.iProtocolvarL =  (int)(pTCPData->pDataContent[11]);//zhouh 2012-8-7
 
 	//以保证可重复登录 ||判断符改为&& by qhb 源代码使得验证会话始终停留在第一步了
 	if((dataInfo.iProtocolType == New_Protocol_Type_Register) &&
@@ -206,6 +210,12 @@ int Protocol69Dealer::AnalysisPacket(TCP_DATA* pTCPData, CUserSession* pSession,
 		memcpy(dataBody, pTCPData->pDataContent + 34, 32);
 		dataInfo.m_pRegisterInfo->m_strPwd = dataBody;
         dataInfo.m_pRegisterInfo->m_strPwd = Ltrim(dataInfo.m_pRegisterInfo->m_strPwd);
+
+		if(dataInfo.iProtocolvarH==1 && dataInfo.iProtocolvarL==1)//zhouh 2012-8-7 
+		{
+			dataInfo.m_pRegisterInfo->m_strKey="*_Sungrow 1997_*";
+		}
+
 		return New_Session_Errror_Success;
 	}
 
@@ -522,12 +532,25 @@ int Protocol69Dealer::DealRegisterReq(DataInfoStructor& dataInfo, CUserSession *
 		time1 = time(NULL);
 		struct tm tm1;
 		tm1 = *localtime(&time1);
-		content[2] = tm1.tm_sec;
-		content[3] = tm1.tm_min;
-		content[4] = tm1.tm_hour;
-		content[5] = tm1.tm_mday;
-		content[6] = tm1.tm_mon + 1;
-		content[7] = tm1.tm_year + 1900 -2000;
+
+		if(dataInfo.iProtocolvarH ==1 && dataInfo.iProtocolvarL==1)//zhouh 2012-8-7 
+		{
+			content[2] = 0xff;
+			content[3] = 0xff;
+			content[4] = 0xff;
+			content[5] = 0xff;
+			content[6] = 0xff;
+			content[7] = 0xff;
+		}
+		else
+		{
+			content[2] = tm1.tm_sec;
+			content[3] = tm1.tm_min;
+			content[4] = tm1.tm_hour;
+			content[5] = tm1.tm_mday;
+			content[6] = tm1.tm_mon + 1;
+			content[7] = tm1.tm_year + 1900 -2000;
+		}
 		//发送
 		SendNewProtocol(pSession, content, 8, New_Procotol_Type_Register_Send_Login_Res, New_Protocol_Type_Register);
 		pSession->m_iSessionState = New_Session_State_FirstFrame;//账户密码错误，则更改状态为未登陆
@@ -564,12 +587,25 @@ int Protocol69Dealer::DealRegisterVerify(DataInfoStructor& dataInfo, CUserSessio
 		time1 = time(NULL);
 		struct tm tm1;
 		tm1 = *localtime(&time1);
+
+		if(dataInfo.iProtocolvarH ==1 && dataInfo.iProtocolvarL==1)//zhouh 2012-8-7 
+		{
+			content[2] = 0xff;
+			content[3] = 0xff;
+			content[4] = 0xff;
+			content[5] = 0xff;
+			content[6] = 0xff;
+			content[7] = 0xff;
+		}
+		else
+		{
 		content[2] = tm1.tm_sec;
 		content[3] = tm1.tm_min;
 		content[4] = tm1.tm_hour;
 		content[5] = tm1.tm_mday;
 		content[6] = tm1.tm_mon + 1;
 		content[7] = tm1.tm_year + 1900 -2000;
+		}
 		//发送
 		SendNewProtocol(pSession, content, 8, New_Procotol_Type_Register_Send_Login_Res, New_Protocol_Type_Register);
 		pSession->m_iSessionState = New_Session_State_Register_AuthCode;
@@ -602,12 +638,24 @@ int Protocol69Dealer::DealRegisterVerify(DataInfoStructor& dataInfo, CUserSessio
 		time1 = time(NULL);
 		struct tm tm1;
 		tm1 = *localtime(&time1);
-		content[2] = tm1.tm_sec;
-		content[3] = tm1.tm_min;
-		content[4] = tm1.tm_hour;
-		content[5] = tm1.tm_mday;
-		content[6] = tm1.tm_mon + 1;
-		content[7] = tm1.tm_year + 1900 -2000;
+		if(dataInfo.iProtocolvarH ==1 && dataInfo.iProtocolvarL==1)//zhouh 2012-8-7 
+		{
+			content[2] = 0xff;
+			content[3] = 0xff;
+			content[4] = 0xff;
+			content[5] = 0xff;
+			content[6] = 0xff;
+			content[7] = 0xff;
+		}
+		else
+		{
+			content[2] = tm1.tm_sec;
+			content[3] = tm1.tm_min;
+			content[4] = tm1.tm_hour;
+			content[5] = tm1.tm_mday;
+			content[6] = tm1.tm_mon + 1;
+			content[7] = tm1.tm_year + 1900 -2000;
+		}
 		//发送
 		SendNewProtocol(pSession, content, 8, New_Procotol_Type_Register_Send_Login_Res, New_Protocol_Type_Register);
 		pSession->m_iSessionState = New_Session_State_FirstFrame;

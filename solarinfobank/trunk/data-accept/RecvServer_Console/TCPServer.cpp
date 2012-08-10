@@ -78,7 +78,7 @@ DWORD WINAPI TCPServer_KeepLiveThread(LPVOID param)
 		}
 
 		char strTemp[MAX_PATH];
-		sprintf(strTemp,"RecvServer V1.1.0  --- Online:[%d/%d],Recv:[%d],Process:[%d]",m_count,pSvr->G_OnlineClient.size(),pSvr->dwRecvPackets,pSvr->dataManage.dwSeqPackets);
+		sprintf(strTemp,"RecvServer V2.0.1  --- Online:[%d/%d],Recv:[%d],Process:[%d]",m_count,pSvr->G_OnlineClient.size(),pSvr->dwRecvPackets,pSvr->dataManage.dwSeqPackets);
 		SetConsoleTitle(strTemp);
 
 		pSvr->m_csOnlineClient.Leave();

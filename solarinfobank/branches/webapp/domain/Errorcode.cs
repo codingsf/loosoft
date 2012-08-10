@@ -10,11 +10,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
     {
         public int id { get; set; }//id
         public string code { get; set; }//错误代码
+        public int errorType { get; set; }//错误码类型
+        
         public string defaultName { get; set; }//默认名称
         public string name { get; set; }//错误名称 对于多语言
 
 
-
+        /// <summary>
+        /// 根据语言代码取得对应名称，没有就用默认名称
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
 
         public string getCodeName(string code)
         {

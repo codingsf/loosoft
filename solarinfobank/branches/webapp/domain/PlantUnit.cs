@@ -139,7 +139,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
            return false;
         }
         /// <summary>
-        /// 只取逆变器的设计功率
+        /// 只取逆变器的设计功率,去非隐藏的
         /// </summary>
         public float chartPower
         {
@@ -148,7 +148,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 float chartPower = 0f;
 
                 if(devices!=null)
-                    foreach (Device device in devices)
+                    foreach (Device device in this.displayDevices)
                     {
                         if (device.deviceTypeCode != DeviceData.INVERTER_CODE) continue;
                         chartPower += device.chartPower;

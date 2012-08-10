@@ -37,6 +37,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 _device = value;
             }
         }
+
         //告警信息代码  非空
         public int errorCode { get; set; }
         //告警类型  非空

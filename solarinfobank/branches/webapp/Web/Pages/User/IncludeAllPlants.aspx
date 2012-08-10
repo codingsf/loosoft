@@ -127,7 +127,7 @@
                                     <div style=" width:200px; overflow:hidden; " title="<%=plant.name%>">
                                       <%if (plant.hasFaultDevice)
                                         { %>
-                                         <img src="/images/warning_16.gif" alt="" style="float:left">
+                                         <img src="/images/sub/kjjh.gif" alt="" style="float:left">
                                         <%} %>
                                       <a target="_blank" href="/plant/overview/<%=plant.id %>" class="dbl"><%=plant.name%></a></div>
                                     </td>

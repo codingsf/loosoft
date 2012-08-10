@@ -125,6 +125,8 @@ namespace Web
             float tree = ItemConfigService.GetInstance().getTreeConfig();
             ItemConfig.treeConvert = tree;
             ItemConfig.reductionRate = c2;
+            //从后台维护数据表中设置错误码静态数据
+            ErrorcodeService.GetInstance().setErrorStaticData();
         }
 
         protected void Application_Error(object sender, EventArgs e)

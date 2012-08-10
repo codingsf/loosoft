@@ -112,14 +112,14 @@
                         $("#chart_tip").hide();
                         return;
                     }     
-                    showDetails(result, $("#endYYYYMMDDHH").val());
-                    defineChartWithDetail(curContainer,false);                    
+                    showDetails(result, $("#unitendYYYYMMDDHH").val());
+                 
                     var data = eval('(' + result + ')')
                     setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#startYYYYMMDDHH").val().substring(0,8),data.name);
                     setyAxis(data);
                     setySeriesArr(data.series);
                     setCategories(data.categories, isLarge);
-
+                    defineChartWithDetail(curContainer,false);   
                     //修改标题
                     chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
                     if(!isLarge){
@@ -152,14 +152,14 @@
                         return;
                     }             
                     showDetails(result, $("#endYYYYMMDD").val());
-                    defineChartWithDetail(curContainer,false);  
+
                     var data = eval('(' + result + ')')
                     setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#startYYYYMMDD").val().substring(0,6),data.name);
                   
                     setyAxis(data);
                     setySeriesArr(data.series);
                     setCategories(data.categories, isLarge);
-
+                    defineChartWithDetail(curContainer,false);  
                     //修改标题
                     chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
                     if(!isLarge){
@@ -192,12 +192,12 @@
                         return;
                     }               
                     showDetails(result);
-                    defineChartWithDetail(curContainer,false);
                     var data = eval('(' + result + ')')
                     setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#year").val(),data.name);
                     setyAxis(data);
                     setySeriesArr(data.series);
                     setCategories(data.categories, isLarge);
+                    defineChartWithDetail(curContainer,false);
                     //修改标题
                     chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
                     if(!isLarge){
@@ -239,7 +239,7 @@
                         continue;
                     }
                     if(k<=h||curDate>selectDate){
-                        if(onedataArr[k]==null)
+                        if(onedataArr[k]==null || onedataArr[k]>1.1)
                             trhtml+="<td class='line_b' style='color:#FF6A6A;background-color:"+bgcolor+"' align='center'>None</td>"
                         else{
                             if(onedataArr[k]>(averageArr[k]*1.2+0.02)){
@@ -251,6 +251,9 @@
                             } 
                         }
                     }else{
+                       if(onedataArr[k]==null || onedataArr[k]>1.1)
+                            trhtml+="<td class='line_b' style='color:#FF6A6A;background-color:"+bgcolor+"' align='center'>None</td>"
+                       else{  
                             if(onedataArr[k]>(averageArr[k]*1.2+0.02)){
                                 trhtml+="<td class='line_b' style='background-color:#6495ED' align='center'><span style='color:white;'>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</span></td>"
                             }else if(onedataArr[k]<(averageArr[k]*0.8-0.02)){
@@ -258,6 +261,7 @@
                             }else{
                                 trhtml+="<td class='line_b' style='background-color:"+bgcolor+"' align='center'>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</td>"
                             } 
+                        }
                     }
                 }                     
                 trhtml+="</tr>";
@@ -291,7 +295,7 @@
                         continue;
                     }
                     if(k<d || curDate>selectDate){
-                        if(onedataArr[k]==null)
+                        if(onedataArr[k]==null || onedataArr[k]>1.1)
                             trhtml+="<td class='line_b' style='color:#FF6A6A;background-color:"+bgcolor+"' align='center'>&nbsp;None&nbsp;</td>"
                         else{
                             if(onedataArr[k]>(averageArr[k]*1.2+0.02)){
@@ -303,6 +307,9 @@
                             } 
                         }
                     }else{
+                       if(onedataArr[k]==null || onedataArr[k]>1.1)
+                            trhtml+="<td class='line_b' style='color:#FF6A6A;background-color:"+bgcolor+"' align='center'>None</td>"
+                       else{                      
                             if(onedataArr[k]>(averageArr[k]*1.2+0.02)){
                                 trhtml+="<td class='line_b' style='background-color:#6495ED' align='center'><span style='color:white;'>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</span></td>"
                             }else if(onedataArr[k]<(averageArr[k]*0.8-0.02)){
@@ -310,6 +317,7 @@
                             }else{
                                 trhtml+="<td class='line_b' style='background-color:"+bgcolor+"' align='center'>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</td>"
                             } 
+                       }
                     }
                 }                     
                 trhtml+="</tr>";
@@ -336,7 +344,7 @@
                         continue;
                     }
                     if(k<m || curDate>selectDate){
-                        if(onedataArr[k]==null)
+                        if(onedataArr[k]==null || onedataArr[k]>1.1)
                             trhtml+="<td class='line_b' style='color:#FF6A6A;background-color:"+bgcolor+"' align='center'>&nbsp;None&nbsp;</td>"
                         else{
                             if(onedataArr[k]>(averageArr[k]*1.2+0.02)){
@@ -348,13 +356,17 @@
                             }          
                         }
                     }else{
-                            if(onedataArr[k]>(averageArr[k]*1.2)){
+                       if(onedataArr[k]==null || onedataArr[k]>1.1)
+                            trhtml+="<td class='line_b' style='color:#FF6A6A;background-color:"+bgcolor+"' align='center'>None</td>"
+                       else{                     
+                            if(onedataArr[k]>(averageArr[k]*1.2+0.02)){
                                 trhtml+="<td class='line_b' style='background-color:#6495ED' align='center'><span style='color:white;'>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</span></td>"
-                            }else if(onedataArr[k]<(averageArr[k]*0.8)){
+                            }else if(onedataArr[k]<(averageArr[k]*0.8-0.02)){
                                 trhtml+="<td class='line_b' style='background-color:#FFDB2F' align='center'><span'>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</span></td>"
                             }else{
                                 trhtml+="<td class='line_b' style='background-color:"+bgcolor+"' align='center'>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</td>"
-                            } 
+                            }
+                        } 
                     }
                 }                     
                 trhtml+="</tr>";

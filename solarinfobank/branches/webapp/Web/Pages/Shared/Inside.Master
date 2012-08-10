@@ -380,7 +380,7 @@
                                                 <%= StringUtil.cutStr(Model.name, 16, "...")%>
                                                 <%if (Model.hasFaultDevice)
                                                   { %>
-                                                <img src="/images/warning_16.gif" alt="">
+                                                <img src="/images/sub/kjjh.gif" alt="">
                                                 <%} %>
                                             </a></li>          
                                              </ul>
@@ -394,7 +394,7 @@
                                                 <%= StringUtil.cutStr(Model.name, 16, "...")%>
                                                 <%if (Model.getStatus)
                                                   { %>
-                                                <img src="/images/warning_16.gif" alt="">
+                                                <img src="/images/sub/kjjh.gif" alt="">
                                                 <%} %>
                                             </a></li>
                                             
@@ -416,7 +416,7 @@
                                                 <%= StringUtil.cutStr(plant.name, 16, "...")%>
                                                 <%if (plant.getStatus)
                                                   { %>
-                                                <img src="/images/warning_16.gif" alt="">
+                                                <img src="/images/sub/kjjh.gif" alt="">
                                                 <%} %>
                                             </a></li>
                                             <%}
@@ -503,7 +503,7 @@
                                                     if (Model.isUnitFault)
                                                     {
                                                 %>
-                                                <img src="/images/warning_16.gif" alt="" />
+                                                <img src="/images/sub/kjjh.gif" alt="" />
                                                 <%} %>
                                             </a></li>
                                             <%} %>
@@ -516,7 +516,7 @@
                                                     if (Model.isDeviceFault)
                                                     {
                                                 %>
-                                                <img src="/images/warning_16.gif" alt="" />
+                                                <img src="/images/sub/kjjh.gif" alt="" />
                                                 <%} %>
                                             </a></li>
                                             <%} %>
@@ -623,7 +623,7 @@
                                             
                                             <%if (unit.isDeviceFault(Model.timezone))
                                               { %>
-                                            <img src="/images/warning_16.gif" alt="" />
+                                            <img src="/images/sub/kjjh.gif" alt="" />
                                             <%} %>
                                         </a>
                                     </div>

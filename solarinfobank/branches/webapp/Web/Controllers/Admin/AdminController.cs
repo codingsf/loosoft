@@ -2772,7 +2772,43 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             }
             ViewData["list"] = tables;
 
+            ViewData["selectDeviceTypes"] = convertDomainListToSelectList(errorCode==null?0:int.Parse(errorCode.code));
+
             return View(@"Errorcode/edit", errorCode);
+        }
+
+        private IList<SelectListItem> convertDomainListToSelectList(int? selectedCode)
+        {
+            IList<SelectListItem> selectDeviceTypes = new List<SelectListItem>();
+            bool isSelected = false;
+
+            if (selectedCode != null && selectedCode == ErrorType.ERROR_TYPE_ERROR)
+            {
+                isSelected = true;
+            }
+            selectDeviceTypes.Add(new SelectListItem { Text = ErrorType.getErrortypeByCode(ErrorType.ERROR_TYPE_ERROR).name, Value = ErrorType.ERROR_TYPE_ERROR.ToString(), Selected = isSelected });
+
+            if (selectedCode != null && selectedCode == ErrorType.ERROR_TYPE_FAULT)
+            {
+                isSelected = true;
+            }
+            selectDeviceTypes.Add(new SelectListItem { Text = ErrorType.getErrortypeByCode(ErrorType.ERROR_TYPE_FAULT).name, Value = ErrorType.ERROR_TYPE_FAULT.ToString(), Selected = isSelected });
+
+
+            if (selectedCode != null && selectedCode == ErrorType.ERROR_TYPE_WARN)
+            {
+                isSelected = true;
+            }
+            selectDeviceTypes.Add(new SelectListItem { Text = ErrorType.getErrortypeByCode(ErrorType.ERROR_TYPE_WARN).name, Value = ErrorType.ERROR_TYPE_WARN.ToString(), Selected = isSelected });
+
+
+            if (selectedCode != null && selectedCode == ErrorType.ERROR_TYPE_INFORMATRION)
+            {
+                isSelected = true;
+            }
+            selectDeviceTypes.Add(new SelectListItem { Text = ErrorType.getErrortypeByCode(ErrorType.ERROR_TYPE_INFORMATRION).name, Value = ErrorType.ERROR_TYPE_INFORMATRION.ToString(), Selected = isSelected });
+
+            return selectDeviceTypes;
         }
 
         public ActionResult Errorcode_save(Errorcode errorcode)

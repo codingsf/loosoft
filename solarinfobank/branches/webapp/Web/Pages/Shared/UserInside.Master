@@ -231,7 +231,7 @@
           <li> <a href="/plant/overview/<%=plant.id %>" title="<%=plant.name %>"> <%=StringUtil.cutStr(plant.name, 16, "...")%>
           <%if (plant.hasFaultDevice)
             { %>
-             <img src="/images/warning_16.gif" alt="">
+             <img src="/images/sub/kjjh.gif" alt="">
             <%} %>
           </a></li>
         <%}%>

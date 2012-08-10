@@ -1814,7 +1814,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             IList<PlantUnit> units = plant.plantUnits;
             foreach (PlantUnit unit in units)
             {
-                IList<Device> devices = unit.devices;
+                IList<Device> devices = unit.displayDevices;
                 foreach (Device dce in devices)
                 {
                     if (dce.isFault() == false)

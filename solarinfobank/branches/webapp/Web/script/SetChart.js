@@ -486,15 +486,18 @@ function defineChartWithDetail(curContainer, isDetail) {
         plotOptions: {
             area: {
                 shadow: false,
-                lineWidth: 0,
-                brightness: 0.3,
+                lineWidth: 0.3,
+                brightness: 0.1,
                 states: {
                     hover: {
                         lineWidth: 1
                     }
                 },
                 marker: {
-                    enabled: false,
+                    enabled: true,
+                    radius: 0,
+                    brightness: 0.1,
+                    symbol: 'diamond',
                     states: {
                         hover: {
                             enabled: true,
@@ -507,7 +510,7 @@ function defineChartWithDetail(curContainer, isDetail) {
             },
             line: {
                 shadow: false,
-                lineWidth: 2,
+                lineWidth: 1,
                 brightness: 0.2,
                 marker: {
                     enabled: true,

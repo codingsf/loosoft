@@ -38,6 +38,9 @@
                     },
                     defaultName: {
                         required: true
+                    },
+                    errorType: {
+                        required: true
                     }
                 },
                 errorPlacement: function(error, element) {
@@ -59,6 +62,9 @@
                     },
                     defaultName: {
                         required: "<span class='error'>&nbsp;请输入默认故障名称</span>"
+                    },
+                    errorType: {
+                        required: "<span class='error'>&nbsp;请输入故障类型</span>"
                     }
                 },
                 success: function(em) {
@@ -84,7 +90,7 @@
                                 <img src="/images/kj/kjiico01.gif" />
                             </td>
                             <td width="93%" class="pv0216">
-                                <%= Model != null ? "编辑错误代码" : "添加错误代码"%>
+                                <%= Model != null ? "编辑故障码" : "添加故障码"%>
                             </td>
                         </tr>
                         <tr>
@@ -108,7 +114,7 @@
                         </td>
                         <td width="94%" class="f_14">
                             <strong>
-                                <%= Model != null ? "编辑" : "添加"%>错误代码</strong>
+                                <%= Model != null ? "编辑" : "添加"%>故障码</strong>
                         </td>
                     </tr>
                 </table>
@@ -125,9 +131,8 @@
                         </td>
                         <td width="36%">
                             <%= Html.Hidden("precode",Model==null?"": Model.code, new { @id = "precode"})%>
-                            <%= Html.TextBoxFor(model => model.code, new { @class = "txtbu01", @size = "30" })%>
+                            <%= Html.TextBoxFor(model => model.code, new { @class = "txtbu01", @size = "30" })%><span class="red">*</span>
                             <%= Html.HiddenFor(model => model.id, new { @id = "id"})%>
-                            <span class="red">*</span>
                         </td>
                         <td width="35%">
                             <span id="error_code"></span>
@@ -138,13 +143,20 @@
                             默认名称：
                         </td>
                         <td>
-                            <%= Html.TextBoxFor(model => model.defaultName, new { @class = "txtbu01", @size = "30" })%>
-                            <span class="red">*</span>
+                            <%= Html.TextBoxFor(model => model.defaultName, new { @class = "txtbu01", @size = "30" })%><span class="red">*</span>
                         </td>
                         <td>
                             <span id="error_defaultname"></span>
                         </td>
                     </tr>
+                    <tr>
+                        <td height="36" class="pr_10">
+                            所属类型：
+                        </td>
+                        <td>
+                            <%=Html.DropDownListFor(model => model.errorType, ViewData["selectDeviceTypes"] as IList<SelectListItem>, new { @class = "select200" })%>
+                        </td>
+                    </tr>                      
                     <%foreach (Hashtable table in (ViewData["list"] as List<Hashtable>))
                       {%>
                     <tr>

@@ -95,14 +95,11 @@
                                     </td>
                                  
                                     <td width="25%" align="center" class="am_line0<%=i%2 %>">
-                                     
-                                        <a href="/admin/errorcode_delete/<%=errorCode.id %>" onclick="return confirm('您确定要删除吗')">
-                                            <img src="/images/sub/cross.gif" alt="删除" title="删除" /></a>
-                                    
                                         <a href="/admin/errorcode_edit/<%=errorCode.id %>" >
                                             <img src="/images/sub/pencil.gif" alt="编辑" title="编辑" /></a>
                                             
-                                            
+                                        <a href="/admin/errorcode_delete/<%=errorCode.id %>" onclick="return confirm('您确定要删除吗')">
+                                            <img src="/images/sub/cross.gif" alt="删除" title="删除" /></a>
                                     </td>
                                 </tr>
                             </table>

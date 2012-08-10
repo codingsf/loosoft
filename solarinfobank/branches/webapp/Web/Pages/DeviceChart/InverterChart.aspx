@@ -357,7 +357,7 @@
         function PreviouNextChange(oper) {
 
             if (curChart == "DayChart") {
-                changeDate(oper,"t1");          
+                changeDate(oper, "t1");        
                 changeDay(document.getElementById("t1"));
             }
             if (curChart == "DaykWpChart") {

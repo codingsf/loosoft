@@ -92,34 +92,16 @@
                         email: true
                     },
                     faxPhone: {
-                        required: true
+                       // required: true
                     }
                 },
                 errorPlacement: function(error, element) {
-                    if (element.attr("name") == "username") {
-                        $("#error_username").text('');
-                        error.appendTo("#error_username");
+
+                    if (document.getElementById("error_" + element.attr("name"))) {
+                        error.appendTo("#error_" + element.attr("name"));
                     }
-                    if (element.attr("name") == "password") {
-                        $("#error_password").text('');
-                        error.appendTo("#error_password");
-                    }
-                    if (element.attr("name") == "confirm_password") {
-                        $("#error_confirm_password").text('');
-                        error.appendTo("#error_confirm_password");
-                    }
-                    if (element.attr("name") == "revenueRate") {
-                        $("#error_revenueRate").text('');
-                        error.appendTo("#error_revenueRate");
-                    }
-                    if (element.attr("name") == "email") {
-                        $("#error_email").text('');
-                        error.appendTo("#error_email");
-                    }
-                    if (element.attr("name") == "faxPhone") {
-                        $("#error_fax").text('');
-                        error.appendTo("#error_fax");
-                    }
+                    else
+                        error.insertAfter(element);
                 },
 
                 messages: {
@@ -220,7 +202,7 @@
                                     <%= Html.TextBoxFor(model => model.username, new { @class = "txtbu01", @onmousedown = "clearMessage()", onblur = "fillEmail()" })%>
                                 </td>
                                 <td width="42%">
-                                    <span class="redzi">* </span>用户名的长度必须在2~30个字符之间
+                                    <span class="redzi">* </span><span id="error_username"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -231,7 +213,7 @@
                                     <%= Html.PasswordFor(model => model.password, new { @class = "txtbu01", @onmousedown = "clearMessage()"})%>
                                 </td>
                                 <td>
-                                    <span class="redzi">*</span> 密码不能少于6个字符
+                                    <span class="redzi">* </span><span id="error_password"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -242,7 +224,7 @@
                                     <input type="password" class="txtbu01" id="confirm_password" name="confirm_password" />
                                 </td>
                                 <td>
-                                    <span class="redzi">*</span> 确认密码必须与密码相同
+                                    <span class="redzi">*</span> <span id="error_confirm_password"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -253,7 +235,7 @@
                                     <%= Html.TextBoxFor(model => model.email, new { @class = "txtbu01", @onmousedown ="clearMessage()"})%>
                                 </td>
                                 <td>
-                                    &nbsp;
+                                    <span class="redzi">*</span> <span id="error_email"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -262,7 +244,7 @@
                                 </td>
                                 <td>
                                     <input type="checkbox" name="checkbox" value="checkbox" />
-                                    <a href="#" class="green">同意《用户协议内容》</a>
+                                    <a href="/public/agree" class="green">同意《用户协议内容》</a>
                                 </td>
                                 <td>
                                     &nbsp;
@@ -411,7 +393,7 @@
         </div>
     </div>
 
-    <script type="text/javascript">           setup();</script>
+    <script type="text/javascript">        setup();</script>
 
     <script type="text/javascript">        $.trim($('#tel').val())</script>
 

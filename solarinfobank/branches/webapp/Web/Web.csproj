@@ -2037,7 +2037,11 @@
     <Content Include="Images\lansel_down.gif" />
     <Content Include="Images\lansel_line.gif" />
     <Content Include="Images\lansel_top.gif" />
+    <Content Include="Images\lc\btua.gif" />
+    <Content Include="Images\lc\btub.gif" />
     <Content Include="Images\lc\lcadd01.jpg" />
+    <Content Include="Images\lc\lcadd02.jpg" />
+    <Content Include="Images\lc\lcbg003.jpg" />
     <Content Include="Images\lc\lcbg01.jpg" />
     <Content Include="Images\lc\lcbg02.jpg" />
     <Content Include="Images\lc\lcbg03.jpg" />
@@ -2048,7 +2052,9 @@
     <Content Include="Images\lc\lcbg08.jpg" />
     <Content Include="Images\lc\lcbtu0.gif" />
     <Content Include="Images\lc\lcover.jpg" />
+    <Content Include="Images\lc\lctdbg01.gif" />
     <Content Include="Images\lc\lc_del.gif" />
+    <Content Include="Images\lc\pencil.gif" />
     <Content Include="Images\lc\ss_btu.gif" />
     <Content Include="Images\lc\subbg018.jpg" />
     <Content Include="Images\lc\zk_btu.gif" />

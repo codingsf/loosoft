@@ -15,7 +15,7 @@
     $().ready(function() {
 
         $("#addplant").click(function() {
-            $('#plant_container').append('<iframe scrolling="no" frameborder="0" width="100%"  height="1100" src="/new/addplantcontrol"></iframe>');
+            $('#plant_container').append('<iframe scrolling="no" frameborder="0" width="100%"  height="1000" src="/new/addplantcontrol"></iframe>');
         });
     });
 </script>
@@ -44,12 +44,12 @@
       <td bgcolor="#FFFFFF">
         
         <div id="plant_container">
-        <iframe scrolling="no" frameborder="0" width="100%"  height="1100" src="/new/addplantcontrol"></iframe>
+        <iframe scrolling="no" frameborder="0" width="100%"  height="1000" src="/new/addplantcontrol"></iframe>
         </div>
 		<div class="lcadd01"><a href="javascript:void(0)" id="addplant">添加电站</a></div>
         <div class="ok_box0"> 
 	    <input type="submit" name="Submit2" class="ok_greenbtu mr20" value="上一步" />
-	    <input type="submit" name="Submit" class="ok_greenbtu" value="下一步" />
+	    <input type="button" onclick="window.location='/new/addunit'" name="Submit" class="ok_greenbtu" value="下一步" />
 	  </div>	  </td>
       <td background="/images/tc/tc05.gif">&nbsp;</td>
     </tr>

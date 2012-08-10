@@ -69,7 +69,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 string ip = WebUtil.getClientIp(Request);
                 LoginRecordService.GetInstance().Save(user.id, user.username, ip, localZont);
 
-                return RedirectToAction("success", "auth");
+                return RedirectToAction("addplant", "new");
 
             }
             else
@@ -84,7 +84,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         {
             return View();
         }
-
 
         public ActionResult AddPlantControl()
         {

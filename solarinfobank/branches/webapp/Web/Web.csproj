@@ -142,16 +142,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SunResource.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\SunResource.fr-fr.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SunResource.fr-fr.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\SunResource.ja-jp.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SunResource.ja-jp.resx</DependentUpon>
-    </Compile>
     <Compile Include="App_GlobalResources\SunResource.zh-cn.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -191,6 +181,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Admin\DbconfigController.cs" />
     <Compile Include="Controllers\Admin\ItemConfigController.cs" />
+    <Compile Include="Controllers\NewController.cs" />
     <Compile Include="Controllers\OpenApiController.cs" />
     <Compile Include="Controllers\Plant\DeviceController.cs" />
     <Compile Include="Controllers\Plant\PlantController.cs" />
@@ -703,6 +694,7 @@
     <None Include="Images\kj\.svn\text-base\sq.jpg.svn-base" />
     <None Include="Images\kj\.svn\text-base\Thumbs.db.svn-base" />
     <None Include="Images\kj\.svn\text-base\xila.jpg.svn-base" />
+    <None Include="Images\lc\Thumbs.db" />
     <None Include="Images\qimg\.svn\entries" />
     <None Include="Images\qimg\.svn\prop-base\qbg01.jpg.svn-base" />
     <None Include="Images\qimg\.svn\prop-base\qbg02.jpg.svn-base" />
@@ -2045,6 +2037,21 @@
     <Content Include="Images\lansel_down.gif" />
     <Content Include="Images\lansel_line.gif" />
     <Content Include="Images\lansel_top.gif" />
+    <Content Include="Images\lc\lcadd01.jpg" />
+    <Content Include="Images\lc\lcbg01.jpg" />
+    <Content Include="Images\lc\lcbg02.jpg" />
+    <Content Include="Images\lc\lcbg03.jpg" />
+    <Content Include="Images\lc\lcbg04.jpg" />
+    <Content Include="Images\lc\lcbg05.jpg" />
+    <Content Include="Images\lc\lcbg06.jpg" />
+    <Content Include="Images\lc\lcbg07.jpg" />
+    <Content Include="Images\lc\lcbg08.jpg" />
+    <Content Include="Images\lc\lcbtu0.gif" />
+    <Content Include="Images\lc\lcover.jpg" />
+    <Content Include="Images\lc\lc_del.gif" />
+    <Content Include="Images\lc\ss_btu.gif" />
+    <Content Include="Images\lc\subbg018.jpg" />
+    <Content Include="Images\lc\zk_btu.gif" />
     <Content Include="Images\lightbulb.gif" />
     <Content Include="Images\pro01.gif" />
     <Content Include="Images\qxbg.jpg" />
@@ -2293,6 +2300,10 @@
     <Content Include="Pages\DeviceChart\CabinetChart.aspx" />
     <Content Include="Pages\DeviceChart\InverterPRChart.aspx" />
     <Content Include="Pages\DeviceChart\UdeviceChart.aspx" />
+    <Content Include="Pages\New\Register.aspx" />
+    <Content Include="Pages\New\AddPlant.aspx" />
+    <Content Include="Pages\New\AddPlantControl.aspx" />
+    <Content Include="Pages\New\AddUnit.aspx" />
     <Content Include="Pages\PlantChart\DayCompare.aspx" />
     <Content Include="Pages\PlantChart\PRChart.aspx" />
     <Content Include="Pages\PlantChart\UnitComparePage.aspx" />
@@ -2461,6 +2472,7 @@
     <Content Include="style\kj.css" />
     <Content Include="style\css.css" />
     <Content Include="style\css.zh-cn.css" />
+    <Content Include="style\lc.css" />
     <Content Include="style\video.css" />
     <Content Include="style\xcy.css" />
     <Content Include="videodemo.html" />

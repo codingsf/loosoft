@@ -42,6 +42,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public int errorCode { get; set; }
         //告警类型  非空
         public int errorTypeCode { get; set; }
+        //状态数据1
+        public int? data1 { get; set; }
+        //状态数据2
+        public int? data2 { get; set; }
         //发送时间  非空
         public DateTime sendTime { get; set; }
         public bool confirm { get; set; }
@@ -88,6 +92,23 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 return sendTime.Year;
             }
         }//表名标示字符
-        
+
+        //数据一描述
+        public string data1Desc
+        {
+            get
+            {
+                return data1 == null ? "--" : data1.ToString();
+            }
+        }
+
+        //数据一描述
+        public string data2Desc
+        {
+            get
+            {
+                return data2 == null ? "--" : data2.ToString();
+            }
+        }
     }
 }

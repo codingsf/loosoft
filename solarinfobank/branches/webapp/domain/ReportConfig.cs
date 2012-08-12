@@ -15,7 +15,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public int id { get; set; }
         public string sendFormat { set; get; }
         public string sendMode { set; get; }
-        public string tinterval { set; get; }
+        public string tinterval { set; get; }//单位小时
         public string email { get; set; }
         public int reportId { set; get; }
         public string fixedTime { set; get; }

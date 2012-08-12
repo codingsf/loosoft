@@ -113,7 +113,14 @@
                         return;
                     }
                     
-                    var data = eval('(' + result + ')')
+                    var data = eval('(' + result + ')');
+                    //显示详细数据要放到绘制图表前面否则，绘制图表后会修改数据，导致不正确
+                    if(!isLarge){
+                        $("#monthdatatable").hide();
+                        $("#yeardatatable").hide();
+                        $("#daydatatable").show();
+                        appendDayData(data);
+                    }  
                     setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#startYYYYMMDDHH").val().substring(0,8),data.name);
                     setyAxis(data);
                     setySeriesArr(data.series);
@@ -122,12 +129,7 @@
                     showDetails(result, $("#endYYYYMMDDHH").val());
                     //修改标题
                     chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
-                    if(!isLarge){
-                        $("#monthdatatable").hide();
-                        $("#yeardatatable").hide();
-                        $("#daydatatable").show();
-                        appendDayData(data);
-                    }
+
                     $("#chart_tip").show();
                 },
                 beforeSend: function() {
@@ -153,6 +155,13 @@
                     }             
                     showDetails(result, $("#endYYYYMMDD").val());
                     var data = eval('(' + result + ')')
+                    //显示详细数据要放到绘制图表前面否则，绘制图表后会修改数据，导致不正确  
+                    if(!isLarge){
+                        $("#daydatatable").hide();
+                        $("#yeardatatable").hide();
+                        $("#monthdatatable").show();
+                        appendMonthData(data);
+                    } 
                     setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#startYYYYMMDD").val().substring(0,6),data.name);
                     setyAxis(data);
                     setySeriesArr(data.series);
@@ -161,12 +170,7 @@
                     
                     //修改标题
                     chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
-                    if(!isLarge){
-                        $("#daydatatable").hide();
-                        $("#yeardatatable").hide();
-                        $("#monthdatatable").show();
-                        appendMonthData(data);
-                    }       
+      
                     $("#chart_tip").show();          
                 },
                 beforeSend: function() {
@@ -192,7 +196,14 @@
                     }               
                     showDetails(result);
                     //defineChartWithDetail(curContainer,false);  
-                    var data = eval('(' + result + ')')
+                    var data = eval('(' + result + ')');
+                    //显示详细数据要放到绘制图表前面否则，绘制图表后会修改数据，导致不正确  
+                    if(!isLarge){
+                        $("#daydatatable").hide();
+                        $("#monthdatatable").hide();
+                        $("#yeardatatable").show();
+                        appendYearData(data);
+                    }   
                     setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#year").val(),data.name);
                     setyAxis(data);
                     setySeriesArr(data.series);

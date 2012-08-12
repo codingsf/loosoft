@@ -217,9 +217,14 @@
                                             <%=Resources.SunResource.USER_LOG_DESCRIPTION %></strong>
                                     </td>
                                     <td width="15%" align="center">
-                                        <strong>
-                                            <%=Resources.SunResource.USER_LOG_ERROR_TYPE %></strong>
+                                        <strong><%=Resources.SunResource.USER_LOG_ERROR_TYPE %></strong>
                                     </td>
+                                    <td width="10%" align="center">
+                                        <strong><%=Resources.SunResource.DEVICEMONITORITEM_132%></strong>
+                                    </td>
+                                    <td width="10%" align="center">
+                                        <strong>%=Resources.SunResource.DEVICEMONITORITEM_133%></strong>
+                                    </td>                                                                        
                                     <td width="20%" align="center">
                                         <strong>
                                             <%=Resources.SunResource.USER_LOG_STATE %></strong>

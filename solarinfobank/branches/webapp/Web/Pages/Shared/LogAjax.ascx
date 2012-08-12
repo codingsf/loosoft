@@ -64,7 +64,9 @@
                   <td width="150" align="center"><strong><%=Resources.SunResource.USER_LOG_SEND_DATE %></strong></td>
                   <td width="70" align="center"><strong><%=Resources.SunResource.USER_LOG_ERROR_TYPE %></strong></td>
                   <td width="90" align="center"><strong><%=Resources.SunResource.USER_LOG_DESCRIPTION %></strong></td>
-                  <td width="75" align="center"><strong> <%=Resources.SunResource.USER_LOG_STATE%></strong></td>
+                  <td width="90" align="center"><strong><%=Resources.SunResource.DEVICEMONITORITEM_132%></strong></td>
+                  <td width="90" align="center"><strong><%=Resources.SunResource.DEVICEMONITORITEM_133%></strong></td>
+                  <td width="75" align="center"><strong><%=Resources.SunResource.USER_LOG_STATE%></strong></td>
                   </tr>
               </table></td>
             </tr>
@@ -103,6 +105,8 @@
                   <td width="150" align="center"><%=log.sendTime.ToString("yyyy-MM-dd HH:mm:ss")%></td>
                   <td width="70" align="center"><%=log.errorTypeName %></td>                  
                   <td width="90" align="center"><div style=" width:90px; overflow:hidden;"><%=log.content %></div> </td>
+                  <td width="90" align="center"><div style=" width:90px; overflow:hidden;"><%=log.data1Desc%></div> </td>
+                  <td width="90" align="center"><div style=" width:90px; overflow:hidden;"><%=log.data2Desc%></div> </td>
                   <td width="75" align="center">
                    <% if (log.confirm)
                    { %>

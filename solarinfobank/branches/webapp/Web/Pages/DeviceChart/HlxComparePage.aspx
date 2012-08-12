@@ -114,7 +114,14 @@
                     }     
                     showDetails(result, $("#unitendYYYYMMDDHH").val());
                  
-                    var data = eval('(' + result + ')')
+                    var data = eval('(' + result + ')');
+                    //显示详细数据要放到绘制图表前面否则，绘制图表后会修改数据，导致不正确 
+                    if(!isLarge){
+                        $("#monthdatatable").hide();
+                        $("#yeardatatable").hide();
+                        $("#daydatatable").show();
+                        appendDayData(data);
+                    }                     
                     setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#startYYYYMMDDHH").val().substring(0,8),data.name);
                     setyAxis(data);
                     setySeriesArr(data.series);
@@ -122,12 +129,7 @@
                     defineChartWithDetail(curContainer,false);   
                     //修改标题
                     chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
-                    if(!isLarge){
-                        $("#monthdatatable").hide();
-                        $("#yeardatatable").hide();
-                        $("#daydatatable").show();
-                        appendDayData(data);
-                    }
+
                     $("#chart_tip").show();
                 },
                 beforeSend: function() {
@@ -153,7 +155,14 @@
                     }             
                     showDetails(result, $("#endYYYYMMDD").val());
 
-                    var data = eval('(' + result + ')')
+                    var data = eval('(' + result + ')');
+                    //显示详细数据要放到绘制图表前面否则，绘制图表后会修改数据，导致不正确  
+                    if(!isLarge){
+                        $("#daydatatable").hide();
+                        $("#yeardatatable").hide();
+                        $("#monthdatatable").show();
+                        appendMonthData(data);
+                    }                     
                     setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#startYYYYMMDD").val().substring(0,6),data.name);
                   
                     setyAxis(data);
@@ -162,12 +171,7 @@
                     defineChartWithDetail(curContainer,false);  
                     //修改标题
                     chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
-                    if(!isLarge){
-                        $("#daydatatable").hide();
-                        $("#yeardatatable").hide();
-                        $("#monthdatatable").show();
-                        appendMonthData(data);
-                    }       
+      
                     $("#chart_tip").show();          
                 },
                 beforeSend: function() {
@@ -193,6 +197,13 @@
                     }               
                     showDetails(result);
                     var data = eval('(' + result + ')')
+                    //显示详细数据要放到绘制图表前面否则，绘制图表后会修改数据，导致不正确  
+                    if(!isLarge){
+                        $("#daydatatable").hide();
+                        $("#monthdatatable").hide();
+                        $("#yeardatatable").show();
+                        appendYearData(data);
+                    }                     
                     setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#year").val(),data.name);
                     setyAxis(data);
                     setySeriesArr(data.series);
@@ -200,12 +211,7 @@
                     defineChartWithDetail(curContainer,false);
                     //修改标题
                     chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
-                    if(!isLarge){
-                        $("#daydatatable").hide();
-                        $("#monthdatatable").hide();
-                        $("#yeardatatable").show();
-                        appendYearData(data);
-                    }   
+  
                     $("#chart_tip").show();
                 },
                 beforeSend: function() {
@@ -239,28 +245,28 @@
                         continue;
                     }
                     if(k<=h||curDate>selectDate){
-                        if(onedataArr[k]==null || onedataArr[k]>1.1)
+                        if(onedataArr[k]==null)
                             trhtml+="<td class='line_b' style='color:#FF6A6A;background-color:"+bgcolor+"' align='center'>None</td>"
                         else{
-                            if(onedataArr[k]>(averageArr[k]*1.2+0.02)){
-                                trhtml+="<td class='line_b' style='background-color:#6495ED' align='center'><span style='color:white;'>"+onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1")+"</span></td>"
-                            }else if(onedataArr[k]<(averageArr[k]*0.8-0.02)){
-                                trhtml+="<td class='line_b' style='background-color:#FFDB2F' align='center'><span>"+onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1")+"</span></td>"
-                            }else{
+                            //if(onedataArr[k]>(averageArr[k]*1.2+0.02)){
+                               // trhtml+="<td class='line_b' style='background-color:#6495ED' align='center'><span style='color:white;'>"+onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1")+"</span></td>"
+                            //}else if(onedataArr[k]<(averageArr[k]*0.8-0.02)){
+                               // trhtml+="<td class='line_b' style='background-color:#FFDB2F' align='center'><span>"+onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1")+"</span></td>"
+                            //}else{
                                 trhtml+="<td class='line_b' style='background-color:"+bgcolor+"' align='center'>"+onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1")+"</td>"
-                            } 
+                            //} 
                         }
                     }else{
-                       if(onedataArr[k]==null || onedataArr[k]>1.1)
+                       if(onedataArr[k]==null)
                             trhtml+="<td class='line_b' style='color:#FF6A6A;background-color:"+bgcolor+"' align='center'>None</td>"
                        else{  
-                            if(onedataArr[k]>(averageArr[k]*1.2+0.02)){
-                                trhtml+="<td class='line_b' style='background-color:#6495ED' align='center'><span style='color:white;'>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</span></td>"
-                            }else if(onedataArr[k]<(averageArr[k]*0.8-0.02)){
-                                trhtml+="<td class='line_b' style='background-color:#FFDB2F' align='center'><span>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</span></td>"
-                            }else{
+                            //if(onedataArr[k]>(averageArr[k]*1.2+0.02)){
+                                //trhtml+="<td class='line_b' style='background-color:#6495ED' align='center'><span style='color:white;'>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</span></td>"
+                            //}else if(onedataArr[k]<(averageArr[k]*0.8-0.02)){
+                                //trhtml+="<td class='line_b' style='background-color:#FFDB2F' align='center'><span>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</span></td>"
+                            //}else{
                                 trhtml+="<td class='line_b' style='background-color:"+bgcolor+"' align='center'>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</td>"
-                            } 
+                            //} 
                         }
                     }
                 }                     
@@ -295,28 +301,28 @@
                         continue;
                     }
                     if(k<d || curDate>selectDate){
-                        if(onedataArr[k]==null || onedataArr[k]>1.1)
+                        if(onedataArr[k]==null)
                             trhtml+="<td class='line_b' style='color:#FF6A6A;background-color:"+bgcolor+"' align='center'>&nbsp;None&nbsp;</td>"
                         else{
-                            if(onedataArr[k]>(averageArr[k]*1.2+0.02)){
-                                trhtml+="<td class='line_b' style='background-color:#6495ED' align='center'><span style='color:white;'>"+onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1")+"</span></td>"
-                            }else if(onedataArr[k]<(averageArr[k]*0.8-0.02)){
-                                trhtml+="<td class='line_b' style='background-color:#FFDB2F;' align='center'><span>"+onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1")+"</span></td>"
-                            }else{
+                            //if(onedataArr[k]>(averageArr[k]*1.2+0.02)){
+                                //trhtml+="<td class='line_b' style='background-color:#6495ED' align='center'><span style='color:white;'>"+onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1")+"</span></td>"
+                            //}else if(onedataArr[k]<(averageArr[k]*0.8-0.02)){
+                                //trhtml+="<td class='line_b' style='background-color:#FFDB2F;' align='center'><span>"+onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1")+"</span></td>"
+                            //}else{
                                 trhtml+="<td class='line_b' style='background-color:"+bgcolor+"' align='center'>"+onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1")+"</td>"
-                            } 
+                            //} 
                         }
                     }else{
-                       if(onedataArr[k]==null || onedataArr[k]>1.1)
+                       if(onedataArr[k]==null)
                             trhtml+="<td class='line_b' style='color:#FF6A6A;background-color:"+bgcolor+"' align='center'>None</td>"
                        else{                      
-                            if(onedataArr[k]>(averageArr[k]*1.2+0.02)){
-                                trhtml+="<td class='line_b' style='background-color:#6495ED' align='center'><span style='color:white;'>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</span></td>"
-                            }else if(onedataArr[k]<(averageArr[k]*0.8-0.02)){
-                                trhtml+="<td class='line_b' style='background-color:#FFDB2F;' align='center'><span>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</span></td>"
-                            }else{
+                            //if(onedataArr[k]>(averageArr[k]*1.2+0.02)){
+                                //trhtml+="<td class='line_b' style='background-color:#6495ED' align='center'><span style='color:white;'>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</span></td>"
+                            //}else if(onedataArr[k]<(averageArr[k]*0.8-0.02)){
+                                //trhtml+="<td class='line_b' style='background-color:#FFDB2F;' align='center'><span>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</span></td>"
+                            //}else{
                                 trhtml+="<td class='line_b' style='background-color:"+bgcolor+"' align='center'>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</td>"
-                            } 
+                            //} 
                        }
                     }
                 }                     
@@ -344,28 +350,28 @@
                         continue;
                     }
                     if(k<m || curDate>selectDate){
-                        if(onedataArr[k]==null || onedataArr[k]>1.1)
+                        if(onedataArr[k]==null)
                             trhtml+="<td class='line_b' style='color:#FF6A6A;background-color:"+bgcolor+"' align='center'>&nbsp;None&nbsp;</td>"
                         else{
-                            if(onedataArr[k]>(averageArr[k]*1.2+0.02)){
-                                trhtml+="<td class='line_b' style='background-color:#6495ED' align='center'><span style='color:white;'>"+onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1")+"</span></td>"
-                            }else if(onedataArr[k]<(averageArr[k]*0.8-0.02)){
-                                trhtml+="<td class='line_b' style='background-color:#FFDB2F' align='center'><span>"+onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1")+"</span></td>"
-                            }else{
+                            //if(onedataArr[k]>(averageArr[k]*1.2+0.02)){
+                                //trhtml+="<td class='line_b' style='background-color:#6495ED' align='center'><span style='color:white;'>"+onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1")+"</span></td>"
+                            //}else if(onedataArr[k]<(averageArr[k]*0.8-0.02)){
+                                //trhtml+="<td class='line_b' style='background-color:#FFDB2F' align='center'><span>"+onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1")+"</span></td>"
+                            //}else{
                                 trhtml+="<td class='line_b' style='background-color:"+bgcolor+"' align='center'>"+onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1")+"</td>"
-                            }          
+                            //}          
                         }
                     }else{
-                       if(onedataArr[k]==null || onedataArr[k]>1.1)
+                       if(onedataArr[k]==null)
                             trhtml+="<td class='line_b' style='color:#FF6A6A;background-color:"+bgcolor+"' align='center'>None</td>"
                        else{                     
-                            if(onedataArr[k]>(averageArr[k]*1.2+0.02)){
-                                trhtml+="<td class='line_b' style='background-color:#6495ED' align='center'><span style='color:white;'>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</span></td>"
-                            }else if(onedataArr[k]<(averageArr[k]*0.8-0.02)){
-                                trhtml+="<td class='line_b' style='background-color:#FFDB2F' align='center'><span'>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</span></td>"
-                            }else{
+                            //if(onedataArr[k]>(averageArr[k]*1.2+0.02)){
+                                //trhtml+="<td class='line_b' style='background-color:#6495ED' align='center'><span style='color:white;'>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</span></td>"
+                            //}else if(onedataArr[k]<(averageArr[k]*0.8-0.02)){
+                                //trhtml+="<td class='line_b' style='background-color:#FFDB2F' align='center'><span'>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</span></td>"
+                            //}else{
                                 trhtml+="<td class='line_b' style='background-color:"+bgcolor+"' align='center'>"+(onedataArr[k]==null?'&nbsp;&nbsp;&nbsp;&nbsp;':onedataArr[k].toString().replace(/^(\d+\.\d{2})\d*$/, "$1 "))+"</td>"
-                            }
+                            //}
                         } 
                     }
                 }                     
@@ -393,7 +399,6 @@
             $("#t").val(temp);
             changeDay(document.getElementById('t'));
         }
-        
         
         function changeDay(obj) {
             var aimDay = obj.value;
@@ -745,12 +750,14 @@
                 </table>
             </div>
         </div>
+        <!--
         <div style="padding-top: 5px;">
             <span style="background-color: #FF6A6A; width: 30px; padding-left: 15px">&nbsp;</span>
             &nbsp;<%=Resources.SunResource.NODATA%>
             &nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color: #6495ED; width: 30px; padding-left: 15px">&nbsp;</span>&nbsp;<%=Resources.SunResource.ABOVEAVERAGE%>&nbsp;20%
             &nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color: #FFDB2F; width: 30px; padding-left: 15px;">&nbsp;</span>&nbsp;<%=Resources.SunResource.BELOWAVERAGE%>&nbsp;20%
         </div>
+        -->
     </div>
     <div class="sb_down">
     </div>

@@ -251,15 +251,19 @@ function setySeriesArr(series) {
 //对y轴数据的极小值进行放大树立，但是不影响显示真正的值
 function handleMinData(ydata, yMax, yMin, name) {
     var keyvalue = "";
+    var rate = 0.01;
     for (var i = 0; i < ydata.length; i++) {
         //先保留原始值
         keyvalue = globalCategories[i] + name + "*&" + ydata[i];
         globalOldYvalue.push(keyvalue);
         //当前值和最大值的比率，小于1%即增加到1%
-        if (ydata[i] != null && ydata[i] != "null" && ydata[i] > 0 && ydata[i] / yMax < 0.04) {
-            ydata[i] = yMax * 0.04;
-        } else if (ydata[i] != null && ydata[i] != "null" && ydata[i] < 0 && ydata[i] / yMin < 0.04) {
-            ydata[i] = yMin * 0.04;
+        if (ydata[i] == 0) {
+            ydata[i] = yMax * 0.005;//0值给放大点，一边能显示出来
+            if (ydata[i] == 0) ydata[i] = 0.1;
+        }else if (ydata[i] != null && ydata[i] != "null" && ydata[i] > 0 && ydata[i] / yMax < rate) {
+            ydata[i] = yMax * rate;
+        } else if (ydata[i] != null && ydata[i] != "null" && ydata[i] < 0 && ydata[i] / yMin < rate) {
+            ydata[i] = yMin * rate;
         }
     }
     return ydata;
@@ -328,34 +332,34 @@ var chart;
 
 
 var extbuttons = {
-    //    largeButton: {
-    //        enabled: true,
-    //        symbol: 'url(/images/sub/amp.gif)',
-    //        height: 20,
-    //        width: 20,
-    //        symbolSize: 20,
-    //        symbolX: 0,
-    //        symbolY: 0,
-    //        x: -40,
-    //        align: 'right',
-    //        symbolFill: 'white',
-    //        hoverSymbolFill: 'white',
-    //        _titleKey: 'largeButton',
-    //        onclick: function() {
-    //            document.getElementById("toLargeChart").click();
-    //        }
-    //    }
-    largeButton: {
-        enabled: true,
-        symbol: 'square',
-        x: -36,
-        symbolFill: '#B5C9DF',
-        hoverSymbolFill: '#779ABF',
-        _titleKey: 'largeButton',
-        onclick: function() {
-            document.getElementById("toLargeChart").click();
+        largeButton: {
+            enabled: true,
+            symbol: 'url(/images/sub/zoom.gif)',
+            height: 20,
+            width: 20,
+            symbolSize: 20,
+            symbolX: 3,
+            symbolY: 3,
+            x: -40,
+            align: 'right',
+            symbolFill: 'white',
+            hoverSymbolFill: 'white',
+            _titleKey: 'largeButton',
+            onclick: function() {
+                document.getElementById("toLargeChart").click();
+            }
         }
-    }
+//        largeButton: {
+//        enabled: true,
+//        symbol: 'url(/images/sub/amp.gif)',
+//        x: -36,
+//        symbolFill: '#B5C9DF',
+//        hoverSymbolFill: '#779ABF',
+//        _titleKey: 'largeButton',
+//        onclick: function() {
+//            document.getElementById("toLargeChart").click();
+//        }
+    //}
 };
 
 var exportButtonNoDetail = {
@@ -486,18 +490,15 @@ function defineChartWithDetail(curContainer, isDetail) {
         plotOptions: {
             area: {
                 shadow: false,
-                lineWidth: 0.3,
-                brightness: 0.1,
+                lineWidth: 0,
+                brightness: 0.3,
                 states: {
                     hover: {
                         lineWidth: 1
                     }
                 },
                 marker: {
-                    enabled: true,
-                    radius: 0,
-                    brightness: 0.1,
-                    symbol: 'diamond',
+                    enabled: false,
                     states: {
                         hover: {
                             enabled: true,
@@ -507,7 +508,7 @@ function defineChartWithDetail(curContainer, isDetail) {
                         }
                     }
                 }
-            },
+            },            
             line: {
                 shadow: false,
                 lineWidth: 1,

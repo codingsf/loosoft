@@ -552,6 +552,7 @@
     <Content Include="dao.config" />
     <Content Include="Content\Ashx\Upload.ashx" />
     <Content Include="Content\Ashx\Drawing.ashx" />
+    <Content Include="Content\Ashx\validatecode.ashx" />
     <None Include="Content\images\Thumbs.db" />
     <None Include="Content\jquery\images\Thumbs.db" />
     <None Include="editor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.cfm" />

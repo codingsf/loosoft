@@ -117,6 +117,7 @@
     <Compile Include="Currencies.cs" />
     <Compile Include="TimeZone.cs" />
     <Compile Include="Util.cs" />
+    <Compile Include="ValidateCodeUtil.cs" />
     <Compile Include="vo\OpenApiVO.cs" />
     <Compile Include="XmlHelper.cs" />
     <Compile Include="CacheKeyUtil.cs" />

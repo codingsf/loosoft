@@ -70,7 +70,7 @@
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>..\..\webapp\Web\bin\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp, Version=5.1.3.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -181,7 +181,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Admin\DbconfigController.cs" />
     <Compile Include="Controllers\Admin\ItemConfigController.cs" />
-    <Compile Include="Controllers\NewController.cs" />
+    <Compile Include="Controllers\NewRegisterController.cs" />
     <Compile Include="Controllers\OpenApiController.cs" />
     <Compile Include="Controllers\Plant\DeviceController.cs" />
     <Compile Include="Controllers\Plant\PlantController.cs" />
@@ -2306,10 +2306,11 @@
     <Content Include="Pages\DeviceChart\CabinetChart.aspx" />
     <Content Include="Pages\DeviceChart\InverterPRChart.aspx" />
     <Content Include="Pages\DeviceChart\UdeviceChart.aspx" />
-    <Content Include="Pages\New\Register.aspx" />
-    <Content Include="Pages\New\AddPlant.aspx" />
-    <Content Include="Pages\New\AddPlantControl.aspx" />
-    <Content Include="Pages\New\AddUnit.aspx" />
+    <Content Include="Pages\NewRegister\Register.aspx" />
+    <Content Include="Pages\NewRegister\AddPlant.aspx" />
+    <Content Include="Pages\NewRegister\AddPlantControl.aspx" />
+    <Content Include="Pages\NewRegister\AddUnit.aspx" />
+    <Content Include="Pages\NewRegister\PlantUnitControl.aspx" />
     <Content Include="Pages\PlantChart\DayCompare.aspx" />
     <Content Include="Pages\PlantChart\PRChart.aspx" />
     <Content Include="Pages\PlantChart\UnitComparePage.aspx" />

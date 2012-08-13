@@ -53,7 +53,7 @@
     </style>
 
     <script type="text/javascript">
-
+    
         function dst_init() {
             $.ajax({
                 type: "POST",
@@ -1286,7 +1286,7 @@
                 $("#endDate").get(0).focus();
                 return false;
             }
-            if (!($("#hours").val() >0)) {
+            if (!($("#hours").val() > 0)) {
                 $("#error_container").html('<em generated="true" class="error"><span class="error">&nbsp;<%=Resources.SunResource.PAGE_ADDPLANT_HOURS%></span></em>');
                 $("#hours").get(0).focus();
                 return false;
@@ -1483,9 +1483,12 @@
                                                                     :</strong>
                                                             </td>
                                                             <td width="55%">
-                                                                <%=Html.TextBox("long1", this.Model!=null&& this.Model.longitudeString.Split(',').Length>0?this.Model.longitudeString.Split(',')[0]:string.Empty, new { @class = "txtbu01",style="width:50px;" }) %><span style="line-height:10px; height:28px; vertical-align:top;">°</span>
-                                                                <%=Html.TextBox("long2", this.Model != null && this.Model.longitudeString.Split(',').Length > 1 ? this.Model.longitudeString.Split(',')[1] : string.Empty, new { @class = "txtbu01", style = "width:50px;" })%><span style="line-height:10px; height:28px; vertical-align:top;">'</span>
-                                                                <%=Html.TextBox("long3", this.Model != null && this.Model.longitudeString.Split(',').Length > 2 ? this.Model.longitudeString.Split(',')[2] : string.Empty, new { @class = "txtbu01", style = "width:50px;" })%><span style="line-height:10px; height:28px; vertical-align:top;">"</span>
+                                                                <%=Html.TextBox("long1", this.Model!=null&& this.Model.longitudeString.Split(',').Length>0?this.Model.longitudeString.Split(',')[0]:string.Empty, new { @class = "txtbu01",style="width:50px;" }) %><span
+                                                                    style="line-height: 10px; height: 28px; vertical-align: top;">°</span>
+                                                                <%=Html.TextBox("long2", this.Model != null && this.Model.longitudeString.Split(',').Length > 1 ? this.Model.longitudeString.Split(',')[1] : string.Empty, new { @class = "txtbu01", style = "width:50px;" })%><span
+                                                                    style="line-height: 10px; height: 28px; vertical-align: top;">'</span>
+                                                                <%=Html.TextBox("long3", this.Model != null && this.Model.longitudeString.Split(',').Length > 2 ? this.Model.longitudeString.Split(',')[2] : string.Empty, new { @class = "txtbu01", style = "width:50px;" })%><span
+                                                                    style="line-height: 10px; height: 28px; vertical-align: top;">"</span>
                                                                 <%-- <%= Html.TextBoxFor(model => model.longitude, new { @class = "txtbu01" })%>--%>
                                                             </td>
                                                         </tr>
@@ -1496,9 +1499,12 @@
                                                                     :</strong>
                                                             </td>
                                                             <td width="55%">
-                                                                <%=Html.TextBox("lat1", this.Model != null && this.Model.latitudeString.Split(',').Length > 0 ? this.Model.latitudeString.Split(',')[0] : string.Empty, new { @class = "txtbu01", style = "width:50px;" })%><span style="line-height:10px; height:28px; vertical-align:top;">°</span>
-                                                                <%=Html.TextBox("lat2", this.Model != null && this.Model.latitudeString.Split(',').Length > 1 ? this.Model.latitudeString.Split(',')[1] : string.Empty, new { @class = "txtbu01", style = "width:50px;" })%><span style="line-height:10px; height:28px; vertical-align:top;">'</span>
-                                                                <%=Html.TextBox("lat3", this.Model != null && this.Model.latitudeString.Split(',').Length > 2 ? this.Model.latitudeString.Split(',')[2] : string.Empty, new { @class = "txtbu01", style = "width:50px;" })%><span style="line-height:10px; height:28px; vertical-align:top;">"</span>
+                                                                <%=Html.TextBox("lat1", this.Model != null && this.Model.latitudeString.Split(',').Length > 0 ? this.Model.latitudeString.Split(',')[0] : string.Empty, new { @class = "txtbu01", style = "width:50px;" })%><span
+                                                                    style="line-height: 10px; height: 28px; vertical-align: top;">°</span>
+                                                                <%=Html.TextBox("lat2", this.Model != null && this.Model.latitudeString.Split(',').Length > 1 ? this.Model.latitudeString.Split(',')[1] : string.Empty, new { @class = "txtbu01", style = "width:50px;" })%><span
+                                                                    style="line-height: 10px; height: 28px; vertical-align: top;">'</span>
+                                                                <%=Html.TextBox("lat3", this.Model != null && this.Model.latitudeString.Split(',').Length > 2 ? this.Model.latitudeString.Split(',')[2] : string.Empty, new { @class = "txtbu01", style = "width:50px;" })%><span
+                                                                    style="line-height: 10px; height: 28px; vertical-align: top;">"</span>
                                                                 <%--<%= Html.TextBoxFor(model => model.latitude, new { @class = "txtbu01" })%>--%>
                                                             </td>
                                                         </tr>
@@ -1571,8 +1577,8 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                             <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tbody>
                                     <tr>
-                                        <td height="20" colspan="4" style="padding-left:50px">&nbsp;
-                                        <span id="error_container"></span>
+                                        <td height="20" colspan="4" style="padding-left: 50px">
+                                            &nbsp; <span id="error_container"></span>
                                         </td>
                                     </tr>
                                     <tr>

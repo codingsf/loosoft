@@ -257,12 +257,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 daydatas = new double?[chartData.series[0].data.Length + chartData.series[1].data.Length];
                 for (int m = 0; m < chartData.series[0].data.Length; m++)
                 {
-                    daydatas[m] = Util.upDigtal(chartData.series[0].data[m].Value, 3);
+                    daydatas[m] = Util.upDigtal(chartData.series[0].data[m].Value, 6);
                 }
                 //chartData.series[0].data.CopyTo(daydatas, 0);
                 for (int m = 0; m < chartData.series[1].data.Length; m++)
                 {
-                    daydatas[m + 5] = Util.upDigtal(chartData.series[1].data[m].Value, 4);
+                    daydatas[m + 5] = Util.upDigtal(chartData.series[1].data[m].Value, 8);
                 }
                 //chartData.series[1].data.CopyTo(daydatas, chartData.series[1].data.Length);
             }
@@ -280,12 +280,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 monthdatas = new double?[chartData.series[0].data.Length + chartData.series[1].data.Length];
                 for (int m = 0; m < chartData.series[0].data.Length; m++)
                 {
-                    monthdatas[m] = Util.upDigtal(chartData.series[0].data[m].Value, 3);
+                    monthdatas[m] = Util.upDigtal(chartData.series[0].data[m].Value, 6);
                 }
                 //chartData.series[0].data.CopyTo(monthdatas, 0);
                 for (int m = 0; m < chartData.series[1].data.Length; m++)
                 {
-                    monthdatas[m + 5] = Util.upDigtal(chartData.series[1].data[m].Value, 4);
+                    monthdatas[m + 5] = Util.upDigtal(chartData.series[1].data[m].Value, 8);
                 }
                 //chartData.series[1].data.CopyTo(monthdatas, chartData.series[1].data.Length);
             }
@@ -303,12 +303,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 yeardatas = new double?[chartData.series[0].data.Length + chartData.series[1].data.Length];
                 for (int m = 0; m < chartData.series[0].data.Length; m++)
                 {
-                    yeardatas[m] = Util.upDigtal(chartData.series[0].data[m].Value, 3);
+                    yeardatas[m] = Util.upDigtal(chartData.series[0].data[m].Value, 6);
                 }
                 //chartData.series[0].data.CopyTo(yeardatas, 0);
                 for (int m = 0; m < chartData.series[1].data.Length; m++)
                 {
-                    yeardatas[m + 5] = Util.upDigtal(chartData.series[1].data[m].Value, 4);
+                    yeardatas[m + 5] = Util.upDigtal(chartData.series[1].data[m].Value, 8);
                 }
                 //chartData.series[1].data.CopyTo(yeardatas, chartData.series[1].data.Length);
             }

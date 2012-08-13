@@ -1051,7 +1051,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 IList<DeviceStuct> devices = new List<DeviceStuct>();
                 foreach (PlantUnit unit in unitList)
                 {
-                    float rate = 1 / unit.chartPower;
+                    float rate = unit.chartPower == 0 ? 1 : 1 / unit.chartPower;
                     devices.Add(new DeviceStuct() { deviceId = unit.collectorID.ToString(), rate = rate, name = unit.displayname, unit = "kWh/kWp", chartType = chartType, monitorType = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE), cVal = ComputeType.Avg, deviceType = ChartDeviceType.COLLECTOR, intervalMins = intervalMins });
                 }
 
@@ -1087,7 +1087,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 IList<DeviceStuct> devices = new List<DeviceStuct>();
                 foreach (PlantUnit unit in unitList)
                 {
-                    float rate = 1 / unit.chartPower;
+                    float rate = unit.chartPower == 0 ? 1 : 1 / unit.chartPower;
                     devices.Add(new DeviceStuct() { deviceId = unit.id.ToString(), rate = rate, name = unit.displayname, unit = "kWh/kWp", chartType = chartType, monitorType = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE), cVal = ComputeType.Avg, deviceType = ChartDeviceType.UNIT });
                 }
 
@@ -1123,7 +1123,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 IList<DeviceStuct> devices = new List<DeviceStuct>();
                 foreach (PlantUnit unit in unitList)
                 {
-                    float rate = 1 / unit.chartPower;
+                    float rate = unit.chartPower == 0 ? 1 : 1 / unit.chartPower;
                     devices.Add(new DeviceStuct() { deviceId = unit.id.ToString(), rate = rate, name = unit.displayname, unit = "kWh/kWp", chartType = chartType, monitorType = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE), cVal = ComputeType.Avg, deviceType = ChartDeviceType.UNIT });
                 }
 

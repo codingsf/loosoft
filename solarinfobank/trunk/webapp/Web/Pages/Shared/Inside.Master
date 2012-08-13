@@ -610,11 +610,6 @@
                                     </table>
                                 </div>
                                 <div class="kjmid" ref="5" style="overflow: hidden; display: block;">
-                                    <div class="kjb2">
-                                        <a rel="treemenu" onclick="loadContent('content_ajax','/plant/devicedata/<%=Model.id%>','ajax','GET');setcurrent(this);return false;"
-                                            href="/plant/devicedata/<%=Model.id%>" title="<%=Resources.SunResource.DEVICE_RUN_DATA %>"><%=Resources.SunResource.DEVICE_RUN_DATA %>
-                                        </a>
-                                    </div>
                                     <%
                                         foreach (PlantUnit unit in Model.plantUnits)
                                         { %>

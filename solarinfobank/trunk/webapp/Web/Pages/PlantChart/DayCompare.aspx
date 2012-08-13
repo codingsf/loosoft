@@ -189,10 +189,10 @@
     </script>
     <input type="hidden" value="5,5" id="intervalMins" />
     <input type="hidden" value="<%=Model.id%>" id="pid" />
-    <input type="hidden" value="<%=CalenderUtil.getBeforeDay(DateTime.Now,"yyyyMMdd")%>00" id="estartYYYYMMDDHH" />
-    <input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+DateTime.Now.Day.ToString("00") %>23" id="eendYYYYMMDDHH" />
-    <input type="hidden" value="<%=CalenderUtil.getBeforeDay(DateTime.Now,"yyyyMMdd")%>00" id="pstartYYYYMMDDHH" />
-    <input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+DateTime.Now.Day.ToString("00") %>23" id="pendYYYYMMDDHH" />
+    <input type="hidden" value="<%=CalenderUtil.getBeforeDay(CalenderUtil.curDateWithTimeZone(Model.timezone),"yyyyMMdd")%>00" id="estartYYYYMMDDHH" />
+    <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>23" id="eendYYYYMMDDHH" />
+    <input type="hidden" value="<%=CalenderUtil.getBeforeDay(CalenderUtil.curDateWithTimeZone(Model.timezone),"yyyyMMdd")%>00" id="pstartYYYYMMDDHH" />
+    <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>23" id="pendYYYYMMDDHH" />
 
     <input type="hidden" value="column" id="chartType" />
         <table width="100%" height="63" border="0" cellpadding="0" cellspacing="0" background="/images/kj/kjbg02.jpg">

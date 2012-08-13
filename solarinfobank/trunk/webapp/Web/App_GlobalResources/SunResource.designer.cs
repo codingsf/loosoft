@@ -4804,7 +4804,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Com-err 的本地化字符串。
+        ///   查找类似 DSP Com-err 的本地化字符串。
         /// </summary>
         internal static string ERRORITEM_9472 {
             get {

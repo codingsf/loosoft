@@ -190,7 +190,13 @@
                                         </td>
                                     </tr>
                                 </table>
-                                <%--<div>
+                                
+                                <div id="planetmap" style="position: relative">
+                                            <% string path=Server.MapPath("~");
+                               if (System.IO.File.Exists(string.Format("{0}/ufile/{1}", path, Model.structPic)) == false)
+                               { %>
+                               
+                               <div>
                                     <table width="100%" border="0" cellpadding="0" cellspacing="0">
                                         <tr class="pg1 all">
                                             <%
@@ -281,11 +287,8 @@
                                             </td>
                                         </tr>
                                     </table>
-                                </div>--%>
-                                <div id="planetmap" style="position: relative">
-                                            <% string path=Server.MapPath("~");
-                               if (System.IO.File.Exists(string.Format("{0}/ufile/{1}", path, Model.structPic)) == false)
-                               { Response.Write("<center><font color='red'>未上传分布图</font></center>"); }
+                                </div>
+                               <% }
                                else
                                { %>
                                 <center><img src="/ufile/<%=Model.structPic %>" alt="" usemap="#structmap" id="structimg"/></center>

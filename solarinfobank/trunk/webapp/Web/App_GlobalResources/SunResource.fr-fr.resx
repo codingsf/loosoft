@@ -4417,7 +4417,7 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
     <comment>直流配电柜设备类型</comment>
   </data>
   <data name="ERRORITEM_9472" xml:space="preserve">
-    <value>Com-err</value>
+    <value>DSP Com-err</value>
     <comment>通讯异常</comment>
   </data>
   <data name="DEVICE_MONITOR_CABINET" xml:space="preserve">

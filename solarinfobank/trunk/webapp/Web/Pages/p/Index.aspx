@@ -21,7 +21,6 @@
 
 </head>
 <body bgcolor="#ffffff">
-<<<<<<< .mine
 <div style=" background-color:black;">
     <!-- 影片中使用的 URL-->
     <!-- 影片中使用的文本-->
@@ -39,7 +38,7 @@
 </div>
 <div style="text-align:center;">
 <br/>
-登录进入：用户名<input name="username" class="insy01" value="">&nbsp;&nbsp;密码<input name="password" class="insy01" value="">  
+登录进入：用户名<input name="username" class="insy01" value="">&nbsp;&nbsp;密码<input name="password" class="insy01" value="" type="password">  
 <input type="submit" class="loginbu" value="登录" onclick="goIndex(1)" id="btnLogin", tabindex ="3" />
 <br/>
 </div>

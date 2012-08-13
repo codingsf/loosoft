@@ -2554,19 +2554,20 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             return eData;
         }
 
-
-
         public ActionResult Anonymous(int id)
         {
             Plant plant = plantService.GetPlantInfoById(id);
             int uid = 0;
-            IList<PlantUser> pusers = plantUserService.GetOpenPlant(plant.id);
-            if (pusers.Count > 0)
-                uid = pusers[0].userID;
+
+            //实际电站被组合后，就没有分配关系了，所以去分配的用户作为登录用户就会取不到，就用器创建者作为登录用户
+            //IList<PlantUser> pusers = plantUserService.GetOpenPlant(plant.id);
+            //if (pusers.Count > 0)
+                //uid = pusers[0].userID;
+            uid = int.Parse(plant.userID.ToString());
             User user = userService.Get(uid);
             UserUtil.login(user);
-            if (user.plantUsers.Count == 1)
-                return RedirectToAction("overview", "plant", new { @id = base.FirstPlant.id });
+            if (plant != null)
+                return RedirectToAction("overview", "plant", new { @id = id });
             else
                 return RedirectToAction("overview", "user");
         }
@@ -2768,8 +2769,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             return Redirect("/admin/users");
         }
 
-
-
+        /// <summary>
+        /// 故障码语言拼接
+        /// </summary>
+        /// <param name="pn"></param>
+        /// <returns></returns>
         public ActionResult Errorcode(string pn)
         {
             IList<Errorcode> errorList = ErrorcodeService.GetInstance().GetList();
@@ -2783,13 +2787,21 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             ViewData["page"] = page;
             return View(@"Errorcode/list", errorList);
         }
-
+        /// <summary>
+        /// 故障码删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Errorcode_delete(int id)
         {
             ErrorcodeService.GetInstance().Remove(id);
             return Errorcode(string.Empty);
         }
-
+        /// <summary>
+        /// 故障码编辑
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Errorcode_edit(int id)
         {
             IList<Language> langs = LanguageService.GetInstance().GetList();
@@ -2807,9 +2819,54 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             }
             ViewData["list"] = tables;
 
+            ViewData["selectDeviceTypes"] = convertDomainListToSelectList(errorCode == null ? 0 : int.Parse(errorCode.code));
+
             return View(@"Errorcode/edit", errorCode);
         }
+        /// <summary>
+        /// 故障码类型下拉框
+        /// </summary>
+        /// <param name="selectedCode"></param>
+        /// <returns></returns>
+        private IList<SelectListItem> convertDomainListToSelectList(int? selectedCode)
+        {
+            IList<SelectListItem> selectDeviceTypes = new List<SelectListItem>();
+            bool isSelected = false;
 
+            if (selectedCode != null && selectedCode == ErrorType.ERROR_TYPE_ERROR)
+            {
+                isSelected = true;
+            }
+            selectDeviceTypes.Add(new SelectListItem { Text = ErrorType.getErrortypeByCode(ErrorType.ERROR_TYPE_ERROR).name, Value = ErrorType.ERROR_TYPE_ERROR.ToString(), Selected = isSelected });
+
+            if (selectedCode != null && selectedCode == ErrorType.ERROR_TYPE_FAULT)
+            {
+                isSelected = true;
+            }
+            selectDeviceTypes.Add(new SelectListItem { Text = ErrorType.getErrortypeByCode(ErrorType.ERROR_TYPE_FAULT).name, Value = ErrorType.ERROR_TYPE_FAULT.ToString(), Selected = isSelected });
+
+
+            if (selectedCode != null && selectedCode == ErrorType.ERROR_TYPE_WARN)
+            {
+                isSelected = true;
+            }
+            selectDeviceTypes.Add(new SelectListItem { Text = ErrorType.getErrortypeByCode(ErrorType.ERROR_TYPE_WARN).name, Value = ErrorType.ERROR_TYPE_WARN.ToString(), Selected = isSelected });
+
+
+            if (selectedCode != null && selectedCode == ErrorType.ERROR_TYPE_INFORMATRION)
+            {
+                isSelected = true;
+            }
+            selectDeviceTypes.Add(new SelectListItem { Text = ErrorType.getErrortypeByCode(ErrorType.ERROR_TYPE_INFORMATRION).name, Value = ErrorType.ERROR_TYPE_INFORMATRION.ToString(), Selected = isSelected });
+
+            return selectDeviceTypes;
+        }
+
+        /// <summary>
+        /// 故障码保存
+        /// </summary>
+        /// <param name="errorcode"></param>
+        /// <returns></returns>
         public ActionResult Errorcode_save(Errorcode errorcode)
         {
             string lang = Request.Form["lang"];
@@ -2832,7 +2889,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             if (string.IsNullOrEmpty(code)) return Content("true");
             return Content(ErrorcodeService.GetInstance().GetList().Where(m => m.code.Equals(code.Trim())).Count() == 0 ? "true" : "false");
         }
-
 
     }
 }

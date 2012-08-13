@@ -4417,7 +4417,7 @@
     <comment>直流配电柜设备类型</comment>
   </data>
   <data name="ERRORITEM_9472" xml:space="preserve">
-    <value>通信例外</value>
+    <value>DSP 通信例外</value>
     <comment>通讯异常</comment>
   </data>
   <data name="DEVICE_MONITOR_CABINET" xml:space="preserve">

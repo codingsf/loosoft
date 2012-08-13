@@ -140,6 +140,9 @@ namespace Web
             {
                 SynDataService.GetInstance().startupforWeb();
             }
+
+            //从后台维护数据表中设置错误码静态数据
+            ErrorcodeService.GetInstance().setErrorStaticData();
         }
 
         protected void Application_Error(object sender, EventArgs e)

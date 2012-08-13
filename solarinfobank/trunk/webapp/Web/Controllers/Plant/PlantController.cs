@@ -112,14 +112,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             ViewData[ComConst.PlantName] = plant.name;
             plant.currencies = curUser.currencies;
-            ViewData["temp"] = Math.Round(plant.Temperature, 1);
-            if (plant.Temperature == 0.0)
+            ViewData["temp"] = plant.Temperature;
+            if (double.IsNaN(plant.Temperature))
             {
                 CityCodeService codeService = CityCodeService.GetInstance();
                 ViewData["temp"] = codeService.GetTemperature(plant.city);
             }
             //修正了温度不存在显示0的问题
-            if (!double.IsNaN(((double)ViewData["temp"])) && (double)ViewData["temp"] != 0)
+            if (!double.IsNaN(((double)ViewData["temp"])) && ViewData["temp"]!=null)
             {
                 User user = UserUtil.getCurUser();
                 if (user != null && !user.TemperatureType.ToLower().Equals("c"))

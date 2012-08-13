@@ -351,7 +351,7 @@
     <value>安装日期</value>
   </data>
   <data name="PLANT_ADDPLANT_LATITUDE" xml:space="preserve">
-    <value>纬度</value>
+    <value>北纬</value>
   </data>
   <data name="PLANT_ADDPLANT_LATITUDE_DIGITS" xml:space="preserve">
     <value>请输入数字</value>
@@ -360,7 +360,7 @@
     <value>位置</value>
   </data>
   <data name="PLANT_ADDPLANT_LONGITUDE" xml:space="preserve">
-    <value>经度</value>
+    <value>东经</value>
   </data>
   <data name="PLANT_ADDPLANT_LONGITUDE_DIGITS" xml:space="preserve">
     <value>请输入数字</value>
@@ -477,7 +477,7 @@
     <value>安装日期</value>
   </data>
   <data name="PLANT_EDIT_LATITUDE" xml:space="preserve">
-    <value>纬度</value>
+    <value>北纬</value>
   </data>
   <data name="PLANT_EDIT_LATITUDE_DIGITS" xml:space="preserve">
     <value>请输入数字</value>
@@ -486,7 +486,7 @@
     <value>位置</value>
   </data>
   <data name="PLANT_EDIT_LONGITUDE" xml:space="preserve">
-    <value>经度</value>
+    <value>东经</value>
   </data>
   <data name="PLANT_EDIT_LONGITUDE_DIGITS" xml:space="preserve">
     <value>请输入数字</value>
@@ -615,10 +615,10 @@
     <value>转向</value>
   </data>
   <data name="PLANT_MAP_LATITUDE" xml:space="preserve">
-    <value>纬度</value>
+    <value>北纬</value>
   </data>
   <data name="PLANT_MAP_LONGITUD" xml:space="preserve">
-    <value>经度</value>
+    <value>东经</value>
   </data>
   <data name="PLANT_MAP_PLANT_MAP" xml:space="preserve">
     <value>电站地图</value>
@@ -678,10 +678,10 @@
     <value>安装日期</value>
   </data>
   <data name="PLANT_PROFILE_LATITUDE" xml:space="preserve">
-    <value>纬度</value>
+    <value>北纬</value>
   </data>
   <data name="PLANT_PROFILE_LONGITUDE" xml:space="preserve">
-    <value>经度</value>
+    <value>东经</value>
   </data>
   <data name="PLANT_PROFILE_NAME" xml:space="preserve">
     <value>名称</value>
@@ -855,7 +855,7 @@
     <value>安装日期</value>
   </data>
   <data name="USER_ADDPLANT_LATITUDE" xml:space="preserve">
-    <value>纬度</value>
+    <value>北纬</value>
   </data>
   <data name="USER_ADDPLANT_LATITUDE_DIGITS" xml:space="preserve">
     <value>请输入数字</value>
@@ -864,7 +864,7 @@
     <value>位置</value>
   </data>
   <data name="USER_ADDPLANT_LONGITUDE" xml:space="preserve">
-    <value>经度</value>
+    <value>东经</value>
   </data>
   <data name="USER_ADDPLANT_LONGITUDE_DIGITS" xml:space="preserve">
     <value>请输入数字</value>
@@ -4416,7 +4416,7 @@
     <comment>直流配电柜设备类型</comment>
   </data>
   <data name="ERRORITEM_9472" xml:space="preserve">
-    <value>通讯异常</value>
+    <value>DSP 通讯异常</value>
     <comment>通讯异常</comment>
   </data>
   <data name="DEVICE_MONITOR_CABINET" xml:space="preserve">

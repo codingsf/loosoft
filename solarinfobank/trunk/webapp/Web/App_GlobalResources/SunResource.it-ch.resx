@@ -5719,7 +5719,7 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <comment>直流配电柜</comment>
   </data>
   <data name="ERRORITEM_9472" xml:space="preserve">
-    <value>Com-err</value>
+    <value>DSP Com-err</value>
     <comment>通讯异常</comment>
   </data>
   <data name="DEVICE_MONITOR_CABINET" xml:space="preserve">

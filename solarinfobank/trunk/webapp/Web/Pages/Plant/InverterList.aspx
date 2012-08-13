@@ -108,10 +108,7 @@
                                     <td align="center" width="100">
                                  <div style="width:100px; overflow:hidden; margin:0 auto;"  title="<%=string.IsNullOrEmpty( device.name)?device.fullName:device.name%>">
                                     <%=string.IsNullOrEmpty(device.name)?device.fullName:device.name%>
-                              
                                         </div>
-                                        
-                                        
                                     </td>
                                     <td align="center" width="150">
                                     <%=device.designPower%>

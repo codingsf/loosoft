@@ -8,7 +8,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>首页<%=Model.name %></title>
-    <link href="/style/mhcss.css" rel="stylesheet" type="text/css" />
+    <link href="/style/mhcss.css" rel="stylesheet" type="text/css"/>
     <script src="/script/jquery.js" type="text/javascript"></script>
 
     <SCRIPT type="text/javascript" charset="utf-8" src="/script/jquery.hoverIntent.minified.js"></SCRIPT>
@@ -224,26 +224,26 @@
                                     <div class="plantmapm" id="container_maptab" >             
                                         <div style="background: url(/images/map/n.jpg) no-repeat center;height:462px; margin: auto; position:relative;">
                                             <% 
-                                            float lonrate = 580/((135-73)*1.0f);
-                                            float latrate = 400/((53-18)*1.0f);
+                                            double lonrate = 580 /((135.0833-73.6666)*1.0d);
+                                            double latrate = 400 / ((53.5583 - 18) * 1.0d);
                                             foreach (Plant plant in ViewData["plants"] as IList<Plant>)
                                             {
                                                 //将坐标换算成地图坐标
                                                 CountryCity cc = CountryCityService.GetInstance().GetCity(plant.city);
                                                 if (cc == null || string.IsNullOrEmpty(cc.lon) || string.IsNullOrEmpty(cc.lat)) continue;
-                                                int x = int.Parse(((float.Parse(cc.lon)-73) * lonrate).ToString("0"))+17;
-                                                int y = int.Parse(((53-float.Parse(cc.lat)) * latrate).ToString("0"))+15;
+                                                int x = int.Parse(((float.Parse(cc.lon) - 73.6666) * lonrate).ToString("0"))+37;
+                                                int y = int.Parse(((53.5583 - float.Parse(cc.lat)) * latrate).ToString("0"))+13;
                                             %>
                                             <div style="top:<%=y%>px; left:<%=x%>px;position:absolute;">
                                             <%if (plant.isVirtualPlant)
                                               { %>
-                                            <div style=""><a href="/portal/virtual/<%=plant.id%>" target="_blank"><span><img src="/images/map/db.gif" border=0 style="cursor:pointer;" alt="<%=plant.name%>" onmouseover="tips('plant_tip_<%=plant.id%>');" id="plant_tip_<%=plant.id%>"/></span>
+                                            <div style=""><a href="/portal/virtual/<%=plant.id%>" target="_blank"><span><img src="/images/map/db.ico" border=0 style="cursor:pointer;" alt="<%=plant.name%>" onmouseover="tips('plant_tip_<%=plant.id%>');" id="plant_tip_<%=plant.id%>"/></span>
                                             <%--<span style="cursor:pointer;" onmouseover="tips('plant_tip_<%=plant.id%>-1');" id="plant_tip_<%=plant.id%>-1"> <%=plant.name%></span>--%>
                                             </a></div>
                                             <%}
                                               else
                                               {%>
-                                            `<div style=""><a href="/portal/plant/<%=plant.id%>" target="_blank"><span><img src="/images/map/db.gif" border=0 style="cursor:pointer;" alt="<%=plant.name%>" onmouseover="tips('plant_tip_<%=plant.id%>');" id="plant_tip_<%=plant.id%>"/></span>
+                                            `<div style=""><a href="/portal/plant/<%=plant.id%>" target="_blank"><span><img src="/images/map/db.ico" border=0 style="cursor:pointer;" alt="<%=plant.name%>" onmouseover="tips('plant_tip_<%=plant.id%>');" id="plant_tip_<%=plant.id%>"/></span>
                                             <%-- <span style="cursor:pointer;" onmouseover="tips('plant_tip_<%=plant.id%>-1');" id="plant_tip_<%=plant.id%>-1"> <%=plant.name%></span>--%></a></div>  
                                             <%} %>
                                             </div>
@@ -292,10 +292,10 @@
                                                 &nbsp;
                                             </td>
                                             <td colspan="5" bgcolor="#F5F6F7">
-                                                <strong>发电量(MWh) </strong>
+                                                <strong>发电量(GWh) </strong>
                                             </td>
                                             <td colspan="5" bgcolor="#F5F6F7">
-                                                <strong>收入(万元)</strong>
+                                                <strong>收入(亿元)</strong>
                                             </td>
                                         </tr>
                                         <tr>

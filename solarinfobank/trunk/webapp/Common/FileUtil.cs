@@ -26,7 +26,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             streamWriter.WriteLine(content);
             streamWriter.Flush();
             streamWriter.Close();
-            //fs.Close();
         }
         /// <summary>
         /// 写内容到文件，覆盖方式
@@ -59,6 +58,27 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             string content = sr.ReadToEnd();
             sr.Close();
             return content;
+        }
+
+        public static IList<string> Readline(string fileName){
+            IList<string> lines = new List<string>();
+            FileStream   fs=new   FileStream(@fileName,FileMode.Open,FileAccess.Read,FileShare.None); 
+            StreamReader sr=new   StreamReader(fs,System.Text.Encoding.Default); 
+
+            sr.BaseStream.Seek(0,SeekOrigin.Begin); 
+            string     strLine     =sr.ReadLine(); 
+            while(strLine!=null) 
+            { 
+                strLine=sr.ReadLine();
+                lines.Add(strLine);
+            }
+            sr.Close();
+            fs.Close();
+            return lines;
+        }
+
+        public static bool exist(string fileName) { 
+            return File.Exists(fileName);
         }
 
     }

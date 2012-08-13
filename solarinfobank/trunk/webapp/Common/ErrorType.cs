@@ -27,7 +27,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         public const int ERROR_TYPE_ERROR = 0x04;
 
         //错误类型列表
-        static private IDictionary<int, ErrorType> errorTypeMap = new Dictionary<int, ErrorType>();
+        static public IDictionary<int, ErrorType> errorTypeMap = new Dictionary<int, ErrorType>();
 
         static ErrorType()
         {

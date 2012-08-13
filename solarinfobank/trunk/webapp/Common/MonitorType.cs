@@ -19,6 +19,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         public const int PLANT_MONITORITEM_ENERGY_CODE = 11;
 
         /// <summary>
+        /// 电站总发电量测点
+        /// </summary>
+        public const int PLANT_MONITORITEM_TOTALENERGY_CODE = 12;
+
+        /// <summary>
         /// 电站功率
         /// </summary>
         public const int PLANT_MONITORITEM_POWER_CODE = 13;
@@ -46,7 +51,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// 日辐射量
         /// </summary>
         public const int PLANT_MONITORITEM_DAYRADIATION = 22;
-
         /// <summary>
         /// 总辐射量
         /// </summary>
@@ -636,6 +640,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
 
             monitorMap.Add(PLANT_MONITORITEM_ENERGY_CODE, new MonitorType() { code = PLANT_MONITORITEM_ENERGY_CODE, unit = "kWh", zerotoline = false });
 
+            monitorMap.Add(PLANT_MONITORITEM_TOTALENERGY_CODE, new MonitorType() { code = PLANT_MONITORITEM_TOTALENERGY_CODE, unit = "kWh", zerotoline = false });
+
             monitorMap.Add(PLANT_MONITORITEM_LINGT_CODE, new MonitorType() { code = PLANT_MONITORITEM_LINGT_CODE, unit = "W/㎡", zerotoline = false });
 
             monitorMap.Add(PLANT_MONITORITEM_POWER_CODE, new MonitorType() { code = PLANT_MONITORITEM_POWER_CODE, unit = "kW", zerotoline = false });
@@ -662,130 +668,130 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             monitorMap.Add(MIC_BUSBAR_7CURRENT, new MonitorType() { code = MIC_BUSBAR_7CURRENT, unit = "A", zerotoline = false });
             monitorMap.Add(MIC_BUSBAR_8CURRENT, new MonitorType() { code = MIC_BUSBAR_8CURRENT, unit = "A", zerotoline = false });
             monitorMap.Add(MIC_BUSBAR_9CURRENT, new MonitorType() { code = MIC_BUSBAR_9CURRENT, unit = "A", zerotoline = false });
-            monitorMap.Add(MIC_BUSBAR_CGQLINENUM, new MonitorType() { code = MIC_BUSBAR_CGQLINENUM, unit = "", zerotoline = true });
+            monitorMap.Add(MIC_BUSBAR_CGQLINENUM, new MonitorType() { code = MIC_BUSBAR_CGQLINENUM, unit = "", zerotoline = false });
             monitorMap.Add(MIC_BUSBAR_COMMUNICATION, new MonitorType() { code = MIC_BUSBAR_COMMUNICATION, unit = "", zerotoline = false });
             monitorMap.Add(MIC_BUSBAR_DCUXVOLT, new MonitorType() { code = MIC_BUSBAR_DCUXVOLT, unit = "V", zerotoline = false });
-            monitorMap.Add(MIC_BUSBAR_DIGITALINPUT, new MonitorType() { code = MIC_BUSBAR_DIGITALINPUT, unit = "", zerotoline = true });
-            monitorMap.Add(MIC_BUSBAR_JDQOUT, new MonitorType() { code = MIC_BUSBAR_JDQOUT, unit = "", zerotoline = true });
-            monitorMap.Add(MIC_BUSBAR_JNTEMPRATURE, new MonitorType() { code = MIC_BUSBAR_JNTEMPRATURE, unit = "℃", zerotoline = true });
-            monitorMap.Add(MIC_BUSBAR_MAXLINE, new MonitorType() { code = MIC_BUSBAR_MAXLINE, unit = "", zerotoline = true });
+            monitorMap.Add(MIC_BUSBAR_DIGITALINPUT, new MonitorType() { code = MIC_BUSBAR_DIGITALINPUT, unit = "", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_JDQOUT, new MonitorType() { code = MIC_BUSBAR_JDQOUT, unit = "", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_JNTEMPRATURE, new MonitorType() { code = MIC_BUSBAR_JNTEMPRATURE, unit = "℃", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_MAXLINE, new MonitorType() { code = MIC_BUSBAR_MAXLINE, unit = "", zerotoline = false });
             monitorMap.Add(MIC_BUSBAR_ZLVOILT, new MonitorType() { code = MIC_BUSBAR_ZLVOILT, unit = "V", zerotoline = false });
             monitorMap.Add(MIC_BUSBAR_TOTALCURRENT, new MonitorType() { code = MIC_BUSBAR_TOTALCURRENT, unit = "A", zerotoline = false });
-            monitorMap.Add(MIC_BUSBAR_STATUS, new MonitorType() { code = MIC_BUSBAR_STATUS, unit = "", zerotoline = true });
-            monitorMap.Add(MIC_BUSBAR_DUANLUDATA, new MonitorType() { code = MIC_BUSBAR_DUANLUDATA, unit = "", zerotoline = true });
-            monitorMap.Add(MIC_BUSBAR_DLGGDATA, new MonitorType() { code = MIC_BUSBAR_DLGGDATA, unit = "", zerotoline = true });
-            monitorMap.Add(MIC_BUSBAR_DLGDDATA, new MonitorType() { code = MIC_BUSBAR_DLGDDATA, unit = "", zerotoline = true });
-            monitorMap.Add(MIC_BUSBAR_KAILUDATA, new MonitorType() { code = MIC_BUSBAR_KAILUDATA, unit = "", zerotoline = true });
-            monitorMap.Add(MIC_BUSBAR_MAXCURRENT, new MonitorType() { code = MIC_BUSBAR_MAXCURRENT, unit = "A", zerotoline = true });
-            monitorMap.Add(MIC_BUSBAR_AVGCURRENT, new MonitorType() { code = MIC_BUSBAR_AVGCURRENT, unit = "A", zerotoline = true });
+            monitorMap.Add(MIC_BUSBAR_STATUS, new MonitorType() { code = MIC_BUSBAR_STATUS, unit = "", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_DUANLUDATA, new MonitorType() { code = MIC_BUSBAR_DUANLUDATA, unit = "", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_DLGGDATA, new MonitorType() { code = MIC_BUSBAR_DLGGDATA, unit = "", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_DLGDDATA, new MonitorType() { code = MIC_BUSBAR_DLGDDATA, unit = "", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_KAILUDATA, new MonitorType() { code = MIC_BUSBAR_KAILUDATA, unit = "", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_MAXCURRENT, new MonitorType() { code = MIC_BUSBAR_MAXCURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_AVGCURRENT, new MonitorType() { code = MIC_BUSBAR_AVGCURRENT, unit = "A", zerotoline = false });
 
             monitorMap.Add(MIC_DETECTOR_ADR, new MonitorType() { code = MIC_DETECTOR_ADR, unit = "", zerotoline = false });
-            monitorMap.Add(MIC_DETECTOR_ENRIONMENTTEMPRATURE, new MonitorType() { code = MIC_DETECTOR_ENRIONMENTTEMPRATURE, unit = "℃", zerotoline = true });
-            monitorMap.Add(MIC_DETECTOR_ENRIONMENTTEMPRATUREHIGH, new MonitorType() { code = MIC_DETECTOR_ENRIONMENTTEMPRATUREHIGH, unit = "℃", zerotoline = true });
-            monitorMap.Add(MIC_DETECTOR_PANELTEMPRATURE, new MonitorType() { code = MIC_DETECTOR_PANELTEMPRATURE, unit = "℃", zerotoline = true });
-            monitorMap.Add(MIC_DETECTOR_PANELTEMPRATUREHIGH, new MonitorType() { code = MIC_DETECTOR_PANELTEMPRATUREHIGH, unit = "℃", zerotoline = true });
+            monitorMap.Add(MIC_DETECTOR_ENRIONMENTTEMPRATURE, new MonitorType() { code = MIC_DETECTOR_ENRIONMENTTEMPRATURE, unit = "℃", zerotoline = false });
+            monitorMap.Add(MIC_DETECTOR_ENRIONMENTTEMPRATUREHIGH, new MonitorType() { code = MIC_DETECTOR_ENRIONMENTTEMPRATUREHIGH, unit = "℃", zerotoline = false });
+            monitorMap.Add(MIC_DETECTOR_PANELTEMPRATURE, new MonitorType() { code = MIC_DETECTOR_PANELTEMPRATURE, unit = "℃", zerotoline = false });
+            monitorMap.Add(MIC_DETECTOR_PANELTEMPRATUREHIGH, new MonitorType() { code = MIC_DETECTOR_PANELTEMPRATUREHIGH, unit = "℃", zerotoline = false });
             monitorMap.Add(MIC_DETECTOR_SOI, new MonitorType() { code = MIC_DETECTOR_SOI, unit = "℃", zerotoline = false });
             monitorMap.Add(MIC_DETECTOR_SUNLINGHT, new MonitorType() { code = MIC_DETECTOR_SUNLINGHT, unit = "W/㎡", zerotoline = false });
             monitorMap.Add(MIC_DETECTOR_WINDDIRECTION, new MonitorType() { code = MIC_DETECTOR_WINDDIRECTION, unit = "", zerotoline = false });
-            monitorMap.Add(MIC_DETECTOR_WINDSPEED, new MonitorType() { code = MIC_DETECTOR_WINDSPEED, unit = "m/s", zerotoline = true });
-            monitorMap.Add(MIC_DETECTOR_WINDSPEEDHIGH, new MonitorType() { code = MIC_DETECTOR_WINDSPEEDHIGH, unit = "m/s", zerotoline = true });
-            monitorMap.Add(MIC_DETECTOR_XMRZQD, new MonitorType() { code = MIC_DETECTOR_XMRZQD, unit = "W/㎡", zerotoline = true });
-            monitorMap.Add(MIC_DETECTOR_DAYRADIATION, new MonitorType() { code = MIC_DETECTOR_DAYRADIATION, unit = "Wh/m2", zerotoline = true });
-            monitorMap.Add(MIC_DETECTOR_TOTALRADIATION, new MonitorType() { code = MIC_DETECTOR_TOTALRADIATION, unit = "Wh/m2", zerotoline = true });
+            monitorMap.Add(MIC_DETECTOR_WINDSPEED, new MonitorType() { code = MIC_DETECTOR_WINDSPEED, unit = "m/s", zerotoline = false });
+            monitorMap.Add(MIC_DETECTOR_WINDSPEEDHIGH, new MonitorType() { code = MIC_DETECTOR_WINDSPEEDHIGH, unit = "m/s", zerotoline = false });
+            monitorMap.Add(MIC_DETECTOR_XMRZQD, new MonitorType() { code = MIC_DETECTOR_XMRZQD, unit = "W/㎡", zerotoline = false });
+            monitorMap.Add(MIC_DETECTOR_DAYRADIATION, new MonitorType() { code = MIC_DETECTOR_DAYRADIATION, unit = "Wh/㎡", zerotoline = false });
+            monitorMap.Add(MIC_DETECTOR_TOTALRADIATION, new MonitorType() { code = MIC_DETECTOR_TOTALRADIATION, unit = "Wh/㎡", zerotoline = false });
 
             monitorMap.Add(MIC_INVERTER_AC, new MonitorType() { code = MIC_INVERTER_AC, unit = "A", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_ACENERGY, new MonitorType() { code = MIC_INVERTER_ACENERGY, unit = "kWh", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_ADIRECTCURRENT, new MonitorType() { code = MIC_INVERTER_ADIRECTCURRENT, unit = "A", zerotoline = false });
-            monitorMap.Add(MIC_INVERTER_ADIRECTPOWER, new MonitorType() { code = MIC_INVERTER_ADIRECTPOWER, unit = "W", zerotoline = true });
+            monitorMap.Add(MIC_INVERTER_ADIRECTPOWER, new MonitorType() { code = MIC_INVERTER_ADIRECTPOWER, unit = "W", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_ADIRECTVOLT, new MonitorType() { code = MIC_INVERTER_ADIRECTVOLT, unit = "V", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_AV, new MonitorType() { code = MIC_INVERTER_AV, unit = "V", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_BDIRECTCURRENT, new MonitorType() { code = MIC_INVERTER_BDIRECTCURRENT, unit = "A", zerotoline = false });
-            monitorMap.Add(MIC_INVERTER_BDIRECTPOWER, new MonitorType() { code = MIC_INVERTER_BDIRECTPOWER, unit = "W", zerotoline = true });
+            monitorMap.Add(MIC_INVERTER_BDIRECTPOWER, new MonitorType() { code = MIC_INVERTER_BDIRECTPOWER, unit = "W", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_BDIRECTVOLT, new MonitorType() { code = MIC_INVERTER_BDIRECTVOLT, unit = "V", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_CDIRECTCURRENT, new MonitorType() { code = MIC_INVERTER_CDIRECTCURRENT, unit = "A", zerotoline = false });
-            monitorMap.Add(MIC_INVERTER_CDIRECTPOWER, new MonitorType() { code = MIC_INVERTER_CDIRECTPOWER, unit = "W", zerotoline = true });
+            monitorMap.Add(MIC_INVERTER_CDIRECTPOWER, new MonitorType() { code = MIC_INVERTER_CDIRECTPOWER, unit = "W", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_CDIRECTVOLT, new MonitorType() { code = MIC_INVERTER_CDIRECTVOLT, unit = "V", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_DC, new MonitorType() { code = MIC_INVERTER_DC, unit = "A", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_DC1, new MonitorType() { code = MIC_INVERTER_DC1, unit = "A", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_DC2, new MonitorType() { code = MIC_INVERTER_DC2, unit = "A", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_DC3, new MonitorType() { code = MIC_INVERTER_DC3, unit = "A", zerotoline = false });
-            monitorMap.Add(MIC_INVERTER_DEVICESTATUS, new MonitorType() { code = MIC_INVERTER_DEVICESTATUS, unit = "", zerotoline = true });
+            monitorMap.Add(MIC_INVERTER_DEVICESTATUS, new MonitorType() { code = MIC_INVERTER_DEVICESTATUS, unit = "", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_DV, new MonitorType() { code = MIC_INVERTER_DV, unit = "V", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_DV1, new MonitorType() { code = MIC_INVERTER_DV1, unit = "V", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_DV2, new MonitorType() { code = MIC_INVERTER_DV2, unit = "V", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_DV3, new MonitorType() { code = MIC_INVERTER_DV3, unit = "V", zerotoline = false });
-            monitorMap.Add(MIC_INVERTER_DWPL, new MonitorType() { code = MIC_INVERTER_DWPL, unit = "Hz", zerotoline = true });
-            monitorMap.Add(MIC_INVERTER_INVERTERXL, new MonitorType() { code = MIC_INVERTER_INVERTERXL, unit = "%", zerotoline = true });
-            monitorMap.Add(MIC_INVERTER_INVETERTEMPRATURE, new MonitorType() { code = MIC_INVERTER_INVETERTEMPRATURE, unit = "℃", zerotoline = true });
-            monitorMap.Add(MIC_INVERTER_JNBYQTEMPRATURE, new MonitorType() { code = MIC_INVERTER_JNBYQTEMPRATURE, unit = "℃", zerotoline = true });
-            monitorMap.Add(MIC_INVERTER_JNKQTEMPRATURE, new MonitorType() { code = MIC_INVERTER_JNKQTEMPRATURE, unit = "℃", zerotoline = true });
-            monitorMap.Add(MIC_INVERTER_JNSRQTEMPRATURE, new MonitorType() { code = MIC_INVERTER_JNSRQTEMPRATURE, unit = "℃", zerotoline = true });
+            monitorMap.Add(MIC_INVERTER_DWPL, new MonitorType() { code = MIC_INVERTER_DWPL, unit = "Hz", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_INVERTERXL, new MonitorType() { code = MIC_INVERTER_INVERTERXL, unit = "%", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_INVETERTEMPRATURE, new MonitorType() { code = MIC_INVERTER_INVETERTEMPRATURE, unit = "℃", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_JNBYQTEMPRATURE, new MonitorType() { code = MIC_INVERTER_JNBYQTEMPRATURE, unit = "℃", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_JNKQTEMPRATURE, new MonitorType() { code = MIC_INVERTER_JNKQTEMPRATURE, unit = "℃", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_JNSRQTEMPRATURE, new MonitorType() { code = MIC_INVERTER_JNSRQTEMPRATURE, unit = "℃", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_OUTTYPE, new MonitorType() { code = MIC_INVERTER_OUTTYPE, unit = "", zerotoline = false });
-            monitorMap.Add(MIC_INVERTER_POWER, new MonitorType() { code = MIC_INVERTER_POWER, unit = "kW", zerotoline = true });
-            monitorMap.Add(MIC_INVERTER_RUNTIME, new MonitorType() { code = MIC_INVERTER_RUNTIME, unit = "h", zerotoline = true });
-            monitorMap.Add(MIC_INVERTER_STATUSDATA1, new MonitorType() { code = MIC_INVERTER_STATUSDATA1, unit = "", zerotoline = true });
-            monitorMap.Add(MIC_INVERTER_STATUSDATA2, new MonitorType() { code = MIC_INVERTER_STATUSDATA2, unit = "", zerotoline = true });
-            monitorMap.Add(MIC_INVERTER_STATUSDATA3, new MonitorType() { code = MIC_INVERTER_STATUSDATA3, unit = "", zerotoline = true });
+            monitorMap.Add(MIC_INVERTER_POWER, new MonitorType() { code = MIC_INVERTER_POWER, unit = "kW", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_RUNTIME, new MonitorType() { code = MIC_INVERTER_RUNTIME, unit = "h", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_STATUSDATA1, new MonitorType() { code = MIC_INVERTER_STATUSDATA1, unit = "", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_STATUSDATA2, new MonitorType() { code = MIC_INVERTER_STATUSDATA2, unit = "", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_STATUSDATA3, new MonitorType() { code = MIC_INVERTER_STATUSDATA3, unit = "", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_STATUSTIME, new MonitorType() { code = MIC_INVERTER_STATUSTIME, unit = "", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_TODAYENERGY, new MonitorType() { code = MIC_INVERTER_TODAYENERGY, unit = "kWh", zerotoline = false });
-            monitorMap.Add(MIC_INVERTER_TOTALDPOWER, new MonitorType() { code = MIC_INVERTER_TOTALDPOWER, unit = "W", zerotoline = true });
+            monitorMap.Add(MIC_INVERTER_TOTALDPOWER, new MonitorType() { code = MIC_INVERTER_TOTALDPOWER, unit = "W", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_TOTALENERGY, new MonitorType() { code = MIC_INVERTER_TOTALENERGY, unit = "kWh", zerotoline = false });
-            monitorMap.Add(MIC_INVERTER_TOTALPOWERFACTOR, new MonitorType() { code = MIC_INVERTER_TOTALPOWERFACTOR, unit = "", zerotoline = true });
-            monitorMap.Add(MIC_INVERTER_TOTALWGPOWER, new MonitorType() { code = MIC_INVERTER_TOTALWGPOWER, unit = "W", zerotoline = true });
-            monitorMap.Add(MIC_INVERTER_TOTALYGPOWER, new MonitorType() { code = MIC_INVERTER_TOTALYGPOWER, unit = "W", zerotoline = true });
+            monitorMap.Add(MIC_INVERTER_TOTALPOWERFACTOR, new MonitorType() { code = MIC_INVERTER_TOTALPOWERFACTOR, unit = "", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_TOTALWGPOWER, new MonitorType() { code = MIC_INVERTER_TOTALWGPOWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_TOTALYGPOWER, new MonitorType() { code = MIC_INVERTER_TOTALYGPOWER, unit = "W", zerotoline = false });
 
             //电表
-            monitorMap.Add(MIC_AMMETER_SYSFREQUENCY, new MonitorType() { code = MIC_AMMETER_SYSFREQUENCY, unit = "Hz", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_PHASEVOLTAGE1, new MonitorType() { code = MIC_AMMETER_PHASEVOLTAGE1, unit = "V", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_PHASEVOLTAGE2, new MonitorType() { code = MIC_AMMETER_PHASEVOLTAGE2, unit = "V", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_PHASEVOLTAGE3, new MonitorType() { code = MIC_AMMETER_PHASEVOLTAGE3, unit = "V", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_PHASECURRENT1, new MonitorType() { code = MIC_AMMETER_PHASECURRENT1, unit = "A", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_PHASECURRENT2, new MonitorType() { code = MIC_AMMETER_PHASECURRENT2, unit = "A", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_PHASECURRENT3, new MonitorType() { code = MIC_AMMETER_PHASECURRENT3, unit = "A", zerotoline = true });
+            monitorMap.Add(MIC_AMMETER_SYSFREQUENCY, new MonitorType() { code = MIC_AMMETER_SYSFREQUENCY, unit = "Hz", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_PHASEVOLTAGE1, new MonitorType() { code = MIC_AMMETER_PHASEVOLTAGE1, unit = "V", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_PHASEVOLTAGE2, new MonitorType() { code = MIC_AMMETER_PHASEVOLTAGE2, unit = "V", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_PHASEVOLTAGE3, new MonitorType() { code = MIC_AMMETER_PHASEVOLTAGE3, unit = "V", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_PHASECURRENT1, new MonitorType() { code = MIC_AMMETER_PHASECURRENT1, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_PHASECURRENT2, new MonitorType() { code = MIC_AMMETER_PHASECURRENT2, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_PHASECURRENT3, new MonitorType() { code = MIC_AMMETER_PHASECURRENT3, unit = "A", zerotoline = false });
 
-            monitorMap.Add(MIC_AMMETER_PHASEACTIVEPOWER1, new MonitorType() { code = MIC_AMMETER_PHASEACTIVEPOWER1, unit = "W", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_PHASEACTIVEPOWER2, new MonitorType() { code = MIC_AMMETER_PHASEACTIVEPOWER2, unit = "W", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_PHASEACTIVEPOWER3, new MonitorType() { code = MIC_AMMETER_PHASEACTIVEPOWER3, unit = "W", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_SYSACTIVEPOWER, new MonitorType() { code = MIC_AMMETER_SYSACTIVEPOWER, unit = "W", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_PHASEREACTIVEPOWER1, new MonitorType() { code = MIC_AMMETER_PHASEREACTIVEPOWER1, unit = "Var", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_PHASEREACTIVEPOWER2, new MonitorType() { code = MIC_AMMETER_PHASEREACTIVEPOWER2, unit = "Var", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_PHASEREACTIVEPOWER3, new MonitorType() { code = MIC_AMMETER_PHASEREACTIVEPOWER3, unit = "Var", zerotoline = true });
+            monitorMap.Add(MIC_AMMETER_PHASEACTIVEPOWER1, new MonitorType() { code = MIC_AMMETER_PHASEACTIVEPOWER1, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_PHASEACTIVEPOWER2, new MonitorType() { code = MIC_AMMETER_PHASEACTIVEPOWER2, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_PHASEACTIVEPOWER3, new MonitorType() { code = MIC_AMMETER_PHASEACTIVEPOWER3, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_SYSACTIVEPOWER, new MonitorType() { code = MIC_AMMETER_SYSACTIVEPOWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_PHASEREACTIVEPOWER1, new MonitorType() { code = MIC_AMMETER_PHASEREACTIVEPOWER1, unit = "Var", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_PHASEREACTIVEPOWER2, new MonitorType() { code = MIC_AMMETER_PHASEREACTIVEPOWER2, unit = "Var", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_PHASEREACTIVEPOWER3, new MonitorType() { code = MIC_AMMETER_PHASEREACTIVEPOWER3, unit = "Var", zerotoline = false });
 
-            monitorMap.Add(MIC_AMMETER_SYSREACTIVEPOWER, new MonitorType() { code = MIC_AMMETER_SYSREACTIVEPOWER, unit = "Var", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_PHASEAPPARENTPOWER1, new MonitorType() { code = MIC_AMMETER_PHASEAPPARENTPOWER1, unit = "VA", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_PHASEAPPARENTPOWER2, new MonitorType() { code = MIC_AMMETER_PHASEAPPARENTPOWER2, unit = "VA", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_PHASEAPPARENTPOWER3, new MonitorType() { code = MIC_AMMETER_PHASEAPPARENTPOWER3, unit = "VA", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_SYSAPPARENTPOWER, new MonitorType() { code = MIC_AMMETER_SYSAPPARENTPOWER, unit = "", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_PHASEPOWERFACTOR1, new MonitorType() { code = MIC_AMMETER_PHASEPOWERFACTOR1, unit = "", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_PHASEPOWERFACTOR2, new MonitorType() { code = MIC_AMMETER_PHASEPOWERFACTOR2, unit = "", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_PHASEPOWERFACTOR3, new MonitorType() { code = MIC_AMMETER_PHASEPOWERFACTOR3, unit = "", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_SYSPOWERFACTOR1, new MonitorType() { code = MIC_AMMETER_SYSPOWERFACTOR1, unit = "", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_POSITIVEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_POSITIVEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_REVERSEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_REVERSEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_POSITIVEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_POSITIVEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_REVERSEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_REVERSEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_ABSOLUTEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_ABSOLUTEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_PUREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_PUREACTIVEPOWERDEGREE, unit = "kWh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_ABSOLUTEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_ABSOLUTEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_PUREREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_PUREREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_WAVERATEPOSITIVEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_WAVERATEPOSITIVEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_WAVERATEREVERSEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_WAVERATEREVERSEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_WAVERATEPOSITIVEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_WAVERATEPOSITIVEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_WAVERATEREVERSEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_WAVERATEREVERSEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_RATEPEAKPOSITIVEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATEPEAKPOSITIVEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_RATEPEAKREVERSEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATEPEAKREVERSEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_RATEPEAKPOSITIVEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATEPEAKPOSITIVEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_RATEPEAKREVERSEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATEPEAKREVERSEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = true });
+            monitorMap.Add(MIC_AMMETER_SYSREACTIVEPOWER, new MonitorType() { code = MIC_AMMETER_SYSREACTIVEPOWER, unit = "Var", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_PHASEAPPARENTPOWER1, new MonitorType() { code = MIC_AMMETER_PHASEAPPARENTPOWER1, unit = "VA", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_PHASEAPPARENTPOWER2, new MonitorType() { code = MIC_AMMETER_PHASEAPPARENTPOWER2, unit = "VA", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_PHASEAPPARENTPOWER3, new MonitorType() { code = MIC_AMMETER_PHASEAPPARENTPOWER3, unit = "VA", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_SYSAPPARENTPOWER, new MonitorType() { code = MIC_AMMETER_SYSAPPARENTPOWER, unit = "", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_PHASEPOWERFACTOR1, new MonitorType() { code = MIC_AMMETER_PHASEPOWERFACTOR1, unit = "", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_PHASEPOWERFACTOR2, new MonitorType() { code = MIC_AMMETER_PHASEPOWERFACTOR2, unit = "", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_PHASEPOWERFACTOR3, new MonitorType() { code = MIC_AMMETER_PHASEPOWERFACTOR3, unit = "", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_SYSPOWERFACTOR1, new MonitorType() { code = MIC_AMMETER_SYSPOWERFACTOR1, unit = "", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_POSITIVEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_POSITIVEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_REVERSEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_REVERSEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_POSITIVEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_POSITIVEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_REVERSEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_REVERSEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_ABSOLUTEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_ABSOLUTEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_PUREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_PUREACTIVEPOWERDEGREE, unit = "kWh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_ABSOLUTEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_ABSOLUTEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_PUREREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_PUREREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_WAVERATEPOSITIVEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_WAVERATEPOSITIVEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_WAVERATEREVERSEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_WAVERATEREVERSEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_WAVERATEPOSITIVEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_WAVERATEPOSITIVEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_WAVERATEREVERSEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_WAVERATEREVERSEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_RATEPEAKPOSITIVEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATEPEAKPOSITIVEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_RATEPEAKREVERSEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATEPEAKREVERSEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_RATEPEAKPOSITIVEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATEPEAKPOSITIVEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_RATEPEAKREVERSEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATEPEAKREVERSEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = false });
 
-            monitorMap.Add(MIC_AMMETER_RATEVALLEYPOSITIVEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATEVALLEYPOSITIVEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_RATEVALLEYREVERSEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATEVALLEYREVERSEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_RATEVALLEYPOSITIVEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATEVALLEYPOSITIVEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_RATEVALLEYREVERSEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATEVALLEYREVERSEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = true });
+            monitorMap.Add(MIC_AMMETER_RATEVALLEYPOSITIVEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATEVALLEYPOSITIVEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_RATEVALLEYREVERSEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATEVALLEYREVERSEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_RATEVALLEYPOSITIVEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATEVALLEYPOSITIVEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_RATEVALLEYREVERSEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATEVALLEYREVERSEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = false });
 
-            monitorMap.Add(MIC_AMMETER_RATELEVELPOSITIVEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATELEVELPOSITIVEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_RATELEVELREVERSEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATELEVELREVERSEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_RATELEVELPOSITIVEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATELEVELPOSITIVEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = true });
-            monitorMap.Add(MIC_AMMETER_RATELEVELREVERSEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATELEVELREVERSEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = true });
+            monitorMap.Add(MIC_AMMETER_RATELEVELPOSITIVEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATELEVELPOSITIVEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_RATELEVELREVERSEACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATELEVELREVERSEACTIVEPOWERDEGREE, unit = "kWh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_RATELEVELPOSITIVEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATELEVELPOSITIVEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_RATELEVELREVERSEREACTIVEPOWERDEGREE, new MonitorType() { code = MIC_AMMETER_RATELEVELREVERSEREACTIVEPOWERDEGREE, unit = "kVarh", zerotoline = false });
 
 
             //添加需要做历史的测点

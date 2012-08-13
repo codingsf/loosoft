@@ -46,6 +46,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// 0x02	逆变器（MODBUS协议）
         /// </summary>
         public const int TYPE_MODBUS_INVERTER = 0x02;
+        /// <summary>
+        /// 0x03	逆变器（MODBUS协议） 支持630K机型
+        /// </summary>
+        public const int TYPE_MODBUS_INVERTER03 = 0x03;
 
         /// <summary>
         /// 0x11 汇流箱（SUNGROW协议）
@@ -121,7 +125,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             //将协议类型代码和对象加入map
             protocolTypeMap.Add(TYPE_SUNGROW_INVERTER, new ProtocolType() { code = TYPE_SUNGROW_INVERTER, typecode = INVERTER_CODE, name = "逆变器SUNGROW协议" });
             protocolTypeMap.Add(TYPE_MODBUS_INVERTER, new ProtocolType() { code = TYPE_MODBUS_INVERTER, typecode = INVERTER_CODE, name = "逆变器MODBUS协议" });
-
+            protocolTypeMap.Add(TYPE_MODBUS_INVERTER03, new ProtocolType() { code = TYPE_MODBUS_INVERTER03, typecode = INVERTER_CODE, name = "逆变器MODBUS03协议" });
+            
             protocolTypeMap.Add(TYPE_SUNGROW_BUSBAR, new ProtocolType() { code = TYPE_SUNGROW_BUSBAR, typecode = HUILIUXIANG_CODE, name = "汇流箱SUNGROW协议" });
             protocolTypeMap.Add(TYPE_MODBUS_BUSBAR, new ProtocolType() { code = TYPE_MODBUS_BUSBAR, typecode = HUILIUXIANG_CODE, name = "汇流箱MODEBUS协议" });
             protocolTypeMap.Add(TYPE_MODBUS15_BUSBAR, new ProtocolType() { code = TYPE_MODBUS15_BUSBAR, typecode = HUILIUXIANG_CODE, name = "汇流箱装置光伏阵列汇流箱通讯协议（Modbus）V1.1.1.0" });

@@ -26,6 +26,17 @@
 
         private static string affix_collectortotalenergy = mem_affix + "collectortotalenergy";//采集器总电量
 
+        private static string affix_errorcode = mem_affix + "errorcode";//错误码前缀
+        /// <summary>
+        /// 构建错误对应类型cache key
+        /// </summary>
+        /// <param name="errorcode"></param>
+        /// <returns></returns>
+        public static string buildErrorCode(string errorcode)
+        {
+            return affix_errorcode + errorcode;
+        }
+
         public static string buildTodayTotalEnergy() {
             return affix_todaytotalenergy;
         }

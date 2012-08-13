@@ -47,7 +47,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
 
             return outputStr;
         }
-
         /// <summary>
         /// 将浮点型转成字符串，无格式
         /// </summary>
@@ -55,7 +54,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// <returns></returns>
         public static string formatFloat(float d)
         {
-            return d.ToString(new CultureInfo("zh-cn"));
+            CultureInfo ci = new CultureInfo("zh-CN");
+            ci.NumberFormat.CurrencyDecimalSeparator = ".";
+            return d.ToString(ci);
         }
         /// <summary>
         /// 将浮点型转化成字符串，带格式
@@ -65,7 +66,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// <returns></returns>
         public static string formatFloat(float d, string format)
         {
-            return d.ToString(format, new CultureInfo("zh-cn"));
+            CultureInfo ci = new CultureInfo("zh-CN");
+            ci.NumberFormat.CurrencyDecimalSeparator = ".";
+            return d.ToString(format, ci);
         }
 
         /// <summary>
@@ -75,7 +78,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// <returns></returns>
         public static string formatDouble(double d)
         {
-            return d.ToString(new CultureInfo("zh-cn"));
+            CultureInfo ci = new CultureInfo("zh-CN");
+            ci.NumberFormat.CurrencyDecimalSeparator = ".";
+            return d.ToString(ci);
         }
 
         /// <summary>
@@ -86,7 +91,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// <returns></returns>
         public static string formatDouble(double d, string format)
         {
-            return d.ToString(format, new CultureInfo("zh-cn"));
+            CultureInfo ci = new CultureInfo("zh-CN");
+            ci.NumberFormat.CurrencyDecimalSeparator = ".";
+            //NumberStyles style = NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands | NumberStyles.Float;
+            return d.ToString(format, ci);
         }
         /// <summary>
         /// 将字符串转化成浮点想
@@ -95,8 +103,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// <returns></returns>
         public static float stringtoFloat(string d)
         {
-            NumberStyles style = NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands;
-            return float.Parse(d, style, new CultureInfo("zh-cn"));
+            //System.Globalization.CultureInfo cul = new System.Globalization.CultureInfo("zh-CN");
+            CultureInfo ci = (CultureInfo)CultureInfo.CurrentCulture.Clone();
+            ci.NumberFormat.CurrencyDecimalSeparator = ".";
+            //NumberStyles style = NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands | NumberStyles.Float;
+            return float.Parse(d, NumberStyles.Any, ci);
         }
         /// <summary>
         /// 将字符串转换成双精度
@@ -105,8 +116,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// <returns></returns>
         public static double stringtoDouble(string d)
         {
-            NumberStyles style = NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands;
-            return double.Parse(d, style, new CultureInfo("zh-cn"));
+            CultureInfo ci = (CultureInfo)CultureInfo.CurrentCulture.Clone();
+            ci.NumberFormat.CurrencyDecimalSeparator = ".";
+            //NumberStyles style = NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands | NumberStyles.Float;
+            return double.Parse(d, NumberStyles.Any, ci);
         }
 
         /// <summary>

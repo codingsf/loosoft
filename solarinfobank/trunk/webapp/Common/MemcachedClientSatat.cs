@@ -14,7 +14,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
     {        
 
         //存储解析过的可以列表
-        private string analyzedkey = "analyzedkey";
+        public static string analyzedkey = "analyzedkey";
         private string poolName = "DataAnalyze";//和数据收发服务保持一致
         private int msgnum = 0;
         private String[] serverlist = { "127.0.0.1:11211" };//要改为配置文件读取
@@ -70,11 +70,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// </summary>
         /// <returns></returns>
         public static  MemcachedClientSatat getInstance() {
-            MemcachedClientSatat mcs = instances.ContainsKey("defualt") ? instances["defualt"] : null;
+            MemcachedClientSatat mcs = instances.ContainsKey("default") ? instances["default"] : null;
             if (mcs == null)
             {
                 mcs = new MemcachedClientSatat();
-                instances["defualt"] = mcs;
+                instances["default"] = mcs;
             }
             return mcs;
         }
@@ -190,6 +190,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// <param name="newKey"></param>
         /// <returns></returns>
         public bool isAnalyzed(string newKey){
+            if (msgnum == 0)
+            {
+                return false;
+            }
             IList<string> hasList = (IList<string>)this.Get(analyzedkey);
             if (hasList != null)
             {
@@ -197,49 +201,51 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             }
             return false;
         }
+
         /// <summary>
         /// 删除最早的一个，为了保留msgnum个历史数据
         /// </summary>
-        public void deleteAnalyzed(string newKey)
+        public void deleteAnalyzed(string newKey, IList<string> hasList)
         {
-            IList<string> hasList = (IList<string>)this.Get(analyzedkey);
-            if (hasList == null)
-            {
-                hasList = new List<string>();
-            }
             if (msgnum == 0)
             {
                 mc.Delete(newKey);
-            }
-            else if(hasList.Count > msgnum ) {
-                string key = hasList[0];
-                hasList.Remove(key);
-                mc.Delete(key);
+            }else{
+                if (hasList == null)
+                {
+                    hasList = new List<string>();
+                }
+
+                if (hasList.Count > msgnum)
+                {
+                    string key = hasList[0];
+                    mc.Delete(key);
+                }
             }
         }
 
+
+        /// <summary>
+        /// 删除最早的一个，为了保留msgnum个历史数据
+        /// </summary>
         public void remember(string newKey)
         {
-            IList<string> hasList = (IList<string>)this.Get(analyzedkey);
-            if (hasList == null)
+            if (msgnum > 0)
             {
-                hasList = new List<string>();
-            }
-            if (msgnum == 0)
-            {
-                if (hasList.Count > 3000)
+                IList<string> hasList = (IList<string>)this.Get(analyzedkey);
+                if (hasList == null)
                 {
-                    hasList.Clear();
+                    hasList = new List<string>();
                 }
+
+                if (hasList.Count > msgnum)
+                {
+                    string key = hasList[0];
+                    hasList.Remove(key);
+                }
+                hasList.Add(newKey);
+                this.Set(analyzedkey, hasList);
             }
-            else if (hasList.Count > msgnum)
-            {
-                string key = hasList[0];
-                hasList.Remove(key);
-            }
-            hasList.Add(newKey);
-            this.Set(analyzedkey, hasList);
-        
         }
     }
 }

@@ -135,9 +135,32 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             Excel.XlChartType chartType = charts[0].chartType;
             string yname = charts[0].yname;
             chartObject.Chart.ChartWizard(firstRange, chartType, Missing.Value, Excel.XlRowCol.xlColumns, 1, 1, true, chartName, categoryName, yname, Missing.Value);
+            chartObject.Chart.ChartArea.ClearFormats();
+            chartObject.Chart.ChartType = chartType;
+            chartObject.Chart.ChartArea.Fill.BackColor.SchemeColor = 2;//整个图表区背景
+            //Console.WriteLine(chartObject.Chart.ChartArea.Fill.ForeColor.SchemeColor);
+            //Console.WriteLine(chartObject.Chart.ChartArea.Fill.ForeColor.RGB);
+            chartObject.Chart.ChartArea.Fill.ForeColor.SchemeColor = 2;
+            //Console.WriteLine(chartObject.Chart.ChartArea.Fill.ForeColor.RGB);
+            //Console.WriteLine(chartObject.Chart.PlotArea.Interior.ColorIndex);
+            //chartObject.Chart.PlotArea.Interior.PatternColorIndex = 19;
+            chartObject.Chart.PlotArea.Interior.ColorIndex = 2;//图例区域背景
+
+            Excel.Axis firstAxis = (Excel.Axis)chartObject.Chart.Axes(Excel.XlAxisType.xlValue, Excel.XlAxisGroup.xlPrimary);
+            firstAxis.HasMajorGridlines = true;//不显示横向网格线
 
             Excel.SeriesCollection seriesCollection = (Excel.SeriesCollection)chartObject.Chart.SeriesCollection(Type.Missing);
             int sc = seriesCollection.Count;
+
+            if (seriesCollection.Count > 0)
+            {
+                Excel.Series seires1 = (Excel.Series)seriesCollection.Item(1);//具体数据图表区颜色
+                //seires1.Fill.BackColor.SchemeColor = 18;
+                seires1.Fill.ForeColor.SchemeColor = 46;
+                seires1.MarkerForegroundColorIndex = Excel.XlColorIndex.xlColorIndexNone;
+                seires1.HasLeaderLines = false;
+            }
+
             //绘制第二维图表
             //修改第一维图表的各个序列的图例,这里有个bug，会用最后的标题覆盖前面的
            // for (int i = 0; i < charts[0].seriesTitles.Length; i++)
@@ -156,8 +179,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
                 Excel.Series xlSeries = (Excel.Series)seriesCollection.NewSeries();
                 xlSeries.Name = stitle;
                 xlSeries.HasLeaderLines = true;
-                //xlSeries.Has3DEffect = true;
-                //xlSeries.HasDataLabels = true;
+                xlSeries.Fill.ForeColor.SchemeColor = 46;
                 try
                 {
                     xlSeries.AxisGroup = Excel.XlAxisGroup.xlSecondary;

@@ -44,7 +44,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
 
         public static string GetText(float key)
         {
-            return LanguageUtil.getDesc(maps[key.ToString()]);
+            if (maps.ContainsKey(key.ToString()))
+                return LanguageUtil.getDesc(maps[key.ToString()]);
+            else
+                return key.ToString();
         }
 
         public static IList<SelectListItem> Data

@@ -35,6 +35,16 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             GregorianCalendar gc = new GregorianCalendar();
             return gc.GetDaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
         }
+        /// <summary>
+        /// 取得当前系统月份的天,参考时区
+        /// </summary>
+        /// <returns></returns>
+        public static int getCurMonthDays(float timezone)
+        {
+            GregorianCalendar gc = new GregorianCalendar();
+            DateTime dt = curDateWithTimeZone(timezone);
+            return gc.GetDaysInMonth(dt.Year, dt.Month);
+        }
 
         /// <summary>
         /// 取得当前月份前一个月份

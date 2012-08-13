@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 namespace Cn.Loosoft.Zhisou.SunPower.Common
 {
     /// <summary>
@@ -176,7 +177,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// 降额运行	0x8100
         /// 
         public const int error_jerun = 33024;
-        
+
         ///
         /// 调度运行	0x8200
         /// 
@@ -186,7 +187,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// </summary>
         public const int error_gjrun = 37120;
 
-        static private IDictionary<int, ErrorItem> errorItemMap = new Dictionary<int, ErrorItem>();
+        static public IDictionary<int, ErrorItem> errorItemMap = new Dictionary<int, ErrorItem>();
         static ErrorItem()
         {
             //string infocodestr = ErrorItem.error_run + "," + ErrorItem.error_ajgj + "," + ErrorItem.error_chshidj + "," + ErrorItem.error_daiji;
@@ -195,7 +196,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             errorItemMap.Add(error_ajgj, new ErrorItem() { code = error_ajgj, errorType = ErrorType.ERROR_TYPE_INFORMATRION });
             errorItemMap.Add(error_chshidj, new ErrorItem() { code = error_chshidj, errorType = ErrorType.ERROR_TYPE_INFORMATRION });
             errorItemMap.Add(error_daiji, new ErrorItem() { code = error_daiji, errorType = ErrorType.ERROR_TYPE_INFORMATRION });
-
 
             //string warncodestr = ErrorItem.error_byqgw + "," + ErrorItem.error_dwgy + "," + ErrorItem.error_dygp + "," + ErrorItem.error_dyqp + "," + ErrorItem.error_dyqy + "," + ErrorItem.error_jjtj;
             errorItemMap.Add(error_byqgw, new ErrorItem() { code = error_byqgw, errorType = ErrorType.ERROR_TYPE_WARN });
@@ -222,6 +222,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             errorItemMap.Add(error_jcqdk, new ErrorItem() { code = error_jcqdk, errorType = ErrorType.ERROR_TYPE_FAULT });
             errorItemMap.Add(error_comerror, new ErrorItem() { code = error_comerror, errorType = ErrorType.ERROR_TYPE_FAULT });
         }
+
         /// <summary>
         /// 根据错误项目code取得对象
         /// </summary>
@@ -233,6 +234,33 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
                 return errorItemMap[code];
             else
                 return null;
+        }
+
+        /// <summary>
+        /// 从缓存中取得同步的错误码，取不到再去本地，再取不到去默认，主要用于解析器
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public static int getErrorTypefromMemcached(int code){
+            //同步更新缓存
+            object type = MemcachedClientSatat.getInstance().Get(CacheKeyUtil.buildErrorCode(code.ToString()));
+            if (type == null)
+            {
+                ErrorItem et = getErrotItemByCode(code);
+                if (et == null) return ErrorType.ERROR_TYPE_FAULT;
+                else
+                    return et.errorType;
+            }
+            else {
+                try
+                {
+                    string str =  (string)type;
+                    return int.Parse(str.Substring(str.IndexOf("type_")+5));// "type_"
+                }
+                catch (System.Exception e) {
+                    return ErrorType.ERROR_TYPE_FAULT;
+                }
+            }
         }
 
         private string _name;
@@ -250,8 +278,33 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             }
             get
             {
-                return LanguageUtil.getDesc("ERRORITEM_" + this.code);
+                //改由从后台维护的数据的多语言取得
+                return getCodeName(Thread.CurrentThread.CurrentCulture.Name);
+                //return LanguageUtil.getDesc("ERRORITEM_" + this.code);
             }
+        }
+        /// <summary>
+        /// 根据语言代码取得名称
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public string getCodeName(string code)
+        {
+            if (_name == null || code == null) return "";
+
+            string[] arrayList = _name.Split(',');
+            string[] keyValues;
+            foreach (string array in arrayList)
+            {
+                keyValues = array.Split(':');
+                if (keyValues[0].ToLower().Equals(code.ToLower()))
+                {
+                    if (string.IsNullOrEmpty(keyValues[1]))
+                        return _name;
+                    return keyValues[1];
+                }
+            }
+            return _name;
         }
     }
 }

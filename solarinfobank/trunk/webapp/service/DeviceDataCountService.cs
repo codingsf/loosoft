@@ -73,16 +73,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             catch (Exception re) {
                 LogUtil.error("CacheCollectorCountRecord异常" + re.Message);
             }
-                //取出采集器对应的电站列表
-                IDictionary<int, int> unitMap = getAllPlantUnit();
-                try
-                {
-                    //处理电站最大值
-                    computeMax(unitMap, recordMap);
-                }
-                catch (Exception ure) {
-                    LogUtil.error("computeMax异常"+ure.Message);
-                }
+
+            //取出采集器对应的电站列表
+            IDictionary<int, int> unitMap = getAllPlantUnit();
+            try
+            {
+                //处理电站最大值
+                computeMax(unitMap, recordMap);
+            }
+            catch (Exception ure) {
+                LogUtil.error("computeMax异常"+ure.Message);
+            }
             //}
         }
 
@@ -142,6 +143,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             //给电站的采集器集合增加为完整的所有的采集器集合，以便每次都能统计所有采集器累计的最大发生值
 
             Plant plant = PlantService.GetInstance().GetPlantInfoById(collectorDataCount.deviceId);
+            if (plant == null) return;
             string tmpcachkey = "";
             IList<Hashtable> plantRecordList = new List<Hashtable>();
             foreach (PlantUnit unit in plant.allFactUnits)
@@ -283,7 +285,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         {
             foreach (DeviceDataCount deviceDataCount in deviceDataCounts)
             {
-                Cache(deviceDataCount);
+                try
+                {
+                    Cache(deviceDataCount);
+                }
+                catch (Exception onee) {
+                    LogUtil.writeline("handle one deviceDataCount of " + deviceDataCount.deviceId + "error:" +onee.Message);
+                }
             }
         }
 
@@ -346,16 +354,21 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     MemcachedClientSatat.getInstance().Delete(key);
                     continue;
                 }
-
-                if (deviceDataCount.id > 0)
+                try
                 {
-                    this.Update(deviceDataCount);
+                    if (deviceDataCount.id > 0)
+                    {
+                        this.Update(deviceDataCount);
+                    }
+                    else
+                    {
+                        this.Insert(deviceDataCount);
+
+                        MemcachedClientSatat.getInstance().Set(key, deviceDataCount);
+                    }
                 }
-                else
-                {
-                    this.Insert(deviceDataCount);
-
-                    MemcachedClientSatat.getInstance().Set(key,deviceDataCount);
+                catch (Exception ee) {
+                    LogUtil.error("save device data count error:" + ee.Message);
                 }
                 //判断是否不在持久化
                 if (deviceDataCount.localAcceptTime.Day != DateTime.Now.Day)

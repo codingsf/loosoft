@@ -194,15 +194,21 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 energyData = (CollectorYearMonthData)obj;
                 string m_Column = "m_" + energyData.curMonth;
                 float m_value = (float)ReflectionUtil.getProperty(energyData, m_Column);
-                if (energyData.id > 0)
+                try
                 {
-                    _plantYearDataDao.UpdateCollectorYearMonthData(m_Column, m_value, energyData.id);
+                    if (energyData.id > 0)
+                    {
+                        _plantYearDataDao.UpdateCollectorYearMonthData(m_Column, m_value, energyData.id);
+                    }
+                    else
+                    {
+                        _plantYearDataDao.InsertCollectorYearMonthData(m_Column, m_value, energyData.collectorID, energyData.year);
+                        energyData.id = _plantYearDataDao.GetCollectorYearMonthData(energyData.collectorID, energyData.year).id;
+                        MemcachedClientSatat.getInstance().Set(key, energyData);
+                    }
                 }
-                else
-                {
-                    _plantYearDataDao.InsertCollectorYearMonthData(m_Column, m_value, energyData.collectorID, energyData.year);
-                    energyData.id = _plantYearDataDao.GetCollectorYearMonthData(energyData.collectorID, energyData.year).id;
-                    MemcachedClientSatat.getInstance().Set(key, energyData);
+                catch (Exception ee) {
+                    LogUtil.error("save collector year month data error:" + ee.Message);
                 }
 
                 //判断是否不在持久化

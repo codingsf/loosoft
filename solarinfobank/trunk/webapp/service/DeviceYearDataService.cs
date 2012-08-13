@@ -157,14 +157,20 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     continue;
                 }
                 energyData = (DeviceYearData)obj;
-                if (energyData.id > 0)
+                try
                 {
-                    _deviceTotalDataDao.Update(energyData);
+                    if (energyData.id > 0)
+                    {
+                        _deviceTotalDataDao.Update(energyData);
+                    }
+                    else
+                    {
+                        _deviceTotalDataDao.Insert(energyData);
+                        MemcachedClientSatat.getInstance().Set(key, energyData);
+                    }
                 }
-                else
-                {
-                    _deviceTotalDataDao.Insert(energyData);
-                    MemcachedClientSatat.getInstance().Set(key, energyData);
+                catch (Exception ee) {
+                    LogUtil.error("save device year data error:" + ee.Message);
                 }
                 //判断是否不在持久化
                 if (energyData.localAcceptTime.Year != DateTime.Now.Year)

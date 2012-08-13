@@ -227,6 +227,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 {
                     if (lastValue != -1)
                     {
+                        i--;//将当前下标前置上一个非空位置
                         //取得下一个值的坐标
                         int nextX = getNextValueX(XAxis, i, dataHash);
                         if (nextX == 0)//没有下一个值

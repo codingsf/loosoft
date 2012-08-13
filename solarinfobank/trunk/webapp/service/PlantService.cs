@@ -60,9 +60,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// </summary>
         /// <param name="id">电站Id</param>
         /// <returns>返回电站实体</returns>
-        public Plant GetPlantInfoById(int id)
+        public Plant GetPlantInfoById(int pid)
         {
-            return _plantInfo.Get(new Plant { id = id });
+            Plant p = new Plant();
+            p.id = pid;
+            return _plantInfo.Get(p);
         }
 
         /// <summary>
@@ -219,25 +221,40 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// add by qhb in 20120415 for
         /// </summary>
         /// <param name="plantInfos"></param>
-        public void batchSave(IList<PlantInfo> plantInfos)
+        public void batchSave(IDictionary<int,PlantInfo> plantInfoMap)
         {
             Plant plant = null;
             PlantUnit plantUnit = null;
-            foreach (PlantInfo plantInfo in plantInfos)
+            foreach (PlantInfo plantInfo in plantInfoMap.Values)
             {
                 plantUnit = plantUnitService.GetPlantUnitByCollectorId(plantInfo.collectorId);
                 if (plantUnit == null) continue;
                 plant = this.GetPlantInfoById(plantUnit.plantID);
                 if (plant == null) continue;
                 //将临时对象的值付给正式的电站业务对象
-                plant.name = plantInfo.name;
-                plant.longitudeString = plantInfo.longitudeString;
+                //plant.name = plantInfo.name;//要求不支持电站名称生效
                 plant.country = plantInfo.country;
                 plant.city = plantInfo.city;
                 plant.design_power = plantInfo.designPower;
-                plant.latitudeString = plantInfo.latitudeString;
                 plant.timezone = plantInfo.timezone;
                 plant.dst_enable = plantInfo.isxls;
+                plant.postcode = plantInfo.postCode;
+
+                double value = 0;
+                value += plantInfo.longd;
+                value += (plantInfo.longm / 60);
+                value += (plantInfo.longs / 3600);
+
+                plant.longitude = value;
+                value = 0;
+                value += plantInfo.latd;
+                value += (plantInfo.latm / 60);
+                value += (plantInfo.lats / 3600);
+                plant.latitude = value;
+
+                plant.longitudeString = string.Format("{0},{1},{2}", plantInfo.longd, plantInfo.longm, plantInfo.longs);
+                plant.latitudeString = string.Format("{0},{1},{2}", plantInfo.latd, plantInfo.latm, plantInfo.lats);
+
                 this.UpdatePlantInfo(plant);
                 //有新设备要更新bank缓存
                 HttpClientUtil.requestUrl(bank_url);

@@ -277,34 +277,40 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             //_daoManager.BeginTransaction();
             foreach (Fault log in logs)
             {
-                //Console.WriteLine("error log is: "+log.sendTime.ToString("yyyy-MM-dd HH:mm:ss"));
-                ////add by qianhb for 防止前面取得告警是不能取得设备，这里重新去一次，取不到则不保存log
-                //if (log.device.id == 0) {
-                //    Console.WriteLine("log.device.id: " + log.device.id);
-                //    Device tmp = _deviceDao.GetDeviceByCollector2Address(log.collectorID, log.address);
-                //    Console.WriteLine("tmp: " + tmp);
-                //    if (tmp == null) continue;
-                //    log.device.id = tmp.id;
-                //}
-
-                //无对应设备则不处理
-                if (log.device.id == 0)continue;
-                //取得同类型的某个设备的未确认的告警，如果有就更新其最新发送时间，以便保证同一个设备同一类型在用户未确认之前是有一条记录
-                Fault fault = this.GetFaultbyDeviceIdTypeStatus(log.year, log.device.id, log.errorCode, false);
-                if (fault == null)
+                try
                 {
-                    LogUtil.writeline("log is:" + log.sendTime.ToString("yyyy-MM-dd HH:mm:ss"));
-                    try
+                    //Console.WriteLine("error log is: "+log.sendTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                    ////add by qianhb for 防止前面取得告警是不能取得设备，这里重新去一次，取不到则不保存log
+                    //if (log.device.id == 0) {
+                    //    Console.WriteLine("log.device.id: " + log.device.id);
+                    //    Device tmp = _deviceDao.GetDeviceByCollector2Address(log.collectorID, log.address);
+                    //    Console.WriteLine("tmp: " + tmp);
+                    //    if (tmp == null) continue;
+                    //    log.device.id = tmp.id;
+                    //}
+
+                    //无对应设备则不处理
+                    if (log.device.id == 0) continue;
+                    //取得同类型的某个设备的未确认的告警，如果有就更新其最新发送时间，以便保证同一个设备同一类型在用户未确认之前是有一条记录
+                    Fault fault = this.GetFaultbyDeviceIdTypeStatus(log.year, log.device.id, log.errorCode, false);
+                    if (fault == null)
                     {
-                        _faultDao.Insert(log);
+                        LogUtil.writeline("log is:" + log.sendTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                        try
+                        {
+                            _faultDao.Insert(log);
+                        }
+                        catch (Exception eee)
+                        {
+                            LogUtil.error("save log error:" + eee.Message);
+                        }
                     }
-                    catch (Exception eee)
-                    {
-                        LogUtil.error("save log error:" + eee.Message);
-                    }
+                    else
+                        _faultDao.updateSendtime(log.year, fault.id, log.sendTime.ToString("yyyy-MM-dd HH:mm:ss"));
                 }
-                else
-                    _faultDao.updateSendtime(log.year, fault.id, log.sendTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                catch (Exception onee) {
+                    LogUtil.writeline("handle one log of " + log.deviceName + "error:" + onee.Message);
+                }
             }
             //_daoManager.CommitTransaction();
         }

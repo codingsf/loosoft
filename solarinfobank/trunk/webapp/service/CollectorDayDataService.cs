@@ -164,15 +164,21 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             CollectorDayData collectorDayData = null;
             foreach (string key in collectordayDataMap.Keys)
             {
-                collectorDayData = collectordayDataMap[key];
-                if (!collectorDayData.changed) continue;
-                //加入缓存，设置两天为缓存过期时间，避免时差问题
-                //先判断改数据是否在缓存中存在
-                cachekey = CacheKeyUtil.buildCollectorDayDataKey(collectorDayData.collectorID, collectorDayData.yearmonth, collectorDayData.sendDay, collectorDayData.monitorCode);
-                mcs.Set(cachekey, collectorDayData, DateTime.Now.AddHours(CollectorDayData_expireTime));//过期时间设为两天
-                //标识为需要持久化
-                if (!persistentListKey.Contains(cachekey)) persistentListKey.Add(cachekey);
-                collectorDayData.changed = false;
+                try{
+                    collectorDayData = collectordayDataMap[key];
+                    if (!collectorDayData.changed) continue;
+                    //加入缓存，设置两天为缓存过期时间，避免时差问题
+                    //先判断改数据是否在缓存中存在
+                    cachekey = CacheKeyUtil.buildCollectorDayDataKey(collectorDayData.collectorID, collectorDayData.yearmonth, collectorDayData.sendDay, collectorDayData.monitorCode);
+                    mcs.Set(cachekey, collectorDayData, DateTime.Now.AddHours(CollectorDayData_expireTime));//过期时间设为两天
+                    //标识为需要持久化
+                    if (!persistentListKey.Contains(cachekey)) persistentListKey.Add(cachekey);
+                    collectorDayData.changed = false;
+                }
+                catch (Exception onee)
+                {
+                    LogUtil.writeline("handle one collectordayDataMap of " + key + "error:" + onee.Message);
+                }
             }
         }
 
@@ -180,7 +186,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// 批量保持单元日数据对象
         /// </summary>
         /// <param name="unitDayDatas"></param>
-        public void batchSave(IDictionary<string, CollectorDayData> devicedayDataMap)
+        public void batchSave(IDictionary<string, CollectorDayData> collectordayDataMap)
         { 
             //从需要持久化的list中取出对象
             String[] keyArr = persistentListKey.ToArray();
@@ -202,16 +208,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                         _powerDayDataDao.Insert(collectorDayData);
                         //添加id信息
                         mcs.Set(key, collectorDayData);
-                        if (devicedayDataMap.ContainsKey(key))
-                            devicedayDataMap[key].id = collectorDayData.id;
+                        if (collectordayDataMap.ContainsKey(key))
+                            collectordayDataMap[key].id = collectorDayData.id;
+
+                        LogUtil.writeline("insert collector day data succes:" + collectorDayData.monitorCode + "-" + collectorDayData.sendDay);
                     }
                     catch (Exception e)
                     {
                         LogUtil.error("insert collector day data fail:" + e.Message);
                         //添加id信息
                         mcs.Set(key, collectorDayData);
-                        if (devicedayDataMap.ContainsKey(key))
-                            devicedayDataMap[key].id = collectorDayData.id;
+                        if (collectordayDataMap.ContainsKey(key))
+                            collectordayDataMap[key].id = collectorDayData.id;
                     }
                 }
                 else
@@ -219,7 +227,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     try
                     {
                         _powerDayDataDao.Update(collectorDayData);
-                       // Console.WriteLine("update collector day data succes:" + collectorDayData.monitorCode + "-" + collectorDayData.sendDay);
+                        LogUtil.writeline("update collector day data succes:" + collectorDayData.monitorCode + "-" + collectorDayData.sendDay);
                     }
                     catch (Exception e)
                     {
@@ -230,6 +238,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 //判断是否需要不在持久化了
                 if (collectorDayData.localAcceptTime.Day != DateTime.Now.Day)
                     persistentListKey.Remove(key);
+                //add by qhb in 20120713 for 持久化完成后从map中删除以防止天数据map愈来愈大，代替clearDayDataMap导致对于历史数据时，会将历史数据删除了，而无法持久化
+                collectordayDataMap.Remove(key);
             }
         }
 

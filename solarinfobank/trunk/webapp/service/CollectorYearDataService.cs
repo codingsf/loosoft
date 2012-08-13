@@ -184,14 +184,20 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     continue;
                 }
                 energyData = (CollectorYearData)obj;
-                if (energyData.id > 0)
+                try
                 {
-                    _plantTotalDataDao.Update(energyData);
+                    if (energyData.id > 0)
+                    {
+                        _plantTotalDataDao.Update(energyData);
+                    }
+                    else
+                    {
+                        _plantTotalDataDao.Insert(energyData);
+                        MemcachedClientSatat.getInstance().Set(key, energyData);
+                    }
                 }
-                else
-                {
-                    _plantTotalDataDao.Insert(energyData);
-                    MemcachedClientSatat.getInstance().Set(key, energyData);
+                catch (Exception ee) {
+                    LogUtil.error("collector year data error:" + ee.Message);
                 }
 
                 //判断是否不在持久化

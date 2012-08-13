@@ -69,18 +69,25 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             int curDay = DateTime.Now.Day;
             foreach (DeviceRunData runData in deviceRunDatas)
             {
-                //统计所有的，不管值是否有变化
-                if (runData.updateTime.Day == curDay)
-                    todayTotalEnergy += runData.todayEnergy;
+                try
+                {
+                    //统计所有的，不管值是否有变化
+                    if (runData.updateTime.Day == curDay)
+                        todayTotalEnergy += runData.todayEnergy;
 
-                if (!runData.changed) continue;
-                key = CacheKeyUtil.buildDeviceRunDataKey(runData.deviceID);
-                //直接更新缓存即可
-                mcs.Set(key, runData);
+                    if (!runData.changed) continue;
+                    key = CacheKeyUtil.buildDeviceRunDataKey(runData.deviceID);
+                    //直接更新缓存即可
+                    mcs.Set(key, runData);
 
-                //要放到缓存后面，避免持久化线程持久化一个空对象
-                if (key!=null && !persistentListKey.Contains(key)) persistentListKey.Add(key);
-                runData.changed = false;
+                    //要放到缓存后面，避免持久化线程持久化一个空对象
+                    if (key != null && !persistentListKey.Contains(key)) persistentListKey.Add(key);
+                    runData.changed = false;
+                }
+                catch (Exception onee)
+                {
+                    LogUtil.writeline("handle one runData of " + runData.deviceID + "error:" + onee.Message);
+                }
             }
             mcs.Set(CacheKeyUtil.buildTodayTotalEnergy(), todayTotalEnergy.ToString());
             LogUtil.writeline("todayTotalEnergy is :" + todayTotalEnergy.ToString());
@@ -102,14 +109,20 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     continue;
                 }
                 runData = (DeviceRunData)obj;
-                if (ExistDeviceRunData(runData))
+                try
                 {
-                    _deviceRunDataDao.Update(runData);
+                    if (ExistDeviceRunData(runData))
+                    {
+                        _deviceRunDataDao.Update(runData);
+                    }
+                    else
+                    {
+                        _deviceRunDataDao.Insert(runData);
+                        mcs.Set(key, runData);
+                    }
                 }
-                else
-                {
-                    _deviceRunDataDao.Insert(runData);
-                    mcs.Set(key, runData);
+                catch (Exception e) {
+                    LogUtil.error("save device run data:" + e.Message);
                 }
             }
         }

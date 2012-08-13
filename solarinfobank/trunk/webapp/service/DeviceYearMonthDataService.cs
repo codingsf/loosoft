@@ -205,15 +205,21 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 energyData = (DeviceYearMonthData)obj;
                 string _Column = "m_" + energyData.curMonth;
                 float _value = (float)ReflectionUtil.getProperty(energyData, _Column);
-                if (energyData.id >0)
+                try
                 {
-                    _DeviceYearDataDao.UpdateDeviceYearMonthData(_Column, _value, energyData.id);
+                    if (energyData.id > 0)
+                    {
+                        _DeviceYearDataDao.UpdateDeviceYearMonthData(_Column, _value, energyData.id);
+                    }
+                    else
+                    {
+                        _DeviceYearDataDao.InsertDeviceYearMonthData(_Column, _value, energyData.deviceID, energyData.year);
+                        energyData.id = _DeviceYearDataDao.GetDeviceYearMonthData(energyData.deviceID, energyData.year).id;
+                        MemcachedClientSatat.getInstance().Set(key, energyData);
+                    }
                 }
-                else
-                {
-                    _DeviceYearDataDao.InsertDeviceYearMonthData(_Column, _value, energyData.deviceID, energyData.year);
-                    energyData.id = _DeviceYearDataDao.GetDeviceYearMonthData(energyData.deviceID, energyData.year).id;
-                    MemcachedClientSatat.getInstance().Set(key, energyData);
+                catch (Exception ee) {
+                    LogUtil.error("save device year month data error:" + ee.Message);
                 }
                 //判断是否不在持久化
                 if (energyData.localAcceptTime.Year != DateTime.Now.Year)

@@ -105,15 +105,21 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     continue;
                 }
                 runData = (CollectorRunData)obj;
-                if (ExistCollectorRunData(runData))
+                try
                 {
-                    //LogUtil.writeline("update  collector Run Data" + runData.collectorID);
-                    _plantRunDataDao.Update(runData);
+                    if (ExistCollectorRunData(runData))
+                    {
+                        LogUtil.writeline("update  collector Run Data" + runData.collectorID + ",数据发送时间：" + runData.sendTime);
+                        _plantRunDataDao.Update(runData);
+                    }
+                    else
+                    {
+                        _plantRunDataDao.Insert(runData);
+                        LogUtil.writeline("insert  collector Run Data" + runData.collectorID + ",数据发送时间：" + runData.sendTime);
+                    }
                 }
-                else
-                {
-                    _plantRunDataDao.Insert(runData);
-                    //LogUtil.writeline("insert  collector Run Data" + runData.collectorID);
+                catch (Exception e) {
+                    LogUtil.error("save collector run data error:" + e.Message);
                 }
             }
         }
@@ -130,58 +136,64 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             LogUtil.writeline("run data num:" + runDatas.Count);
             foreach (CollectorRunData runData in runDatas)
             {
-                //if (!runData.changed) continue;
-                string key = CacheKeyUtil.buildCollectorRunDataKey(runData.collectorID);
-                //object obj = mcs.Get(key);
-                //CollectorRunData dsrd = runData;
-                //if (obj != null && !string.IsNullOrEmpty(obj.ToString()))//存在即修改
-                //{
-                //    dsrd = (CollectorRunData)obj;
-                //}
-                //else
-                //{
-                //    CollectorRunData crd = CollectorRunDataService.GetInstance().Get(runData.collectorID);
-                //    if (crd != null)
-                //    {
-                //        dsrd = crd;
-                //        mcs.Add(key, crd);
-                //    }
-                //}
+                try{
+                    //if (!runData.changed) continue;
+                    string key = CacheKeyUtil.buildCollectorRunDataKey(runData.collectorID);
+                    //object obj = mcs.Get(key);
+                    //CollectorRunData dsrd = runData;
+                    //if (obj != null && !string.IsNullOrEmpty(obj.ToString()))//存在即修改
+                    //{
+                    //    dsrd = (CollectorRunData)obj;
+                    //}
+                    //else
+                    //{
+                    //    CollectorRunData crd = CollectorRunDataService.GetInstance().Get(runData.collectorID);
+                    //    if (crd != null)
+                    //    {
+                    //        dsrd = crd;
+                    //        mcs.Add(key, crd);
+                    //    }
+                    //}
 
-                //实时数据只更新日期为新的
-                //if (runData.sendTime < dsrd.sendTime) return;
+                    //实时数据只更新日期为新的
+                    //if (runData.sendTime < dsrd.sendTime) return;
 
-                //bool isSameDay = runData.sendTime.Day == dsrd.sendTime.Day;
+                    //bool isSameDay = runData.sendTime.Day == dsrd.sendTime.Day;
 
-                //float dayEnergy = runData.dayEnergy;
-                //if (!isSameDay || dayEnergy > dsrd.dayEnergy)
-                //    dsrd.dayEnergy = dayEnergy;
+                    //float dayEnergy = runData.dayEnergy;
+                    //if (!isSameDay || dayEnergy > dsrd.dayEnergy)
+                    //    dsrd.dayEnergy = dayEnergy;
 
-                //float totalEnergy = runData.totalEnergy;
-                //if (totalEnergy > dsrd.totalEnergy)
-                //    dsrd.totalEnergy = totalEnergy;
+                    //float totalEnergy = runData.totalEnergy;
+                    //if (totalEnergy > dsrd.totalEnergy)
+                    //    dsrd.totalEnergy = totalEnergy;
 
-                //if (runData.sendTime > dsrd.sendTime)
-                //{
-                //dsrd.sendTime = runData.sendTime;
-                //dsrd.power = runData.power;
-                //}
+                    //if (runData.sendTime > dsrd.sendTime)
+                    //{
+                    //dsrd.sendTime = runData.sendTime;
+                    //dsrd.power = runData.power;
+                    //}
 
-                //dsrd.collectorID = runData.collectorID;
-                //dsrd.windSpeed = runData.windSpeed;
-                //dsrd.windDirection = runData.windDirection;
-                //dsrd.temperature = runData.temperature;
-                //dsrd.sunStrength = runData.sunStrength;
+                    //dsrd.collectorID = runData.collectorID;
+                    //dsrd.windSpeed = runData.windSpeed;
+                    //dsrd.windDirection = runData.windDirection;
+                    //dsrd.temperature = runData.temperature;
+                    //dsrd.sunStrength = runData.sunStrength;
 
-                mcs.Set(key, runData);
-                if (key!=null && !persistentListKey.Contains(key))
-                {
-                    //LogUtil.writeline("put key into persistentListKey" + key);
-                    persistentListKey.Add(key);
+                    mcs.Set(key, runData);
+                    if (key!=null && !persistentListKey.Contains(key))
+                    {
+                        //LogUtil.writeline("put key into persistentListKey" + key);
+                        persistentListKey.Add(key);
+                    }
+                    //if (runData.sendTime.Day == curDay)
+                    //    todayTotalEnergy += runData.dayEnergy;
+                   // runData.changed = false;
                 }
-                //if (runData.sendTime.Day == curDay)
-                //    todayTotalEnergy += runData.dayEnergy;
-               // runData.changed = false;
+                catch (Exception onee)
+                {
+                    LogUtil.writeline("handle one collector runData of " + runData.collectorID + "error:" + onee.Message);
+                }
             }
             //mcs.Set(CacheKeyUtil.buildTodayTotalEnergy(), todayTotalEnergy.ToString());
             //LogUtil.writeline("todayTotalEnergy is :" + todayTotalEnergy.ToString());

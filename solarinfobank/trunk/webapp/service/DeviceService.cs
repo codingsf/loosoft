@@ -11,6 +11,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
 {
     public class DeviceService
     {
+        protected static string bank_url = System.Configuration.ConfigurationSettings.AppSettings["bank_url"];
+
         private static DeviceService _instance;
         private IDaoManager _daoManager = null;
         private IDeviceDao _deviceDao = null;
@@ -118,6 +120,31 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         public int UpdateDeviceById(Device device)
         {
             return _deviceDao.UpdateDeviceById(device);
+        }
+
+
+        /// <summary>
+        /// 批量持久化更新设备信息到数据库
+        /// add by qhb in 20120715 for
+        /// </summary>
+        /// <param name="plantInfos"></param>
+        public void batchSave(IDictionary<int, DeviceInfo> deviceInfoMap)
+        {
+            Device device = null;
+            foreach (DeviceInfo deviceInfo in deviceInfoMap.Values)
+            {
+                device = this.get(deviceInfo.deviceid);
+                if (device == null) continue;
+
+                //将临时对象的值付给正式的设备业务对象
+                device.name = deviceInfo.name;
+                device.deviceModelCode = deviceInfo.typemodel;
+                device.deviceModel = new DeviceModel() { code = deviceInfo.typemodel };
+                this.Save(device);
+
+                //有新设备要更新bank缓存
+                HttpClientUtil.requestUrl(bank_url);
+            }
         }
 
         public double GetEnergy(int did, string startyyyyMMdd, string endyyyyMMdd)

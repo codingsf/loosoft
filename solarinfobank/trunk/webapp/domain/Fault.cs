@@ -41,6 +41,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public int errorCode { get; set; }
         //告警类型  非空
         public int errorTypeCode { get; set; }
+        //状态数据1  可空
+        public int? data1 { get; set; }
+        //状态数据2  可空
+        public int? data2 { get; set; }
         //发送时间  非空
         public DateTime sendTime { get; set; }
         public bool confirm { get; set; }

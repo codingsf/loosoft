@@ -165,7 +165,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             float total = 0;
 
-            if (this.collector != null && this.collector.runData != null && CalenderUtil.formatDate(collector.runData.sendTime, "yyyyMMdd").Equals(CalenderUtil.curDateWithTimeZone(timezone, "yyyyMMdd")))
+            if (this.collector != null && this.collector.runData != null && this.collector.runData.sendTime.AddHours(1) >= CalenderUtil.curDateWithTimeZone(timezone))
                 total = collector.runData.power;
 
             return total;
@@ -179,18 +179,22 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// </summary>
         public float TodayEnergy(int timezone)
         {
-            float total = 0;
-            if (devices != null){
-                foreach (Device device in devices) {
-                    total+=device.TodayEnergy(timezone);
+            float? total = null;
+            //先取得采集的实时数据中今日发电量
+            if (this.collector.runData != null && CalenderUtil.formatDate(collector.runData.sendTime, "yyyyMMdd").Equals(CalenderUtil.curDateWithTimeZone(timezone, "yyyyMMdd")))
+                    total = collector.runData.dayEnergy;
+            
+            //没有实时数据则去设备累计
+            if (total == null || float.IsNaN(total.Value))
+            {
+                if (devices != null){
+                    foreach (Device device in devices) {
+                        total+=device.TodayEnergy(timezone);
+                    }
                 }
             }
             //如果设备没有今日发电量则取下采集的实时数据中的今日发电量
-            if (total == 0) { 
-                if (this.collector.runData != null && CalenderUtil.formatDate(collector.runData.sendTime, "yyyyMMdd").Equals(CalenderUtil.curDateWithTimeZone(timezone, "yyyyMMdd")))
-                    total = collector.runData.dayEnergy;
-            }
-            return float.Parse(Math.Round(total, 2).ToString());
+            return total==null ||float.IsNaN(total.Value) ? 0 : total.Value;
         }
 
         /// <summary>
@@ -200,12 +204,30 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             get
             {
-                float totalEnergy = 0;
-                if (devices == null) return totalEnergy;
-                foreach (Device device in devices) {
-                    totalEnergy += device.TotalEnergy;
+                float? total = null;
+                //先取得采集的实时数据中总发电量
+                if (this.collector.runData != null)
+                    total = collector.runData.totalEnergy;
+
+                //没有实时数据则去设备累计
+                if (total == null || float.IsNaN(total.Value))
+                {
+                    if (devices != null)
+                    {
+                        foreach (Device device in devices)
+                        {
+                            total += device.TotalEnergy;
+                        }
+                    }
                 }
-                return totalEnergy;
+                //如果设备没有今日发电量则取下采集的实时数据中的今日发电量
+                return total==null || float.IsNaN(total.Value) ? 0 : total.Value;
+                //float totalEnergy = 0;
+                //if (devices == null) return totalEnergy;
+                //foreach (Device device in devices) {
+                    //totalEnergy += device.TotalEnergy;
+                //}
+                //return totalEnergy;
             }
         }
 

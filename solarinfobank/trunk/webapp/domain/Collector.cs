@@ -99,16 +99,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
-        /// 今日发电量
+        /// s设备今日发电量
         /// 现为设备的累加起来
-        /// 原来是直接去采集器的实时数据中得今日发电量，那样不准确，因为那个实时数据中的发电量本来就不准确
         /// </summary>
-        public float TodayEnergy(string yyyyMMdd)
+        public float deviceTodayEnergy(string yyyyMMdd)
         {
             float total = 0;
             if (devices == null) return total;
-            //if (this.collector.runData != null && CalenderUtil.formatDate(collector.runData.sendTime, "yyyyMMdd").Equals(CalenderUtil.curDateWithTimeZone(timezone, "yyyyMMdd")))
-            //    total = collector.runData.dayEnergy;
             foreach (Device device in devices)
             {
                 total += device.TodayEnergy(yyyyMMdd);

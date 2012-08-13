@@ -146,6 +146,7 @@
     <Compile Include="StructPoint.cs" />
     <Compile Include="UserRole.cs" />
     <Compile Include="LoginRecord.cs" />
+    <Compile Include="DeviceInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\" />

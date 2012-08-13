@@ -52,13 +52,30 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// </summary>
         public bool isxls;
         /// <summary>
-        /// 电站经度
+        /// 电站经度,度
         /// </summary>
-        public string longitudeString;
+        public int longd;
         /// <summary>
-        /// 电站纬度
+        /// 电站经度分
         /// </summary>
-        public string latitudeString;
+        public int longm;
+        /// <summary>
+        /// 电站经度秒
+        /// </summary>
+        public int longs;
+        /// <summary>
+        /// 电站维度,度
+        /// </summary>
+        public int latd;
+        /// <summary>
+        /// 电站维度，分
+        /// </summary>
+        public int latm;
+        /// <summary>
+        /// 电站维度,秒
+        /// </summary>
+        public int lats;
+                   
 
     }
 }

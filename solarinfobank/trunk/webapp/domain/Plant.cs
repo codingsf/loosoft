@@ -559,8 +559,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                     if (allFactUnits == null) return total;
                     foreach (PlantUnit unit in allFactUnits)
                     {
-                        if (unit.collector.runData != null && CalenderUtil.formatDate(unit.collector.runData.sendTime, "yyyyMMdd").Equals(CalenderUtil.curDateWithTimeZone(this.timezone, "yyyyMMdd")))
-                            total += unit.TodayPower(this.timezone);
+                        total += unit.TodayPower(this.timezone);
                     }
                 }
                 return total;
@@ -599,38 +598,70 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             get
             {
-                float _temperature = 0;
-                if (allFactUnits == null) return _temperature;
+                double? _temperature = 0;
+                if (allFactUnits == null) return _temperature.Value;
+                //先取得电站数据
                 foreach (PlantUnit unit in allFactUnits)
                 {
-                    if (unit.collector.runData != null && unit.collector.runData.temperature != null && CalenderUtil.formatDate(unit.collector.runData.sendTime, "yyyyMMdd").Equals(CalenderUtil.curDateWithTimeZone(this.timezone, "yyyyMMdd")))
+                    if (unit.collector.runData != null && unit.collector.runData.temperature != null && unit.collector.runData.sendTime.AddHours(1) >= CalenderUtil.curDateWithTimeZone(this.timezone))
                     {
-                        _temperature = float.Parse(unit.collector.runData.temperature.ToString());
-
+                        _temperature = unit.collector.runData.temperature;
                         break;
                     }
                 }
-                return _temperature;
+ 
+                //如果没有电站数据才取设备数据
+                if (_temperature == null || double.IsNaN(_temperature.Value))
+                {
+                    Device detector = getFirstDetector();
+                    //如果环境监测仪的最后更新时间和电站时间相差1小时范围，那么就用环境监测仪的数据
+                    if (detector != null && detector.runData != null && detector.runData.updateTime.AddHours(1) >= CalenderUtil.curDateWithTimeZone(this.timezone))
+                    {
+                        _temperature = detector.getMonitorValue(MonitorType.MIC_DETECTOR_ENRIONMENTTEMPRATURE);
+
+                    }
+
+                }
+                return _temperature == null || double.IsNaN(_temperature.Value) ? double.NaN : Math.Round(_temperature.Value,2);
             }
         }
 
         /// <summary>
         /// 日照强度
+        /// 逻辑变更：
+        /// 周辉 17:42:53 
+        /// 你搞错啦 ,都应该以电站的数据为准,电站的数据没有才用设备的累计 
+        /// 周辉 17:43:07 
+        /// 这个跟环境温度,日照等都一样 
+        /// 周辉 17:43:16 
+        /// 先以电站数据为准
         /// </summary>
         public double? Sunstrength
         {
             get
             {
                 if (allFactUnits == null) return null;
+                float? tmp = null;
                 foreach (PlantUnit unit in allFactUnits)
                 {
-                    if (unit.collector.runData != null && unit.collector.runData.sunStrength != null && CalenderUtil.formatDate(unit.collector.runData.sendTime, "yyyyMMdd").Equals(CalenderUtil.curDateWithTimeZone(this.timezone, "yyyyMMdd")))
+                    if (unit.collector.runData != null && unit.collector.runData.sunStrength != null && unit.collector.runData.sendTime.AddHours(1) >= CalenderUtil.curDateWithTimeZone(this.timezone))
                     {
-                        return unit.collector.runData.sunStrength;
+                        tmp = unit.collector.runData.sunStrength;
+                        break;
                     }
-
                 }
-                return null;
+                //如果没有电站数据才取设备数据
+                if (tmp == null || float.IsNaN(tmp.Value))
+                {
+                    //先取得环境监测仪日照强度
+                    Device detector = getFirstDetector();
+                    //如果环境监测仪的最后更新时间和电站时间相差1小时范围，那么就用环境监测仪的数据
+                    if (detector != null && detector.runData != null && detector.runData.updateTime.AddHours(1) >= CalenderUtil.curDateWithTimeZone(this.timezone))
+                    {
+                        tmp = detector.getMonitorValue(MonitorType.MIC_DETECTOR_SUNLINGHT);
+                    }
+                }
+                return tmp==null || float.IsNaN(tmp.Value) ? 0 : tmp;;
             }
         }
 
@@ -941,6 +972,20 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             {
                 //if (device.isRenderSunlight(yyyMMdd))
                 if (device.isRenderSunlight())
+                    return device;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 取得第一个环境监测仪
+        /// </summary>
+        /// <returns></returns>
+        public Device getFirstDetector()
+        {
+            foreach (Device device in this.deviceList())
+            {
+                if (device.deviceTypeCode == DeviceData.ENVRIOMENTMONITOR_CODE)
                     return device;
             }
             return null;

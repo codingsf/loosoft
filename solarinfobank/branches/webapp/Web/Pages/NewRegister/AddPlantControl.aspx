@@ -5,10 +5,9 @@
 <head runat="server">
     <title>注册</title>
     <link href="../../style/lc.css" rel="stylesheet" type="text/css" />
-    <link href="../../style/css.css" rel="stylesheet" type="text/css" />
     <link href="../../style/sub.css" rel="stylesheet" type="text/css" />
     <link href="../../style/kj.css" rel="stylesheet" type="text/css" />
-
+    <link href="../../style/css.zh-cn.css" rel="stylesheet" type="text/css" />
     <script src="../../script/jquery.js" type="text/javascript"></script>
 
     <script src="/script/jquery.validate.js" type="text/javascript"></script>
@@ -1415,9 +1414,7 @@
                                             class="txtbu01" />
                                     </td>
                                     <td rowspan="8" valign="top">
-                                    
-                                    
-                                    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                                        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                                             <tr>
                                                 <td width="50px" align="center">
                                                     <%=Resources.SunResource.MONITORITEM_ADD  %>
@@ -1440,8 +1437,6 @@
                                                 </td>
                                             </tr>
                                         </table>
-                                        
-                                   
                                         <div id="picContainer">
                                             <% if (ViewData["pic"] != null)
                                                {
@@ -1628,7 +1623,10 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                             </table>
                         </td>
                     </tr>
-                    <tr><td height="5" background="/images/lc/lcbg08.jpg"></td></tr>
+                    <tr>
+                        <td height="5" background="/images/lc/lcbg08.jpg">
+                        </td>
+                    </tr>
                 </table>
             </td>
         </tr>

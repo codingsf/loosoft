@@ -224,7 +224,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             IList<PlantUnit> plantUnits = PlantUnitService.GetInstance().GetAllPlantUnitsByPlantId(id);
             User user = UserService.GetInstance().Get(int.Parse(plant.userID.ToString()));
             if (plantUnits.Count == 0 && user.username != UserUtil.demousername)
-                return RedirectToAction("bind", "unit", new { @id = id });
+                return View(plant);
             ViewData["plantUnits"] = plantUnits;
             return View(plant);
         }

@@ -5053,6 +5053,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 点击更换图片 的本地化字符串。
+        /// </summary>
+        internal static string HOME_INDEX_RELOAD_VALIDATECODE {
+            get {
+                return ResourceManager.GetString("HOME_INDEX_RELOAD_VALIDATECODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Remember Me 的本地化字符串。
         /// </summary>
         internal static string HOME_INDEX_REMAIN_REMEMBER_ME {
@@ -5085,6 +5094,15 @@ namespace Resources {
         internal static string HOME_INDEX_USERNAME_REQUIRED {
             get {
                 return ResourceManager.GetString("HOME_INDEX_USERNAME_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 验证码 的本地化字符串。
+        /// </summary>
+        internal static string HOME_INDEX_VALIDATECODE {
+            get {
+                return ResourceManager.GetString("HOME_INDEX_VALIDATECODE", resourceCulture);
             }
         }
         

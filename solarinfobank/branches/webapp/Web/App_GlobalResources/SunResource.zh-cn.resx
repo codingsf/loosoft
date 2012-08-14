@@ -4938,4 +4938,10 @@
     <value>设备运行数据</value>
     <comment>设备运行数据</comment>
   </data>
+  <data name="HOME_INDEX_VALIDATECODE" xml:space="preserve">
+    <value>验证码</value>
+  </data>
+  <data name="HOME_INDEX_RELOAD_VALIDATECODE" xml:space="preserve">
+    <value>点击更换图片</value>
+  </data>
 </root>

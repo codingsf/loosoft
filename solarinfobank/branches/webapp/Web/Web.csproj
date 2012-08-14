@@ -142,6 +142,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SunResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\SunResource.fr-fr.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SunResource.fr-fr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\SunResource.ja-jp.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SunResource.ja-jp.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\SunResource.zh-cn.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -537,7 +547,8 @@
     </Content>
     <Content Include="dao.config" />
     <Content Include="Content\Ashx\Upload.ashx" />
-    <None Include="app\SolarInfobank.apk" />
+    <None Include="app\SolarInfo bank_v1.0.apk" />
+    <Content Include="Content\Ashx\validatecode.ashx" />
     <None Include="Content\images\Thumbs.db" />
     <None Include="Content\jquery\images\Thumbs.db" />
     <None Include="editor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.cfm" />

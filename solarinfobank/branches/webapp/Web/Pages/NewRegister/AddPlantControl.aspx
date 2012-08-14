@@ -1626,10 +1626,7 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                             </table>
                         </td>
                     </tr>
-                    <tr>
-                        <td height="5" background="/images/lc/lcbg08.jpg">
-                        </td>
-                    </tr>
+                    <tr><td height="5" background="/images/lc/lcbg08.jpg"></td></tr>
                 </table>
             </td>
         </tr>

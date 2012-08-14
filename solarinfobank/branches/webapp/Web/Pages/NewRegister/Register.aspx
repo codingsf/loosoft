@@ -180,14 +180,14 @@
 
             $("#change").click(function() {
                 if ($("#unessential").is(":hidden")) {
-                    $(this).text('收起选填项');
+                    $(this).text('<%=Resources.SunResource.OPTION_CLOSE%>');
                     $(this).parent().attr("class", "ss_zkico");
                     $("#btn1").hide();
                     $("#btn2").show();
                     $("#unessential").slideDown(0);
                 } else {
                     $("#unessential").slideUp(0);
-                    $(this).text('展开选填项');
+                    $(this).text('<%=Resources.SunResource.OPTION_OPEN%>');
                     $(this).parent().attr("class", "zk_zkico");
                     $("#btn2").hide();
                     $("#btn1").show();
@@ -204,9 +204,9 @@
     <div class="lcbox">
         <div class="lctab">
             <ul>
-                <li class="lc_yellowbg">1、用户信息 </li>
-                <li>2、电站信息</li>
-                <li>3、设备信息</li>
+                <li class="lc_yellowbg">1、<%=Resources.SunResource.USER_EDIT_USER_INFORMATION%> </li>
+                <li>2、<%=Resources.SunResource.PLANT_INFO_TOTALl_METER%></li>
+                <li>3、<%=Resources.SunResource.DEVICE_INFORMATION%></li>
             </ul>
         </div>
         <div class="lcabout">
@@ -224,13 +224,13 @@
                         &nbsp;
                     </td>
                     <td bgcolor="#FFFFFF">
-                        <span class="lcts01">注：* 为必填项</span>
+                        <span class="lcts01"><%=Resources.SunResource.AUTH_REG_NOTE%>：* <%=Resources.SunResource.AUTH_REG_FOR_MUST_FILL_IN_THE_ITEM%></span>
                         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tlist">
                             <%if (this.Model == null)
                               { %>
                             <tr>
                                 <td width="29%" class="pr_10">
-                                    用户名：
+                                    <%=Resources.SunResource.AUTH_REG_USERNAME%>：
                                 </td>
                                 <td width="29%">
                                     <%= Html.TextBoxFor(model => model.username, new { @class = "txtbu01", @onmousedown = "clearMessage()", onblur = "fillEmail()" })%>
@@ -241,7 +241,7 @@
                             </tr>
                             <tr>
                                 <td class="pr_10">
-                                    密码：
+                                    <%=Resources.SunResource.HOME_INDEX_PASSWORD%>：
                                 </td>
                                 <td>
                                     <%= Html.PasswordFor(model => model.password, new { @class = "txtbu01", @onmousedown = "clearMessage()" })%>
@@ -252,7 +252,7 @@
                             </tr>
                             <tr>
                                 <td class="pr_10">
-                                    确认密码：
+                                    <%=Resources.SunResource.USER_CHANGEPASSWORD_CONFIRM_PASSWORD%>：
                                 </td>
                                 <td>
                                     <input type="password" class="txtbu01" id="confirm_password" name="confirm_password" />
@@ -278,7 +278,7 @@
                             %>
                             <tr>
                                 <td class="pr_10">
-                                    邮箱：
+                                    <%=Resources.SunResource.USER_FINDPASSWORD_EMAIL%>：
                                 </td>
                                 <td>
                                     <%= Html.TextBoxFor(model => model.email, new { @class = "txtbu01", @onmousedown ="clearMessage()"})%>
@@ -293,7 +293,7 @@
                                 </td>
                                 <td>
                                     <input type="checkbox" id="agree" checked="checked" name="agree" value="checkbox" />
-                                    <a href="/public/agree" target="_blank" class="green">同意《用户协议内容》</a>
+                                    <a href="/public/agree" target="_blank" class="green"><%=Resources.SunResource.REGISTER_AGREE%></a>
                                 </td>
                                 <td>
                                     
@@ -303,25 +303,25 @@
                                 <td>
                                 </td>
                                 <td>
-                                    <input type="submit" name="Submit" class="ok_greenbtu btn" value="下一步" />
+                                    <input type="submit" name="Submit" class="ok_greenbtu btn" value="<%=Resources.SunResource.NEXT_STEP%>" />
                                 </td>
                                 <td>
                                 </td>
                             </tr>
                         </table>
                         <div class="ss_zk">
-                            <span class="ss_zkico"><a href="#" class="sza" id="change">收起选填项</a></span></div>
+                            <span class="ss_zkico"><a href="#" class="sza" id="change"><%=Resources.SunResource.OPTION_CLOSE%></a></span></div>
                         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tlist"
                             id="unessential">
                             <tr>
                                 <td width="19%" class="pr_10">
-                                    名字：
+                                    <%=Resources.SunResource.AUTH_REG_FIRSTNAME%>：
                                 </td>
                                 <td width="28%">
                                     <%= Html.TextBoxFor(model => model.FirstName, new { @class = "txtbu01", @onmousedown = "clearMessage()"})%>
                                 </td>
                                 <td width="17%" class="pr_10">
-                                    地址：
+                                    <%=Resources.SunResource.USER_EDIT_ADDRESS%>：
                                 </td>
                                 <td width="36%">
                                     <%= Html.TextBoxFor(model => model.address, new { @class = "txtbu01", @onmousedown = "clearMessage()"})%>
@@ -329,13 +329,13 @@
                             </tr>
                             <tr>
                                 <td class="pr_10">
-                                    姓氏：
+                                    <%=Resources.SunResource.AUTH_REG_LASTNAME%>：
                                 </td>
                                 <td>
                                     <%= Html.TextBoxFor(model => model.LastName, new { @class = "txtbu01", @onmousedown = "clearMessage()"})%>
                                 </td>
                                 <td class="pr_10">
-                                    邮政编码：
+                                    <%=Resources.SunResource.AUTH_REG_POSTAL_CODE%>：
                                 </td>
                                 <td>
                                     <%= Html.TextBoxFor(model => model.postalcode, new { @class = "txtbu01", @onmousedown = "clearMessage()"})%>
@@ -343,13 +343,13 @@
                             </tr>
                             <tr>
                                 <td class="pr_10">
-                                    固定电话：
+                                    <%=Resources.SunResource.AUTH_REG_TEL%>：
                                 </td>
                                 <td>
                                     <%= Html.TextBoxFor(model => model.tel, new { @class = "txtbu01", @onmousedown = "clearMessage()"})%>
                                 </td>
                                 <td class="pr_10">
-                                    国家：
+                                    <%=Resources.SunResource.PLANT_ADDPLANT_COUNTRY%>：
                                 </td>
                                 <td>
                                     <select id="s1" class="txtbu01">
@@ -361,13 +361,13 @@
                             </tr>
                             <tr>
                                 <td class="pr_10">
-                                    移动电话：
+                                    <%=Resources.SunResource.AUTH_REG_MOBILE_PHONE%>：
                                 </td>
                                 <td>
                                     <%= Html.TextBoxFor(model => model.mobilePhone, new { @class = "txtbu01", @onmousedown = "clearMessage()"})%>
                                 </td>
                                 <td class="pr_10">
-                                    城市：
+                                    <%=Resources.SunResource.PLANT_ADDPLANT_CITY%>：
                                 </td>
                                 <td>
                                     <select id="s2" class="txtbu01">
@@ -378,13 +378,13 @@
                             </tr>
                             <tr>
                                 <td class="pr_10">
-                                    传真：
+                                    <%=Resources.SunResource.AUTH_REG_FAX%>：
                                 </td>
                                 <td>
                                     <%= Html.TextBoxFor(model => model.faxPhone, new { @class = "txtbu01",@onmousedown = "clearMessage()"})%>
                                 </td>
                                 <td class="pr_10">
-                                    公司：
+                                    <%=Resources.SunResource.AUTH_REG_ORGANIZATION%>：
                                 </td>
                                 <td>
                                     <%= Html.TextBoxFor(model => model.organize, new { @class = "txtbu01", @onmousedown = "clearMessage()"})%>
@@ -392,7 +392,7 @@
                             </tr>
                             <tr>
                                 <td class="pr_10">
-                                    性别：
+                                    <%=Resources.SunResource.AUTH_REG_SEX%>：
                                 </td>
                                 <td>
                                     <%= Html.DropDownList("sex", new List<SelectListItem>
@@ -402,7 +402,7 @@
                                     }, new { @class = "txtbu01" })%>
                                 </td>
                                 <td class="pr_10">
-                                    温度单位：
+                                    <%=Resources.SunResource.AUTH_REG_TEMPERATE_UNIT%>：
                                 </td>
                                 <td>
                                     <%=Html.DropDownList("currencies", ViewData["currencies"] as IList<SelectListItem>, new { @class = "txtbu01" })%>
@@ -416,7 +416,7 @@
                                     &nbsp;
                                 </td>
                                 <td class="pr_10">
-                                    货币单位：
+                                    <%=Resources.SunResource.AUTH_REG_REVENUE%>：
                                 </td>
                                 <td>
                                     <%=Html.DropDownList("temperaturetype", new List<SelectListItem>(){
@@ -430,7 +430,7 @@
                             </tr>
                         </table>
                         <div class="ok_box" id="btn2">
-                            <input type="submit" name="Submit" class="ok_greenbtu btn" value="下一步" />
+                            <input type="submit" name="Submit" class="ok_greenbtu btn" value="<%=Resources.SunResource.NEXT_STEP%>" />
                         </div>
                     </td>
                     <td background="images/tc/tc05.gif">

@@ -34,12 +34,12 @@
                 var ishidden = $("#unessential").is(":hidden");
                 parent.hideunessentialall();
                 if (ishidden) {
-                    $(this).text('收起选填项');
+                    $(this).text('<%=Resources.SunResource.OPTION_CLOSE%>');
                     $(this).parent().attr("class", "ss_zkico");
                     $("#unessential").slideDown(0);
                 } else {
                     $("#unessential").slideUp(0);
-                    $(this).text('展开选填项');
+                    $(this).text('<%=Resources.SunResource.OPTION_OPEN%>');
                     $(this).parent().attr("class", "zk_zkico");
                 }
                 parent.iframeauto();
@@ -1369,23 +1369,23 @@
                         <img src="/images/lc/lc_del.gif" width="14" class="fr mr15 mt10" height="13" border="0" rel="<%=Request.QueryString["menu"] %>"
                             onclick="parent.clearcontrol(<%=Request.QueryString["menu"] %>)" /></a>
                 <div class="lcintt01">
-                    <span class="f1 red">注：* 为必填项</span>
+                    <span class="f1 red"><%=Resources.SunResource.AUTH_REG_NOTE%>：* <%=Resources.SunResource.AUTH_REG_FOR_MUST_FILL_IN_THE_ITEM%></span>
             </td>
         </tr>
         <tr>
             <td background="/images/lc/lcbg04.jpg">
                 <div class="lcin01 mt10">
                     <ul>
-                        <li>名称
+                        <li><%=Resources.SunResource.PLANT_PROFILE_NAME%>
                             <%=Html.HiddenFor(Model=>Model.id) %>
                             <%= Html.TextBoxFor(model => model.name, new { @class = "lcinput02" })%>
                             <span class="redzi">*</span> <span style="display: block" id="error_name"></span>
                         </li>
-                        <li>设计功率
+                        <li><%=Resources.SunResource.PLANT_PROFILE_DESIGNPOWER%>
                             <%= Html.TextBoxFor(model => model.design_power, new { @class = "lcinput01"})%>
                             <span class="redzi">* </span>kWp <span style="display: block" id="error_design_power">
                             </span></li>
-                        <li>时区
+                        <li><%=Resources.SunResource.PLANT_PROFILE_TIMEZONE%>
                             <%=Html.DropDownList("timezone", Cn.Loosoft.Zhisou.SunPower.Common.TimeZone.Data, new { @class = "subselect01 iv lcinput02", style="width:150px" })%>
                             <span class="redzi"></span><span style="display: block">
                             </span>
@@ -1404,7 +1404,7 @@
                     <tr>
                         <td background="/images/lc/lcbg07.jpg">
                             <div class="ss_zk0">
-                                <span class="ss_zkico"><a href="javascript:void(0)" id="change" class="sza">展开选填项</a></span>
+                                <span class="ss_zkico"><a href="javascript:void(0)" id="change" class="sza"><%=Resources.SunResource.OPTION_OPEN%></a></span>
                             </div>
                         </td>
                     </tr>
@@ -1413,7 +1413,7 @@
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tlist">
                                 <tr>
                                     <td width="19%" class="pr_10">
-                                        安装日期：
+                                        <%=Resources.SunResource.PLANT_PROFILE_INSTALLDATE%>：
                                     </td>
                                     <td width="28%">
                                         <input id="installdate" name="installdate" onclick="WdatePicker({isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})"
@@ -1469,7 +1469,7 @@
                                 </tr>
                                 <tr>
                                     <td class="pr_10">
-                                        位置：
+                                        <%=Resources.SunResource.PLANT_EDIT_LOCATION%>：
                                     </td>
                                     <td>
                                         <%= Html.TextBoxFor(model => model.location, new { @class = "txtbu01" })%>
@@ -1477,7 +1477,7 @@
                                 </tr>
                                 <tr>
                                     <td class="pr_10">
-                                        东经：
+                                        <%=Resources.SunResource.PLANT_ADDPLANT_LONGITUDE%>：
                                     </td>
                                     <td>
                                         <%=Html.TextBox("long1", this.Model!=null&& this.Model.longitudeString.Split(',').Length>0?this.Model.longitudeString.Split(',')[0]:string.Empty, new { @class = "txtbu01",style="width:50px;" }) %><span
@@ -1490,7 +1490,7 @@
                                 </tr>
                                 <tr>
                                     <td class="pr_10">
-                                        北纬：
+                                        <%=Resources.SunResource.PLANT_ADDPLANT_LATITUDE%>：
                                     </td>
                                     <td>
                                         <%=Html.TextBox("lat1", this.Model != null && this.Model.latitudeString.Split(',').Length > 0 ? this.Model.latitudeString.Split(',')[0] : string.Empty, new { @class = "txtbu01", style = "width:50px;" })%><span
@@ -1503,7 +1503,7 @@
                                 </tr>
                                 <tr>
                                     <td class="pr_10">
-                                        制造商：
+                                        <%=Resources.SunResource.USER_ADDPLANT_MANUFACTURER%>：
                                     </td>
                                     <td>
                                         <%= Html.TextBoxFor(model => model.manufacturer, new { @class = "txtbu01" })%>
@@ -1511,7 +1511,7 @@
                                 </tr>
                                 <tr>
                                     <td class="pr_10">
-                                        模块型号：
+                                        <%=Resources.SunResource.PLANT_PROFILE_MODULE_TYPE%>：
                                     </td>
                                     <td>
                                         <%= Html.TextBoxFor(model => model.module_type, new { @class = "txtbu01" })%>
@@ -1519,7 +1519,7 @@
                                 </tr>
                                 <tr>
                                     <td class="pr_10">
-                                        角度：
+                                        <%=Resources.SunResource.PLANT_PROFILE_ANGLE%>：
                                     </td>
                                     <td>
                                         <%= Html.TextBoxFor(model => model.angle, new { @class = "txtbu01" })%>
@@ -1527,7 +1527,7 @@
                                 </tr>
                                 <tr>
                                     <td class="pr_10">
-                                        视频监控：
+                                        <%=Resources.SunResource.PLANT_MONITOR_VIDEO_MONITOR%>：
                                     </td>
                                     <td>
                                         <%=Html.DropDownListFor(model => model.VideoMonitorEnable, new List<SelectListItem>(){
@@ -1542,7 +1542,7 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tlist">
                                 <tr>
                                     <td width="19%" class="pr_10">
-                                        国家：
+                                        <%=Resources.SunResource.PLANT_EDIT_COUNTRY%>：
                                     </td>
                                     <td width="28%">
                                         <select id="s1" class="txtbu01" style="width: 181px; float: left; height: 23px;">
@@ -1553,7 +1553,7 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                                                 width: 120px; float: left;" class="txtbu01" value="<%=this.Model==null?"":this.Model.country %>" />
                                     </td>
                                     <td width="17%" class="pr_10">
-                                        收入/货币：
+                                        <%=Resources.SunResource.PLANT_ADDPLANT_REDUCTRATE%>：
                                     </td>
                                     <td width="36%">
                                         <%=Html.TextBoxFor(model => model.revenueRate, new { @class = "txtbu01"})%>
@@ -1561,7 +1561,7 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                                 </tr>
                                 <tr>
                                     <td class="pr_10">
-                                        城市：
+                                        <%=Resources.SunResource.USER_ADDPLANT_CITY%>：
                                     </td>
                                     <td>
                                         <select id="s2" class="txtbu01" style="width: 181px; float: left; height: 23px;">
@@ -1573,7 +1573,7 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                                         <input type="hidden" value="<%=this.Model==null?"":this.Model.city %>" id="cty" name="cty" />
                                     </td>
                                     <td class="pr_10">
-                                        夏令时启用：
+                                        <%=Resources.SunResource.SUMMER_LINGSHI_ENABLED%>：
                                     </td>
                                     <td>
                                         <%=Html.DropDownListFor(model => model.dst_enable, new List<SelectListItem>(){
@@ -1586,13 +1586,13 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                                 </tr>
                                 <tr>
                                     <td class="pr_10">
-                                        邮编：
+                                        <%=Resources.SunResource.PLANT_PROFILE_ZIPCODE%>：
                                     </td>
                                     <td>
                                         <%= Html.TextBoxFor(model => model.postcode, new { @class = "txtbu01" })%>
                                     </td>
                                     <td class="pr_10">
-                                        操作员：
+                                        <%=Resources.SunResource.PLANT_PROFILE_OPERATOR%>：
                                     </td>
                                     <td>
                                         <%= Html.TextBoxFor(model => model.operater, new { @class = "txtbu01" })%>
@@ -1600,13 +1600,13 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                                 </tr>
                                 <tr>
                                     <td class="pr_10">
-                                        电话号码：
+                                        <%=Resources.SunResource.PLANT_PROFILE_PHONE%>：
                                     </td>
                                     <td>
                                         <%= Html.TextBoxFor(model => model.phone, new { @class = "txtbu01" })%>
                                     </td>
                                     <td class="pr_10">
-                                        街道：
+                                        <%=Resources.SunResource.PLANT_ADDPLANT_STREET%>：
                                     </td>
                                     <td>
                                         <%= Html.TextBoxFor(model => model.street, new { @class = "txtbu01" })%>
@@ -1617,7 +1617,7 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tlist">
                                 <tr>
                                     <td width="19%" class="pr_10">
-                                        描述：
+                                        <%=Resources.SunResource.USER_LOG_DESCRIPTION%>：
                                     </td>
                                     <td>
                                         <%=Html.TextAreaFor(model=>model.description,new { rows="15" ,cols="116" }) %>

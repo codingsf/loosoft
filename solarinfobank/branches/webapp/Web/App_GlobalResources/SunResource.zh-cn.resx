@@ -2966,10 +2966,11 @@
     <value>年</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_BINDED" xml:space="preserve">
-    <value>该数据源已被绑定</value>
+    <value>该设备已被添加 
+</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_ERROR" xml:space="preserve">
-    <value>对不起,您输入的数据源信息有误</value>
+    <value>对不起,您输入的设备信息有误！ </value>
   </data>
   <data name="USER_LOG_ALL_PLANTS_LOGS" xml:space="preserve">
     <value>所有电站日志</value>
@@ -4547,7 +4548,7 @@
     <value>生成时间</value>
   </data>
   <data name="PLANT_REG_SOURCE_DEADLINE_TIME" xml:space="preserve">
-    <value>绑定期限</value>
+    <value>添加期限</value>
   </data>
   <data name="PLANT_REG_SOURCE_PLANTTIME" xml:space="preserve">
     <value>电站本地时间</value>
@@ -4943,5 +4944,47 @@
   </data>
   <data name="HOME_INDEX_RELOAD_VALIDATECODE" xml:space="preserve">
     <value>点击更换图片</value>
+  </data>
+  <data name="ADD_DEVICE" xml:space="preserve">
+    <value>添加设备</value>
+  </data>
+  <data name="DEVICE_PASSWORD" xml:space="preserve">
+    <value>设备密码</value>
+  </data>
+  <data name="DEVICE_SN" xml:space="preserve">
+    <value>设备序列号</value>
+  </data>
+  <data name="NEXT_STEP" xml:space="preserve">
+    <value>下一步</value>
+  </data>
+  <data name="NOTICE_DESIGN_POWER" xml:space="preserve">
+    <value>请输入设计功率</value>
+  </data>
+  <data name="NOTICE_DEVICE_NAME" xml:space="preserve">
+    <value>请输入"设备名称"</value>
+  </data>
+  <data name="NOTICE_DEVICE_PASSWORD" xml:space="preserve">
+    <value>请输入"设备密码"</value>
+  </data>
+  <data name="NOTICE_DEVICE_SN" xml:space="preserve">
+    <value>请输入"设备序列号"</value>
+  </data>
+  <data name="OPTION_CLOSE" xml:space="preserve">
+    <value>收起选填项</value>
+  </data>
+  <data name="OPTION_OPEN" xml:space="preserve">
+    <value>展开选填项</value>
+  </data>
+  <data name="PREVIOUS_STEP" xml:space="preserve">
+    <value>上一步</value>
+  </data>
+  <data name="REGISTER_AGREE" xml:space="preserve">
+    <value>同意《用户协议内容》</value>
+  </data>
+  <data name="BUTTON_FINISHED" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="DEVICE_INFORMATION" xml:space="preserve">
+    <value>设备信息</value>
   </data>
 </root>

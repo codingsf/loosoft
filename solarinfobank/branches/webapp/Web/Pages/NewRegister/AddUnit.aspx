@@ -104,9 +104,9 @@
     <div class="lcbox">
         <div class="lctab">
             <ul>
-                <li>1、用户信息 </li>
-                <li>2、电站信息</li>
-                <li class="lc_yellowbg">3、设备信息</li>
+                  <li>1、<%=Resources.SunResource.USER_EDIT_USER_INFORMATION%> </li>
+                <li>2、<%=Resources.SunResource.PLANT_INFO_TOTALl_METER%></li>
+                <li class="lc_yellowbg">3、<%=Resources.SunResource.DEVICE_INFORMATION%></li>
             </ul>
         </div>
         <div class="lcabout">
@@ -148,13 +148,13 @@
                                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                                 <tr>
                                                     <td width="37%" class="tdstyle01">
-                                                        设备序列号
+                                                        <%=Resources.SunResource.DEVICE_SN%>
                                                     </td>
                                                     <td width="36%" class="tdstyle01">
-                                                        设备名称
+                                                        <%=Resources.SunResource.PLANT_DEVICE_NAME%>
                                                     </td>
                                                     <td width="27%" class="tdstyle01">
-                                                        操作
+                                                        <%=Resources.SunResource.PLANT_LIST_OPERATION%>
                                                     </td>
                                                 </tr>
                                                 <%foreach (PlantUnit plantUnit in plant.plantUnits)
@@ -179,30 +179,30 @@
                                             </table>
                                         </div>
                                         <div class="lcadd02">
-                                            <a href="javascript:void(0)" class="change" rel="<%=plant.id %>">添加设备</a></div>
+                                            <a href="javascript:void(0)" class="change" rel="<%=plant.id %>"><%=Resources.SunResource.ADD_DEVICE%></a></div>
                                         <table width="705" border="0" align="center" cellpadding="0" cellspacing="0" id="unessential_<%=plant.id %>"
                                             style="display: none">
                                             <tr>
                                                 <td height="45" valign="bottom" background="/images/lc/lcbg003.jpg">
                                                     <div class="lcintt01">
-                                                        <span class="f1 ml15 red">注：* 为必填项</span></div>
+                                                        <span class="f1 ml15 red"><%=Resources.SunResource.AUTH_REG_NOTE%>：* <%=Resources.SunResource.AUTH_REG_FOR_MUST_FILL_IN_THE_ITEM%></span></div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td background="/images/lc/lcbg04.jpg">
                                                     <div class="lcin01 mt10">
                                                         <ul>
-                                                            <li>设备序列号
+                                                            <li><%=Resources.SunResource.DEVICE_SN%>
                                                                 <input name="unitid" type="hidden" class="lcinput02" id="unit_<%=plant.id %>" />
                                                                 <input name="code" type="text" class="lcinput02" id="code_<%=plant.id %>" onblur="$('#displayname_<%=plant.id %>').val($(this).val())" />
                                                                 <input name="plantid" type="hidden" class="lcinput02" value="<%=plant.id %>" id="plantid_<%=plant.id %>" />
                                                                 <span class="redzi">*</span> <span style="display: block" id="error_code_<%=plant.id %>"></span>
                             </span></li>
-                                                            <li>设备密码
+                                                            <li><%=Resources.SunResource.DEVICE_PASSWORD%>
                                                                 <input name="password" type="password" class="lcinput01" id="password_<%=plant.id %>" />
                                                                 <span class="redzi">*</span><span style="display: block" id="error_password_<%=plant.id %>"></span>
                             </span></li>
-                                                            <li>设备名称
+                                                            <li><%=Resources.SunResource.PLANT_DEVICE_NAME%>
                                                                 <input name="displayname" type="text" class="lcinput02" id="displayname_<%=plant.id %>" />
                                                                 <span class="redzi">*</span> <span style="display: block" id="error_displayname_<%=plant.id %>"></span>
                             </span></li>
@@ -213,8 +213,8 @@
                                             <tr>
                                                 <td background="/images/lc/lcbg04.jpg">
                                                     <span class="lcsub">
-                                                        <input name="Submit31" type="button" class="btua" rel="<%=plant.id %>" value="保存" />
-                                                        <input name="Submit32" type="button" class="btub" value="取消" rel="<%=plant.id %>" />
+                                                        <input name="Submit31" type="button" class="btua" rel="<%=plant.id %>" value="<%=Resources.SunResource.MONITORITEM_SAVE%>" />
+                                                        <input name="Submit32" type="button" class="btub" value="<%=Resources.SunResource.PLANT_ADDPLANT_CANCEL%>" rel="<%=plant.id %>" />
                                                     </span>
                                                 </td>
                                             </tr>
@@ -233,8 +233,8 @@
                         </div>
                         <%} %>
                         <div class="ok_box0">
-                            <input name="Submit2" type="submit" class="ok_greenbtu mr20" value="上一步" onclick="window.location.href='/newregister/addplant'" />
-                            <input type="submit" name="Submit" class="ok_greenbtu" value="完成" onclick="window.location.href='/user/overview'" />
+                            <input name="Submit2" type="submit" class="ok_greenbtu mr20" value="<%=Resources.SunResource.PREVIOUS_STEP%>" onclick="window.location.href='/newregister/addplant'" />
+                            <input type="submit" name="Submit" class="ok_greenbtu" value="<%=Resources.SunResource.BUTTON_FINISHED%>" onclick="window.location.href='/user/overview'" />
                         </div>
                     </td>
                     <td background="/images/tc/tc05.gif">

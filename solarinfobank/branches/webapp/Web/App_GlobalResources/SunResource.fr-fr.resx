@@ -2974,10 +2974,10 @@
     <value>Année</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_BINDED" xml:space="preserve">
-    <value>La source de données a été liée.</value>
+    <value>Le dispositif a été ajouté</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_ERROR" xml:space="preserve">
-    <value>Désolé, vous avez entré la source mauvaise de données</value>
+    <value>Désolé, vous entrez les informations du périphérique est incorrect!</value>
   </data>
   <data name="USER_LOG_ALL_PLANTS_LOGS" xml:space="preserve">
     <value>Tous les journaux de la Centrale</value>
@@ -4946,5 +4946,14 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
   </data>
   <data name="HOME_INDEX_RELOAD_VALIDATECODE" xml:space="preserve">
     <value>点击更换图片</value>
+  </data>
+  <data name="REGISTER_AGREE" xml:space="preserve">
+    <value>同意《用户协议内容》</value>
+  </data>
+  <data name="BUTTON_FINISHED" xml:space="preserve">
+    <value>Achèvement</value>
+  </data>
+  <data name="DEVICE_INFORMATION" xml:space="preserve">
+    <value>设备信息</value>
   </data>
 </root>

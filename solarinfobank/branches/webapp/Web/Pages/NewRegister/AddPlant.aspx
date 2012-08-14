@@ -136,9 +136,10 @@
     <div class="lcbox">
         <div class="lctab">
             <ul>
-                <li>1、用户信息 </li>
-                <li class="lc_yellowbg">2、电站信息</li>
-                <li>3、设备信息</li>
+                     <li>1、<%=Resources.SunResource.USER_EDIT_USER_INFORMATION%> </li>
+                <li class="lc_yellowbg">2、<%=Resources.SunResource.PLANT_INFO_TOTALl_METER%></li>
+                <li>3、<%=Resources.SunResource.DEVICE_INFORMATION%></li>
+                
             </ul>
         </div>
         <div class="lcabout">
@@ -172,10 +173,10 @@
                             <%} %>
                         </div>
                         <div class="lcadd01">
-                            <a href="javascript:void(0)" id="addplant">添加电站</a></div>
+                            <a href="javascript:void(0)" id="addplant"><%=Resources.SunResource.AUTH_ADD_PLANT%></a></div>
                         <div class="ok_box0">
-                            <input type="submit" name="Submit2" class="ok_greenbtu mr20" value="上一步" onclick="window.location.href='/newregister/register'" />
-                            <input type="button" onclick="batchsubmit();" name="Submit" class="ok_greenbtu" value="下一步" />
+                            <input type="submit" name="Submit2" class="ok_greenbtu mr20" value="<%=Resources.SunResource.PREVIOUS_STEP%>" onclick="window.location.href='/newregister/register'" />
+                            <input type="button" onclick="batchsubmit();" name="Submit" class="ok_greenbtu" value="<%=Resources.SunResource.NEXT_STEP%>" />
                         </div>
                     </td>
                     <td background="/images/tc/tc05.gif">

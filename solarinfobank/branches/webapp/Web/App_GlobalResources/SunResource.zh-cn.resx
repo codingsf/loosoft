@@ -759,19 +759,19 @@
     <value>时间间隔</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_ID" xml:space="preserve">
-    <value>数据源号</value>
+    <value>设备序列号</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_PASSWORD" xml:space="preserve">
-    <value>数据源密码</value>
+    <value>设备密码</value>
   </data>
   <data name="PLANT_UNIT_BIND_UNIT_BIND" xml:space="preserve">
-    <value>单元绑定</value>
+    <value>添加设备</value>
   </data>
   <data name="PLANT_UNIT_BIND_UNIT_BIND_DETAIL" xml:space="preserve">
     <value>您需要输入数据源ID和密码,可以从设备供应商或者产品说明书中处获得</value>
   </data>
   <data name="PLANT_UNIT_BIND_UNIT_NAMES" xml:space="preserve">
-    <value>单元名称</value>
+    <value>设备名称</value>
   </data>
   <data name="PLANT_UNIT_EDIT_EDIT_UNIT" xml:space="preserve">
     <value>编辑单元</value>
@@ -1539,7 +1539,7 @@
     <value>保存</value>
   </data>
   <data name="PLANT_UNIT_BIND_BIND" xml:space="preserve">
-    <value>绑定</value>
+    <value>添加</value>
   </data>
   <data name="MONITORITEM_CANEL" xml:space="preserve">
     <value>取消</value>

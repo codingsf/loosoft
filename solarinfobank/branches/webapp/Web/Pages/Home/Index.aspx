@@ -6,7 +6,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <script src="../../script/cookie.js" type="text/javascript"></script>
-
     <script type="text/javascript">
         function remember() {
             var Days = 30;
@@ -14,9 +13,7 @@
             exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
             document.cookie = "sunInfoBankUser=" + $("#username").val() + ";expires=" + exp.toGMTString(); ;
         }
-        function reloadcode(img) {
-            img.src =img.src+ "?"+new Date().getMilliseconds();
-        }
+
 
         function getCookie(name) {
             var result = null;
@@ -192,7 +189,6 @@
     
     </script>
 
-
     <style type="text/css">
         .container, .container img
         {
@@ -204,6 +200,7 @@
             border: 0;
             vertical-align: top;
         }
+
         .container ul, .container li
         {
             list-style: none;
@@ -250,15 +247,13 @@
         }
     </style>
     <div class="mainbox">
-        <div class="embox">
-        </div>
+        <div class="embox"></div>
         <div class="mainboxup">
             <div class="mainboxup_l">
                 <form name="loginform" method="post" action="/home/index" id="loginform">
-                <div class="indexicg">
-                    <%=Resources.SunResource.HOME_INDEX_LOGIN%></div>
+                <div class="indexicg"><%=Resources.SunResource.HOME_INDEX_LOGIN%></div>
                 <input id="localZone" name="localZone" type="hidden" />
-                <%--    <table width="390" border="0" align="left" cellpadding="0" cellspacing="0" style="margin-top: 15px; margin-left:30px;">
+            <%--    <table width="390" border="0" align="left" cellpadding="0" cellspacing="0" style="margin-top: 15px; margin-left:30px;">
                     <%if(Request.QueryString.ToString().Equals("t")){ %>
                     <tr>
                         <td height="26" colspan="3" align="right" class="dgr">
@@ -339,64 +334,71 @@
                         </td>
                     </tr>
                 </table>--%>
-                
-                <table width="400" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:10px;">
+             
+ <table width="400" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:10px;">
     <tr>
       <td height="30" colspan="3" align="left" class="dgr"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                <tr>
-                                    <td width="100%" style="color: #EF8700; font-weight: bold;">
-                                        <span id="error">
-                                            <%if (Request.QueryString.ToString().Equals("t"))
-                                              { %>
-                                            <img src="images/tx.jpg" width="12" height="11" id="errorico" />
-                                            &nbsp;
-                                            <%=Resources.SunResource.HOME_INDEX_LOG_FAIL_TIME_OUT%>
-                                            <%}
-                                              else
-                                              {%>
-                                            <%= Html.ValidationMessage("Error", "", new { id = "errormessage"})%>&nbsp
-                                            <%} %>
-                                        </span>
-                                    </td>
-                                </tr>
-                            </table></td>
+        <tr>
+         
+          <td width="100%" style="color:#EF8700; font-weight:bold;">
+           <span id="error">
+          <%if (Request.QueryString.ToString().Equals("t"))
+            { %>
+            <img src="images/tx.jpg" width="12" height="11" id="errorico" /> &nbsp; <%=Resources.SunResource.HOME_INDEX_LOG_FAIL_TIME_OUT%>       
+            <%}
+            else
+            {%>
+             <%= Html.ValidationMessage("Error", "", new { id = "errormessage"})%>&nbsp
+            <%} %>
+    
+          </span></td>
+        </tr>
+      </table></td>
       </tr>
     <tr>
-      <td width="114" height="28" align="left" class="dgr"> <span style="white-space: nowrap;">
-                                <%=Resources.SunResource.HOME_INDEX_USERNAME%>:</span></td>
-      <td width="186" align="left"> <%= Html.TextBoxFor(m => m.username, new { @class = "insy01", tabindex ="1"})%></td>
-      <td width="100" rowspan="2"> <input type="submit" class="loginbu" value="<%=Resources.SunResource.HOME_INDEX_LOGIN%>"
-                                onclick="remember(this)" id="Submit1" tabindex="3" /></td>
-    </tr>
-    <tr>
-      <td height="28" align="left" class="dgr">  <%= Resources.SunResource.HOME_INDEX_PASSWORD%>:</td>
-      <td align="left"><%= Html.PasswordFor(m => m.password, new { @class = "insy01", tabindex = "2" })%></td>
-      </tr>
+      <td width="73" height="28" align="left" class="dgr"><span style="white-space:nowrap;"><%=Resources.SunResource.HOME_INDEX_USERNAME%>:</span> </td>
+      <td width="174" align="right">
+       <%= Html.TextBoxFor(m => m.username, new { @class = "insy01", tabindex ="1"})%>
+      </td>
+      <td width="153" rowspan="2">
+      <input type="submit" class="loginbu" value="<%=Resources.SunResource.HOME_INDEX_LOGIN%>"
+                                            onclick="remember(this)" id="btnLogin", tabindex ="3" />
       
-    <tr>
-      <td class="dgr"><span leftzone="0|15" rightzone="0|15" space="space"> <%= Resources.SunResource.HOME_INDEX_VALIDATECODE%>:</span>      </td>
-      <td align="left"><input name="validatecode" type="text" style="border:1px solid #3A4E2B; width:95px; height:17px; vertical-align:middle;" />
-        <img src="/content/ashx/validatecode.ashx" width="60" height="19"  style="vertical-align:middle; cursor:pointer; " title="<%= Resources.SunResource.HOME_INDEX_RELOAD_VALIDATECODE%>" onclick="reloadcode(this)" /> </td>
-      <td height="36">&nbsp;</td>
+      </td>
     </tr>
-    
-    
     <tr>
-      <td height="28" colspan="3">
-	  <span style="float:left;">
-	    <%=Html.CheckBox("autologin",false) %>
+
+      <td height="28" align="left" class="dgr"> <%= Resources.SunResource.HOME_INDEX_PASSWORD%>:</td>
+      <td align="right">
+       <%= Html.PasswordFor(m => m.password, new { @class = "insy01", tabindex = "2" })%>
+      </td>
+      </tr>
+    <tr>
+      <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="left">
+          <%=Html.CheckBox("autologin",false) %>
                                         <%= Resources.SunResource.HOME_INDEX_REMAIN_REMEMBER_ME%>
-	   </span>
-	   <span style="display:none">
-	   
+          </td>
+
+          <td align="right" style="display:none">
            <input id="ssl" type="checkbox" value="checkbox" />
                                         SSL
-	   </span>
-	  <span style=" float:right; margin-left:15px;"><a href="/newregister/register" class="green">
-                                <%= Resources.SunResource.HOME_INDEX_REGISTER%></a></span><span style="float:right;"><a href="/public/findpassword" class="green">
+          </td>
+          </tr>
+      </table></td>
+      <td height="36">&nbsp;</td>
+    </tr>
+    <tr>
+      <td height="28" colspan="2" align="center"><span style="float:left;"><a href="/newregister/register" class="green">
+                                <%= Resources.SunResource.HOME_INDEX_REGISTER%></a></span>
+
+	  <span style=" float:right; margin-left:20px;"><a href="/public/findpassword" class="green">
                                         <%= Resources.SunResource.HOME_INDEX_FORGETTEN_PASSWORD%>? </a></span>	  </td>
-      </tr>
+      <td height="28" align="center">&nbsp;</td>
+    </tr>
   </table>
+  
                 </form>
             </div>
             <div style="float: right; height: 100px; width: 510px; margin-top: 40px; color: #A2A2A2;
@@ -406,7 +408,7 @@
                         <img src="/images/ico01.gif" border="0" /></a></div>
                 <div style="float: left; height: 100px; width: 380px;">
                     <div class="mrb">
-                        <a onclick="gotoexampleplant();" href="javascript:void(0);">
+                        <a  onclick="gotoexampleplant();" href="javascript:void(0);">
                             <%=Resources.SunResource.HOME_INDEX_EXAMPLE_PLANT %></a></div>
                     <div style="clear: both;">
                     </div>
@@ -507,26 +509,21 @@
             </div>
             <div class="mainboxdown_r">
                 <div class="indexicg">
-                    <span style="float: left;">
-                        <%= Resources.SunResource.HOMT_INDEX_MOBILE_TITLE%></span> <a href="#" style="float: right;
-                            padding-right: 10px;"></a>
+                    <span style="float: left;"><%= Resources.SunResource.HOMT_INDEX_MOBILE_TITLE%></span>
+                    <a href="#" style="float: right; padding-right: 10px;"></a>
                 </div>
                 <div style="width: 528px; height: 144px; margin: 12px auto auto 8px; background: url(/images/gg01.jpg) no-repeat;
                     font-family: Arial, Helvetica, sans-serif;">
                     <div style="padding-top: 30px; width: 280px; padding-left: 15px;">
-                        <span style="font-size: 18px; font-weight: bold;">
-                            <%= Resources.SunResource.HOMT_INDEX_MOBILE_SUB_TITLE%></span>
+                        <span style="font-size: 18px; font-weight: bold;"><%= Resources.SunResource.HOMT_INDEX_MOBILE_SUB_TITLE%></span>
                         <div style="line-height: 16px; color: #666666; padding: 5px 0px 10px 0px;">
                             <%= Resources.SunResource.HOMT_INDEX_MOBILE_DESCR%>
                         </div>
                     </div>
                     <div style="padding-left: 15px;">
                         <label>
-                            <input onclick="window.location.href='/app/index'" type="submit" name="Submit2" value="<%= Resources.SunResource.HOME_INDEX_MOBILE_BUTTON%> &gt;&gt;"
-                                style="background: url(/images/dlown.jpg) no-repeat; width: 85px; height: 16px;
-                                color: #FFFFFF; text-align: center; border: none; font-family: Arial, Helvetica, sans-serif;
-                                padding-bottom: 5px; cursor: pointer;" />
-                        </label>
+  <input onclick="window.location.href='/app/index'" type="submit" name="Submit2" value="<%= Resources.SunResource.HOME_INDEX_MOBILE_BUTTON%> &gt;&gt;"  style="background:url(/images/dlown.jpg) no-repeat; width:85px; height:16px; color:#FFFFFF; text-align:center; border:none; font-family:Arial, Helvetica, sans-serif; padding-bottom:5px; cursor:pointer;"/>
+  </label>
                     </div>
                     <div>
                     </div>

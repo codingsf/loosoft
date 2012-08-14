@@ -137,7 +137,7 @@
                             }
 
                         }
-                    }
+                    },
                     //                    ,
                     //                    longitude: {
                     //                        number: true,
@@ -149,9 +149,10 @@
                     //                        max: 180,
                     //                        min: -180
                     //                    },
-                    //                    design_power: {
-                    //                        number: true
-                    //                    },
+                                      design_power: {
+                                         required: true,
+                                          number: true
+                                      },
                     //                    email: {
                     //                        email: true
                     //                    }
@@ -196,6 +197,7 @@
                         min: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_MIN_NUMBER %></span>"
                     },
                     design_power: {
+                        required: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_NUMBER %></span>",
                         number: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_NUMBER %></span>"
                     },
                     email: {
@@ -1235,7 +1237,7 @@
             "</div>" +
         "</div>";
         $("#picContainer").append(appendHtml);
-    } E
+    } 
     function deletePic(picname) {
         if (!confirm('<%=Resources.SunResource.PLANT_MONITOR_CONFIRM_DELETE%>')) return;
 
@@ -1390,6 +1392,26 @@
                                                                     <%=Resources.SunResource.PLANT_NAME_DEFAULT_MESSAGE%></span>
                                                             </td>
                                                         </tr>
+                                                        
+                                                        <tr>
+                                                            <td class="pl20" height="28">
+                                                                <strong>
+                                                                    <%=Resources.SunResource.PLANT_PROFILE_DESIGNPOWER %>
+                                                                    :</strong>
+                                                            </td>
+                                                            <td width="55%">
+                                                                <%= Html.TextBoxFor(model => model.design_power, new { @class = "txtbu01", @style = "width:150px" })%>
+                                                                <span class="f11">kWp</span><span class="red">*</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pl20" height="18" width="30%">
+                                                            </td>
+                                                            <td width="70%">
+                                                                <span id="error_design_power">
+                                                                    请输入设计功率</span>
+                                                            </td>
+                                                        </tr>
                                                         <tr>
                                                             <td class="pl20" height="28">
                                                                 <strong>
@@ -1401,17 +1423,7 @@
                                                                     class="txtbu01" />
                                                             </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td class="pl20" height="28">
-                                                                <strong>
-                                                                    <%=Resources.SunResource.PLANT_PROFILE_DESIGNPOWER %>
-                                                                    :</strong>
-                                                            </td>
-                                                            <td width="55%">
-                                                                <%= Html.TextBoxFor(model => model.design_power, new { @class = "txtbu01", @style = "width:150px" })%>
-                                                                <span class="f11">kWp</span>
-                                                            </td>
-                                                        </tr>
+                                                        
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -1546,19 +1558,7 @@
                                                                 <%=Html.DropDownList("timezone",Cn.Loosoft.Zhisou.SunPower.Common.TimeZone.Data,new {@class="txtbu01"} )%>
                                                             </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td height="28" class="pl20">
-                                                                <strong>
-                                                                    <%=Resources.SunResource.PLANT_ADDPLANT_VIDEO_MONITOR %>:</strong>
-                                                            </td>
-                                                            <td style="width: 30%">
-                                                                <%=Html.DropDownListFor(model => model.VideoMonitorEnable, new List<SelectListItem>(){
-new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_ENABLE, Value="true"},
-new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="false"}
-
-}, new { @class = "txtbu01",style="width:181px;" })%>
-                                                            </td>
-                                                        </tr>
+                                                        
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -1618,11 +1618,15 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                                         </td>
                                         <td class="pl20" height="28">
                                             <strong>
-                                                <%=Resources.SunResource.PLANT_PROFILE_EMAIL %>
+                                                <%=Resources.SunResource.PLANT_ADDPLANT_VIDEO_MONITOR%>
                                                 :</strong>
                                         </td>
                                         <td>
-                                            <%= Html.TextBoxFor(model => model.email, new { @class = "txtbu01" })%>
+                                            <%=Html.DropDownListFor(model => model.VideoMonitorEnable, new List<SelectListItem>(){
+new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_ENABLE, Value="true"},
+new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="false"}
+
+}, new { @class = "txtbu01",style="width:181px;" })%>
                                         </td>
                                     </tr>
                                     <tr>

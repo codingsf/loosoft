@@ -21,7 +21,6 @@
     <script language="javascript" type="text/javascript">
 
         function hideunessentialall() {
-            if (window.frames.length == 2) return;
             for (var x = 0; x < window.frames.length; x++) {
                 if (typeof (eval(window.frames[x].hideunessential)) == "function") {
                     window.frames[x].hideunessential();

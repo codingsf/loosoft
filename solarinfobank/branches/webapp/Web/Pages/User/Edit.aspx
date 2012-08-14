@@ -91,7 +91,7 @@
                         email: true
                     },
                     faxPhone: {
-                        required: true
+                       // required: true
                     }
                 },
                 errorPlacement: function(error, element) {
@@ -313,20 +313,7 @@
                         </td>
                     </tr>
                     
-                    <tr>
-                        <td width="29%" height="35" class="pr_10">
-                            <%=Resources.SunResource.AUTH_REG_FAX %>:
-                        </td>
-                        <td width="29%">
-                               <%= Html.HiddenFor(model => model.username)%> 
-                               <%= Html.HiddenFor(model => model.menuDisplayCount)%> 
-                               <%= Html.HiddenFor(model => model.overviewDisplayCount)%> 
-                            <%= Html.TextBoxFor(model => model.faxPhone, new { @class = "txtbu01", @onmousedown = "clearMessage()"})%> <span class="red">*</span>
-                        </td>
-                        <td width="42%">
-                            <span id="error_fax"></span>
-                        </td>
-                    </tr>                    
+                                        
                     <tr>
                         <td width="29%" height="35" class="pr_10">
                             <%=Resources.SunResource.AUTH_REG_REVENUE%>:
@@ -394,6 +381,10 @@
                             &nbsp;
                         </td>
                     </tr>
+                    
+                    
+                    
+                    
                      <tr>
                         <td width="29%" height="35" class="pr_10">
                             <%=Resources.SunResource.AUTH_REG_LASTNAME %>:
@@ -431,7 +422,20 @@
                             <span id="error_mobilePhone"></span>
                         </td>
                     </tr>
-                    
+                    <tr>
+                        <td width="29%" height="35" class="pr_10">
+                            <%=Resources.SunResource.AUTH_REG_FAX %>:
+                        </td>
+                        <td width="29%">
+                               <%= Html.HiddenFor(model => model.username)%> 
+                               <%= Html.HiddenFor(model => model.menuDisplayCount)%> 
+                               <%= Html.HiddenFor(model => model.overviewDisplayCount)%> 
+                            <%= Html.TextBoxFor(model => model.faxPhone, new { @class = "txtbu01", @onmousedown = "clearMessage()"})%> 
+                        </td>
+                        <td width="42%">
+                            <span id="error_fax"></span>
+                        </td>
+                    </tr>
                     <tr>
                         <td height="35" class="pr_10">
                             <%=Resources.SunResource.AUTH_REG_ADDRESS %>:
@@ -443,6 +447,10 @@
                             &nbsp;
                         </td>
                     </tr>
+                    
+                    
+                    
+                    
                     <tr>
                         <td height="35" class="pr_10">
                             <%=Resources.SunResource.AUTH_REG_POSTAL_CODE %>:

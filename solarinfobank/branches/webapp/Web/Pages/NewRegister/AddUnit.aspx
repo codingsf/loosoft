@@ -223,16 +223,7 @@
                         &nbsp;
                     </td>
                 </tr>
-                <tr>
-                    <td width="9" height="9">
-                        <img src="/images/tc/tc06.gif" width="9" height="9" />
-                    </td>
-                    <td background="/images/tc/tc07.gif">
-                    </td>
-                    <td>
-                        <img src="/images/tc/tc08.gif" width="9" height="9" />
-                    </td>
-                </tr>
+                <tr><td width="9" height="9"><img src="/images/tc/tc06.gif" width="9" height="9" /></td><td background="/images/tc/tc07.gif"></td><td><img src="/images/tc/tc08.gif" width="9" height="9" /></td></tr>
             </table>
         </div>
     </div>

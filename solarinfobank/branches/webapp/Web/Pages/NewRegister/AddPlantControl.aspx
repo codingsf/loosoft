@@ -31,8 +31,9 @@
     <script language="javascript" type="text/javascript">
         $(document).ready(function() {
             $("#change").click(function() {
+                var ishidden = $("#unessential").is(":hidden");
                 parent.hideunessentialall();
-                if ($("#unessential").is(":hidden")) {
+                if (ishidden) {
                     $(this).text('收起选填项');
                     $(this).parent().attr("class", "ss_zkico");
                     $("#unessential").slideDown(0);
@@ -1360,11 +1361,11 @@
     <table width="705" border="0" align="center" cellpadding="0" cellspacing="0" class="mt15">
         <tr>
             <td height="34" background="/images/lc/lcbg03.jpg">
+            <a href="#">
+                        <img src="/images/lc/lc_del.gif" width="14" class="fr mr15 mt10" height="13" border="0" rel="<%=Request.QueryString["menu"] %>"
+                            onclick="parent.clearcontrol(<%=Request.QueryString["menu"] %>)" /></a>
                 <div class="lcintt01">
-                    <span class="f1 red">注：* 为必填项</span> <span class="fr mr15 mt10"><a href="#">
-                        <img src="/images/lc/lc_del.gif" width="14" height="13" border="0" rel="<%=Request.QueryString["menu"] %>"
-                            onclick="parent.clearcontrol(<%=Request.QueryString["menu"] %>)" /></a></span>
-                </div>
+                    <span class="f1 red">注：* 为必填项</span>
             </td>
         </tr>
         <tr>
@@ -1382,6 +1383,8 @@
                             </span></li>
                         <li>时区
                             <%=Html.DropDownList("timezone", Cn.Loosoft.Zhisou.SunPower.Common.TimeZone.Data, new { @class = "subselect01 iv lcinput02", style="width:150px" })%>
+                            <span class="redzi"></span><span style="display: block">
+                            </span>
                         </li>
                     </ul>
                 </div>

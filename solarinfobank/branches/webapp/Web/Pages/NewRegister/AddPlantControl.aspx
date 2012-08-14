@@ -113,7 +113,7 @@
                         min: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_MIN_NUMBER %></span>"
                     },
                     design_power: {
-                        required: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_NUMBER %></span>",
+                    required: "<span class='error'>&nbsp;<%=Resources.SunResource.NOTICE_DESIGN_POWER %></span>",
                         number: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_NUMBER %></span>"
                     },
                     email: {

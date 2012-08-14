@@ -21,18 +21,20 @@
     <script language="javascript" type="text/javascript">
 
         function hideunessentialall() {
-            if(window.frames.length==2)return ;
-            for (var x=0; x < window.frames.length; x++) {
+            if (window.frames.length == 2) return;
+            for (var x = 0; x < window.frames.length; x++) {
                 if (typeof (eval(window.frames[x].hideunessential)) == "function") {
                     window.frames[x].hideunessential();
                 }
             }
         }
-        
-        
+
+
         var canSubmit = false; //是否提交
         function clearcontrol(ctrl) {
-            $("#ifrm" + ctrl).remove();
+            if ($("#ifrm" + ctrl).get(0) == undefined)
+                alert("默认不能被删除.");
+                $("#ifrm" + ctrl).remove();
         }
         // 批量提交
         function batchsubmit() {

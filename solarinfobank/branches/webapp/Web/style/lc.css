@@ -15,6 +15,9 @@
 .ok_box{ border-top:1px dotted #969696; margin:30px auto 20px auto; padding-top:20px; text-align:center;}
 .ok_box0{ margin:20px auto; padding-top:20px; text-align:center;}
 
+.no_greybtu{ background:url(../images/lc/lcbtu1.gif); height:34px; text-align:center; line-height:34px; padding:0 15px; font-size:14px; font-weight:bold; color:#fff; border:none; cursor:pointer;}
+
+
 .lcadd01{ background:url(../images/lc/lcadd01.jpg) no-repeat left; padding-left:30px; height:25px; margin-top:10px; margin-left:20px; line-height:25px; font-weight:bold;}
 .lcadd01 a{ color:#000000; text-decoration:underline;}
 

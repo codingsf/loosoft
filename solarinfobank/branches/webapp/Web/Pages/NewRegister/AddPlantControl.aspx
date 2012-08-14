@@ -35,11 +35,12 @@
                 parent.hideunessentialall();
                 if ($("#unessential").is(":hidden")) {
                     $(this).text('收起选填项');
+                    $(this).parent().attr("class", "ss_zkico");
                     $("#unessential").slideDown(0);
                 } else {
                     $("#unessential").slideUp(0);
                     $(this).text('展开选填项');
-
+                    $(this).parent().attr("class", "zk_zkico");
                 }
                 parent.iframeauto();
             });
@@ -48,6 +49,7 @@
         //隐藏选填项容器
         function hideunessential() {
             $("#unessential").slideUp(0);
+            $(this).parent().attr("class", "zk_zkico");
         }
 
 

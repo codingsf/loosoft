@@ -82,7 +82,7 @@
                     },
                     agree:
                     {
-                        required: true
+                    //    required: true
                     
                     },
                     confirm_password: {
@@ -164,14 +164,33 @@
 
     <script language="javascript" type="text/javascript">
         $(document).ready(function() {
+
+
+            $("#agree").click(function() {
+                if ($(this).attr("checked") == false) {
+                    $(".btn").attr("class", "no_greybtu btn");
+                    $(".btn").attr("disabled", "disabled");
+                } else {
+                    $(".btn").attr("class", "ok_greenbtu btn");
+                    $(".btn").attr("disabled", "");
+
+                }
+            });
+
+
             $("#change").click(function() {
                 if ($("#unessential").is(":hidden")) {
                     $(this).text('收起选填项');
-
+                    $(this).parent().attr("class", "ss_zkico");
+                    $("#btn1").hide();
+                    $("#btn2").show();
                     $("#unessential").slideDown(0);
                 } else {
                     $("#unessential").slideUp(0);
                     $(this).text('展开选填项');
+                    $(this).parent().attr("class", "zk_zkico");
+                    $("#btn2").hide();
+                    $("#btn1").show();
 
                 }
             });
@@ -277,7 +296,16 @@
                                     <a href="/public/agree" target="_blank" class="green">同意《用户协议内容》</a>
                                 </td>
                                 <td>
-                                    <span class="redzi">*</span> <span id="error_agree"></span>
+                                    
+                                </td>
+                            </tr>
+                            <tr id="btn1" style="display: none">
+                                <td>
+                                </td>
+                                <td>
+                                    <input type="submit" name="Submit" class="ok_greenbtu btn" value="下一步" />
+                                </td>
+                                <td>
                                 </td>
                             </tr>
                         </table>
@@ -401,8 +429,8 @@
                                 </td>
                             </tr>
                         </table>
-                        <div class="ok_box">
-                            <input type="submit" name="Submit" class="ok_greenbtu" value="下一步" />
+                        <div class="ok_box" id="btn2">
+                            <input type="submit" name="Submit" class="ok_greenbtu btn" value="下一步" />
                         </div>
                     </td>
                     <td background="images/tc/tc05.gif">

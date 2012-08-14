@@ -39,6 +39,9 @@
         function batchsubmit() {
             //$.colorbox({ href: "/images/ajax_loading.gif", transition: "fade", bgOpacity: 0 ,});
             //return;
+            if (checkplantname()) {
+                alert('添加的电站名称不能有重复。');    return;
+            }
             var x = 0;
             var frmcount = 0;
             var validatecount = 0;
@@ -62,6 +65,22 @@
             }
             setInterval("checkresult()", 500);
             iframeauto();
+        }
+
+        function checkplantname() {
+            var plantnames = new Array()
+            for (var x=0; x < window.frames.length; x++) {
+                if (typeof (eval(window.frames[x].getplantname)) == "function") {
+                    plantnames[x]= window.frames[x].getplantname();
+                }
+            }
+            var s = plantnames.join(",") + ",";
+            for (var i = 0; i < plantnames.length; i++) {
+                if (s.replace(plantnames[i] + ",", "").indexOf(plantnames[i] + ",") > -1) {
+                    return true;
+                }
+            }
+            return false;
         }
 
 

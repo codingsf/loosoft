@@ -46,6 +46,10 @@
             });
         });
 
+        function getplantname() {
+            return $("#name").val();
+        }
+
         //隐藏选填项容器
         function hideunessential() {
             $("#unessential").slideUp(0);

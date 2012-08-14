@@ -29,6 +29,8 @@
 
             $(".btua").click(function() {
                 var id = $(this).attr('rel');
+                if (!checkinput(id))
+                    return;
                 $.get("/newregister/unitsave", { t: Math.random(), plantId: id, unitid: $("#unit_" + id).val(), code: $("#code_" + id).val(), password: $("#password_" + id).val(), displayname: $("#displayname_" + id).val() }, function(data, textStatus) {
                     if (data == "True")
                         reload(id);
@@ -65,6 +67,19 @@
             $("#password_" + plantid).attr("disabled", true);
             $("#code_" + plantid).attr("disabled", true);
             $("#unessential_" + plantid).slideDown(0);
+        }
+        function checkinput(plantid) {
+            var success = true;
+            if ($("#code_" + plantid).val() == "") {
+                $("#error_code_" + plantid).html("<em><span class='error'>&nbsp;请输入设备序列号</span></em>"); success = false;
+            }
+            if ($("#password_" + plantid).val() == "") {
+                $("#error_password_" + plantid).html("<em><span class='error'>&nbsp;请输入设备密码</span></em>"); success = false;
+            }
+            if ($("#displayname_" + plantid).val() == "") {
+                $("#error_displayname_" + plantid).html("<em><span class='error'>&nbsp;请输入设备名称</span></em>"); success = false;
+            }
+            return success;
         }
 
         function del(obj) {
@@ -181,13 +196,16 @@
                                                                 <input name="unitid" type="hidden" class="lcinput02" id="unit_<%=plant.id %>" />
                                                                 <input name="code" type="text" class="lcinput02" id="code_<%=plant.id %>" onblur="$('#displayname_<%=plant.id %>').val($(this).val())" />
                                                                 <input name="plantid" type="hidden" class="lcinput02" value="<%=plant.id %>" id="plantid_<%=plant.id %>" />
-                                                                <span class="redzi">*</span> </li>
+                                                                <span class="redzi">*</span> <span style="display: block" id="error_code_<%=plant.id %>"></span>
+                            </span></li>
                                                             <li>设备密码
                                                                 <input name="password" type="password" class="lcinput01" id="password_<%=plant.id %>" />
-                                                                <span class="redzi">*</span></li>
+                                                                <span class="redzi">*</span><span style="display: block" id="error_password_<%=plant.id %>"></span>
+                            </span></li>
                                                             <li>设备名称
                                                                 <input name="displayname" type="text" class="lcinput02" id="displayname_<%=plant.id %>" />
-                                                                <span class="redzi">*</span> </li>
+                                                                <span class="redzi">*</span> <span style="display: block" id="error_displayname_<%=plant.id %>"></span>
+                            </span></li>
                                                         </ul>
                                                     </div>
                                                 </td>

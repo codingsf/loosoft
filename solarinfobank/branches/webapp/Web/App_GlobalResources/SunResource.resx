@@ -3597,7 +3597,7 @@
     <value>Last Name</value>
   </data>
   <data name="PLANT_DEVICE_NAME" xml:space="preserve">
-    <value>Device name</value>
+    <value>name</value>
   </data>
   <data name="CUSTOMREPORT_SAVE_FAILED_EXISTNAME" xml:space="preserve">
     <value>The report's name already exists</value>
@@ -4865,7 +4865,7 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <value>Show All Plants</value>
   </data>
   <data name="PAGE_ADDPLANT_ENDDATE" xml:space="preserve">
-    <value>Please enter "Start time"</value>
+    <value>Please enter \"Start time\"</value>
   </data>
   <data name="PAGE_ADDPLANT_HOURS" xml:space="preserve">
     <value>Please enter "Hours in advance"</value>
@@ -5142,25 +5142,25 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <value>Add Device</value>
   </data>
   <data name="DEVICE_PASSWORD" xml:space="preserve">
-    <value>Device password</value>
+    <value>password</value>
   </data>
   <data name="DEVICE_SN" xml:space="preserve">
-    <value>Device serial number</value>
+    <value>serial number</value>
   </data>
   <data name="NEXT_STEP" xml:space="preserve">
     <value>Next</value>
   </data>
   <data name="NOTICE_DESIGN_POWER" xml:space="preserve">
-    <value>Please "Design Power"</value>
+    <value>Please enter \"Design Power\"</value>
   </data>
   <data name="NOTICE_DEVICE_NAME" xml:space="preserve">
-    <value>Please enter "Device name"</value>
+    <value>Please enter \"Device name\"</value>
   </data>
   <data name="NOTICE_DEVICE_PASSWORD" xml:space="preserve">
-    <value>Please enter "Device password"</value>
+    <value>Please enter \"Device password\"</value>
   </data>
   <data name="NOTICE_DEVICE_SN" xml:space="preserve">
-    <value>Please enter "Device serial number"</value>
+    <value>Please enter \"Device serial number\"</value>
   </data>
   <data name="OPTION_CLOSE" xml:space="preserve">
     <value>Away</value>

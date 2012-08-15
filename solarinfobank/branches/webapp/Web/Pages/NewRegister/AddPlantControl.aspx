@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>注册</title>
+    <title><%= Resources.SunResource.HOME_INDEX_REGISTER%></title>
     <link href="../../style/lc.css" rel="stylesheet" type="text/css" />
     <link href="../../style/sub.css" rel="stylesheet" type="text/css" />
     <link href="../../style/kj.css" rel="stylesheet" type="text/css" />
@@ -31,17 +31,22 @@
     <script language="javascript" type="text/javascript">
         $(document).ready(function() {
             $("#change").click(function() {
-                var ishidden = $("#unessential").is(":hidden");
+                //var ishidden = $("#unessential").is(":hidden");
+                var displayValue = document.getElementById("unessential").style.display;
                 parent.hideunessentialall();
-                if (ishidden) {
+                //if (ishidden) {
+                if(displayValue=='none'){
+                    $("#unessential").show();
                     $(this).text('<%=Resources.SunResource.OPTION_CLOSE%>');
                     $(this).parent().attr("class", "ss_zkico");
-                    $("#unessential").slideDown(0);
+                    //$("#unessential").slideDown(0);
                 } else {
-                    $("#unessential").slideUp(0);
+                    //$("#unessential").slideUp(0);
                     $(this).text('<%=Resources.SunResource.OPTION_OPEN%>');
                     $(this).parent().attr("class", "zk_zkico");
+                    $("#unessential").hide();
                 }
+
                 parent.iframeauto();
             });
         });
@@ -54,6 +59,7 @@
         function hideunessential() {
             $("#unessential").slideUp(0);
             $(this).parent().attr("class", "zk_zkico");
+            //$("#unessential").hide();
         }
 
 
@@ -67,10 +73,6 @@
         function checkid() {
             return $("#id").val() > 0;
         }
-
-      
-        
-        
     </script>
 
     <script type="text/javascript">
@@ -1365,9 +1367,11 @@
     <table width="705" border="0" align="center" cellpadding="0" cellspacing="0" class="mt15">
         <tr>
             <td height="34" background="/images/lc/lcbg03.jpg">
-            <a href="#">
+               <%if(Request.QueryString["menu"]!=null && int.Parse(Request.QueryString["menu"])>1){%>
+               <a href="#">
                         <img src="/images/lc/lc_del.gif" width="14" class="fr mr15 mt10" height="13" border="0" rel="<%=Request.QueryString["menu"] %>"
                             onclick="parent.clearcontrol(<%=Request.QueryString["menu"] %>)" /></a>
+                <%} %>
                 <div class="lcintt01">
                     <span class="f1 red"><%=Resources.SunResource.AUTH_REG_NOTE%>：* <%=Resources.SunResource.AUTH_REG_FOR_MUST_FILL_IN_THE_ITEM%></span>
             </td>
@@ -1408,7 +1412,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr id="unessential" style="display: none">
+                    <tr id="unessential" style="display: none;">
                         <td background="/images/lc/lcbg07.jpg">
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tlist">
                                 <tr>

@@ -110,12 +110,12 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Web.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>D:\Program Files\Microsoft Chart Controls\Assemblies\System.Web.DataVisualization.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\System.Web.DataVisualization.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DataVisualization.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>D:\Program Files\Microsoft Chart Controls\Assemblies\System.Web.DataVisualization.Design.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\System.Web.DataVisualization.Design.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -1113,7 +1113,7 @@
     <Content Include="Content\swfupload.js" />
     <Content Include="Content\Swf\swfupload.swf" />
     <Content Include="Content\Swf\swfuploadbutton.swf" />
-    <Content Include="css\wap.css" />
+    <Content Include="demoimg\css\wap.css" />
     <Content Include="demoimg\2x-1.png" />
     <Content Include="demoimg\2x-o.png" />
     <Content Include="demoimg\2x.png" />
@@ -2122,6 +2122,7 @@
     <Content Include="Images\sub\view_c00.gif" />
     <Content Include="Images\sub\xs.gif" />
     <Content Include="Images\sub\yc.gif" />
+    <Content Include="Images\sub\zoom.gif" />
     <Content Include="Images\sub\zs.gif" />
     <Content Include="Images\Suo.jpg" />
     <Content Include="Images\tc01.gif" />

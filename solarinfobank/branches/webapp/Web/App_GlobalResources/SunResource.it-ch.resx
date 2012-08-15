@@ -6037,7 +6037,7 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>Tutte le centrali</value>
   </data>
   <data name="PAGE_ADDPLANT_ENDDATE" xml:space="preserve">
-    <value>Si prega di inserire il "Ora di inizio"</value>
+    <value>Si prega di inserire il \"Ora di inizio\"</value>
   </data>
   <data name="PAGE_ADDPLANT_HOURS" xml:space="preserve">
     <value>Si prega di inserire il "Ore prima"</value>
@@ -6341,16 +6341,16 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>下一步</value>
   </data>
   <data name="NOTICE_DESIGN_POWER" xml:space="preserve">
-    <value>请输入设计功率</value>
+    <value>请输入“设计功率”</value>
   </data>
   <data name="NOTICE_DEVICE_NAME" xml:space="preserve">
-    <value>请输入"设备名称"</value>
+    <value>请输入“设备名称”</value>
   </data>
   <data name="NOTICE_DEVICE_PASSWORD" xml:space="preserve">
-    <value>请输入"设备密码"</value>
+    <value>请输入“设备密码”</value>
   </data>
   <data name="NOTICE_DEVICE_SN" xml:space="preserve">
-    <value>请输入"设备序列号"</value>
+    <value>请输入“设备序列号”</value>
   </data>
   <data name="OPTION_CLOSE" xml:space="preserve">
     <value>收起选填项</value>

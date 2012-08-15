@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>添加单元</title>
+    <title><%= Resources.SunResource.HOME_INDEX_REGISTER%></title>
     <link href="../../style/lc.css" rel="stylesheet" type="text/css" />
     <link href="../../style/css.css" rel="stylesheet" type="text/css" />
     <link href="../../style/sub.css" rel="stylesheet" type="text/css" />
@@ -32,9 +32,10 @@
                 if (!checkinput(id))
                     return;
                 $.get("/newregister/unitsave", { t: Math.random(), plantId: id, unitid: $("#unit_" + id).val(), code: $("#code_" + id).val(), password: $("#password_" + id).val(), displayname: $("#displayname_" + id).val() }, function(data, textStatus) {
-                    if (data == "True")
+                    if (data == "True"){
                         reload(id);
-                    else
+                        $("#cancelBtn").click();
+                    }else
                         alert(data);
                 });
             });
@@ -214,7 +215,7 @@
                                                 <td background="/images/lc/lcbg04.jpg">
                                                     <span class="lcsub">
                                                         <input name="Submit31" type="button" class="btua" rel="<%=plant.id %>" value="<%=Resources.SunResource.MONITORITEM_SAVE%>" />
-                                                        <input name="Submit32" type="button" class="btub" value="<%=Resources.SunResource.PLANT_ADDPLANT_CANCEL%>" rel="<%=plant.id %>" />
+                                                        <input name="Submit32" id="cancelBtn" type="button" class="btub" value="<%=Resources.SunResource.PLANT_ADDPLANT_CANCEL%>" rel="<%=plant.id %>" />
                                                     </span>
                                                 </td>
                                             </tr>

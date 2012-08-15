@@ -204,21 +204,20 @@ function getMax(series, yAxis) {
         if (yAxis == tmpSerie.yAxis && tmpSerie.max >= tmpMax)
             tmpMax = tmpSerie.max;
     }
-    return tmpMax;
+    return tmpMax == 0 ? 1 : tmpMax;
 }
 
 //取得某个维度的最小值
 function getMin(series, yAxis) {
-    var tmpMax = 0;
+    var tmpMin = 0;
     //先去的所有维度中同最大值
     for (var i = 0; i < series.length; i++) {
         var tmpSerie = series[i];
-        if (yAxis == tmpSerie.yAxis && tmpSerie.min <= tmpMax)
-            tmpMax = tmpSerie.min;
+        if (yAxis == tmpSerie.yAxis && tmpSerie.min <= tmpMin)
+            tmpMin = tmpSerie.min;
     }
-    return tmpMax;
+    return tmpMin;
 }
-
 
 function setySeriesArr(series) {
     globalNames = new Array();
@@ -258,8 +257,8 @@ function handleMinData(ydata, yMax, yMin, name) {
         globalOldYvalue.push(keyvalue);
         //当前值和最大值的比率，小于1%即增加到1%
         if (ydata[i] == 0) {
-            ydata[i] = yMax * 0.005;//0值给放大点，一边能显示出来
-            if (ydata[i] == 0) ydata[i] = 0.1;
+            ydata[i] = yMax * 0.005;//0值给放大点，以便能显示出来
+            //if (ydata[i] == 0) ydata[i] = 0.1;
         }else if (ydata[i] != null && ydata[i] != "null" && ydata[i] > 0 && ydata[i] / yMax < rate) {
             ydata[i] = yMax * rate;
         } else if (ydata[i] != null && ydata[i] != "null" && ydata[i] < 0 && ydata[i] / yMin < rate) {

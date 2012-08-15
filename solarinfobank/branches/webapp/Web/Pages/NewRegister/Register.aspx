@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>注册</title>
+    <title><%= Resources.SunResource.HOME_INDEX_REGISTER%></title>
     <link href="../../style/lc.css" rel="stylesheet" type="text/css" />
     <link href="../../style/css.css" rel="stylesheet" type="text/css" />
     <link href="../../style/sub.css" rel="stylesheet" type="text/css" />
@@ -212,15 +212,15 @@
         <div class="lcabout">
             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td width="9" height="9" background="images/tc/tc01.gif">
+                    <td width="9" height="9" background="../images/tc/tc01.gif">
                     </td>
-                    <td background="images/tc/tc02.gif">
+                    <td background="../images/tc/tc02.gif">
                     </td>
-                    <td width="9" height="9" background="images/tc/tc03.gif">
+                    <td width="9" height="9" background="../images/tc/tc03.gif">
                     </td>
                 </tr>
                 <tr>
-                    <td background="images/tc/tc04.gif">
+                    <td background="../images/tc/tc04.gif">
                         &nbsp;
                     </td>
                     <td bgcolor="#FFFFFF">
@@ -229,14 +229,14 @@
                             <%if (this.Model == null)
                               { %>
                             <tr>
-                                <td width="29%" class="pr_10">
+                                <td width="24%" class="pr_10">
                                     <%=Resources.SunResource.AUTH_REG_USERNAME%>：
                                 </td>
-                                <td width="29%">
-                                    <%= Html.TextBoxFor(model => model.username, new { @class = "txtbu01", @onmousedown = "clearMessage()", onblur = "fillEmail()" })%>
+                                <td width="24%">
+                                    <%= Html.TextBoxFor(model => model.username, new { @class = "txtbu01", @onmousedown = "clearMessage()"})%>
                                 </td>
-                                <td width="42%">
-                                    <span class="redzi">* </span><span id="error_username"></span>
+                                <td width="60%">
+                                    <span class="redzi">*</span><span id="error_username"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -266,16 +266,18 @@
                               {%>
                             <tr>
                                 <td width="29%" class="pr_10">
+                                <%=Resources.SunResource.AUTH_REG_USERNAME%>：
                                 </td>
                                 <td width="29%">
                                     <%= Html.HiddenFor(model => model.id)%>
-                                    <%= Html.HiddenFor(model => model.username, new { @class = "txtbu01", @onmousedown = "clearMessage()", onblur = "fillEmail()" })%>
+                                    <%= Html.TextBoxFor(model => model.username, new { @class = "txtbu01", @onmousedown = "clearMessage()", @readonly="true" })%>                                    
                                 </td>
                                 <td width="42%">
                                 </td>
                             </tr>
                             <%}
                             %>
+                          
                             <tr>
                                 <td class="pr_10">
                                     <%=Resources.SunResource.USER_FINDPASSWORD_EMAIL%>：
@@ -402,7 +404,7 @@
                                     }, new { @class = "txtbu01" })%>
                                 </td>
                                 <td class="pr_10">
-                                    <%=Resources.SunResource.AUTH_REG_TEMPERATE_UNIT%>：
+                                    <%=Resources.SunResource.AUTH_REG_REVENUE%>：
                                 </td>
                                 <td>
                                     <%=Html.DropDownList("currencies", ViewData["currencies"] as IList<SelectListItem>, new { @class = "txtbu01" })%>
@@ -410,22 +412,20 @@
                             </tr>
                             <tr>
                                 <td class="pr_10">
-                                    &nbsp;
+                                     <%=Resources.SunResource.AUTH_REG_TEMPERATE_UNIT%>：  
                                 </td>
                                 <td>
-                                    &nbsp;
-                                </td>
-                                <td class="pr_10">
-                                    <%=Resources.SunResource.AUTH_REG_REVENUE%>：
-                                </td>
-                                <td>
-                                    <%=Html.DropDownList("temperaturetype", new List<SelectListItem>(){
+                                 <%=Html.DropDownList("temperaturetype", new List<SelectListItem>(){
                                 new SelectListItem(){ Text="°C", Value="C"},
                                 new SelectListItem(){ Text="°F", Value="F"}
 
-
-
                                 }, new { @class = "txtbu01" })%>
+                                </td>
+                                <td class="pr_10">
+                                                                     
+                                </td>
+                                <td>
+                                   
                                 </td>
                             </tr>
                         </table>
@@ -433,27 +433,27 @@
                             <input type="submit" name="Submit" class="ok_greenbtu btn" value="<%=Resources.SunResource.NEXT_STEP%>" />
                         </div>
                     </td>
-                    <td background="images/tc/tc05.gif">
+                    <td background="../images/tc/tc05.gif">
                         &nbsp;
                     </td>
                 </tr>
                 <tr>
                     <td width="9" height="9">
-                        <img src="images/tc/tc06.gif" width="9" height="9" />
+                        <img src="../images/tc/tc06.gif" width="9" height="9" />
                     </td>
-                    <td background="images/tc/tc07.gif">
+                    <td background="../images/tc/tc07.gif">
                     </td>
                     <td>
-                        <img src="images/tc/tc08.gif" width="9" height="9" />
+                        <img src="../images/tc/tc08.gif" width="9" height="9" />
                     </td>
                 </tr>
             </table>
         </div>
     </div>
 
-    <script type="text/javascript">        setup();</script>
+    <script type="text/javascript"> setup();</script>
 
-    <script type="text/javascript">        $.trim($('#tel').val())</script>
+    <script type="text/javascript"> $.trim($('#tel').val())</script>
 
     </form>
 </body>

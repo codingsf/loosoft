@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>添加电站</title>
+    <title><%= Resources.SunResource.HOME_INDEX_REGISTER%></title>
     <link href="../../style/lc.css" rel="stylesheet" type="text/css" />
     <link href="../../style/css.css" rel="stylesheet" type="text/css" />
     <link href="../../style/sub.css" rel="stylesheet" type="text/css" />
@@ -28,19 +28,21 @@
             }
         }
 
-
         var canSubmit = false; //是否提交
         function clearcontrol(ctrl) {
-            if ($("#ifrm" + ctrl).get(0) == undefined)
-                alert("默认不能被删除.");
+            if ($("#ifrm" + ctrl).get(0) == undefined) {
+                //alert("默认不能被删除.");
+            } else {
                 $("#ifrm" + ctrl).remove();
+            }
         }
         // 批量提交
         function batchsubmit() {
             //$.colorbox({ href: "/images/ajax_loading.gif", transition: "fade", bgOpacity: 0 ,});
             //return;
             if (checkplantname()) {
-                alert('添加的电站名称不能有重复。');    return;
+                //alert('添加的电站名称不能有重复。');    
+                return;
             }
             var x = 0;
             var frmcount = 0;
@@ -63,8 +65,8 @@
                     }
                 }
             }
-            setInterval("checkresult()", 500);
-            iframeauto();
+            setInterval("checkresult()", 2000);
+            //iframeauto();
         }
 
         function checkplantname() {
@@ -108,12 +110,16 @@
 
         function iframeauto() {
             $("iframe").each(function() {
-                var iframeid = $(this).get(0); //iframe id
+            var iframeid = $(this).get(0); //iframe id
                 if (document.getElementById) {
                     if (iframeid && !window.opera) {
-                        if (iframeid.contentDocument && iframeid.contentDocument.body.offsetHeight) {
+                        //var subWeb = document.frames ? iframeid.document : iframeid.contentDocument;  
+		                //if(iframeid != null && subWeb != null) {
+		                   //iframeid.height = subWeb.body.scrollHeight + 15;
+		                //}
+                        if (!document.frames && iframeid.contentDocument && iframeid.contentDocument.body!=null && iframeid.contentDocument.body.offsetHeight) {
                             iframeid.height = iframeid.contentDocument.body.offsetHeight + 15;
-                        } else if (iframeid.Document && iframeid.Document.body.scrollHeight) {
+                        } else if (iframeid.Document && iframeid.Document.body!=null && iframeid.Document.body.scrollHeight) {
                             iframeid.height = iframeid.Document.body.scrollHeight + 15;
                         }
                     }
@@ -125,6 +131,7 @@
             $("#addplant").click(function() {
                 controlid++;
                 $('#plant_container').append('<iframe scrolling="no"  id="ifrm' + controlid + '" frameborder="0" width="100%" src="/newregister/addplantcontrol/?menu=' + controlid + '"></iframe>');
+                hideunessentialall();
                 iframeauto();
             });
             iframeauto();
@@ -168,7 +175,7 @@
                               }
                               else
                               { %>
-                            <iframe scrolling="no" id="ifrm0" frameborder="0" width="100%" height="auto" src="/newregister/addplantcontrol?menu=1">
+                            <iframe scrolling="no" id="ifrm0" frameborder="0" width="100%" height="auto" src="/newregister/addplantcontrol?menu=1" onload="iframeauto();">
                             </iframe>
                             <%} %>
                         </div>

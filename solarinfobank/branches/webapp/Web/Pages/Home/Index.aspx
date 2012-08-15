@@ -390,7 +390,7 @@
       <td height="36">&nbsp;</td>
     </tr>
     <tr>
-      <td height="28" colspan="2" align="center"><span style="float:left;"><a href="/newregister/register" class="green">
+      <td height="28" colspan="2" align="center"><span style="float:left;"><a href="/newregister/register" class="green" target=_blank>
                                 <%= Resources.SunResource.HOME_INDEX_REGISTER%></a></span>
 
 	  <span style=" float:right; margin-left:20px;"><a href="/public/findpassword" class="green">

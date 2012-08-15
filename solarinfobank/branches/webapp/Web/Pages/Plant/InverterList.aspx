@@ -12,7 +12,7 @@
                         <td>
                             <table class="subline02" width="100%" border="0" cellpadding="0" cellspacing="0" height="25">
                                 <tbody>
-                                <tr>                              
+                                <tr>                 
                                   <td width="150" align="center">
                                         <strong><%=Resources.SunResource.PLANT_DEVICEMONITOR_UNIT%></strong> <br />
                                           <span class="f11">&nbsp;</span>
@@ -64,8 +64,7 @@
                             </tbody></table>
                         </td>
                     </tr>
-                   
-                     <%
+                    <%
                         int i=1;
                         bool fault = false;
                         int count = 0;

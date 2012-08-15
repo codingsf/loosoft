@@ -474,10 +474,13 @@
 <div class="subrbox01">
    <div class="bitab">
         <ul id="bitab">
+            <%if (bool.Parse(ViewData["hasinverter"].ToString()))
+            { %>
             <li><a href="javascript:void(0);" class="onclick" onclick="loadInvertCompare(1);" >
                 <%=Resources.SunResource.DEVICETYPE_1 %></a></li>
-                <%if (bool.Parse(ViewData["hashlx"].ToString()))
-                  { %>
+            <%}%>
+            <%if (bool.Parse(ViewData["hashlx"].ToString()))
+            { %>
             <li><a href="javascript:void(0);" onclick="loadInvertCompare(2);">
                 <%=Resources.SunResource.DEVICETYPE_3%></a></li>
                 <%} %>

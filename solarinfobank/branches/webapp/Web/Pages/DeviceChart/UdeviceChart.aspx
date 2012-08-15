@@ -47,8 +47,12 @@
             $("#unit<%=(ViewData["plantUnit"] as PlantUnit).id%>").show();
             $('#unit').change(unitDeviceInit);
             unitDeviceInit();
+            <%if (bool.Parse(ViewData["hasinverter"].ToString()))
+            { %>
             loadInvertCompare(1);
-           
+            <%}else if (bool.Parse(ViewData["hashlx"].ToString())){%>
+            loadInvertCompare(2);
+            <%}%>
         }
         
         function deviceChartInit()
@@ -59,7 +63,12 @@
             if(did==-1)
             {
                 $('#intervalMins').val(60);
+                <%if (bool.Parse(ViewData["hasinverter"].ToString()))
+                { %>
                 loadInvertCompare(1);
+                <%}else if (bool.Parse(ViewData["hashlx"].ToString())){%>
+                loadInvertCompare(2);
+                <%}%>
                 //$('#type_container').show();
             }
             else
@@ -83,7 +92,12 @@
                     if(isFirst==false)
                     {
                         $('#intervalMins').val(60);
+                        <%if (bool.Parse(ViewData["hasinverter"].ToString()))
+                        { %>
                         loadInvertCompare(1);
+                        <%}else if (bool.Parse(ViewData["hashlx"].ToString())){%>
+                        loadInvertCompare(2);
+                        <%}%>
                     }
                     isFirst=false;
                 },

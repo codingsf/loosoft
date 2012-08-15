@@ -4702,7 +4702,7 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
     <value>Veuillez entrer le « heure de la fin »</value>
   </data>
   <data name="PAGE_ADDPLANT_HOURS" xml:space="preserve">
-    <value>Veuillez entrer le  « nombre d'heure prévu »</value>
+    <value>Veuillez entrer le  « nombre d\'heure prévu »</value>
   </data>
   <data name="PAGE_ADDPLANT_STARTDATE" xml:space="preserve">
     <value>Veuillez entrer le « heure de début »</value>
@@ -4979,5 +4979,32 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
   </data>
   <data name="DEVICE_INFORMATION" xml:space="preserve">
     <value>设备信息</value>
+  </data>
+  <data name="NOTICE_DESIGN_POWER" xml:space="preserve">
+    <value>请输入“设计功率”</value>
+  </data>
+  <data name="NOTICE_DEVICE_NAME" xml:space="preserve">
+    <value>请输入“设备名称”</value>
+  </data>
+  <data name="NOTICE_DEVICE_PASSWORD" xml:space="preserve">
+    <value>请输入“设备密码”</value>
+  </data>
+  <data name="NOTICE_DEVICE_SN" xml:space="preserve">
+    <value>请输入“设备序列号”</value>
+  </data>
+  <data name="OPTION_CLOSE" xml:space="preserve">
+    <value>收起选填项</value>
+  </data>
+  <data name="OPTION_OPEN" xml:space="preserve">
+    <value>展开选填项</value>
+  </data>
+  <data name="PAGE_ADDPLANT_ENDDATE1" xml:space="preserve">
+    <value>请输入“结束时间”</value>
+  </data>
+  <data name="PAGE_ADDPLANT_HOURS1" xml:space="preserve">
+    <value>请输入“提前小时”</value>
+  </data>
+  <data name="PAGE_ADDPLANT_STARTDATE1" xml:space="preserve">
+    <value>请输入“开始时间”</value>
   </data>
 </root>

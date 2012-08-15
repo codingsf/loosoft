@@ -187,6 +187,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 devices.Add(new DeviceStuct() { deviceId = device.id.ToString(), rate = rate, comareObj = device.fullName, name = "", unit = "", chartType = chartTypes[0], monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.DEVICE, intervalMins = int.Parse(intervals[0]) });
                 //判断该测点是否有数据,有数据则增加关照对比
                 Hashtable dataHash = DeviceDayDataService.GetInstance().GetDaydataList(device, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), mt.code);
+
+                string chartName = LanguageUtil.getDesc("DAY_COMPARE_CHART_NAME_POWER");
                 if (dataHash.Count > 0)
                 {
                       //Collector collector = CollectorInfoService.GetInstance().Get(device.collectorID);
@@ -198,6 +200,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                             dataHash = DeviceDayDataService.GetInstance().GetDaydataList(null, sundevice, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[1]), MonitorType.MIC_DETECTOR_SUNLINGHT);
                             if (dataHash.Keys.Count > 0)//有日照数据
                             {
+                                chartName = LanguageUtil.getDesc("DAY_COMPARE_CHART_NAME");
                                 rate = 1F;
                                 MonitorType smt = MonitorType.getMonitorTypeByCode(MonitorType.MIC_DETECTOR_SUNLINGHT);
                                 devices.Add(new DeviceStuct() { deviceId = sundevice.id.ToString(), rate = rate, comareObj = device.fullName, name = smt.name, unit = "", chartType = chartTypes[1], monitorType = smt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.DEVICE, intervalMins = int.Parse(intervals[1]) });
@@ -209,7 +212,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     return Content("error:" + Resources.SunResource.NODATA);
                 }
 
-                string chartName = LanguageUtil.getDesc("DAY_COMPARE_CHART_NAME");
+
                 //取得用户年度发电量图表数据
                 ChartData chartData = CompareChartService.GetInstance().compareDayHHMultiDeviceMultiMonitor(chartName, devices, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]));
                 reportCode = JsonUtil.convertToJson(chartData, typeof(ChartData));
@@ -239,6 +242,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 devices.Add(new DeviceStuct() { deviceId = device.id.ToString(), rate = rate, comareObj = device.fullName, name = "kWp" + mt.name, unit = "kWh/kWp", chartType = chartTypes[0], monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.DEVICE, intervalMins = int.Parse(intervals[0]) });
                 //判断改测点是否有数据
                 Hashtable dataHash = DeviceDayDataService.GetInstance().GetDaydataList(device, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), mt.code);
+                string chartName = LanguageUtil.getDesc("INVEST_INCOME_COMPARE_CHART_POWER");
                 if (dataHash.Count > 0)
                 {
                     //Collector collector = CollectorInfoService.GetInstance().Get(device.collectorID);
@@ -250,6 +254,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                           dataHash = DeviceDayDataService.GetInstance().GetDaydataList(null, sundevice, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[1]), MonitorType.MIC_DETECTOR_SUNLINGHT);
                           if (dataHash.Keys.Count > 0)//有日照数据
                           {
+                              chartName = LanguageUtil.getDesc("INVEST_INCOME_COMPARE_CHART");
                               rate = 1F;
                               MonitorType smt = MonitorType.getMonitorTypeByCode(MonitorType.MIC_DETECTOR_SUNLINGHT);
                               devices.Add(new DeviceStuct() { deviceId = sundevice.id.ToString(), rate = rate, comareObj = device.fullName, name = smt.name, unit = "", chartType = chartTypes[1], monitorType = smt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.DEVICE, intervalMins = int.Parse(intervals[1]) });
@@ -261,7 +266,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     return Content("error:" + Resources.SunResource.NODATA);
                 }
 
-                string chartName = LanguageUtil.getDesc("INVEST_INCOME_COMPARE_CHART");
+
                 //取得用户年度发电量图表数据
                 ChartData chartData = CompareChartService.GetInstance().compareDayHHMultiDeviceMultiMonitor(chartName, devices, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]));
                 reportCode = JsonUtil.convertToJson(chartData, typeof(ChartData));
@@ -511,12 +516,22 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             PlantUnit unit = PlantUnitService.GetInstance().GetPlantUnitById(id);
             Plant plant = PlantService.GetInstance().GetPlantInfoById(unit.plantID);
             ViewData["hashlx"] = false;
+            ViewData["hasinverter"] = false;
 
             foreach (Device dce in unit.devices)
             {
                 if (dce.deviceTypeCode == DeviceData.HUILIUXIANG_CODE)
                 {
                     ViewData["hashlx"] = true;
+                    break;
+                }
+            }
+
+            foreach (Device dce in unit.devices)
+            {
+                if (dce.deviceTypeCode == DeviceData.INVERTER_CODE)
+                {
+                    ViewData["hasinverter"] = true;
                     break;
                 }
             }
@@ -532,6 +547,26 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         {
             PlantUnit unit = PlantUnitService.GetInstance().GetPlantUnitById(id);
             Plant plant = PlantService.GetInstance().GetPlantInfoById(unit.plantID);
+            ViewData["hashlx"] = false;
+            ViewData["hasinverter"] = false;
+
+            foreach (Device dce in unit.devices)
+            {
+                if (dce.deviceTypeCode == DeviceData.HUILIUXIANG_CODE)
+                {
+                    ViewData["hashlx"] = true;
+                    break;
+                }
+            }
+
+            foreach (Device dce in unit.devices)
+            {
+                if (dce.deviceTypeCode == DeviceData.INVERTER_CODE)
+                {
+                    ViewData["hasinverter"] = true;
+                    break;
+                }
+            }
             ViewData["plantUnit"] = unit;
             FillPlantYears(plant.id.ToString());
             return View(plant);
@@ -621,6 +656,26 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             PlantUnit unit = PlantUnitService.GetInstance().GetPlantUnitById(id);
             Plant plant = PlantService.GetInstance().GetPlantInfoById(unit.plantID);
             ViewData["plantUnit"] = unit;
+            ViewData["hashlx"] = false;
+            ViewData["hasinverter"] = false;
+
+            foreach (Device dce in unit.devices)
+            {
+                if (dce.deviceTypeCode == DeviceData.HUILIUXIANG_CODE)
+                {
+                    ViewData["hashlx"] = true;
+                    break;
+                }
+            }
+
+            foreach (Device dce in unit.devices)
+            {
+                if (dce.deviceTypeCode == DeviceData.INVERTER_CODE)
+                {
+                    ViewData["hasinverter"] = true;
+                    break;
+                }
+            }
             FillPlantYears(plant.id.ToString());
             return View(plant);
         }

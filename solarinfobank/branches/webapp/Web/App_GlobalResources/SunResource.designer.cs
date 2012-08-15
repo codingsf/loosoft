@@ -4426,7 +4426,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Device password 的本地化字符串。
+        ///   查找类似 password 的本地化字符串。
         /// </summary>
         internal static string DEVICE_PASSWORD {
             get {
@@ -4453,7 +4453,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Device serial number 的本地化字符串。
+        ///   查找类似 serial number 的本地化字符串。
         /// </summary>
         internal static string DEVICE_SN {
             get {
@@ -5827,7 +5827,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Please &quot;Design Power&quot; 的本地化字符串。
+        ///   查找类似 Please enter \&quot;Design Power\&quot; 的本地化字符串。
         /// </summary>
         internal static string NOTICE_DESIGN_POWER {
             get {
@@ -5836,7 +5836,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Please enter &quot;Device name&quot; 的本地化字符串。
+        ///   查找类似 Please enter \&quot;Device name\&quot; 的本地化字符串。
         /// </summary>
         internal static string NOTICE_DEVICE_NAME {
             get {
@@ -5845,7 +5845,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Please enter &quot;Device password&quot; 的本地化字符串。
+        ///   查找类似 Please enter \&quot;Device password\&quot; 的本地化字符串。
         /// </summary>
         internal static string NOTICE_DEVICE_PASSWORD {
             get {
@@ -5854,7 +5854,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Please enter &quot;Device serial number&quot; 的本地化字符串。
+        ///   查找类似 Please enter \&quot;Device serial number\&quot; 的本地化字符串。
         /// </summary>
         internal static string NOTICE_DEVICE_SN {
             get {
@@ -5944,7 +5944,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Please enter &quot;Start time&quot; 的本地化字符串。
+        ///   查找类似 Please enter \&quot;Start time\&quot; 的本地化字符串。
         /// </summary>
         internal static string PAGE_ADDPLANT_ENDDATE {
             get {
@@ -6728,7 +6728,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Device name 的本地化字符串。
+        ///   查找类似 name 的本地化字符串。
         /// </summary>
         internal static string PLANT_DEVICE_NAME {
             get {

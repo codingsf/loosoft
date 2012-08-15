@@ -156,6 +156,28 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             string rundatastr = this.rundatastr;
             string[] rundatas = rundatastr.Split('#');
             string[] datas = null;
+            //先取得传感器接入路数，以决定显示多少路汇流箱路数
+            int displayHxlroute = 0;
+            foreach (string data in rundatas)
+            {
+                datas = data.Split(':');
+                int monitorCode = int.Parse(datas[0]);
+                MonitorType mt = MonitorType.getMonitorTypeByCode(monitorCode);
+                if (mt == null) continue;
+                //判断是否接入路数测点
+                if (monitorCode == MonitorType.MIC_BUSBAR_MAXLINE)
+                {
+                    try{
+                        int value = int.Parse(datas[1]);
+                        displayHxlroute = DeviceData.HUILIUXIANG_CODE * 100 + value;
+                    }catch(Exception e){
+
+                        break;
+                    }
+                    break;
+                }
+            }
+
             foreach (string data in rundatas)
             {
                 datas = data.Split(':');
@@ -164,7 +186,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 if (mt == null) continue;
                 //排除不显示的测点
                 if (notDisplayMonitor.Contains(mt.code) || getnotDisplayMonitor(outtype).Contains(mt.code)) continue;
-
+                //如果是汇流箱非显示路数则跳过
+                if (displayHxlroute > 0 && monitorCode > displayHxlroute && monitorCode<=MonitorType.MIC_BUSBAR_16CURRENT)
+                {
+                    continue;
+                }
                 string value = datas[1];
                 //如果值为-表示该值无效，不显示该测点，“-”，数据解析器会把发送的无效值固定设为“-”
                 if ("-".Equals(value)) continue;
@@ -241,6 +267,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 }
                 else
                 {
+                    try
+                    {
+                        int code = int.Parse(value);
+                        if (ErrorItem.errorItemMap.ContainsKey(code))
+                        {
+                            return ErrorItem.getErrotItemByCode(code).name;
+                        }
+                    }
+                    catch (Exception e) { 
+                    }
+                    
                     IList<DeviceStatusType> stList = DeviceData.monitorStatusMap[monitorCode];
                     foreach (DeviceStatusType dst in stList)
                     {

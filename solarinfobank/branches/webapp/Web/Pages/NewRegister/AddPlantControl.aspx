@@ -86,8 +86,9 @@
                         remote: {
                             type: "POST",
                             url: "/user/check",
-                            data: {
-                                pname: function() { return $("#name").val(); }
+                             data: {
+                                pname: function() { return $("#name").val(); },
+                                pid: function() { return $("#id").val(); }
                             }
                         }
                     },

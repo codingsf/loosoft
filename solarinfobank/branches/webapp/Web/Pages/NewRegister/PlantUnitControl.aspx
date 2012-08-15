@@ -3,13 +3,13 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td width="37%" class="tdstyle01">
-            设备序列号
+            <%=Resources.SunResource.DEVICE_SN%>
         </td>
         <td width="36%" class="tdstyle01">
-            设备名称
+              <%=Resources.SunResource.PLANT_DEVICE_NAME%>
         </td>
         <td width="27%" class="tdstyle01">
-            操作
+            <%=Resources.SunResource.PLANT_LIST_OPERATION%>
         </td>
     </tr>
     <%foreach (PlantUnit plantUnit in Model.plantUnits)

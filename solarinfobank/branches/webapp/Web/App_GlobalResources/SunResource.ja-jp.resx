@@ -4966,22 +4966,22 @@
     <value>下一步</value>
   </data>
   <data name="NOTICE_DESIGN_POWER" xml:space="preserve">
-    <value>请输入“设计功率”</value>
+    <value>"設計電力"を入力してください</value>
   </data>
   <data name="NOTICE_DEVICE_NAME" xml:space="preserve">
-    <value>请输入“设备名称”</value>
+    <value>"デバイス名"を入力してください</value>
   </data>
   <data name="NOTICE_DEVICE_PASSWORD" xml:space="preserve">
-    <value>请输入“设备密码”</value>
+    <value>"デバイスのパスワード"を入力してください</value>
   </data>
   <data name="NOTICE_DEVICE_SN" xml:space="preserve">
-    <value>请输入“设备序列号”</value>
+    <value>"デバイスのシリアル番号"を入力してください</value>
   </data>
   <data name="OPTION_CLOSE" xml:space="preserve">
-    <value>收起选填项</value>
+    <value>離れて</value>
   </data>
   <data name="OPTION_OPEN" xml:space="preserve">
-    <value>展开选填项</value>
+    <value>拡大</value>
   </data>
   <data name="PREVIOUS_STEP" xml:space="preserve">
     <value>上一步</value>
@@ -4994,5 +4994,11 @@
   </data>
   <data name="DEVICE_INFORMATION" xml:space="preserve">
     <value>设备信息</value>
+  </data>
+  <data name="NOTICE_PLANT_NAME" xml:space="preserve">
+    <value>発電所の名前を追加しましたが重複することはできません</value>
+  </data>
+  <data name="NOTICE_NOT_DELEVE_DEFAULT" xml:space="preserve">
+    <value>デフォルトでは削除することはできません</value>
   </data>
 </root>

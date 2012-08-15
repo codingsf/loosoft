@@ -3796,9 +3796,6 @@
   <data name="REPORT_CUSTOM_STATEMENT" xml:space="preserve">
     <value>自定义报表</value>
   </data>
-  <data name="REPORT_INDEX_TITLE" xml:space="preserve">
-    <value>报表首页</value>
-  </data>
   <data name="REPORT_NOTE" xml:space="preserve">
     <value>单击显示的报表名称可以切换不同的报表</value>
   </data>
@@ -5004,5 +5001,8 @@
   </data>
   <data name="DEVICE_INFORMATION" xml:space="preserve">
     <value>设备信息</value>
+  </data>
+  <data name="NOTICE_NOT_DELEVE_DEFAULT" xml:space="preserve">
+    <value>默认不能被删除</value>
   </data>
 </root>

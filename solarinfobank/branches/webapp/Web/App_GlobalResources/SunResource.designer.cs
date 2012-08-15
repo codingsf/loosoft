@@ -5863,6 +5863,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 Default can not be deleted 的本地化字符串。
+        /// </summary>
+        internal static string NOTICE_NOT_DELEVE_DEFAULT {
+            get {
+                return ResourceManager.GetString("NOTICE_NOT_DELEVE_DEFAULT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Added the name of the power plant can not have duplicate 的本地化字符串。
+        /// </summary>
+        internal static string NOTICE_PLANT_NAME {
+            get {
+                return ResourceManager.GetString("NOTICE_PLANT_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 No Data 的本地化字符串。
         /// </summary>
         internal static string NO_WORK_YEARS {

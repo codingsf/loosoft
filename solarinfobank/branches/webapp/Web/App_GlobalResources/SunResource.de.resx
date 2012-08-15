@@ -5397,45 +5397,51 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>点击更换图片</value>
   </data>
   <data name="ADD_DEVICE" xml:space="preserve">
-    <value>添加设备</value>
+    <value>Gerät hinzufügen</value>
   </data>
   <data name="DEVICE_PASSWORD" xml:space="preserve">
-    <value>设备密码</value>
+    <value>Geräte-Passwort</value>
   </data>
   <data name="DEVICE_SN" xml:space="preserve">
-    <value>设备序列号</value>
+    <value>Geräte-Seriennummer</value>
   </data>
   <data name="NEXT_STEP" xml:space="preserve">
-    <value>下一步</value>
+    <value>nächste</value>
   </data>
   <data name="NOTICE_DESIGN_POWER" xml:space="preserve">
-    <value>请输入“设计功率”</value>
+    <value>Bitte geben Sie "Anlagenleistung"</value>
   </data>
   <data name="NOTICE_DEVICE_NAME" xml:space="preserve">
-    <value>请输入“设备名称”</value>
+    <value>Bitte geben Sie "Gerätename"</value>
   </data>
   <data name="NOTICE_DEVICE_PASSWORD" xml:space="preserve">
-    <value>请输入“设备密码”</value>
+    <value>Bitte geben Sie "Geräte-Passwort"</value>
   </data>
   <data name="NOTICE_DEVICE_SN" xml:space="preserve">
-    <value>请输入“设备序列号”</value>
+    <value>Bitte geben Sie "Geräte-Seriennummer"</value>
   </data>
   <data name="OPTION_CLOSE" xml:space="preserve">
-    <value>收起选填项</value>
+    <value>weg</value>
   </data>
   <data name="OPTION_OPEN" xml:space="preserve">
-    <value>展开选填项</value>
+    <value>Expansion</value>
   </data>
   <data name="PREVIOUS_STEP" xml:space="preserve">
-    <value>上一步</value>
+    <value>vorherige</value>
   </data>
   <data name="REGISTER_AGREE" xml:space="preserve">
-    <value>同意《用户协议内容》</value>
+    <value>Agree "Nutzungsvereinbarung"</value>
   </data>
   <data name="BUTTON_FINISHED" xml:space="preserve">
     <value>Abschließen</value>
   </data>
   <data name="DEVICE_INFORMATION" xml:space="preserve">
-    <value>设备信息</value>
+    <value>Ausrüstung</value>
+  </data>
+  <data name="NOTICE_PLANT_NAME" xml:space="preserve">
+    <value>Hinzugefügt Sie den Namen des Kraftwerks kann keine doppelten</value>
+  </data>
+  <data name="NOTICE_NOT_DELEVE_DEFAULT" xml:space="preserve">
+    <value>Standard kann nicht gelöscht werden</value>
   </data>
 </root>

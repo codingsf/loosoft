@@ -31,7 +31,7 @@
         var canSubmit = false; //是否提交
         function clearcontrol(ctrl) {
             if ($("#ifrm" + ctrl).get(0) == undefined) {
-                //alert("默认不能被删除.");
+                alert("<%=Resources.SunResource.NOTICE_NOT_DELEVE_DEFAULT%>");
             } else {
                 $("#ifrm" + ctrl).remove();
             }
@@ -41,9 +41,9 @@
             //$.colorbox({ href: "/images/ajax_loading.gif", transition: "fade", bgOpacity: 0 ,});
             //return;
             if (checkplantname()) {
-                //alert('添加的电站名称不能有重复。');    
-                return;
-            }
+                alert('<%=Resources.SunResource.NOTICE_PLANT_NAME%>。');
+                return false;
+            } 
             var x = 0;
             var frmcount = 0;
             var validatecount = 0;
@@ -65,15 +65,19 @@
                     }
                 }
             }
+    
             setInterval("checkresult()", 2000);
             //iframeauto();
         }
 
         function checkplantname() {
+            var i = 0;
             var plantnames = new Array()
             for (var x=0; x < window.frames.length; x++) {
                 if (typeof (eval(window.frames[x].getplantname)) == "function") {
-                    plantnames[x]= window.frames[x].getplantname();
+                var name=window.frames[x].getplantname();
+                if(name!="")
+                    plantnames[i++] = name;
                 }
             }
             var s = plantnames.join(",") + ",";
@@ -169,8 +173,8 @@
                               {
                                   for (int x = 0; x < Model.Count; x++)
                                   { %>
-                            <iframe scrolling="no" id="ifrm<%=x %>" frameborder="0" width="100%" height="auto"
-                                src="/newregister/addplantcontrol?menu=<%=x %>&plantid=<%=Model[x].id %>"></iframe>
+                            <iframe scrolling="no" id="ifrm<%=x+1 %>" frameborder="0" width="100%" height="auto"
+                                src="/newregister/addplantcontrol?menu=<%=x+1 %>&plantid=<%=Model[x].id %>"></iframe>
                             <%}
                               }
                               else

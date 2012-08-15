@@ -90,8 +90,6 @@
                 $.get("/newregister/removeunit", { t: Math.random(), plantId: plantid, unitId: unitid }, function(data, textStatus) {
                     if (data == "True")
                         reload(plantid);
-                    else
-                        alert('删除出现异常');
                 });
             }
         }

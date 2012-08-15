@@ -136,7 +136,7 @@
                         email: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_USERNAME_EMAIL %></span>"
                     },
                        agree: {
-                        required: "<span class='error'>&nbsp;必须同意注册协议</span>"
+                        required: "<span class='error'>&nbsp;<%=Resources.SunResource.AGREE_BUTTON %></span>"
                     },
                     faxPhone: {
                         required: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_FAX_REQUIRED%></span>"

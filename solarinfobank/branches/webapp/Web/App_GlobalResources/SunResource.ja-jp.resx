@@ -4929,6 +4929,24 @@
   <data name="ERRORITEM_4" xml:space="preserve">
     <value>DC過電流</value>
   </data>
+  <data name="DAY_COMPARE_CHART_NAME_POWER" xml:space="preserve">
+    <value>電力</value>
+  </data>
+  <data name="INVEST_INCOME_COMPARE_CHART_POWER" xml:space="preserve">
+    <value>投資収益率</value>
+  </data>
+  <data name="PLANT_CHART_DAY_CHART_POWER" xml:space="preserve">
+    <value>電力</value>
+  </data>
+  <data name="PLANT_CHART_DAY_ENERGY_INTENSITY" xml:space="preserve">
+    <value>発電量</value>
+  </data>
+  <data name="PLANT_CHART_DAY_POWER_SUNLIGHT_COMPARE_CHART_POWER" xml:space="preserve">
+    <value>電力</value>
+  </data>
+  <data name="PLANT_CHART_PERFORMANCE_INVESTMENT_COMPARE_CHART_POWER" xml:space="preserve">
+    <value>投資収益率</value>
+  </data>
   <data name="HOME_INDEX_VALIDATECODE" xml:space="preserve">
     <value>验证码</value>
   </data>

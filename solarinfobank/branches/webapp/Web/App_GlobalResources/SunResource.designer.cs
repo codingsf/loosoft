@@ -2554,6 +2554,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 Power 的本地化字符串。
+        /// </summary>
+        internal static string DAY_COMPARE_CHART_NAME_POWER {
+            get {
+                return ResourceManager.GetString("DAY_COMPARE_CHART_NAME_POWER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似   Detailed 的本地化字符串。
         /// </summary>
         internal static string DETAIL {
@@ -5244,6 +5253,15 @@ namespace Resources {
         /// <summary>
         ///   查找类似 Investment/Income 的本地化字符串。
         /// </summary>
+        internal static string INVEST_INCOME_COMPARE_CHART_POWER {
+            get {
+                return ResourceManager.GetString("INVEST_INCOME_COMPARE_CHART_POWER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Investment/Income 的本地化字符串。
+        /// </summary>
         internal static string INVEST_INCOME_COMPARE_CHART_TWO {
             get {
                 return ResourceManager.GetString("INVEST_INCOME_COMPARE_CHART_TWO", resourceCulture);
@@ -6467,6 +6485,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 Power 的本地化字符串。
+        /// </summary>
+        internal static string PLANT_CHART_DAY_CHART_POWER {
+            get {
+                return ResourceManager.GetString("PLANT_CHART_DAY_CHART_POWER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Energy 的本地化字符串。
+        /// </summary>
+        internal static string PLANT_CHART_DAY_ENERGY_INTENSITY {
+            get {
+                return ResourceManager.GetString("PLANT_CHART_DAY_ENERGY_INTENSITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Energy  &amp; Insolation 的本地化字符串。
         /// </summary>
         internal static string PLANT_CHART_DAY_ENERGY_SOLAR_INTENSITY {
@@ -6481,6 +6517,15 @@ namespace Resources {
         internal static string PLANT_CHART_DAY_POWER_SUNLIGHT_COMPARE_CHART {
             get {
                 return ResourceManager.GetString("PLANT_CHART_DAY_POWER_SUNLIGHT_COMPARE_CHART", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Power 的本地化字符串。
+        /// </summary>
+        internal static string PLANT_CHART_DAY_POWER_SUNLIGHT_COMPARE_CHART_POWER {
+            get {
+                return ResourceManager.GetString("PLANT_CHART_DAY_POWER_SUNLIGHT_COMPARE_CHART_POWER", resourceCulture);
             }
         }
         
@@ -6508,6 +6553,15 @@ namespace Resources {
         internal static string PLANT_CHART_PERFORMANCE_INVESTMENT_COMPARE_CHART {
             get {
                 return ResourceManager.GetString("PLANT_CHART_PERFORMANCE_INVESTMENT_COMPARE_CHART", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Investment/Income 的本地化字符串。
+        /// </summary>
+        internal static string PLANT_CHART_PERFORMANCE_INVESTMENT_COMPARE_CHART_POWER {
+            get {
+                return ResourceManager.GetString("PLANT_CHART_PERFORMANCE_INVESTMENT_COMPARE_CHART_POWER", resourceCulture);
             }
         }
         

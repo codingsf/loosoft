@@ -4939,6 +4939,24 @@
     <value>设备运行数据</value>
     <comment>设备运行数据</comment>
   </data>
+  <data name="DAY_COMPARE_CHART_NAME_POWER" xml:space="preserve">
+    <value>功率</value>
+  </data>
+  <data name="INVEST_INCOME_COMPARE_CHART_POWER" xml:space="preserve">
+    <value>投资收益率</value>
+  </data>
+  <data name="PLANT_CHART_DAY_CHART_POWER" xml:space="preserve">
+    <value>功率</value>
+  </data>
+  <data name="PLANT_CHART_DAY_ENERGY_INTENSITY" xml:space="preserve">
+    <value>发电量</value>
+  </data>
+  <data name="PLANT_CHART_DAY_POWER_SUNLIGHT_COMPARE_CHART_POWER" xml:space="preserve">
+    <value>功率</value>
+  </data>
+  <data name="PLANT_CHART_PERFORMANCE_INVESTMENT_COMPARE_CHART_POWER" xml:space="preserve">
+    <value>投资收益率</value>
+  </data>
   <data name="HOME_INDEX_VALIDATECODE" xml:space="preserve">
     <value>验证码</value>
   </data>

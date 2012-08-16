@@ -5181,7 +5181,7 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <value>Devices Information</value>
   </data>
   <data name="NOTICE_PLANT_NAME" xml:space="preserve">
-    <value>Added the name of the power plant can not have duplicate</value>
+    <value>plants already exist</value>
   </data>
   <data name="NOTICE_NOT_DELEVE_DEFAULT" xml:space="preserve">
     <value>Default can not be deleted</value>

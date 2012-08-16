@@ -5439,7 +5439,7 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>Ausrüstung</value>
   </data>
   <data name="NOTICE_PLANT_NAME" xml:space="preserve">
-    <value>Hinzugefügt Sie den Namen des Kraftwerks kann keine doppelten</value>
+    <value>Powe Kraftwerke existieren bereits</value>
   </data>
   <data name="NOTICE_NOT_DELEVE_DEFAULT" xml:space="preserve">
     <value>Standard kann nicht gelöscht werden</value>

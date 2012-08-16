@@ -5872,7 +5872,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Added the name of the power plant can not have duplicate 的本地化字符串。
+        ///   查找类似 plants already exist 的本地化字符串。
         /// </summary>
         internal static string NOTICE_PLANT_NAME {
             get {

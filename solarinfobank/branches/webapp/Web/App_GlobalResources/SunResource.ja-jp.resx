@@ -4996,7 +4996,7 @@
     <value>设备信息</value>
   </data>
   <data name="NOTICE_PLANT_NAME" xml:space="preserve">
-    <value>発電所の名前を追加しましたが重複することはできません</value>
+    <value>発電所は既に存在している</value>
   </data>
   <data name="NOTICE_NOT_DELEVE_DEFAULT" xml:space="preserve">
     <value>デフォルトでは削除することはできません</value>

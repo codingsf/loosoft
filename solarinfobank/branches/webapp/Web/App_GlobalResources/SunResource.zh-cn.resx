@@ -5005,4 +5005,7 @@
   <data name="NOTICE_NOT_DELEVE_DEFAULT" xml:space="preserve">
     <value>默认不能被删除</value>
   </data>
+  <data name="NOTICE_PLANT_NAME" xml:space="preserve">
+    <value>电站已存在</value>
+  </data>
 </root>

@@ -6368,6 +6368,6 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>Di default non può essere cancellato</value>
   </data>
   <data name="NOTICE_PLANT_NAME" xml:space="preserve">
-    <value>Aggiunto il nome della centrale elettrica non può avere duplicati</value>
+    <value>Centrali Powe esistono già</value>
   </data>
 </root>

@@ -313,7 +313,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             get
             {
-                return StringUtil.formatDouble(Util.upDigtal(TotalDayEnergy),"0.00");
+                return StringUtil.formatDouble(Util.upDigtal(TotalDayEnergy), "0.00");
             }
         }
 
@@ -345,7 +345,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             get
             {
-                return StringUtil.formatDouble(Util.upDigtal(TotalEnergy),"0.00");
+                return StringUtil.formatDouble(Util.upDigtal(TotalEnergy), "0.00");
             }
         }
 
@@ -420,7 +420,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             get
             {
-                return StringUtil.formatDouble(Util.upDigtal(TotalPower),"0.00");
+                return StringUtil.formatDouble(Util.upDigtal(TotalPower), "0.00");
             }
         }
 
@@ -594,6 +594,25 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                         if (plant.hasFaultDevice)
                             return true;
                 return false;
+            }
+        }
+
+
+        /// <summary>
+        /// 当前用户下任何一个电站有绑定采集器
+        /// </summary>
+        public bool isBindUnit
+        {
+            get
+            {
+                foreach (Plant plant in this.plants)
+                {
+                    if (plant.plantUnits == null || plant.plantUnits.Count == 0)
+                    {
+                        return false;
+                    }
+                }
+                return true;
             }
         }
 

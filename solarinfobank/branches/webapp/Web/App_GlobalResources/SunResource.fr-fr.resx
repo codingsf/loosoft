@@ -5008,7 +5008,7 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
     <value>请输入“开始时间”</value>
   </data>
   <data name="NOTICE_PLANT_NAME" xml:space="preserve">
-    <value>Ajout du nom de la centrale ne peut pas avoir deux exemplaires</value>
+    <value>Centrales Powe existent déjà</value>
   </data>
   <data name="NOTICE_NOT_DELEVE_DEFAULT" xml:space="preserve">
     <value>Default ne peut pas être supprimé</value>

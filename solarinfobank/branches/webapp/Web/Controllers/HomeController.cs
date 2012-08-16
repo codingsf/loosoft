@@ -192,7 +192,7 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult Index(User user, bool autoLogin, string localZone, string validatecode)
         {
-       
+
             float lzone = 0;
             float.TryParse(localZone, out lzone);
             //取得最新加入的电站
@@ -309,6 +309,14 @@ namespace Web.Controllers
                     string ip = WebUtil.getClientIp(Request);
                     LoginRecordService.GetInstance().Save(loginUser.id, loginUser.username, ip, lzone);
 
+                    //判断是否完成注册的三个步骤
+                    //第二步没有完成依据  用户下没有电站
+                    //第三步完成依据 任何电站下没有设备 
+
+                    if (user.plants.Count.Equals(0))
+                        return Redirect("/newregister/addplant");
+                    if(!user.isBindUnit)
+                        return Redirect("/newregister/addunit");
                     if (loginUser.plantUsers.Count == 1)
                         return RedirectToAction("overview", "plant", new { @id = base.FirstPlant.id });
                     else

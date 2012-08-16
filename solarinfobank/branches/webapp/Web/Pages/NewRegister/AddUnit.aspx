@@ -18,8 +18,16 @@
 
 
         function processbtncomplete() {
-            alert($(".haveunit").length);
+            if ($(".haveunit").length<=0) {
+                $(".btn").attr("class", "no_greybtu btn");
+                $(".btn").attr("disabled", "disabled");
+            } else {
+                $(".btn").attr("class", "ok_greenbtu btn");
+                $(".btn").attr("disabled", "");
+
+            }
         }
+        setInterval("processbtncomplete()", 1000);
         $(document).ready(function() {
             $(".change").click(function() {
                 var id = $(this).attr('rel');
@@ -240,7 +248,7 @@
                         <%} %>
                         <div class="ok_box0">
                             <input name="Submit2" type="submit" class="ok_greenbtu mr20" value="<%=Resources.SunResource.PREVIOUS_STEP%>" onclick="window.location.href='/newregister/addplant'" />
-                            <input type="submit" name="Submit" class="ok_greenbtu" onclick="processbtncomplete()" value="<%=Resources.SunResource.BUTTON_FINISHED%>" onclick="window.location.href='/user/overview'" />
+                            <input type="submit" name="Submit" class="ok_greenbtu btn"  value="<%=Resources.SunResource.BUTTON_FINISHED%>" onclick="window.location.href='/user/overview'" />
                         </div>
                     </td>
                     <td background="/images/tc/tc05.gif">

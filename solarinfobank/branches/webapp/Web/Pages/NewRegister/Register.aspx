@@ -294,8 +294,8 @@
                                     &nbsp;
                                 </td>
                                 <td>
-                                    <input type="checkbox" id="agree" checked="checked" name="agree" value="checkbox" />
-                                    <a href="/public/agree" target="_blank" class="green"><%=Resources.SunResource.REGISTER_AGREE%></a>
+                                    <span style="white-space:nowrap"><input type="checkbox" id="agree" checked="checked" name="agree" value="checkbox" />
+                                    <a href="/public/agree" target="_blank" class="green"><%=Resources.SunResource.REGISTER_AGREE%></a></span> 
                                 </td>
                                 <td>
                                     

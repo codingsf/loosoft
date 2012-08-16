@@ -607,12 +607,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             {
                 foreach (Plant plant in this.plants)
                 {
-                    if (plant.plantUnits == null || plant.plantUnits.Count == 0)
+                    if (plant.plantUnits != null && plant.plantUnits.Count > 0)
                     {
-                        return false;
+                        return true;
                     }
                 }
-                return true;
+                return false;
             }
         }
 

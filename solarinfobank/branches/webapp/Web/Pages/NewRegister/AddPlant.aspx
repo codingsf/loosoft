@@ -147,9 +147,9 @@
     <div class="lcbox">
         <div class="lctab">
             <ul>
-                     <li>1、<%=Resources.SunResource.USER_EDIT_USER_INFORMATION%> </li>
-                <li class="lc_yellowbg">2、<%=Resources.SunResource.PLANT_INFO_TOTALl_METER%></li>
-                <li>3、<%=Resources.SunResource.DEVICE_INFORMATION%></li>
+                     <li>1、<%=Resources.SunResource.NEWREGISTER_USERINFO%> </li>
+                <li class="lc_yellowbg">2、<%=Resources.SunResource.NEWREGISTER_PLANTINFO%></li>
+                <li>3、<%=Resources.SunResource.NEWREGISTER_DEVICEINFO%></li>
                 
             </ul>
         </div>
@@ -183,8 +183,9 @@
                             </iframe>
                             <%} %>
                         </div>
-                        <div class="lcadd01">
-                            <a href="javascript:void(0)" id="addplant"><%=Resources.SunResource.AUTH_ADD_PLANT%></a></div>
+                        <div>
+		                  <input class="lcadd01 change" id="addplant" type="button" name="btn"  value="<%=Resources.SunResource.AUTH_ADD_PLANT%>" />
+		                </div>
                         <div class="ok_box0">
                             <input type="submit" name="Submit2" class="ok_greenbtu mr20" value="<%=Resources.SunResource.PREVIOUS_STEP%>" onclick="window.location.href='/newregister/register'" />
                             <input type="button" onclick="batchsubmit();" name="Submit" class="ok_greenbtu" value="<%=Resources.SunResource.NEXT_STEP%>" />

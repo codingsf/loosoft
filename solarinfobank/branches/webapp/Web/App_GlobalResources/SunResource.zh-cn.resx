@@ -5008,4 +5008,13 @@
   <data name="NOTICE_PLANT_NAME" xml:space="preserve">
     <value>电站已存在</value>
   </data>
+  <data name="NEWREGISTER_DEVICEINFO" xml:space="preserve">
+    <value>设备信息</value>
+  </data>
+  <data name="NEWREGISTER_PLANTINFO" xml:space="preserve">
+    <value>电站信息</value>
+  </data>
+  <data name="NEWREGISTER_USERINFO" xml:space="preserve">
+    <value>用户信息</value>
+  </data>
 </root>

@@ -6370,4 +6370,13 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
   <data name="NOTICE_PLANT_NAME" xml:space="preserve">
     <value>Centrali Powe esistono già</value>
   </data>
+  <data name="NEWREGISTER_DEVICEINFO" xml:space="preserve">
+    <value>attrezzatura</value>
+  </data>
+  <data name="NEWREGISTER_PLANTINFO" xml:space="preserve">
+    <value>centrale elettrica</value>
+  </data>
+  <data name="NEWREGISTER_USERINFO" xml:space="preserve">
+    <value>utente</value>
+  </data>
 </root>

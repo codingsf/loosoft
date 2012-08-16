@@ -72,13 +72,13 @@
         function checkinput(plantid) {
             var success = true;
             if ($("#code_" + plantid).val() == "") {
-                $("#error_code_" + plantid).html("<em><span class='error'>&nbsp;<%=Resources.SunResource.NOTICE_DEVICE_SN%></span></em>"); success = false;
+                $("#error_code_" + plantid).html('<em><span class="error">&nbsp;<%=Resources.SunResource.NOTICE_DEVICE_SN%></span></em>'); success = false;
             }
             if ($("#password_" + plantid).val() == "") {
-                $("#error_password_" + plantid).html("<em><span class='error'>&nbsp;<%=Resources.SunResource.NOTICE_DEVICE_PASSWORD%></span></em>"); success = false;
+                $("#error_password_" + plantid).html('<em><span class="error">&nbsp;<%=Resources.SunResource.NOTICE_DEVICE_PASSWORD%></span></em>'); success = false;
             }
             if ($("#displayname_" + plantid).val() == "") {
-                $("#error_displayname_" + plantid).html("<em><span class='error'>&nbsp;<%=Resources.SunResource.NOTICE_DEVICE_NAME%></span></em>"); success = false;
+                $("#error_displayname_" + plantid).html('<em><span class="error">&nbsp;<%=Resources.SunResource.NOTICE_DEVICE_NAME%></span></em>'); success = false;
             }
             return success;
         }
@@ -103,9 +103,9 @@
     <div class="lcbox">
         <div class="lctab">
             <ul>
-                  <li>1、<%=Resources.SunResource.USER_EDIT_USER_INFORMATION%> </li>
-                <li>2、<%=Resources.SunResource.PLANT_INFO_TOTALl_METER%></li>
-                <li class="lc_yellowbg">3、<%=Resources.SunResource.DEVICE_INFORMATION%></li>
+                  <li>1、<%=Resources.SunResource.NEWREGISTER_USERINFO%> </li>
+                <li>2、<%=Resources.SunResource.NEWREGISTER_PLANTINFO%></li>
+                <li class="lc_yellowbg">3、<%=Resources.SunResource.NEWREGISTER_DEVICEINFO%></li>
             </ul>
         </div>
         <div class="lcabout">
@@ -177,8 +177,10 @@
                                                 <%} %>
                                             </table>
                                         </div>
-                                        <div class="lcadd02">
-                                            <a href="javascript:void(0)" class="change" rel="<%=plant.id %>"><%=Resources.SunResource.ADD_DEVICE%></a></div>
+                                        <div>
+		  <input class="lcadd01 change" type="button" name="btn" rel="<%=plant.id %>" value="<%=Resources.SunResource.ADD_DEVICE%>" />
+		</div>
+		
                                         <table width="705" border="0" align="center" cellpadding="0" cellspacing="0" id="unessential_<%=plant.id %>"
                                             style="display: none">
                                             <tr>

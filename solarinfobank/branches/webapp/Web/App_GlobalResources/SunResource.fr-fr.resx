@@ -5013,4 +5013,13 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
   <data name="NOTICE_NOT_DELEVE_DEFAULT" xml:space="preserve">
     <value>Default ne peut pas être supprimé</value>
   </data>
+  <data name="NEWREGISTER_DEVICEINFO" xml:space="preserve">
+    <value>équipement</value>
+  </data>
+  <data name="NEWREGISTER_PLANTINFO" xml:space="preserve">
+    <value>Centrale</value>
+  </data>
+  <data name="NEWREGISTER_USERINFO" xml:space="preserve">
+    <value>Utilisateur</value>
+  </data>
 </root>

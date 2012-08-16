@@ -204,9 +204,9 @@
     <div class="lcbox">
         <div class="lctab">
             <ul>
-                <li class="lc_yellowbg">1、<%=Resources.SunResource.USER_EDIT_USER_INFORMATION%> </li>
-                <li>2、<%=Resources.SunResource.PLANT_INFO_TOTALl_METER%></li>
-                <li>3、<%=Resources.SunResource.DEVICE_INFORMATION%></li>
+                <li class="lc_yellowbg">1、<%=Resources.SunResource.NEWREGISTER_USERINFO%> </li>
+                <li>2、<%=Resources.SunResource.NEWREGISTER_PLANTINFO%></li>
+                <li>3、<%=Resources.SunResource.NEWREGISTER_DEVICEINFO%></li>
             </ul>
         </div>
         <div class="lcabout">

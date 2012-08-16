@@ -313,9 +313,9 @@ namespace Web.Controllers
                     //第二步没有完成依据  用户下没有电站
                     //第三步完成依据 任何电站下没有设备 
 
-                    if (user.plants.Count.Equals(0))
+                    if (loginUser.plants.Count.Equals(0))
                         return Redirect("/newregister/addplant");
-                    if(!user.isBindUnit)
+                    if (!loginUser.isBindUnit)
                         return Redirect("/newregister/addunit");
                     if (loginUser.plantUsers.Count == 1)
                         return RedirectToAction("overview", "plant", new { @id = base.FirstPlant.id });

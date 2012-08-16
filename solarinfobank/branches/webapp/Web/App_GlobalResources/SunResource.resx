@@ -5186,4 +5186,13 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
   <data name="NOTICE_NOT_DELEVE_DEFAULT" xml:space="preserve">
     <value>Default can not be deleted</value>
   </data>
+  <data name="NEWREGISTER_DEVICEINFO" xml:space="preserve">
+    <value>Devices information</value>
+  </data>
+  <data name="NEWREGISTER_PLANTINFO" xml:space="preserve">
+    <value>Plant Information</value>
+  </data>
+  <data name="NEWREGISTER_USERINFO" xml:space="preserve">
+    <value>User Information</value>
+  </data>
 </root>

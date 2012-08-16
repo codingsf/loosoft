@@ -5444,4 +5444,13 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
   <data name="NOTICE_NOT_DELEVE_DEFAULT" xml:space="preserve">
     <value>Standard kann nicht gelöscht werden</value>
   </data>
+  <data name="NEWREGISTER_DEVICEINFO" xml:space="preserve">
+    <value>Ausrüstung</value>
+  </data>
+  <data name="NEWREGISTER_PLANTINFO" xml:space="preserve">
+    <value>Kraftwerk</value>
+  </data>
+  <data name="NEWREGISTER_USERINFO" xml:space="preserve">
+    <value>Benutzer</value>
+  </data>
 </root>

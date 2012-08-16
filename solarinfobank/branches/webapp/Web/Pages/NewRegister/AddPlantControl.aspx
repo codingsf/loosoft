@@ -101,26 +101,26 @@
                 messages: {
 
                     name: {
-                        required: "<span class='error'>&nbsp;<%=Resources.SunResource.PLANT_EDIT_PLANTNAME_REQUIRED  %></span>",
-                        remote: "<span class='error'>&nbsp;<%=Resources.SunResource.AJAX_CHACKING_PLANT_NAME_USED  %></span>"
+                        required: '<span class="error">&nbsp;<%=Resources.SunResource.PLANT_EDIT_PLANTNAME_REQUIRED  %></span>',
+                        remote: '<span class="error">&nbsp;<%=Resources.SunResource.AJAX_CHACKING_PLANT_NAME_USED  %></span>'
 
                     },
                     longitude: {
-                        number: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_NUMBER %></span>",
-                        max: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_MAX_NUMBER %></span>",
-                        min: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_MIN_NUMBER %></span>"
+                        number: '<span class="error">&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_NUMBER %></span>',
+                        max: '<span class="error">&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_MAX_NUMBER %></span>',
+                        min: '<span class="error">&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_MIN_NUMBER %></span>'
                     },
                     latitude: {
-                        number: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_NUMBER %></span>",
-                        max: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_MAX_NUMBER %></span>",
-                        min: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_MIN_NUMBER %></span>"
+                        number: '<span class="error">&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_NUMBER %></span>',
+                        max: '<span class="error">&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_MAX_NUMBER %></span>',
+                        min: '<span class="error">&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_MIN_NUMBER %></span>'
                     },
                     design_power: {
-                    required: "<span class='error'>&nbsp;<%=Resources.SunResource.NOTICE_DESIGN_POWER %></span>",
-                        number: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_NUMBER %></span>"
+                    required: '<span class="error">&nbsp;<%=Resources.SunResource.NOTICE_DESIGN_POWER %></span>',
+                        number: '<span class="error">&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_NUMBER %></span>'
                     },
                     email: {
-                        email: "<span class='error'>&nbsp;<%=Resources.SunResource.PLANT_EDIT_EMAIL_EMAIL  %></span>"
+                        email: '<span class="error">&nbsp;<%=Resources.SunResource.PLANT_EDIT_EMAIL_EMAIL  %></span>'
                     }
                 },
                 errorPlacement: function(error, element) {

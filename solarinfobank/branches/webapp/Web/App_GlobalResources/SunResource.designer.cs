@@ -5809,6 +5809,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 Devices information 的本地化字符串。
+        /// </summary>
+        internal static string NEWREGISTER_DEVICEINFO {
+            get {
+                return ResourceManager.GetString("NEWREGISTER_DEVICEINFO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Plant Information 的本地化字符串。
+        /// </summary>
+        internal static string NEWREGISTER_PLANTINFO {
+            get {
+                return ResourceManager.GetString("NEWREGISTER_PLANTINFO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 User Information 的本地化字符串。
+        /// </summary>
+        internal static string NEWREGISTER_USERINFO {
+            get {
+                return ResourceManager.GetString("NEWREGISTER_USERINFO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Next 的本地化字符串。
         /// </summary>
         internal static string NEXT_STEP {

@@ -4963,7 +4963,7 @@
     <value>设备序列号</value>
   </data>
   <data name="NEXT_STEP" xml:space="preserve">
-    <value>下一步</value>
+    <value>次の</value>
   </data>
   <data name="NOTICE_DESIGN_POWER" xml:space="preserve">
     <value>"設計電力"を入力してください</value>
@@ -4984,10 +4984,10 @@
     <value>拡大</value>
   </data>
   <data name="PREVIOUS_STEP" xml:space="preserve">
-    <value>上一步</value>
+    <value>前</value>
   </data>
   <data name="REGISTER_AGREE" xml:space="preserve">
-    <value>同意《用户协议内容》</value>
+    <value>"利用規約"に同意する</value>
   </data>
   <data name="BUTTON_FINISHED" xml:space="preserve">
     <value>完了する</value>
@@ -5000,5 +5000,14 @@
   </data>
   <data name="NOTICE_NOT_DELEVE_DEFAULT" xml:space="preserve">
     <value>デフォルトでは削除することはできません</value>
+  </data>
+  <data name="NEWREGISTER_DEVICEINFO" xml:space="preserve">
+    <value>デバイス情報</value>
+  </data>
+  <data name="NEWREGISTER_PLANTINFO" xml:space="preserve">
+    <value>発電所の情報</value>
+  </data>
+  <data name="NEWREGISTER_USERINFO" xml:space="preserve">
+    <value>ユーザ情報</value>
   </data>
 </root>

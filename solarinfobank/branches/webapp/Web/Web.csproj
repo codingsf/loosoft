@@ -1113,7 +1113,6 @@
     <Content Include="Content\swfupload.js" />
     <Content Include="Content\Swf\swfupload.swf" />
     <Content Include="Content\Swf\swfuploadbutton.swf" />
-    <Content Include="demoimg\css\wap.css" />
     <Content Include="demoimg\2x-1.png" />
     <Content Include="demoimg\2x-o.png" />
     <Content Include="demoimg\2x.png" />
@@ -2050,7 +2049,9 @@
     <Content Include="Images\lansel_top.gif" />
     <Content Include="Images\lc\btua.gif" />
     <Content Include="Images\lc\btub.gif" />
+    <Content Include="Images\lc\lcadd01.gif" />
     <Content Include="Images\lc\lcadd01.jpg" />
+    <Content Include="Images\lc\lcadd02.gif" />
     <Content Include="Images\lc\lcadd02.jpg" />
     <Content Include="Images\lc\lcbg003.jpg" />
     <Content Include="Images\lc\lcbg01.jpg" />

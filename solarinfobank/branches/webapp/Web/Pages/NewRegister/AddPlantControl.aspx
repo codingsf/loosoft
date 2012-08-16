@@ -85,7 +85,7 @@
                         required: true,
                         remote: {
                             type: "POST",
-                            url: "/user/check",
+                            url: "/plant/check",
                              data: {
                                 pname: function() { return $("#name").val(); },
                                 pid: function() { return $("#id").val(); }
@@ -102,7 +102,7 @@
 
                     name: {
                         required: '<span class="error">&nbsp;<%=Resources.SunResource.PLANT_EDIT_PLANTNAME_REQUIRED  %></span>',
-                        remote: '<span class="error">&nbsp;<%=Resources.SunResource.AJAX_CHACKING_PLANT_NAME_USED  %></span>'
+                        remote: "<span class='error'>&nbsp;<%=Resources.SunResource.AJAX_CHACKING_PLANT_NAME_USED  %></span>"
 
                     },
                     longitude: {
@@ -116,11 +116,11 @@
                         min: '<span class="error">&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_MIN_NUMBER %></span>'
                     },
                     design_power: {
-                    required: '<span class="error">&nbsp;<%=Resources.SunResource.NOTICE_DESIGN_POWER %></span>',
+                    required: "<span class='error'>&nbsp;<%=Resources.SunResource.NOTICE_DESIGN_POWER %></span>",
                         number: '<span class="error">&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_NUMBER %></span>'
                     },
                     email: {
-                        email: '<span class="error">&nbsp;<%=Resources.SunResource.PLANT_EDIT_EMAIL_EMAIL  %></span>'
+                        email: "<span class='error'>&nbsp;<%=Resources.SunResource.PLANT_EDIT_EMAIL_EMAIL  %></span>"
                     }
                 },
                 errorPlacement: function(error, element) {
@@ -212,9 +212,10 @@
                         required: true,
                         remote: {
                             type: "POST",
-                            url: "/user/check",
+                            url: "/plant/check",
                             data: {
-                                pname: function() { return $("#name").val(); }
+                                pname: function() { return $("#name").val(); },
+                                pid: function() { return $("#id").val(); }
                             }
 
                         }

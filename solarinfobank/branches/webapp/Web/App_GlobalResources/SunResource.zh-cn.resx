@@ -5017,4 +5017,7 @@
   <data name="NEWREGISTER_USERINFO" xml:space="preserve">
     <value>用户信息</value>
   </data>
+  <data name="NOTICE_DESIGN_POWER_FORJS" xml:space="preserve">
+    <value>请输入“设计功率”</value>
+  </data>
 </root>

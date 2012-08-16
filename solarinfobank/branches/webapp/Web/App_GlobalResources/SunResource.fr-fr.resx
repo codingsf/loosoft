@@ -4981,16 +4981,16 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
     <value>équipement</value>
   </data>
   <data name="NOTICE_DESIGN_POWER" xml:space="preserve">
-    <value>S'il vous plaît entrez "Puissance de conception"</value>
+    <value>S'il vous plaît entrez \"Puissance de conception\"</value>
   </data>
   <data name="NOTICE_DEVICE_NAME" xml:space="preserve">
-    <value>S'il vous plaît entrez "Device name"</value>
+    <value>S'il vous plaît entrez \"Device name\"</value>
   </data>
   <data name="NOTICE_DEVICE_PASSWORD" xml:space="preserve">
-    <value>S'il vous plaît entrez «mot de passe de périphériques"</value>
+    <value>S'il vous plaît entrez «mot de passe de périphériques\"</value>
   </data>
   <data name="NOTICE_DEVICE_SN" xml:space="preserve">
-    <value>S'il vous plaît entrez "numéro de série"</value>
+    <value>S'il vous plaît entrez \"numéro de série\"</value>
   </data>
   <data name="OPTION_CLOSE" xml:space="preserve">
     <value>loin</value>

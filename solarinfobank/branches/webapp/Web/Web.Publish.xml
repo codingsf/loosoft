@@ -3,11 +3,11 @@
     <file relUrl="script/DatePicker/skin/default/datepicker.css" publishTime="06/01/2012 15:59:55" />
     <file relUrl="m_img/index_bg.jpg" publishTime="06/01/2012 15:45:33" />
     <file relUrl="editor/fckeditor/editor/plugins/bbcode/_sample/sample.config.js" publishTime="06/01/2012 15:52:51" />
-    <file relUrl="bin/zh-cn/Web.resources.dll" publishTime="08/16/2012 10:58:51" />
+    <file relUrl="bin/zh-cn/Web.resources.dll" publishTime="08/16/2012 12:06:39" />
     <file relUrl="Images/sub/sub01bg05.jpg" publishTime="06/01/2012 16:00:38" />
     <file relUrl="editor/editor/skins/office2003/images/toolbar.end.gif" publishTime="06/01/2012 15:52:34" />
     <file relUrl="Pages/Reports/EmailViewNotDayReport.aspx" publishTime="06/01/2012 15:59:46" />
-    <file relUrl="Images/lc/btub.gif" publishTime="09/01/2011 22:04:29" />
+    <file relUrl="Images/lc/btub.gif" publishTime="08/16/2012 11:22:06" />
     <file relUrl="Images/bg004.jpg" publishTime="06/01/2012 16:00:49" />
     <file relUrl="editor/fckeditor/editor/images/smiley/msn/confused_smile.gif" publishTime="06/01/2012 15:53:00" />
     <file relUrl="editor/editor/dialog/fck_replace.html" publishTime="06/01/2012 15:52:21" />
@@ -34,7 +34,7 @@
     <file relUrl="Pages/Wap/Profile.aspx" publishTime="06/01/2012 15:59:38" />
     <file relUrl="Images/borderMiddleLeft.png" publishTime="06/01/2012 16:00:49" />
     <file relUrl="editor/editor/plugins/bbcode/fckplugin.js" publishTime="06/01/2012 15:52:27" />
-    <file relUrl="bin/Domain.dll" publishTime="08/16/2012 10:00:45" />
+    <file relUrl="bin/Domain.dll" publishTime="08/16/2012 12:06:31" />
     <file relUrl="editor/editor/dialog/fck_div.html" publishTime="06/01/2012 15:52:21" />
     <file relUrl="Pages/Plant/Log.aspx" publishTime="08/13/2012 11:35:15" />
     <file relUrl="Images/bz/bzbg05.jpg" publishTime="06/01/2012 16:00:00" />
@@ -44,7 +44,7 @@
     <file relUrl="Pages/Admin/Currencies/Currencies.aspx" publishTime="06/01/2012 15:59:39" />
     <file relUrl="editor/fckeditor/editor/lang/fi.js" publishTime="06/01/2012 15:52:59" />
     <file relUrl="script/Highcharts-2.1.3/js/themes/gray.js" publishTime="06/01/2012 15:59:51" />
-    <file relUrl="bin/Service.dll" publishTime="08/16/2012 10:00:50" />
+    <file relUrl="bin/Service.dll" publishTime="08/16/2012 12:06:35" />
     <file relUrl="editor/_samples/asp/sample01.asp" publishTime="06/01/2012 15:52:45" />
     <file relUrl="Pages/PlantChart/PEnergyYearComparePage.aspx" publishTime="07/31/2012 15:13:59" />
     <file relUrl="editor/editor/lang/lv.js" publishTime="06/01/2012 15:52:33" />
@@ -125,7 +125,7 @@
     <file relUrl="Images/tx.jpg" publishTime="06/01/2012 16:00:49" />
     <file relUrl="editor/fckeditor/editor/plugins/Movie/player_flv_maxi.swf" publishTime="06/01/2012 15:52:50" />
     <file relUrl="Pages/Admin/CountryCity/Countries.aspx" publishTime="07/13/2012 13:56:07" />
-    <file relUrl="bin/EmailService.exe" publishTime="08/16/2012 10:00:51" />
+    <file relUrl="bin/EmailService.exe" publishTime="08/16/2012 12:06:36" />
     <file relUrl="Pages/Home/Index.aspx" publishTime="08/15/2012 17:10:26" />
     <file relUrl="Pages/User/IncludeOverview.aspx" publishTime="07/31/2012 15:13:59" />
     <file relUrl="Images/sub/adminico03.gif" publishTime="06/01/2012 16:00:37" />
@@ -148,7 +148,7 @@
     <file relUrl="editor/fckeditor/editor/filemanager/browser/default/images/icons/jpg.gif" publishTime="06/01/2012 15:53:06" />
     <file relUrl="Maps/ReportConfig.xml" publishTime="06/01/2012 15:59:49" />
     <file relUrl="Maps/DeviceModel.xml" publishTime="06/01/2012 15:59:49" />
-    <file relUrl="Images/lc/lcbg003.jpg" publishTime="09/01/2011 22:04:30" />
+    <file relUrl="Images/lc/lcbg003.jpg" publishTime="08/16/2012 11:22:06" />
     <file relUrl="editor/editor/images/smiley/msn/cry_smile.gif" publishTime="06/01/2012 15:52:33" />
     <file relUrl="editor/fckeditor/editor/dialog/fck_spellerpages/spellerpages/spellChecker.js" publishTime="06/01/2012 15:52:49" />
     <file relUrl="editor/fckeditor/editor/css/images/block_h1.png" publishTime="06/01/2012 15:53:03" />
@@ -162,7 +162,7 @@
     <file relUrl="Images/sub/subbg010.gif" publishTime="06/01/2012 16:00:38" />
     <file relUrl="Images/bg09.jpg" publishTime="06/01/2012 16:00:50" />
     <file relUrl="editor/fckeditor/editor/filemanager/browser/default/images/icons/32/js.gif" publishTime="06/01/2012 15:53:05" />
-    <file relUrl="Pages/NewRegister/AddPlantControl.aspx" publishTime="08/16/2012 10:42:46" />
+    <file relUrl="Pages/NewRegister/AddPlantControl.aspx" publishTime="08/16/2012 12:06:25" />
     <file relUrl="editor/_samples/adobeair/icons/48.png" publishTime="06/01/2012 15:52:46" />
     <file relUrl="editor/editor/images/smiley/msn/confused_smile.gif" publishTime="06/01/2012 15:52:33" />
     <file relUrl="Pages/Plant/CustomChart.aspx" publishTime="06/01/2012 15:59:46" />
@@ -229,7 +229,7 @@
     <file relUrl="m_img/bg02.jpg" publishTime="06/01/2012 15:45:33" />
     <file relUrl="Images/Registere.png" publishTime="06/01/2012 16:00:50" />
     <file relUrl="editor/editor/filemanager/browser/default/images/icons/32/txt.gif" publishTime="06/01/2012 15:52:37" />
-    <file relUrl="Images/lc/lcadd02.jpg" publishTime="09/01/2011 22:04:30" />
+    <file relUrl="Images/lc/lcadd02.jpg" publishTime="08/16/2012 11:22:06" />
     <file relUrl="Images/sub/onclickbg.gif" publishTime="06/01/2012 16:00:39" />
     <file relUrl="editor/fckeditor/editor/images/spacer.gif" publishTime="06/01/2012 15:53:00" />
     <file relUrl="editor/editor/filemanager/browser/default/frmcreatefolder.html" publishTime="06/01/2012 15:52:38" />
@@ -282,7 +282,7 @@
     <file relUrl="Images/sub/sub01bg03.jpg" publishTime="06/01/2012 16:00:38" />
     <file relUrl="editor/editor/images/smiley/msn/broken_heart.gif" publishTime="06/01/2012 15:52:33" />
     <file relUrl="Images/kj/subico05.gif" publishTime="06/01/2012 16:00:05" />
-    <file relUrl="Images/lc/lc_del.gif" publishTime="09/01/2011 22:04:30" />
+    <file relUrl="Images/lc/lc_del.gif" publishTime="08/16/2012 11:22:06" />
     <file relUrl="editor/editor/css/images/fck_anchor.gif" publishTime="06/01/2012 15:52:35" />
     <file relUrl="Pages/Reports/EmailViewUserReport.aspx" publishTime="06/01/2012 15:59:46" />
     <file relUrl="editor/editor/dialog/fck_about.html" publishTime="06/01/2012 15:52:21" />
@@ -314,7 +314,7 @@
     <file relUrl="editor/fckeditor/editor/dialog/common/fck_dialog_common.js" publishTime="06/01/2012 15:52:48" />
     <file relUrl="Images/bz/bzbg03.jpg" publishTime="06/01/2012 16:00:00" />
     <file relUrl="editor/fckeditor/editor/plugins/tablecommands/fckplugin.js" publishTime="06/01/2012 15:52:50" />
-    <file relUrl="Pages/NewRegister/AddPlant.aspx" publishTime="08/16/2012 10:54:29" />
+    <file relUrl="Pages/NewRegister/AddPlant.aspx" publishTime="08/16/2012 11:28:58" />
     <file relUrl="Images/Profile b01.jpg" publishTime="06/01/2012 16:00:49" />
     <file relUrl="editor/fckeditor/editor/filemanager/browser/default/images/icons/html.gif" publishTime="06/01/2012 15:53:06" />
     <file relUrl="m_img/ico011.png" publishTime="06/01/2012 15:45:33" />
@@ -411,7 +411,7 @@
     <file relUrl="editor/editor/skins/office2003/images/toolbar.bg.gif" publishTime="06/01/2012 15:52:34" />
     <file relUrl="bin/IBatisNet.Common.dll" publishTime="06/01/2012 15:42:18" />
     <file relUrl="m_img/ico06.jpg" publishTime="06/01/2012 15:45:33" />
-    <file relUrl="Images/lc/lctdbg01.gif" publishTime="09/01/2011 22:04:30" />
+    <file relUrl="Images/lc/lctdbg01.gif" publishTime="08/16/2012 11:22:06" />
     <file relUrl="Pages/Plant/EMList.aspx" publishTime="06/01/2012 15:59:46" />
     <file relUrl="editor/editor/_source/classes/fckelementpath.js" publishTime="06/01/2012 15:52:26" />
     <file relUrl="Images/ajax_loading_min.gif" publishTime="06/01/2012 16:00:49" />
@@ -480,7 +480,7 @@
     <file relUrl="demoimg/3x-1.png" publishTime="06/01/2012 15:45:25" />
     <file relUrl="Pages/User/UserEdit.aspx" publishTime="06/01/2012 15:59:48" />
     <file relUrl="m_img/ico09.png" publishTime="06/01/2012 15:45:33" />
-    <file relUrl="bin/Web.pdb" publishTime="08/16/2012 10:58:50" />
+    <file relUrl="bin/Web.pdb" publishTime="08/16/2012 12:06:38" />
     <file relUrl="editor/fckeditor/editor/skins/silver/images/toolbar.buttonbg.gif" publishTime="06/01/2012 15:53:02" />
     <file relUrl="Images/kj/cross-circle.gif" publishTime="06/01/2012 16:00:05" />
     <file relUrl="editor/editor/_source/classes/fckcontextmenu.js" publishTime="06/01/2012 15:52:26" />
@@ -601,7 +601,7 @@
     <file relUrl="editor/fckeditor/editor/filemanager/browser/default/images/FolderOpened.gif" publishTime="06/01/2012 15:53:06" />
     <file relUrl="ProductPic/pro01.gif" publishTime="06/01/2012 15:52:15" />
     <file relUrl="Images/kj/sz04.gif" publishTime="06/01/2012 16:00:05" />
-    <file relUrl="bin/Domain.pdb" publishTime="08/16/2012 10:00:45" />
+    <file relUrl="bin/Domain.pdb" publishTime="08/16/2012 12:06:31" />
     <file relUrl="editor/fckeditor/editor/lang/ro.js" publishTime="06/01/2012 15:52:59" />
     <file relUrl="editor/editor/_source/classes/fckdomrange_ie.js" publishTime="06/01/2012 15:52:26" />
     <file relUrl="editor/editor/skins/office2003/images/dialog.sides.gif" publishTime="06/01/2012 15:52:34" />
@@ -629,14 +629,14 @@
     <file relUrl="Images/Tree/hjjcyopen.png" publishTime="07/30/2012 13:53:14" />
     <file relUrl="editor/fckeditor/editor/filemanager/browser/default/images/icons/32/cs.gif" publishTime="06/01/2012 15:53:06" />
     <file relUrl="Pages/Wap/Chart/PlantDay.aspx" publishTime="06/01/2012 15:59:37" />
-    <file relUrl="bin/it-ch/Web.resources.dll" publishTime="08/16/2012 10:58:51" />
+    <file relUrl="bin/it-ch/Web.resources.dll" publishTime="08/16/2012 12:06:39" />
     <file relUrl="editor/_whatsnew.html" publishTime="06/01/2012 15:53:11" />
     <file relUrl="Images/lang/fr-FR.jpg" publishTime="06/01/2012 16:00:01" />
     <file relUrl="editor/fckeditor/editor/skins/office2003/images/dialog.sides.rtl.png" publishTime="06/01/2012 15:53:01" />
     <file relUrl="Images/sub/sub02onclick.jpg" publishTime="06/01/2012 16:00:38" />
     <file relUrl="Images/sub/subtabbg01.gif" publishTime="06/01/2012 16:00:39" />
     <file relUrl="editor/fckeditor/editor/filemanager/browser/default/images/icons/exe.gif" publishTime="06/01/2012 15:53:06" />
-    <file relUrl="Images/lc/lcbg07.jpg" publishTime="09/01/2011 22:04:30" />
+    <file relUrl="Images/lc/lcbg07.jpg" publishTime="08/16/2012 11:22:06" />
     <file relUrl="editor/fckeditor/editor/dialog/fck_spellerpages/spellerpages/controls.shtml" publishTime="06/01/2012 15:52:49" />
     <file relUrl="Pages/Plant/Unit/Bind.aspx" publishTime="06/01/2012 15:59:43" />
     <file relUrl="Maps/Adpic.xml" publishTime="06/01/2012 15:59:49" />
@@ -719,7 +719,7 @@
     <file relUrl="editor/fckeditor/editor/dialog/fck_about.shtml" publishTime="06/01/2012 15:52:49" />
     <file relUrl="editor/editor/_source/classes/fckhtmliterator.js" publishTime="06/01/2012 15:52:26" />
     <file relUrl="editor/fckeditor/editor/skins/silver/fck_editor.css" publishTime="06/01/2012 15:53:02" />
-    <file relUrl="bin/de/Web.resources.dll" publishTime="08/16/2012 10:58:51" />
+    <file relUrl="bin/de/Web.resources.dll" publishTime="08/16/2012 12:06:39" />
     <file relUrl="Images/sub/subbg06.gif" publishTime="06/01/2012 16:00:38" />
     <file relUrl="editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" publishTime="06/01/2012 15:53:00" />
     <file relUrl="editor/fckeditor/editor/dialog/fck_spellerpages/spellerpages/wordWindow.js" publishTime="06/01/2012 15:52:49" />
@@ -760,7 +760,7 @@
     <file relUrl="editor/editor/_source/classes/fckw3crange.js" publishTime="06/01/2012 15:52:26" />
     <file relUrl="editor/editor/lang/pt.js" publishTime="06/01/2012 15:52:33" />
     <file relUrl="Pages/PlantChart/PlantDayPEnergyPage.aspx" publishTime="07/30/2012 13:53:11" />
-    <file relUrl="bin/Common.pdb" publishTime="08/16/2012 10:00:44" />
+    <file relUrl="bin/Common.pdb" publishTime="08/16/2012 12:06:30" />
     <file relUrl="Images/lansel_top.gif" publishTime="06/01/2012 16:00:50" />
     <file relUrl="Images/index 0226_s3.jpg" publishTime="06/01/2012 16:00:49" />
     <file relUrl="Images/sub/up08.gif" publishTime="06/01/2012 16:00:37" />
@@ -855,7 +855,7 @@
     <file relUrl="editor/fckeditor/editor/lang/en-ca.js" publishTime="06/01/2012 15:52:59" />
     <file relUrl="editor/editor/css/fck_editorarea.css" publishTime="06/01/2012 15:52:36" />
     <file relUrl="Images/Tree/musicfolder.gif" publishTime="05/16/2012 12:31:04" />
-    <file relUrl="Images/lc/lcbg05.jpg" publishTime="09/01/2011 22:04:30" />
+    <file relUrl="Images/lc/lcbg05.jpg" publishTime="08/16/2012 11:22:06" />
     <file relUrl="Images/eng.jpg" publishTime="06/01/2012 16:00:49" />
     <file relUrl="Pages/User/RecordList.aspx" publishTime="06/01/2012 15:59:48" />
     <file relUrl="editor/editor/images/smiley/msn/cake.gif" publishTime="06/01/2012 15:52:33" />
@@ -941,7 +941,7 @@
     <file relUrl="Images/kj/sz01.gif" publishTime="06/01/2012 16:00:05" />
     <file relUrl="Images/sub/uup09.gif" publishTime="06/01/2012 16:00:37" />
     <file relUrl="editor/editor/css/behaviors/disablehandles.htc" publishTime="06/01/2012 15:52:35" />
-    <file relUrl="Images/lc/subbg018.jpg" publishTime="09/01/2011 22:04:30" />
+    <file relUrl="Images/lc/subbg018.jpg" publishTime="08/16/2012 11:22:06" />
     <file relUrl="editor/fckeditor/editor/css/fck_editorarea.css" publishTime="06/01/2012 15:53:03" />
     <file relUrl="Images/borderTopRight.png" publishTime="06/01/2012 16:00:49" />
     <file relUrl="editor/editor/skins/default/fck_dialog_ie6.js" publishTime="06/01/2012 15:52:34" />
@@ -991,11 +991,11 @@
     <file relUrl="editor/fckeditor/editor/lang/ko.js" publishTime="06/01/2012 15:52:59" />
     <file relUrl="bin/zh-Hans/System.Web.Mvc.resources.dll" publishTime="03/29/2010 17:36:52" />
     <file relUrl="editor/fckeditor/editor/plugins/placeholder/fckplugin.js" publishTime="06/01/2012 15:52:50" />
-    <file relUrl="Images/lc/zk_btu.gif" publishTime="09/01/2011 22:04:30" />
+    <file relUrl="Images/lc/zk_btu.gif" publishTime="08/16/2012 11:22:06" />
     <file relUrl="Images/sub/qx02.gif" publishTime="06/01/2012 16:00:38" />
-    <file relUrl="style/lc.css" publishTime="08/15/2012 17:10:27" />
+    <file relUrl="style/lc.css" publishTime="08/16/2012 11:21:40" />
     <file relUrl="m_img/ico07.jpg" publishTime="06/01/2012 15:45:33" />
-    <file relUrl="Images/lc/lcbg04.jpg" publishTime="09/01/2011 22:04:30" />
+    <file relUrl="Images/lc/lcbg04.jpg" publishTime="08/16/2012 11:22:06" />
     <file relUrl="Pages/Admin/Errorcode/Edit.aspx" publishTime="09/01/2011 22:09:44" />
     <file relUrl="Pages/CustomReport/CustomChartList.aspx" publishTime="06/01/2012 15:59:37" />
     <file relUrl="Images/sub/cross00.gif" publishTime="06/01/2012 16:00:39" />
@@ -1007,7 +1007,7 @@
     <file relUrl="Pages/Shared/EmptyInside.Master" publishTime="06/01/2012 15:59:37" />
     <file relUrl="Pages/Plant/Unit/Edit.aspx" publishTime="06/01/2012 15:59:43" />
     <file relUrl="Images/sub/lsel03.gif" publishTime="06/01/2012 16:00:39" />
-    <file relUrl="bin/EmailService.pdb" publishTime="08/16/2012 10:00:51" />
+    <file relUrl="bin/EmailService.pdb" publishTime="08/16/2012 12:06:36" />
     <file relUrl="Images/kj/kjright01.jpg" publishTime="06/01/2012 16:00:05" />
     <file relUrl="editor/fckeditor/editor/lang/en-uk.js" publishTime="06/01/2012 15:52:59" />
     <file relUrl="editor/editor/_source/internals/fcklisthandler.js" publishTime="06/01/2012 15:52:24" />
@@ -1017,7 +1017,7 @@
     <file relUrl="editor/editor/_source/fckjscoreextensions.js" publishTime="06/01/2012 15:52:26" />
     <file relUrl="Images/dg.jpg" publishTime="06/01/2012 16:00:50" />
     <file relUrl="editor/_upgrade.html" publishTime="06/01/2012 15:53:11" />
-    <file relUrl="Images/lc/pencil.gif" publishTime="09/01/2011 22:04:30" />
+    <file relUrl="Images/lc/pencil.gif" publishTime="08/16/2012 11:22:06" />
     <file relUrl="Maps/Errorcode.xml" publishTime="09/01/2011 22:09:44" />
     <file relUrl="editor/fckeditor/editor/lang/vi.js" publishTime="06/01/2012 15:52:59" />
     <file relUrl="editor/editor/_source/internals/fcktablehandler_ie.js" publishTime="06/01/2012 15:52:24" />
@@ -1054,7 +1054,7 @@
     <file relUrl="Images/sub/subbg01.gif" publishTime="06/01/2012 16:00:39" />
     <file relUrl="editor/fckeditor/editor/skins/default/images/sprites.png" publishTime="06/01/2012 15:53:01" />
     <file relUrl="editor/editor/css/images/fck_pagebreak.gif" publishTime="06/01/2012 15:52:36" />
-    <file relUrl="Images/lc/lcadd01.jpg" publishTime="09/01/2011 22:04:30" />
+    <file relUrl="Images/lc/lcadd01.jpg" publishTime="08/16/2012 11:22:06" />
     <file relUrl="Pages/Shared/UserInside.Master" publishTime="09/01/2011 22:09:44" />
     <file relUrl="editor/editor/_source/classes/fcktoolbar.js" publishTime="06/01/2012 15:52:26" />
     <file relUrl="Pages/Admin/Record/List.aspx" publishTime="06/01/2012 15:59:41" />
@@ -1108,11 +1108,11 @@
     <file relUrl="Pages/Country/City.aspx" publishTime="06/01/2012 15:59:36" />
     <file relUrl="editor/editor/images/smiley/msn/heart.gif" publishTime="06/01/2012 15:52:33" />
     <file relUrl="Maps/Countrycity.xml" publishTime="06/01/2012 15:59:49" />
-    <file relUrl="Images/lc/lcbg06.jpg" publishTime="09/01/2011 22:04:30" />
+    <file relUrl="Images/lc/lcbg06.jpg" publishTime="08/16/2012 11:22:06" />
     <file relUrl="editor/fckeditor/editor/dialog/fck_about/logo_fckeditor.gif" publishTime="06/01/2012 15:52:47" />
     <file relUrl="m_img/bg013.jpg" publishTime="06/01/2012 15:45:33" />
     <file relUrl="editor/editor/_source/internals/fckxhtml_ie.js" publishTime="06/01/2012 15:52:24" />
-    <file relUrl="Images/lc/lcbg03.jpg" publishTime="09/01/2011 22:04:30" />
+    <file relUrl="Images/lc/lcbg03.jpg" publishTime="08/16/2012 11:22:06" />
     <file relUrl="Images/kj/sz07.gif" publishTime="06/01/2012 16:00:05" />
     <file relUrl="editor/fckeditor/editor/filemanager/browser/default/images/ButtonArrow.gif" publishTime="06/01/2012 15:53:06" />
     <file relUrl="editor/fckeditor/_whatsnew_history.shtml" publishTime="06/01/2012 15:53:11" />
@@ -1131,7 +1131,7 @@
     <file relUrl="editor/editor/skins/office2003/fck_strip.gif" publishTime="06/01/2012 15:52:34" />
     <file relUrl="Pages/DeviceChart/CabinetChart.aspx" publishTime="06/01/2012 15:59:36" />
     <file relUrl="editor/fckeditor/editor/plugins/placeholder/placeholder.gif" publishTime="06/01/2012 15:52:50" />
-    <file relUrl="bin/Persistence.dll" publishTime="08/16/2012 10:00:46" />
+    <file relUrl="bin/Persistence.dll" publishTime="08/16/2012 12:06:32" />
     <file relUrl="Images/sub/subico013.gif" publishTime="06/01/2012 16:00:39" />
     <file relUrl="Images/sub/adminico05.gif" publishTime="06/01/2012 16:00:37" />
     <file relUrl="editor/editor/_source/commandclasses/fckshowblocks.js" publishTime="06/01/2012 15:52:25" />
@@ -1270,16 +1270,16 @@
     <file relUrl="editor/fckeditor/editor/skins/default/images/toolbar.end.gif" publishTime="06/01/2012 15:53:01" />
     <file relUrl="Images/sub/subico021.gif" publishTime="06/01/2012 16:00:38" />
     <file relUrl="editor/fckeditor/editor/lang/de-de.js" publishTime="06/01/2012 15:52:59" />
-    <file relUrl="Images/lc/lcbg02.jpg" publishTime="09/01/2011 22:04:30" />
+    <file relUrl="Images/lc/lcbg02.jpg" publishTime="08/16/2012 11:22:06" />
     <file relUrl="Maps/Language.xml" publishTime="06/01/2012 15:59:49" />
     <file relUrl="Pages/PlantChart/DayCompare.aspx" publishTime="07/30/2012 13:53:11" />
-    <file relUrl="Images/lc/lcbtu0.gif" publishTime="09/01/2011 22:04:30" />
+    <file relUrl="Images/lc/lcbtu0.gif" publishTime="08/16/2012 11:22:06" />
     <file relUrl="Pages/Plant/deviceStructChart-废弃.aspx" publishTime="07/30/2012 13:53:10" />
     <file relUrl="editor/editor/_source/classes/fckimagepreloader.js" publishTime="06/01/2012 15:52:26" />
     <file relUrl="Images/sub/subbg08.gif" publishTime="06/01/2012 16:00:38" />
     <file relUrl="Images/lang/en-US.jpg" publishTime="06/01/2012 16:00:01" />
     <file relUrl="Pages/User/ViewCustomChart.aspx" publishTime="06/01/2012 15:59:48" />
-    <file relUrl="bin/Service.pdb" publishTime="08/16/2012 10:00:49" />
+    <file relUrl="bin/Service.pdb" publishTime="08/16/2012 12:06:34" />
     <file relUrl="editor/editor/filemanager/connectors/asp/io.asp" publishTime="06/01/2012 15:52:39" />
     <file relUrl="editor/editor/dialog/fck_template/images/template2.gif" publishTime="06/01/2012 15:52:19" />
     <file relUrl="script/ie6/blank.gif" publishTime="06/01/2012 15:59:50" />
@@ -1291,6 +1291,7 @@
     <file relUrl="bin/Microsoft.Vbe.Interop.dll" publishTime="10/10/2007 09:48:54" />
     <file relUrl="Images/sub/edit.gif" publishTime="06/01/2012 16:00:37" />
     <file relUrl="Pages/Admin/Errorcode/List.aspx" publishTime="09/01/2011 22:09:44" />
+    <file relUrl="Images/lc/lcadd01.gif" publishTime="08/16/2012 11:22:06" />
     <file relUrl="Maps/DeviceYearMonthData.xml" publishTime="06/01/2012 15:59:49" />
     <file relUrl="editor/editor/_source/classes/fcktoolbarspecialcombo.js" publishTime="06/01/2012 15:52:26" />
     <file relUrl="Pages/Plant/ModifyDeviceMonitor.aspx" publishTime="06/01/2012 15:59:46" />
@@ -1331,7 +1332,7 @@
     <file relUrl="Content/Ashx/validatecode.ashx" publishTime="08/13/2012 12:30:07" />
     <file relUrl="Images/usa.jpg" publishTime="06/01/2012 16:00:49" />
     <file relUrl="m_img/bu03.gif" publishTime="06/01/2012 15:45:33" />
-    <file relUrl="Images/lc/ss_btu.gif" publishTime="09/01/2011 22:04:30" />
+    <file relUrl="Images/lc/ss_btu.gif" publishTime="08/16/2012 11:22:06" />
     <file relUrl="Pages/Plant/EMEdit.aspx" publishTime="06/01/2012 15:59:46" />
     <file relUrl="Images/sub/yc.gif" publishTime="06/01/2012 16:00:38" />
     <file relUrl="editor/editor/dialog/common/fck_dialog_common.css" publishTime="06/01/2012 15:52:19" />
@@ -1339,7 +1340,7 @@
     <file relUrl="Images/tc_topbg.jpg" publishTime="06/01/2012 16:00:49" />
     <file relUrl="ProductPic/SG3K.jpg" publishTime="06/01/2012 15:52:15" />
     <file relUrl="editor/editor/_source/internals/fck.js" publishTime="06/01/2012 15:52:24" />
-    <file relUrl="Images/lc/lcbg01.jpg" publishTime="09/01/2011 22:04:30" />
+    <file relUrl="Images/lc/lcbg01.jpg" publishTime="08/16/2012 11:22:06" />
     <file relUrl="editor/_whatsnew_history.html" publishTime="06/01/2012 15:53:11" />
     <file relUrl="editor/fckeditor/editor/css/images/block_pre.png" publishTime="06/01/2012 15:53:02" />
     <file relUrl="editor/editor/filemanager/browser/default/images/icons/gif.gif" publishTime="06/01/2012 15:52:38" />
@@ -1398,7 +1399,7 @@
     <file relUrl="Images/rlogo.jpg" publishTime="06/01/2012 16:00:50" />
     <file relUrl="editor/editor/_source/classes/fckiecleanup.js" publishTime="06/01/2012 15:52:26" />
     <file relUrl="editor/editor/dialog/fck_about/logo_fckeditor.gif" publishTime="06/01/2012 15:52:18" />
-    <file relUrl="bin/Web.dll" publishTime="08/16/2012 10:58:51" />
+    <file relUrl="bin/Web.dll" publishTime="08/16/2012 12:06:38" />
     <file relUrl="editor/fckeditor/editor/filemanager/browser/default/images/icons/32/gif.gif" publishTime="06/01/2012 15:53:06" />
     <file relUrl="editor/editor/filemanager/browser/default/browser.css" publishTime="06/01/2012 15:52:38" />
     <file relUrl="Images/qimg/qbg03.jpg" publishTime="06/01/2012 16:00:48" />
@@ -1451,7 +1452,7 @@
     <file relUrl="editor/editor/skins/silver/images/toolbar.expand.gif" publishTime="06/01/2012 15:52:35" />
     <file relUrl="Images/Tree/unitopen.gif" publishTime="07/30/2012 13:53:14" />
     <file relUrl="Images/sub/rtbg01.png" publishTime="06/01/2012 16:00:38" />
-    <file relUrl="Images/lc/lcbg08.jpg" publishTime="09/01/2011 22:04:30" />
+    <file relUrl="Images/lc/lcbg08.jpg" publishTime="08/16/2012 11:22:06" />
     <file relUrl="editor/editor/_source/classes/fckmenuitem.js" publishTime="06/01/2012 15:52:26" />
     <file relUrl="Images/kj/kjleft02.jpg" publishTime="06/01/2012 16:00:05" />
     <file relUrl="editor/editor/lang/ca.js" publishTime="06/01/2012 15:52:33" />
@@ -1532,6 +1533,7 @@
     <file relUrl="editor/editor/skins/silver/fck_dialog.css" publishTime="06/01/2012 15:52:35" />
     <file relUrl="Images/ubox-select.gif" publishTime="06/01/2012 16:00:49" />
     <file relUrl="Images/Tree/page.gif" publishTime="05/16/2012 12:31:04" />
+    <file relUrl="Images/lc/lcadd02.gif" publishTime="08/16/2012 11:22:06" />
     <file relUrl="Images/tc03.gif" publishTime="06/01/2012 16:00:50" />
     <file relUrl="editor/_samples/_plugins/findreplace/lang/en.js" publishTime="06/01/2012 15:52:44" />
     <file relUrl="Images/tc/rlogo.jpg" publishTime="09/01/2011 22:04:01" />
@@ -1587,7 +1589,7 @@
     <file relUrl="script/unitpngfix.js" publishTime="06/01/2012 15:59:55" />
     <file relUrl="editor/editor/dialog/fck_textfield.html" publishTime="06/01/2012 15:52:21" />
     <file relUrl="editor/editor/lang/eu.js" publishTime="06/01/2012 15:52:32" />
-    <file relUrl="Pages/NewRegister/Register.aspx" publishTime="08/16/2012 10:54:29" />
+    <file relUrl="Pages/NewRegister/Register.aspx" publishTime="08/16/2012 11:41:26" />
     <file relUrl="Images/kj/kjbg08.gif" publishTime="06/01/2012 16:00:05" />
     <file relUrl="Images/sub/subbg02.gif" publishTime="06/01/2012 16:00:38" />
     <file relUrl="editor/editor/skins/silver/fck_dialog_ie6.js" publishTime="06/01/2012 15:52:35" />
@@ -1623,7 +1625,7 @@
     <file relUrl="editor/fckeditor.js" publishTime="06/01/2012 15:53:11" />
     <file relUrl="editor/editor/css/images/block_p.png" publishTime="06/01/2012 15:52:35" />
     <file relUrl="Maps/PlantUser.xml" publishTime="06/01/2012 15:59:49" />
-    <file relUrl="bin/Common.dll" publishTime="08/16/2012 10:00:44" />
+    <file relUrl="bin/Common.dll" publishTime="08/16/2012 12:06:30" />
     <file relUrl="Images/bz/bzbg013.jpg" publishTime="06/01/2012 16:00:00" />
     <file relUrl="editor/fckeditor/editor/lang/_translationstatus.txt" publishTime="06/01/2012 15:52:59" />
     <file relUrl="editor/_samples/_plugins/findreplace/replace.html" publishTime="06/01/2012 15:52:44" />
@@ -1702,7 +1704,7 @@
     <file relUrl="editor/editor/_source/internals/fckselection.js" publishTime="06/01/2012 15:52:24" />
     <file relUrl="Content/jquery/images/reg3.gif" publishTime="06/01/2012 16:00:53" />
     <file relUrl="editor/editor/dialog/fck_checkbox.html" publishTime="06/01/2012 15:52:21" />
-    <file relUrl="Images/lc/btua.gif" publishTime="09/01/2011 22:04:29" />
+    <file relUrl="Images/lc/btua.gif" publishTime="08/16/2012 11:22:06" />
     <file relUrl="editor/fckeditor/editor/css/images/fck_flashlogo.gif" publishTime="06/01/2012 15:53:02" />
     <file relUrl="editor/fckeditor/editor/skins/office2003/images/dialog.sides.gif" publishTime="06/01/2012 15:53:01" />
     <file relUrl="editor/editor/filemanager/browser/default/images/icons/zip.gif" publishTime="06/01/2012 15:52:37" />
@@ -1737,7 +1739,7 @@
     <file relUrl="editor/editor/skins/office2003/fck_editor.css" publishTime="06/01/2012 15:52:34" />
     <file relUrl="script/Highcharts-2.1.3/js/highcharts2.2.5.src.js" publishTime="07/31/2012 15:14:02" />
     <file relUrl="editor/editor/_source/classes/fcktoolbarbuttonui.js" publishTime="06/01/2012 15:52:26" />
-    <file relUrl="bin/Persistence.pdb" publishTime="08/16/2012 10:00:46" />
+    <file relUrl="bin/Persistence.pdb" publishTime="08/16/2012 12:06:32" />
     <file relUrl="editor/editor/css/images/block_blockquote.png" publishTime="06/01/2012 15:52:35" />
     <file relUrl="Images/tzimh.gif" publishTime="06/01/2012 16:00:49" />
     <file relUrl="editor/fckeditor/editor/dialog/fck_button.shtml" publishTime="06/01/2012 15:52:49" />
@@ -1768,7 +1770,7 @@
     <file relUrl="script/DatePicker/lang/en-us.js" publishTime="06/01/2012 15:59:55" />
     <file relUrl="editor/editor/_source/classes/fckeditingarea.js" publishTime="06/01/2012 15:52:26" />
     <file relUrl="Images/ensel.gif" publishTime="06/01/2012 16:00:49" />
-    <file relUrl="Images/lc/lcover.jpg" publishTime="09/01/2011 22:04:30" />
+    <file relUrl="Images/lc/lcover.jpg" publishTime="08/16/2012 11:22:06" />
     <file relUrl="editor/editor/_source/internals/fckdialog.js" publishTime="06/01/2012 15:52:24" />
     <file relUrl="Images/sub/ttyn.gif" publishTime="06/01/2012 16:00:38" />
     <file relUrl="Images/sub/sub_line01.gif" publishTime="06/01/2012 16:00:37" />
@@ -1794,11 +1796,11 @@
     <file relUrl="editor/editor/filemanager/browser/default/images/icons/32/gif.gif" publishTime="06/01/2012 15:52:37" />
     <file relUrl="editor/fckeditor/editor/images/smiley/msn/angel_smile.gif" publishTime="06/01/2012 15:53:00" />
     <file relUrl="editor/fckeditor/editor/filemanager/browser/default/frmresourceslist.shtml" publishTime="06/01/2012 15:53:07" />
-    <file relUrl="Pages/NewRegister/AddUnit.aspx" publishTime="08/16/2012 10:58:08" />
+    <file relUrl="Pages/NewRegister/AddUnit.aspx" publishTime="08/16/2012 11:27:07" />
     <file relUrl="editor/editor/filemanager/browser/default/images/icons/32/swf.gif" publishTime="06/01/2012 15:52:37" />
     <file relUrl="editor/editor/lang/pt-br.js" publishTime="06/01/2012 15:52:32" />
     <file relUrl="editor/fckeditor/editor/plugins/Movie/lang/zh-cn.js" publishTime="06/01/2012 15:52:50" />
-    <file relUrl="Images/lc/lcbtu1.gif" publishTime="08/14/2012 14:00:50" />
+    <file relUrl="Images/lc/lcbtu1.gif" publishTime="08/16/2012 11:22:06" />
     <file relUrl="Maps/DeviceDataCount.xml" publishTime="06/01/2012 15:59:49" />
     <file relUrl="Images/sub/noadd.gif" publishTime="06/01/2012 16:00:39" />
     <file relUrl="Pages/Admin/Device/inv_Counter.aspx" publishTime="06/01/2012 15:59:39" />

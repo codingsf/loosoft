@@ -4966,16 +4966,16 @@
     <value>次の</value>
   </data>
   <data name="NOTICE_DESIGN_POWER" xml:space="preserve">
-    <value>"設計電力"を入力してください</value>
+    <value>\"設計電力\"を入力してください</value>
   </data>
   <data name="NOTICE_DEVICE_NAME" xml:space="preserve">
-    <value>"デバイス名"を入力してください</value>
+    <value>\"デバイス名\"を入力してください</value>
   </data>
   <data name="NOTICE_DEVICE_PASSWORD" xml:space="preserve">
-    <value>"デバイスのパスワード"を入力してください</value>
+    <value>\"デバイスのパスワード\"を入力してください</value>
   </data>
   <data name="NOTICE_DEVICE_SN" xml:space="preserve">
-    <value>"デバイスのシリアル番号"を入力してください</value>
+    <value>\"デバイスのシリアル番号\"を入力してください</value>
   </data>
   <data name="OPTION_CLOSE" xml:space="preserve">
     <value>離れて</value>

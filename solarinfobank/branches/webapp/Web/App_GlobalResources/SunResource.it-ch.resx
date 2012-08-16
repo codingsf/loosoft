@@ -6335,16 +6335,16 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>prossimo</value>
   </data>
   <data name="NOTICE_DESIGN_POWER" xml:space="preserve">
-    <value>Si prega di inserire "Potenza progettata"</value>
+    <value>Si prega di inserire \"Potenza progettata\"</value>
   </data>
   <data name="NOTICE_DEVICE_NAME" xml:space="preserve">
-    <value>Si prega di inserire "Nome unità"</value>
+    <value>Si prega di inserire \"Nome unità\"</value>
   </data>
   <data name="NOTICE_DEVICE_PASSWORD" xml:space="preserve">
-    <value>Si prega di inserire "password Device"</value>
+    <value>Si prega di inserire \"password Device\"</value>
   </data>
   <data name="NOTICE_DEVICE_SN" xml:space="preserve">
-    <value>Si prega di inserire "il numero di serie del dispositivo"</value>
+    <value>Si prega di inserire \"il numero di serie del dispositivo\"</value>
   </data>
   <data name="OPTION_CLOSE" xml:space="preserve">
     <value>via</value>

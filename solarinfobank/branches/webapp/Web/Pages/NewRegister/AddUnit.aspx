@@ -72,13 +72,13 @@
         function checkinput(plantid) {
             var success = true;
             if ($("#code_" + plantid).val() == "") {
-                $("#error_code_" + plantid).html('<em><span class="error">&nbsp;<%=Resources.SunResource.NOTICE_DEVICE_SN%></span></em>'); success = false;
+                $("#error_code_" + plantid).html("<em><span class='error'>&nbsp;<%=Resources.SunResource.NOTICE_DEVICE_SN%></span></em>"); success = false;
             }
             if ($("#password_" + plantid).val() == "") {
-                $("#error_password_" + plantid).html('<em><span class="error">&nbsp;<%=Resources.SunResource.NOTICE_DEVICE_PASSWORD%></span></em>'); success = false;
+                $("#error_password_" + plantid).html("<em><span class='error'>&nbsp;<%=Resources.SunResource.NOTICE_DEVICE_PASSWORD%></span></em>"); success = false;
             }
             if ($("#displayname_" + plantid).val() == "") {
-                $("#error_displayname_" + plantid).html('<em><span class="error">&nbsp;<%=Resources.SunResource.NOTICE_DEVICE_NAME%></span></em>'); success = false;
+                $("#error_displayname_" + plantid).html("<em><span class='error'>&nbsp;<%=Resources.SunResource.NOTICE_DEVICE_NAME%></span></em>"); success = false;
             }
             return success;
         }

@@ -5409,16 +5409,16 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>nächste</value>
   </data>
   <data name="NOTICE_DESIGN_POWER" xml:space="preserve">
-    <value>Bitte geben Sie "Anlagenleistung"</value>
+    <value>Bitte geben Sie \"Anlagenleistung\"</value>
   </data>
   <data name="NOTICE_DEVICE_NAME" xml:space="preserve">
-    <value>Bitte geben Sie "Gerätename"</value>
+    <value>Bitte geben Sie \"Gerätename\"</value>
   </data>
   <data name="NOTICE_DEVICE_PASSWORD" xml:space="preserve">
-    <value>Bitte geben Sie "Geräte-Passwort"</value>
+    <value>Bitte geben Sie \"Geräte-Passwort\"</value>
   </data>
   <data name="NOTICE_DEVICE_SN" xml:space="preserve">
-    <value>Bitte geben Sie "Geräte-Seriennummer"</value>
+    <value>Bitte geben Sie \"Geräte-Seriennummer\"</value>
   </data>
   <data name="OPTION_CLOSE" xml:space="preserve">
     <value>weg</value>

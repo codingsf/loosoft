@@ -6329,7 +6329,7 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>password del dispositivo</value>
   </data>
   <data name="DEVICE_SN" xml:space="preserve">
-    <value>Si prega di inserire "il numero di serie del dispositivo"</value>
+    <value>Numero di serie</value>
   </data>
   <data name="NEXT_STEP" xml:space="preserve">
     <value>prossimo</value>

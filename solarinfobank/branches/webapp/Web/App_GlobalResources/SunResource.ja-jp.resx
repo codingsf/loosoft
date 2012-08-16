@@ -4957,10 +4957,10 @@
     <value>添加设备</value>
   </data>
   <data name="DEVICE_PASSWORD" xml:space="preserve">
-    <value>设备密码</value>
+    <value>デバイスのパスワード</value>
   </data>
   <data name="DEVICE_SN" xml:space="preserve">
-    <value>设备序列号</value>
+    <value>デバイスのシリアル番号</value>
   </data>
   <data name="NEXT_STEP" xml:space="preserve">
     <value>次の</value>

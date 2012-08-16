@@ -5022,4 +5022,16 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
   <data name="NEWREGISTER_USERINFO" xml:space="preserve">
     <value>Utilisateur</value>
   </data>
+  <data name="NEXT_STEP" xml:space="preserve">
+    <value>prochain</value>
+  </data>
+  <data name="PREVIOUS_STEP" xml:space="preserve">
+    <value>précédent</value>
+  </data>
+  <data name="DEVICE_PASSWORD" xml:space="preserve">
+    <value>mot de passe de périphérique</value>
+  </data>
+  <data name="DEVICE_SN" xml:space="preserve">
+    <value>Numéro de périphérique série</value>
+  </data>
 </root>

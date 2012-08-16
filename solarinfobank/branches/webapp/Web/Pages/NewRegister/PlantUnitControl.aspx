@@ -15,7 +15,7 @@
     <%foreach (PlantUnit plantUnit in Model.plantUnits)
       {%>
     <tr id="row_<%=plantUnit.collector.id %>">
-        <td class="tdstyle02">
+        <td class="tdstyle02"><span class="haveunit"></span>
             <%=plantUnit.collector.code %>
         </td>
         <td class="tdstyle02">

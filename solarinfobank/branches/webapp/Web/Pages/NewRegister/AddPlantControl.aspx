@@ -86,7 +86,7 @@
                         remote: {
                             type: "POST",
                             url: "/plant/check",
-                             data: {
+                            data: {
                                 pname: function() { return $("#name").val(); },
                                 pid: function() { return $("#id").val(); }
                             }
@@ -116,7 +116,7 @@
                         min: '<span class="error">&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_MIN_NUMBER %></span>'
                     },
                     design_power: {
-                    required: "<span class='error'>&nbsp;<%=Resources.SunResource.NOTICE_DESIGN_POWER %></span>",
+                        required: "<span class='error'>&nbsp;<%=Resources.SunResource.NOTICE_DESIGN_POWER %></span>",
                         number: '<span class="error">&nbsp;<%=Resources.SunResource.AUTH_REG_REVENUE_NUMBER %></span>'
                     },
                     email: {
@@ -130,8 +130,12 @@
                     else
                         error.insertAfter(element);
 
+                },
+                success: function(em) {
+                  parent.iframeauto();
                 }
             }).form();
+           
         }
 
 

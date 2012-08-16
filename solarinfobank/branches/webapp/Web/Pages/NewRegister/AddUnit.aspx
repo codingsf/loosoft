@@ -16,6 +16,10 @@
 
     <script language="javascript" type="text/javascript">
 
+
+        function processbtncomplete() {
+            alert($(".haveunit").length);
+        }
         $(document).ready(function() {
             $(".change").click(function() {
                 var id = $(this).attr('rel');
@@ -32,10 +36,10 @@
                 if (!checkinput(id))
                     return;
                 $.get("/newregister/unitsave", { t: Math.random(), plantId: id, unitid: $("#unit_" + id).val(), code: $("#code_" + id).val(), password: $("#password_" + id).val(), displayname: $("#displayname_" + id).val() }, function(data, textStatus) {
-                    if (data == "True"){
+                    if (data == "True") {
                         reload(id);
                         $("#cancelBtn").click();
-                    }else
+                    } else
                         alert(data);
                 });
             });
@@ -160,6 +164,7 @@
                                                   {%>
                                                 <tr id="row_<%=plantUnit.collector.id %>">
                                                     <td class="tdstyle02">
+                                                    <span class="haveunit"></span>
                                                         <%=plantUnit.collector.code %>
                                                     </td>
                                                     <td class="tdstyle02">
@@ -235,7 +240,7 @@
                         <%} %>
                         <div class="ok_box0">
                             <input name="Submit2" type="submit" class="ok_greenbtu mr20" value="<%=Resources.SunResource.PREVIOUS_STEP%>" onclick="window.location.href='/newregister/addplant'" />
-                            <input type="submit" name="Submit" class="ok_greenbtu" value="<%=Resources.SunResource.BUTTON_FINISHED%>" onclick="window.location.href='/user/overview'" />
+                            <input type="submit" name="Submit" class="ok_greenbtu" onclick="processbtncomplete()" value="<%=Resources.SunResource.BUTTON_FINISHED%>" onclick="window.location.href='/user/overview'" />
                         </div>
                     </td>
                     <td background="/images/tc/tc05.gif">

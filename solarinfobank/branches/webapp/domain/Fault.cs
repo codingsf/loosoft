@@ -79,7 +79,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                     {
                         return error.name;
                     }
-                    return LanguageUtil.getDesc("UNKNOWN");
+                    return this.errorCode.ToString();
             } 
         }
 

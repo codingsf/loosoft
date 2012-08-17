@@ -385,17 +385,21 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 if (int.Parse(datas[0]) == MonitorType.MIC_INVERTER_DEVICESTATUS)
                 {
                     int sts = int.Parse(datas[1]);
-                    if (sts != DeviceStatusType.inverter_status_run
-                        && sts != DeviceStatusType.inverter_status_run
-                        && sts != DeviceStatusType.inverter_status_ajgj
-                        && sts != DeviceStatusType.inverter_status_chshidj
-                        && sts != DeviceStatusType.inverter_status_daiji
-                        && sts != DeviceStatusType.inverter_status_jjtj
-                        && sts != DeviceStatusType.inverter_status_startuping
-                        && sts != DeviceStatusType.inverter_status_tingji)
-                    {
+                    //if (sts != DeviceStatusType.inverter_status_run
+                    //    && sts != DeviceStatusType.inverter_status_run
+                    //    && sts != DeviceStatusType.inverter_status_ajgj
+                    //    && sts != DeviceStatusType.inverter_status_chshidj
+                    //    && sts != DeviceStatusType.inverter_status_daiji
+                    //    && sts != DeviceStatusType.inverter_status_jjtj
+                    //    && sts != DeviceStatusType.inverter_status_startuping
+                    //    && sts != DeviceStatusType.inverter_status_tingji)
+                    //{
+                    //    return true;
+                    //}
+                    //20120816改为从故障那里取
+                    ErrorItem errorItem = ErrorItem.getErrotItemByCode(sts);
+                    if (errorItem != null && (errorItem.errorType == ErrorType.ERROR_TYPE_ERROR || errorItem.errorType == ErrorType.ERROR_TYPE_FAULT))
                         return true;
-                    }
                     return false;
                 }
             }

@@ -43,15 +43,16 @@
         
         //setInterval("processbtncomplete()", 1000);
         $(document).ready(function() {
-            $(".change").click(function() {
-                var id = $(this).attr('rel');
-                if ($("#unessential_" + id).is(":hidden")) {
-                    $("#unessential_" + id).slideDown(0);
-                } else {
-                    $("#unessential_" + id).slideUp(0);
-                }
-                $("#code_" + id).get(0).focus();
-            });
+            //$(".change").click(function() {
+               // var id = $(this).attr('rel');
+               // var displayValue = document.getElementById("#unessential_" + id).style.display;
+                //if (displayValue=='none') {
+                  //  $("#unessential_" + id).slideDown(0);
+               // } else {
+                  //  $("#unessential_" + id).slideUp(0);
+               // }
+                //$("#code_" + id).get(0).focus();
+            //});
 
 
             $(".btua").click(function() {
@@ -211,7 +212,7 @@
 		</div>
 		
                                         <table width="705" border="0" align="center" cellpadding="0" cellspacing="0" id="unessential_<%=plant.id %>"
-                                            style="display: none">
+                                            style="display: block">
                                             <tr>
                                                 <td height="45" valign="bottom" background="/images/lc/lcbg003.jpg">
                                                     <div class="lcintt01">

@@ -182,9 +182,9 @@
                                                         <input type="hidden" name="plantid" class="plantid" value="<%=plant.id %>" />
                                                         <a href="javascript:void(0)" onclick="edit(this);" code="<%=plantUnit.collector.code %>"
                                                             displayname="<%=plantUnit.displayname %>" class="edit" rel="<%=plantUnit.id %>">
-                                                            <img src="/images/lc/pencil.gif" width="16" height="16" border="0" /></a> <a href="javascript:void(0)"
+                                                            <img src="/images/lc/pencil.gif" width="16" height="16" border="0" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>" title="<%=Resources.SunResource.MONITORITEM_EDIT%>" /></a> <a href="javascript:void(0)"
                                                                 rel="<%=plantUnit.collector.id %>" class="del" onclick="del(this)">
-                                                                <img src="/images/lc/lc_del.gif" width="14" height="13" border="0" /></a>
+                                                                <img src="/images/lc/lc_del.gif" width="14" height="13" border="0"  title="<%=Resources.SunResource.MONITORITEM_DELETE%>" alt="<%=Resources.SunResource.MONITORITEM_DELETE%>"/></a>
                                                     </td>
                                                 </tr>
                                                 <%} %>

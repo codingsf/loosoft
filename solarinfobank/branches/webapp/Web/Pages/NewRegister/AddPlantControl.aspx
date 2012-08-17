@@ -124,6 +124,7 @@
                     }
                 },
                 errorPlacement: function(error, element) {
+                    parent.iframeauto();
                     if (document.getElementById("error_" + element.attr("name"))) {
                         error.appendTo("#error_" + element.attr("name"));
                     }
@@ -132,7 +133,7 @@
 
                 },
                 success: function(em) {
-                  parent.iframeauto();
+
                 }
             }).form();
            
@@ -1385,7 +1386,7 @@
         <tr>
             <td background="/images/lc/lcbg04.jpg">
                 <div class="lcin01 mt10">
-                    <ul>
+                    <ul style="white-space:nowrap">
                         <li><%=Resources.SunResource.PLANT_PROFILE_NAME%>
                             <%=Html.HiddenFor(Model=>Model.id) %>
                             <%= Html.TextBoxFor(model => model.name, new { @class = "lcinput02" })%>

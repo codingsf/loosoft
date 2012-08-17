@@ -241,7 +241,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 The unit name has been used 的本地化字符串。
+        ///   查找类似 The device name has been used 的本地化字符串。
         /// </summary>
         internal static string AJAX_CHACKING_UNIT_NAME {
             get {
@@ -4453,7 +4453,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 serial number 的本地化字符串。
+        ///   查找类似 Serial number 的本地化字符串。
         /// </summary>
         internal static string DEVICE_SN {
             get {
@@ -5850,6 +5850,15 @@ namespace Resources {
         internal static string NODATA {
             get {
                 return ResourceManager.GetString("NODATA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 必须添加一个设备 的本地化字符串。
+        /// </summary>
+        internal static string NOTICE_ADDED_DEVICE {
+            get {
+                return ResourceManager.GetString("NOTICE_ADDED_DEVICE", resourceCulture);
             }
         }
         
@@ -8276,7 +8285,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Binding period 的本地化字符串。
+        ///   查找类似 Add period 的本地化字符串。
         /// </summary>
         internal static string PLANT_REG_SOURCE_DEADLINE_TIME {
             get {
@@ -8465,7 +8474,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Bind 的本地化字符串。
+        ///   查找类似 Add 的本地化字符串。
         /// </summary>
         internal static string PLANT_UNIT_BIND_BIND {
             get {
@@ -8483,7 +8492,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Please enter the data source ID 的本地化字符串。
+        ///   查找类似 Please enter &quot;Device serial number&quot; 的本地化字符串。
         /// </summary>
         internal static string PLANT_UNIT_BIND_COLLECTOR_CODE_REQUIRED {
             get {
@@ -8501,7 +8510,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Data Source Code 的本地化字符串。
+        ///   查找类似 Device serial number 的本地化字符串。
         /// </summary>
         internal static string PLANT_UNIT_BIND_COLLECTOR_ID {
             get {
@@ -8519,7 +8528,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Data Source Password 的本地化字符串。
+        ///   查找类似 Device password 的本地化字符串。
         /// </summary>
         internal static string PLANT_UNIT_BIND_COLLECTOR_PASSWORD {
             get {
@@ -8528,7 +8537,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Please enter the data source password 的本地化字符串。
+        ///   查找类似 Please enter &quot;Device password&quot; 的本地化字符串。
         /// </summary>
         internal static string PLANT_UNIT_BIND_COLLECTOR_PASSWORD_REQUIRED {
             get {
@@ -8537,7 +8546,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Please enter an unit name 的本地化字符串。
+        ///   查找类似 Please enter &quot;Device name&quot; 的本地化字符串。
         /// </summary>
         internal static string PLANT_UNIT_BIND_DISPLAYNAME_REQUIRED {
             get {
@@ -8546,7 +8555,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Unit Bind 的本地化字符串。
+        ///   查找类似 Add Device 的本地化字符串。
         /// </summary>
         internal static string PLANT_UNIT_BIND_UNIT_BIND {
             get {
@@ -8564,7 +8573,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Unit Name 的本地化字符串。
+        ///   查找类似 Device name 的本地化字符串。
         /// </summary>
         internal static string PLANT_UNIT_BIND_UNIT_NAMES {
             get {
@@ -8573,7 +8582,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Data Source Code 的本地化字符串。
+        ///   查找类似 Device serial number 的本地化字符串。
         /// </summary>
         internal static string PLANT_UNIT_DATA_SOURCE_CODE {
             get {
@@ -8627,7 +8636,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Unit Name 的本地化字符串。
+        ///   查找类似 Device name 的本地化字符串。
         /// </summary>
         internal static string PLANT_UNIT_EDIT_UNIT_NAME {
             get {
@@ -8780,7 +8789,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Unit Name 的本地化字符串。
+        ///   查找类似 Device name 的本地化字符串。
         /// </summary>
         internal static string PLANT_UNIT_LIST_UNIT_NAME {
             get {
@@ -8888,7 +8897,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 previous 的本地化字符串。
+        ///   查找类似 Previous 的本地化字符串。
         /// </summary>
         internal static string PREVIOUS_STEP {
             get {

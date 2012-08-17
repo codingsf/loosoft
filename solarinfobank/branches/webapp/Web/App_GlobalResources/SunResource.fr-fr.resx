@@ -760,7 +760,7 @@
     <value>Intervalle de temps</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_ID" xml:space="preserve">
-    <value>Numéro de la source de données</value>
+    <value>Numéro de périphérique série</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_PASSWORD" xml:space="preserve">
     <value>Mot de passe de la source de données</value>
@@ -772,7 +772,7 @@
     <value>Vous devez entrer la Source ID et le mot de passe qui peuvent être obtenus par les brochures du vendeur ou d'un produit de dispositif</value>
   </data>
   <data name="PLANT_UNIT_BIND_UNIT_NAMES" xml:space="preserve">
-    <value>Nom de l'unité</value>
+    <value>Nom d'équipement</value>
   </data>
   <data name="PLANT_UNIT_EDIT_EDIT_UNIT" xml:space="preserve">
     <value>Modifier une unité</value>
@@ -787,7 +787,7 @@
     <value />
   </data>
   <data name="PLANT_UNIT_EDIT_UNIT_NAME" xml:space="preserve">
-    <value>Nom de l'unité</value>
+    <value>Nom d'équipement</value>
   </data>
   <data name="PLANT_UNIT_EDIT_USERNAME" xml:space="preserve">
     <value>Nom d'utilisateur</value>
@@ -1576,13 +1576,13 @@
     <value>Conseils</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_CODE_REQUIRED" xml:space="preserve">
-    <value>Veuillez entrer la source de données</value>
+    <value>S'il vous plaît entrez "numéro de série"</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_PASSWORD_REQUIRED" xml:space="preserve">
-    <value>Veuillez entrer le mot de passe de source de données</value>
+    <value>S'il vous plaît entrez «mot de passe de périphériques"</value>
   </data>
   <data name="PLANT_UNIT_BIND_DISPLAYNAME_REQUIRED" xml:space="preserve">
-    <value>Veuillez entrer le nom de l'unité</value>
+    <value>S'il vous plaît entrez "Device name"</value>
   </data>
   <data name="AUTH_REG_USER_REGISTRATION_DETAIL" xml:space="preserve">
     <value />
@@ -3636,7 +3636,7 @@
     <comment>起个容易记住的别名吧</comment>
   </data>
   <data name="PLANT_UNIT_DATA_SOURCE_CODE" xml:space="preserve">
-    <value>Source de données</value>
+    <value>Numéro de périphérique série</value>
   </data>
   <data name="PLANT_INFO_TOTALl_METER" xml:space="preserve">
     <value>Informations de la Centrale électrique</value>
@@ -4993,10 +4993,10 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
     <value>S'il vous plaît entrez \"numéro de série\"</value>
   </data>
   <data name="OPTION_CLOSE" xml:space="preserve">
-    <value>loin</value>
+    <value>Loin</value>
   </data>
   <data name="OPTION_OPEN" xml:space="preserve">
-    <value>expansion</value>
+    <value>Expansion</value>
   </data>
   <data name="PAGE_ADDPLANT_ENDDATE1" xml:space="preserve">
     <value>请输入“结束时间”</value>
@@ -5023,15 +5023,21 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
     <value>Utilisateur</value>
   </data>
   <data name="NEXT_STEP" xml:space="preserve">
-    <value>prochain</value>
+    <value>Prochain</value>
   </data>
   <data name="PREVIOUS_STEP" xml:space="preserve">
-    <value>précédent</value>
+    <value>Précédent</value>
   </data>
   <data name="DEVICE_PASSWORD" xml:space="preserve">
     <value>mot de passe de périphérique</value>
   </data>
   <data name="DEVICE_SN" xml:space="preserve">
     <value>Numéro de périphérique série</value>
+  </data>
+  <data name="ADD_DEVICE" xml:space="preserve">
+    <value>Ajouter un périphérique</value>
+  </data>
+  <data name="NOTICE_ADDED_DEVICE" xml:space="preserve">
+    <value>必须添加一个设备</value>
   </data>
 </root>

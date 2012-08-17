@@ -16,7 +16,11 @@
 
     <script language="javascript" type="text/javascript">
 
-
+        function clearerror(plantid) {
+            $("#error_password_" + plantid).empty();
+            $("#error_code_" + plantid).empty();
+            $("#error_displayname_" + plantid).empty(); 
+        }
         function processbtncomplete() {
             if ($(".haveunit").length<=0) {
                 $(".btn").attr("class", "no_greybtu btn");
@@ -27,7 +31,17 @@
 
             }
         }
-        setInterval("processbtncomplete()", 1000);
+
+        function checkunitadded() {
+            if ($(".haveunit").length <= 0) {
+                alert('<%=Resources.SunResource.NOTICE_ADDED_DEVICE%>');
+                return false;
+            }
+            window.location.href = '/user/overview'
+            return true;
+        }
+        
+        //setInterval("processbtncomplete()", 1000);
         $(document).ready(function() {
             $(".change").click(function() {
                 var id = $(this).attr('rel');
@@ -36,6 +50,7 @@
                 } else {
                     $("#unessential_" + id).slideUp(0);
                 }
+                $("#code_" + id).get(0).focus();
             });
 
 
@@ -68,6 +83,7 @@
                 $("#table_" + plantid).empty();
                 $("#table_" + plantid).html(data);
             });
+            clearerror(plantid);
         }
 
         function edit(obj) {
@@ -248,7 +264,7 @@
                         <%} %>
                         <div class="ok_box0">
                             <input name="Submit2" type="submit" class="ok_greenbtu mr20" value="<%=Resources.SunResource.PREVIOUS_STEP%>" onclick="window.location.href='/newregister/addplant'" />
-                            <input type="submit" name="Submit" class="ok_greenbtu btn"  value="<%=Resources.SunResource.BUTTON_FINISHED%>" onclick="window.location.href='/user/overview'" />
+                            <input type="button" name="Submit" class="ok_greenbtu btn"  value="<%=Resources.SunResource.BUTTON_FINISHED%>" onclick="checkunitadded();" />
                         </div>
                     </td>
                     <td background="/images/tc/tc05.gif">

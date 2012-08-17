@@ -301,7 +301,7 @@
                                     
                                 </td>
                             </tr>
-                            <tr id="btn1" style="display: none">
+                            <tr id="btn1">
                                 <td>
                                 </td>
                                 <td>
@@ -312,9 +312,9 @@
                             </tr>
                         </table>
                         <div class="ss_zk">
-                            <span class="ss_zkico"><a href="#" class="sza" id="change"><%=Resources.SunResource.OPTION_CLOSE%></a></span></div>
+                            <span class="zk_zkico"><a href="#" class="sza" id="change"><%=Resources.SunResource.OPTION_OPEN%></a></span></div>
                         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tlist"
-                            id="unessential">
+                            id="unessential" style="display:none">
                             <tr>
                                 <td width="19%" class="pr_10">
                                     <%=Resources.SunResource.AUTH_REG_FIRSTNAME%>：
@@ -429,7 +429,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <div class="ok_box" id="btn2">
+                        <div class="ok_box" id="btn2" style="display:none">
                             <input type="submit" name="Submit" class="ok_greenbtu btn" value="<%=Resources.SunResource.NEXT_STEP%>" />
                         </div>
                     </td>

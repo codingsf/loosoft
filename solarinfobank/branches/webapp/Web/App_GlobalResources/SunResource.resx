@@ -762,19 +762,19 @@
     <value>Time Interval</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_ID" xml:space="preserve">
-    <value>Data Source Code</value>
+    <value>Device serial number</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_PASSWORD" xml:space="preserve">
-    <value>Data Source Password</value>
+    <value>Device password</value>
   </data>
   <data name="PLANT_UNIT_BIND_UNIT_BIND" xml:space="preserve">
-    <value>Unit Bind</value>
+    <value>Add Device</value>
   </data>
   <data name="PLANT_UNIT_BIND_UNIT_BIND_DETAIL" xml:space="preserve">
     <value>You need input the data source ID and password, you can get it from equipment supplier or Product Specification</value>
   </data>
   <data name="PLANT_UNIT_BIND_UNIT_NAMES" xml:space="preserve">
-    <value>Unit Name</value>
+    <value>Device name</value>
   </data>
   <data name="PLANT_UNIT_EDIT_EDIT_UNIT" xml:space="preserve">
     <value>Edit Unit</value>
@@ -789,7 +789,7 @@
     <value>  </value>
   </data>
   <data name="PLANT_UNIT_EDIT_UNIT_NAME" xml:space="preserve">
-    <value>Unit Name</value>
+    <value>Device name</value>
   </data>
   <data name="PLANT_UNIT_EDIT_USERNAME" xml:space="preserve">
     <value>Username</value>
@@ -822,7 +822,7 @@
     <value>Unit List</value>
   </data>
   <data name="PLANT_UNIT_LIST_UNIT_NAME" xml:space="preserve">
-    <value>Unit Name</value>
+    <value>Device name</value>
   </data>
   <data name="SelectLang" xml:space="preserve">
     <value>Select language</value>
@@ -1550,7 +1550,7 @@
     <value>Save</value>
   </data>
   <data name="PLANT_UNIT_BIND_BIND" xml:space="preserve">
-    <value>Bind</value>
+    <value>Add</value>
   </data>
   <data name="MONITORITEM_CANEL" xml:space="preserve">
     <value>Cancel</value>
@@ -1695,13 +1695,13 @@
     <value>Note</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_CODE_REQUIRED" xml:space="preserve">
-    <value>Please enter the data source ID</value>
+    <value>Please enter "Device serial number"</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_PASSWORD_REQUIRED" xml:space="preserve">
-    <value>Please enter the data source password</value>
+    <value>Please enter "Device password"</value>
   </data>
   <data name="PLANT_UNIT_BIND_DISPLAYNAME_REQUIRED" xml:space="preserve">
-    <value>Please enter an unit name</value>
+    <value>Please enter "Device name"</value>
   </data>
   <data name="AUTH_REG_USER_REGISTRATION_DETAIL" xml:space="preserve">
     <value>  </value>
@@ -3567,7 +3567,7 @@
     <comment>起个容易记住的别名吧</comment>
   </data>
   <data name="PLANT_UNIT_DATA_SOURCE_CODE" xml:space="preserve">
-    <value>Data Source Code</value>
+    <value>Device serial number</value>
   </data>
   <data name="PLANT_INFO_TOTALl_METER" xml:space="preserve">
     <value>Total Information</value>
@@ -3985,7 +3985,7 @@
     <value>The Power station name has been used</value>
   </data>
   <data name="AJAX_CHACKING_UNIT_NAME" xml:space="preserve">
-    <value>The unit name has been used</value>
+    <value>The device name has been used</value>
   </data>
   <data name="AJAX_CHACKING_USERNAME" xml:space="preserve">
     <value>The user already exists</value>
@@ -4722,7 +4722,7 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <value>Generation time</value>
   </data>
   <data name="PLANT_REG_SOURCE_DEADLINE_TIME" xml:space="preserve">
-    <value>Binding period</value>
+    <value>Add period</value>
   </data>
   <data name="PLANT_REG_SOURCE_PLANTTIME" xml:space="preserve">
     <value>Power station local time</value>
@@ -5145,7 +5145,7 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <value>password</value>
   </data>
   <data name="DEVICE_SN" xml:space="preserve">
-    <value>serial number</value>
+    <value>Serial number</value>
   </data>
   <data name="NEXT_STEP" xml:space="preserve">
     <value>Next</value>
@@ -5169,7 +5169,7 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <value>Expansion</value>
   </data>
   <data name="PREVIOUS_STEP" xml:space="preserve">
-    <value>previous</value>
+    <value>Previous</value>
   </data>
   <data name="REGISTER_AGREE" xml:space="preserve">
     <value>Agree《User Agreement》</value>
@@ -5194,5 +5194,8 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
   </data>
   <data name="NEWREGISTER_USERINFO" xml:space="preserve">
     <value>User Information</value>
+  </data>
+  <data name="NOTICE_ADDED_DEVICE" xml:space="preserve">
+    <value>必须添加一个设备</value>
   </data>
 </root>

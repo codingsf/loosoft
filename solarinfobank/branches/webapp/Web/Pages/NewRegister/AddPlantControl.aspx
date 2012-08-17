@@ -57,8 +57,10 @@
 
         //隐藏选填项容器
         function hideunessential() {
+            $("#change").parent().attr("class", "zk_zkico");
             $("#unessential").slideUp(0);
-            $(this).parent().attr("class", "zk_zkico");
+            $("#change").text('<%=Resources.SunResource.OPTION_OPEN%>');
+            //alert($("#change").parent().attr("class"));
             //$("#unessential").hide();
         }
 
@@ -1415,7 +1417,7 @@
                     <tr>
                         <td background="/images/lc/lcbg07.jpg">
                             <div class="ss_zk0">
-                                <span class="ss_zkico"><a href="javascript:void(0)" id="change" class="sza"><%=Resources.SunResource.OPTION_OPEN%></a></span>
+                                <span class="zk_zkico"><a href="javascript:void(0)" id="change" class="sza"><%=Resources.SunResource.OPTION_OPEN%></a></span>
                             </div>
                         </td>
                     </tr>

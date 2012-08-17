@@ -786,7 +786,7 @@
     <value />
   </data>
   <data name="PLANT_UNIT_EDIT_UNIT_NAME" xml:space="preserve">
-    <value>单元名称</value>
+    <value>设备名称</value>
   </data>
   <data name="PLANT_UNIT_EDIT_USERNAME" xml:space="preserve">
     <value>用户名</value>
@@ -816,7 +816,7 @@
     <value>单元列表</value>
   </data>
   <data name="PLANT_UNIT_LIST_UNIT_NAME" xml:space="preserve">
-    <value>单元名称</value>
+    <value>设备名称</value>
   </data>
   <data name="SelectLang" xml:space="preserve">
     <value>选择语言</value>
@@ -1570,13 +1570,13 @@
     <value>提示</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_CODE_REQUIRED" xml:space="preserve">
-    <value>请输入数据源号</value>
+    <value>请输入设备序列号</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_PASSWORD_REQUIRED" xml:space="preserve">
-    <value>请输入数据源密码</value>
+    <value>请输入设备密码</value>
   </data>
   <data name="PLANT_UNIT_BIND_DISPLAYNAME_REQUIRED" xml:space="preserve">
-    <value>请输入单元名称</value>
+    <value>请输入设备名称</value>
   </data>
   <data name="AUTH_REG_USER_REGISTRATION_DETAIL" xml:space="preserve">
     <value />
@@ -3629,7 +3629,7 @@
     <comment>起个容易记住的别名吧</comment>
   </data>
   <data name="PLANT_UNIT_DATA_SOURCE_CODE" xml:space="preserve">
-    <value>数据源</value>
+    <value>设备序列号</value>
   </data>
   <data name="PLANT_INFO_TOTALl_METER" xml:space="preserve">
     <value>电站信息</value>
@@ -4066,7 +4066,7 @@
     <value>此电站名称已经使用</value>
   </data>
   <data name="AJAX_CHACKING_UNIT_NAME" xml:space="preserve">
-    <value>此单元名称已经使用</value>
+    <value>此设备名称已经使用</value>
   </data>
   <data name="AJAX_CHACKING_USERNAME" xml:space="preserve">
     <value>此用户已经存在</value>
@@ -5019,5 +5019,8 @@
   </data>
   <data name="NOTICE_DESIGN_POWER_FORJS" xml:space="preserve">
     <value>请输入“设计功率”</value>
+  </data>
+  <data name="NOTICE_ADDED_DEVICE" xml:space="preserve">
+    <value>必须添加一个设备</value>
   </data>
 </root>

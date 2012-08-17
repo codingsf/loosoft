@@ -763,7 +763,7 @@
     <value>Zeitinterval</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_ID" xml:space="preserve">
-    <value>Datenquelle Code</value>
+    <value>Geräte-Seriennummer</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_PASSWORD" xml:space="preserve">
     <value>Datenquelle Passwort</value>
@@ -775,7 +775,7 @@
     <value>Sie müssen die ID der Datenqülle und das Passwort eingeben. Fragen Sie Ihren Lieferanten oder schaün Sie in der Spezifikation nach.</value>
   </data>
   <data name="PLANT_UNIT_BIND_UNIT_NAMES" xml:space="preserve">
-    <value>Einheitname</value>
+    <value>Gerätename</value>
   </data>
   <data name="PLANT_UNIT_EDIT_EDIT_UNIT" xml:space="preserve">
     <value>Bearbeite Einheit</value>
@@ -790,7 +790,7 @@
     <value />
   </data>
   <data name="PLANT_UNIT_EDIT_UNIT_NAME" xml:space="preserve">
-    <value>Einheitname</value>
+    <value>Gerätename</value>
   </data>
   <data name="PLANT_UNIT_EDIT_USERNAME" xml:space="preserve">
     <value>Benutzername</value>
@@ -820,7 +820,7 @@
     <value>Einheitenliste</value>
   </data>
   <data name="PLANT_UNIT_LIST_UNIT_NAME" xml:space="preserve">
-    <value>Einheitname</value>
+    <value>Gerätename</value>
   </data>
   <data name="SelectLang" xml:space="preserve">
     <value>Sprache auswählen</value>
@@ -1588,15 +1588,15 @@
     <value>Notiz</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_CODE_REQUIRED" xml:space="preserve">
-    <value>Bitte geben Sie die Datenquellen-ID</value>
+    <value>Bitte geben Sie "Geräte-Seriennummer"</value>
     <comment>请输入数据源号</comment>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_PASSWORD_REQUIRED" xml:space="preserve">
-    <value>Geben Sie die Datenquelle Passwort</value>
+    <value>Bitte geben Sie "Geräte-Passwort"</value>
     <comment>请输入数据源密码</comment>
   </data>
   <data name="PLANT_UNIT_BIND_DISPLAYNAME_REQUIRED" xml:space="preserve">
-    <value>Bitte einen Geräte Namen eingeben</value>
+    <value>Bitte geben Sie "Gerätename"</value>
   </data>
   <data name="AUTH_REG_USER_REGISTRATION_DETAIL" xml:space="preserve">
     <value />
@@ -3696,7 +3696,7 @@
     <comment>起个容易记住的别名吧</comment>
   </data>
   <data name="PLANT_UNIT_DATA_SOURCE_CODE" xml:space="preserve">
-    <value>Datenquelle</value>
+    <value>Geräte-Seriennummer</value>
   </data>
   <data name="PLANT_INFO_TOTALl_METER" xml:space="preserve">
     <value>Kraftwerkinformation</value>
@@ -5406,7 +5406,7 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>Geräte-Seriennummer</value>
   </data>
   <data name="NEXT_STEP" xml:space="preserve">
-    <value>nächste</value>
+    <value>Nächste</value>
   </data>
   <data name="NOTICE_DESIGN_POWER" xml:space="preserve">
     <value>Bitte geben Sie \"Anlagenleistung\"</value>
@@ -5421,13 +5421,13 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>Bitte geben Sie \"Geräte-Seriennummer\"</value>
   </data>
   <data name="OPTION_CLOSE" xml:space="preserve">
-    <value>weg</value>
+    <value>Weg</value>
   </data>
   <data name="OPTION_OPEN" xml:space="preserve">
     <value>Expansion</value>
   </data>
   <data name="PREVIOUS_STEP" xml:space="preserve">
-    <value>vorherige</value>
+    <value>Vorherige</value>
   </data>
   <data name="REGISTER_AGREE" xml:space="preserve">
     <value>Agree "Nutzungsvereinbarung"</value>
@@ -5452,5 +5452,8 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
   </data>
   <data name="NEWREGISTER_USERINFO" xml:space="preserve">
     <value>Benutzer</value>
+  </data>
+  <data name="NOTICE_ADDED_DEVICE" xml:space="preserve">
+    <value>必须添加一个设备</value>
   </data>
 </root>

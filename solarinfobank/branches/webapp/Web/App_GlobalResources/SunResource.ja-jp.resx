@@ -759,7 +759,7 @@
     <value>時間間隔</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_ID" xml:space="preserve">
-    <value>データソース番号</value>
+    <value>デバイスのシリアル番号</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_PASSWORD" xml:space="preserve">
     <value>データソースのパスワード</value>
@@ -771,7 +771,7 @@
     <value>データソースのIDとパスワード入力する必要があります、設備サプライヤー又は製品の取扱説明書から取得できます。</value>
   </data>
   <data name="PLANT_UNIT_BIND_UNIT_NAMES" xml:space="preserve">
-    <value>ユニット名称</value>
+    <value>設備名称</value>
   </data>
   <data name="PLANT_UNIT_EDIT_EDIT_UNIT" xml:space="preserve">
     <value>ユニット編集</value>
@@ -786,7 +786,7 @@
     <value />
   </data>
   <data name="PLANT_UNIT_EDIT_UNIT_NAME" xml:space="preserve">
-    <value>ユニット名称</value>
+    <value>設備名称</value>
   </data>
   <data name="PLANT_UNIT_EDIT_USERNAME" xml:space="preserve">
     <value>ユーザー名</value>
@@ -816,7 +816,7 @@
     <value>ユニットリスト</value>
   </data>
   <data name="PLANT_UNIT_LIST_UNIT_NAME" xml:space="preserve">
-    <value>ユニット名称</value>
+    <value>設備名称</value>
   </data>
   <data name="SelectLang" xml:space="preserve">
     <value>言語選択</value>
@@ -1570,13 +1570,13 @@
     <value>注意</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_CODE_REQUIRED" xml:space="preserve">
-    <value>データソースの番号を入力して下さい</value>
+    <value>"デバイスのシリアル番号"を入力してください</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_PASSWORD_REQUIRED" xml:space="preserve">
-    <value>データソースのパスワードを入力して下さい</value>
+    <value>"デバイスのパスワード"を入力してください</value>
   </data>
   <data name="PLANT_UNIT_BIND_DISPLAYNAME_REQUIRED" xml:space="preserve">
-    <value>ユニット名称を入力して下さい</value>
+    <value>"デバイス名"を入力してください</value>
   </data>
   <data name="AUTH_REG_USER_REGISTRATION_DETAIL" xml:space="preserve">
     <value />
@@ -3628,7 +3628,7 @@
     <comment>起个容易记住的别名吧</comment>
   </data>
   <data name="PLANT_UNIT_DATA_SOURCE_CODE" xml:space="preserve">
-    <value>データソース</value>
+    <value>デバイスのシリアル番号</value>
   </data>
   <data name="PLANT_INFO_TOTALl_METER" xml:space="preserve">
     <value>発電所の情報</value>
@@ -4954,7 +4954,7 @@
     <value>点击更换图片</value>
   </data>
   <data name="ADD_DEVICE" xml:space="preserve">
-    <value>添加设备</value>
+    <value>デバイスの追加</value>
   </data>
   <data name="DEVICE_PASSWORD" xml:space="preserve">
     <value>デバイスのパスワード</value>
@@ -5009,5 +5009,8 @@
   </data>
   <data name="NEWREGISTER_USERINFO" xml:space="preserve">
     <value>ユーザ情報</value>
+  </data>
+  <data name="NOTICE_ADDED_DEVICE" xml:space="preserve">
+    <value>必须添加一个设备</value>
   </data>
 </root>

@@ -273,6 +273,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         }
         public int code { get; set; }                 //类型代码
         public int errorType { get; set; }            //所属错误类型
+        public string defaultName { get; set; }          //默认名称
         public string name                            //类型名称
         {
             set
@@ -293,21 +294,21 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// <returns></returns>
         public string getCodeName(string code)
         {
-            if (_name == null || code == null) return "";
+            if (_name == null || code == null) return this.defaultName;
 
             string[] arrayList = _name.Split(',');
             string[] keyValues;
             foreach (string array in arrayList)
             {
                 keyValues = array.Split(':');
-                if (keyValues[0].ToLower().Equals(code.ToLower()))
+                if (keyValues[0].ToLower().Contains(code.ToLower()))
                 {
                     if (string.IsNullOrEmpty(keyValues[1]))
-                        return _name;
+                        return defaultName;
                     return keyValues[1];
                 }
             }
-            return _name;
+            return this.defaultName;
         }
     }
 }

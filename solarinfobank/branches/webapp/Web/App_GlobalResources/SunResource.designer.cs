@@ -5854,7 +5854,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 必须添加一个设备 的本地化字符串。
+        ///   查找类似 Please add a device 的本地化字符串。
         /// </summary>
         internal static string NOTICE_ADDED_DEVICE {
             get {

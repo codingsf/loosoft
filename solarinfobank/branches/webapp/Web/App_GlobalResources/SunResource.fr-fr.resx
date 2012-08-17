@@ -5038,6 +5038,6 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
     <value>Ajouter un périphérique</value>
   </data>
   <data name="NOTICE_ADDED_DEVICE" xml:space="preserve">
-    <value>必须添加一个设备</value>
+    <value>S'il vous plaît ajouter un périphérique</value>
   </data>
 </root>

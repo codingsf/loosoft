@@ -5454,6 +5454,6 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>Benutzer</value>
   </data>
   <data name="NOTICE_ADDED_DEVICE" xml:space="preserve">
-    <value>必须添加一个设备</value>
+    <value>Bitte fügen Sie ein Gerät</value>
   </data>
 </root>

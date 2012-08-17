@@ -6380,6 +6380,6 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>utente</value>
   </data>
   <data name="NOTICE_ADDED_DEVICE" xml:space="preserve">
-    <value>必须添加一个设备</value>
+    <value>Si prega di aggiungere un dispositivo</value>
   </data>
 </root>

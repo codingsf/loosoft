@@ -5021,6 +5021,6 @@
     <value>请输入“设计功率”</value>
   </data>
   <data name="NOTICE_ADDED_DEVICE" xml:space="preserve">
-    <value>必须添加一个设备</value>
+    <value>请添加一个设备</value>
   </data>
 </root>

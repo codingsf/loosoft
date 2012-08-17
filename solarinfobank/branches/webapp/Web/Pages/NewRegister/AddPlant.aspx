@@ -173,13 +173,13 @@
                               {
                                   for (int x = 0; x < Model.Count; x++)
                                   { %>
-                            <iframe scrolling="no" id="ifrm<%=x+1 %>" frameborder="0" width="100%" height="auto"
+                            <iframe scrolling="no" id="ifrm<%=x+1 %>" frameborder="0" width="100%" height="180"
                                 src="/newregister/addplantcontrol?menu=<%=x+1 %>&plantid=<%=Model[x].id %>"></iframe>
                             <%}
                               }
                               else
                               { %>
-                            <iframe scrolling="no" id="ifrm0" frameborder="0" width="100%" height="auto" src="/newregister/addplantcontrol?menu=1" onload="iframeauto();">
+                            <iframe scrolling="no" id="ifrm0" frameborder="0" width="100%" height="180" src="/newregister/addplantcontrol?menu=1" onload="iframeauto();">
                             </iframe>
                             <%} %>
                         </div>

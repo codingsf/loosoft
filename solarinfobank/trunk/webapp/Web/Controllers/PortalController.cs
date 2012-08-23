@@ -10,12 +10,33 @@ using System.Collections;
 using Cn.Loosoft.Zhisou.SunPower.Common;
 using System.Drawing;
 using System.Text;
+using System.Web.Configuration;
 using Cn.Loosoft.Zhisou.SunPower.Service.vo;
+using System.Configuration;
 namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 {
     public class PortalController : BaseController
     {
         CollectorYearDataService collectorYearDataService = CollectorYearDataService.GetInstance();
+
+        [HttpPost]
+        public ActionResult login(string username, string password, string validatecode)
+        {
+            if (ValidateCodeUtil.Validated(validatecode) == false)
+            {
+                ModelState.AddModelError("Error", "验证码输入错误!");
+                return Redirect("/p/" + username);
+            }
+            User loginUser = UserService.GetInstance().GetUserByName(username);
+            if (loginUser.depassword.Equals(password))
+            {
+                Session[Common.ComConst.portalautoLogin] = true;
+                UserUtil.login(loginUser);
+                return RedirectToAction("index", "portal");
+            }
+            return Redirect("/p/" + username);
+        }
+
 
         public ActionResult Manage()
         {
@@ -124,7 +145,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                             ico.Add("displayName", ProtalItems.powerDisplayName);
                             break;
                         case ProtalItems.totalCo2://总CO2
-                            ico.Add(string.Format("data"), plant == null ? StringUtil.formatDouble(portalUser.TotalReductiong, "0.00") : StringUtil.formatDouble(plant.Reductiong,"0.00"));
+                            ico.Add(string.Format("data"), plant == null ? StringUtil.formatDouble(portalUser.TotalReductiong, "0.00") : StringUtil.formatDouble(plant.Reductiong, "0.00"));
                             ico.Add(string.Format("unit"), plant == null ? portalUser.TotalReductiongUnit : plant.ReductiongUnit);
                             ico.Add("displayName", ProtalItems.totalCo2DisplayName);
                             break;
@@ -209,7 +230,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 Session[Common.ComConst.portalautoLogin] = null;
             }
-            else {
+            else
+            {
                 Session[Common.ComConst.portalautoLogin] = true;
             }
             User user = UserUtil.getCurUser();
@@ -1390,6 +1412,71 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         {
             return View();
         }
+
+
+        public ActionResult VideoHistory(string id)
+        {
+            int pid = 0;
+            int.TryParse(id, out pid);
+            User user = UserUtil.getCurUser();
+            Protal protal = ProtalService.GetInstance().GetByUser(user.ParentUserId);
+            Plant plant = PlantService.GetInstance().GetPlantInfoById(pid);
+            IList<VideoMonitor> monitors = VideoMonitorService.GetInstance().GetList(new VideoMonitor() { plantId = pid });
+            ViewData["data"] = monitors;
+
+            IList<DirectoryInfo> dirInfos = new List<DirectoryInfo>();
+            foreach (VideoMonitor monitor in monitors)
+            {
+                if (string.IsNullOrEmpty(monitor.folder))
+                    continue;
+                if (Directory.Exists(monitor.folder))
+                {
+                    dirInfos.Add(new DirectoryInfo(monitor.folder));
+                }
+            }
+            string str = string.Empty;
+            str = createVideoFolderTree(dirInfos, -1, id);
+            ViewData["str"] = str;
+            ViewData["logo"] = string.Format("/protalimg/{0}", protal.logo);
+            return View(plant);
+        }
+
+
+        public string createVideoFolderTree(IList<DirectoryInfo> topDirectoryInfo, int uplevel, string pid)
+        {
+            string video_uri = ConfigurationManager.AppSettings["history_video_server_uri"];
+            string jsstr = "";
+            if (uplevel == -1)
+            {
+                jsstr += string.Format(" d.add({0}, {1}, '{2}', 'javascript:void(0);', '', '', '/images/tree/folder.gif');", 0, uplevel, "历史视频监控");
+                uplevel++;
+            }
+            //有下级那么就递归调用下级生成脚本。进行累计
+            if (topDirectoryInfo != null && topDirectoryInfo.Count > 0)
+            {
+                DirectoryInfo tmpDir = null;
+                int curLevel = 0;
+                for (int i = 0; i < topDirectoryInfo.Count; i++)
+                {
+                    tmpDir = topDirectoryInfo[i];
+                    if (tmpDir.GetDirectories().Length == 0 && tmpDir.GetFiles().Length == 0)//没有下级目录并且当前目录没有文件不显示
+                        continue;
+                    curLevel = ((uplevel + 1) * 10 + i);
+                    jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '/images/tree/folder.gif');", curLevel, uplevel, tmpDir.Name, "javascript:void(0);");
+                    int subCurLevel = 1;
+                    foreach (FileInfo file in tmpDir.GetFiles())
+                    {
+                        string fullName = file.FullName.Replace('\\', '/');
+                        fullName = string.Format("{0}{1}", video_uri, fullName.Substring(fullName.IndexOf('/')));
+                        jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '{4}', '');", subCurLevel++, curLevel, file.Name, "javascript:void(0);", "\"rel=\"" + fullName);
+                    }
+                    if (tmpDir.GetDirectories() != null && tmpDir.GetDirectories().Length > 0)
+                        jsstr += createVideoFolderTree(tmpDir.GetDirectories(), curLevel, pid);
+                }
+            }
+            return jsstr;
+        }
+
 
     }
 }

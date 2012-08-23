@@ -14,7 +14,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
     public class ValidateCodeUtil
     {
         static string iscreatevalidatecode = System.Configuration.ConfigurationSettings.AppSettings["iscreatevalidatecode"] == null ? "false" : System.Configuration.ConfigurationSettings.AppSettings["iscreatevalidatecode"].ToLower();
-
         public static string CreateValidateCode(HttpContext context)
         {
             context.Response.ContentType = "text/plain";
@@ -25,23 +24,23 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             //字体列表，用于验证码
             string[] font = { "Times New Roman", "MS Mincho", "Book Antiqua", "Gungsuh", "PMingLiU", "Impact" };
             //验证码的字符集，去掉了一些容易混淆的字符
-            char[] character = { '2', '3', '4', '5', '6', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'W', 'X', 'Y', 'a', 'd', 'f', 'e', 'g', 'c', 'h', 'i', 'j', 'k', 'm', 'n', 'p', 'r', 'z', 's', 't', 'u', 'v' };
+            char[] character = { '2', '3', '4', '5', '6', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'W', 'X', 'Y'};
             Random rnd = new Random();
             //生成验证码字符串
             for (int i = 0; i < 4; i++)
             {
                 chkCode += character[rnd.Next(character.Length)];
             }
-            Bitmap bmp = new Bitmap(80, 30);
+            Bitmap bmp = new Bitmap(60, 20);
             Graphics g = Graphics.FromImage(bmp);
             g.Clear(Color.White);
             //画噪线
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 1; i++)
             {
-                int x1 = rnd.Next(80);
-                int y1 = rnd.Next(30);
-                int x2 = rnd.Next(80);
-                int y2 = rnd.Next(30);
+                int x1 = rnd.Next(bmp.Width);
+                int y1 = rnd.Next(bmp.Height);
+                int x2 = rnd.Next(bmp.Width);
+                int y2 = rnd.Next(bmp.Height);
                 Color clr = color[rnd.Next(color.Length)];
                 g.DrawLine(new Pen(clr), x1, y1, x2, y2);
             }
@@ -49,12 +48,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             for (int i = 0; i < chkCode.Length; i++)
             {
                 string fnt = font[rnd.Next(font.Length)];
-                System.Drawing.Font ft = new Font(fnt, 18);
+                System.Drawing.Font ft = new Font(fnt, 14);
                 Color clr = color[rnd.Next(color.Length)];
-                g.DrawString(chkCode[i].ToString(), ft, new SolidBrush(clr), (float)i * 18 + 4, (float)4);
+                g.DrawString(chkCode[i].ToString(), ft, new SolidBrush(clr), (float)i * 14 + 2, (float)2);
             }
             //画噪点
-            for (int i = 0; i < 80; i++)
+            for (int i = 0; i < 5; i++)
             {
                 int x = rnd.Next(bmp.Width);
                 int y = rnd.Next(bmp.Height);
@@ -86,7 +85,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             context.Session[ComConst.validatecode] = chkCode;
             return chkCode;
         }
-
         public static bool Validated(string inputCode)
         {
             if (iscreatevalidatecode.Equals("false"))

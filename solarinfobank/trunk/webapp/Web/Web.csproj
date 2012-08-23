@@ -657,6 +657,17 @@
     <None Include="editor\_samples\php\sampleposteddata.php" />
     <None Include="editor\_samples\py\sample01.py" />
     <None Include="editor\_samples\py\sampleposteddata.py" />
+    <None Include="flash\.svn\all-wcprops" />
+    <None Include="flash\.svn\entries" />
+    <None Include="flash\.svn\prop-base\player.swf.svn-base" />
+    <None Include="flash\.svn\prop-base\stormtrooper.zip.svn-base" />
+    <None Include="flash\.svn\prop-base\video.gif.svn-base" />
+    <None Include="flash\.svn\prop-base\video_big.jpg.svn-base" />
+    <None Include="flash\.svn\text-base\player.swf.svn-base" />
+    <None Include="flash\.svn\text-base\stormtrooper.zip.svn-base" />
+    <None Include="flash\.svn\text-base\video.gif.svn-base" />
+    <None Include="flash\.svn\text-base\video_big.jpg.svn-base" />
+    <None Include="flash\stormtrooper.zip" />
     <None Include="help\de\SunInfo Bank User Manual.pdf" />
     <None Include="help\en-us\SunInfo Bank User Manual.pdf" />
     <None Include="help\it-ch\SunInfo Bank User Manual.pdf" />
@@ -1948,7 +1959,9 @@
     <Content Include="editor\_whatsnew.html" />
     <Content Include="editor\_whatsnew_history.html" />
     <Content Include="favicon.ico" />
-    <Content Include="HTMLPage1.htm" />
+    <Content Include="flash\player.swf" />
+    <Content Include="flash\video.gif" />
+    <Content Include="flash\video_big.jpg" />
     <Content Include="Images\201104121018141864img01.jpg" />
     <Content Include="Images\201104121018227785img01.jpg" />
     <Content Include="Images\42766101.jpg" />
@@ -2518,6 +2531,7 @@
     <Content Include="Pages\portal\Unit.aspx" />
     <Content Include="Pages\portal\PlantInfo.aspx" />
     <Content Include="Pages\portal\Footer.aspx" />
+    <Content Include="Pages\portal\VideoHistory.aspx" />
     <Content Include="Pages\p\Index.aspx" />
     <Content Include="Pages\User\Overview.aspx" />
     <Content Include="Pages\Plant\Device\DataCount.aspx" />
@@ -2678,6 +2692,10 @@
     <Content Include="script\jquery.bt.min.js" />
     <Content Include="script\jquery.easing.1.3.js" />
     <Content Include="script\jquery.hoverIntent.minified.js" />
+    <Content Include="script\jquery.media.js" />
+    <Content Include="script\jwplayer.js" />
+    <Content Include="script\player.js" />
+    <Content Include="script\pop_layer.js" />
     <Content Include="script\SetDateTime.js" />
     <Content Include="script\cookie.js" />
     <Content Include="script\slide.js" />
@@ -2697,6 +2715,7 @@
     <Content Include="videodemo2.html" />
     <Content Include="video\earth.swf" />
     <Content Include="video\earth2.swf" />
+    <Content Include="test.mp3" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\" />
@@ -2717,6 +2736,10 @@
     <Folder Include="DepartmentPic\Россию\" />
     <Folder Include="DepartmentPic\中文\" />
     <Folder Include="DepartmentPic\日文\" />
+    <Folder Include="flash\.svn\props\" />
+    <Folder Include="flash\.svn\tmp\prop-base\" />
+    <Folder Include="flash\.svn\tmp\props\" />
+    <Folder Include="flash\.svn\tmp\text-base\" />
     <Folder Include="Images\kj\.svn\props\" />
     <Folder Include="Images\kj\.svn\tmp\prop-base\" />
     <Folder Include="Images\kj\.svn\tmp\props\" />

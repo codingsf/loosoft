@@ -116,7 +116,7 @@ namespace Web.Controllers
             {
                 HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies["a_login"];
                 User user = new User() { username = cookie.Values["un"], password = cookie.Values["pwd"] };
-                Index(user, true, "0");
+                Index(user, true, "0","1111");
             }
 
             if (UserUtil.isLogined())
@@ -203,7 +203,7 @@ namespace Web.Controllers
         /// <param name="user">用户对象</param>
         /// <returns>成功进入主页(plants.aspx),失败返回该页</returns>
         [HttpPost]
-        public ActionResult Index(User user, bool autoLogin, string localZone)
+        public ActionResult Index(User user, bool autoLogin, string localZone, string validatecode)
         {
             float lzone = 0;
             float.TryParse(localZone, out lzone);
@@ -232,6 +232,15 @@ namespace Web.Controllers
             getPPics();
 
             getAdPics();
+
+            //验证码验证提示
+            if (ValidateCodeUtil.Validated(validatecode) == false)
+            {
+                ModelState.AddModelError("Error", "验证码输入错误!");
+                System.Web.HttpContext.Current.Response.Cookies["a_login"].Expires = DateTime.Now.AddDays(-1);
+                return View(user);
+            }
+
 
             //首先认为是电站用户登录
             User loginUser = userService.GetUserByName(user.username);

@@ -61,7 +61,7 @@
                 $.ajax({
                     type: "POST",
                     url: "/plant/monitor_add",
-                    data: { plantId: $("#id").val(), name: $("#tboxname").val(), url: $("#tboxip").val(), folder: $("#folder").val() },
+                    data: { plantId: $("#id").val(), name: $("#tboxname").val(), url: $("#tboxip").val(), folder: $("#folder").val(), videofolder: $("#videofolder").val() },
                     success: function(result) {
                         alert("<%=Resources.SunResource.PLANT_MOITOR_ADD_SUCCESS  %>");
                         parent.location.href = '/plant/monitor/' + $("#id").val();
@@ -160,8 +160,8 @@
                                     <input type="text" id="tboxip" size="25" class="txtbu04" />
                                 </td>
                                 <td width="20%" align="right">
-                                    <input type="button" id="btnadd" value="<%=Resources.SunResource.USER_MONITOR_VIDEO_SUBMIT %>"
-                                        class="subbu01" />
+                                <%--    <input type="button" id="btnadd" value="<%=Resources.SunResource.USER_MONITOR_VIDEO_SUBMIT %>"
+                                        class="subbu01" />--%>
                                 </td>
                             </tr>
                             <%if (ProtalUtil.isBigCustomer())
@@ -174,8 +174,18 @@
                                 <td width="8%" align="right">
                                     文件夹
                                 </td>
-                                <td colspan="4" style="padding-left: 5px">
+                                  <td width="25%" style="padding-left: 5px;">
                                     <input type="text" id="folder" size="25" class="txtbu04" />
+                                </td>
+                                 <td width="25%" align="right">
+                                   视频文件夹
+                                </td>
+                                <td width="20%" style="padding-left: 5px;">
+                                    <input type="text" id="videofolder" size="25" class="txtbu04" />
+                                </td>
+                                      <td width="20%" align="right">
+                                    <input type="button" id="btnadd" value="<%=Resources.SunResource.USER_MONITOR_VIDEO_SUBMIT %>"
+                                        class="subbu01" />
                                 </td>
                             </tr>
                             <%} %>

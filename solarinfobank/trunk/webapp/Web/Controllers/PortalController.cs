@@ -1427,11 +1427,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             IList<DirectoryInfo> dirInfos = new List<DirectoryInfo>();
             foreach (VideoMonitor monitor in monitors)
             {
-                if (string.IsNullOrEmpty(monitor.folder))
+                if (string.IsNullOrEmpty(monitor.videofolder))
                     continue;
-                if (Directory.Exists(monitor.folder))
+                if (Directory.Exists(monitor.videofolder))
                 {
-                    dirInfos.Add(new DirectoryInfo(monitor.folder));
+                    dirInfos.Add(new DirectoryInfo(monitor.videofolder));
                 }
             }
             string str = string.Empty;

@@ -12,6 +12,7 @@
       <result property="url"			column="url"/>
       <result property="plantId"			column="plantId"/>
       <result property="folder"			column="folder"/>
+      <result property="videofolder"			column="videofolder"/>
     </resultMap>
   </resultMaps>
 
@@ -39,8 +40,8 @@
     </delete>
 
     <insert id="videomonitor_insert">
-        insert into video_monitor (plantId,name,url,folder) values(#plantId#,#name#,#url#,#folder#)
-        <selectKey resultClass="int" property="id" type="post" >
+      insert into video_monitor (plantId,name,url,folder,videofolder) values(#plantId#,#name#,#url#,#folder#,#videofolder#)
+      <selectKey resultClass="int" property="id" type="post" >
         SELECT LAST_INSERT_ID() AS id
       </selectKey>
     </insert>

@@ -16,5 +16,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
        public string url { get; set; }
        public int plantId { get; set; }
        public string folder { get; set; }
+       public string videofolder { get; set; }
     }
 }

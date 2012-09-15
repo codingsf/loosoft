@@ -1589,7 +1589,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             dbpage.PageIndex = pno;
             dbpage.PageSize = pageSize;
             dbpage.RecordCount = dbArray.Count;
-            ViewData["hlxpage"] = dbpage;
+            ViewData["dbpage"] = dbpage;
             #endregion
 
 

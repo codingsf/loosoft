@@ -79,6 +79,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
             return ExecuteQueryForList<Plant>("plant_get_list_like_pname", name);
         }
 
+        /// <summary>
+        /// 按照名称取得电站
+        /// add by qhb in 20120831 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public Plant Getplantbyname(string name)
+        {
+            return ExecuteQueryForObject<Plant>("plant_get_by_name", name);
+        }
+
         public int UpdataWarningLastSendTime(int pid, DateTime updateTime)
         {
             Hashtable table = new Hashtable();

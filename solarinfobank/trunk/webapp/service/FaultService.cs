@@ -292,9 +292,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     //无对应设备则不处理
                     if (log.device.id == 0) continue;
                     //取得同类型的某个设备的未确认的告警，如果有就更新其最新发送时间，以便保证同一个设备同一类型在用户未确认之前是有一条记录
-                    Fault fault = this.GetFaultbyDeviceIdTypeStatus(log.year, log.device.id, log.errorCode, false);
-                    if (fault == null)
-                    {
+                    //老钱  11:40:38
+                    //那到底 还是 原样记录？
+                    //周辉  11:40:40
+                    //比如我10点发了 过压 11点好了 12点又发了过压 按你的我10的过压就查不出来了 
+                    //当然是原样记录 
+                    //老钱  11:40:54
+                    //就是发送一条记录一条？
+                    //周辉  11:41:00
+                    //是的
+                    //Fault fault = this.GetFaultbyDeviceIdTypeStatus(log.year, log.device.id, log.errorCode, false);
+                    //if (fault == null)
+                    //{
                         LogUtil.writeline("log is:" + log.sendTime.ToString("yyyy-MM-dd HH:mm:ss"));
                         try
                         {
@@ -304,9 +313,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                         {
                             LogUtil.error("save log error:" + eee.Message);
                         }
-                    }
-                    else
-                        _faultDao.updateSendtime(log.year, fault.id, log.sendTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                    //}
+                    //else
+                    //{
+
+                        //_faultDao.Update(log.year, fault.id, log.sendTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                    //}
                 }
                 catch (Exception onee) {
                     LogUtil.writeline("handle one log of " + log.deviceName + "error:" + onee.Message);

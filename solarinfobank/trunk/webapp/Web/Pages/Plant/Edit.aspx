@@ -1585,8 +1585,7 @@
                                                         <tr>
                                                             <td class="pl20" height="28">
                                                                 <strong>
-                                                                    <%=Resources.SunResource.PLANT_PROFILE_ANGLE %>
-                                                                    :</strong>
+                                                                    <%=Resources.SunResource.PLANT_PROFILE_ANGLE %>:</strong>
                                                             </td>
                                                             <td width="55%">
                                                                 <%= Html.TextBoxFor(model => model.angle, new { @class = "txtbu01" })%>
@@ -1617,13 +1616,14 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
 }, new { @class = "txtbu01",style="width:181px;" })%>
                                                             </td>
                                                         </tr>
-                                                        
+                                                       <%if (Cn.Loosoft.Zhisou.SunPower.Service.ProtalUtil.isBigCustomer())
+                                                         { %>
                                                         <tr>
                                                             <td class="pl20" height="28">
                                                                 <strong>基础电价:</strong>
                                                             </td>
                                                             <td width="55%">
-                                                                <%=Html.TextBoxFor(m=>m.basePrice,new {@class="txtbu01"} )%> 元
+                                                                <%=Html.TextBoxFor(m => m.basePrice, new { @class = "txtbu01" })%> 元
                                                             </td>
                                                         </tr>
                                                         
@@ -1645,6 +1645,7 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                                                                 </table>
                                                             </td>
                                                         </tr>
+                                                        <%} %>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -1656,6 +1657,8 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                             </tbody>
                         </table>
                     </div>
+                   <%if (Cn.Loosoft.Zhisou.SunPower.Service.ProtalUtil.isBigCustomer())
+                    { %>
                     <div class="subrbox01">
                         <div class="sb_top">
                         </div>
@@ -1761,6 +1764,7 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                         <div class="sb_down">
                         </div>
                     </div>
+                    <%}%>
                     <div class="subrbox01">
                         <div class="sb_top">
                         </div>

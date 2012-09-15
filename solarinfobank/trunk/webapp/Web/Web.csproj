@@ -48,10 +48,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\dll\Dimac.JMail.Smtp.dll</HintPath>
     </Reference>
-    <Reference Include="EmailService, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\webapp17\Web\bin\EmailService.exe</HintPath>
-    </Reference>
     <Reference Include="ExcelLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\dll\ExcelLibrary.dll</HintPath>
@@ -224,6 +220,10 @@
     <Content Include="SqlMap.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\email-sf\EmailService\EmailService.csproj">
+      <Project>{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}</Project>
+      <Name>EmailService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{6AE1548A-E450-4197-8666-3D31D09527FD}</Project>
       <Name>Common</Name>
@@ -667,7 +667,6 @@
     <None Include="flash\.svn\text-base\stormtrooper.zip.svn-base" />
     <None Include="flash\.svn\text-base\video.gif.svn-base" />
     <None Include="flash\.svn\text-base\video_big.jpg.svn-base" />
-    <None Include="flash\stormtrooper.zip" />
     <None Include="help\de\SunInfo Bank User Manual.pdf" />
     <None Include="help\en-us\SunInfo Bank User Manual.pdf" />
     <None Include="help\it-ch\SunInfo Bank User Manual.pdf" />
@@ -1959,9 +1958,6 @@
     <Content Include="editor\_whatsnew.html" />
     <Content Include="editor\_whatsnew_history.html" />
     <Content Include="favicon.ico" />
-    <Content Include="flash\player.swf" />
-    <Content Include="flash\video.gif" />
-    <Content Include="flash\video_big.jpg" />
     <Content Include="Images\201104121018141864img01.jpg" />
     <Content Include="Images\201104121018227785img01.jpg" />
     <Content Include="Images\42766101.jpg" />
@@ -2715,7 +2711,6 @@
     <Content Include="videodemo2.html" />
     <Content Include="video\earth.swf" />
     <Content Include="video\earth2.swf" />
-    <Content Include="test.mp3" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\" />

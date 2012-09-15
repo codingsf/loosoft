@@ -325,7 +325,8 @@ namespace Web.Controllers
                     {
                         if (loginUser.plantUsers.Count == 1)
                         {
-                            return RedirectToAction("overview", "plant", new { @id = base.FirstPlant.id });
+                            return RedirectToAction("allplants", "user");
+                            //return RedirectToAction("overview", "plant", new { @id = base.FirstPlant.id });
                         }
                         else
                         {

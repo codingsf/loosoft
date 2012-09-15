@@ -2716,11 +2716,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 Grid Voltage 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_116_0 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_116_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Voltage of AB phase 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_116_2 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_116_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Voltage of B phase 的本地化字符串。
         /// </summary>
         internal static string DEVICEMONITORITEM_117 {
             get {
                 return ResourceManager.GetString("DEVICEMONITORITEM_117", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Voltage of BC phase 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_117_2 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_117_2", resourceCulture);
             }
         }
         
@@ -2734,11 +2761,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 Voltage of CA phase 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_118_2 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_118_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Current of A phase 的本地化字符串。
         /// </summary>
         internal static string DEVICEMONITORITEM_119 {
             get {
                 return ResourceManager.GetString("DEVICEMONITORITEM_119", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Grid Current 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_119_0 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_119_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Current of AB phase 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_119_2 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_119_2", resourceCulture);
             }
         }
         
@@ -2752,11 +2806,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 Current of BC phase 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_120_2 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_120_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Current of C phase 的本地化字符串。
         /// </summary>
         internal static string DEVICEMONITORITEM_121 {
             get {
                 return ResourceManager.GetString("DEVICEMONITORITEM_121", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Current of CA phase 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_121_2 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_121_2", resourceCulture);
             }
         }
         
@@ -2941,11 +3013,110 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 Fault state 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_141 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_141", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Fault state2 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_142 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_142", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Reactor temperature 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_143 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_143", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Module temperature 1 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_144 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_144", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Module temperature 2 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_145 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_145", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Module temperature 3 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_146 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_146", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Module temperature 4 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_147 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_147", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Module temperature 5 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_148 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_148", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Module temperature 6 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_149 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_149", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Insolation 的本地化字符串。
         /// </summary>
         internal static string DEVICEMONITORITEM_15 {
             get {
                 return ResourceManager.GetString("DEVICEMONITORITEM_15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Environment Temperature 1 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_150 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_150", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Environment  temperature 2 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_151 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_151", resourceCulture);
             }
         }
         
@@ -3369,6 +3540,15 @@ namespace Resources {
         internal static string DEVICEMONITORITEM_512 {
             get {
                 return ResourceManager.GetString("DEVICEMONITORITEM_512", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 total Increment Insolation 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_513 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_513", resourceCulture);
             }
         }
         
@@ -13184,6 +13364,186 @@ namespace Resources {
         internal static string WEDNESDAY {
             get {
                 return ResourceManager.GetString("WEDNESDAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Current are too low 的本地化字符串。
+        /// </summary>
+        internal static string workstatusdlgd {
+            get {
+                return ResourceManager.GetString("workstatusdlgd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Normal 的本地化字符串。
+        /// </summary>
+        internal static string workstatusdlgd0 {
+            get {
+                return ResourceManager.GetString("workstatusdlgd0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Fault 的本地化字符串。
+        /// </summary>
+        internal static string workstatusdlgd1 {
+            get {
+                return ResourceManager.GetString("workstatusdlgd1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Current are too high 的本地化字符串。
+        /// </summary>
+        internal static string workstatusdlgg {
+            get {
+                return ResourceManager.GetString("workstatusdlgg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Normal 的本地化字符串。
+        /// </summary>
+        internal static string workstatusdlgg0 {
+            get {
+                return ResourceManager.GetString("workstatusdlgg0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Fault 的本地化字符串。
+        /// </summary>
+        internal static string workstatusdlgg1 {
+            get {
+                return ResourceManager.GetString("workstatusdlgg1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 短路 的本地化字符串。
+        /// </summary>
+        internal static string workstatusduanlu {
+            get {
+                return ResourceManager.GetString("workstatusduanlu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Normal 的本地化字符串。
+        /// </summary>
+        internal static string workstatusduanlu0 {
+            get {
+                return ResourceManager.GetString("workstatusduanlu0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Fault 的本地化字符串。
+        /// </summary>
+        internal static string workstatusduanlu1 {
+            get {
+                return ResourceManager.GetString("workstatusduanlu1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 防雷器 normal 的本地化字符串。
+        /// </summary>
+        internal static string workstatusflq0 {
+            get {
+                return ResourceManager.GetString("workstatusflq0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 防雷器 Fault 的本地化字符串。
+        /// </summary>
+        internal static string workstatusflq1 {
+            get {
+                return ResourceManager.GetString("workstatusflq1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Internal Temperature is normal 的本地化字符串。
+        /// </summary>
+        internal static string workstatusjnwd0 {
+            get {
+                return ResourceManager.GetString("workstatusjnwd0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Internal Temperature is too high 的本地化字符串。
+        /// </summary>
+        internal static string workstatusjnwd1 {
+            get {
+                return ResourceManager.GetString("workstatusjnwd1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Open Data 的本地化字符串。
+        /// </summary>
+        internal static string workstatuskailu {
+            get {
+                return ResourceManager.GetString("workstatuskailu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Normal 的本地化字符串。
+        /// </summary>
+        internal static string workstatuskailu0 {
+            get {
+                return ResourceManager.GetString("workstatuskailu0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Fault 的本地化字符串。
+        /// </summary>
+        internal static string workstatuskailu1 {
+            get {
+                return ResourceManager.GetString("workstatuskailu1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 don`t running 的本地化字符串。
+        /// </summary>
+        internal static string workstatusrun0 {
+            get {
+                return ResourceManager.GetString("workstatusrun0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 run 的本地化字符串。
+        /// </summary>
+        internal static string workstatusrun1 {
+            get {
+                return ResourceManager.GetString("workstatusrun1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 don`t stop 的本地化字符串。
+        /// </summary>
+        internal static string workstatusstop0 {
+            get {
+                return ResourceManager.GetString("workstatusstop0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 stop 的本地化字符串。
+        /// </summary>
+        internal static string workstatusstop1 {
+            get {
+                return ResourceManager.GetString("workstatusstop1", resourceCulture);
             }
         }
         

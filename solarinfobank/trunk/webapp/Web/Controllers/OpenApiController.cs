@@ -16,6 +16,7 @@ using System.Threading;
 using System.Configuration;
 using System.Globalization;
 using Cn.Loosoft.Zhisou.SunPower.Common.vo;
+using Cn.Loosoft.Zhisou.SunPower.Service.vo;
 namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 {
     /// <summary>
@@ -284,6 +285,133 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             string data = JsonUtil.convertToJson(tinfo, typeof(TotalInfo));
             return Content(data);
 
+        }
+
+        /// <summary>
+        /// 按照电站名称取得对应时区
+        /// add by qhb in 20120831 
+        /// </summary>
+        /// <param name="plantName">电站名称</param>
+        /// <param name="app_key">第三方应用唯一key</param>
+        /// <param name="call_id">请求序号</param>
+        /// <param name="sig">签名</param>
+        /// <param name="v">api版本</param>
+        /// <param name="format">返回结果格式，暂时值支持json</param>
+        /// <param name="lan">语言环境，暂时只支持中英文</param>
+        /// <returns></returns>
+        public ActionResult PlantTimezone(string plantName, string app_key, string call_id, string sig, string v, string format, string lan)
+        {
+            setlan(lan);
+
+            Plant plant = PlantService.GetInstance().GetplantByName(plantName);
+            string reportData = string.Empty;
+            if (plant != null)
+            {
+                PlantTimezoneVo plantTimezoneVo = new PlantTimezoneVo();
+                plantTimezoneVo.plantId = plant.id.ToString();
+                plantTimezoneVo.plantName = plant.name;
+                plantTimezoneVo.timezoneCode = plant.timezone.ToString();
+                plantTimezoneVo.timezoneName = Cn.Loosoft.Zhisou.SunPower.Common.TimeZone.GetText(plant.timezone);
+                reportData = JsonUtil.convertToJson(plantTimezoneVo, typeof(PlantTimezoneVo));
+
+            }
+            else
+            {
+                ApiError appError = new ApiError(ApiError.plantnoexist, Resources.SunResource.CHART_PLANT_DONT_EXISTED);
+                reportData = JsonUtil.convertToJson(appError, typeof(ApiError));
+            }
+            return Content(reportData);
+        }
+
+        /// <summary>
+        /// 按照sn取得对应时区
+        /// add by qhb in 20120831 
+        /// </summary>
+        /// <param name="sn">sn</param>
+        /// <param name="app_key">第三方应用唯一key</param>
+        /// <param name="call_id">请求序号</param>
+        /// <param name="sig">签名</param>
+        /// <param name="v">api版本</param>
+        /// <param name="format">返回结果格式，暂时值支持json</param>
+        /// <param name="lan">语言环境，暂时只支持中英文</param>
+        /// <returns></returns>
+        public ActionResult SnTimezone(string sn, string app_key, string call_id, string sig, string v, string format, string lan)
+        {
+            setlan(lan);
+
+            int collectorId = CollectorInfoService.GetInstance().getCollectorIdbyCode(sn);
+            PlantUnit plantUnit = PlantUnitService.GetInstance().GetPlantUnitByCollectorId(collectorId);
+            string reportData = string.Empty;
+            if (plantUnit != null)
+            {
+                Plant plant = PlantService.GetInstance().GetPlantInfoById(plantUnit.plantID);
+                if (plant == null)
+                {
+                    ApiError appError = new ApiError(ApiError.plantnoexist, Resources.SunResource.CHART_PLANT_DONT_EXISTED);
+                    reportData = JsonUtil.convertToJson(appError, typeof(ApiError));
+                }
+                else
+                {
+                    PlantTimezoneVo plantTimezoneVo = new PlantTimezoneVo();
+                    plantTimezoneVo.plantId = plant.id.ToString();
+                    plantTimezoneVo.plantName = plant.name;
+                    plantTimezoneVo.timezoneCode = plant.timezone.ToString();
+                    plantTimezoneVo.timezoneName = Cn.Loosoft.Zhisou.SunPower.Common.TimeZone.GetText(plant.timezone);
+                    reportData = JsonUtil.convertToJson(plantTimezoneVo, typeof(PlantTimezoneVo));
+                }
+            }
+            else
+            {
+                ApiError appError = new ApiError(ApiError.plantnoexist, Resources.SunResource.CHART_PLANT_DONT_EXISTED);
+                reportData = JsonUtil.convertToJson(appError, typeof(ApiError));
+            }
+            return Content(reportData);
+        }
+
+        /// <summary>
+        /// 取得用户的所有故障列表
+        /// </summary>
+        /// <param name="pagecount">第几页</param>
+        /// <param name="pagesize">每页显示数量</param>
+        /// <param name="app_key">第三方应用唯一key</param>
+        /// <param name="call_id">请求序号</param>
+        /// <param name="sig">签名</param>
+        /// <param name="v">api版本</param>
+        /// <param name="format">返回结果格式，暂时值支持json</param>
+        /// <param name="lan">语言环境，暂时只支持中英文</param>
+        /// <returns></returns>
+        public ActionResult PlantTimezoneList(int pagecount, int pagesize, string app_key, string call_id, string sig, string v, string format, string lan)
+        {
+            setlan(lan);
+            string reportData = string.Empty;
+            if (pagecount == 0) pagecount = 1;
+            if (pagesize == 0) pagesize = 10;
+            Pager page = new Pager() { PageIndex = pagecount, PageSize = pagesize };
+            IList<Plant> plants = PlantService.GetInstance().GetPlantByPage(page);
+            if (plants.Count > 0)
+            {
+                PlantTimezonePageVo plantTimezonePageVo = new PlantTimezonePageVo();
+                IList<PlantTimezoneVo> timezonevos = new List<PlantTimezoneVo>();
+                PlantTimezoneVo plantTimezoneVo = null;
+                foreach (Plant plant in plants)
+                {
+                    plantTimezoneVo = new PlantTimezoneVo();
+                    plantTimezoneVo.plantId = plant.id.ToString();
+                    plantTimezoneVo.plantName = plant.name;
+                    plantTimezoneVo.timezoneCode = plant.timezone.ToString();
+                    plantTimezoneVo.timezoneName = Cn.Loosoft.Zhisou.SunPower.Common.TimeZone.GetText(plant.timezone);
+                    timezonevos.Add(plantTimezoneVo);
+                }
+                plantTimezonePageVo.timezones = timezonevos;
+                plantTimezonePageVo.totalpagecount = page.PageCount;
+                reportData = JsonUtil.convertToJson(plantTimezonePageVo, typeof(PlantTimezonePageVo));
+            }
+            else
+            {
+                ApiError appError = new ApiError(ApiError.plantnoexist, Resources.SunResource.CHART_PLANT_DONT_EXISTED);
+                reportData = JsonUtil.convertToJson(appError, typeof(ApiError));
+            }
+            return Content(reportData);
         }
 
     }

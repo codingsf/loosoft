@@ -95,7 +95,7 @@
             });
             
             <%if(Request.Url.ToString().ToLower().Contains("/overview/")) {%>
-                <%if(Model.plantUnits.Count>0){ %>
+                <%if(Model.allFactUnits.Count>0){ %>
                 loadContent('content_ajax','/plant/IncludeOverview/<%=Model.id%>','ajax','GET');
                 <%}else{ %>
                 loadContent('content_ajax','/plant/IncludeOverview/<%=Model.id%>','iframe','GET');
@@ -414,7 +414,7 @@
                                                     if (idx++ >= configCount - 1)
                                                         break;
                                             %>
-                                            <li><a href="/<%=plant.isVirtualPlant?"virtual/plantrelationstruct":"plant/overview" %>/<%=plant.id %>"
+                                            <li><a href="/<%=plant.childs.Count>0?"virtual/plantrelationstruct":"plant/overview" %>/<%=plant.id %>"
                                                 title="<%=plant.name %>" id="plantname">
                                                 <%= StringUtil.cutStr(plant.name, 16, "...")%>
                                                 <%if (plant.hasFaultDevice)

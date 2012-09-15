@@ -4594,7 +4594,7 @@
     <value>PRグラフ</value>
   </data>
   <data name="DEVICEMONITORITEM_512" xml:space="preserve">
-    <value>増量日照強度</value>
+    <value>日辐射量</value>
     <comment>增量日照强度</comment>
   </data>
   <data name="APPLY_RESOURCE_ERROR_MSG" xml:space="preserve">
@@ -4937,5 +4937,85 @@
   </data>
   <data name="HOME_INDEX_VALIDATECODE" xml:space="preserve">
     <value>验证码</value>
+  </data>
+  <data name="DEVICEMONITORITEM_141" xml:space="preserve">
+    <value>フォールト状態</value>
+    <comment>故障状态</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_142" xml:space="preserve">
+    <value>フォールト状態 2</value>
+    <comment>故障状态2</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_143" xml:space="preserve">
+    <value>原子炉温度</value>
+    <comment>电抗器温度</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_144" xml:space="preserve">
+    <value>モジュール温度 1</value>
+    <comment>模块温度1</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_145" xml:space="preserve">
+    <value>モジュール温度 2</value>
+    <comment>模块温度2</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_146" xml:space="preserve">
+    <value>モジュール温度 3</value>
+    <comment>模块温度3</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_147" xml:space="preserve">
+    <value>モジュール温度 4</value>
+    <comment>模块温度4</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_148" xml:space="preserve">
+    <value>モジュール温度 5</value>
+    <comment>模块温度5</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_149" xml:space="preserve">
+    <value>モジュール温度 6</value>
+    <comment>模块温度6</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_150" xml:space="preserve">
+    <value>環境温度 1</value>
+    <comment>环境温度1</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_151" xml:space="preserve">
+    <value>環境温度 2</value>
+    <comment>环境温度2</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_513" xml:space="preserve">
+    <value>总辐射量</value>
+    <comment>总辐射量</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_116_0" xml:space="preserve">
+    <value>電気網電圧</value>
+    <comment>A相电压-当输出类型为0时叫电网电压</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_116_2" xml:space="preserve">
+    <value>AB线電圧</value>
+    <comment>A相电压-当输出类型为2时叫AB线电压</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_117_2" xml:space="preserve">
+    <value>BC线電圧</value>
+    <comment>B相电压-当输出类型为2时叫BC线电压</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_118_2" xml:space="preserve">
+    <value>CA线電圧</value>
+    <comment>C相电压-当输出类型为2时叫CA线电压</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_119_0" xml:space="preserve">
+    <value>電気網電流</value>
+    <comment>A相电流-当输出类型为0时叫电网电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_119_2" xml:space="preserve">
+    <value>AB线電流</value>
+    <comment>A相电流-当输出类型为2时叫AB线电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_120_2" xml:space="preserve">
+    <value>BC线電流</value>
+    <comment>B相电流-当输出类型为2时叫BC线电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_121_2" xml:space="preserve">
+    <value>CA线電流</value>
+    <comment>C相电流-当输出类型为2时叫CA线电流</comment>
   </data>
 </root>

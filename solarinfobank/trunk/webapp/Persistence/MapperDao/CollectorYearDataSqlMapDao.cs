@@ -57,7 +57,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
             StringBuilder sb = new StringBuilder();
             foreach (PlantUnit unit in units)
             {
-                sb.Append(",").Append(unit.collector.id);
+                sb.Append(",").Append(unit.collectorID);
             }
             if (sb.Length > 0)
             {

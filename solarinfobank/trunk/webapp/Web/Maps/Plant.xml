@@ -145,7 +145,7 @@
 
     <select id="admin_plant_query_list" parameterClass="Hashtable" resultMap="plant_info_result">
       select * from plant_info  where isVirtualPlant=0
-      <dynamic prepend="where">
+      <dynamic prepend="">
         <isParameterPresent>
           <isNotEmpty prepend="and" property="plant.area">
             area = #plant.area#
@@ -172,7 +172,7 @@
 
     <select id="admin_plant_query_list_count" parameterClass="Hashtable" resultClass="int">
       select count(1) from plant_info  where isVirtualPlant=0
-      <dynamic prepend="where">
+      <dynamic prepend="">
         <isParameterPresent>
           <isNotEmpty prepend="and" property="plant.area">
             area = #plant.area#
@@ -198,6 +198,10 @@
 
     <select id="plant_get_list_like_pname"  resultMap="plant_info_result" >
       select *  from  plant_info where upper(name) like upper('%$value$%') and isVirtualPlant=0
+    </select>
+
+    <select id="plant_get_by_name"  resultMap="plant_info_result" >
+      select *  from  plant_info where upper(name) like upper('$value$')
     </select>
 
     <update id="update_plant_warning_lasttime">

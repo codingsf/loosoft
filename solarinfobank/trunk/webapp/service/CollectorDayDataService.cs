@@ -60,6 +60,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             return _powerDayDataDao.Get(dayData);
         }
         /// <summary>
+        /// 删除天数据，按照id 
+        /// add by qhb in 20120828 
+        /// </summary>
+        /// <param name="dayData"></param>
+        /// <returns></returns>
+        public bool Delete(CollectorDayData dayData)
+        {
+            return _powerDayDataDao.Remove(dayData)>0?true:false;
+        }
+
+        /// <summary>
         /// 仅仅支持跨月度的天直接的测点数据，不能跨多个月度
         /// </summary>
         /// <param name="units">电站单元列表 单个电站使用plant.plantunits取得，对于多个电站可以将多个电站的plantunits进行合并成一个list传入即可</param>

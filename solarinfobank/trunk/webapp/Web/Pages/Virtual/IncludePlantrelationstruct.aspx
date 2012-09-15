@@ -184,7 +184,7 @@
                                                 <img src="/images/sub/subico0160.gif" alt="<%=Resources.SunResource.PLANT_UNIT_BIND_BIND%>"
                                                     title="<%=Resources.SunResource.PLANT_UNIT_BIND_BIND%>" />
                                                 <%} %>
-                                             <%--   <%if (plant.userID.Equals(UserUtil.getCurUser().id) && ProtalUtil.isBigCustomer())
+                                                <%if (plant.userID.Equals(UserUtil.getCurUser().id) && ProtalUtil.isBigCustomer())
                                                   { %>
                                                 <a href="/plant/share/<%=plant.id%>?t=<%=plant.isVirtualPlant?1:0 %>&fromurl=/user/includeallplants">
                                                     <img src="/images/sub/xs.gif" alt="分配电站" title="分配电站" /></a>
@@ -192,7 +192,7 @@
                                                   else if (ProtalUtil.isBigCustomer())
                                                   {%>
                                                 <img src="/images/sub/yc.gif" alt="分配电站" title="分配电站" />
-                                                <%} %>--%>
+                                                <%} %>
                                                 <a href="/plant/structpic/<%=plant.id%>?fromurl=/user/includeallplants">
                                                     <img src="/images/sub/fbt.gif" alt=" <%=plant.isVirtualPlant?"电站分布图":"单元分布图" %>" title=" <%=plant.isVirtualPlant?"电站分布图":"单元分布图" %>" /></a>
                                             </td>

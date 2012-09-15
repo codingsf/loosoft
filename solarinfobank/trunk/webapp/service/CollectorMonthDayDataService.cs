@@ -98,7 +98,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
 
             foreach (PlantUnit unit in units)
             {
-                IList<CollectorMonthDayData> unitMonthDatas = this.GetCollectorBetweenMonthData(unit.collector.id, startYear, endYear, startMM, endMM);
+                IList<CollectorMonthDayData> unitMonthDatas = this.GetCollectorBetweenMonthData(unit.collectorID, startYear, endYear, startMM, endMM);
 
                 foreach (CollectorMonthDayData unitMonthData in unitMonthDatas)
                 {

@@ -94,6 +94,42 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         }
 
         /// <summary>
+        /// 判断采集器对应的实时数据是否存在
+        /// </summary>
+        /// <param name="rundata"></param>
+        /// <returns></returns>
+        private bool ExistRunData(DeviceRunData rundata)
+        {
+            if (deviceIdList.Contains(rundata.deviceID))
+                return true;
+            else
+            {
+                //LogUtil.writeline("get  collector Run Data" + rundata.collectorID);
+                DeviceRunData tmp = _deviceRunDataDao.Get(rundata);
+                if (tmp == null) return false;
+                deviceIdList.Add(tmp.deviceID);
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// 保存设备实时数据
+        /// </summary>
+        /// <param name="runData"></param>
+        public void save(DeviceRunData runData)
+        {
+            if (runData == null) return;
+            if (ExistRunData(runData))
+            {
+                _deviceRunDataDao.Update(runData);
+            }
+            else
+            {
+                _deviceRunDataDao.Insert(runData);
+            }
+        }
+
+        /// <summary>
         /// 从缓存中批量持久化实时数据
         /// </summary>
         public void batchSave()

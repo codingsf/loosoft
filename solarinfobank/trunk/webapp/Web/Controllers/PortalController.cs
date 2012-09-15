@@ -1199,8 +1199,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
         }
 
-
-
         public string createFolderTree(IList<DirectoryInfo> topDirectoryInfo, int uplevel, string pid, IList<string> displayName, IList<string> rootFolder)
         {
             string jsstr = "";

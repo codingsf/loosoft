@@ -47,10 +47,23 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             return _instance;
         }
 
+
+        /// <summary>
+        /// 删除天数据，按照id 
+        /// add by qhb in 20120828 
+        /// </summary>
+        /// <param name="dayData"></param>
+        /// <returns></returns>
+        public bool Delete(DeviceDayData dayData)
+        {
+            return _DevicePowerDaydataDao.Remove(dayData) > 0 ? true : false;
+        }
+
         public Hashtable GetDaydataList(Device device, string startYYYYMMDDHH, string endYYYYMMDDHH, int intervalMins, int monitorCode)
         {
             return this.GetDaydataList(null,device, startYYYYMMDDHH, endYYYYMMDDHH, intervalMins, monitorCode);
         }
+
         /// <summary>
         /// 取得设备跨小时的测点数据
         /// </summary>

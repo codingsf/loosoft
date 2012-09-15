@@ -43,6 +43,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.Interfaces
 
         IList<Plant> Getplantlikepname(string name);
 
+        /// <summary>
+        /// 按照名称取得电站
+        /// add by qhb in 20120831 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        Plant Getplantbyname(string name);
+
         int UpdataWarningLastSendTime(int pid, DateTime updateTime);
 
         //虚拟电站开始

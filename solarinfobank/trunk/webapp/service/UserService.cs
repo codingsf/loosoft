@@ -73,7 +73,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <returns>用户</returns>
         public User GetUserByName(string userName)
         {
-            Object id = usernameIdMap[userName];
+            Object id = null;
+            if(usernameIdMap.ContainsKey(userName))
+                id = usernameIdMap[userName];
             User user = null;
             if (id == null)
             {

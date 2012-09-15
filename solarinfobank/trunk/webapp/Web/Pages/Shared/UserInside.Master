@@ -278,11 +278,12 @@
                                                 int totalPlant = user.displayPlants.Count;
                                                 foreach (Plant plant in user.displayPlants)
                                                 {
+                                                    
 
                                                     if (idx++ >= configCount)
                                                         break;
                                             %>
-                                            <li><a href="/<%=plant.isVirtualPlant?"virtual/plantrelationstruct":"plant/overview" %>/<%=plant.id %>"
+                                            <li><a href="/<%=plant.childs.Count>0?"virtual/plantrelationstruct":"plant/overview" %>/<%=plant.id %>"
                                                 title="<%=plant.name%>">
                                                 <%=StringUtil.cutStr(plant.name.ToString(), 16, "...")%>
                                                 <%if (plant.hasFaultDevice)

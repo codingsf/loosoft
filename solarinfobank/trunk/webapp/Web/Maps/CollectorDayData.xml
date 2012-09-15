@@ -42,6 +42,11 @@
       </selectKey>
     </insert>
 
+    <!-- 根据id删除采集器天数据 add by qhb in 20120825 -->
+    <delete id="collectordaydata_delete" parameterClass="CollectorDayData">
+      DELETE FROM collector_day_data_$yearmonth$ WHERE collectorID=#collectorID# and sendDay=#sendDay#
+    </delete>
+    
     <!-- 更新一条记录-->
     <update id="collectordaydata_update" paramsClass="CollectorDayData">
       update collector_day_data_$yearmonth$ set dataContent=#dataContent# where collectorID=#collectorID# and sendDay=#sendDay# and monitorCode=#monitorCode#

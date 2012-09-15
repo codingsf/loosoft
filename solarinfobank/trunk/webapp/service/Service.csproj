@@ -182,6 +182,7 @@
     <Compile Include="AdminControllerActionServices.cs" />
     <Compile Include="SynDataService.cs" />
     <Compile Include="vo\CommonVO.cs" />
+    <Compile Include="vo\DigitalInputDetailVO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

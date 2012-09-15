@@ -13,6 +13,64 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
     /// </summary>
     public class MonitorType
     {
+
+        //----add by qhb in 20120825
+        ///数字输入项目定义
+        /// <summary>
+        /// 防雷器  1：正常，0：故障
+        /// </summary>
+        public const string digital_input_item_flq = "digitalinputflq";
+
+        /// <summary>
+        /// 断路器 0：闭合 1：脱扣或者断开
+        /// </summary>
+        public const string digital_input_item_dlq = "digitalinputdlq";
+
+        ///工作状态项目定义
+        /// <summary>
+        /// 运行 0：未运行 1：运行
+        /// </summary>
+        public const string work_status_item_run = "workstatusrun";
+
+        /// <summary>
+        /// 停止 0：未停止 1：停止
+        /// </summary>
+        public const string work_status_item_stop = "workstatusstop";
+
+        /// <summary>
+        /// 防雷器 0：正常 1：故障
+        /// </summary>
+        public const string work_status_item_flq = "workstatusflq";
+
+        /// <summary>
+        /// 机内温度 0：正常 1：警告
+        /// </summary>
+        public const string work_status_item_jnwd = "workstatusjnwd";
+
+        /// <summary>
+        /// 短路 0：正常 1：警告
+        /// </summary>
+        public const string work_status_item_duanlu = "workstatusduanlu";
+
+        /// <summary>
+        /// 电流过高 0：正常 1：警告
+        /// </summary>
+        public const string work_status_item_dlgg = "workstatusdlgg";
+
+        /// <summary>
+        /// 电流过低 0：正常 1：警告
+        /// </summary>
+        public const string work_status_item_dlgd = "workstatusdlgd";
+
+        /// <summary>
+        /// 开路 0：正常 1：警告
+        /// </summary>
+        public const string work_status_item_kailu = "workstatuskailu";
+
+        //bit位和状态项目的对应关系 key 为测点+bit位 如： MIC_BUSBAR_DIGITALINPUT+0,MIC_BUSBAR_DIGITALINPUT+1
+        public static IDictionary<string, string> bitStatusMap = new Dictionary<string, string>();
+        //----add by qhb in 20120825 end
+
         /// <summary>
         /// 电站发电量测点
         /// </summary>
@@ -200,39 +258,72 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// <summary>
         /// 交流电压 保留历史
         /// </summary>
-        public static readonly int MIC_INVERTER_AV = int.Parse(DeviceData.TYPE_SUNGROW_INVERTER + "35");
+        public static readonly int MIC_INVERTER_AV = int.Parse(DeviceData.INVERTER_CODE + "35");
         /// <summary>
         /// 交流电流 保留历史
         /// </summary>
-        public static readonly int MIC_INVERTER_AC = int.Parse(DeviceData.TYPE_SUNGROW_INVERTER + "36");
+        public static readonly int MIC_INVERTER_AC = int.Parse(DeviceData.INVERTER_CODE + "36");
         /// <summary>
         /// 直流电压 保留历史
         /// </summary>
-        public static readonly int MIC_INVERTER_DV = int.Parse(DeviceData.TYPE_SUNGROW_INVERTER + "37");
+        public static readonly int MIC_INVERTER_DV = int.Parse(DeviceData.INVERTER_CODE + "37");
         /// <summary>
         /// 直流电流 保留历史
         /// </summary>
-        public static readonly int MIC_INVERTER_DC = int.Parse(DeviceData.TYPE_SUNGROW_INVERTER + "38");
+        public static readonly int MIC_INVERTER_DC = int.Parse(DeviceData.INVERTER_CODE + "38");
         /// <summary>
         /// 逆变器温度 保留历史
         /// </summary>
-        public static readonly int MIC_INVERTER_INVETERTEMPRATURE = int.Parse(DeviceData.TYPE_SUNGROW_INVERTER + "39");
-        /// <summary>
-        /// 日发电量 保留历史
-        /// </summary>
-        //public static readonly int MIC_INVERTER_TODAYENERGY = int.Parse(DeviceData.TYPE_SUNGROW_INVERTER + "10");
-        /// <summary>
+        public static readonly int MIC_INVERTER_INVETERTEMPRATURE = int.Parse(DeviceData.INVERTER_CODE + "39");
         /// 交流发电量 保留历史
         /// </summary>
-        public static readonly int MIC_INVERTER_ACENERGY = int.Parse(DeviceData.TYPE_SUNGROW_INVERTER + "40");
+        public static readonly int MIC_INVERTER_ACENERGY = int.Parse(DeviceData.INVERTER_CODE + "40");
         /// <summary>
-        /// 状态信息
+        /// 故障状态 add by qhb in 20120823
         /// </summary>
-        //public static readonly int MIC_INVERTER_DEVICESTATUS = int.Parse(DeviceData.TYPE_SUNGROW_INVERTER + "16");
+        public static readonly int MIC_INVERTER_ERRORSTATUS = int.Parse(DeviceData.INVERTER_CODE + "41");
         /// <summary>
-        /// 电网频率
+        /// 故障状态2 add by qhb in 20120823
         /// </summary>
-        //public static readonly int MIC_INVERTER_DWPL = int.Parse(DeviceData.INVERTER_CODE + "36");
+        public static readonly int MIC_INVERTER_ERRORSTATUS2 = int.Parse(DeviceData.INVERTER_CODE + "42");
+        /// <summary>
+        /// 电抗器温度 add by qhb in 20120823
+        /// </summary>
+        public static readonly int MIC_INVERTER_DKQTEMPRATURE = int.Parse(DeviceData.INVERTER_CODE + "43");
+        /// <summary>
+        /// 模块温度1 add by qhb in 20120823
+        /// </summary>
+        public static readonly int MIC_INVERTER_MODULETEMP1 = int.Parse(DeviceData.INVERTER_CODE + "44");
+        /// <summary>
+        /// 模块温度2 add by qhb in 20120823
+        /// </summary>
+        public static readonly int MIC_INVERTER_MODULETEMP2 = int.Parse(DeviceData.INVERTER_CODE + "45");
+        /// <summary>
+        /// 模块温度3 add by qhb in 20120823
+        /// </summary>
+        public static readonly int MIC_INVERTER_MODULETEMP3 = int.Parse(DeviceData.INVERTER_CODE + "46");
+        /// <summary>
+        /// 模块温度4 add by qhb in 20120823
+        /// </summary>
+        public static readonly int MIC_INVERTER_MODULETEMP4 = int.Parse(DeviceData.INVERTER_CODE + "47");
+        /// <summary>
+        /// 模块温度5 add by qhb in 20120823
+        /// </summary>
+        public static readonly int MIC_INVERTER_MODULETEMP5 = int.Parse(DeviceData.INVERTER_CODE + "48");
+        /// <summary>
+        /// 模块温度6 add by qhb in 20120823
+        /// </summary>
+        public static readonly int MIC_INVERTER_MODULETEMP6 = int.Parse(DeviceData.INVERTER_CODE + "49");
+        /// <summary>
+        /// 环境温度1 add by qhb in 20120823
+        /// </summary>
+        public static readonly int MIC_INVERTER_ENVTEMP1 = int.Parse(DeviceData.INVERTER_CODE + "50");
+        /// <summary>
+        /// 环境温度2 add by qhb in 20120823
+        /// </summary>
+        public static readonly int MIC_INVERTER_ENVTEMP2 = int.Parse(DeviceData.INVERTER_CODE + "51");
+
+
         //--------------------inveter  end-----------------------------------------------
 
         //--------------------huiliuxiang-----------------------------------------------
@@ -739,6 +830,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             monitorMap.Add(MIC_INVERTER_TOTALPOWERFACTOR, new MonitorType() { code = MIC_INVERTER_TOTALPOWERFACTOR, unit = "", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_TOTALWGPOWER, new MonitorType() { code = MIC_INVERTER_TOTALWGPOWER, unit = "W", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_TOTALYGPOWER, new MonitorType() { code = MIC_INVERTER_TOTALYGPOWER, unit = "W", zerotoline = false });
+            //add by qhb in 20120823
+            monitorMap.Add(MIC_INVERTER_ERRORSTATUS, new MonitorType() { code = MIC_INVERTER_ERRORSTATUS, unit = "", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_ERRORSTATUS2, new MonitorType() { code = MIC_INVERTER_ERRORSTATUS2, unit = "", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_DKQTEMPRATURE, new MonitorType() { code = MIC_INVERTER_DKQTEMPRATURE, unit = "℃", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_MODULETEMP1, new MonitorType() { code = MIC_INVERTER_MODULETEMP1, unit = "℃", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_MODULETEMP2, new MonitorType() { code = MIC_INVERTER_MODULETEMP2, unit = "℃", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_MODULETEMP3, new MonitorType() { code = MIC_INVERTER_MODULETEMP3, unit = "℃", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_MODULETEMP4, new MonitorType() { code = MIC_INVERTER_MODULETEMP4, unit = "℃", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_MODULETEMP5, new MonitorType() { code = MIC_INVERTER_MODULETEMP5, unit = "℃", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_MODULETEMP6, new MonitorType() { code = MIC_INVERTER_MODULETEMP6, unit = "℃", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_ENVTEMP1, new MonitorType() { code = MIC_INVERTER_ENVTEMP1, unit = "℃", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_ENVTEMP2, new MonitorType() { code = MIC_INVERTER_ENVTEMP2, unit = "℃", zerotoline = false });
 
             //电表
             monitorMap.Add(MIC_AMMETER_SYSFREQUENCY, new MonitorType() { code = MIC_AMMETER_SYSFREQUENCY, unit = "Hz", zerotoline = false });
@@ -925,6 +1028,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             historyMonitorList.Add(MIC_INVERTER_INVERTERXL);
 
             historyMonitorList.Add(MIC_INVERTER_INVETERTEMPRATURE);
+
+            //ADD BY QHB IN 20120824
+            historyMonitorList.Add(MIC_INVERTER_DKQTEMPRATURE);
+            historyMonitorList.Add(MIC_INVERTER_ENVTEMP1);
+            historyMonitorList.Add(MIC_INVERTER_ENVTEMP2);
+            historyMonitorList.Add(MIC_INVERTER_MODULETEMP1);
+            historyMonitorList.Add(MIC_INVERTER_MODULETEMP2);
+            historyMonitorList.Add(MIC_INVERTER_MODULETEMP3);
+            historyMonitorList.Add(MIC_INVERTER_MODULETEMP4);
+            historyMonitorList.Add(MIC_INVERTER_MODULETEMP5);
+            historyMonitorList.Add(MIC_INVERTER_MODULETEMP6);
+            //ADD BY QHB IN 20120824 END
 
             historyMonitorList.Add(MIC_AMMETER_PHASEVOLTAGE1);
             historyMonitorList.Add(MIC_AMMETER_PHASEVOLTAGE2);
@@ -1396,6 +1511,19 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             plantMonitors.Add(monitorMap[PLANT_MONITORITEM_WINDDIRECTION]);
             plantMonitors.Add(monitorMap[PLANT_MONITORITEM_WINDSPEED]);
             typeMonitorsMap.Add(DeviceData.PLANT_CODE, plantMonitors);
+
+            //add by qhb in 20120827 for 建立测点的bit位和状态项目的对应关系 协议上是0和3 要+1个
+            bitStatusMap.Add(MIC_BUSBAR_DIGITALINPUT.ToString() + 1, digital_input_item_flq);
+            bitStatusMap.Add(MIC_BUSBAR_DIGITALINPUT.ToString() + 4, digital_input_item_dlq);
+            bitStatusMap.Add(MIC_BUSBAR_STATUS.ToString() + 1, work_status_item_run);
+            bitStatusMap.Add(MIC_BUSBAR_STATUS.ToString() + 2, work_status_item_stop);
+            bitStatusMap.Add(MIC_BUSBAR_STATUS.ToString() + 3, work_status_item_flq);
+            bitStatusMap.Add(MIC_BUSBAR_STATUS.ToString() + 4, work_status_item_jnwd);
+            bitStatusMap.Add(MIC_BUSBAR_STATUS.ToString() + 6, work_status_item_duanlu);
+            bitStatusMap.Add(MIC_BUSBAR_STATUS.ToString() + 7, work_status_item_dlgg);
+            bitStatusMap.Add(MIC_BUSBAR_STATUS.ToString() + 8, work_status_item_dlgd);
+            bitStatusMap.Add(MIC_BUSBAR_STATUS.ToString() + 9, work_status_item_kailu);
+            //add by qhb in 20120827 end
         }
 
         /// <summary>
@@ -1415,9 +1543,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// <returns></returns>
         public static IList<MonitorType> getMonitorTypesByTypeCode(int code)
         {
-            return typeMonitorsMap[code];
+            if(typeMonitorsMap.ContainsKey(code))
+                return typeMonitorsMap[code];
+            else
+                return new List<MonitorType>();
         }
 
+        /// <summary>
+        /// 根据设备类型过滤出要处理的测点
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public static IList<MonitorType> getFilterMonitorTypesByTypeCode(int code)
         {
             IList<MonitorType> filterMonitor = typeMonitorsMap[code];
@@ -1438,9 +1574,26 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         public MonitorType()
         {
         }
+
+        /// <summary>
+        /// 增加一个构造器 add by qhb in 20120914 for  能够快速实例化一个测点对象，比边tempaffix能够多线程安全
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="unit"></param>
+        /// <param name="zerotoline"></param>
+        /// <param name="tempaffix"></param>
+        public MonitorType(int code, string unit, bool zerotoline, string tempaffix)
+        {
+            this.code = code;
+            this.unit = unit;
+            this.zerotoline = zerotoline;
+            this.tempaffix = tempaffix;
+        }
+
         public int code { get; set; }                 //测点代码
         public string unit { get; set; }              //测点单位
         public bool zerotoline { get; set; }          //改测点是否将0值改为-线输出
+        public string tempaffix { get; set; }         //add by qhb in 20120914，for 测点代码临时后缀，如果有临时后缀那么去资源时，要在key后面增加“_”+临时后缀用于指向不同资源key从而取得不同资源名称， 未同步到trunk
         public string name                            //测点名称
         {
             set
@@ -1449,7 +1602,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             }
             get
             {
-                return LanguageUtil.getDesc("DEVICEMONITORITEM_" + this.code);
+                //未同步到trunk
+                if (string.IsNullOrEmpty(tempaffix))
+                {
+                    return LanguageUtil.getDesc("DEVICEMONITORITEM_" + this.code);
+                }
+                else
+                    return LanguageUtil.getDesc("DEVICEMONITORITEM_" + this.code + "_" + this.tempaffix);
             }
         }
 

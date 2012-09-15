@@ -348,9 +348,6 @@
                         <td style="width: 30%">
                             <%=Html.TextBox("installdate", this.Model.installdate.ToString("yyyy-MM-dd"), new { onclick = "WdatePicker()", @ReadOnly = "true", @class="txtbu01" })%>
                         </td>
-                        
-                        <input type="hidden" value="<%=this.Model.city %>" id="Hidden4" name="cty" />
-                        <%--</td>--%>
                     </tr>
                     <tr>
                         <td height="20">
@@ -368,9 +365,6 @@
                             <%= Html.TextBoxFor(model => model.design_power, new { @class = "txtbu01", @style = "width:150px" })%>
                             <span class="f11">kWp</span>
                         </td>
-                        
-                        <input type="hidden" value="<%=this.Model.city %>" id="Hidden5" name="cty" />
-                        <%--</td>--%>
                     </tr>
                     <tr>
                         <td height="20">
@@ -387,9 +381,6 @@
                         <td style="width: 30%">
                             <%= Html.TextBoxFor(model => model.location, new { @class = "txtbu01" })%>
                         </td>
-                        
-                        <input type="hidden" value="<%=this.Model.city %>" id="Hidden2" name="cty" />
-                        <%--</td>--%>
                     </tr>
                     <tr>
                         <td height="20">
@@ -440,9 +431,6 @@
                         <td style="width: 30%">
                             <%= Html.TextBoxFor(model => model.manufacturer, new { @class = "txtbu01" })%>
                         </td>
-                        
-                        <input type="hidden" value="<%=this.Model.city %>" id="Hidden6" name="cty" />
-                        <%--</td>--%>
                     </tr>
                     <tr>
                         <td height="20">
@@ -459,9 +447,6 @@
                         <td style="width: 30%">
                             <%= Html.TextBoxFor(model => model.module_type, new { @class = "txtbu01" })%>
                         </td>
-                        
-                        <input type="hidden" value="<%=this.Model.city %>" id="Hidden7" name="cty" />
-                        <%--</td>--%>
                     </tr>
                     <tr>
                         <td height="20">
@@ -473,14 +458,11 @@
                     </tr>
                     <tr>
                         <td height="20" class="pl20">
-                            <%=Resources.SunResource.PLANT_PROFILE_ANGLE %>:
+                            <%=Resources.SunResource.PLANT_PROFILE_ANGLE%>:
                         </td>
                         <td style="width: 30%">
                             <%= Html.TextBoxFor(model => model.angle, new { @class = "txtbu01" })%>
                         </td>
-                        
-                        <input type="hidden" value="<%=this.Model.city %>" id="Hidden8" name="cty" />
-                        <%--</td>--%>
                     </tr>
                     <tr>
                         <td height="20">
@@ -512,9 +494,6 @@
                         <td style="width: 30%">
                             <%= Html.TextBoxFor(model => model.operater, new { @class = "txtbu01" })%>
                         </td>
-                        
-                        <input type="hidden" value="<%=this.Model.city %>" id="cty" name="cty" />
-                        <%--</td>--%>
                     </tr>
                     <tr>
                         <td height="20">
@@ -551,7 +530,6 @@
                             <select id="s2" class="txtbu01" style="width: 181px">
                                 <option><%=Resources.SunResource.PLANT_PROFILE_CITY %></option>
                             </select><input id="city" name="city" type="text" style="display:none; float:left;" class="txtbu01" value="<%=this.Model.city %>"/>
-                            <input type="hidden" value="<%=this.Model.city %>" id="Hidden1" name="cty" />
                         </td>
                         
                     </tr>
@@ -640,9 +618,6 @@
                         <td style="width: 30%">
                             <%= Html.TextBoxFor(model => model.direction, new { @class = "txtbu01" })%>
                         </td>
-                        
-                        <input type="hidden" value="<%=this.Model.city %>" id="Hidden9" name="cty" />
-                        <%--</td>--%>
                     </tr>
                     <tr>
                         <td height="20">

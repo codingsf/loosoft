@@ -9,6 +9,7 @@ using System.Threading;
 using System.Globalization;
 using System.Linq;
 using System;
+using System.Text;
 namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 {
 
@@ -355,7 +356,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 IList<Device> devices = pu.typeDevices(DeviceData.INVERTER_CODE,false);
                 if (devices != null && devices.Count > 0)
                 {
-                    deviceLevel = unitLevel+1;
+                    deviceLevel = unitLevel+10;
                     firstRun = "parent.loadRunData(" + devices[0].id + ");";
                     jsstr += firstRun;
                     jsstr += generateDeviceNode(devices, deviceLevel, unitLevel, DeviceData.getDeviceTypeByCode(DeviceData.INVERTER_CODE).name);
@@ -365,7 +366,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 devices = pu.typeDevices(DeviceData.HUILIUXIANG_CODE,false);
                 if (devices != null && devices.Count > 0)
                 {
-                    deviceLevel = unitLevel+2;
+                    deviceLevel = unitLevel+20;
                     if (string.IsNullOrEmpty(firstRun))
                     {
                         firstRun = "parent.loadRunData(" + devices[0].id + ");";
@@ -378,7 +379,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 devices = pu.typeDevices(DeviceData.ENVRIOMENTMONITOR_CODE,false);
                 if (devices != null && devices.Count > 0)
                 {
-                    deviceLevel = unitLevel+3;
+                    deviceLevel = unitLevel + 30;
                     if (string.IsNullOrEmpty(firstRun))
                     {
                         firstRun = "parent.loadRunData(" + devices[0].id + ");";
@@ -390,7 +391,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 devices = pu.typeDevices(DeviceData.CABINET_CODE, false);
                 if (devices != null && devices.Count > 0)
                 {
-                    deviceLevel = unitLevel+4;
+                    deviceLevel = unitLevel + 40;
                     if (string.IsNullOrEmpty(firstRun))
                     {
                         firstRun = "parent.loadRunData(" + devices[0].id + ");";
@@ -402,7 +403,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 devices = pu.typeDevices(DeviceData.AMMETER_CODE,false);
                 if (devices != null && devices.Count > 0)
                 {
-                    deviceLevel = unitLevel+5;
+                    deviceLevel = unitLevel + 50;
                     if (string.IsNullOrEmpty(firstRun))
                     {
                         firstRun = "parent.loadRunData(" + devices[0].id + ");";
@@ -474,7 +475,5 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
         }
     }
-
-
 
 }

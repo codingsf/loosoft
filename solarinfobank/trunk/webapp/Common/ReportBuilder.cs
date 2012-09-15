@@ -273,7 +273,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         private static float getMax(float?[] datas)
         {
             float? max = datas.Max();
-            return max == null ? 0 : (float)(max * 1.2);
+            double newvalue = max == null ? 0 : (max.Value > 0 ? max.Value * 1.2 : max.Value * 0.8);
+            return float.Parse(newvalue.ToString());
         }
 
 
@@ -285,7 +286,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         private static float getMin(float?[] datas)
         {
             float? min = datas.Min();
-            return min == null ? 0 : (float)(min * 1.2);
+            double newvalue = min == null ? 0 : (min.Value > 0 ? min.Value * 0.8 : min.Value * 1.2);
+            return float.Parse(newvalue.ToString());
         }
 
         /// <summary>

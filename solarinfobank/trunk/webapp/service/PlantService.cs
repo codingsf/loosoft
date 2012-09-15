@@ -143,6 +143,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             return _plantInfo.Getplantlikepname(name);
         }
 
+        /// <summary>
+        /// 按照名称取得电站
+        /// add by qhb in 20120831
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public Plant GetplantByName(string name)
+        {
+            return _plantInfo.Getplantbyname(name);
+        }
+
+
         public int Remove(int id)
         {
             Plant p = new Plant();

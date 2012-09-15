@@ -96,6 +96,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\ICompensationDao.cs" />
+    <Compile Include="Interfaces\IDayCompensationDao.cs" />
     <Compile Include="Interfaces\IAdminControllerActionDao.cs" />
     <Compile Include="Interfaces\IAdminControllerActionRoleDao.cs" />
     <Compile Include="Interfaces\IAdminRoleDao.cs" />
@@ -107,7 +109,9 @@
     <Compile Include="Interfaces\IErrorcodeDao.cs" />
     <Compile Include="Interfaces\IManagerMonitorCodeSqlMapDao.cs" />
     <Compile Include="Interfaces\IMonitorConfigDao.cs" />
+    <Compile Include="Interfaces\IMonthCompensationDao.cs" />
     <Compile Include="Interfaces\IProtalDao.cs" />
+    <Compile Include="Interfaces\IQADao.cs" />
     <Compile Include="Interfaces\IRelationConfigDao.cs" />
     <Compile Include="Interfaces\IRoleDao.cs" />
     <Compile Include="Interfaces\IRoleFunctionDao.cs" />
@@ -151,65 +155,181 @@
     <Compile Include="Interfaces\IMailConfigDao.cs" />
     <Compile Include="Interfaces\ILoginRecordDao.cs" />
     <Compile Include="Interfaces\ICacheDao.cs" />
-    <Compile Include="MapperDao\AdminControllerActionRoleSqlMapDao.cs" />
-    <Compile Include="MapperDao\AdminControllerActionSqlMapDao.cs" />
-    <Compile Include="MapperDao\AdminRoleSqlMapDao.cs" />
-    <Compile Include="MapperDao\AdminUserRoleSqlMapDao.cs" />
-    <Compile Include="MapperDao\AdpicSqlMapDao.cs" />
-    <Compile Include="MapperDao\BaseSqlDao.cs" />
-    <Compile Include="MapperDao\BaseSqlMapDao.cs" />
-    <Compile Include="MapperDao\CollectorSqlMapDao.cs" />
-    <Compile Include="MapperDao\CommonInfoSqlMapDao.cs" />
-    <Compile Include="MapperDao\CountryCitySqlMapDao.cs" />
-    <Compile Include="MapperDao\CustomChartSqlMapDao.cs" />
-    <Compile Include="MapperDao\DataItemSqlMapDao.cs" />
-    <Compile Include="MapperDao\DbConfigSqlMapDao.cs" />
-    <Compile Include="MapperDao\DeviceDataCountSqlMapDao.cs" />
-    <Compile Include="MapperDao\DeviceDayDataSqlMapDao.cs" />
-    <Compile Include="MapperDao\DeviceMonthDayDataSqlMapDao.cs" />
-    <Compile Include="MapperDao\DeviceRelationSqlMapDao.cs" />
-    <Compile Include="MapperDao\DeviceRunDataSqlMapDao.cs" />
-    <Compile Include="MapperDao\DeviceYearDataSqlMapDao.cs" />
-    <Compile Include="MapperDao\DeviceYearMonthDataSqlMapDao.cs" />
-    <Compile Include="MapperDao\ElecPriceSqlMapDao.cs" />
-    <Compile Include="MapperDao\EmailQueueSqlMapDao.cs" />
-    <Compile Include="MapperDao\DeviceSqlMapDao.cs">
+    <Compile Include="Interfaces\IYearCompensationDao.cs" />
+    <Compile Include="MapperDao\AdminControllerActionRoleSqlMapDao.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MapperDao\ErrorcodeSqlMapDao.cs" />
-    <Compile Include="MapperDao\LanguageSqlMapDao.cs" />
-    <Compile Include="MapperDao\FaultSqlMapDao.cs" />
-    <Compile Include="MapperDao\ManagerMonitorCodeSqlMapDao.cs" />
-    <Compile Include="MapperDao\MonitorConfigSqlMapDao.cs" />
-    <Compile Include="MapperDao\MonitorItemSqlMapDao.cs" />
-    <Compile Include="MapperDao\PlantUserSqlMapDao.cs" />
-    <Compile Include="MapperDao\ProtalSqlMapDao.cs" />
-    <Compile Include="MapperDao\RelationConfigSqlMapDao.cs" />
-    <Compile Include="MapperDao\ReportDataItemSqlMapDao.cs" />
-    <Compile Include="MapperDao\ReportSqlMapDao.cs" />
-    <Compile Include="MapperDao\RoleFunctionDaoSqlMapDao.cs" />
-    <Compile Include="MapperDao\RoleSqlMapDao.cs" />
-    <Compile Include="MapperDao\UserRoleSqlMapDao.cs" />
-    <Compile Include="MapperDao\VideoMonitorSqlMapDao.cs" />
-    <Compile Include="MapperDao\PlantUnitSqlMapDao.cs" />
-    <Compile Include="MapperDao\ProductPictureSqlMapDao.cs" />
-    <Compile Include="MapperDao\ReportConfigSqlMapDao.cs" />
-    <Compile Include="MapperDao\ItemConfigSqlMapDao.cs" />
-    <Compile Include="MapperDao\ManagerSqlMapDao.cs" />
-    <Compile Include="MapperDao\PlantSqlMapDao.cs" />
-    <Compile Include="MapperDao\ChartGroupSqlMapDao.cs" />
+    <Compile Include="MapperDao\AdminControllerActionSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\AdminRoleSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\AdminUserRoleSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\AdpicSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\BaseSqlDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\BaseSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\CacheSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\ChartGroupSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="MapperDao\CollectorDayDataSqlMapDao.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MapperDao\CollectorMonthDayDataSqlMapDao.cs" />
-    <Compile Include="MapperDao\CollectorRunDataSqlMapDao.cs" />
-    <Compile Include="MapperDao\CollectorYearDataSqlMapDao.cs" />
-    <Compile Include="MapperDao\CollectorYearMonthDataSqlMapDao.cs" />
-    <Compile Include="MapperDao\UserSqlMapDao.cs" />
-    <Compile Include="MapperDao\DeviceModelSqlMapDao.cs" />
-    <Compile Include="MapperDao\MailConfigSqlMapDao.cs" />
-    <Compile Include="MapperDao\LoginRecordSqlMapDao.cs" />
-    <Compile Include="MapperDao\CacheSqlMapDao.cs" />
+    <Compile Include="MapperDao\CollectorMonthDayDataSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\CollectorRunDataSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\CollectorSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\CollectorYearDataSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\CollectorYearMonthDataSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\CommonInfoSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\CompensationSqlMapDao.cs" />
+    <Compile Include="MapperDao\CountryCitySqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\CustomChartSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\DataItemSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\DayCompensationSqlMapDao.cs" />
+    <Compile Include="MapperDao\DbConfigSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\DeviceDataCountSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\DeviceDayDataSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\DeviceModelSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\DeviceMonthDayDataSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\DeviceRelationSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\DeviceRunDataSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\DeviceSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\DeviceYearDataSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\DeviceYearMonthDataSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\ElecPriceSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\EmailQueueSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\ErrorcodeSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\FaultSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\ItemConfigSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\LanguageSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\LoginRecordSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\MailConfigSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\ManagerMonitorCodeSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\ManagerSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\MonitorConfigSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\MonitorItemSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\MonthCompensationSqlMapDao.cs" />
+    <Compile Include="MapperDao\PlantSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\PlantUnitSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\PlantUserSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\ProductPictureSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\ProtalSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\QASqlMaoDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\RelationConfigSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\ReportConfigSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\ReportDataItemSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\ReportSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\RoleFunctionDaoSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\RoleSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\UserRoleSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\UserSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\VideoMonitorSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\YearCompensationSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

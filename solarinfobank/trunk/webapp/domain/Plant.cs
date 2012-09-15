@@ -700,6 +700,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
         #endregion Model
 
+        public string predictivedata { get; set; }//电站每月预测值:分隔的串
+
+
         public int parentId { get; set; }
 
         public string plantIds { get; set; }
@@ -1287,5 +1290,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 return factPlantUnits;
             }
         }
+
+        //年补偿
+        public IList<YearCompensation> yearCompensation { get; set; }
+
     }
 }

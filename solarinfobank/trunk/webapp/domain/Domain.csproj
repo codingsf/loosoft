@@ -123,7 +123,9 @@
     <Compile Include="BaseDayData.cs" />
     <Compile Include="BaseLocalTime.cs" />
     <Compile Include="CommonInfo.cs" />
+    <Compile Include="Compensation.cs" />
     <Compile Include="CountryCity.cs" />
+    <Compile Include="DayCompensation.cs" />
     <Compile Include="DefineReport.cs" />
     <Compile Include="DeviceDataCount.cs" />
     <Compile Include="DeviceModel..cs" />
@@ -134,10 +136,12 @@
     <Compile Include="MailConfig.cs" />
     <Compile Include="ManagerMonitorCode.cs" />
     <Compile Include="MonitorConfig.cs" />
+    <Compile Include="MonthCompensation.cs" />
     <Compile Include="PlantInfo.cs" />
     <Compile Include="PlantUser.cs" />
     <Compile Include="ProductPicture.cs" />
     <Compile Include="Protal.cs" />
+    <Compile Include="QA.cs" />
     <Compile Include="RelationConfig.cs" />
     <Compile Include="ReportDataItem.cs" />
     <Compile Include="ReportType.cs" />
@@ -147,6 +151,7 @@
     <Compile Include="UserRole.cs" />
     <Compile Include="LoginRecord.cs" />
     <Compile Include="DeviceInfo.cs" />
+    <Compile Include="YearCompensation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\" />

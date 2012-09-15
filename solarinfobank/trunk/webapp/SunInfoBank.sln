@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "service\Service.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{6AE1548A-E450-4197-8666-3D31D09527FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailService", "..\email-sf\EmailService\EmailService.csproj", "{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailService", "E:\working\SunInfoBank\trunk\email-sf\EmailService\EmailService.csproj", "{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

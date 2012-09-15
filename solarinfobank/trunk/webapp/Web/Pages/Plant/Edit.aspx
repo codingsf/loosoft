@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Shared/ContentInside.Master"
+<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Shared/ContentInside.Master"
     Inherits="System.Web.Mvc.ViewPage<Cn.Loosoft.Zhisou.SunPower.Domain.Plant>" %>
 
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
@@ -100,6 +100,12 @@
         }
 
         $().ready(function() {
+            var predictivedata = '<%=this.Model.predictivedata %>';
+            var array = predictivedata.split(',');
+            var i = 0;
+            $("input[name='predictivedata']").each(function() {
+                $(this).val(array[i++]);
+            });
             $("#dst_enable").change(function() {
                 if ($(this).val() == "true") {
                     $(".ref").show();
@@ -1290,46 +1296,46 @@
         // Debug Settings
         debug: false
     });
-    
-    
-    }
 
-    //追加电站图片到容器
-    function ApplendPicContainer(picname) {
-        var GetRandomn = 1;
-        //获取随机范围内数值的函数
-        function GetRandom(n) { GetRandomn = Math.floor(Math.random() * n + 1) }
-        //开始调用，获得一个1-100的随机数
-        GetRandom("100");
-        var plantId = $("#id").val();
-        var appendHtml = "<div class='upload_pic' id='uploadpic_" + picname + "'>" +
+
+}
+
+//追加电站图片到容器
+function ApplendPicContainer(picname) {
+    var GetRandomn = 1;
+    //获取随机范围内数值的函数
+    function GetRandom(n) { GetRandomn = Math.floor(Math.random() * n + 1) }
+    //开始调用，获得一个1-100的随机数
+    GetRandom("100");
+    var plantId = $("#id").val();
+    var appendHtml = "<div class='upload_pic' id='uploadpic_" + picname + "'>" +
         "<div class='upload_picimg'>" +
             "<img style='width: 84px; height: 73px;' src='/ufile/" + picname + "'/></div>" +
             "<div class='upload_piczi'>" +
                 "<a id='showlargepic_" + GetRandomn + "' href='javascript:void(0)' onclick=\"parent.previewImage('/ufile/" + picname + "')\"><%=Resources.SunResource.MONITORITEM_BIG %></a> <br /> <a href='javascript:void()' onclick=\"deletePic('" + picname + "')\"><%=Resources.SunResource.MONITORITEM_DELETE %></a>" +
             "</div>" +
         "</div>";
-        $("#picContainer").append(appendHtml);
-    }
+    $("#picContainer").append(appendHtml);
+}
 
 
-    function deletePic(picname) {
-        if (!confirm('<%=Resources.SunResource.PLANT_MONITOR_CONFIRM_DELETE%>')) return;
-        document.getElementById("uploadpic_" + picname).style.display = "none";
-        replacePic(picname, "pic");
-    }
+function deletePic(picname) {
+    if (!confirm('<%=Resources.SunResource.PLANT_MONITOR_CONFIRM_DELETE%>')) return;
+    document.getElementById("uploadpic_" + picname).style.display = "none";
+    replacePic(picname, "pic");
+}
 
-    function replacePic(picname, picinputname) {
-        var curPics = document.getElementById(picinputname).value;
-        var searchValue = "," + picname;
-        var picurl = curPics.replace(searchValue, '');
-        document.getElementById(picinputname).value = picurl;
-    }
+function replacePic(picname, picinputname) {
+    var curPics = document.getElementById(picinputname).value;
+    var searchValue = "," + picname;
+    var picurl = curPics.replace(searchValue, '');
+    document.getElementById(picinputname).value = picurl;
+}
 
-    function showBigPic(name, id) {
-        $("#showlargepic_" + id).attr("href", "/ufile/" + name)
-        $("#showlargepic_" + id).colorbox();
-    }
+function showBigPic(name, id) {
+    $("#showlargepic_" + id).attr("href", "/ufile/" + name)
+    $("#showlargepic_" + id).colorbox();
+}
     </script>
 
     <table cellpadding="0" cellspacing="0" border="0">
@@ -1626,7 +1632,6 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                                                                 <%=Html.TextBoxFor(m => m.basePrice, new { @class = "txtbu01" })%> 元
                                                             </td>
                                                         </tr>
-                                                        
                                                         <tr>
                                                             <td class="pl20" height="28">
                                                                 <strong>分布图:</strong>
@@ -1635,7 +1640,8 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                                                                 <table>
                                                                     <tr>
                                                                         <td>
-                                                                            <input class="txtbu01" id="structPic" name="structPic" value="" type="text"><input type="hidden" id="sutpic" name="sutpic" value="<%=this.Model.structPic %>" />
+                                                                            <input class="txtbu01" id="structPic" name="structPic" value="" type="text"><input
+                                                                                type="hidden" id="sutpic" name="sutpic" value="<%=this.Model.structPic %>" />
                                                                         </td>
                                                                         <td>
                                                                             <div style="margin-top: 20px;" id="spanButtonPlaceholder1">
@@ -1678,8 +1684,9 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                                             <strong>到:</strong>
                                         </td>
                                         <td>
-                                            <input type="text" class="txtbu01 Wdate" style="width: 100px" name="fend" value="<%=this.Model.FPrice.toHm %>"   onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})"
-                                                readonly="readonly"/>
+                                            <input type="text" class="txtbu01 Wdate" style="width: 100px" name="fend" value="<%=this.Model.FPrice.toHm %>"
+                                                onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})"
+                                                readonly="readonly" />
                                         </td>
                                         <td class="pl20">
                                             <strong>电价:</strong>
@@ -1694,15 +1701,17 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                                             <strong>平 从:</strong>
                                         </td>
                                         <td>
-                                            <input type="text" class="txtbu01 Wdate" style="width: 100px" name="pstart" value="<%=this.Model.PPrice.fromHm %>"   onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})"
-                                                readonly="readonly"/>
+                                            <input type="text" class="txtbu01 Wdate" style="width: 100px" name="pstart" value="<%=this.Model.PPrice.fromHm %>"
+                                                onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})"
+                                                readonly="readonly" />
                                         </td>
                                         <td class="pl20">
                                             <strong>到:</strong>
                                         </td>
                                         <td>
-                                            <input type="text" class="txtbu01 Wdate" style="width: 100px" name="pend" value="<%=this.Model.PPrice.toHm %>"   onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})"
-                                                readonly="readonly"/>
+                                            <input type="text" class="txtbu01 Wdate" style="width: 100px" name="pend" value="<%=this.Model.PPrice.toHm %>"
+                                                onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})"
+                                                readonly="readonly" />
                                         </td>
                                         <td class="pl20">
                                             <strong>电价:</strong>
@@ -1717,15 +1726,17 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                                             <strong>谷 从:</strong>
                                         </td>
                                         <td>
-                                            <input type="text" class="txtbu01 Wdate" style="width: 100px" name="gstart" value="<%=this.Model.GPrice.fromHm %>"   onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})"
-                                                readonly="readonly"/>
+                                            <input type="text" class="txtbu01 Wdate" style="width: 100px" name="gstart" value="<%=this.Model.GPrice.fromHm %>"
+                                                onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})"
+                                                readonly="readonly" />
                                         </td>
                                         <td class="pl20">
                                             <strong>到:</strong>
                                         </td>
                                         <td>
-                                            <input type="text" class="txtbu01 Wdate" style="width: 100px" name="gend" value="<%=this.Model.GPrice.toHm %>"   onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})"
-                                                readonly="readonly"/>
+                                            <input type="text" class="txtbu01 Wdate" style="width: 100px" name="gend" value="<%=this.Model.GPrice.toHm %>"
+                                                onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})"
+                                                readonly="readonly" />
                                         </td>
                                         <td class="pl20">
                                             <strong>电价:</strong>
@@ -1740,15 +1751,17 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                                             <strong>尖 从:</strong>
                                         </td>
                                         <td>
-                                            <input type="text" class="txtbu01 Wdate" style="width: 100px" name="jstart" value="<%=this.Model.JPrice.fromHm %>"   onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})"
-                                                readonly="readonly"/>
+                                            <input type="text" class="txtbu01 Wdate" style="width: 100px" name="jstart" value="<%=this.Model.JPrice.fromHm %>"
+                                                onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})"
+                                                readonly="readonly" />
                                         </td>
                                         <td class="pl20">
                                             <strong>到:</strong>
                                         </td>
                                         <td>
-                                            <input type="text" class="txtbu01 Wdate" style="width: 100px" name="jend" value="<%=this.Model.JPrice.toHm %>"   onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})"
-                                                readonly="readonly"/>
+                                            <input type="text" class="txtbu01 Wdate" style="width: 100px" name="jend" value="<%=this.Model.JPrice.toHm %>"
+                                                onclick="WdatePicker({dateFmt:'HH:mm',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})"
+                                                readonly="readonly" />
                                         </td>
                                         <td class="pl20">
                                             <strong>电价:</strong>
@@ -1903,6 +1916,91 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_ENABLE, Value="true
                                         <td>
                                             <%=Html.TextBoxFor(model=>model.hours,new {@class="txtbu01 ref" } )%><span class="red ref">*</span><input
                                                 style="display: inline;" class="txtbu01 txt010 ref1" disabled="disabled ">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pl20" height="28">
+                                            <strong>预测值:</strong>
+                                        </td>
+                                        <td colspan="3">
+                                            <table width="100%">
+                                                <tr>
+                                                    <td width="8%" align="center">
+                                                        1
+                                                    </td>
+                                                    <td width="8%" align="center">
+                                                        2
+                                                    </td>
+                                                    <td width="8%" align="center">
+                                                        3
+                                                    </td>
+                                                    <td width="8%" align="center">
+                                                        4
+                                                    </td>
+                                                    <td width="8%" align="center">
+                                                        5
+                                                    </td>
+                                                    <td width="8%" align="center">
+                                                        6
+                                                    </td>
+                                                    <td width="8%" align="center">
+                                                        7
+                                                    </td>
+                                                    <td width="8%" align="center">
+                                                        8
+                                                    </td>
+                                                    <td width="8%" align="center">
+                                                        9
+                                                    </td>
+                                                    <td width="8%" align="center">
+                                                        10
+                                                    </td>
+                                                    <td width="8%" align="center">
+                                                        11
+                                                    </td>
+                                                    <td width="8%" align="center">
+                                                        12
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="8%">
+                                                        <input type="text" value="" class="txtbu01" style="width: 45px"  name="predictivedata"/>
+                                                    </td>
+                                                    <td width="8%">
+                                                        <input type="text" value="" class="txtbu01" style="width: 45px"   name="predictivedata"/>
+                                                    </td>
+                                                    <td width="8%">
+                                                        <input type="text" value="" class="txtbu01" style="width: 45px"   name="predictivedata"/>
+                                                    </td>
+                                                    <td width="8%">
+                                                        <input type="text" value="" class="txtbu01" style="width: 45px"   name="predictivedata"/>
+                                                    </td>
+                                                    <td width="8%">
+                                                        <input type="text" value="" class="txtbu01" style="width: 45px"   name="predictivedata"/>
+                                                    </td>
+                                                    <td width="8%">
+                                                        <input type="text" value="" class="txtbu01" style="width: 45px"   name="predictivedata"/>
+                                                    </td>
+                                                    <td width="8%">
+                                                        <input type="text" value="" class="txtbu01" style="width: 45px"   name="predictivedata"/>
+                                                    </td>
+                                                    <td width="8%">
+                                                        <input type="text" value="" class="txtbu01" style="width: 45px"   name="predictivedata"/>
+                                                    </td>
+                                                    <td width="8%">
+                                                        <input type="text" value="" class="txtbu01" style="width: 45px"   name="predictivedata"/>
+                                                    </td>
+                                                    <td width="8%">
+                                                        <input type="text" value="" class="txtbu01" style="width: 45px"   name="predictivedata"/>
+                                                    </td>
+                                                    <td width="8%">
+                                                        <input type="text" value="" class="txtbu01" style="width: 45px"   name="predictivedata"/>
+                                                    </td>
+                                                    <td width="8%">
+                                                        <input type="text" value="" class="txtbu01" style="width: 45px"   name="predictivedata"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </td>
                                     </tr>
                                 </tbody>

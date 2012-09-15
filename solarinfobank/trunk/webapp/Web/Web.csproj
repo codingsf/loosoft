@@ -221,10 +221,6 @@
     <Content Include="SqlMap.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\email-sf\EmailService\EmailService.csproj">
-      <Project>{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}</Project>
-      <Name>EmailService</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{6AE1548A-E450-4197-8666-3D31D09527FD}</Project>
       <Name>Common</Name>

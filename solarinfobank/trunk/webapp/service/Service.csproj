@@ -121,13 +121,16 @@
     <Compile Include="CollectorInfoService.cs" />
     <Compile Include="CommonInfoService.cs" />
     <Compile Include="CompareChartService.cs" />
+    <Compile Include="CompensationService.cs" />
     <Compile Include="CountryCityService.cs" />
     <Compile Include="CustomChartService.cs" />
+    <Compile Include="DayCompensationService.cs" />
     <Compile Include="DeviceRelationService.cs" />
     <Compile Include="ElecPriceService.cs" />
     <Compile Include="ErrorcodeService.cs" />
     <Compile Include="ManagerMonitorCodeService.cs" />
     <Compile Include="MonitorConfigService.cs" />
+    <Compile Include="MonthCompensationService.cs" />
     <Compile Include="ProtalService.cs" />
     <Compile Include="ProtalUtil.cs" />
     <Compile Include="RelationConfigService.cs" />
@@ -182,7 +185,7 @@
     <Compile Include="AdminControllerActionServices.cs" />
     <Compile Include="SynDataService.cs" />
     <Compile Include="vo\CommonVO.cs" />
-    <Compile Include="vo\DigitalInputDetailVO.cs" />
+    <Compile Include="YearCompensationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

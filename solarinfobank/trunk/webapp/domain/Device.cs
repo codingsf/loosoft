@@ -437,5 +437,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             return false;
         }
 
+        public double powerRatio { get; set; }//发电量比例 2012/9/13
+
     }
 }

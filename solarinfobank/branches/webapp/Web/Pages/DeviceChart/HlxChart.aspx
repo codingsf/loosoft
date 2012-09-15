@@ -15,6 +15,8 @@
             $('#YearChart').click(displayyearMMChart);
             $('#TotalChart').click(displayyearChart);
             $('#DayChart').click(displayDayChart);
+            $("#startYYYYMMDDHH").val($("#startYYYYMMDDHHbefore").val());
+            $("#endYYYYMMDDHH").val($("#endYYYYMMDDHHbefore").val());          
             displayDayChart();
         });
         function changeALT() {

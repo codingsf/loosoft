@@ -225,7 +225,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Wap
         public ActionResult RunData(int did)
         {
             Device device = DeviceService.GetInstance().get(did);
-            IList<IList<KeyValuePair<MonitorType, string>>> rundatas = device.runData.convertRunstrToList(true);
+            IList<IList<KeyValuePair<MonitorType, string>>> rundatas = device.runData.convertRunstrToList(true, device.deviceTypeCode);
 
             ViewData["rundatas"] = rundatas;
             ViewData["device"] = device;

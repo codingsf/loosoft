@@ -51,5 +51,29 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
 
         }
 
+        /// <summary>
+        /// 根据设备类型取得对应表前缀，用户动态组织表名
+        /// </summary>
+        /// <param name="deviceType"></param>
+        /// <returns></returns>
+        public static string getTableNamebyDeviceType(int deviceType)
+        {
+            switch (deviceType)
+            {
+                case DeviceData.AMMETER_CODE:
+                    return AMMETER;
+                case DeviceData.CABINET_CODE:
+                    return CABINET;
+                case DeviceData.HUILIUXIANG_CODE:
+                    return HUILIUXIANG;
+                case DeviceData.INVERTER_CODE:
+                    return INVERTER_TABLE_NAME;
+                case DeviceData.ENVRIOMENTMONITOR_CODE:
+                    return DETECTOR;
+                default:
+                    return "";
+            }
+        }
+
     }
 }

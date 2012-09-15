@@ -2122,6 +2122,10 @@
     <Content Include="Images\sub\view_c.gif" />
     <Content Include="Images\sub\view_c00.gif" />
     <Content Include="Images\sub\xs.gif" />
+    <Content Include="Images\sub\xxico01.jpg" />
+    <Content Include="Images\sub\xxico02.jpg" />
+    <Content Include="Images\sub\xxico03.jpg" />
+    <Content Include="Images\sub\xxico04.jpg" />
     <Content Include="Images\sub\yc.gif" />
     <Content Include="Images\sub\zoom.gif" />
     <Content Include="Images\sub\zs.gif" />
@@ -2272,6 +2276,7 @@
     <Content Include="m_img\onbg.jpg" />
     <Content Include="Pages\Admin\Authority\Role.aspx" />
     <Content Include="Pages\Admin\Authority\Roles.aspx" />
+    <Content Include="Pages\Admin\clearpage.aspx" />
     <Content Include="Pages\Admin\CountryCity\Cities.aspx" />
     <Content Include="Pages\Admin\CountryCity\City_edit.aspx" />
     <Content Include="Pages\Admin\CountryCity\Countries.aspx" />

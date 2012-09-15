@@ -96,6 +96,10 @@
                                               { %>
                                             <li><a href="/admin/DepartmentList">宣传图片</a></li>
                                             <%} %>
+                                            <%if (AuthService.isAllow("admin", "departmentlist"))
+                                              { %>
+                                            <li><a href="/admin/clearpage">清理数据</a></li>
+                                            <%} %>                                             
                                         </ul>
                                     </div>
                                 </div>

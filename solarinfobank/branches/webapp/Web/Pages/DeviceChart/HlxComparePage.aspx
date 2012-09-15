@@ -46,6 +46,9 @@
             $(currentSel+"_link").attr("href","javascript:void(0);");
             var id = "unit" + $("#uid").val();
             $("#"+id+"_link").addClass("current");
+            //未同步到trunk
+            $("#unitstartYYYYMMDDHH").val($("#unitstartYYYYMMDDHHbefore").val());
+            $("#unitendYYYYMMDDHH").val($("#unitendYYYYMMDDHHbefore").val());              
             displayDayChart();
             $("#unit<%=(ViewData["plantUnit"] as PlantUnit).id%>").show();
         }
@@ -454,6 +457,10 @@
     id="unitstartYYYYMMDDHH" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>20"
     id="unitendYYYYMMDDHH" />
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>06"
+    id="unitstartYYYYMMDDHHbefore" />    
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>20"
+    id="unitendYYYYMMDDHHbefore" />      
 <input type="hidden" value="60" id="intervalMins" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")%>01"
     id="startYYYYMMDD" />

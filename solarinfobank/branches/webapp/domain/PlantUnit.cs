@@ -188,7 +188,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             //如果设备没有今日发电量则取下采集的实时数据中的今日发电量
             if (total == 0)
             {
-                if (this.collector.runData != null && CalenderUtil.formatDate(collector.runData.sendTime, "yyyyMMdd").Equals(CalenderUtil.curDateWithTimeZone(timezone, "yyyyMMdd")))
+                if (this.collector!=null && this.collector.runData != null && CalenderUtil.formatDate(collector.runData.sendTime, "yyyyMMdd").Equals(CalenderUtil.curDateWithTimeZone(timezone, "yyyyMMdd")))
                     total = collector.runData.dayEnergy;
             }
 

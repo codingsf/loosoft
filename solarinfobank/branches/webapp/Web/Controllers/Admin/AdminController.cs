@@ -2833,5 +2833,252 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             if (string.IsNullOrEmpty(code)) return Content("true");
             return Content(ErrorcodeService.GetInstance().GetList().Where(m => m.code.Equals(code.Trim())).Count() == 0 ? "true" : "false");
         }
+
+        /// <summary>
+        /// 加载清理条件页面
+        /// add by qhb in 20120827 for 手工清理sn数据
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult clearpage()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 按照输入条件对数据进行清理
+        /// 清理逻辑
+        /// 用ajax方式调用
+        /// add by qhb in 20120827 for 手工清理sn数据
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult clearhandle()
+        {
+            MemcachedClientSatat mcs = MemcachedClientSatat.getInstance();
+            //找出sn对应的采集器
+            string sn = Request.Params["sn"];
+            int collectorId = CollectorInfoService.GetInstance().getCollectorIdbyCode(sn);
+            if (collectorId == 0)
+            {
+                return Content("sn不存在！");
+            }
+            Collector collector = CollectorInfoService.GetInstance().Get(collectorId);
+            //清理采集器实时数据的总发电量
+            CollectorRunData collectorRunData = CollectorRunDataService.GetInstance().Get(collectorId);
+            if (collectorRunData != null)
+            {
+                collectorRunData.totalEnergy = 0;
+                //先持久化数据
+                CollectorRunDataService.GetInstance().save(collectorRunData);
+                //再删除缓存
+                string key = CacheKeyUtil.buildCollectorRunDataKey(collectorId);
+                mcs.Delete(key);
+            }
+
+            //清理的日期段
+            DateTime startDate = DateTime.Parse(Request.Params["startDate"]);//开始实际
+            DateTime endDate = DateTime.Parse(Request.Params["endDate"]);//结束时间
+
+            //清理采集器天数据,并累计要清理的月发电量
+            DateTime tempStartDate = startDate.AddDays(-1);
+            //存储月度发电量
+            IDictionary<string, float> monthEnergyMap = new Dictionary<string, float>();
+
+            while (endDate.CompareTo(tempStartDate) > 0)
+            {
+                tempStartDate = tempStartDate.AddDays(1);
+                string yyyyMM = CalenderUtil.formatDate(tempStartDate, "yyyyMM");
+                //删除该采集器天历史数据
+                CollectorDayDataService.GetInstance().Delete(new CollectorDayData() { collectorID = collectorId, yearmonth = yyyyMM, sendDay = tempStartDate.Day });
+                //清理采集器天数据缓存
+                mcs.Delete(CacheKeyUtil.buildCollectorDayDataKey(collectorId, yyyyMM, tempStartDate.Day, MonitorType.PLANT_MONITORITEM_ENERGY_CODE));
+                mcs.Delete(CacheKeyUtil.buildCollectorDayDataKey(collectorId, yyyyMM, tempStartDate.Day, MonitorType.PLANT_MONITORITEM_LINGT_CODE));
+                //取得当日发电量数据
+                CollectorMonthDayData collectorMonthDayData = CollectorMonthDayDataService.GetInstance().GetCollectorMonthDayData(tempStartDate.Year, collectorId, tempStartDate.Month);
+                float? dayEnergy = 0;
+                if (collectorMonthDayData != null)
+                {
+                    dayEnergy = (float?)ReflectionUtil.getProperty(collectorMonthDayData, "d_" + tempStartDate.Day);
+                    if (dayEnergy == null) dayEnergy = 0;
+                }
+
+                if (monthEnergyMap.ContainsKey(yyyyMM))
+                {
+                    monthEnergyMap[yyyyMM] = monthEnergyMap[yyyyMM] + dayEnergy.Value;
+                }
+                else
+                {
+                    monthEnergyMap[yyyyMM] = dayEnergy.Value;
+                }
+
+                //将今日发电量清零
+                ReflectionUtil.setProperty(collectorMonthDayData, "d_" + tempStartDate.Day, 0);
+
+                //set cache
+                mcs.Set(CacheKeyUtil.buildCollectorEnergyMonthCountKey(collectorId, tempStartDate.Year, tempStartDate.Month), collectorMonthDayData);
+            }
+
+            //将年月发电量重新计算
+            //存储年度发电量
+            IDictionary<int, float> yearEnergyMap = new Dictionary<int, float>();
+            float energy = 0;
+            CollectorYearMonthData collectorYearMonthData = null;
+            int year, month;
+            foreach (string key in monthEnergyMap.Keys)
+            {
+                year = int.Parse(key.Substring(0, 4));
+                month = int.Parse(key.Substring(4, 2));
+                energy = monthEnergyMap[key];
+                collectorYearMonthData = CollectorYearMonthDataService.GetInstance().GetCollectorYearMonthData(collectorId, year);
+                float? monthEnergy = 0;//原来发电量
+                if (collectorYearMonthData != null)
+                {
+                    monthEnergy = (float?)ReflectionUtil.getProperty(collectorYearMonthData, "m_" + month);
+                    if (monthEnergy == null) monthEnergy = 0;
+                }
+                if (yearEnergyMap.ContainsKey(year))
+                {
+                    yearEnergyMap[year] = yearEnergyMap[year] + energy;
+                }
+                else
+                {
+                    yearEnergyMap[year] = energy;
+                }
+
+                //将今日发电量减去天累计的
+                float newEnergy = monthEnergy.Value - energy;
+                ReflectionUtil.setProperty(collectorYearMonthData, "m_" + month, newEnergy < 0 ? 0 : newEnergy);
+                //set cache
+                mcs.Set(CacheKeyUtil.buildCollectorEnergyYearCountKey(collectorId, year), collectorYearMonthData);
+
+            }
+
+            //重新计算采集器年度发电量
+            CollectorYearData collectorYearData = null;
+            foreach (int key in yearEnergyMap.Keys)
+            {
+                collectorYearData = CollectorYearDataService.GetInstance().GetCollectorYearData(collectorId, key);
+                if (collectorYearData != null)
+                {
+                    float? oyearEnergy = (float?)ReflectionUtil.getProperty(collectorYearData, "dataValue");
+                    if (oyearEnergy == null) oyearEnergy = 0;
+                    //将当年发电量减去天累计的要减少的
+                    float newEnergy = oyearEnergy.Value - yearEnergyMap[key];
+                    ReflectionUtil.setProperty(collectorYearData, "dataValue", newEnergy < 0 ? 0 : newEnergy);
+                }
+                //set cache
+                mcs.Set(CacheKeyUtil.buildCollectorEnergyTotalCountKey(collectorId, key), collectorYearData);
+            }
+
+            //循环清理采集器下面设备数据
+            foreach (Device device in collector.devices)
+            {
+                //清理采集器实时数据的总发电量
+                //DeviceRunData deviceRunData = device.runData;
+                //if (deviceRunData != null)
+                //{
+                //deviceRunData.rundatastr = "";
+                //先持久化数据
+                //DeviceRunDataService.GetInstance().save(deviceRunData);
+                //再删除缓存
+                //string key = CacheKeyUtil.buildDeviceRunDataKey(device.id);
+                //mcs.Delete(key);
+                //}
+
+                //清理设备天数据,并累计要清理的月发电量
+                tempStartDate = startDate.AddDays(-1);
+                //存储月度发电量
+                IDictionary<string, float> deviceMonthEnergyMap = new Dictionary<string, float>();
+
+                while (endDate.CompareTo(tempStartDate) > 0)
+                {
+                    tempStartDate = tempStartDate.AddDays(1);
+                    string yyyyMM = CalenderUtil.formatDate(tempStartDate, "yyyyMM");
+                    //删除该采集器天历史数据
+                    DeviceDayDataService.GetInstance().Delete(new DeviceDayData() { deviceType = TableUtil.getTableNamebyDeviceType(device.deviceTypeCode), deviceID = device.id, yearmonth = yyyyMM, sendDay = tempStartDate.Day });
+
+                    if (device.deviceTypeCode == DeviceData.INVERTER_CODE)
+                    {
+                        //取得当日发电量数据
+                        DeviceMonthDayData deviceMonthDayData = DeviceMonthDayDataService.GetInstance().GetDeviceMonthDayData(tempStartDate.Year, device.id, tempStartDate.Month);
+                        float? dayEnergy = 0;
+                        if (deviceMonthDayData != null)
+                        {
+                            dayEnergy = (float?)ReflectionUtil.getProperty(deviceMonthDayData, "d_" + tempStartDate.Day);
+                            if (dayEnergy == null) dayEnergy = 0;
+                        }
+                        if (deviceMonthEnergyMap.ContainsKey(yyyyMM))
+                        {
+                            deviceMonthEnergyMap[yyyyMM] = deviceMonthEnergyMap[yyyyMM] + dayEnergy.Value;
+                        }
+                        else
+                        {
+                            deviceMonthEnergyMap[yyyyMM] = dayEnergy.Value;
+                        }
+                        //将今日发电量清零
+                        ReflectionUtil.setProperty(deviceMonthDayData, "d_" + tempStartDate.Day, 0);
+                        //set cache
+                        mcs.Set(CacheKeyUtil.buildDeviceEnergyMonthCountKey(device.id, tempStartDate.Year, tempStartDate.Month), deviceMonthDayData);
+                    }
+                }
+
+                if (device.deviceTypeCode == DeviceData.INVERTER_CODE)
+                {
+                    //将年月发电量重新计算
+                    //存储年度发电量
+                    yearEnergyMap = new Dictionary<int, float>();
+                    energy = 0;
+                    DeviceYearMonthData deviceYearMonthData = null;
+                    foreach (string key in deviceMonthEnergyMap.Keys)
+                    {
+                        year = int.Parse(key.Substring(0, 4));
+                        month = int.Parse(key.Substring(4, 2));
+                        energy = monthEnergyMap[key];
+                        deviceYearMonthData = DeviceYearMonthDataService.GetInstance().GetDeviceYearMonthData(device.id, year);
+                        float? monthEnergy = 0;//原来发电量
+                        if (deviceYearMonthData != null)
+                        {
+                            monthEnergy = (float?)ReflectionUtil.getProperty(deviceYearMonthData, "m_" + month);
+                            if (monthEnergy == null) monthEnergy = 0;
+                        }
+                        if (yearEnergyMap.ContainsKey(year))
+                        {
+                            yearEnergyMap[year] = yearEnergyMap[year] + energy;
+                        }
+                        else
+                        {
+                            yearEnergyMap[year] = energy;
+                        }
+
+                        //将今日发电量减去天累计的
+                        float newEnergy = monthEnergy.Value - energy;
+                        ReflectionUtil.setProperty(deviceYearMonthData, "m_" + month, newEnergy < 0 ? 0 : newEnergy);
+
+                        //set cache
+                        mcs.Set(CacheKeyUtil.buildDeviceEnergyYearCountKey(device.id, year), deviceYearMonthData);
+                    }
+
+                    //重新计算采集器年度发电量
+                    DeviceYearData deviceYearData = null;
+                    foreach (int key in yearEnergyMap.Keys)
+                    {
+                        deviceYearData = DeviceYearDataService.GetInstance().GetDeviceYearData(device.id, key);
+                        if (deviceYearData != null)
+                        {
+                            float? oyearEnergy = (float?)ReflectionUtil.getProperty(deviceYearData, "dataValue");
+                            if (oyearEnergy == null) oyearEnergy = 0;
+                            //将当年发电量减去天累计的要减少的
+                            float newEnergy = oyearEnergy.Value - yearEnergyMap[key];
+                            ReflectionUtil.setProperty(deviceYearData, "dataValue", newEnergy < 0 ? 0 : newEnergy);
+                        }
+                        //set cache
+                        mcs.Set(CacheKeyUtil.buildDeviceEnergyTotalCountKey(device.id, key), deviceYearData);
+                    }
+                }
+            }
+
+            //更新缓存
+            CacheService.GetInstance().flushCaches();
+            return Content("清理完成!");
+        }
     }
 }

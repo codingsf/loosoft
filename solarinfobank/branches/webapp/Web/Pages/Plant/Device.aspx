@@ -269,6 +269,12 @@
 <input type="hidden" value="area" id="chartType" />
 <input type="hidden" value="<%=CalenderUtil.getBeforeDay(CalenderUtil.curDateWithTimeZone(Model.timezone),"yyyyMMdd")%>00"
     id="startYYYYMMDDHH" />
+<!--未同步到trunk-->
+<input type="hidden" value="<%=CalenderUtil.getBeforeDay(CalenderUtil.curDateWithTimeZone(Model.timezone),"yyyyMMdd")%>00"
+    id="startYYYYMMDDHHbefore" />    
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>23"
+    id="endYYYYMMDDHHbefore" />   
+<!--未同步到trunk end-->   
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>23"
     id="endYYYYMMDDHH" />
 <input type="hidden" value="<%=CalenderUtil.getBeforeDay(CalenderUtil.curDateWithTimeZone(Model.timezone),"yyyyMMdd")%>00"

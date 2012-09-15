@@ -1,5 +1,7 @@
 ﻿
 using System.Globalization;
+using System.Text;
+using System;
 namespace Cn.Loosoft.Zhisou.SunPower.Common
 {
     /// <summary>
@@ -117,6 +119,38 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             ci.NumberFormat.CurrencyDecimalSeparator = ".";
             //NumberStyles style = NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands | NumberStyles.Float;
             return double.Parse(d, NumberStyles.Any, ci);
+        }
+
+
+        /// <summary>
+        /// 将十进制数值，转换为二进制字符串并前面用0补齐到指定位数
+        /// add by qhb in 20120825
+        /// </summary>
+        /// <param name="num10"></param>
+        /// <param name="fullbits"></param>
+        /// <returns></returns>
+        public static string getFullbitstr(int num10, int fullbits)
+        {
+            string inputstr = Convert.ToString(num10, 2);
+            int bits = inputstr.Length;
+            return getStr(16 - bits) + inputstr;
+        }
+
+
+        /// <summary>
+        /// 按照传入的位数取得相应位数的0组成的字符串
+        /// add by qhb in 20120825 fro 新汇流箱处理
+        /// </summary>
+        /// <param name="bits"></param>
+        /// <returns></returns>
+        private static string getStr(int bits)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < bits; i++)
+            {
+                sb.Append("0");
+            }
+            return sb.ToString();
         }
     }
 }

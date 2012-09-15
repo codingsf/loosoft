@@ -20,6 +20,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         static IDictionary<string, IList<int>> sortGroup = new Dictionary<string, IList<int>>();
 
         private static IList<int> notDisplayMonitor = new List<int>();//不用显示出来的测点
+        private static IList<int> affixMonitors = new List<int>();//增加临时后缀的测点
       
         static DeviceRunData()
         {
@@ -43,17 +44,79 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             notDisplayMonitor.Add(MonitorType.MIC_INVERTER_STATUSDATA3);
             notDisplayMonitor.Add(MonitorType.MIC_INVERTER_DV3);
             notDisplayMonitor.Add(MonitorType.MIC_INVERTER_DC3);
-            notDisplayMonitor.Add(MonitorType.MIC_INVERTER_TOTALWGPOWER);
-            
+            //add by qhb in 20120914 for 6、	A、B、C三项有功功率不显示 未同步到trunk
+            notDisplayMonitor.Add(MonitorType.MIC_INVERTER_ADIRECTPOWER);
+            notDisplayMonitor.Add(MonitorType.MIC_INVERTER_BDIRECTPOWER);
+            notDisplayMonitor.Add(MonitorType.MIC_INVERTER_CDIRECTPOWER);
+            //notDisplayMonitor.Add(MonitorType.MIC_INVERTER_TOTALWGPOWER);
+            notDisplayMonitor.Add(MonitorType.MIC_INVERTER_DKQTEMPRATURE);
+            notDisplayMonitor.Add(MonitorType.MIC_INVERTER_OUTTYPE);
+            //add by qhb in 20120825 for 增加汇流箱子的不显示测点,要进行特殊处理后单独显示
+            notDisplayMonitor.Add(MonitorType.MIC_BUSBAR_DIGITALINPUT);
+            notDisplayMonitor.Add(MonitorType.MIC_BUSBAR_STATUS);
+            notDisplayMonitor.Add(MonitorType.MIC_BUSBAR_DUANLUDATA);
+            notDisplayMonitor.Add(MonitorType.MIC_BUSBAR_DLGGDATA);
+            notDisplayMonitor.Add(MonitorType.MIC_BUSBAR_DLGDDATA);
+            notDisplayMonitor.Add(MonitorType.MIC_BUSBAR_KAILUDATA);
+            //add by qhb in 20120825 for 增加汇流箱子的不显示测点
+
             notDisplayMonitor.Add(MonitorType.MIC_DETECTOR_SOI);
+
+            //add by qhb in 20120914 for 增加临时后缀的测点 以便显示实时数据是给测点赋临时后缀，用于显示多语言
+            //初始化A项电压	B项电压	C项电压  A项电流	B项电流	C项电流的临时测点后缀
+            //A相电流
+            affixMonitors.Add(MonitorType.MIC_INVERTER_ADIRECTCURRENT);
+            //B相电流
+            affixMonitors.Add(MonitorType.MIC_INVERTER_BDIRECTCURRENT);
+            //C相电流
+            affixMonitors.Add(MonitorType.MIC_INVERTER_CDIRECTCURRENT);
+            //A相电压
+            affixMonitors.Add(MonitorType.MIC_INVERTER_ADIRECTVOLT);
+            //B相电压
+            affixMonitors.Add(MonitorType.MIC_INVERTER_BDIRECTVOLT);
+            //C相电压
+            affixMonitors.Add(MonitorType.MIC_INVERTER_CDIRECTVOLT);
         }
-        //根据输出类型判断是否要显示A、B、c项电压是否显示
+
+        /// <summary>
+        /// 根据输出类型判断是否要显示A、B、C项电压是否显示
+        /// 如果输出类型的值为0	电网电压	不显示	不显示
+        /// 同时设置器临时代码后缀，用于去该测点不同的资源key
+        /// </summary>
+        /// <param name="outtype"></param>
+        /// <returns></returns>
         private static IList<int> getnotDisplayMonitor(float outtype)
         {
             IList<int> notDisplayMonitor = new List<int>();//不用显示出来的测点
             if (float.IsNaN(outtype)) return notDisplayMonitor;
+
+            //默认
             if(outtype == 0){
+                notDisplayMonitor.Add(MonitorType.MIC_INVERTER_BDIRECTVOLT);
                 notDisplayMonitor.Add(MonitorType.MIC_INVERTER_CDIRECTVOLT);
+                notDisplayMonitor.Add(MonitorType.MIC_INVERTER_BDIRECTCURRENT);
+                notDisplayMonitor.Add(MonitorType.MIC_INVERTER_CDIRECTCURRENT);
+            }
+
+            return notDisplayMonitor;
+        }
+
+        /// <summary>
+        /// 根据额定功率判断要不显示的测点
+        /// add by qhb in 20120914 for 
+        /// 3）	直流电压2和直流电流2 仅SG10KTL~SG30KTL之间显示，其他不显示
+        /// 直流电压2和直流电流2仅仅没有额定输出功率时显示，有额定功率是只有在10kw-30kw之间才显示
+        /// </summary>
+        /// <param name="power"></param>
+        /// <returns></returns>
+        private static IList<int> getnotDisplayMonitorByPower(float power)
+        {
+            IList<int> notDisplayMonitor = new List<int>();//不用显示出来的测点
+            if (float.IsNaN(power)) return notDisplayMonitor;
+            if (power <10 || power>30)//这个范围之外时不显示直流电压2和直流电流2
+            {
+                notDisplayMonitor.Add(MonitorType.MIC_INVERTER_DV2);
+                notDisplayMonitor.Add(MonitorType.MIC_INVERTER_DC2);
             }
             return notDisplayMonitor;
         }
@@ -138,25 +201,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 _changed = value;
             }
         }
+
         /// <summary>
-        /// 将实时数据串转换成键值对象
+        /// 取得汇流箱传感器路数
         /// </summary>
-        /// <param name="deviceRunData">实时数据对象</param>
-        /// <returns>值对列表</returns>
-        public IList<IList<KeyValuePair<MonitorType, string>>> convertRunstrToList(bool isOorder)
+        /// <param name="rundatas"></param>
+        /// <returns></returns>
+        public int getHlxroute(string[] rundatas)
         {
-            IList<IList<KeyValuePair<MonitorType, string>>> resList = new List<IList<KeyValuePair<MonitorType, string>>>();
-            IList<KeyValuePair<MonitorType, string>> resGroup1 = new List<KeyValuePair<MonitorType, string>>();
-            IList<KeyValuePair<MonitorType, string>> resGroup2 = new List<KeyValuePair<MonitorType, string>>();
-            IList<KeyValuePair<MonitorType, string>> resGroup3 = new List<KeyValuePair<MonitorType, string>>();
-            IList<KeyValuePair<MonitorType, string>> resGroup4 = new List<KeyValuePair<MonitorType, string>>();
-            IList<KeyValuePair<MonitorType, string>> resGroup5 = new List<KeyValuePair<MonitorType, string>>();
-            //先取得逆变器的输出类型
-            float outtype = this.getMonitorValue(MonitorType.MIC_INVERTER_OUTTYPE);
-            string rundatastr = this.rundatastr;
-            string[] rundatas = rundatastr.Split('#');
             string[] datas = null;
-            //先取得传感器接入路数，以决定显示多少路汇流箱路数
             int displayHxlroute = 0;
             foreach (string data in rundatas)
             {
@@ -167,30 +220,91 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 //判断是否接入路数测点
                 if (monitorCode == MonitorType.MIC_BUSBAR_MAXLINE)
                 {
-                    try{
+                    try
+                    {
                         int value = int.Parse(datas[1]);
                         displayHxlroute = DeviceData.HUILIUXIANG_CODE * 100 + value;
-                    }catch(Exception e){
+                    }
+                    catch (Exception e)
+                    {
 
                         break;
                     }
                     break;
                 }
             }
+            return displayHxlroute;
+        }
 
+        /// <summary>
+        /// 将实时数据串转换成键值对象
+        /// </summary>
+        /// <param name="deviceRunData">实时数据对象</param>
+        /// <returns>值对列表</returns>
+        public IList<IList<KeyValuePair<MonitorType, string>>> convertRunstrToList(bool isOorder, int deviceTypeCode)
+        {
+            IList<IList<KeyValuePair<MonitorType, string>>> resList = new List<IList<KeyValuePair<MonitorType, string>>>();
+            IList<KeyValuePair<MonitorType, string>> resGroup1 = new List<KeyValuePair<MonitorType, string>>();
+            IList<KeyValuePair<MonitorType, string>> resGroup2 = new List<KeyValuePair<MonitorType, string>>();
+            IList<KeyValuePair<MonitorType, string>> resGroup3 = new List<KeyValuePair<MonitorType, string>>();
+            IList<KeyValuePair<MonitorType, string>> resGroup4 = new List<KeyValuePair<MonitorType, string>>();
+            IList<KeyValuePair<MonitorType, string>> resGroup5 = new List<KeyValuePair<MonitorType, string>>();
+            //先取得逆变器的输出类型
+
+            string rundatastr = this.rundatastr;
+            string[] rundatas = rundatastr.Split('#');
+
+            //先取得传感器接入路数，以决定显示多少路汇流箱路数
+            int displayHxlroute = 0;
+            if(deviceTypeCode==DeviceData.HUILIUXIANG_CODE){
+                getHlxroute(rundatas);
+            }
+
+            //如果是逆变器那么先取额定功率
+            float outtype = 0;
+            IList<int> notdisplayInverterbyPower = new List<int>();
+            IList<int> notdisplayInverterbyoutType = new List<int>();
+            if (deviceTypeCode == DeviceData.INVERTER_CODE)
+            {
+                outtype = this.getMonitorValue(MonitorType.MIC_INVERTER_OUTTYPE);
+                notdisplayInverterbyoutType = getnotDisplayMonitor(outtype);
+                float power = this.getMonitorValue(MonitorType.MIC_INVERTER_POWER);
+                notdisplayInverterbyPower = getnotDisplayMonitorByPower(power);
+            }
+
+            string[] datas = null;
             foreach (string data in rundatas)
             {
                 datas = data.Split(':');
                 int monitorCode = int.Parse(datas[0]);
-                MonitorType mt = MonitorType.getMonitorTypeByCode(monitorCode);
-                if (mt == null) continue;
-                //排除不显示的测点
-                if (notDisplayMonitor.Contains(mt.code) || getnotDisplayMonitor(outtype).Contains(mt.code)) continue;
-                //如果是汇流箱非显示路数则跳过
-                if (displayHxlroute > 0 && monitorCode > displayHxlroute && monitorCode<=MonitorType.MIC_BUSBAR_16CURRENT)
-                {
-                    continue;
+                MonitorType omt = MonitorType.getMonitorTypeByCode(monitorCode);
+                if (omt == null) continue;
+
+                //如果该测点不属于此设备则也不显示，add by qhb in 20120913
+                if (!MonitorType.getMonitorTypesByTypeCode(deviceTypeCode).Contains(omt)) continue;
+
+                //重新构造一个实例，以便用tempaffix多语言显示后缀是线程安全
+                string tempaffix = omt.tempaffix;
+                //如果是逆变器要判断abc三项电压和电流的输出类型,将输出类型作为有后缀测点的后缀
+                if (deviceTypeCode == DeviceData.INVERTER_CODE){
+                    if (affixMonitors.Contains(monitorCode) && !float.IsNaN(outtype) && (outtype==0 || outtype==2))
+                        tempaffix = outtype.ToString();
                 }
+
+                MonitorType mt = new MonitorType(omt.code, omt.unit, omt.zerotoline, tempaffix);
+
+                //排除不显示的测点
+                if (notDisplayMonitor.Contains(mt.code) || notdisplayInverterbyoutType.Contains(mt.code) || notdisplayInverterbyPower.Contains(mt.code)) continue;
+
+                //如果是汇流箱非显示路数则跳过
+                if (deviceTypeCode == DeviceData.HUILIUXIANG_CODE)
+                {
+                    if (displayHxlroute > 0 && monitorCode > displayHxlroute && monitorCode <= MonitorType.MIC_BUSBAR_16CURRENT)
+                    {
+                        continue;
+                    }
+                }
+
                 string value = datas[1];
                 //如果值为-表示该值无效，不显示该测点，“-”，数据解析器会把发送的无效值固定设为“-”
                 if ("-".Equals(value)) continue;
@@ -245,9 +359,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// 转换为列表但不排序
         /// </summary>
         /// <returns></returns>
-        public IList<KeyValuePair<MonitorType, string>> convertRunstrToList()
+        public IList<KeyValuePair<MonitorType, string>> convertRunstrToList(int devcieTypeCode)
         {
-            return convertRunstrToList(true)[0];
+            return convertRunstrToList(true, devcieTypeCode)[0];
         }
 
         /// <summary>
@@ -267,6 +381,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 }
                 else
                 {
+                    //工作状态先从故障码map中解析对应值
                     try
                     {
                         int code = int.Parse(value);
@@ -373,7 +488,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             string rundatastr = this.rundatastr;
             string[] rundatas = rundatastr.Split('#');
             string[] datas = null;
-
             if (DateTime.Now.AddDays(-1) > updateTime)
                 return true;
 
@@ -400,11 +514,67 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                     ErrorItem errorItem = ErrorItem.getErrotItemByCode(sts);
                     if (errorItem != null && (errorItem.errorType == ErrorType.ERROR_TYPE_ERROR || errorItem.errorType == ErrorType.ERROR_TYPE_FAULT))
                         return true;
-                    return false;
+                }
+                //add by qhn in 20120828 增加 
+                //周辉 14:21:33 
+                //过80度要告警的，红色
+                //工作状态和数字输入老钱 14:25:13 这样只要有一个红灯 就名字红色？
+                if (int.Parse(datas[0]) == MonitorType.MIC_BUSBAR_JNTEMPRATURE){
+                    float value = float.Parse(datas[1]);
+                    if (value > 80) return true;
+                }
+                //判断数字输入
+                if (int.Parse(datas[0]) == MonitorType.MIC_BUSBAR_DIGITALINPUT||int.Parse(datas[0]) == MonitorType.MIC_BUSBAR_STATUS) {
+                    bool fault = adjustDetail(int.Parse(datas[0]), datas[1]);
+                    if (fault) return fault;
                 }
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// add  by qhb in 20120827 for 增加告警判断
+        /// 
+        /// </summary>
+        /// <param name="monitorCode"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private bool adjustDetail(int monitorCode,string value){
+            if (monitorCode == MonitorType.MIC_BUSBAR_STATUS){
+                value = StringUtil.getFullbitstr(int.Parse(value), 32);
+            }else{
+                value = StringUtil.getFullbitstr(int.Parse(value), 16);
+            }
+            char[] desArray = new char[value.Length];
+            value.CopyTo(0,desArray,0,value.Length);
+            //一次取得相应bit位的值
+            string bitkey = null;
+            int bitvalue = 0;
+            string bititem;
+            bool status = true;//状态
+            int n = 0;
+            for (int i = desArray.Length - 1; i >= 0; i--)
+            {
+                n++;
+                bitkey = monitorCode.ToString() + n;
+                //判断该bit位定义是否存在
+                if (MonitorType.bitStatusMap.ContainsKey(bitkey))
+                {
+                    //取得该bit位对应值
+                    bitvalue = int.Parse(desArray[i].ToString());
+                    bititem = MonitorType.bitStatusMap[bitkey];
+                    if (bititem.Equals(MonitorType.digital_input_item_flq) || bititem.Equals(MonitorType.work_status_item_run))
+                    {
+                        status = bitvalue == 0 ? true : false;
+                    }
+                    else
+                        status = bitvalue == 0 ? false : true;
+
+                    if (status == true) return status;
+                }
+            }
+            return status;
         }
     }
 }

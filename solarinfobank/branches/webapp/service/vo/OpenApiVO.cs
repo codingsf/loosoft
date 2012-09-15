@@ -230,5 +230,28 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service.vo
         public string treeNum { get; set; } //等效树木棵数
     }
 
+    //add by qhb in 20120831 电站时区vo
+    [DataContract(Namespace = " http://www.solarinfobank.com ")]
+    public class PlantTimezoneVo
+    {
+        [DataMember(Order = 0)]
+        public string plantId { get; set; }    //电站id
+        [DataMember(Order = 1)]
+        public string plantName { get; set; }  //电站名称
+        [DataMember(Order = 2)]
+        public string timezoneCode { get; set; }   //时区
+        [DataMember(Order = 3)]
+        public string timezoneName { get; set; }   //时区名称
+    }
+
+    /// <summary>
+    /// add by qhb in 20120831 for 分页时区vo
+    /// </summary>
+    public class PlantTimezonePageVo
+    {
+        public int totalpagecount { get; set; }
+        public IList<PlantTimezoneVo> timezones { get; set; }
+
+    }
 
 }

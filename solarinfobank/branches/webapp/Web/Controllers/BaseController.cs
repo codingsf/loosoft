@@ -9,6 +9,7 @@ using System.Threading;
 using System.Globalization;
 using System;
 using System.Linq;
+using System.Text;
 namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 {
 
@@ -386,5 +387,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             return jsstr;
         }
+
+
     }
 }

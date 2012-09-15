@@ -739,7 +739,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 vo.workStatus = device.status;
                 vo.lastUpdateTime = CalenderUtil.formatDate(device.runData.updateTime, "yyyy-MM-dd HH:mm:ss");
                 vo.hasChart = (device.deviceTypeCode == DeviceData.INVERTER_CODE || device.deviceTypeCode == DeviceData.ENVRIOMENTMONITOR_CODE || device.deviceTypeCode == DeviceData.HUILIUXIANG_CODE || device.deviceTypeCode == DeviceData.AMMETER_CODE || device.deviceTypeCode == DeviceData.CABINET_CODE) ? "true" : "false";
-                vo.datas = convertToSPlantVOs(device.runData.convertRunstrToList(true));
+                vo.datas = convertToSPlantVOs(device.runData.convertRunstrToList(true, device.deviceTypeCode));
                 data = JsonUtil.convertToJson(vo, typeof(DeviceInfoVO));
             }
             return Content(data);

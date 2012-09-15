@@ -5456,4 +5456,164 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
   <data name="NOTICE_ADDED_DEVICE" xml:space="preserve">
     <value>Bitte fügen Sie ein Gerät</value>
   </data>
+  <data name="DEVICEMONITORITEM_141" xml:space="preserve">
+    <value>Fehler Zustand</value>
+    <comment>故障状态</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_142" xml:space="preserve">
+    <value>Fehler Zustand 2</value>
+    <comment>故障状态2</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_143" xml:space="preserve">
+    <value>Reaktortemperatur</value>
+    <comment>电抗器温度</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_144" xml:space="preserve">
+    <value>Modultemperatur 1</value>
+    <comment>模块温度1</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_145" xml:space="preserve">
+    <value>Modultemperatur 2</value>
+    <comment>模块温度2</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_146" xml:space="preserve">
+    <value>Modultemperatur 3</value>
+    <comment>模块温度3</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_147" xml:space="preserve">
+    <value>Modultemperatur4</value>
+    <comment>模块温度4</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_148" xml:space="preserve">
+    <value>Modultemperatur 5</value>
+    <comment>模块温度5</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_149" xml:space="preserve">
+    <value>Modultemperatur 6</value>
+    <comment>模块温度6</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_150" xml:space="preserve">
+    <value>Umgebungstemperatur 1</value>
+    <comment>环境温度1</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_151" xml:space="preserve">
+    <value>Umgebungstemperatur 2</value>
+    <comment>环境温度2</comment>
+  </data>
+  <data name="workstatusdlgd" xml:space="preserve">
+    <value>Aktuelle Daten sind zu niedrig</value>
+    <comment>电流过低</comment>
+  </data>
+  <data name="workstatusdlgd0" xml:space="preserve">
+    <value>Normal</value>
+    <comment>正常</comment>
+  </data>
+  <data name="workstatusdlgd1" xml:space="preserve">
+    <value>Fehler</value>
+    <comment>故障</comment>
+  </data>
+  <data name="workstatusdlgg" xml:space="preserve">
+    <value>Aktuelle Daten sind zu hoch</value>
+    <comment>电流过高</comment>
+  </data>
+  <data name="workstatusdlgg0" xml:space="preserve">
+    <value>Normal</value>
+    <comment>正常</comment>
+  </data>
+  <data name="workstatusdlgg1" xml:space="preserve">
+    <value>Fehler</value>
+    <comment>故障</comment>
+  </data>
+  <data name="workstatusduanlu" xml:space="preserve">
+    <value>短路</value>
+    <comment>短路</comment>
+  </data>
+  <data name="workstatusduanlu0" xml:space="preserve">
+    <value>Normal</value>
+    <comment>正常</comment>
+  </data>
+  <data name="workstatusduanlu1" xml:space="preserve">
+    <value>Fehler</value>
+    <comment>故障</comment>
+  </data>
+  <data name="workstatusflq0" xml:space="preserve">
+    <value>防雷器正常</value>
+    <comment>正常</comment>
+  </data>
+  <data name="workstatusflq1" xml:space="preserve">
+    <value>防雷器 Fehler</value>
+    <comment>故障</comment>
+  </data>
+  <data name="workstatusjnwd0" xml:space="preserve">
+    <value>机内温度正常</value>
+    <comment>正常</comment>
+  </data>
+  <data name="workstatusjnwd1" xml:space="preserve">
+    <value>机内温度过高</value>
+    <comment>故障</comment>
+  </data>
+  <data name="workstatuskailu" xml:space="preserve">
+    <value>开路</value>
+    <comment>开路</comment>
+  </data>
+  <data name="workstatuskailu0" xml:space="preserve">
+    <value>Normal</value>
+    <comment>正常</comment>
+  </data>
+  <data name="workstatuskailu1" xml:space="preserve">
+    <value>Fehler</value>
+    <comment>故障</comment>
+  </data>
+  <data name="workstatusrun0" xml:space="preserve">
+    <value>未运行</value>
+    <comment>未运行</comment>
+  </data>
+  <data name="workstatusrun1" xml:space="preserve">
+    <value>运行</value>
+    <comment>运行</comment>
+  </data>
+  <data name="workstatusstop0" xml:space="preserve">
+    <value>未停止</value>
+    <comment>未停止</comment>
+  </data>
+  <data name="workstatusstop1" xml:space="preserve">
+    <value>停止</value>
+    <comment>停止</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_513" xml:space="preserve">
+    <value>total Increment Insolation</value>
+    <comment>总辐射量</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_116_0" xml:space="preserve">
+    <value>Netzstrom</value>
+    <comment>A相电压-当输出类型为0时叫电网电压</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_116_2" xml:space="preserve">
+    <value>Spannung Phase AB</value>
+    <comment>A相电压-当输出类型为2时叫AB线电压</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_117_2" xml:space="preserve">
+    <value>Spannung Phase BC</value>
+    <comment>B相电压-当输出类型为2时叫BC线电压</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_118_2" xml:space="preserve">
+    <value>Spannung Phase CA</value>
+    <comment>C相电压-当输出类型为2时叫CA线电压</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_119_0" xml:space="preserve">
+    <value>Netzspannung</value>
+    <comment>A相电流-当输出类型为0时叫电网电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_119_2" xml:space="preserve">
+    <value>Strom Phase AB</value>
+    <comment>A相电流-当输出类型为2时叫AB线电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_120_2" xml:space="preserve">
+    <value>Strom Phase BC</value>
+    <comment>B相电流-当输出类型为2时叫BC线电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_121_2" xml:space="preserve">
+    <value>Strom Phase CA</value>
+    <comment>C相电流-当输出类型为2时叫CA线电流</comment>
+  </data>
 </root>

@@ -532,4 +532,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service.vo
         [DataMember(Order = 4)]
         public string isEmpty { get; set; }//是否空行
     }
+
+
 }

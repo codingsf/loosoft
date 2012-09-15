@@ -19,10 +19,12 @@
             $('#TotalChart').click(displayyearChart);
             $('#DayChart').click(displayDayChart);
             $('#DaykWpChart').click(displayDaykWpChart);
-            //
+            //Î´Í¬²½µ½trunk
             $("#startYYYYMMDDHH").val($("#startYYYYMMDDHHbefore").val());
+            $("#endYYYYMMDDHH").val($("#endYYYYMMDDHHbefore").val());  
             displayDayChart();
         });
+        
         function changeALT() {
             var ImageButtonLeft = document.getElementById("left");
             var ImageButtonRight = document.getElementById("right");

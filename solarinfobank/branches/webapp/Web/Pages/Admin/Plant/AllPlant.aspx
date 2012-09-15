@@ -265,13 +265,12 @@
                                                 new SelectListItem { Text = "南极洲", Value = "南极洲"}
                                                 }, new { onchange = "getcountries()" })%>
                                                 
-                                                
                     </td>
                     <td width="5%" height="40">
                         国家
                     </td>
                     <td width="10%" id="country_ctl">
-                        <%=Html.DropDownList("country",ViewData["countries"] as IList<SelectListItem>) %>
+                        <%=Html.DropDownList("country",ViewData["countries"] as IList<SelectListItem>,new { style="width:180px"})  %>
                     </td>
                     <td width="5%" align="center">
                         城市
@@ -299,10 +298,9 @@
                     <td width="25%">
                         <input id="design_power_end" type="text" class="txtbu01" style="width: 60px;" />
                     </td>
-                    <td width="14%" rowspan="2" align="center" valign="bottom" style="padding-bottom: 5px;">
-                        <input name="Submit" id="checking" type="button" class="subbu01" value="查询" onclick="changePage(1);" />
-                    </td>
                 </tr>
+            </table>
+            <table width="100%" height="40" border="0" cellpadding="0" cellspacing="0">                
                 <tr>
                     <td valign="top" style="padding-top: 10px;">
                         <p>
@@ -342,6 +340,9 @@
                                 </td>
                             </tr>
                         </table>
+                    </td>
+                    <td width="14%" rowspan="2" align="center" valign="bottom" style="padding-bottom: 5px;">
+                        <input name="Submit" id="checking" type="button" class="subbu01" value="查询" onclick="changePage(1);" />
                     </td>
                 </tr>
             </table>

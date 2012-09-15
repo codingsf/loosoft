@@ -136,7 +136,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             statusMonitorList.Add(MonitorType.MIC_INVERTER_OUTTYPE);
             statusMonitorList.Add(MonitorType.MIC_BUSBAR_COMMUNICATION);
             statusMonitorList.Add(MonitorType.MIC_INVERTER_DEVICESTATUS);
-            statusMonitorList.Add(MonitorType.MIC_BUSBAR_STATUS);
+            //statusMonitorList.Add(MonitorType.MIC_BUSBAR_STATUS); 汇流箱需要另外处理
 
             //将有状态的测点对应的测点列表加入map
             //逆变器输出类型测点

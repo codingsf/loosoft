@@ -172,6 +172,7 @@
     <Compile Include="MailConfigService.cs" />
     <Compile Include="IntervalFaultService.cs" />
     <Compile Include="LoginRecordService.cs" />
+    <Compile Include="vo\DigitalInputDetailVO.cs" />
     <Compile Include="vo\OpenApiVO.cs" />
     <Compile Include="CacheService.cs" />
     <Compile Include="AdminControllerActionServices.cs" />

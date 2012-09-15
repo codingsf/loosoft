@@ -59,6 +59,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         {
             return _powerDayDataDao.Get(dayData);
         }
+
+        /// <summary>
+        /// 删除天数据，按照id 
+        /// add by qhb in 20120828 
+        /// </summary>
+        /// <param name="dayData"></param>
+        /// <returns></returns>
+        public bool Delete(CollectorDayData dayData)
+        {
+            return _powerDayDataDao.Remove(dayData) > 0 ? true : false;
+        }
+
         /// <summary>
         /// 仅仅支持跨月度的天直接的测点数据，不能跨多个月度
         /// </summary>

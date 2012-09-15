@@ -12,6 +12,9 @@
     <script type="text/javascript">
         $(document).ready(function() {
             displayDayChart();
+            //Î´Í¬²½µ½trunk
+            $("#startYYYYMMDDHH").val($("#startYYYYMMDDHHbefore").val());
+            $("#endYYYYMMDDHH").val($("#endYYYYMMDDHHbefore").val());            
             changeALT();
         });
         function changeALT() {

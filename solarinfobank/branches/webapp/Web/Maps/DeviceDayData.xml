@@ -31,6 +31,11 @@
         SELECT LAST_INSERT_ID() AS id
       </selectKey>
     </insert>
+
+    <!-- 根据id删除设备天数据 add by qhb in 20120825 -->
+    <delete id="devicedaydata_delete" parameterClass="DeviceDayData">
+      DELETE FROM $deviceType$_day_data_$yearmonth$ WHERE  deviceID=#deviceID# and sendDay=#sendDay#
+    </delete>
     
     <!-- 更新一条记录，改成时间面存储数据后只插不更新，废弃-->
     <update id="devicedaydata_update" paramsClass="DeviceDayData">

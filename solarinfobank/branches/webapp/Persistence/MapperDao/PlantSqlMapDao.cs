@@ -52,14 +52,16 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
         {
             return ExecuteUpdate<Plant>("plant_update_pic", plant);
         }
-
+        /// <summary>
+        /// 分页查询电站
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
         public IList<Plant> GetPlantsByPage(Pager page)
         {
             page.RecordCount = (int)ExecuteQueryForObject("loading_plant_page_count", page);
             return ExecuteQueryForList<Plant>("loading_plant_page_list", page);
         }
-
-
 
         #region IPlantDao 成员
 
@@ -77,6 +79,16 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
         public IList<Plant> Getplantlikepname(string name)
         {
             return ExecuteQueryForList<Plant>("plant_get_list_like_pname", name);
+        }
+
+        /// <summary>
+        /// 按照名称取得电站
+        /// add by qhb in 20120831 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public Plant Getplantbyname(string name) {
+            return ExecuteQueryForObject<Plant>("plant_get_by_name", name);
         }
 
         public int UpdataWarningLastSendTime(int pid, DateTime updateTime)

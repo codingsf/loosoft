@@ -5,6 +5,7 @@ using Cn.Loosoft.Zhisou.SunPower.Service;
 using Cn.Loosoft.Zhisou.SunPower.Domain;
 using System.Collections;
 using Cn.Loosoft.Zhisou.SunPower.Common;
+using Cn.Loosoft.Zhisou.SunPower.Service.vo;
 
 namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 {
@@ -23,14 +24,129 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         public ActionResult RunData(int id)
         {
             Device device = DeviceService.GetInstance().get(id);
-            IList<IList<KeyValuePair<MonitorType, string>>> rundatas = device.runData.convertRunstrToList(true);
+            IList<IList<KeyValuePair<MonitorType, string>>> rundatas = device.runData.convertRunstrToList(true, device.deviceTypeCode);
 
             ViewData["rundatas"] = rundatas;
             ViewData["device"] = device;
             PlantUnit plantUnit = PlantUnitService.GetInstance().GetPlantUnitByCollectorId(device.collectorID);
             Plant plant = PlantService.GetInstance().GetPlantInfoById(plantUnit.plantID);
             ViewData["plant"] = plant;
+
+            //add by qhb in 20120825 for显示测点详细
+            int displayHxlroute = 0;
+            try
+            {
+                displayHxlroute = int.Parse(device.getMonitorValue(MonitorType.MIC_BUSBAR_MAXLINE).ToString());
+            }catch(Exception  e){
+                displayHxlroute = 0;
+            }
+            if (displayHxlroute == 0) displayHxlroute = 16;//如果未传路数则默认用16路
+            ViewData["displayHxlroute"] = displayHxlroute;
+            ViewData["digitalinputdetail"] = getDetails(device, MonitorType.MIC_BUSBAR_DIGITALINPUT, displayHxlroute);
+            ViewData["workstatusdetail"] = getDetails(device, MonitorType.MIC_BUSBAR_STATUS, displayHxlroute);
+            
             return View();
+        }
+
+        /// <summary>
+        /// 取得汇流箱设备某个测点的详细数据，目前主要是数字输入和工作状态
+        /// add by qhb in 20120825 for 显示测点的详细信息
+        /// </summary>
+        /// <param name="device"></param>
+        /// <param name="monitorCode"></param>
+        /// <returns></returns>
+        private IList<DigitalInputDetailVO> getDetails(Device device, int monitorCode,int displayHxlroute)
+        {
+            IList<DigitalInputDetailVO> details = new List<DigitalInputDetailVO>();
+            //如果有数字输入测点，则返回相应的符合显示要求的数据结构
+            if (device.runData != null && device.runData.hasMonitor(monitorCode))
+            {
+                //数字输入值
+                string value = device.runData.getMonitorValueWithStatus(monitorCode);
+                if (monitorCode == MonitorType.MIC_BUSBAR_STATUS){
+                    value = StringUtil.getFullbitstr(int.Parse(value), 32);
+                }else{
+                    value = StringUtil.getFullbitstr(int.Parse(value), 16);
+                }
+                char[] desArray = new char[value.Length];
+                value.CopyTo(0,desArray,0,value.Length);
+                //一次取得相应bit位的值
+                string bitkey = null;
+                int bitvalue = 0;
+                string bitdesc;//bit位多语言描述
+                string bitvaluedesc = "";//bit位值代表的状态码描述，从资源库中取得
+                string bititem;
+                string status;//状态
+                DigitalInputDetailVO digitalInputDetailVO = null;
+                int n = 0;
+                for (int i = desArray.Length-1; i >=0; i--)
+                {
+                    n++;
+                    bitkey = monitorCode.ToString() + n;
+                    //判断该bit位定义是否存在
+                    if (MonitorType.bitStatusMap.ContainsKey(bitkey)) {
+                        //取得该bit位对应值
+                        bitvalue = int.Parse(desArray[i].ToString());
+                        bititem = MonitorType.bitStatusMap[bitkey];
+                        bitdesc = LanguageUtil.getDesc(bititem);
+                        bitvaluedesc = LanguageUtil.getDesc(bititem + bitvalue);
+                        if (bititem.Equals(MonitorType.digital_input_item_flq) || bititem.Equals(MonitorType.work_status_item_run)) { 
+                            status = bitvalue==0?DigitalInputDetailVO.status_off:DigitalInputDetailVO.status_no;
+                        }else
+                            status = bitvalue == 0 ? DigitalInputDetailVO.status_no : DigitalInputDetailVO.status_off;
+
+                        digitalInputDetailVO = new DigitalInputDetailVO(status, bitdesc, bitvaluedesc);
+                        if (monitorCode == MonitorType.MIC_BUSBAR_STATUS)
+                        {
+                            //取得状态项目对应的各路状态
+                            int mcode = 0;
+                            if(bititem.Equals(MonitorType.work_status_item_duanlu)){
+                                mcode = MonitorType.MIC_BUSBAR_DUANLUDATA;
+                            }
+                            else if (bititem.Equals(MonitorType.work_status_item_dlgg))
+                            {
+                                mcode = MonitorType.MIC_BUSBAR_DLGGDATA;
+                            }
+                            else if (bititem.Equals(MonitorType.work_status_item_dlgd))
+                            {
+                                mcode = MonitorType.MIC_BUSBAR_DLGDDATA;
+                            }
+                            else if (bititem.Equals(MonitorType.work_status_item_kailu))
+                            {
+                                mcode = MonitorType.MIC_BUSBAR_KAILUDATA;
+                            }
+                            if (mcode > 0)
+                            {
+                                string routestatusvalue = device.runData.getMonitorValueWithStatus(mcode);
+                                routestatusvalue = StringUtil.getFullbitstr(int.Parse(routestatusvalue), 32);
+                                char[] routeArray = new char[routestatusvalue.Length];
+                                routestatusvalue.CopyTo(0, routeArray, 0, routestatusvalue.Length);
+                                int m = 0;
+                                //先取得传感器接入路数，以决定显示多少路汇流箱路数
+
+                                string[] routeStringArray = new string[displayHxlroute];
+                                for (int k = routeArray.Length - 1; k >= 0; k--)
+                                {
+                                    //取得该bit位对应值
+                                    int tmpbitvalue = int.Parse(routeArray[k].ToString());
+                                    if (m < displayHxlroute)
+                                    {
+                                        routeStringArray[m] = (status.Equals(DigitalInputDetailVO.status_off) && tmpbitvalue == 1) ? DigitalInputDetailVO.status_off : DigitalInputDetailVO.status_no;
+                                    }
+
+                                    m++;
+                                }
+                                digitalInputDetailVO.routeStatus = routeStringArray;
+                            }
+                            else {
+                                digitalInputDetailVO.statusItem = digitalInputDetailVO.statusDesc;
+                            }
+                        }
+                        details.Add(digitalInputDetailVO);
+                    }
+                }
+            }
+            return details;
         }
 
         public ActionResult Log()

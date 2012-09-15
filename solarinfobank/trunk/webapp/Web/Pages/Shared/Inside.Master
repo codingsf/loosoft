@@ -374,7 +374,7 @@
                                         </tr>
                                     </table>
                                 </div>
-                                <div class="kjmid" id="current_plant">
+                                <div class="kjmid" id="current_plant" style="display: none">
                                     <div class="kjb">
                                         <ul>
                                             <li><a href="/user/allplants">
@@ -390,17 +390,11 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="kjmid" style="display: none">
+                                <div class="kjmid">
                                     <div class="kjb">
                                         <ul>
-                                            <li><a class="lefttabclick" href="/plant/overview/<%=Model.id %>" title="<%=Model.name %>"
-                                                id="plantname">
-                                                <%= StringUtil.cutStr(Model.name, 16, "...")%>
-                                                <%if (Model.hasFaultDevice)
-                                                  { %>
-                                                <img src="/images/warning_16.gif" alt="">
-                                                <%} %>
-                                            </a></li>
+                                            <li class="nav"><a id="defaultlink" href="/user/allplants">
+                                                <%=Resources.SunResource.PAGESHARED_ALLPLANTS%></a></li>
                                             <%
                                                 User user = UserUtil.getCurUser();
                                                 int idx = 0;
@@ -409,8 +403,8 @@
                                                 int totalPlants = plants.Count;
                                                 foreach (Plant plant in plants)
                                                 {
-                                                    if (plant.id == Model.id)
-                                                        continue;
+                                                    // if (plant.id == Model.id)
+                                                    //   continue;
                                                     if (idx++ >= configCount - 1)
                                                         break;
                                             %>
@@ -520,11 +514,10 @@
                                                 <%} %>
                                             </a></li>
                                             <%} %>
-                                            <li>
-                                            <a rel="treemenu" onclick="loadContent('content_ajax','/plant/devicedata/<%=Model.id%>','ajax','GET');setcurrent(this);return false;"
-                                                href="/plant/devicedata/<%=Model.id%>" title="R<%=Resources.SunResource.DEVICE_RUN_DATA %>"><%=Resources.SunResource.DEVICE_RUN_DATA %>
-                                            </a>
-                                            </li>
+                                            <li><a rel="treemenu" onclick="loadContent('content_ajax','/plant/devicedata/<%=Model.id%>','ajax','GET');setcurrent(this);return false;"
+                                                href="/plant/devicedata/<%=Model.id%>" title="R<%=Resources.SunResource.DEVICE_RUN_DATA %>">
+                                                <%=Resources.SunResource.DEVICE_RUN_DATA %>
+                                            </a></li>
                                             <%if (AuthService.isAllow(AuthorizationCode.LOGS_LIST))
                                               { %>
                                             <li><a onclick="loadContent('content_ajax','/plant/log/<%=Model.id %>','iframe','GET');setcurrent(this);return false;"
@@ -664,6 +657,8 @@
                                 <div class="kjmid" style="display: none" ref="6">
                                     <div class="kjb">
                                         <ul>
+                                            <li><a onclick="loadContent('content_ajax','/plant/compensation/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
+                                                href="/plant/compensation/<%=Model.id%>">补偿设置</a></li>
                                             <%if (AuthService.isAllow(AuthorizationCode.CREATE_CHART))
                                               { %>
                                             <li><a onclick="loadContent('content_ajax','/plant/includecustomcharts/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"

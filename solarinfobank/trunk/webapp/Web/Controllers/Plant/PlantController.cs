@@ -119,7 +119,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 ViewData["temp"] = codeService.GetTemperature(plant.city);
             }
             //修正了温度不存在显示0的问题
-            if (!double.IsNaN(((double)ViewData["temp"])) && ViewData["temp"]!=null)
+            if (!double.IsNaN(((double)ViewData["temp"])) && ViewData["temp"] != null)
             {
                 User user = UserUtil.getCurUser();
                 if (user != null && !user.TemperatureType.ToLower().Equals("c"))
@@ -255,6 +255,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         [IsLoginAttribute]
         public ActionResult Save(Plant plant)
         {
+            plant.predictivedata = Request.Form["predictivedata"];
             plant.structPic = Request["sutpic"];
 
             if (string.IsNullOrEmpty(Request["structPic"]) == false && Request["structPic"].Equals(plant.structPic) == false)
@@ -1581,13 +1582,16 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
         }
 
         [HttpPost]
-        public ActionResult InverterEdit(string pid, string didStr, string name, string currentPower)
+        public ActionResult InverterEdit(string pid, string didStr, string name, string currentPower, string powerRatio)
         {
             int did = 0;
             int.TryParse(didStr, out did);
             Device device = DeviceService.GetInstance().get(did);
             if (name == device.comFullName) device.name = "";//组合名称不保存到name字段，避免自定义被修改
             device.currentPower = currentPower;
+            double temp = 0;
+            double.TryParse(powerRatio, out temp);
+            device.powerRatio = temp;
             DeviceService.GetInstance().UpdateDeviceById(device);
             return Redirect("/plant/devicemonitor/" + pid);
         }
@@ -2397,6 +2401,133 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             string jsstr = base.createDeviceContructTree(plant, -1);
             ViewData["jsstr"] = jsstr;
             return View();
+        }
+        /// <summary>
+        /// 补偿设置
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Compensation(string id)
+        {
+            User user = UserUtil.getCurUser();
+            int plantid = 0;
+            int.TryParse(id, out plantid);
+
+            Hashtable table = new Hashtable();
+
+            string plantname = Request.Form["plantname"];
+            ViewData["plantname"] = plantname;
+            if (string.IsNullOrEmpty(plantname) == false)
+            {
+                string plantids = string.Empty;
+                IList<Plant> plants = plantService.Getplantlikepname(plantname);
+                foreach (Plant plant in plants)
+                {
+                    if (plant.userID.Equals(user.id))
+                        plantids += string.Format("{0},", plant.id);
+                }
+                if (plantids.LastIndexOf(',') > 0) plantids = plantids.Substring(0, plantids.Length - 1);
+                plantids = string.IsNullOrEmpty(plantids) ? "-1" : plantids;
+                table["plantids"] = plantids;
+
+            }
+            string devicename = Request.Form["devicename"];
+
+            string datetype = Request.Form["datetype"];
+            if (string.IsNullOrEmpty(datetype) == false)
+            {
+                if (!datetype.Equals("0"))
+                {
+                    table["datefilter"] = "true";
+
+                    if (datetype.Equals("1"))//最近七天
+                    {
+                        table["datefilter"] = DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd"); ;
+                        table["datefilter"] = DateTime.Now.ToString("yyyy-MM-dd");
+                    }
+                    else//指定日期
+                    {
+                        table["startDate"] = Request.Form["startDate"];
+                        table["endDate"] = Request.Form["endDate"];
+                    }
+                }
+            }
+            if (string.IsNullOrEmpty(devicename) == false)
+            {
+                string plantids = string.Empty;
+                table["deviceids"] = plantids;
+            }
+
+
+
+            IList<Compensation> compensations = CompensationService.GetInstance().searchCompensation(table);
+            ViewData["compensations"] = compensations;
+            return View(plantService.GetPlantInfoById(plantid));
+        }
+
+        public ActionResult DelCompensation(int id)
+        {
+            CompensationService.GetInstance().Remove(id);
+            return Content("ok");
+        }
+
+
+
+        public ActionResult SaveCompensation(int id, int plantid, int deviceid, int type, string value, string date)
+        {
+            double dtemp = 0;
+            double.TryParse(value, out dtemp);
+            if (date.Length.Equals(4))
+                date = string.Format("{0}-01-01", date);
+            else
+                if (date.Length.Equals(7))
+                    date = string.Format("{0}-01", date);
+
+            DateTime? dttemp = null;
+            DateTime dt = DateTime.MaxValue;
+            if (string.IsNullOrEmpty(date) == false)
+            {
+                DateTime.TryParse(date, out dt);
+                dttemp = dt;
+            }
+            int year = 0;
+            int month = 0;
+            int day = 0;
+
+
+            switch (type)
+            {
+                case 0:
+                    break;
+                case 1:
+                    year = dt.Year;
+                    break;
+                case 2:
+                    year = dt.Year;
+                    month = dt.Month;
+                    break;
+                case 3:
+                    year = dt.Year;
+                    month = dt.Month;
+                    day = dt.Day;
+                    break;
+
+                default:
+                    break;
+            }
+            CompensationService.GetInstance().Save(new Compensation
+            {
+                id = id,
+                plantid = plantid,
+                isplant = true,
+                year = year,
+                month = month,
+                day = day,
+                type = type,
+                dataValue = dtemp,
+                compensationDate = dttemp
+            });
+            return Content("ok");
         }
     }
 }

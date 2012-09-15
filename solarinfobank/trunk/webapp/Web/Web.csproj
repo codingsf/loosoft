@@ -180,6 +180,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\Admin\MonitorItemController.cs" />
+    <Compile Include="Controllers\Admin\SysController.cs" />
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\BaseAppController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -550,11 +551,11 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="dao.config" />
-    <Content Include="Content\Ashx\Upload.ashx" />
-    <Content Include="Content\Ashx\Drawing.ashx" />
-    <Content Include="Content\Ashx\validatecode.ashx" />
-    <None Include="Content\images\Thumbs.db" />
-    <None Include="Content\jquery\images\Thumbs.db" />
+    <Content Include="Controllers\Content\Ashx\Upload.ashx" />
+    <Content Include="Controllers\Content\Ashx\Drawing.ashx" />
+    <Content Include="Controllers\Content\Ashx\validatecode.ashx" />
+    <None Include="Controllers\Content\images\Thumbs.db" />
+    <None Include="Controllers\Content\jquery\images\Thumbs.db" />
     <None Include="editor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.cfm" />
     <None Include="editor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.php" />
     <None Include="editor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.pl" />
@@ -1121,22 +1122,22 @@
       <LastGenOutput>SunResource.de.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\code.xml" />
-    <Content Include="Content\images\amp.gif" />
-    <Content Include="Content\images\XPButtonNoText_160x22.png" />
-    <Content Include="Content\jquery\formValidator.js" />
-    <Content Include="Content\jquery\formValidatorRegex.js" />
-    <Content Include="Content\jquery\images\loading.gif" />
-    <Content Include="Content\jquery\images\reg1.gif" />
-    <Content Include="Content\jquery\images\reg2.gif" />
-    <Content Include="Content\jquery\images\reg3.gif" />
-    <Content Include="Content\jquery\images\reg4.gif" />
-    <Content Include="Content\jquery\jquery-1.2.6.pack.js" />
-    <Content Include="Content\jquery\style\validator.css" />
-    <Content Include="Content\jquery\style\validatorAuto.css" />
-    <Content Include="Content\swfupload.js" />
-    <Content Include="Content\Swf\swfupload.swf" />
-    <Content Include="Content\Swf\swfuploadbutton.swf" />
+    <Content Include="Controllers\Content\code.xml" />
+    <Content Include="Controllers\Content\images\amp.gif" />
+    <Content Include="Controllers\Content\images\XPButtonNoText_160x22.png" />
+    <Content Include="Controllers\Content\jquery\formValidator.js" />
+    <Content Include="Controllers\Content\jquery\formValidatorRegex.js" />
+    <Content Include="Controllers\Content\jquery\images\loading.gif" />
+    <Content Include="Controllers\Content\jquery\images\reg1.gif" />
+    <Content Include="Controllers\Content\jquery\images\reg2.gif" />
+    <Content Include="Controllers\Content\jquery\images\reg3.gif" />
+    <Content Include="Controllers\Content\jquery\images\reg4.gif" />
+    <Content Include="Controllers\Content\jquery\jquery-1.2.6.pack.js" />
+    <Content Include="Controllers\Content\jquery\style\validator.css" />
+    <Content Include="Controllers\Content\jquery\style\validatorAuto.css" />
+    <Content Include="Controllers\Content\swfupload.js" />
+    <Content Include="Controllers\Content\Swf\swfupload.swf" />
+    <Content Include="Controllers\Content\Swf\swfuploadbutton.swf" />
     <Content Include="css\wap.css" />
     <Content Include="demoimg\2x-1.png" />
     <Content Include="demoimg\2x-o.png" />
@@ -2384,6 +2385,11 @@
     <Content Include="Maps\Protal.xml" />
     <Content Include="Maps\DeviceRelation.xml" />
     <Content Include="Maps\RelationConfig.xml" />
+    <Content Include="Maps\QA.xml" />
+    <Content Include="Maps\YearCompensation.xml" />
+    <Content Include="Maps\MonthCompensation.xml" />
+    <Content Include="Maps\DayCompensation.xml" />
+    <Content Include="Maps\Compensation.xml" />
     <Content Include="m_img\bg004.jpg" />
     <Content Include="m_img\bg01.jpg" />
     <Content Include="m_img\bg010.jpg" />
@@ -2465,6 +2471,8 @@
     <Content Include="Pages\Admin\Admin.aspx" />
     <Content Include="Pages\Admin\Record\List.aspx" />
     <Content Include="Pages\Admin\Record\index.aspx" />
+    <Content Include="Pages\Admin\Sys\Logo.aspx" />
+    <Content Include="Pages\Admin\Sys\Name.aspx" />
     <Content Include="Pages\Admin\User\List.aspx" />
     <Content Include="Pages\Auth\Deny.aspx" />
     <Content Include="Pages\Country\City.aspx" />
@@ -2503,6 +2511,7 @@
     <Content Include="Pages\Plant\IncludeProfile.aspx" />
     <Content Include="Pages\Plant\StructPic.aspx" />
     <Content Include="Pages\Plant\deviceStructTree.aspx" />
+    <Content Include="Pages\Plant\Compensation.aspx" />
     <Content Include="Pages\portal\DeviceStatus.aspx" />
     <Content Include="Pages\portal\Fault.aspx" />
     <Content Include="Pages\portal\HLXchart.aspx" />
@@ -2715,7 +2724,7 @@
   <ItemGroup>
     <Folder Include="app\" />
     <Folder Include="config\" />
-    <Folder Include="Content\bin\" />
+    <Folder Include="Controllers\Content\bin\" />
     <Folder Include="DepartmentPic\de-DE\" />
     <Folder Include="DepartmentPic\Deutschland\" />
     <Folder Include="DepartmentPic\en-US\" />

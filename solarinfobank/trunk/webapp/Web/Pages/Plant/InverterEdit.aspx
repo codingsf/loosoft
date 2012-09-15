@@ -118,7 +118,7 @@
                   </tr>
 
                 <tr>
-                  <td class="pr_10" height="35"><span><%=Resources.SunResource.PLANT_DEVICEMONITOR_INSTAL_POWER%>:</span></td>
+                  <td class="pr_10" height="35"><span>:</span></td>
                   <td>
            
                   <%=Html.TextBox("currentPower", device.designPower, new { @class = "txtbu01", style="width:160px" })%><span class="f11">kWp</span><span class="red">*</span>
@@ -126,6 +126,18 @@
                  </td>
                
                 <td align="left"><span id="error_currentPower"></span></td>
+               
+                  </tr>
+                  
+                     <tr>
+                  <td class="pr_10" height="35"><span><%=Resources.SunResource.INVERTER_EDIT_POWER_RATIO%>:</span></td>
+                  <td>
+           
+                  <%=Html.TextBox("powerRatio", device.powerRatio, new { @class = "txtbu01", style = "width:160px" })%><span class="red">*</span>
+               
+                 </td>
+               
+                <td align="left"><span id="Span1"></span></td>
                
                   </tr>
                   

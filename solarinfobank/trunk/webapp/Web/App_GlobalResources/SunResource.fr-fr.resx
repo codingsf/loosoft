@@ -4943,6 +4943,9 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
   <data name="HOME_INDEX_VALIDATECODE" xml:space="preserve">
     <value>验证码</value>
   </data>
+  <data name="INVERTER_EDIT_POWER_RATIO" xml:space="preserve">
+    <value>发电量比例</value>
+  </data>
   <data name="DEVICEMONITORITEM_141" xml:space="preserve">
     <value>état de défaut</value>
     <comment>故障状态</comment>

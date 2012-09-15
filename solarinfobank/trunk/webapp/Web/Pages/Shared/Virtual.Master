@@ -273,7 +273,7 @@
                                         </tr>
                                     </table>
                                 </div>
-                                <div class="kjmid">
+                            <%--    <div class="kjmid">
                                     <div class="kjb">
                                         <ul>
                                             <li><a href="/user/allplants">
@@ -283,7 +283,45 @@
                                                 <%=Model.name %></a></li>
                                         </ul>
                                     </div>
+                                </div>--%>
+                                
+                                <div class="kjmid">
+                                    <div class="kjb">
+                                        <ul>
+                                                <li class="nav"><a id="defaultlink" href="/user/allplants">
+                                                <%=Resources.SunResource.PAGESHARED_ALLPLANTS%></a></li>
+                                            <%
+                                                User user = UserUtil.getCurUser();
+                                                int idx = 0;
+                                                int configCount = user.menuDisplayCount;
+                                                IList<Plant> plants = user.displayPlants;
+                                                int totalPlants = plants.Count;
+                                                foreach (Plant plant in plants)
+                                                {
+                                                   // if (plant.id == Model.id)
+                                                     //   continue;
+                                                    if (idx++ >= configCount - 1)
+                                                        break;
+                                            %>
+                                            <li><a class="<%=plant.id==this.Model.id?"lefttabclick":"" %>" href="/<%=plant.isVirtualPlant?"virtual/plantrelationstruct":"plant/overview" %>/<%=plant.id %>"
+                                                title="<%=plant.name %>" id="plantname">
+                                                <%= StringUtil.cutStr(plant.name, 16, "...")%>
+                                                <%if (plant.hasFaultDevice)
+                                                  { %>
+                                                <img src="/images/warning_16.gif" alt="">
+                                                <%} %>
+                                            </a></li>
+                                            <%}
+                                            %>
+                                            <%if (configCount < totalPlants)
+                                              { %>
+                                            <li><a href="/user/allplants" title="<%=Resources.SunResource.PAGE_SHARED_ALLPLANTS_TIPS%>">
+                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_ALL_PLANTS%>>></a></li>
+                                            <%} %>
+                                        </ul>
+                                    </div>
                                 </div>
+                                
                             </div>
                             <div class="kjlbox nav">
                                 <div class="kjlbox_ico">

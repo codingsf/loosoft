@@ -16,6 +16,7 @@
       <result property="isHidden"			column="isHidden"/>
       <result property="name"			column="name"/>
       <result property="status"			column="status"/>
+      <result property="powerRatio"			column="powerRatio"/>
       <!--级联对象-->
       <result property="deviceModel" lazyLoad="true" column="deviceModelCode" select="devicemodel_get" />
       <!--避免在非懒加载的情况下循环递归加载
@@ -79,7 +80,7 @@
     </update>
 
     <update id="updateDevice" parameterClass="Hashtable">
-      update device set name=#name#,currentPower=#currentPower# where id=#id#
+      update device set name=#name#,currentPower=#currentPower# ,powerRatio=#powerRatio# where id=#id#
     </update>
 
     <!--根据采集器id和设备地址取得设备 cacheModel="device_cache" 为了确保取得设备，先将缓存去掉-->

@@ -5372,6 +5372,10 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
   <data name="HOME_INDEX_VALIDATECODE" xml:space="preserve">
     <value>验证码</value>
   </data>
+  <data name="INVERTER_EDIT_POWER_RATIO" xml:space="preserve">
+    <value>发电量比例</value>
+  </data>
+
   <data name="DEVICEMONITORITEM_141" xml:space="preserve">
     <value>Fehler Zustand</value>
     <comment>故障状态</comment>
@@ -5452,4 +5456,5 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>Strom Phase CA</value>
     <comment>C相电流-当输出类型为2时叫CA线电流</comment>
   </data>
+>>>>>>> .r206
 </root>

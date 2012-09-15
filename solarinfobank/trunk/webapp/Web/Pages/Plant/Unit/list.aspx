@@ -141,7 +141,7 @@
                                         <span class="f11">&nbsp;</span>
                                     </td>
                                 <td width="30%" align="center">
-                                        <strong><%=Resources.SunResource.PLANT_UNIT_DATA_SOURCE_CODE%></strong>
+                                        <strong><%=Resources.SunResource.PLANT_UNIT_LIST_UNIT_NAME%></strong>
                                         <br />
                                         <span class="f11">&nbsp;</span>
                                     </td>
@@ -216,8 +216,8 @@
                                         
                                     </td>
                                     <td align="center" height="35" width="30%">
-                                    <div title="<%=plantUnit.collector.code%>" style="width:220px; overflow:hidden;">
-                                        <%=plantUnit.collector.code%></div>
+                                    <div title="<%=plantUnit.displayname%>" style="width:220px; overflow:hidden;">
+                                        <%=plantUnit.displayname%></div>
                                     </td>
                                     
                                     

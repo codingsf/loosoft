@@ -5368,6 +5368,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 发电量比例 的本地化字符串。
+        /// </summary>
+        internal static string INVERTER_EDIT_POWER_RATIO {
+            get {
+                return ResourceManager.GetString("INVERTER_EDIT_POWER_RATIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Investment/Income &amp; Insolation 的本地化字符串。
         /// </summary>
         internal static string INVEST_INCOME_COMPARE_CHART {

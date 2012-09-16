@@ -6,6 +6,7 @@ using Cn.Loosoft.Zhisou.SunPower.Domain;
 using System.Collections;
 using Cn.Loosoft.Zhisou.SunPower.Common;
 using Cn.Loosoft.Zhisou.SunPower.Service.vo;
+using System.Text;
 
 namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 {
@@ -156,6 +157,46 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return details;
         }
 
+        /// <summary>
+        /// 查询设备的历史运行数据，从设备的天数据表中取得所有测点的数据按照行测点，列发送时间点来显示
+        /// add by qhb in 20120915
+        /// </summary>
+        /// <param name="deviceId"></param>/// 
+        /// <param name="yyyyMMdd"></param>
+        /// <returns></returns>
+        public ActionResult historyRundata(int deviceId, string yyyyMMdd) {
+            Device device = DeviceService.GetInstance().get(deviceId);
+            IList<string> allmts = new List<string>();//所有测点
+            IDictionary<string, IDictionary<int, string>> timemtMap = DeviceDayDataService.GetInstance().handleDayData(allmts, device, yyyyMMdd);
+            ViewData["allmts"] = allmts;
+            ViewData["timemtMap"] = timemtMap;
+            return View(device);
+        }
+
+        /// <summary>
+        /// 获取电站设备
+        /// </summary>
+        /// <param name="pid">电站id</param>
+        /// <returns></returns>
+        public ActionResult plantDevice(int pid)
+        {
+            Plant plant = PlantService.GetInstance().GetPlantInfoById(pid);
+            StringBuilder html = new StringBuilder();
+            html.Append("<select id='dces' name='dces' onchange='changeDevice()' style='width:150px'>");
+            foreach (PlantUnit pu in plant.allFactUnits)
+            {
+                html.AppendFormat("<option value='{0}'>{1}</option>", -1, pu.displayname);
+                foreach (var item in pu.displayDevices)
+                    if (item.isFault())
+                        html.AppendFormat("<option value='{0}'  style='padding-left:15px; color:red;'>{1}</option>", item.id, item.fullName);
+                    else
+                        html.AppendFormat("<option value='{0}'  style='padding-left:15px;'>{1}</option>", item.id, item.fullName);
+            }
+            html.Append("</select>");
+            return Content(html.ToString());
+        }
+
+
         public ActionResult Log()
         {
             int intValue = 0;
@@ -166,6 +207,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             ViewData["errorTypes"] = errorTypes;
             return View(FindPlant(intValue));
         }
+
         [HttpPost]
         public ActionResult LoadLog(int userId, int dId, string pageNo)
         {

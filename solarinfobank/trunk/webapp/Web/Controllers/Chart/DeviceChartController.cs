@@ -603,6 +603,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return View(plant);
         }
 
+        /// <summary>
+        /// 获取单元设备
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <returns></returns>
         public ActionResult unitDevice(int uid)
         {
             PlantUnit unit = PlantUnitService.GetInstance().GetPlantUnitById(uid);

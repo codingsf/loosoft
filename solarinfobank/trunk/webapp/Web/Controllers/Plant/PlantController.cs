@@ -2295,13 +2295,32 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             return Content("ok");
         }
 
-
         /// <summary>
         /// 电站的设备数据
         /// </summary>
         /// <param name="pid"></param>
         /// <returns></returns>
         public ActionResult deviceData(int id)
+        {
+            User user = UserUtil.getCurUser();
+            Plant plant = PlantService.GetInstance().GetPlantInfoById(id);
+
+            string startYM = (DateTime.Now.Year - 1) + "" + DateTime.Now.Month.ToString("00");
+            string endYM = DateTime.Now.Year + "" + DateTime.Now.Month.ToString("00");
+
+            IList<int> yearList = collectorYearDataService.GetWorkYears(plant);
+
+            IList<SelectListItem> plantYearsList = Currencies.FillYearItems(yearList);
+            ViewData["plantYear"] = plantYearsList;
+            return View(plant);
+        }
+
+        /// <summary>
+        /// 电站的设备历史数据
+        /// </summary>
+        /// <param name="pid"></param>
+        /// <returns></returns>
+        public ActionResult deviceHistoryData(int id)
         {
             User user = UserUtil.getCurUser();
             Plant plant = PlantService.GetInstance().GetPlantInfoById(id);

@@ -5021,4 +5021,89 @@
     <value>CA线電流</value>
     <comment>C相电流-当输出类型为2时叫CA线电流</comment>
   </data>
+  <data name="NOTICE_ADDED_DEVICE" xml:space="preserve">
+    <value>デバイスを追加してください</value>
+  </data>
+  <data name="NOTICE_DESIGN_POWER" xml:space="preserve">
+    <value>\"設計電力\"を入力してください</value>
+  </data>
+  <data name="NOTICE_DEVICE_NAME" xml:space="preserve">
+    <value>\"デバイス名\"を入力してください</value>
+  </data>
+  <data name="NOTICE_DEVICE_PASSWORD" xml:space="preserve">
+    <value>\"デバイスのパスワード\"を入力してください</value>
+  </data>
+  <data name="NOTICE_DEVICE_SN" xml:space="preserve">
+    <value>\"デバイスのシリアル番号\"を入力してください</value>
+  </data>
+  <data name="NOTICE_NOT_DELEVE_DEFAULT" xml:space="preserve">
+    <value>デフォルトでは削除することはできません</value>
+  </data>
+  <data name="NOTICE_PLANT_NAME" xml:space="preserve">
+    <value>発電所は既に存在している</value>
+  </data>
+  <data name="OPTION_CLOSE" xml:space="preserve">
+    <value>離れて</value>
+  </data>
+  <data name="OPTION_OPEN" xml:space="preserve">
+    <value>拡大</value>
+  </data>
+  <data name="NEWREGISTER_DEVICEINFO" xml:space="preserve">
+    <value>デバイス情報</value>
+  </data>
+  <data name="NEWREGISTER_PLANTINFO" xml:space="preserve">
+    <value>発電所の情報</value>
+  </data>
+  <data name="NEWREGISTER_USERINFO" xml:space="preserve">
+    <value>ユーザ情報</value>
+  </data>
+  <data name="NEXT_STEP" xml:space="preserve">
+    <value>次の</value>
+  </data>
+  <data name="ADD_DEVICE" xml:space="preserve">
+    <value>デバイスの追加</value>
+  </data>
+  <data name="BUTTON_FINISHED" xml:space="preserve">
+    <value>完了する</value>
+  </data>
+  <data name="DEVICE_PASSWORD" xml:space="preserve">
+    <value>デバイスのパスワード</value>
+  </data>
+  <data name="DEVICE_SN" xml:space="preserve">
+    <value>デバイスのシリアル番号</value>
+  </data>
+  <data name="digitalinputdlq" xml:space="preserve">
+    <value>断路器</value>
+    <comment>断路器</comment>
+  </data>
+  <data name="digitalinputdlq0" xml:space="preserve">
+    <value>闭合</value>
+    <comment>闭合</comment>
+  </data>
+  <data name="digitalinputdlq1" xml:space="preserve">
+    <value>脱扣或者断开</value>
+    <comment>脱扣或者断开</comment>
+  </data>
+  <data name="digitalinputflq" xml:space="preserve">
+    <value>防雷器</value>
+    <comment>防雷器</comment>
+  </data>
+  <data name="digitalinputflq0" xml:space="preserve">
+    <value>故障</value>
+    <comment>故障</comment>
+  </data>
+  <data name="digitalinputflq1" xml:space="preserve">
+    <value>正常</value>
+    <comment>正常</comment>
+  </data>
+  <data name="PREVIOUS_STEP" xml:space="preserve">
+    <value>前</value>
+  </data>
+  <data name="REGISTER_AGREE" xml:space="preserve">
+    <value>"利用規約"に同意する</value>
+  </data>
+  <data name="DEVICE_DEVICE_HISTORYRUN_DATA" xml:space="preserve">
+    <value>設備歴史の運転データ</value>
+    <comment>设备历史运行数据</comment>
+  </data>
 </root>

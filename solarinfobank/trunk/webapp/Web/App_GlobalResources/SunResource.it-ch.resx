@@ -6383,4 +6383,92 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>Corrente di CA fase</value>
     <comment>C相电流-当输出类型为2时叫CA线电流</comment>
   </data>
+  <data name="NOTICE_ADDED_DEVICE" xml:space="preserve">
+    <value>Si prega di aggiungere un dispositivo</value>
+  </data>
+  <data name="NOTICE_DESIGN_POWER" xml:space="preserve">
+    <value>Si prega di inserire \"Potenza progettata\"</value>
+  </data>
+  <data name="NOTICE_DEVICE_NAME" xml:space="preserve">
+    <value>Si prega di inserire \"Nome unità\"</value>
+  </data>
+  <data name="NOTICE_DEVICE_PASSWORD" xml:space="preserve">
+    <value>Si prega di inserire \"password Device\"</value>
+  </data>
+  <data name="NOTICE_DEVICE_SN" xml:space="preserve">
+    <value>Si prega di inserire \"il numero di serie del dispositivo\"</value>
+  </data>
+  <data name="NOTICE_NOT_DELEVE_DEFAULT" xml:space="preserve">
+    <value>Di default non può essere cancellato</value>
+  </data>
+  <data name="NOTICE_PLANT_NAME" xml:space="preserve">
+    <value>Centrali Powe esistono già</value>
+  </data>
+  <data name="OPTION_CLOSE" xml:space="preserve">
+    <value>Via</value>
+  </data>
+  <data name="OPTION_OPEN" xml:space="preserve">
+    <value>Espansione</value>
+  </data>
+  <data name="NEWREGISTER_DEVICEINFO" xml:space="preserve">
+    <value>attrezzatura</value>
+  </data>
+  <data name="NEWREGISTER_PLANTINFO" xml:space="preserve">
+    <value>centrale elettrica</value>
+  </data>
+  <data name="NEWREGISTER_USERINFO" xml:space="preserve">
+    <value>utente</value>
+  </data>
+  <data name="NEXT_STEP" xml:space="preserve">
+    <value>Prossimo</value>
+  </data>
+  <data name="ADD_DEVICE" xml:space="preserve">
+    <value>Aggiungi dispositivo</value>
+  </data>
+  <data name="BUTTON_FINISHED" xml:space="preserve">
+    <value>Completare</value>
+  </data>
+  <data name="DEVICE_PASSWORD" xml:space="preserve">
+    <value>password del dispositivo</value>
+  </data>
+  <data name="DEVICE_PASSWORD1" xml:space="preserve">
+    <value>mot de passe de périphérique</value>
+  </data>
+  <data name="DEVICE_SN" xml:space="preserve">
+    <value>Numero di serie</value>
+  </data>
+  <data name="digitalinputdlq" xml:space="preserve">
+    <value>断路器</value>
+    <comment>断路器</comment>
+  </data>
+  <data name="digitalinputdlq0" xml:space="preserve">
+    <value>闭合</value>
+    <comment>闭合</comment>
+  </data>
+  <data name="digitalinputdlq1" xml:space="preserve">
+    <value>脱扣或者断开</value>
+    <comment>脱扣或者断开</comment>
+  </data>
+  <data name="digitalinputflq" xml:space="preserve">
+    <value>防雷器</value>
+    <comment>防雷器</comment>
+  </data>
+  <data name="digitalinputflq0" xml:space="preserve">
+    <value>故障</value>
+    <comment>故障</comment>
+  </data>
+  <data name="digitalinputflq1" xml:space="preserve">
+    <value>正常</value>
+    <comment>正常</comment>
+  </data>
+  <data name="PREVIOUS_STEP" xml:space="preserve">
+    <value>Precedente</value>
+  </data>
+  <data name="REGISTER_AGREE" xml:space="preserve">
+    <value>Accetto "Accordo per gli utenti"</value>
+  </data>
+  <data name="DEVICE_DEVICE_HISTORYRUN_DATA" xml:space="preserve">
+    <value>Dato storica dell'operazione dell'impianto</value>
+    <comment>设备历史运行数据</comment>
+  </data>
 </root>

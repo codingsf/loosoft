@@ -5283,4 +5283,89 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <value>Current of CA phase</value>
     <comment>C相电流-当输出类型为2时叫CA线电流</comment>
   </data>
+  <data name="NOTICE_ADDED_DEVICE" xml:space="preserve">
+    <value>Please add a device</value>
+  </data>
+  <data name="NOTICE_DESIGN_POWER" xml:space="preserve">
+    <value>Please enter \"Design Power\"</value>
+  </data>
+  <data name="NOTICE_DEVICE_NAME" xml:space="preserve">
+    <value>Please enter \"Device name\"</value>
+  </data>
+  <data name="NOTICE_DEVICE_PASSWORD" xml:space="preserve">
+    <value>Please enter \"Device password\"</value>
+  </data>
+  <data name="NOTICE_DEVICE_SN" xml:space="preserve">
+    <value>Please enter \"Device serial number\"</value>
+  </data>
+  <data name="NOTICE_NOT_DELEVE_DEFAULT" xml:space="preserve">
+    <value>Default can not be deleted</value>
+  </data>
+  <data name="NOTICE_PLANT_NAME" xml:space="preserve">
+    <value>plants already exist</value>
+  </data>
+  <data name="OPTION_CLOSE" xml:space="preserve">
+    <value>Away</value>
+  </data>
+  <data name="OPTION_OPEN" xml:space="preserve">
+    <value>Expansion</value>
+  </data>
+  <data name="NEWREGISTER_DEVICEINFO" xml:space="preserve">
+    <value>Devices information</value>
+  </data>
+  <data name="NEWREGISTER_PLANTINFO" xml:space="preserve">
+    <value>Plant Information</value>
+  </data>
+  <data name="NEWREGISTER_USERINFO" xml:space="preserve">
+    <value>User Information</value>
+  </data>
+  <data name="NEXT_STEP" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="ADD_DEVICE" xml:space="preserve">
+    <value>Add Device</value>
+  </data>
+  <data name="BUTTON_FINISHED" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="DEVICE_PASSWORD" xml:space="preserve">
+    <value>password</value>
+  </data>
+  <data name="DEVICE_SN" xml:space="preserve">
+    <value>Serial number</value>
+  </data>
+  <data name="digitalinputdlq" xml:space="preserve">
+    <value>断路器</value>
+    <comment>断路器</comment>
+  </data>
+  <data name="digitalinputdlq0" xml:space="preserve">
+    <value>闭合</value>
+    <comment>闭合</comment>
+  </data>
+  <data name="digitalinputdlq1" xml:space="preserve">
+    <value>脱扣或者断开</value>
+    <comment>脱扣或者断开</comment>
+  </data>
+  <data name="digitalinputflq" xml:space="preserve">
+    <value>防雷器</value>
+    <comment>防雷器</comment>
+  </data>
+  <data name="digitalinputflq0" xml:space="preserve">
+    <value>故障</value>
+    <comment>故障</comment>
+  </data>
+  <data name="digitalinputflq1" xml:space="preserve">
+    <value>正常</value>
+    <comment>正常</comment>
+  </data>
+  <data name="PREVIOUS_STEP" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="REGISTER_AGREE" xml:space="preserve">
+    <value>Agree《User Agreement》</value>
+  </data>
+  <data name="DEVICE_DEVICE_HISTORYRUN_DATA" xml:space="preserve">
+    <value>Device History Run Data</value>
+    <comment>设备历史运行数据</comment>
+  </data>
 </root>

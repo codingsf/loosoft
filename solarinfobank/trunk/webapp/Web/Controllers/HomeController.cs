@@ -234,7 +234,7 @@ namespace Web.Controllers
             getAdPics();
 
             //验证码验证提示
-            if (ValidateCodeUtil.Validated(validatecode) == false)
+            if (ValidateCodeUtil.isValid() && ValidateCodeUtil.Validated(validatecode) == false)
             {
                 ModelState.AddModelError("Error", "验证码输入错误!");
                 System.Web.HttpContext.Current.Response.Cookies["a_login"].Expires = DateTime.Now.AddDays(-1);
@@ -323,6 +323,11 @@ namespace Web.Controllers
                     //如果是非门户用户进入
                     if (loginUser.ParentUserId == 0)
                     {
+                        if (loginUser.ownPlants.Count == 0)
+                            return Redirect("/newregister/addplant");
+                        if (!loginUser.isBindUnit)
+                            return Redirect("/newregister/addunit");
+
                         if (loginUser.plantUsers.Count == 1)
                         {
                             return RedirectToAction("allplants", "user");

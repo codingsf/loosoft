@@ -53,6 +53,10 @@
     <select id="plantuser_get_by_userid" resultMap="plantuser_info_result" >
       select *  from  plant_user where userID=#value#
     </select>
+    <!--根据userID获取当前用户的创建的可以管理的而不是分配的电站，区别在于shared=0cacheModel="plantuser_info_cache"-->
+    <select id="ownplantuser_get_by_userid" resultMap="plantuser_info_result" >
+      select *  from  plant_user where userID=#value# and shared=0
+    </select>
     <!--根据id获取所有-->
     <select id="plantuser_get"  resultMap="plantuser_info_result" parameterClass="PlantUser" cacheModel="plantuser_info_cache">
       select *  from  plant_user where id=#id#

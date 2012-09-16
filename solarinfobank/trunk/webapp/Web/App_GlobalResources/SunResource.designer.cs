@@ -79,6 +79,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 Add Device 的本地化字符串。
+        /// </summary>
+        internal static string ADD_DEVICE {
+            get {
+                return ResourceManager.GetString("ADD_DEVICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Cancel 的本地化字符串。
         /// </summary>
         internal static string ADMIN_COLLECTOR_EDIT_CANCEL {
@@ -921,6 +930,15 @@ namespace Resources {
         internal static string BELOWAVERAGE {
             get {
                 return ResourceManager.GetString("BELOWAVERAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Complete 的本地化字符串。
+        /// </summary>
+        internal static string BUTTON_FINISHED {
+            get {
+                return ResourceManager.GetString("BUTTON_FINISHED", resourceCulture);
             }
         }
         
@@ -4417,6 +4435,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 Device History Run Data 的本地化字符串。
+        /// </summary>
+        internal static string DEVICE_DEVICE_HISTORYRUN_DATA {
+            get {
+                return ResourceManager.GetString("DEVICE_DEVICE_HISTORYRUN_DATA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Device Logs 的本地化字符串。
         /// </summary>
         internal static string DEVICE_DEVICE_LOGS {
@@ -4570,6 +4597,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 password 的本地化字符串。
+        /// </summary>
+        internal static string DEVICE_PASSWORD {
+            get {
+                return ResourceManager.GetString("DEVICE_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 PR Chart 的本地化字符串。
         /// </summary>
         internal static string DEVICE_PR_CHART {
@@ -4584,6 +4620,69 @@ namespace Resources {
         internal static string DEVICE_RUN_DATA {
             get {
                 return ResourceManager.GetString("DEVICE_RUN_DATA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Serial number 的本地化字符串。
+        /// </summary>
+        internal static string DEVICE_SN {
+            get {
+                return ResourceManager.GetString("DEVICE_SN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 断路器 的本地化字符串。
+        /// </summary>
+        internal static string digitalinputdlq {
+            get {
+                return ResourceManager.GetString("digitalinputdlq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 闭合 的本地化字符串。
+        /// </summary>
+        internal static string digitalinputdlq0 {
+            get {
+                return ResourceManager.GetString("digitalinputdlq0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 脱扣或者断开 的本地化字符串。
+        /// </summary>
+        internal static string digitalinputdlq1 {
+            get {
+                return ResourceManager.GetString("digitalinputdlq1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 防雷器 的本地化字符串。
+        /// </summary>
+        internal static string digitalinputflq {
+            get {
+                return ResourceManager.GetString("digitalinputflq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 故障 的本地化字符串。
+        /// </summary>
+        internal static string digitalinputflq0 {
+            get {
+                return ResourceManager.GetString("digitalinputflq0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 正常 的本地化字符串。
+        /// </summary>
+        internal static string digitalinputflq1 {
+            get {
+                return ResourceManager.GetString("digitalinputflq1", resourceCulture);
             }
         }
         
@@ -5935,6 +6034,42 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 Devices information 的本地化字符串。
+        /// </summary>
+        internal static string NEWREGISTER_DEVICEINFO {
+            get {
+                return ResourceManager.GetString("NEWREGISTER_DEVICEINFO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Plant Information 的本地化字符串。
+        /// </summary>
+        internal static string NEWREGISTER_PLANTINFO {
+            get {
+                return ResourceManager.GetString("NEWREGISTER_PLANTINFO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 User Information 的本地化字符串。
+        /// </summary>
+        internal static string NEWREGISTER_USERINFO {
+            get {
+                return ResourceManager.GetString("NEWREGISTER_USERINFO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Next 的本地化字符串。
+        /// </summary>
+        internal static string NEXT_STEP {
+            get {
+                return ResourceManager.GetString("NEXT_STEP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 No Data 的本地化字符串。
         /// </summary>
         internal static string NODATA {
@@ -5944,11 +6079,92 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 Please add a device 的本地化字符串。
+        /// </summary>
+        internal static string NOTICE_ADDED_DEVICE {
+            get {
+                return ResourceManager.GetString("NOTICE_ADDED_DEVICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Please enter \&quot;Design Power\&quot; 的本地化字符串。
+        /// </summary>
+        internal static string NOTICE_DESIGN_POWER {
+            get {
+                return ResourceManager.GetString("NOTICE_DESIGN_POWER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Please enter \&quot;Device name\&quot; 的本地化字符串。
+        /// </summary>
+        internal static string NOTICE_DEVICE_NAME {
+            get {
+                return ResourceManager.GetString("NOTICE_DEVICE_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Please enter \&quot;Device password\&quot; 的本地化字符串。
+        /// </summary>
+        internal static string NOTICE_DEVICE_PASSWORD {
+            get {
+                return ResourceManager.GetString("NOTICE_DEVICE_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Please enter \&quot;Device serial number\&quot; 的本地化字符串。
+        /// </summary>
+        internal static string NOTICE_DEVICE_SN {
+            get {
+                return ResourceManager.GetString("NOTICE_DEVICE_SN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Default can not be deleted 的本地化字符串。
+        /// </summary>
+        internal static string NOTICE_NOT_DELEVE_DEFAULT {
+            get {
+                return ResourceManager.GetString("NOTICE_NOT_DELEVE_DEFAULT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 plants already exist 的本地化字符串。
+        /// </summary>
+        internal static string NOTICE_PLANT_NAME {
+            get {
+                return ResourceManager.GetString("NOTICE_PLANT_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 No Data 的本地化字符串。
         /// </summary>
         internal static string NO_WORK_YEARS {
             get {
                 return ResourceManager.GetString("NO_WORK_YEARS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Away 的本地化字符串。
+        /// </summary>
+        internal static string OPTION_CLOSE {
+            get {
+                return ResourceManager.GetString("OPTION_CLOSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Expansion 的本地化字符串。
+        /// </summary>
+        internal static string OPTION_OPEN {
+            get {
+                return ResourceManager.GetString("OPTION_OPEN", resourceCulture);
             }
         }
         
@@ -8870,6 +9086,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 Previous 的本地化字符串。
+        /// </summary>
+        internal static string PREVIOUS_STEP {
+            get {
+                return ResourceManager.GetString("PREVIOUS_STEP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 &lt;p&gt;Now, you can easily access via mobile phone to monitor, organize, and display of power plants online portal SolarInfo Bank, and as a free iPhone application.
         ///No matter what system you have, can use SolarInfo Bank via mobile phone to access your plants. Therefore, the power plant operators, installers and maintenance personnel can access from anywhere they need the most important data. This saves time and cost. &lt;/p&gt;&lt;p&gt;No matter where you are, can take advantage of existing user data access power plants.  [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
@@ -8905,6 +9130,15 @@ namespace Resources {
         internal static string RATIO {
             get {
                 return ResourceManager.GetString("RATIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Agree《User Agreement》 的本地化字符串。
+        /// </summary>
+        internal static string REGISTER_AGREE {
+            get {
+                return ResourceManager.GetString("REGISTER_AGREE", resourceCulture);
             }
         }
         

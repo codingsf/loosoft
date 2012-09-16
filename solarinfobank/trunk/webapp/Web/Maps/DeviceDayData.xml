@@ -14,6 +14,11 @@
       <![CDATA[select * from $deviceType$_day_data_$yearmonth$ where deviceID=#deviceID# and sendDay>=#startDay# and sendDay<=#endDay# and monitorCode=#monitorCode#]]>
     </select>
     
+    <!--取得跨天的多个测点数据 add by qhb in 20120915-->
+    <select id="multidevicedaydata_list_between_day" resultClass="DeviceDayData" parameterClass="Hashtable" >
+      <![CDATA[select * from $deviceType$_day_data_$yearmonth$ where deviceID=#deviceID# and sendDay>=#startDay# and sendDay<=#endDay#]]>
+    </select>
+    
     <!--根据设备，测点和天 取得设备数据-->
     <select id="devicedaydata_get_by_deviceid2monitor2sendday" resultClass="DeviceDayData" parameterClass="Hashtable" >
       <![CDATA[select * from $deviceType$_day_data_$yearmonth$ where deviceID=#deviceID# and sendDay=#sendDay# and monitorCode=#monitorCode#]]>

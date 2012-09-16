@@ -5107,4 +5107,92 @@
     <value>CA线电流</value>
     <comment>C相电流-当输出类型为2时叫CA线电流</comment>
   </data>
+  <data name="NOTICE_ADDED_DEVICE" xml:space="preserve">
+    <value>请添加一个设备</value>
+  </data>
+  <data name="NOTICE_DESIGN_POWER" xml:space="preserve">
+    <value>请输入“设计功率”</value>
+  </data>
+  <data name="NOTICE_DESIGN_POWER_FORJS" xml:space="preserve">
+    <value>请输入“设计功率”</value>
+  </data>
+  <data name="NOTICE_DEVICE_NAME" xml:space="preserve">
+    <value>请输入“设备名称”</value>
+  </data>
+  <data name="NOTICE_DEVICE_PASSWORD" xml:space="preserve">
+    <value>请输入“设备密码”</value>
+  </data>
+  <data name="NOTICE_DEVICE_SN" xml:space="preserve">
+    <value>请输入“设备序列号”</value>
+  </data>
+  <data name="NOTICE_NOT_DELEVE_DEFAULT" xml:space="preserve">
+    <value>默认不能被删除</value>
+  </data>
+  <data name="NOTICE_PLANT_NAME" xml:space="preserve">
+    <value>电站已存在</value>
+  </data>
+  <data name="OPTION_CLOSE" xml:space="preserve">
+    <value>收起选填项</value>
+  </data>
+  <data name="OPTION_OPEN" xml:space="preserve">
+    <value>展开选填项</value>
+  </data>
+  <data name="NEWREGISTER_DEVICEINFO" xml:space="preserve">
+    <value>设备信息</value>
+  </data>
+  <data name="NEWREGISTER_PLANTINFO" xml:space="preserve">
+    <value>电站信息</value>
+  </data>
+  <data name="NEWREGISTER_USERINFO" xml:space="preserve">
+    <value>用户信息</value>
+  </data>
+  <data name="NEXT_STEP" xml:space="preserve">
+    <value>下一步</value>
+  </data>
+  <data name="ADD_DEVICE" xml:space="preserve">
+    <value>添加设备</value>
+  </data>
+  <data name="BUTTON_FINISHED" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="DEVICE_PASSWORD" xml:space="preserve">
+    <value>设备密码</value>
+  </data>
+  <data name="DEVICE_SN" xml:space="preserve">
+    <value>设备序列号</value>
+  </data>
+  <data name="digitalinputdlq" xml:space="preserve">
+    <value>断路器</value>
+    <comment>断路器</comment>
+  </data>
+  <data name="digitalinputdlq0" xml:space="preserve">
+    <value>闭合</value>
+    <comment>闭合</comment>
+  </data>
+  <data name="digitalinputdlq1" xml:space="preserve">
+    <value>脱扣或者断开</value>
+    <comment>脱扣或者断开</comment>
+  </data>
+  <data name="digitalinputflq" xml:space="preserve">
+    <value>防雷器</value>
+    <comment>防雷器</comment>
+  </data>
+  <data name="digitalinputflq0" xml:space="preserve">
+    <value>故障</value>
+    <comment>故障</comment>
+  </data>
+  <data name="digitalinputflq1" xml:space="preserve">
+    <value>正常</value>
+    <comment>正常</comment>
+  </data>
+  <data name="PREVIOUS_STEP" xml:space="preserve">
+    <value>上一步</value>
+  </data>
+  <data name="REGISTER_AGREE" xml:space="preserve">
+    <value>同意《用户协议内容》</value>
+  </data>
+  <data name="DEVICE_DEVICE_HISTORYRUN_DATA" xml:space="preserve">
+    <value>设备历史运行数据</value>
+    <comment>设备历史运行数据</comment>
+  </data>
 </root>

@@ -5456,5 +5456,86 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>Strom Phase CA</value>
     <comment>C相电流-当输出类型为2时叫CA线电流</comment>
   </data>
->>>>>>> .r206
+  <data name="NOTICE_ADDED_DEVICE" xml:space="preserve">
+    <value>Bitte fügen Sie ein Gerät</value>
+  </data>
+  <data name="NOTICE_DESIGN_POWER" xml:space="preserve">
+    <value>Bitte geben Sie \"Anlagenleistung\"</value>
+  </data>
+  <data name="NOTICE_DEVICE_NAME" xml:space="preserve">
+    <value>Bitte geben Sie \"Gerätename\"</value>
+  </data>
+  <data name="NOTICE_DEVICE_PASSWORD" xml:space="preserve">
+    <value>Bitte geben Sie \"Geräte-Passwort\"</value>
+  </data>
+  <data name="NOTICE_DEVICE_SN" xml:space="preserve">
+    <value>Bitte geben Sie \"Geräte-Seriennummer\"</value>
+  </data>
+  <data name="NOTICE_NOT_DELEVE_DEFAULT" xml:space="preserve">
+    <value>Standard kann nicht gelöscht werden</value>
+  </data>
+  <data name="NOTICE_PLANT_NAME" xml:space="preserve">
+    <value>Powe Kraftwerke existieren bereits</value>
+  </data>
+  <data name="OPTION_CLOSE" xml:space="preserve">
+    <value>Weg</value>
+  </data>
+  <data name="OPTION_OPEN" xml:space="preserve">
+    <value>Expansion</value>
+  </data>
+  <data name="NEWREGISTER_DEVICEINFO" xml:space="preserve">
+    <value>Ausrüstung</value>
+  </data>
+  <data name="NEWREGISTER_PLANTINFO" xml:space="preserve">
+    <value>Kraftwerk</value>
+  </data>
+  <data name="NEWREGISTER_USERINFO" xml:space="preserve">
+    <value>Benutzer</value>
+  </data>
+  <data name="NEXT_STEP" xml:space="preserve">
+    <value>Nächste</value>
+  </data>
+  <data name="ADD_DEVICE" xml:space="preserve">
+    <value>Gerät hinzufügen</value>
+  </data>
+  <data name="DEVICE_PASSWORD" xml:space="preserve">
+    <value>Geräte-Passwort</value>
+  </data>
+  <data name="DEVICE_SN" xml:space="preserve">
+    <value>Geräte-Seriennummer</value>
+  </data>
+  <data name="digitalinputdlq" xml:space="preserve">
+    <value>断路器</value>
+    <comment>断路器</comment>
+  </data>
+  <data name="digitalinputdlq0" xml:space="preserve">
+    <value>闭合</value>
+    <comment>闭合</comment>
+  </data>
+  <data name="digitalinputdlq1" xml:space="preserve">
+    <value>脱扣或者断开</value>
+    <comment>脱扣或者断开</comment>
+  </data>
+  <data name="digitalinputflq" xml:space="preserve">
+    <value>防雷器</value>
+    <comment>防雷器</comment>
+  </data>
+  <data name="digitalinputflq0" xml:space="preserve">
+    <value>故障</value>
+    <comment>故障</comment>
+  </data>
+  <data name="digitalinputflq1" xml:space="preserve">
+    <value>正常</value>
+    <comment>正常</comment>
+  </data>
+  <data name="PREVIOUS_STEP" xml:space="preserve">
+    <value>Vorherige</value>
+  </data>
+  <data name="REGISTER_AGREE" xml:space="preserve">
+    <value>Agree "Nutzungsvereinbarung"</value>
+  </data>
+  <data name="DEVICE_DEVICE_HISTORYRUN_DATA" xml:space="preserve">
+    <value>Betriebsdaten historische Gerätezubehör</value>
+    <comment>设备历史运行数据</comment>
+  </data>
 </root>

@@ -14,6 +14,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
     public class ValidateCodeUtil
     {
         static string iscreatevalidatecode = System.Configuration.ConfigurationSettings.AppSettings["iscreatevalidatecode"] == null ? "false" : System.Configuration.ConfigurationSettings.AppSettings["iscreatevalidatecode"].ToLower();
+        /// <summary>
+        /// 是否需要验证码
+        /// </summary>
+        /// <returns></returns>
+        public static bool isValid() { 
+            return iscreatevalidatecode.Equals("true")?true:false;
+        }
+
         public static string CreateValidateCode(HttpContext context)
         {
             context.Response.ContentType = "text/plain";
@@ -87,8 +95,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         }
         public static bool Validated(string inputCode)
         {
-            if (iscreatevalidatecode.Equals("false"))
-                return true;
             if (HttpContext.Current.Session[ComConst.validatecode] == null)
                 return false;
             return HttpContext.Current.Session[ComConst.validatecode].ToString().ToLower().Equals(inputCode.ToLower());

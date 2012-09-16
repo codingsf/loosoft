@@ -57,8 +57,8 @@
       <result property="parentPlant" lazyLoad="true" column="parentId" select="plant_parent_lazy" />
 
       <result property="ElecPriceList" lazyLoad="true" column="id" select="elecprice_list_lazy" />
-      
-      <result property="yearCompensation" lazyLoad="false" column="id" select="plant_yearcompensation_lazy_getlist" />
+      <!--
+      <result property="yearCompensation" lazyLoad="false" column="id" select="plant_yearcompensation_lazy_getlist" />-->
     </resultMap>
   </resultMaps>
 

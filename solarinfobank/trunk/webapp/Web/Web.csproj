@@ -194,7 +194,6 @@
     <Compile Include="Controllers\Admin\ItemConfigController.cs" />
     <Compile Include="Controllers\OpenApiController.cs" />
     <Compile Include="Controllers\PController.cs" />
-    <Compile Include="Controllers\Plant\DeviceController.cs" />
     <Compile Include="Controllers\Plant\PlantController.cs" />
     <Compile Include="Controllers\Plant\UnitController.cs" />
     <Compile Include="Controllers\PortalController.cs" />

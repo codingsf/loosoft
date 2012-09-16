@@ -1,17 +1,17 @@
-<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Cn.Loosoft.Zhisou.SunPower.Domain.QA>>" %>
+<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Cn.Loosoft.Zhisou.SunPower.Domain.QA>>"
+    MasterPageFile="~/Pages/Shared/Index.Master" %>
 
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title><%=Resources.SunResource.PAGE_QA_TITLE%></title>
+<asp:Content ID="title" ContentPlaceHolderID="TitleContent" runat="server">
+    <%=Resources.SunResource.PAGE_QA_TITLE%>
+</asp:Content>
+<asp:Content ID="content" ContentPlaceHolderID="MainContent" runat="server">
+
     <link href="../../style/lc.css" rel="stylesheet" type="text/css" />
     <link href="../../style/css.css" rel="stylesheet" type="text/css" />
     <link href="../../style/sub.css" rel="stylesheet" type="text/css" />
     <link href="../../style/kj.css" rel="stylesheet" type="text/css" />
     <link href="../../style/faq.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
     <div class="lcbox">
         <div class="lcabout">
             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -96,17 +96,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td width="9" height="9">
-                        <img src="/images/tc/tc06.gif" width="9" height="9" />
-                    </td>
-                    <td background="/images/tc/tc07.gif">
-                    </td>
-                    <td>
-                        <img src="/images/tc/tc08.gif" width="9" height="9" />
-                    </td>
+                    <td width="9" height="9"><img src="/images/tc/tc06.gif" width="9" height="9" /></td><td background="/images/tc/tc07.gif"></td><td><img src="/images/tc/tc08.gif" width="9" height="9" /></td>
                 </tr>
             </table>
         </div>
     </div>
-</body>
-</html>
+</asp:Content>

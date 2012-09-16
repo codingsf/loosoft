@@ -1582,20 +1582,16 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
         }
 
         [HttpPost]
-        public ActionResult InverterEdit(string pid, string didStr, string name, string currentPower, string powerRatio)
+        public ActionResult InverterEdit(string pid, string didStr, string name, string currentPower)
         {
             int did = 0;
             int.TryParse(didStr, out did);
             Device device = DeviceService.GetInstance().get(did);
             if (name == device.comFullName) device.name = "";//组合名称不保存到name字段，避免自定义被修改
             device.currentPower = currentPower;
-            double temp = 0;
-            double.TryParse(powerRatio, out temp);
-            device.powerRatio = temp;
             DeviceService.GetInstance().UpdateDeviceById(device);
             return Redirect("/plant/devicemonitor/" + pid);
         }
-
 
         public ActionResult InverterList(string pid)
         {

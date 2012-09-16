@@ -1629,7 +1629,7 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                                                                 元
                                                             </td>
                                                         </tr>
-                                                        <%} %>
+                                                      
                                                         <tr>
                                                             <td class="pl20" height="28">
                                                                 <strong>分布图:</strong>
@@ -1648,6 +1648,7 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                                                                 </table>
                                                             </td>
                                                         </tr>
+                                                        <%} %>
                                                     </tbody>
                                                 </table>
                                             </div>

@@ -403,9 +403,7 @@
                                                 int totalPlants = plants.Count;
                                                 foreach (Plant plant in plants)
                                                 {
-                                                    // if (plant.id == Model.id)
-                                                    //   continue;
-                                                    if (idx++ >= configCount - 1)
+                                                    if (idx++ >= configCount)
                                                         break;
                                             %>
                                             <li><a href="/<%=plant.childs.Count>0?"virtual/plantrelationstruct":"plant/overview" %>/<%=plant.id %>"

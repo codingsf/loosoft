@@ -155,16 +155,18 @@
                                 <td>
                                     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="down_line0<%=i%2 %>">
                                         <tr>
-                                            <td width="28%" height="35" align="center">
+                                            <td width="4%" height="35" align="center" style="padding-left:2px;">
                                                 <%if (plant.hasFaultDevice)
                                                   { %>
-                                                <img src="/images/warning_16.gif" alt="" style="float: left">
+                                                <img src="/images/warning_16.gif" alt="" style="float: left;">
                                                 <%} %>
                                                 <%if (plant.isVirtualPlant)
                                                   { %>
                                                 <img src="/images/lightning.gif" alt="" style="float: left">
                                                 <%} %>
-                                                <div style="width: 170px; float: right; text-align: center; line-height: 23px; overflow: hidden;"
+                                            </td>
+                                            <td width="24%" height="35" align="left">
+                                                <div style="width: 170px; text-align: center; padding-bottom:5px; overflow: hidden;"
                                                     title="<%=plant.name%>">
                                                     <%if (plant.isVirtualPlant)
                                                       { %>
@@ -176,7 +178,7 @@
                                                             <%} %>
                                                             <%=plant.name%>
                                                         </a>
-                                                </div>
+                                                </div>                                            
                                             </td>
                                             <td width="20%" align="center">
                                                 <div style="width: 100px; overflow: hidden;" title="<%=plant.country%>">

@@ -278,8 +278,6 @@
                                                 int totalPlant = user.displayPlants.Count;
                                                 foreach (Plant plant in user.displayPlants)
                                                 {
-                                                    
-
                                                     if (idx++ >= configCount)
                                                         break;
                                             %>

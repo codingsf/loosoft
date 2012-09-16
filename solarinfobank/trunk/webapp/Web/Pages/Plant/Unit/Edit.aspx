@@ -172,7 +172,7 @@
             <table width="350" height="60" border="0" align="center" cellpadding="0" cellspacing="0">
                 <tr>
                     <td>
-                        <input name="button" type="submit" class="txtbu03" id="Submit1" value=" <%=Resources.SunResource.PLANT_UNIT_BIND_BIND %> " />
+                        <input name="button" type="submit" class="txtbu03" id="Submit1" value=" <%=Model.id!=null?Resources.SunResource.PLANT_EDIT_SAVE:Resources.SunResource.PLANT_UNIT_BIND_BIND %> " />
                     </td>
                     <td>
                         <input onclick="window.location='/unit/list/<%=Model.id %>'" name="button2" type="button"

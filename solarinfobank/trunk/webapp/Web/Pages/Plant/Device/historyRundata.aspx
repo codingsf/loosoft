@@ -7,7 +7,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server"> 
-  <div style="width:750px; font-family: Verdana, Arial, Helvetica, sans-serif;font-size:12px;" >
+  <div style="width:750px; font-family: Verdana, Arial, Helvetica, sans-serif;font-size:12px; overflow:auto; overflow-y:hidden;" >
   <table width="100%" border="1" bordercolor="#A8A8A8"  cellpadding="0" cellspacing="0" style="border-collapse:collapse; line-height:24px;text-align:center">
   <tr>
     <td colspan="40" align="left" style="padding-left:10px; "><%=Model.fullName+" "+Resources.SunResource.DEVICE_DEVICE_HISTORYRUN_DATA%></td>

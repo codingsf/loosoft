@@ -104,9 +104,78 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 return firstHash;
             }
         }
+
         private Hashtable getMultiDayBetweenData(Device device, string year, string month, int startDD, int endDD, int intervalMins, int monitorCode)
         {
             return getMultiDayBetweenData(null, device, year, month, startDD, endDD, intervalMins, monitorCode);
+        }
+
+        /// <summary>
+        /// 加工处理某天某个设备多测点数据到表格输出方式
+        /// </summary>
+        /// <param name="device"></param>
+        /// <param name="yyyyMMdd"></param>
+        /// <returns>//key ：时间点 value ： 测点和值map (key:测点 value：测点值)</returns>
+        public IDictionary<string, IDictionary<int, string>> handleDayData(IList<string> allmts, Device device, string yyyyMMdd)
+        {
+            //首先取出某个设备的所有测点的天数据
+            string year = yyyyMMdd.Substring(0, 4);
+            string month = yyyyMMdd.Substring(4, 2);
+            int day = int.Parse(yyyyMMdd.Substring(6, 2));
+
+            IList<DeviceDayData> deviceDayDatas = this.getDeviceDayDatas(device, year, month, day, day);
+            //保存时间点对应的测点值map
+            //key ：时间点 value ： 测点和值map (key:测点 value：测点值)
+            IDictionary<string, IDictionary<int, string>> timemtMap = new Dictionary<string, IDictionary<int, string>>();
+            //循环取出所有时间点，并把所有时间点放入map
+            string timepoint = "";
+            IDictionary<int, string> mtMap = null;
+            foreach (DeviceDayData dayData in deviceDayDatas) {
+                if (string.IsNullOrEmpty(dayData.dataContent)) continue;
+                //存储所有测点
+                allmts.Add(MonitorType.getMonitorTypeByCode(dayData.monitorCode).name);
+                string[] datas = dayData.dataContent.Split('#');
+                string[] timedatas=null;
+                foreach(string data in datas){
+                    if (string.IsNullOrEmpty(data)) continue;
+                    timedatas = data.Split(':');
+                    timepoint = timedatas[0];
+                    if (timemtMap.ContainsKey(timepoint))
+                    {
+                        mtMap = timemtMap[timepoint];
+                    }
+                    else {
+                        mtMap = new Dictionary<int, string>();
+                        timemtMap.Add(timepoint, mtMap);
+                    }
+                    if (mtMap.ContainsKey(dayData.monitorCode))
+                    {
+                        mtMap[dayData.monitorCode] = timedatas[1];
+                    }
+                    else {
+                        mtMap.Add(dayData.monitorCode, timedatas[1]);
+                    }
+                }
+
+            }
+            return timemtMap;
+        }
+
+        /// <summary>
+        /// 取得某个设备跨天的所有测点天数据
+        /// add by qhb in 20120915 
+        /// </summary>
+        /// <param name="device"></param>
+        /// <param name="day"></param>
+        /// <param name="year"></param>
+        /// <param name="month"></param>
+        /// <param name="startDD"></param>
+        /// <param name="endDD"></param>
+        /// <returns></returns>
+        public IList<DeviceDayData> getDeviceDayDatas(Device device, string year, string month, int startDD, int endDD)
+        {
+            string deviceTable = getDeviceTablename(device.deviceTypeCode);
+            return _DevicePowerDaydataDao.GetDaydataList(device.id, deviceTable, year, month, startDD, endDD);
         }
 
         /// <summary>

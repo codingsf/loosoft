@@ -140,9 +140,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                         }
                         for (int m = 0; m <= 23; m++)
                         {
-                            //add by qianhb in 2011/12/17 去掉日中的5点之前和21点之后的
-                            if (m > 21 || m < 5) continue;
-                            //add by qianhb in 2011/12/17 去掉日中的5点之前和21点之后的 end
+                            //add by qianhb in 2011/12/17 去掉日中的4点之前和212点之后的
+                            if (m > 22 || m < 4) continue;
+                            //add by qianhb in 2011/12/17 去掉日中的4点之前和22点之后的 end
                             if ((n == startDD && m < startHH) || (n == endDD && m > endHH))
                             {
                                 continue;

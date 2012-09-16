@@ -17,15 +17,15 @@
         <div class="lcabout">
             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td width="9" height="9" background="images/tc/tc01.gif">
+                    <td width="9" height="9" background="/images/tc/tc01.gif">
                     </td>
-                    <td background="images/tc/tc02.gif">
+                    <td background="/images/tc/tc02.gif">
                     </td>
-                    <td width="9" height="9" background="images/tc/tc03.gif">
+                    <td width="9" height="9" background="/images/tc/tc03.gif">
                     </td>
                 </tr>
                 <tr>
-                    <td background="images/tc/tc04.gif">
+                    <td background="/images/tc/tc04.gif">
                         &nbsp;
                     </td>
                     <td bgcolor="#FFFFFF">
@@ -66,18 +66,18 @@
                             <%} %>
                         </div>
                     </td>
-                    <td background="images/tc/tc05.gif">
+                    <td background="/images/tc/tc05.gif">
                         &nbsp;
                     </td>
                 </tr>
                 <tr>
                     <td width="9" height="9">
-                        <img src="images/tc/tc06.gif" width="9" height="9" />
+                        <img src="/images/tc/tc06.gif" width="9" height="9" />
                     </td>
-                    <td background="images/tc/tc07.gif">
+                    <td background="/images/tc/tc07.gif">
                     </td>
                     <td>
-                        <img src="images/tc/tc08.gif" width="9" height="9" />
+                        <img src="/images/tc/tc08.gif" width="9" height="9" />
                     </td>
                 </tr>
             </table>

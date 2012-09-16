@@ -3139,7 +3139,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
 
         public ActionResult Answer()
         {
-            return View(@"qa/list", QAService.GetInstance().Search(string.Empty, QA.NORMAL));
+            return View(@"qa/list", QAService.GetInstance().Search(string.Empty, -1));
         }
 
         public ActionResult PostAnswer(string id)

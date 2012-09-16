@@ -25,7 +25,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             qa.qid = 0;
             qa.pubdate = DateTime.Now;
             QAService.GetInstance().Save(qa);
-            ViewData["message"] = "提问成功，请耐心等待管理员的审核交解答！";
+            ViewData["message"] = "提问成功，请耐心等待管理员的解答！";
             return View();
         }
 

@@ -36,7 +36,15 @@
     </update>
 
     <select id="qa_get_list" resultClass="QA">
-      <![CDATA[select * from qa where (title like '%$title$%' or descr like '%$descr$%') and qid=0 and status=#status#]]>
+      <![CDATA[select * from qa where (title like '%$title$%' or descr like '%$descr$%') and qid=0 ]]>
+
+      <dynamic prepend="">
+        <isParameterPresent>
+          <isNotEqual prepend="and" property="status" compareValue="-1">
+            status=#status#
+          </isNotEqual>
+        </isParameterPresent>
+      </dynamic>
     </select>
 
     <select id="qa_get" resultMap="qa_result">

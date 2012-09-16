@@ -73,28 +73,38 @@
                     <div class="sb_top">
                     </div>
                     <div class="sb_mid">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    
+                        <div style="width: 730px; overflow: scroll; overflow-y: hidden;">
+                        <table width="150%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td>
                                     <table width="100%" height="25" border="0" cellpadding="0" cellspacing="0" class="subline02">
                                         <tr>
-                                            <td width="28%" align="center">
+                                            <td width="20%" align="center">
                                                 <strong>
                                                     <%=Resources.SunResource.USER_ALLPLANTS_NAME  %></strong>
                                             </td>
-                                            <td width="20%" align="center">
+                                            <td width="10%" align="center">
                                                 <strong>
                                                     <%=Resources.SunResource.USER_ALLPLANTS_COUNTRY  %></strong>
                                             </td>
-                                            <td width="14%" align="center">
+                                            <td width="10%" align="center">
                                                 <strong>
                                                     <%=Resources.SunResource.USER_ALLPLANTS_CITY  %></strong>
                                             </td>
-                                            <td width="14%" align="center">
+                                            <td width="15%" align="center">
+                                                <strong>
+                                                    <%=Resources.SunResource.USER_OVERVIEW_PLANT_TODAYENERGY%></strong>
+                                            </td>
+                                            <td width="15%" align="center">
                                                 <strong>
                                                     <%=Resources.SunResource.USER_ALLPLANTS_ENERGY  %></strong>
                                             </td>
-                                            <td width="20%" align="center">
+                                            <td width="15%" align="center">
+                                                <strong>
+                                                    <%=Resources.SunResource.USER_OVERVIEW_PLANT_CURRENT_POWER%></strong>
+                                            </td>
+                                            <td width="15%" align="center">
                                                 <strong>
                                                     <%=Resources.SunResource.USER_ALLPLANTS_OPERATION  %></strong>
                                             </td>
@@ -110,7 +120,7 @@
                                 <td>
                                     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="down_line0<%=i%2 %>">
                                         <tr>
-                                            <td width="28%" height="35" align="center">
+                                            <td width="20%" height="35" align="center">
                                                 <%if (plant.hasFaultDevice)
                                                   { %>
                                                 <img src="/images/warning_16.gif" alt="" style="float: left">
@@ -133,20 +143,30 @@
                                                         </a>
                                                 </div>
                                             </td>
-                                            <td width="20%" align="center">
+                                            <td width="10%" align="center">
                                                 <div style="width: 100px; overflow: hidden;" title="<%=plant.country%>">
                                                     <%=plant.country%></div>
                                             </td>
-                                            <td width="14%" align="center">
+                                            <td width="10%" align="center">
                                                 <div style="width: 100px; overflow: hidden;" title="<%=plant.city%>">
                                                     <%=plant.city%></div>
                                             </td>
-                                            <td width="14%" align="center">
+                                            <td width="15%" align="center">
+                                                <div style="width: 100px; overflow: hidden;" title="<%=plant.DisplayTotalDayEnergy%>">
+                                                    <%=plant.DisplayTotalDayEnergy + "(" + plant.TotalDayEnergyUnit + ")"%>
+                                                </div>
+                                            </td>
+                                            <td width="15%" align="center">
                                                 <div style="width: 100px; overflow: hidden;" title="<%=plant.DisplayTotalEnergy%>">
                                                     <%=plant.DisplayTotalEnergy + "(" + plant.TotalEnergyUnit + ")"%>
                                                 </div>
                                             </td>
-                                            <td width="20%" align="center">
+                                            <td width="15%" align="center">
+                                                <div style="width: 100px; overflow: hidden;" title="<%=plant.DisplayTodayTotalPower%>">
+                                                    <%=plant.DisplayTodayTotalPower + "(" + plant.TodayTotalPowerUnit + ")"%>
+                                                </div>
+                                            </td>
+                                            <td width="15%" align="center">
                                                 <%if (AuthService.isAllow(AuthorizationCode.EDIT_PLANT))
                                                   { %>
                                                 <a href="/plant/<%=plant.isVirtualPlant?"virtual":"" %>edit/<%=plant.id %>?fromurl=/virtual/includeplantrelationstruct/<%=Model.id %>">
@@ -162,7 +182,8 @@
                                                 <%if (AuthService.isAllow(AuthorizationCode.DELETE_PLANT))
                                                   { %>
                                                 <a onclick="return confirm('<%=Resources.SunResource.MONITORITEM_SURE_DELETE%>')"
-                                                    href="/user/detele/<%=plant.id%>?t=<%=plant.isVirtualPlant?1:0%>&fromurl=/virtual/plantrelationstruct/<%=Model.id %>" target="_parent">
+                                                    href="/user/detele/<%=plant.id%>?t=<%=plant.isVirtualPlant?1:0%>&fromurl=/virtual/plantrelationstruct/<%=Model.id %>"
+                                                    target="_parent">
                                                     <img src="/images/sub/cross.gif" width="16" height="16" border="0" alt="<%=Resources.SunResource.MONITORITEM_DELETE%>"
                                                         title="<%=Resources.SunResource.MONITORITEM_DELETE%>" /></a>
                                                 <%}
@@ -194,7 +215,8 @@
                                                 <img src="/images/sub/yc.gif" alt="分配电站" title="分配电站" />
                                                 <%} %>
                                                 <a href="/plant/structpic/<%=plant.id%>?fromurl=/user/includeallplants">
-                                                    <img src="/images/sub/fbt.gif" alt=" <%=plant.isVirtualPlant?"电站分布图":"单元分布图" %>" title=" <%=plant.isVirtualPlant?"电站分布图":"单元分布图" %>" /></a>
+                                                    <img src="/images/sub/fbt.gif" alt=" <%=plant.isVirtualPlant?"电站分布图":"单元分布图" %>"
+                                                        title=" <%=plant.isVirtualPlant?"电站分布图":"单元分布图" %>" /></a>
                                             </td>
                                         </tr>
                                     </table>
@@ -203,6 +225,7 @@
                             <%}
                             %>
                         </table>
+                        </div>
                     </div>
                     <div class="sb_down">
                     </div>

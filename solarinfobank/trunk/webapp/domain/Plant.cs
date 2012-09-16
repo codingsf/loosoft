@@ -1294,5 +1294,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         //年补偿
         public IList<YearCompensation> yearCompensation { get; set; }
 
+        //发电量比例系数
+        public double energyRate { get; set; }
+
     }
 }

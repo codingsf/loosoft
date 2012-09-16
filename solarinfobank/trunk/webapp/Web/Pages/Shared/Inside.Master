@@ -708,7 +708,7 @@
                             <%} %>
                             <div class="kjlbu00">
                                 <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_ANY_QUESTIONS  %>?<br />
-                                <a href="/help/<%=(Session["Culture"] as CultureInfo).Name%>/SolarInfo Bank User Manual.pdf"
+                                <a href="/qa/ask"
                                     class="green" target="_blank" style="text-decoration: underline;">
                                     <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_CLICK_HERE_FOR_HELP  %>!</a>
                             </div>

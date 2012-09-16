@@ -6471,4 +6471,7 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>Dato storica dell'operazione dell'impianto</value>
     <comment>设备历史运行数据</comment>
   </data>
+  <data name="PAGE_QA_TITLE" xml:space="preserve">
+    <value>有问有答</value>
+  </data>
 </root>

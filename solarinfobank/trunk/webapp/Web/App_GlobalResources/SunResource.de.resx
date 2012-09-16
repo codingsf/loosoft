@@ -5375,7 +5375,6 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
   <data name="INVERTER_EDIT_POWER_RATIO" xml:space="preserve">
     <value>发电量比例</value>
   </data>
-
   <data name="DEVICEMONITORITEM_141" xml:space="preserve">
     <value>Fehler Zustand</value>
     <comment>故障状态</comment>
@@ -5537,5 +5536,8 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
   <data name="DEVICE_DEVICE_HISTORYRUN_DATA" xml:space="preserve">
     <value>Betriebsdaten historische Gerätezubehör</value>
     <comment>设备历史运行数据</comment>
+  </data>
+  <data name="PAGE_QA_TITLE" xml:space="preserve">
+    <value>有问有答</value>
   </data>
 </root>

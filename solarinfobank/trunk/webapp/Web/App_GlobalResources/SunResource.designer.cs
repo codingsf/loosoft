@@ -6296,6 +6296,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 有问有答 的本地化字符串。
+        /// </summary>
+        internal static string PAGE_QA_TITLE {
+            get {
+                return ResourceManager.GetString("PAGE_QA_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 All Plants list 的本地化字符串。
         /// </summary>
         internal static string PAGE_SHARED_ALLPLANTS_TIPS {

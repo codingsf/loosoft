@@ -5368,4 +5368,7 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <value>Device History Run Data</value>
     <comment>设备历史运行数据</comment>
   </data>
+  <data name="PAGE_QA_TITLE" xml:space="preserve">
+    <value>有问有答</value>
+  </data>
 </root>

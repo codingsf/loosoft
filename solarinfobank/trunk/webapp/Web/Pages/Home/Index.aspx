@@ -337,64 +337,75 @@
                         </td>
                     </tr>
                 </table>--%>
-             
-            <table width="400" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:10px;">
-            <tr>
-            <td height="30" colspan="3" align="left" class="dgr"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td width="100%" style="color: #EF8700; font-weight: bold;">
-                        <span id="error">
-                            <%if (Request.QueryString.ToString().Equals("t"))
-                              { %>
-                            <img src="images/tx.jpg" width="12" height="11" id="errorico" />
-                            &nbsp;
-                            <%=Resources.SunResource.HOME_INDEX_LOG_FAIL_TIME_OUT%>
-                            <%}
-                              else
-                              {%>
-                            <%= Html.ValidationMessage("Error", "", new { id = "errormessage"})%>&nbsp
-                            <%} %>
-                        </span>
-                    </td>
-                </tr>
-            </table>
-            </td>
+               
+    <table width="400" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:10px;">
+    <tr>
+      <td height="30" colspan="3" align="left" class="dgr"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+         
+          <td width="100%" style="color:#EF8700; font-weight:bold;">
+           <span id="Span1">
+          <%if (Request.QueryString.ToString().Equals("t"))
+            { %>
+            <img src="images/tx.jpg" width="12" height="11" id="Img1" /> &nbsp; <%=Resources.SunResource.HOME_INDEX_LOG_FAIL_TIME_OUT%>       
+            <%}
+            else
+            {%>
+             <%= Html.ValidationMessage("Error", "", new { id = "errormessage"})%>&nbsp
+            <%} %>
+    
+          </span></td>
+        </tr>
+      </table></td>
       </tr>
     <tr>
-      <td width="114" height="28" align="left" class="dgr"> <span style="white-space: nowrap;">
-       <%=Resources.SunResource.HOME_INDEX_USERNAME%>:</span></td>
-      <td width="186" align="left"><%= Html.TextBoxFor(m => m.username, new { @class = "insy01", tabindex ="1"})%></td>
-      <td width="100" rowspan="2">
-        <input type="submit" class="loginbu" value="<%=Resources.SunResource.HOME_INDEX_LOGIN%>" onclick="remember(this)" id="btnLogin" tabindex="3" /></td>
+      <td width="73" height="28" align="left" class="dgr"><span style="white-space:nowrap;"><%=Resources.SunResource.HOME_INDEX_USERNAME%>:</span> </td>
+      <td width="174" align="right">
+       <%= Html.TextBoxFor(m => m.username, new { @class = "insy01", tabindex ="1"})%>
+      </td>
+      <td width="153" rowspan="2">
+      <input type="submit" class="loginbu" value="<%=Resources.SunResource.HOME_INDEX_LOGIN%>"
+                                            onclick="remember(this)" id="Submit1", tabindex ="3" />
+      
+      </td>
     </tr>
     <tr>
-      <td height="28" align="left" class="dgr">  <%= Resources.SunResource.HOME_INDEX_PASSWORD%>:</td>
-      <td align="left"><%= Html.PasswordFor(m => m.password, new { @class = "insy01", tabindex = "2" })%></td>
-    </tr>
-    <%if (Cn.Loosoft.Zhisou.SunPower.Common.ValidateCodeUtil.isValid())
-      { %>
+
+      <td height="28" align="left" class="dgr"> <%= Resources.SunResource.HOME_INDEX_PASSWORD%>:</td>
+      <td align="right">
+       <%= Html.PasswordFor(m => m.password, new { @class = "insy01", tabindex = "2" })%>
+      </td>
+      </tr>
     <tr>
-      <td class="dgr"><span leftzone="0|15" rightzone="0|15" space="space"> <%= Resources.SunResource.HOME_INDEX_VALIDATECODE%>:</span>      </td>
-      <td align="left"><input name="validatecode" type="text" style="border:1px solid #3A4E2B; width:95px; height:17px; vertical-align:middle;" />
-        <img src="/content/ashx/validatecode.ashx" width="60" height="19"  style="vertical-align:middle; cursor:pointer; " title="<%= Resources.SunResource.HOME_INDEX_RELOAD_VALIDATECODE%>" onclick="reloadcode(this)" /> </td>
+      <td colspan="3"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <%if (Cn.Loosoft.Zhisou.SunPower.Common.ValidateCodeUtil.isValid())
+              { %>
+              <td class="dgr" width="82"><span leftzone="0|15" rightzone="0|15" space="space"> <%= Resources.SunResource.HOME_INDEX_VALIDATECODE%>:</span>      </td>
+              <td align="left" width="170"><input name="validatecode" type="text" style="border:1px solid #3A4E2B; width:95px; height:17px; vertical-align:middle;" />
+                <img src="/content/ashx/validatecode.ashx" width="60" height="19"  style="vertical-align:middle; cursor:pointer; " title="<%= Resources.SunResource.HOME_INDEX_RELOAD_VALIDATECODE%>" onclick="reloadcode(this)" /> </td>
+          <%}%>
+          <td align="left">
+          <%=Html.CheckBox("autologin",false) %>
+                                        <%= Resources.SunResource.HOME_INDEX_REMAIN_REMEMBER_ME%>
+          </td>
+          <td align="right" style="display:none">
+           <input id="Checkbox1" type="checkbox" value="checkbox" />
+                                        SSL
+          </td>
+          </tr>
+      </table></td>
       <td height="36">&nbsp;</td>
     </tr>
-    <%}%>
     <tr>
-      <td height="28" colspan="3">
-	  <span style="float:left;">
-	    <%=Html.CheckBox("autologin",false) %><%= Resources.SunResource.HOME_INDEX_REMAIN_REMEMBER_ME%>
-	   </span>
-	   <span style="display:none">
-	   
-           <input id="ssl" type="checkbox" value="checkbox" />
-                                        SSL
-	   </span>
-	  <span style=" float:right; margin-left:15px;"><a href="/newregister/register" class="green">
-                                <%= Resources.SunResource.HOME_INDEX_REGISTER%></a></span><span style="float:right;"><a href="/public/findpassword" class="green">
+      <td height="28" colspan="2" align="center"><span style="float:left;"><a href="/newregister/register" class="green" target=_blank>
+                                <%= Resources.SunResource.HOME_INDEX_REGISTER%></a></span>
+
+	  <span style=" float:right; margin-left:20px;"><a href="/public/findpassword" class="green">
                                         <%= Resources.SunResource.HOME_INDEX_FORGETTEN_PASSWORD%>? </a></span>	  </td>
-      </tr>
-  </table>
+      <td height="28" align="center">&nbsp;</td>
+    </tr>
+  </table>  
   
                 </form>
             </div>

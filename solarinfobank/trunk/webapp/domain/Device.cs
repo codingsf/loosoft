@@ -436,8 +436,5 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 return runData.hasMonitor(MonitorType.MIC_DETECTOR_DAYRADIATION);
             return false;
         }
-
-        public double powerRatio { get; set; }//发电量比例 2012/9/13
-
     }
 }

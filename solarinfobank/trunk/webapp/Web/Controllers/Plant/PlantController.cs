@@ -2544,5 +2544,23 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             });
             return Content("ok");
         }
+
+
+        public ActionResult EnergyRate(int id)
+        {
+
+            Plant plant = plantService.GetPlantInfoById(id);
+            return View(plant);
+        }
+
+        [HttpPost]
+        public ActionResult SaveEnergyRate(Plant plant)
+        {
+            double rate = plant.energyRate;
+            plant = plantService.GetPlantInfoById(plant.id);
+            plant.energyRate = rate;
+            plantService.UpdatePlantInfo(plant);
+            return View("energyrate", plant);
+        }
     }
 }

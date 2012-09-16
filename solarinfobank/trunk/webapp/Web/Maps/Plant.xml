@@ -48,6 +48,7 @@
       <result property="VideoMonitorEnable"			column="videoMonitorEnable"/>
       <result property="waringLastSendTime"			column="waring_lastsendtime"/>
       <result property="predictivedata"			column="predictivedata"/>
+      <result property="energyRate"			column="energy_rate"/>
       <!-- 级联部分-->
       <result property="plantUnits"	lazyLoad="false"	column="id" select="plantunit_get_list_by_plantid" />
       <result property="monitores"	lazyLoad="false"	column="id" select="videomonitor_get_list_lazy" />
@@ -133,7 +134,7 @@
     </update>
     <!--修改电站信息（张月）-->
     <update id="plant_update" paramentClass="Plant">
-      UPDATE  PLANT_INFO SET id=#id#,name=#name#,revenueRate=#revenueRate#,videoMonitorEnable=#VideoMonitorEnable#,postcode=#postcode#,location=#location#,country=#country#,city=#city#,timezone=#timezone#,street=#street#,installdate=#installdate#,operater=#operater#,email=#email#,phone=#phone#,direction=#direction#,angle=#angle#,manufacturer=#manufacturer#,module_type=#module_type#,pic=#pic#,longitude=#longitude#,userID=#userID#,latitude=#latitude#,description=#description#,design_power=#design_power#,example_plant=#example_plant#,isNewPlant=#isNewPlant#,startdate=#startDate#,enddate=#endDate#,hours=#hours#,dst_enable=#dst_enable#,area=#area#,longitudeString=#longitudeString#,latitudeString=#latitudeString#, parentId=#parentId#,isVirtualPlant=#isVirtualPlant# ,basePrice=#basePrice#,structPic=#structPic#,predictivedata=#predictivedata# WHERE id=#id#
+      UPDATE  PLANT_INFO SET id=#id#,name=#name#,revenueRate=#revenueRate#,videoMonitorEnable=#VideoMonitorEnable#,postcode=#postcode#,location=#location#,country=#country#,city=#city#,timezone=#timezone#,street=#street#,installdate=#installdate#,operater=#operater#,email=#email#,phone=#phone#,direction=#direction#,angle=#angle#,manufacturer=#manufacturer#,module_type=#module_type#,pic=#pic#,longitude=#longitude#,userID=#userID#,latitude=#latitude#,description=#description#,design_power=#design_power#,example_plant=#example_plant#,isNewPlant=#isNewPlant#,startdate=#startDate#,enddate=#endDate#,hours=#hours#,dst_enable=#dst_enable#,area=#area#,longitudeString=#longitudeString#,latitudeString=#latitudeString#, parentId=#parentId#,isVirtualPlant=#isVirtualPlant# ,basePrice=#basePrice#,structPic=#structPic#,predictivedata=#predictivedata#,energy_rate=#energyRate# WHERE id=#id#
     </update>
 
     <!--获取所有的电站(张月改)-->

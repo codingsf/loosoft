@@ -681,6 +681,12 @@
                                             <li><a onclick="loadContent('content_ajax','/user/pageconfig','iframe','GET');setcurrent(this);return false;"
                                                 href="/user/pageconfig">
                                                 <%=Resources.SunResource.PAGECONFIG_TITLE %></a></li>
+                                                
+                                                   <li><a onclick="loadContent('content_ajax','/plant/energyrate/<%=Model.id %>','iframe','GET');setcurrent(this);return false;"
+                                                href="/plant/energyrate/<%=Model.id %>">
+                                                发电量系数</a></li>
+                                                
+                                                
                                             <li><a onclick="loadContent('content_ajax','/user/record','iframe','GET');setcurrent(this);return false;"
                                                 href="/user/record">
                                                 <%=Resources.SunResource.PAGE_USER_LOGINRECORD%></a></li>

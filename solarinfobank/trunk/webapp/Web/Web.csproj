@@ -2563,6 +2563,7 @@
     <Content Include="Pages\Plant\AmmeterList.aspx" />
     <Content Include="Pages\Plant\AmmeterEdit.aspx" />
     <Content Include="Pages\Plant\deviceStructChart.aspx" />
+    <Content Include="Pages\Plant\EnergyRate.aspx" />
     <Content Include="Pages\Plant\portalStructChart.aspx" />
     <Content Include="Pages\Plant\Share.aspx" />
     <Content Include="Pages\Plant\Virtualedit.aspx" />

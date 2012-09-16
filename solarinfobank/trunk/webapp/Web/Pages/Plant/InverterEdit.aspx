@@ -169,7 +169,7 @@
                   <td class="pr_10" height="35"><strong><%=Resources.SunResource.PLANT_UNIT_LIST_TOTAL_ENERGY%>:</strong></td>
                   <td>
                   
-                  <%=device.DisplayTotalEnergy%> <%=device.TotalEnergyUnit%></td>
+                  <%=device.DisplayTotalEnergy%><%=device.TotalEnergyUnit%></td>
                   </tr>
                   
                   

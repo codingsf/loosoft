@@ -239,6 +239,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             set { _faxPhone = value; }
         }
 
+        /// <summary>
+        /// 所有关联的电站
+        /// </summary>
         public IList<PlantUser> plantUsers
         {
             get
@@ -287,6 +290,28 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 foreach (PlantUser plantUser in this.plantUsers)
                 {
                     if (plantUser.plant != null)
+                        _plantList.Add(plantUser.plant);
+                }
+                return _plantList;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// 取得自己创建的可管理的电站，不是别人分配的，shared=false
+        /// add by qhb in 20120915 for
+        /// </summary>
+        /// <returns></returns>
+        public IList<Plant> ownPlants
+        {
+            get
+            {
+                IList<Plant> _plantList = new List<Plant>();
+                if (this.plantUsers == null) return _plantList;
+
+                foreach (PlantUser plantUser in this.plantUsers)
+                {
+                    if (plantUser.plant != null && !plantUser.shared)
                         _plantList.Add(plantUser.plant);
                 }
                 return _plantList;
@@ -607,6 +632,24 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
+        /// 取得用户的所有自己创建管理的电站单元
+        /// </summary>
+        /// <returns></returns>
+        public IList<PlantUnit> ownplantUnits()
+        {
+            IList<PlantUnit> plantUnits = new List<PlantUnit>();
+            foreach (Plant plant in this.ownPlants)
+            {
+                foreach (PlantUnit unit in plant.allFactUnits)
+                {
+                    plantUnits.Add(unit);
+                }
+            }
+            return plantUnits;
+        }
+
+
+        /// <summary>
         /// 取得用户的所有电站单元
         /// </summary>
         /// <returns></returns>
@@ -688,6 +731,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                     }
                 }
                 return factPlants;
+            }
+        }
+
+        /// <summary>
+        /// 当前用户下任何一个电站有绑定采集器
+        /// </summary>
+        public bool isBindUnit
+        {
+            get
+            {
+                return this.ownplantUnits().Count > 0;
             }
         }
 

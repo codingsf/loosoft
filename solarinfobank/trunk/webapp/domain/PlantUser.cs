@@ -86,7 +86,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public int RoleId { get; set; }
 
         /// <summary>
-        /// 是否是被别人分配过来的电站
+        /// 是否是被别人分配过来的电站,true:是别人分配的，false是自己创建并管理的
         /// </summary>
         public bool shared { get; set; }
 

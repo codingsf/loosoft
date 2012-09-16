@@ -192,8 +192,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Admin\DbconfigController.cs" />
     <Compile Include="Controllers\Admin\ItemConfigController.cs" />
+    <Compile Include="Controllers\NewRegisterController.cs" />
     <Compile Include="Controllers\OpenApiController.cs" />
     <Compile Include="Controllers\PController.cs" />
+    <Compile Include="Controllers\Plant\DeviceController.cs" />
     <Compile Include="Controllers\Plant\PlantController.cs" />
     <Compile Include="Controllers\Plant\UnitController.cs" />
     <Compile Include="Controllers\PortalController.cs" />
@@ -221,6 +223,10 @@
     <Content Include="SqlMap.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\trunk-back\email-sf\EmailService\EmailService.csproj">
+      <Project>{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}</Project>
+      <Name>EmailService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{6AE1548A-E450-4197-8666-3D31D09527FD}</Project>
       <Name>Common</Name>
@@ -236,10 +242,6 @@
     <ProjectReference Include="..\service\Service.csproj">
       <Project>{326C59B0-0FED-4B56-BE49-8149877228B5}</Project>
       <Name>Service</Name>
-    </ProjectReference>
-    <ProjectReference Include="E:\working\SunInfoBank\trunk\email-sf\EmailService\EmailService.csproj">
-      <Project>{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}</Project>
-      <Name>EmailService</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -554,6 +556,11 @@
     <Content Include="Controllers\Content\Ashx\Upload.ashx" />
     <Content Include="Controllers\Content\Ashx\Drawing.ashx" />
     <Content Include="Controllers\Content\Ashx\validatecode.ashx" />
+    <Content Include="Content\Ashx\Drawing.ashx" />
+    <Content Include="Content\Ashx\Upload.ashx" />
+    <Content Include="Content\Ashx\validatecode.ashx" />
+    <None Include="Content\images\Thumbs.db" />
+    <None Include="Content\jquery\images\Thumbs.db" />
     <None Include="Controllers\Content\images\Thumbs.db" />
     <None Include="Controllers\Content\jquery\images\Thumbs.db" />
     <None Include="editor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.cfm" />
@@ -1126,6 +1133,23 @@
       <LastGenOutput>SunResource.de.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content\bin\zh-cn\Web.resources.dll" />
+    <Content Include="Content\code.xml" />
+    <Content Include="Content\images\amp.gif" />
+    <Content Include="Content\images\XPButtonNoText_160x22.png" />
+    <Content Include="Content\jquery\formValidator.js" />
+    <Content Include="Content\jquery\formValidatorRegex.js" />
+    <Content Include="Content\jquery\images\loading.gif" />
+    <Content Include="Content\jquery\images\reg1.gif" />
+    <Content Include="Content\jquery\images\reg2.gif" />
+    <Content Include="Content\jquery\images\reg3.gif" />
+    <Content Include="Content\jquery\images\reg4.gif" />
+    <Content Include="Content\jquery\jquery-1.2.6.pack.js" />
+    <Content Include="Content\jquery\style\validator.css" />
+    <Content Include="Content\jquery\style\validatorAuto.css" />
+    <Content Include="Content\swfupload.js" />
+    <Content Include="Content\Swf\swfupload.swf" />
+    <Content Include="Content\Swf\swfuploadbutton.swf" />
     <Content Include="Controllers\Content\code.xml" />
     <Content Include="Controllers\Content\images\amp.gif" />
     <Content Include="Controllers\Content\images\XPButtonNoText_160x22.png" />
@@ -2547,6 +2571,11 @@
     <Content Include="Pages\DeviceChart\CabinetChart.aspx" />
     <Content Include="Pages\DeviceChart\InverterPRChart.aspx" />
     <Content Include="Pages\DeviceChart\UdeviceChart.aspx" />
+    <Content Include="Pages\NewRegister\AddPlant.aspx" />
+    <Content Include="Pages\NewRegister\AddPlantControl.aspx" />
+    <Content Include="Pages\NewRegister\AddUnit.aspx" />
+    <Content Include="Pages\NewRegister\PlantUnitControl.aspx" />
+    <Content Include="Pages\NewRegister\Register.aspx" />
     <Content Include="Pages\PlantChart\DayCompare.aspx" />
     <Content Include="Pages\PlantChart\PRChart.aspx" />
     <Content Include="Pages\PlantChart\UnitComparePage.aspx" />
@@ -2556,9 +2585,11 @@
     <Content Include="Pages\Plant\AddPlant.aspx" />
     <Content Include="Pages\Plant\CustomChart.aspx" />
     <Content Include="Pages\Plant\deviceData.aspx" />
+    <Content Include="Pages\Plant\deviceHistoryData.aspx" />
     <Content Include="Pages\Plant\DeviceMonitor.aspx" />
     <Content Include="Pages\Plant\ChangePassword.aspx" />
     <Content Include="Pages\Plant\Device\CurrentCount.aspx" />
+    <Content Include="Pages\Plant\Device\historyRundata.aspx" />
     <Content Include="Pages\Plant\Map.aspx" />
     <Content Include="Pages\Plant\AmmeterList.aspx" />
     <Content Include="Pages\Plant\AmmeterEdit.aspx" />
@@ -2789,6 +2820,7 @@
   <ItemGroup>
     <Folder Include="app\" />
     <Folder Include="config\" />
+    <Folder Include="Content\bin\bin\zh-cn\" />
     <Folder Include="Controllers\Content\bin\" />
     <Folder Include="DepartmentPic\de-DE\" />
     <Folder Include="DepartmentPic\Deutschland\" />

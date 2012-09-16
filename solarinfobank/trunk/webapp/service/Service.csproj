@@ -133,6 +133,7 @@
     <Compile Include="MonthCompensationService.cs" />
     <Compile Include="ProtalService.cs" />
     <Compile Include="ProtalUtil.cs" />
+    <Compile Include="QAService.cs" />
     <Compile Include="RelationConfigService.cs" />
     <Compile Include="ReportDataItemService.cs" />
     <Compile Include="DbConfigService.cs" />

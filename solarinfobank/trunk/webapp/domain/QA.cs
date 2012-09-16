@@ -7,6 +7,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 {
    public class QA
     {
+       public const int NORMAL = 0;
+       public const int VALIDATE=1;
+       public const int NOVALIDATE=2;
+
        public int id { get; set; }
        public string username { get; set; }//提问人 或者回答人
        public string createip { get; set; }//提问 回答 IP 

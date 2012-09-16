@@ -18,6 +18,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// <returns></returns>
         public static string cutStr(string s, int l, string endStr)
         {
+            if (string.IsNullOrEmpty(s))
+                return string.Empty;
             string temp = s.Substring(0, (s.Length < l + 1) ? s.Length : l + 1);
             byte[] encodedBytes = System.Text.ASCIIEncoding.ASCII.GetBytes(temp);
 

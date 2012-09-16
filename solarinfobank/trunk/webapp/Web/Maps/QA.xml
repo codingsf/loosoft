@@ -8,14 +8,16 @@
   <resultMaps>
     <resultMap id="qa_result" class="QA">
       <result property="id"			column="id"/>
+      <result property="qid"			column="qid"/>
       <result property="username"			column="username"/>
       <result property="createip"			column="createip"/>
       <result property="pubdate"			column="pubdate"/>
       <result property="title"			column="title"/>
       <result property="descr"   column="descr"/>
       <result property="status"   column="status"/>
+
       <result property="questionentity" lazyLoad="true"	column="qid" select="get_question" />
-      <result property="answerslist" lazyLoad="true"	column="qid" select="get_question_answers" />
+      <result property="answerslist" lazyLoad="false"	column="id" select="get_question_answers" />
 
     </resultMap>
   </resultMaps>
@@ -26,19 +28,26 @@
 
   <statements>
     <insert id="qa_insert">
+      <![CDATA[insert into qa (title,descr,qid,status,pubdate,createip,username) values (#title#,#descr#,#qid#,#status#,#pubdate#,#createip#,#username#)]]>
     </insert>
 
     <update id="qa_update">
+      <![CDATA[update qa set status=#status# where id=#id#]]>
     </update>
 
+    <select id="qa_get_list" resultClass="QA">
+      <![CDATA[select * from qa where (title like '%$title$%' or descr like '%$descr$%') and qid=0 and status=#status#]]>
+    </select>
+
     <select id="qa_get" resultMap="qa_result">
+      <![CDATA[select * from qa where id=#id#]]>
     </select>
 
     <select id="get_question" resultClass="QA">
-      <![CDATA[select *　from qa where id=#value#]]>
+      <![CDATA[select * from qa where id=#value#]]>
     </select>
-    <select id="get_question_answers" resultMap="qa_result">
-      <![CDATA[select *　from qa where qid=#value#]]>
+    <select id="get_question_answers" resultClass="QA">
+      <![CDATA[select * from qa where qid=#value#]]>
     </select>
   </statements>
 </sqlMap>

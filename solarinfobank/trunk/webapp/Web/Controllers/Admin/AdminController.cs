@@ -2562,7 +2562,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             //实际电站被组合后，就没有分配关系了，所以去分配的用户作为登录用户就会取不到，就用器创建者作为登录用户
             //IList<PlantUser> pusers = plantUserService.GetOpenPlant(plant.id);
             //if (pusers.Count > 0)
-                //uid = pusers[0].userID;
+            //uid = pusers[0].userID;
             uid = int.Parse(plant.userID.ToString());
             User user = userService.Get(uid);
             UserUtil.login(user);
@@ -2913,13 +2913,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             //找出sn对应的采集器
             string sn = Request.Params["sn"];
             int collectorId = CollectorInfoService.GetInstance().getCollectorIdbyCode(sn);
-            if (collectorId == 0) {
+            if (collectorId == 0)
+            {
                 return Content("sn不存在！");
             }
             Collector collector = CollectorInfoService.GetInstance().Get(collectorId);
             //清理采集器实时数据的总发电量
             CollectorRunData collectorRunData = CollectorRunDataService.GetInstance().Get(collectorId);
-            if (collectorRunData != null) { 
+            if (collectorRunData != null)
+            {
                 collectorRunData.totalEnergy = 0;
                 //先持久化数据
                 CollectorRunDataService.GetInstance().save(collectorRunData);
@@ -2936,7 +2938,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             DateTime tempStartDate = startDate.AddDays(-1);
             //存储月度发电量
             IDictionary<string, float> monthEnergyMap = new Dictionary<string, float>();
-            
+
             while (endDate.CompareTo(tempStartDate) > 0)
             {
                 tempStartDate = tempStartDate.AddDays(1);
@@ -2949,7 +2951,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                 //取得当日发电量数据
                 CollectorMonthDayData collectorMonthDayData = CollectorMonthDayDataService.GetInstance().GetCollectorMonthDayData(tempStartDate.Year, collectorId, tempStartDate.Month);
                 float? dayEnergy = 0;
-                if (collectorMonthDayData != null) {
+                if (collectorMonthDayData != null)
+                {
                     dayEnergy = (float?)ReflectionUtil.getProperty(collectorMonthDayData, "d_" + tempStartDate.Day);
                     if (dayEnergy == null) dayEnergy = 0;
                 }
@@ -2958,7 +2961,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                 {
                     monthEnergyMap[yyyyMM] = monthEnergyMap[yyyyMM] + dayEnergy.Value;
                 }
-                else {
+                else
+                {
                     monthEnergyMap[yyyyMM] = dayEnergy.Value;
                 }
 
@@ -2966,7 +2970,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                 ReflectionUtil.setProperty(collectorMonthDayData, "d_" + tempStartDate.Day, 0);
 
                 //set cache
-                mcs.Set(CacheKeyUtil.buildCollectorEnergyMonthCountKey(collectorId, tempStartDate.Year,tempStartDate.Month),collectorMonthDayData);
+                mcs.Set(CacheKeyUtil.buildCollectorEnergyMonthCountKey(collectorId, tempStartDate.Year, tempStartDate.Month), collectorMonthDayData);
             }
 
             //将年月发电量重新计算
@@ -2974,12 +2978,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             IDictionary<int, float> yearEnergyMap = new Dictionary<int, float>();
             float energy = 0;
             CollectorYearMonthData collectorYearMonthData = null;
-            int year,month;
-            foreach (string key in monthEnergyMap.Keys) {
+            int year, month;
+            foreach (string key in monthEnergyMap.Keys)
+            {
                 year = int.Parse(key.Substring(0, 4));
-                month = int.Parse(key.Substring(4,2));
+                month = int.Parse(key.Substring(4, 2));
                 energy = monthEnergyMap[key];
-                collectorYearMonthData = CollectorYearMonthDataService.GetInstance().GetCollectorYearMonthData(collectorId,year);
+                collectorYearMonthData = CollectorYearMonthDataService.GetInstance().GetCollectorYearMonthData(collectorId, year);
                 float? monthEnergy = 0;//原来发电量
                 if (collectorYearMonthData != null)
                 {
@@ -3008,7 +3013,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             foreach (int key in yearEnergyMap.Keys)
             {
                 collectorYearData = CollectorYearDataService.GetInstance().GetCollectorYearData(collectorId, key);
-                if (collectorYearData != null) {
+                if (collectorYearData != null)
+                {
                     float? oyearEnergy = (float?)ReflectionUtil.getProperty(collectorYearData, "dataValue");
                     if (oyearEnergy == null) oyearEnergy = 0;
                     //将当年发电量减去天累计的要减少的
@@ -3020,17 +3026,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             }
 
             //循环清理采集器下面设备数据
-            foreach (Device device in collector.devices) {
+            foreach (Device device in collector.devices)
+            {
                 //清理采集器实时数据的总发电量
                 //DeviceRunData deviceRunData = device.runData;
                 //if (deviceRunData != null)
                 //{
-                    //deviceRunData.rundatastr = "";
-                    //先持久化数据
-                    //DeviceRunDataService.GetInstance().save(deviceRunData);
-                    //再删除缓存
-                    //string key = CacheKeyUtil.buildDeviceRunDataKey(device.id);
-                    //mcs.Delete(key);
+                //deviceRunData.rundatastr = "";
+                //先持久化数据
+                //DeviceRunDataService.GetInstance().save(deviceRunData);
+                //再删除缓存
+                //string key = CacheKeyUtil.buildDeviceRunDataKey(device.id);
+                //mcs.Delete(key);
                 //}
 
                 //清理设备天数据,并累计要清理的月发电量
@@ -3130,6 +3137,28 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             return Content("清理完成!");
         }
 
+        public ActionResult Answer()
+        {
+            return View(@"qa/list", QAService.GetInstance().Search(string.Empty, QA.NORMAL));
+        }
 
+        public ActionResult PostAnswer(string id)
+        {
+            int iid = 0;
+            int.TryParse(id, out iid);
+            return View(@"qa/post", QAService.GetInstance().Get(iid));
+        }
+
+        [HttpPost]
+        public ActionResult PostAnswer(QA qa)
+        {
+            User user = UserUtil.getCurUser();
+            qa.pubdate = DateTime.Now;
+            qa.status = QA.VALIDATE;
+            qa.username = user == null ? "admin" : user.username;
+            QAService.GetInstance().Save(qa);
+            QAService.GetInstance().UpdateStatus(qa.qid, QA.VALIDATE);
+            return View(@"qa/list", QAService.GetInstance().Search(string.Empty, QA.NORMAL));
+        }
     }
 }

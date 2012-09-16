@@ -45,6 +45,39 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
             return new ArrayList();
 
         }
+
+       /// <summary>
+       /// 取得设备所有测点数据
+       /// add by qhb in 20120915
+       /// </summary>
+       /// <param name="deviceID"></param>
+       /// <param name="deviceType"></param>
+       /// <param name="year"></param>
+       /// <param name="month"></param>
+       /// <param name="startDay"></param>
+       /// <param name="endDay"></param>
+       /// <param name="monitorCode"></param>
+       /// <returns></returns>
+        public IList<DeviceDayData> GetDaydataList(int deviceID, string deviceType, string year, string month, int startDay, int endDay)
+        {
+            Hashtable whereHash = new Hashtable();
+            whereHash["deviceID"] = deviceID;
+            whereHash["yearmonth"] = year + month;
+            whereHash["startDay"] = startDay;
+            whereHash["endDay"] = endDay;
+            whereHash["deviceType"] = deviceType;
+            try
+            {
+                return ExecuteQueryForList<DeviceDayData>("multidevicedaydata_list_between_day", whereHash);
+            }
+            catch (IBatisNetException ie)
+            {
+                Console.WriteLine("query error:" + ie.Message);
+            }
+            return new List<DeviceDayData>();
+
+        }
+
         /// <summary>
         /// 
         /// </summary>

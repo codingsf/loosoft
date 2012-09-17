@@ -5109,4 +5109,15 @@
   <data name="PAGE_QA_TITLE" xml:space="preserve">
     <value>有问有答</value>
   </data>
+  <data name="QA_NOTICE_CONTENT" xml:space="preserve">
+    <value>请输入提问内容</value>
+  </data>
+  <data name="QA_NOTICE_TITLE" xml:space="preserve">
+    <value>请输入标题</value>
+  </data>
+  <data name="QA_SUBTITLE_DESCR" xml:space="preserve">
+    <value>You are in our troubleshooting system for all service queries. By entering a search
+                                query, you can receive useful information and valuable tips on our inverters, communication
+                                products and software programs.</value>
+  </data>
 </root>

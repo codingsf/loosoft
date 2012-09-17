@@ -35,12 +35,12 @@
         }
         function checkform() {
             if (document.getElementById("title").value.length == 0) {
-                alert("请输入标题");
+                alert("<%=Resources.SunResource.QA_NOTICE_TITLE%>");
                 document.getElementById("title").focus();
                 return false;
             }
             if (document.getElementById("descr").value.length == 0) {
-                alert("请输入提问内容");
+                alert("<%=Resources.SunResource.QA_NOTICE_CONTENT%>");
                 document.getElementById("descr").focus();
                 return false;
             }
@@ -67,15 +67,13 @@
                     <td bgcolor="#FFFFFF">
                         <div class="faq_top">
                             <p>
-                                有问有答</p>
-                            <span>You are in our troubleshooting system for all service queries. By entering a search
-                                query, you can receive useful information and valuable tips on our inverters, communication
-                                products and software programs. </span>
+                                <%=Resources.SunResource.PAGE_QA_TITLE%></p>
+                            <span><%=Resources.SunResource.QA_SUBTITLE_DESCR%></span>
                         </div>
                         <form method="post" action="/qa/ask">
                         <div class="faq_search">
                             <%=Html.TextBox("kw",Request["kw"],new {@class="stxinput" }) %>
-                            <input type="submit" name="Submit" value="搜索" class="greenbtu" />
+                            <input type="submit" name="Submit" value="<%=Resources.SunResource.MONITORITEM_SEARCH%>" class="greenbtu" />
                         </div>
                         </form>
                         <div class="faq_list">

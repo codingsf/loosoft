@@ -9134,6 +9134,35 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 请输入提问内容 的本地化字符串。
+        /// </summary>
+        internal static string QA_NOTICE_CONTENT {
+            get {
+                return ResourceManager.GetString("QA_NOTICE_CONTENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 请输入标题 的本地化字符串。
+        /// </summary>
+        internal static string QA_NOTICE_TITLE {
+            get {
+                return ResourceManager.GetString("QA_NOTICE_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 You are in our troubleshooting system for all service queries. By entering a search
+        ///                                query, you can receive useful information and valuable tips on our inverters, communication
+        ///                                products and software programs. 的本地化字符串。
+        /// </summary>
+        internal static string QA_SUBTITLE_DESCR {
+            get {
+                return ResourceManager.GetString("QA_SUBTITLE_DESCR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Ratio 的本地化字符串。
         /// </summary>
         internal static string RATIO {

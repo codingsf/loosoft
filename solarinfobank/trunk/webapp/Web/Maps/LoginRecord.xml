@@ -39,6 +39,7 @@
     <![CDATA[ order by date_add(logintime ,INTERVAL localzone hour) desc limit $page.Start$,$page.End$]]>
     </select>
 
+    
     <select id="loading_loginrecord_page_count" resultClass="int" >
       <![CDATA[SELECT COUNT(1) from loginrecord 　]]>
       <dynamic prepend="WHERE">

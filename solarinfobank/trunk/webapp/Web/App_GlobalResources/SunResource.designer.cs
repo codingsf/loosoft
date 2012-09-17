@@ -4714,6 +4714,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 发电量补偿 的本地化字符串。
+        /// </summary>
+        internal static string ENERGY_RATE_TITLE {
+            get {
+                return ResourceManager.GetString("ENERGY_RATE_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Run 的本地化字符串。
         /// </summary>
         internal static string ERRORITEM_0 {

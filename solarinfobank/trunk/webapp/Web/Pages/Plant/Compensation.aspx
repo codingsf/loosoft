@@ -54,12 +54,13 @@
         }
         function checkform()
         {
-            if(!($("#compensation").val()>=0))
+            if(!($("#compensation").val()>0))
             {
                 $("#error_compensation").html("<em><span class='error'>&nbsp;<%=Resources.SunResource.PAGECONFIG_MENU_ERROR1%></span></em>");
                 return false;
             }
             $("#error_compensation").html('');
+            return true;
         }
 
         function delitem(id) {
@@ -113,7 +114,7 @@
             });
             
             $("#btnsave").click(function() {
-            if(checkform())
+            if(!checkform())
             return false;
                 $.post("/plant/savecompensation", { id: $("#cid").val(), type: type, isplant:isplant, plantid: $("#plantid").val(), value: $("#compensation").val(), date: getdate() },
                 function(data, textStatus) {
@@ -169,7 +170,7 @@
                 <div class="subrbox01">
                     <div class="bitab">
                         <ul id="bitab">
-                            <li><a id="tabplant" href="javascript:void(0)" class="onclick">电站</a></li>
+                            <li><a id="tabplant" href="javascript:void(0)" class="onclick"><%=Resources.SunResource.PLANT_CODE%></a></li>
                             <li></li>
                             <li><a id="tabdevice" href="javascript:void(0)">
                                 <%=Resources.SunResource.PLANT_LOG_DEVICE%></a></li>
@@ -206,7 +207,7 @@
                                     <input type="hidden" id="cid" value="0" />
                                     <label>
                                         <input type="radio" name="radiobutton" value="0" checked="checked" />
-                                        累计发电量补偿</label>
+                                        <%=Resources.SunResource.TOTAL_COMPENSATION_ENERGY%></label>
                                 </td>
                                 <td width="80%" style="padding-left: 5px;">
                                     <label>
@@ -218,7 +219,7 @@
                                 <td width="20%" height="35" style="padding-left: 5px;">
                                     <label>
                                         <input type="radio" name="radiobutton" value="1" />
-                                        年发电量补偿</label>
+                                        <%=Resources.SunResource.YEAR_COMPENSATION_ENERGY%></label>
                                 </td>
                                 <td width="80%" style="padding-left: 5px;">
                                     <input id="compensation_energy1" type="text" class="txtbu01 Wdate" value="<%=DateTime.Now.Year %>" onclick="WdatePicker({dateFmt:'yyyy',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});changetype(1);"
@@ -229,7 +230,7 @@
                                 <td width="20%" height="35" style="padding-left: 5px;">
                                     <label>
                                         <input type="radio" name="radiobutton" value="2" />
-                                        月发电量补偿
+                                        <%=Resources.SunResource.MONTH_COMPENSATION_ENERGY%>
                                     </label>
                                 </td>
                                 <td width="80%" style="padding-left: 5px;">
@@ -241,7 +242,7 @@
                                 <td width="20%" height="35" style="padding-left: 5px;">
                                     <label>
                                         <input type="radio" name="radiobutton" value="3" />
-                                        日发电量补偿</label>
+                                        <%=Resources.SunResource.DAY_COMPENSATION_ENERGY%></label>
                                 </td>
                                 <td width="80%" style="padding-left: 5px;">
                                     <input id="compensation_energy3" type="text" class="txtbu01 Wdate" value="<%=DateTime.Now.ToString("yyyy-MM-dd") %>" onclick="WdatePicker({isShowClear:false,lang:'<%=(Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});;changetype(3);"
@@ -250,7 +251,7 @@
                             </tr>
                             <tr>
                                 <td height="35" style="padding-left: 5px;">
-                                    <span style="padding-right: 5px;">补偿值(kWh)： <span class="red">*</span></span>
+                                    <span style="padding-right: 5px;"><%=Resources.SunResource.COMPENSATION_VALUE%>(kWh)： <span class="red">*</span></span>
                                 </td>
                                 <td style="padding-left: 5px;">
                                     <input name="compensation" type="text" class="txtbu01" value="" id="compensation" />
@@ -281,7 +282,7 @@
                                     <img src="/images/sub/subico010.gif" width="18" height="19" />
                                 </td>
                                 <td width="8%" align="left">
-                                    补偿记录
+                                    <%=Resources.SunResource.COMPENSATION_RECORD%>
                                 </td>
                                 <td align="right">
                                     &nbsp;
@@ -304,8 +305,8 @@
                                     <select name="datetype" id="date_type_slt">
                                         <option value="0" selected="selected">
                                             <%=Resources.SunResource.PLANT_LOG_ALL%></option>
-                                        <option value="1">最近七天</option>
-                                        <option value="2">一段时间</option>
+                                        <option value="1"><%=Resources.SunResource.COMPENSATION_LAST_SEVEN_DAYS%></option>
+                                        <option value="2"><%=Resources.SunResource.COMPENSATION_PREIOD_TIME%></option>
                                     </select>
                                 </td>
                                 <td width="10%" height="35">
@@ -357,16 +358,16 @@
                             <table width="100%" cellpadding="0" cellspacing="0" style="line-height: 24px; text-align: center">
                                 <tr>
                                     <td width="33%" height="25" class="subline02">
-                                        <strong>补偿对象名称</strong>
+                                        <strong><%=Resources.SunResource.COMPENSATION_OBJ_NAME%></strong>
                                     </td>
                                     <td width="15%" class="subline02">
-                                        <strong>补偿类型</strong>
+                                        <strong><%=Resources.SunResource.COMPENSATION_TYPE%></strong>
                                     </td>
                                     <td width="18%" class="subline02">
-                                        <strong>补偿时间</strong>
+                                        <strong><%=Resources.SunResource.COMPENSATION_TIME%></strong>
                                     </td>
                                     <td width="22%" class="subline02">
-                                        <strong>补偿值</strong>
+                                        <strong><%=Resources.SunResource.COMPENSATION_VALUE%></strong>
                                     </td>
                                     <td width="12%" class="subline02">
                                         <strong>

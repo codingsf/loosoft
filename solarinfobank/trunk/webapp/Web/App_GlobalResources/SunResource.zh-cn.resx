@@ -5232,4 +5232,37 @@
   <data name="PLANT_ENERGY_FORECAST_VALUE" xml:space="preserve">
     <value>预测值</value>
   </data>
+  <data name="COMPENSATION_LAST_SEVEN_DAYS" xml:space="preserve">
+    <value>最近七天</value>
+  </data>
+  <data name="COMPENSATION_OBJ_NAME" xml:space="preserve">
+    <value>补偿对象名称</value>
+  </data>
+  <data name="COMPENSATION_PREIOD_TIME" xml:space="preserve">
+    <value>一段时间</value>
+  </data>
+  <data name="COMPENSATION_RECORD" xml:space="preserve">
+    <value>补偿记录</value>
+  </data>
+  <data name="COMPENSATION_TIME" xml:space="preserve">
+    <value>补偿时间</value>
+  </data>
+  <data name="COMPENSATION_TYPE" xml:space="preserve">
+    <value>补偿类型</value>
+  </data>
+  <data name="COMPENSATION_VALUE" xml:space="preserve">
+    <value>补偿值</value>
+  </data>
+  <data name="DAY_COMPENSATION_ENERGY" xml:space="preserve">
+    <value>日发电量补偿</value>
+  </data>
+  <data name="MONTH_COMPENSATION_ENERGY" xml:space="preserve">
+    <value>月发电量补偿</value>
+  </data>
+  <data name="TOTAL_COMPENSATION_ENERGY" xml:space="preserve">
+    <value>累计发电量补偿</value>
+  </data>
+  <data name="YEAR_COMPENSATION_ENERGY" xml:space="preserve">
+    <value>年发电量补偿</value>
+  </data>
 </root>

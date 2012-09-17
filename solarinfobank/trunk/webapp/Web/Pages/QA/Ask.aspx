@@ -90,7 +90,7 @@
                                     <%=item.title%>
                                     <%if (user != null && item.username.Equals(user.username) && item.status != QA.VALIDATE)
                                       { %>
-                                    &nbsp;<font color="red">编辑</font>
+                                    &nbsp;<font color="red"><%=Resources.SunResource.ADMIN_DBCONFIG_LIST_EDIT%></font>
                                     <%} %></a> </li>
                                 <%} %>
                             </ul>

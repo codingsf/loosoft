@@ -1564,6 +1564,69 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 最近七天 的本地化字符串。
+        /// </summary>
+        internal static string COMPENSATION_LAST_SEVEN_DAYS {
+            get {
+                return ResourceManager.GetString("COMPENSATION_LAST_SEVEN_DAYS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 补偿对象名称 的本地化字符串。
+        /// </summary>
+        internal static string COMPENSATION_OBJ_NAME {
+            get {
+                return ResourceManager.GetString("COMPENSATION_OBJ_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 一段时间 的本地化字符串。
+        /// </summary>
+        internal static string COMPENSATION_PREIOD_TIME {
+            get {
+                return ResourceManager.GetString("COMPENSATION_PREIOD_TIME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 补偿记录 的本地化字符串。
+        /// </summary>
+        internal static string COMPENSATION_RECORD {
+            get {
+                return ResourceManager.GetString("COMPENSATION_RECORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 补偿时间 的本地化字符串。
+        /// </summary>
+        internal static string COMPENSATION_TIME {
+            get {
+                return ResourceManager.GetString("COMPENSATION_TIME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 补偿类型 的本地化字符串。
+        /// </summary>
+        internal static string COMPENSATION_TYPE {
+            get {
+                return ResourceManager.GetString("COMPENSATION_TYPE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 补偿值 的本地化字符串。
+        /// </summary>
+        internal static string COMPENSATION_VALUE {
+            get {
+                return ResourceManager.GetString("COMPENSATION_VALUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Create Report 的本地化字符串。
         /// </summary>
         internal static string CREATE_REPORT {
@@ -2550,6 +2613,15 @@ namespace Resources {
         internal static string DAY_COMPARE_CHART_NAME {
             get {
                 return ResourceManager.GetString("DAY_COMPARE_CHART_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 日发电量补偿 的本地化字符串。
+        /// </summary>
+        internal static string DAY_COMPENSATION_ENERGY {
+            get {
+                return ResourceManager.GetString("DAY_COMPENSATION_ENERGY", resourceCulture);
             }
         }
         
@@ -6057,6 +6129,15 @@ namespace Resources {
         internal static string MONTH_9 {
             get {
                 return ResourceManager.GetString("MONTH_9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 月发电量补偿 的本地化字符串。
+        /// </summary>
+        internal static string MONTH_COMPENSATION_ENERGY {
+            get {
+                return ResourceManager.GetString("MONTH_COMPENSATION_ENERGY", resourceCulture);
             }
         }
         
@@ -11341,6 +11422,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 累计发电量补偿 的本地化字符串。
+        /// </summary>
+        internal static string TOTAL_COMPENSATION_ENERGY {
+            get {
+                return ResourceManager.GetString("TOTAL_COMPENSATION_ENERGY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 PR Performance 的本地化字符串。
         /// </summary>
         internal static string TOTAL_PR_PERFORMANCE_CHART_NAME {
@@ -13933,6 +14023,15 @@ namespace Resources {
         internal static string YEARLY_PR_PERFORMANCE_CHART_NAME {
             get {
                 return ResourceManager.GetString("YEARLY_PR_PERFORMANCE_CHART_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 年发电量补偿 的本地化字符串。
+        /// </summary>
+        internal static string YEAR_COMPENSATION_ENERGY {
+            get {
+                return ResourceManager.GetString("YEAR_COMPENSATION_ENERGY", resourceCulture);
             }
         }
     }

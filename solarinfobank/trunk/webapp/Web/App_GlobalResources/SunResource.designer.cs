@@ -4498,6 +4498,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 Run Data 的本地化字符串。
+        /// </summary>
+        internal static string DEVICE_HISTORYRUN_DATA {
+            get {
+                return ResourceManager.GetString("DEVICE_HISTORYRUN_DATA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Ammeter list 的本地化字符串。
         /// </summary>
         internal static string DEVICE_MONITOR_AMMETER {

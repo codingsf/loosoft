@@ -3162,13 +3162,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
         [HttpPost]
         public ActionResult PostAnswer(QA qa)
         {
+    
             User user = UserUtil.getCurUser();
             qa.pubdate = DateTime.Now;
             qa.status = QA.VALIDATE;
             qa.username = user == null ? "admin" : user.username;
             QAService.GetInstance().Save(qa);
             QAService.GetInstance().UpdateStatus(qa.qid, QA.VALIDATE);
-            return View(@"qa/list", QAService.GetInstance().Search(string.Empty, -1, string.Empty));
+            return Redirect("/admin/answer");
         }
     }
 }

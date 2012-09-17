@@ -13,6 +13,7 @@
     <script src="/script/DatePicker/WdatePicker.js" type="text/javascript"></script>
 
     <script>
+               
         var plantid=<%=Model.id %>;
         var isplant=true;
         var type = 0;
@@ -31,7 +32,16 @@
             })
         }
 
-        function edititem(type, date, data, cid) {
+        function edititem(type, date, data, cid,plant,plantid) {
+            $("#tabplant").click();
+            type=type;
+            if(plant=='False')
+            {
+                $("#tabdevice").click();
+                isplant=false;
+                $("#plantid").val(plantid);
+                $("#sltdevice").val(plantid);
+            }
             $("input[name='radiobutton']").each(function() {
                 if ($(this).val() == type) {
                     $(this).attr("checked", "checked");
@@ -42,19 +52,37 @@
                 window.parent.scroll(0, 0);
             })
         }
+        function checkform()
+        {
+            if(!($("#compensation").val()>=0))
+            {
+                $("#error_compensation").html("<em><span class='error'>&nbsp;<%=Resources.SunResource.PAGECONFIG_MENU_ERROR1%></span></em>");
+                return false;
+            }
+            $("#error_compensation").html('');
+        }
 
         function delitem(id) {
             if (confirm('您确定要删除吗')) {
                 $.post("/plant/delcompensation", { id: id },
                 function(data) {
                     if (data == 'ok')
-                        document.location.reload(true);
+                        search();
                 });
             }
         }
 
+         function search()
+         {
+           $.post("/plant/searchcompensation", {datetype:$("#date_type_slt").val(),plantname:$("#plantname").val(),devicename:$("#devicename").val(),startDate:$("#startDate").val(),endDate:$("#endDate").val()},
+                function(data) {
+                    $("#list_container").html(data);
+                    parent.iFrameHeight();
+            });
+         }
+
         $().ready(function() {
-        
+            search();
             $("#tabplant").click(function(){
                 $(this).addClass('onclick');
                 $("#tabdevice").removeClass('onclick');
@@ -62,6 +90,8 @@
                 isplant=true;
                 $("#device_container").hide();
                 parent.iFrameHeight();
+                $("#cid").val(0);
+                
                 
             });
             
@@ -71,8 +101,7 @@
                 $("#tabplant").removeClass('onclick');
                 $("#device_container").show();
                 parent.iFrameHeight();
-                
-                
+                $("#cid").val(0);
             });
         
             $("input[name='radiobutton']").click(function() {
@@ -86,10 +115,12 @@
             });
             
             $("#btnsave").click(function() {
-                $.post("/plant/savecompensation", { id: $("#cid").val(), type: type, isplant:isplant, plantid: $("#plantid").val(), deviceid: '0', value: $("#compensation").val(), date: getdate() },
+            if(checkform())
+            return false;
+                $.post("/plant/savecompensation", { id: $("#cid").val(), type: type, isplant:isplant, plantid: $("#plantid").val(), value: $("#compensation").val(), date: getdate() },
                 function(data, textStatus) {
                     if (data == 'ok')
-                        document.location.reload(true);
+                      search();
                 });
             });
 
@@ -144,7 +175,7 @@
                     </div>
                     <div class="sb_mid">
                         <table width="90%" align="center" cellpadding="0" cellspacing="0" style="line-height: 24px;">
-                            <tr id="device_container" style="display:none">
+                            <tr id="device_container" style="display: none">
                                 <td width="20%" height="35" style="padding-left: 5px;">
                                     <input type="hidden" id="Hidden1" value="0" />
                                     <label>
@@ -153,6 +184,7 @@
                                 <td width="80%" style="padding-left: 5px;">
                                     <label>
                                         <select name="sltdevice" id="sltdevice">
+                                            <option selected="selected">选择设备</option>
                                             <%foreach (PlantUnit unit in Model.plantUnits)
                                               {%>
                                             <optgroup label="<%=unit.displayname%>">
@@ -216,10 +248,10 @@
                             </tr>
                             <tr>
                                 <td height="35" style="padding-left: 5px;">
-                                    <span style="padding-right: 5px;">补偿值(kWh)：</span>
+                                    <span style="padding-right: 5px;">补偿值(kWh)： <span class="red">*</span></span>
                                 </td>
                                 <td style="padding-left: 5px;">
-                                    <input name="compensation" type="text" class="txtbu01" value="" id="compensation" />
+                                    <input name="compensation" type="text" class="txtbu01" value="" id="compensation" /> <span id="error_compensation"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -257,7 +289,6 @@
                     <div class="sb_top">
                     </div>
                     <div class="sb_mid">
-                        <form action="/plant/compensation" method="post">
                         <input type="hidden" name="id" value="<%=this.Model.id %>" />
                         <table width="100%" height="35" border="0" cellpadding="0" cellspacing="0" bgcolor="#F9F9F9"
                             style="border: 1px dotted #E0E0E0; margin-bottom: 10px;">
@@ -276,16 +307,16 @@
                                     <span style="padding-left: 5px;">电站名：</span>
                                 </td>
                                 <td width="20%" height="15">
-                                    <%= Html.TextBox("plantname",ViewData["plantname"], new { @class="txtbu04", size="14"}) %>
+                                    <%= Html.TextBox("plantname",string.Empty, new { @class="txtbu04", size="14"}) %>
                                 </td>
                                 <td width="10%" height="15">
                                     <span style="padding-left: 5px;">设备名：</span>
                                 </td>
                                 <td width="17%" height="15">
-                                    <input name="devicename" type="text" class="txtbu04" size="14" />
+                                    <%= Html.TextBox("devicename", string.Empty, new { @class = "txtbu04", size = "14" })%>
                                 </td>
                                 <td width="13%">
-                                    <input name="search" type="submit" class="subbu01" value="查询" />
+                                    <input name="search" type="button" onclick="search();" class="subbu01" value="查询" />
                                 </td>
                             </tr>
                             <tr id="data_container" style="display: none">
@@ -293,7 +324,7 @@
                                     <span style="padding-left: 5px;">起始日期：</span>
                                 </td>
                                 <td width="20%">
-                                    <input name="startDate" onclick="WdatePicker({isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});"
+                                    <input name="startDate" id="startDate" onclick="WdatePicker({isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});"
                                         type="text" class="txtbu04 Wdate" value="<%=DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd") %>"
                                         size="14" />
                                 </td>
@@ -301,7 +332,7 @@
                                     <span style="padding-left: 5px;">终止日期：</span>
                                 </td>
                                 <td width="16%">
-                                    <input name="endDate" type="text" class="txtbu04 Wdate" onclick="WdatePicker({isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});"
+                                    <input name="endDate" id="endDate" type="text" class="txtbu04 Wdate" onclick="WdatePicker({isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});"
                                         size="14" value="<%=DateTime.Now.ToString("yyyy-MM-dd") %>" />
                                 </td>
                                 <td width="13%">
@@ -313,50 +344,27 @@
                                 </td>
                             </tr>
                         </table>
-                        </form>
-                        <table width="100%" cellpadding="0" cellspacing="0" style="line-height: 24px; text-align: center">
-                            <tr>
-                                <td width="33%" height="25" class="subline02">
-                                    <strong>补偿对象名称</strong>
-                                </td>
-                                <td width="15%" class="subline02">
-                                    <strong>补偿类型</strong>
-                                </td>
-                                <td width="18%" class="subline02">
-                                    <strong>补偿时间</strong>
-                                </td>
-                                <td width="22%" class="subline02">
-                                    <strong>补偿值</strong>
-                                </td>
-                                <td width="12%" class="subline02">
-                                    <strong>操作</strong>
-                                </td>
-                            </tr>
-                            <%foreach (var item in ViewData["compensations"] as IList<Compensation>)
-                              { %>
-                            <tr>
-                                <td class="down_line01">
-                                    <%=item.displayName%>
-                                </td>
-                                <td class="down_line01">
-                                    <%=item.typeStr %>
-                                </td>
-                                <td class="down_line01">
-                                    <%=item.DateStr %>
-                                </td>
-                                <td class="down_line01">
-                                    <%=item.dataValue %>
-                                    kWh
-                                </td>
-                                <td class="down_line01">
-                                    <a href="javascript:edititem(<%=item.type %>,'<%=item.DateStr  %>','<%=item.dataValue %>',<%=item.id %>)">
-                                        <img src="/images/sub/pencil.gif" width="16" height="16" border="0" /></a> &nbsp;
-                                    <a href="javascript:delitem(<%=item.id %>)">
-                                        <img src="/images/sub/cross.gif" width="16" height="16" border="0" /></a>
-                                </td>
-                            </tr>
-                            <%} %>
-                        </table>
+                        <div id="list_container">
+                            <table width="100%" cellpadding="0" cellspacing="0" style="line-height: 24px; text-align: center">
+                                <tr>
+                                    <td width="33%" height="25" class="subline02">
+                                        <strong>补偿对象名称</strong>
+                                    </td>
+                                    <td width="15%" class="subline02">
+                                        <strong>补偿类型</strong>
+                                    </td>
+                                    <td width="18%" class="subline02">
+                                        <strong>补偿时间</strong>
+                                    </td>
+                                    <td width="22%" class="subline02">
+                                        <strong>补偿值</strong>
+                                    </td>
+                                    <td width="12%" class="subline02">
+                                        <strong>操作</strong>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                     <div class="sb_down">
                     </div>

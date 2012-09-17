@@ -48,6 +48,7 @@
         }
     </script>
 
+    <%QA qa = ViewData["qa"] as QA; %>
     <div class="lcbox">
         <div class="lcabout">
             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -80,10 +81,10 @@
                         <div class="faq_list">
                             <ul>
                                 <%if (Model != null)
-                                      foreach (QA qa in Model)
+                                      foreach (QA item in Model)
                                       {%>
-                                <li><a href="/qa/showask/<%=qa.id %>" target="_blank">
-                                    <%=qa.title%></a></li>
+                                <li><a href="/qa/showask/<%=item.id %>" target="_blank">
+                                    <%=item.title%></a></li>
                                 <%} %>
                             </ul>
                             <%Html.RenderPartial("page"); %>
@@ -97,7 +98,8 @@
                                         <font class="redzi">* </font><strong>标题：</strong>
                                     </td>
                                     <td width="558">
-                                        <input type="text" name="title" id="title" class="faq_input01" />
+                                        <input type="text" name="title" id="title" class="faq_input01" value="<%=qa==null?"":qa.title %>" />
+                                        <input type="hidden" name="id" value="<%=qa==null?0:qa.id %>" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -106,7 +108,7 @@
                                     </td>
                                     <td>
                                         <span class="changimg"></span>
-                                        <textarea id="descr" name="descr" rows="6" class="faq_input02" onkeyup="checkwords(this);"></textarea>
+                                        <textarea id="descr" name="descr" rows="6" class="faq_input02" onkeyup="checkwords(this);"><%=qa==null?"":qa.descr %></textarea>
                                         <span class="tszs">您还可以输<span id="wordLength">500</span>个字</span>
                                     </td>
                                 </tr>
@@ -115,7 +117,8 @@
                                         &nbsp;
                                     </td>
                                     <td height="50">
-                                        <input type="submit" onclick="return checkform();" name="Submit2" value="提问" class="greenbtu" />
+                                        <input type="submit" onclick="return checkform();" name="Submit2" value="<%=qa==null?"提问":"修改"%>"
+                                            class="greenbtu" />
                                     </td>
                                 </tr>
                             </table>

@@ -34,7 +34,7 @@
                                 query, you can receive useful information and valuable tips on our inverters, communication
                                 products and software programs. </span>
                         </div>
-                        <form method="post" action="/qa/search">
+                        <form method="post" action="/qa/ask">
                         <div class="faq_search">
                             <%=Html.TextBox("kw",Request.Form["kw"],new {@class="stxinput" }) %>
                             <input type="submit" name="Submit" value="搜索" class="greenbtu" />

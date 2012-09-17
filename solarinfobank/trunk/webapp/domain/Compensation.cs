@@ -71,8 +71,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             get
             {
                 if (isplant)
-                    return this.plant.name;
-                return this.device.fullName;
+                    return this.plant!=null?this.plant.name:string.Empty;
+                return this.device != null ? this.device.fullName : string.Empty;
             }
         }
     }

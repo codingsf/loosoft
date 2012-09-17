@@ -2498,7 +2498,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
 
 
 
-        public ActionResult SaveCompensation(int id, int plantid, int deviceid, int type, string value, string date, bool isplant)
+        public ActionResult SaveCompensation(int id, int plantid, int type, string value, string date, bool isplant)
         {
             double dtemp = 0;
             double.TryParse(value, out dtemp);

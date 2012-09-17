@@ -11,26 +11,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 {
     public class QAController : Controller
     {
-        public ActionResult Ask(string page, string kw)
+        public ActionResult Ask(string page, string kw, string aid)
         {
             User user = UserUtil.getCurUser();
-            string username = user == null ? string.Empty : user.username;
-            int ipage = 0;
-            int.TryParse(page, out ipage);
-            ipage = ipage < 1 ? 1 : ipage;
-            IList<QA> qalist = QAService.GetInstance().Search(kw, QA.VALIDATE, string.IsNullOrEmpty(kw) ? username : string.Empty);
-            Pager pager = new Pager();
-            ViewData["page"] = pager;
-            pager.PageSize = 2;
-            pager.PageIndex = ipage;
-            pager.RecordCount = qalist.Count;
-            qalist = qalist.Skip((ipage - 1) * pager.PageSize).Take(pager.PageSize).ToList<QA>();
-            return View(qalist);
-        }
-
-        public ActionResult Search(string kw, string page)
-        {
-            User user = UserUtil.getCurUser();
+            int tid = 0;
+            int.TryParse(aid, out tid);
+            QA qa = QAService.GetInstance().Get(tid);
+            if (qa != null && user != null && qa.username.Equals(user.username) && qa.status != QA.VALIDATE)
+                ViewData["qa"] = qa;
             string username = user == null ? string.Empty : user.username;
             int ipage = 0;
             int.TryParse(page, out ipage);
@@ -42,10 +30,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             pager.PageIndex = ipage;
             pager.RecordCount = qalist.Count;
             qalist = qalist.Skip((ipage - 1) * pager.PageSize).Take(pager.PageSize).ToList<QA>();
-            return View("ask", qalist);
+            return View(qalist);
         }
-
-
 
         [HttpPost]
         public ActionResult PostAsk(QA qa)
@@ -63,14 +49,20 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         }
 
 
-
+        /// <summary>
+        /// 如果当前用户的提问未审核可以重新编辑
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult ShowAsk(string id)
         {
+            User user = UserUtil.getCurUser();
             int iid = 0;
             int.TryParse(id, out iid);
             QA qa = QAService.GetInstance().Get(iid);
+            if (qa != null && user != null && qa.username.Equals(user.username) && qa.status != QA.VALIDATE)
+                return Redirect("/qa/ask/?aid=" + qa.id);
             return View(qa);
         }
-
     }
 }

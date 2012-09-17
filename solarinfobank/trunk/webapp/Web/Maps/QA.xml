@@ -36,7 +36,7 @@
     </update>
 
     <update id="qa_update">
-      <![CDATA[update qa set descr=#descr# where id=#id#]]>
+      <![CDATA[update qa set title=#title#, descr=#descr# where id=#id#]]>
     </update>
     
     <select id="qa_get_list" resultMap="qa_result">

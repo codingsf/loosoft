@@ -63,7 +63,7 @@
         }
 
         function delitem(id) {
-            if (confirm('您确定要删除吗')) {
+            if (confirm('<%=Resources.SunResource.MONITORITEM_SURE_DELETE%>')) {
                 $.post("/plant/delcompensation", { id: id },
                 function(data) {
                     if (data == 'ok')

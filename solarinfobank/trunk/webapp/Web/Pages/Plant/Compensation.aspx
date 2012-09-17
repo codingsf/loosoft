@@ -118,7 +118,10 @@
                 $.post("/plant/savecompensation", { id: $("#cid").val(), type: type, isplant:isplant, plantid: $("#plantid").val(), value: $("#compensation").val(), date: getdate() },
                 function(data, textStatus) {
                     if (data == 'ok')
+                    {
+                      alert('<%=Resources.SunResource.ENERGY_RATE_ADD_SUCCESS%>');
                       search();
+                      }
                 });
             });
 
@@ -168,7 +171,8 @@
                         <ul id="bitab">
                             <li><a id="tabplant" href="javascript:void(0)" class="onclick">电站</a></li>
                             <li></li>
-                            <li><a id="tabdevice" href="javascript:void(0)"><%=Resources.SunResource.PLANT_LOG_DEVICE%></a></li>
+                            <li><a id="tabdevice" href="javascript:void(0)">
+                                <%=Resources.SunResource.PLANT_LOG_DEVICE%></a></li>
                         </ul>
                     </div>
                     <div class="sb_mid">
@@ -176,20 +180,21 @@
                             <tr id="device_container" style="display: none">
                                 <td width="20%" height="35" style="padding-left: 5px;">
                                     <input type="hidden" id="Hidden1" value="0" />
-                                    <label><%=Resources.SunResource.UDEVICE_PAGE_SELECT_DEVICE%></label>
+                                    <label>
+                                        <%=Resources.SunResource.UDEVICE_PAGE_SELECT_DEVICE%></label>
                                 </td>
                                 <td width="80%" style="padding-left: 5px;">
                                     <label>
                                         <select name="sltdevice" id="sltdevice">
-                                            <option selected="selected"><%=Resources.SunResource.UDEVICE_PAGE_SELECT_DEVICE%></option>
+                                            <option selected="selected">
+                                                <%=Resources.SunResource.UDEVICE_PAGE_SELECT_DEVICE%></option>
                                             <%foreach (PlantUnit unit in Model.plantUnits)
                                               {%>
                                             <optgroup label="<%=unit.displayname%>">
                                             </optgroup>
                                             <% foreach (Device device in unit.displayDevices)
                                                { %>
-                                            <option value="<%=device.id %>">
-                                                <%=device.fullName%></option>
+                                            <option value="<%=device.id %>">&nbsp;&nbsp;<%=device.fullName%></option>
                                             <%}
                                               } %>
                                         </select>
@@ -200,7 +205,7 @@
                                 <td width="20%" height="35" style="padding-left: 5px;">
                                     <input type="hidden" id="cid" value="0" />
                                     <label>
-                                        <input type="radio" name="radiobutton" value="0" />
+                                        <input type="radio" name="radiobutton" value="0" checked="checked" />
                                         累计发电量补偿</label>
                                 </td>
                                 <td width="80%" style="padding-left: 5px;">
@@ -216,7 +221,7 @@
                                         年发电量补偿</label>
                                 </td>
                                 <td width="80%" style="padding-left: 5px;">
-                                    <input id="compensation_energy1" type="text" class="txtbu01 Wdate" value="" onclick="WdatePicker({dateFmt:'yyyy',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});changetype(1);"
+                                    <input id="compensation_energy1" type="text" class="txtbu01 Wdate" value="<%=DateTime.Now.Year %>" onclick="WdatePicker({dateFmt:'yyyy',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});changetype(1);"
                                         readonly="readonly" />
                                 </td>
                             </tr>
@@ -228,7 +233,7 @@
                                     </label>
                                 </td>
                                 <td width="80%" style="padding-left: 5px;">
-                                    <input id="compensation_energy2" type="text" class="txtbu01 Wdate" value="" onclick="WdatePicker({dateFmt:'yyyy-MM',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});changetype(2);"
+                                    <input id="compensation_energy2" type="text" class="txtbu01 Wdate" value="<%=DateTime.Now.ToString("yyyy-MM") %>" onclick="WdatePicker({dateFmt:'yyyy-MM',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});changetype(2);"
                                         readonly="readonly" />
                                 </td>
                             </tr>
@@ -239,7 +244,7 @@
                                         日发电量补偿</label>
                                 </td>
                                 <td width="80%" style="padding-left: 5px;">
-                                    <input id="compensation_energy3" type="text" class="txtbu01 Wdate" value="" onclick="WdatePicker({isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});;changetype(3);"
+                                    <input id="compensation_energy3" type="text" class="txtbu01 Wdate" value="<%=DateTime.Now.ToString("yyyy-MM-dd") %>" onclick="WdatePicker({isShowClear:false,lang:'<%=(Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});;changetype(3);"
                                         readonly="readonly" />
                                 </td>
                             </tr>
@@ -248,7 +253,8 @@
                                     <span style="padding-right: 5px;">补偿值(kWh)： <span class="red">*</span></span>
                                 </td>
                                 <td style="padding-left: 5px;">
-                                    <input name="compensation" type="text" class="txtbu01" value="" id="compensation" /> <span id="error_compensation"></span>
+                                    <input name="compensation" type="text" class="txtbu01" value="" id="compensation" />
+                                    <span id="error_compensation"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -257,7 +263,7 @@
                                 </td>
                                 <td style="padding-left: 5px;">
                                     <input name="btnsave" type="submit" class="subbu01" id="btnsave" value="<%=Resources.SunResource.PLANT_ADDPLANT_SAVE%>" />
-                                    <input name="Submit232222" type="submit" class="subbu01" value="<%=Resources.SunResource.ADMIN_COLLECTOR_EDIT_CANCEL%>" />
+                                    <input name="Submit232222" type="submit" class="subbu01" value="<%=Resources.SunResource.MONITORITEM_RESET%>" />
                                 </td>
                             </tr>
                         </table>
@@ -291,23 +297,27 @@
                             style="border: 1px dotted #E0E0E0; margin-bottom: 10px;">
                             <tr>
                                 <td width="8%" height="35">
-                                    <span style="padding-left: 5px;"><%=Resources.SunResource.CUSTOMREPORT_TIME%>：</span>
+                                    <span style="padding-left: 5px;">
+                                        <%=Resources.SunResource.CUSTOMREPORT_TIME%>：</span>
                                 </td>
                                 <td width="22%">
                                     <select name="datetype" id="date_type_slt">
-                                        <option value="0" selected="selected"><%=Resources.SunResource.PLANT_LOG_ALL%></option>
+                                        <option value="0" selected="selected">
+                                            <%=Resources.SunResource.PLANT_LOG_ALL%></option>
                                         <option value="1">最近七天</option>
                                         <option value="2">一段时间</option>
                                     </select>
                                 </td>
                                 <td width="10%" height="35">
-                                    <span style="padding-left: 5px;"><%=Resources.SunResource.PLANT_REPORTCONFIG_PLANT_NAME%>：</span>
+                                    <span style="padding-left: 5px;">
+                                        <%=Resources.SunResource.PLANT_REPORTCONFIG_PLANT_NAME%>：</span>
                                 </td>
                                 <td width="20%" height="15">
                                     <%= Html.TextBox("plantname",string.Empty, new { @class="txtbu04", size="14"}) %>
                                 </td>
                                 <td width="10%" height="15">
-                                    <span style="padding-left: 5px;"><%=Resources.SunResource.PLANT_DEVICE_NAME%>：</span>
+                                    <span style="padding-left: 5px;">
+                                        <%=Resources.SunResource.PLANT_DEVICE_NAME%>：</span>
                                 </td>
                                 <td width="17%" height="15">
                                     <%= Html.TextBox("devicename", string.Empty, new { @class = "txtbu04", size = "14" })%>
@@ -318,7 +328,8 @@
                             </tr>
                             <tr id="data_container" style="display: none">
                                 <td width="10%">
-                                    <span style="padding-left: 5px;"><%=Resources.SunResource.USER_LOG_STARTDAY%>：</span>
+                                    <span style="padding-left: 5px;">
+                                        <%=Resources.SunResource.USER_LOG_STARTDAY%>：</span>
                                 </td>
                                 <td width="20%">
                                     <input name="startDate" id="startDate" onclick="WdatePicker({isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});"
@@ -326,7 +337,8 @@
                                         size="14" />
                                 </td>
                                 <td width="11%">
-                                    <span style="padding-left: 5px;"><%=Resources.SunResource.USER_LOG_ENDDAY%>：</span>
+                                    <span style="padding-left: 5px;">
+                                        <%=Resources.SunResource.USER_LOG_ENDDAY%>：</span>
                                 </td>
                                 <td width="16%">
                                     <input name="endDate" id="endDate" type="text" class="txtbu04 Wdate" onclick="WdatePicker({isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});"
@@ -357,7 +369,8 @@
                                         <strong>补偿值</strong>
                                     </td>
                                     <td width="12%" class="subline02">
-                                        <strong><%=Resources.SunResource.MONITORITEM_OPERATE%></strong>
+                                        <strong>
+                                            <%=Resources.SunResource.MONITORITEM_OPERATE%></strong>
                                     </td>
                                 </tr>
                             </table>

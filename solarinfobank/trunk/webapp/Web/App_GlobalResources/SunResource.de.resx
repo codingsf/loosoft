@@ -5573,4 +5573,13 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
   <data name="ENERGY_RATE_TITLE" xml:space="preserve">
     <value>发电量补偿</value>
   </data>
+  <data name="ENERGY_RATE_ADD_SUCCESS" xml:space="preserve">
+    <value>发电量补偿设置成功</value>
+  </data>
+  <data name="INSIDE_ENERGY_RATE" xml:space="preserve">
+    <value>发电量系数</value>
+  </data>
+  <data name="PLANT_ENERGY_FORECAST_VALUE" xml:space="preserve">
+    <value>预测值</value>
+  </data>
 </root>

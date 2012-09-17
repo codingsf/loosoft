@@ -684,7 +684,7 @@
                                                 
                                                    <li><a onclick="loadContent('content_ajax','/plant/energyrate/<%=Model.id %>','iframe','GET');setcurrent(this);return false;"
                                                 href="/plant/energyrate/<%=Model.id %>">
-                                                发电量系数</a></li>
+                                                <%=Resources.SunResource.INSIDE_ENERGY_RATE %></a></li>
                                                 
                                                 
                                             <li><a onclick="loadContent('content_ajax','/user/record','iframe','GET');setcurrent(this);return false;"

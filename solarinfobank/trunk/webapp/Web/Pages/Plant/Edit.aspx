@@ -1920,7 +1920,7 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_ENABLE, Value="true
                                     </tr>
                                     <tr>
                                         <td class="pl20" height="28">
-                                            <strong>预测值:</strong>
+                                            <strong><%=Resources.SunResource.PLANT_ENERGY_FORECAST_VALUE%>:</strong>
                                         </td>
                                         <td colspan="3">
                                             <table width="100%">

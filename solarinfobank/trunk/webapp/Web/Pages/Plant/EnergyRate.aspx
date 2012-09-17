@@ -32,7 +32,8 @@
                 rules: {
                     energyRate: {
                         required: true,
-                        number: true
+                        number: true,
+                        min:0
                     }
                 },
                 errorPlacement: function(error, element) {
@@ -46,7 +47,8 @@
                 messages: {
                 energyRate: {
                         required: "<span class='error'>&nbsp;<%=Resources.SunResource.PAGECONFIG_MENU_ERROR1%></span>",
-                        number: "<span class='error'>&nbsp;<%=Resources.SunResource.PAGECONFIG_MENU_ERROR1%></span>"
+                        number: "<span class='error'>&nbsp;<%=Resources.SunResource.PAGECONFIG_MENU_ERROR1%></span>",
+                        min: "<span class='error'>&nbsp;<%=Resources.SunResource.PAGECONFIG_MENU_ERROR1%></span>"
                     }
                 },
                 success: function(em) {

@@ -5211,7 +5211,6 @@
   <data name="QA_NOTICE" xml:space="preserve">
     <value>请在下面填写您的问题</value>
   </data>
->>>>>>> .r245
   <data name="QA_NOTICE_CONTENT" xml:space="preserve">
     <value>请输入提问内容</value>
   </data>
@@ -5223,5 +5222,14 @@
   </data>
   <data name="QA_TITLE" xml:space="preserve">
     <value>标题</value>
+  </data>
+  <data name="ENERGY_RATE_ADD_SUCCESS" xml:space="preserve">
+    <value>发电量补偿设置成功</value>
+  </data>
+  <data name="INSIDE_ENERGY_RATE" xml:space="preserve">
+    <value>发电量系数</value>
+  </data>
+  <data name="PLANT_ENERGY_FORECAST_VALUE" xml:space="preserve">
+    <value>预测值</value>
   </data>
 </root>

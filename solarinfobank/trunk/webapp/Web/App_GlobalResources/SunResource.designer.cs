@@ -4714,6 +4714,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 发电量补偿设置成功 的本地化字符串。
+        /// </summary>
+        internal static string ENERGY_RATE_ADD_SUCCESS {
+            get {
+                return ResourceManager.GetString("ENERGY_RATE_ADD_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 发电量补偿 的本地化字符串。
         /// </summary>
         internal static string ENERGY_RATE_TITLE {
@@ -5463,6 +5472,15 @@ namespace Resources {
         internal static string IMAGE_BUTTON_PREVIOUS {
             get {
                 return ResourceManager.GetString("IMAGE_BUTTON_PREVIOUS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 发电量系数 的本地化字符串。
+        /// </summary>
+        internal static string INSIDE_ENERGY_RATE {
+            get {
+                return ResourceManager.GetString("INSIDE_ENERGY_RATE", resourceCulture);
             }
         }
         
@@ -7435,6 +7453,15 @@ namespace Resources {
         internal static string PLANT_EDIT_ZIPCODE {
             get {
                 return ResourceManager.GetString("PLANT_EDIT_ZIPCODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 预测值 的本地化字符串。
+        /// </summary>
+        internal static string PLANT_ENERGY_FORECAST_VALUE {
+            get {
+                return ResourceManager.GetString("PLANT_ENERGY_FORECAST_VALUE", resourceCulture);
             }
         }
         

@@ -2,6 +2,7 @@
     MasterPageFile="~/Pages/Shared/Index.Master" %>
 
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
 <asp:Content ID="title" ContentPlaceHolderID="TitleContent" runat="server">
     <%=Resources.SunResource.PAGE_QA_TITLE%>
 </asp:Content>
@@ -48,7 +49,9 @@
         }
     </script>
 
-    <%QA qa = ViewData["qa"] as QA; %>
+    <%QA qa = ViewData["qa"] as QA;
+    User user=UserUtil.getCurUser();
+    %>
     <div class="lcbox">
         <div class="lcabout">
             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -68,12 +71,14 @@
                         <div class="faq_top">
                             <p>
                                 <%=Resources.SunResource.PAGE_QA_TITLE%></p>
-                            <span><%=Resources.SunResource.QA_SUBTITLE_DESCR%></span>
+                            <span>
+                                <%=Resources.SunResource.QA_SUBTITLE_DESCR%></span>
                         </div>
                         <form method="post" action="/qa/ask">
                         <div class="faq_search">
                             <%=Html.TextBox("kw",Request["kw"],new {@class="stxinput" }) %>
-                            <input type="submit" name="Submit" value="<%=Resources.SunResource.MONITORITEM_SEARCH%>" class="greenbtu" />
+                            <input type="submit" name="Submit" value="<%=Resources.SunResource.MONITORITEM_SEARCH%>"
+                                class="greenbtu" />
                         </div>
                         </form>
                         <div class="faq_list">
@@ -82,19 +87,26 @@
                                       foreach (QA item in Model)
                                       {%>
                                 <li><a href="/qa/showask/<%=item.id %>" target="_blank">
-                                    <%=item.title%></a></li>
+                                    <%=item.title%>
+                                    <%if (user != null && item.username.Equals(user.username) && item.status != QA.VALIDATE)
+                                      { %>
+                                    &nbsp;<font color="red">编辑</font>
+                                    <%} %></a> </li>
                                 <%} %>
                             </ul>
                             <%Html.RenderPartial("page"); %>
                         </div>
                         <div class="faq_ask">
-                            <span class="tname"><strong><%=Resources.SunResource.QA_NOTICE%></strong> <font color='red'>(<%=Resources.SunResource.MONITORITEM_NOTE %>:*
-                          <%=Resources.SunResource.MONITORITEM_FOR_MUST_FILL_IN_THE_ITEM %>)</font>  </span>
+                            <span class="tname"><strong>
+                                <%=Resources.SunResource.QA_NOTICE%></strong> <font color='red'>(<%=Resources.SunResource.MONITORITEM_NOTE %>:*
+                                    <%=Resources.SunResource.MONITORITEM_FOR_MUST_FILL_IN_THE_ITEM %>)</font>
+                            </span>
                             <form action="/qa/postask" method="post">
                             <table width="640" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td width="82" height="70" align="right">
-                                        <font class="redzi">* </font><strong><%=Resources.SunResource.QA_TITLE%>：</strong>
+                                        <font class="redzi">* </font><strong>
+                                            <%=Resources.SunResource.QA_TITLE%>：</strong>
                                     </td>
                                     <td width="558">
                                         <input type="text" name="title" id="title" class="faq_input01" value="<%=qa==null?"":qa.title %>" />
@@ -103,12 +115,14 @@
                                 </tr>
                                 <tr>
                                     <td align="right" valign="top" style="padding-top: 8px;">
-                                        <font class="redzi">* </font><strong><%=Resources.SunResource.QA_CONTENT%>：</strong>
+                                        <font class="redzi">* </font><strong>
+                                            <%=Resources.SunResource.QA_CONTENT%>：</strong>
                                     </td>
                                     <td>
                                         <span class="changimg"></span>
                                         <textarea id="descr" name="descr" rows="6" class="faq_input02" onkeyup="checkwords(this);"><%=qa==null?"":qa.descr %></textarea>
-                                        <span class="tszs"><%=Resources.SunResource.QA_TEXTAREA_WORDS_COUNTER%></span>
+                                        <span class="tszs">
+                                            <%=Resources.SunResource.QA_TEXTAREA_WORDS_COUNTER%></span>
                                     </td>
                                 </tr>
                                 <tr>

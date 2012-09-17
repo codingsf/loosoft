@@ -11,7 +11,12 @@
     <script src="/script/jquery.validate.js" type="text/javascript"></script>
 
     <script type="text/javascript">
-
+        function checkform() {
+            var content = document.getElementById("descr").value;
+            if (content == "") {
+                alert('请输入评论内容'); return false;
+            }
+        }
         $().ready(function() {
             $("#editForm").validate({
                 errorElement: "em",
@@ -53,7 +58,7 @@
                                 <img src="/images/kj/kjiico01.gif" />
                             </td>
                             <td width="93%" class="pv0216">
-                                最新提问
+                                有问有答
                             </td>
                         </tr>
                         <tr>
@@ -78,7 +83,7 @@
                                 <img src="/images/sub/subico010.gif" width="18" height="19" />
                             </td>
                             <td width="94%" class="f_14">
-                                <strong>最新提问</strong>
+                                <strong>回答问题</strong>
                             </td>
                         </tr>
                     </table>
@@ -100,23 +105,52 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="pl20" height="35" >
                             </td>
-                            <td>
+                            <td colspan="2">
                                 <p>
                                     <%=Model.descr %>
                                 </p>
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="pl20" height="35" >
+                                提问人
                             </td>
-                            <td>
+                            <td colspan="2">
+                                <%=Model.username %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="pl20" height="35" >
+                                提问时间
+                            </td>
+                            <td colspan="2">
+                                <%=Model.pubdate.ToString("yyyy-MM-dd HH:mm") %>
+                            </td>
+                        </tr>
+                        <%if (Model.isanswered)
+                          { %>
+                        <tr>
+                            <td class="pl20" height="35" >
+                                回答人
+                            </td>
+                            <td colspan="2">
+                                <%=Model.answerUserName%>
+                            </td>
+                        </tr>
+                        <%} %>
+                        <tr>
+                            <td class="pl20">
+                                答复<span class="red">*</span>
+                            </td>
+                            <td colspan="2">
                                 <p>
-                                    <textarea name="descr" cols="55" rows="10"><%=Model.isanswered?Model.answerslist[0].descr:"" %></textarea>
+                                    <textarea id="Textarea2" name="descr" cols="45" rows="10"><%=Model.isanswered?Model.answerslist[0].descr:"" %></textarea>
                                 </p>
                             </td>
                         </tr>
+                        
                     </table>
                 </div>
                 <div class="sb_down">
@@ -127,7 +161,7 @@
                     <tbody>
                         <tr>
                             <td>
-                                <input name="Submit" class="txtbu03" value=" 保存 " type="submit">
+                                <input name="Submit" class="txtbu03" value=" 保存 " onclick="return checkform();" type="submit">
                             </td>
                             <td>
                                 <input name="Submit2" onclick="window.location='/admin/answer/'" class="txtbu03"

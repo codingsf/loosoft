@@ -2558,8 +2558,9 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
 
         public ActionResult EnergyRate(int id)
         {
-
             Plant plant = plantService.GetPlantInfoById(id);
+            if (plant.energyRate.Equals(0.0))
+                plant.energyRate = 1;
             return View(plant);
         }
 

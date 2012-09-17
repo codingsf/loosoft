@@ -32,5 +32,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 return (this.answerslist != null && this.answerslist.Count > 0);
             }
         }
+
+        /// <summary>
+        /// 回答人
+        /// </summary>
+        public string answerUserName
+        {
+            get
+            {
+                if (this.answerslist != null && this.answerslist.Count > 0)
+                    return answerslist[0].username;
+                return string.Empty;
+            }    
+        }
     }
 }

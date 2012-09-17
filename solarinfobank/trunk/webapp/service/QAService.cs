@@ -32,9 +32,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             return _qaDao.Insert(qa);
         }
 
-        public IList<QA> Search(string kw, int status)
+        public IList<QA> Search(string kw, int status, string username)
         {
-            return _qaDao.Getlist(new QA { title = kw, descr = kw, status = status });
+            return _qaDao.Getlist(new QA { title = kw, descr = kw, status = status, username = username });
         }
 
         public QA Get(int id)
@@ -44,7 +44,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
 
         public int UpdateStatus(int id, int status)
         {
-            return _qaDao.Update(new QA { id = id, status = status });
+            return _qaDao.UpdateStatus(id, status);
         }
 
     }

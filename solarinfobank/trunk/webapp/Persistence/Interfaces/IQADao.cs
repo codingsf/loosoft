@@ -8,5 +8,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.Interfaces
 {
     public interface IQADao : IBaseDao<QA>
     {
+        int UpdateStatus(int id, int status);
     }
 }

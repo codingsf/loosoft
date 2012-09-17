@@ -9,5 +9,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
 {
     public class QASqlMaoDao : BaseSqlDao<QA>, IQADao
     {
+        public int UpdateStatus(int id, int status)
+        {
+            return ExecuteUpdate("qa_update_status", new QA { id = id, status = status });
+        }
+
     }
 }

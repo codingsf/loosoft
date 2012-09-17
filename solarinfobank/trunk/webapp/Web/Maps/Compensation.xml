@@ -17,6 +17,7 @@
       <result property="type"			column="type"/>
       <result property="compensationDate"			column="compensation_date"/>
       <result property="plant" lazyLoad="true"	column="plantid"         select="plant_info_get_lazy" />
+      <result property="device" lazyLoad="true"	column="plantid"         select="device_get" />
 
     </resultMap>
   </resultMaps>

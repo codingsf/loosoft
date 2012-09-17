@@ -2427,6 +2427,14 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             User user = UserUtil.getCurUser();
             int plantid = 0;
             int.TryParse(id, out plantid);
+            return View(plantService.GetPlantInfoById(plantid));
+        }
+
+        public ActionResult SearchCompensation()
+        {
+            User user = UserUtil.getCurUser();
+
+            #region
 
             Hashtable table = new Hashtable();
 
@@ -2446,7 +2454,6 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
                 table["plantids"] = plantids;
 
             }
-            string devicename = Request.Form["devicename"];
 
             string datetype = Request.Form["datetype"];
             if (string.IsNullOrEmpty(datetype) == false)
@@ -2467,19 +2474,22 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
                     }
                 }
             }
+
+            string devicename = Request.Form["devicename"];
             if (string.IsNullOrEmpty(devicename) == false)
             {
-                string plantids = string.Empty;
-                table["deviceids"] = plantids;
+                string deviceids = string.Empty;
+                table["deviceids"] = deviceids;
             }
 
+            #endregion
 
 
             IList<Compensation> compensations = CompensationService.GetInstance().searchCompensation(table);
             ViewData["compensations"] = compensations;
-            return View(plantService.GetPlantInfoById(plantid));
-        }
+            return View();
 
+        }
         public ActionResult DelCompensation(int id)
         {
             CompensationService.GetInstance().Remove(id);
@@ -2488,7 +2498,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
 
 
 
-        public ActionResult SaveCompensation(int id, int plantid, int deviceid, int type, string value, string date)
+        public ActionResult SaveCompensation(int id, int plantid, int deviceid, int type, string value, string date, bool isplant)
         {
             double dtemp = 0;
             double.TryParse(value, out dtemp);
@@ -2534,7 +2544,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             {
                 id = id,
                 plantid = plantid,
-                isplant = true,
+                isplant = isplant,
                 year = year,
                 month = month,
                 day = day,

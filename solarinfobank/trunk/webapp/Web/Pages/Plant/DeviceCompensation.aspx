@@ -13,8 +13,6 @@
     <script src="/script/DatePicker/WdatePicker.js" type="text/javascript"></script>
 
     <script>
-        var plantid=<%=Model.id %>;
-        var isplant=true;
         var type = 0;
         function getdate() {
             if ($("#compensation_energy" + type).get(0))
@@ -54,39 +52,13 @@
         }
 
         $().ready(function() {
-        
-            $("#tabplant").click(function(){
-                $(this).addClass('onclick');
-                $("#tabdevice").removeClass('onclick');
-                $("#plantid").val(plantid);
-                isplant=true;
-                $("#device_container").hide();
-                parent.iFrameHeight();
-                
-            });
-            
-            
-            $("#tabdevice").click(function(){
-                $(this).addClass('onclick');
-                $("#tabplant").removeClass('onclick');
-                $("#device_container").show();
-                parent.iFrameHeight();
-                
-                
-            });
-        
             $("input[name='radiobutton']").click(function() {
                 type = $(this).val();
                 $("#cid").val(0);
             });
 
-            $("#sltdevice").change(function(){
-                isplant=false;
-                $("#plantid").val($(this).val())
-            });
-            
             $("#btnsave").click(function() {
-                $.post("/plant/savecompensation", { id: $("#cid").val(), type: type, isplant:isplant, plantid: $("#plantid").val(), deviceid: '0', value: $("#compensation").val(), date: getdate() },
+                $.post("/plant/savecompensation", { id: $("#cid").val(), type: type, plantid: $("#plantid").val(), deviceid: '0', value: $("#compensation").val(), date: getdate() },
                 function(data, textStatus) {
                     if (data == 'ok')
                         document.location.reload(true);
@@ -102,6 +74,13 @@
                 parent.iFrameHeight();
             });
         })
+
+        function initdata() {
+            //  alert($("#compensation_energy" + type).val());
+        }
+
+    
+        
     </script>
 
     <table cellpadding="0" cellspacing="0" border="0">
@@ -137,14 +116,14 @@
                 <div class="subrbox01">
                     <div class="bitab">
                         <ul id="bitab">
-                            <li><a id="tabplant" href="javascript:void(0)" class="onclick">电站</a></li>
+                            <li><a href="#" class="onclick">电站</a></li>
                             <li></li>
-                            <li><a id="tabdevice" href="javascript:void(0)">设备</a></li>
+                            <li><a href="#">设备</a></li>
                         </ul>
                     </div>
                     <div class="sb_mid">
                         <table width="90%" align="center" cellpadding="0" cellspacing="0" style="line-height: 24px;">
-                            <tr id="device_container" style="display:none">
+                            <tr>
                                 <td width="20%" height="35" style="padding-left: 5px;">
                                     <input type="hidden" id="Hidden1" value="0" />
                                     <label>
@@ -152,16 +131,13 @@
                                 </td>
                                 <td width="80%" style="padding-left: 5px;">
                                     <label>
-                                        <select name="sltdevice" id="sltdevice">
+                                        <select>
                                             <%foreach (PlantUnit unit in Model.plantUnits)
-                                              {%>
-                                            <optgroup label="<%=unit.displayname%>">
-                                            </optgroup>
-                                            <% foreach (Device device in unit.displayDevices)
-                                               { %>
-                                            <option value="<%=device.id %>">
-                                                <%=device.fullName%></option>
-                                            <%}
+                                              {
+                                                  foreach (Device device in unit.displayDevices)
+                                                  { %>
+                                                    <option><%=device.fullName%></option>
+                                                <%}
                                               } %>
                                         </select>
                                     </label>
@@ -293,16 +269,14 @@
                                     <span style="padding-left: 5px;">起始日期：</span>
                                 </td>
                                 <td width="20%">
-                                    <input name="startDate" onclick="WdatePicker({isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});"
-                                        type="text" class="txtbu04 Wdate" value="<%=DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd") %>"
+                                    <input name="startDate" onclick="WdatePicker({isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});" type="text" class="txtbu04 Wdate" value="<%=DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd") %>"
                                         size="14" />
                                 </td>
                                 <td width="11%">
                                     <span style="padding-left: 5px;">终止日期：</span>
                                 </td>
                                 <td width="16%">
-                                    <input name="endDate" type="text" class="txtbu04 Wdate" onclick="WdatePicker({isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});"
-                                        size="14" value="<%=DateTime.Now.ToString("yyyy-MM-dd") %>" />
+                                    <input name="endDate" type="text" class="txtbu04 Wdate" onclick="WdatePicker({isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});" size="14" value="<%=DateTime.Now.ToString("yyyy-MM-dd") %>" />
                                 </td>
                                 <td width="13%">
                                     &nbsp;

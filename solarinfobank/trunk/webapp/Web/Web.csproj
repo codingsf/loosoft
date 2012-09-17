@@ -2604,6 +2604,7 @@
     <Content Include="Pages\Plant\StructPic.aspx" />
     <Content Include="Pages\Plant\deviceStructTree.aspx" />
     <Content Include="Pages\Plant\Compensation.aspx" />
+    <Content Include="Pages\Plant\DeviceCompensation.aspx" />
     <Content Include="Pages\portal\DeviceStatus.aspx" />
     <Content Include="Pages\portal\Fault.aspx" />
     <Content Include="Pages\portal\HLXchart.aspx" />

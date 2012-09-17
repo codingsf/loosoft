@@ -6499,14 +6499,10 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
                                 query, you can receive useful information and valuable tips on our inverters, communication
                                 products and software programs.</value>
   </data>
-<<<<<<< .mine
->>>>>>> .r244
-=======
   <data name="QA_TEXTAREA_WORDS_COUNTER" xml:space="preserve">
     <value>您还可以输&lt;span id="wordLength"&gt;500&lt;/span&gt;个字</value>
   </data>
   <data name="QA_TITLE" xml:space="preserve">
     <value>标题</value>
   </data>
->>>>>>> .r245
 </root>

@@ -5446,4 +5446,7 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
   <data name="YEAR_COMPENSATION_ENERGY" xml:space="preserve">
     <value>年发电量补偿</value>
   </data>
+  <data name="PLANT_CODE" xml:space="preserve">
+    <value>Plant</value>
+  </data>
 </root>

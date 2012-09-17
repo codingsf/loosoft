@@ -2432,6 +2432,14 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
 
         public ActionResult SearchCompensation()
         {
+            Pager pager = new Pager();
+            ViewData["page"] = pager;
+            pager.PageSize = ComConst.PageSize;
+            string page = Request["page"];
+            int ipage = 0;
+            int.TryParse(page, out ipage);
+            ipage = ipage <= 0 ? 1 : ipage;
+            pager.PageIndex = ipage;
             User user = UserUtil.getCurUser();
 
             #region
@@ -2483,9 +2491,9 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             }
 
             #endregion
-
-
             IList<Compensation> compensations = CompensationService.GetInstance().searchCompensation(table);
+            pager.RecordCount = compensations.Count;
+            compensations = compensations.Skip((ipage - 1) * pager.PageSize).Take(pager.PageSize).ToList<Compensation>();
             ViewData["compensations"] = compensations;
             return View();
 

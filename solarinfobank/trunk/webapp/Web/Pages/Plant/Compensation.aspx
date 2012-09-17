@@ -13,7 +13,10 @@
     <script src="/script/DatePicker/WdatePicker.js" type="text/javascript"></script>
 
     <script>
-               
+        function changePage(page)
+        {
+            search(page);
+        }
         var plantid=<%=Model.id %>;
         var isplant=true;
         var type = 0;
@@ -73,9 +76,9 @@
             }
         }
 
-         function search()
+         function search(page)
          {
-           $.post("/plant/searchcompensation", {datetype:$("#date_type_slt").val(),plantname:$("#plantname").val(),devicename:$("#devicename").val(),startDate:$("#startDate").val(),endDate:$("#endDate").val()},
+           $.post("/plant/searchcompensation", {page:page,datetype:$("#date_type_slt").val(),plantname:$("#plantname").val(),devicename:$("#devicename").val(),startDate:$("#startDate").val(),endDate:$("#endDate").val()},
                 function(data) {
                     $("#list_container").html(data);
                     parent.iFrameHeight();

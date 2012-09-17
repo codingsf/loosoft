@@ -6944,6 +6944,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 Plant 的本地化字符串。
+        /// </summary>
+        internal static string PLANT_CODE {
+            get {
+                return ResourceManager.GetString("PLANT_CODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Other 的本地化字符串。
         /// </summary>
         internal static string PLANT_COUNTRY_CITY_OTHER {

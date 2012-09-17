@@ -116,7 +116,7 @@
                                         &nbsp;
                                     </td>
                                     <td height="50">
-                                        <input type="submit" onclick="return checkform();" name="Submit2" value="<%=qa==null?"Resources.SunResource.QA_BUTTON_ASK":"Resources.SunResource.ADMIN_DBCONFIG_LIST_EDIT"%>"
+                                        <input type="submit" onclick="return checkform();" name="Submit2" value="<%=qa==null?Resources.SunResource.QA_BUTTON_ASK:Resources.SunResource.ADMIN_DBCONFIG_LIST_EDIT%>"
                                             class="greenbtu" />
                                     </td>
                                 </tr>

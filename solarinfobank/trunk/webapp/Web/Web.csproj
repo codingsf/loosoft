@@ -137,6 +137,11 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\SunResource.de.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SunResource.de.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\SunResource.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -147,6 +152,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SunResource.fr-fr.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\SunResource.it-ch.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SunResource.it-ch.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\SunResource.ja-jp.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -156,16 +166,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SunResource.zh-cn.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\SunResource.de.designer.cs">
-      <DependentUpon>SunResource.de.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="App_GlobalResources\SunResource.it-ch.designer.cs">
-      <DependentUpon>SunResource.it-ch.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Controllers\AdminBaseController.cs" />
     <Compile Include="Controllers\Admin\AdminController.cs">
@@ -467,11 +467,6 @@
     <Content Include="Global.asax" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\SunResource.zh-cn.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>SunResource.zh-cn.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Maps\VideoMonitor.xml" />
     <Content Include="script\jcarousellite_1.0.1.js" />
   </ItemGroup>
@@ -547,11 +542,6 @@
     <Content Include="Pages\Shared\css.ascx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\SunResource.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>SunResource.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="dao.config" />
     <Content Include="Controllers\Content\Ashx\Upload.ashx" />
     <Content Include="Controllers\Content\Ashx\Drawing.ashx" />
@@ -1115,23 +1105,32 @@
     <EmbeddedResource Include="App_GlobalResources\SunInfoResource.it-ch.resources" />
     <EmbeddedResource Include="App_GlobalResources\suninforesource.resources" />
     <EmbeddedResource Include="App_GlobalResources\suninforesource.zh-cn.resources" />
-    <Content Include="App_GlobalResources\SunResource.ja-jp.resx">
+    <Content Include="App_GlobalResources\SunResource.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>SunResource.ja-jp.designer.cs</LastGenOutput>
+      <LastGenOutput>SunResource.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\SunResource.de.resx">
+      <SubType>Designer</SubType>
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>SunResource.de.designer.cs</LastGenOutput>
     </Content>
     <Content Include="App_GlobalResources\SunResource.fr-fr.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>SunResource.fr-fr.designer.cs</LastGenOutput>
     </Content>
     <Content Include="App_GlobalResources\SunResource.it-ch.resx">
+      <SubType>Designer</SubType>
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>SunResource.it-ch.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_GlobalResources\SunResource.de.resx">
+    <Content Include="App_GlobalResources\SunResource.ja-jp.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>SunResource.de.designer.cs</LastGenOutput>
+      <LastGenOutput>SunResource.ja-jp.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\SunResource.zh-cn.resx">
       <SubType>Designer</SubType>
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>SunResource.zh-cn.designer.cs</LastGenOutput>
     </Content>
     <Content Include="Content\bin\zh-cn\Web.resources.dll" />
     <Content Include="Content\code.xml" />

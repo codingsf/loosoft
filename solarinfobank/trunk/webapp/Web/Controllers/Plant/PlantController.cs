@@ -2487,6 +2487,13 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             if (string.IsNullOrEmpty(devicename) == false)
             {
                 string deviceids = string.Empty;
+                IList<Device> devices = DeviceService.GetInstance().getDeviceListLikeName(devicename);
+                foreach (Device device in devices)
+                {
+                    deviceids += string.Format("{0},", device.id);
+                }
+                if (deviceids.LastIndexOf(',') > 0) deviceids = deviceids.Substring(0, deviceids.Length - 1);
+                deviceids = string.IsNullOrEmpty(deviceids) ? "-1" : deviceids;
                 table["deviceids"] = deviceids;
             }
 

@@ -46,5 +46,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.Interfaces
         /// </summary>
         /// <returns></returns>
         IList<Device> getAllList();
+
+        /// <summary>
+        /// 根据设备名模糊电站列表
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        IList<Device> getDeviceListLikeName(string name);
     }
 }

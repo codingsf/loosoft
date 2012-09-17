@@ -189,5 +189,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             }
             return returnValue;
         }
+
+        public IList<Device> getDeviceListLikeName(string name)
+        {
+            return _deviceDao.getDeviceListLikeName(name);
+        }
     }
 }

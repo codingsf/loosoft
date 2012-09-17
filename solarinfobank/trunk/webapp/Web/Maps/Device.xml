@@ -60,6 +60,11 @@
     <select id="device_get"  resultMap="DeviceResult" parameterClass="int" cacheModel="device_cache">
       SELECT *  FROM  device WHERE ID=#value#
     </select>
+
+    <select id="device_get_like_name"  resultMap="DeviceResult" parameterClass="int" cacheModel="device_cache">
+      select *  from  device where name like '%$value$%'
+    </select>
+    
     <select id="INVERTER_GET_BY_PLANTID" resultMap="DeviceResult" parameterClass="string" cacheModel="device_cache">
       SELECT *  FROM  device WHERE collectorID=#value#
     </select>

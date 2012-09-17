@@ -107,5 +107,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
         
         }
 
+        public IList<Device> getDeviceListLikeName(string name)
+        {
+            return ExecuteQueryForList<Device>("device_get_like_name", name);
+            
+        }
+
     }
 }

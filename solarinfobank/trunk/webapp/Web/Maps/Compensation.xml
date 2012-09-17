@@ -49,11 +49,11 @@
       <![CDATA[select * from compensation]]>
       <dynamic prepend="where">
         <isParameterPresent>
-          <isNotEmpty prepend="or" property="plantids">
-            plantid in (#plantids#) and isplant=1
+          <isNotEmpty prepend="and" property="plantids">
+            plantid in ($plantids$)
           </isNotEmpty>
-          <isNotEmpty prepend="or" property="deviceids">
-            plantid in (#deviceids#) and isplant=0
+          <isNotEmpty prepend="and" property="deviceids">
+            plantid in ($deviceids$)
           </isNotEmpty>
           <isNotEmpty prepend="and" property="datefilter">
             <![CDATA[

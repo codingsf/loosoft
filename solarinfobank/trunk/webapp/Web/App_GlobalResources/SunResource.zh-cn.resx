@@ -5198,10 +5198,25 @@
   <data name="PAGE_QA_TITLE" xml:space="preserve">
     <value>有问有答</value>
   </data>
+  <data name="QA_BUTTON_ASK" xml:space="preserve">
+    <value>提问</value>
+  </data>
+  <data name="QA_CONTENT" xml:space="preserve">
+    <value>内容</value>
+  </data>
+  <data name="QA_NOTICE" xml:space="preserve">
+    <value>请在下面填写您的问题</value>
+  </data>
   <data name="QA_NOTICE_CONTENT" xml:space="preserve">
     <value>请输入提问内容</value>
   </data>
   <data name="QA_NOTICE_TITLE" xml:space="preserve">
     <value>请输入标题</value>
+  </data>
+  <data name="QA_TEXTAREA_WORDS_COUNTER" xml:space="preserve">
+    <value>您还可以输&lt;span id="wordLength"&gt;500&lt;/span&gt;个字</value>
+  </data>
+  <data name="QA_TITLE" xml:space="preserve">
+    <value>标题</value>
   </data>
 </root>

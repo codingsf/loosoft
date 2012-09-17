@@ -9134,6 +9134,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 提问 的本地化字符串。
+        /// </summary>
+        internal static string QA_BUTTON_ASK {
+            get {
+                return ResourceManager.GetString("QA_BUTTON_ASK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 内容 的本地化字符串。
+        /// </summary>
+        internal static string QA_CONTENT {
+            get {
+                return ResourceManager.GetString("QA_CONTENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 请在下面填写您的问题 的本地化字符串。
+        /// </summary>
+        internal static string QA_NOTICE {
+            get {
+                return ResourceManager.GetString("QA_NOTICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 请输入提问内容 的本地化字符串。
         /// </summary>
         internal static string QA_NOTICE_CONTENT {
@@ -9159,6 +9186,24 @@ namespace Resources {
         internal static string QA_SUBTITLE_DESCR {
             get {
                 return ResourceManager.GetString("QA_SUBTITLE_DESCR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 您还可以输&lt;span id=&quot;wordLength&quot;&gt;500&lt;/span&gt;个字 的本地化字符串。
+        /// </summary>
+        internal static string QA_TEXTAREA_WORDS_COUNTER {
+            get {
+                return ResourceManager.GetString("QA_TEXTAREA_WORDS_COUNTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 标题 的本地化字符串。
+        /// </summary>
+        internal static string QA_TITLE {
+            get {
+                return ResourceManager.GetString("QA_TITLE", resourceCulture);
             }
         }
         

@@ -88,12 +88,13 @@
                             <%Html.RenderPartial("page"); %>
                         </div>
                         <div class="faq_ask">
-                            <span class="tname"><strong>请在下面填写您的问题</strong> (<font class="redzi">* </font>为必填项)</span>
+                            <span class="tname"><strong><%=Resources.SunResource.QA_NOTICE%></strong> <font color='red'>(<%=Resources.SunResource.MONITORITEM_NOTE %>:*
+                          <%=Resources.SunResource.MONITORITEM_FOR_MUST_FILL_IN_THE_ITEM %>)</font>  </span>
                             <form action="/qa/postask" method="post">
                             <table width="640" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td width="82" height="70" align="right">
-                                        <font class="redzi">* </font><strong>标题：</strong>
+                                        <font class="redzi">* </font><strong><%=Resources.SunResource.QA_TITLE%>：</strong>
                                     </td>
                                     <td width="558">
                                         <input type="text" name="title" id="title" class="faq_input01" value="<%=qa==null?"":qa.title %>" />
@@ -102,12 +103,12 @@
                                 </tr>
                                 <tr>
                                     <td align="right" valign="top" style="padding-top: 8px;">
-                                        <font class="redzi">* </font><strong>内容：</strong>
+                                        <font class="redzi">* </font><strong><%=Resources.SunResource.QA_CONTENT%>：</strong>
                                     </td>
                                     <td>
                                         <span class="changimg"></span>
                                         <textarea id="descr" name="descr" rows="6" class="faq_input02" onkeyup="checkwords(this);"><%=qa==null?"":qa.descr %></textarea>
-                                        <span class="tszs">您还可以输<span id="wordLength">500</span>个字</span>
+                                        <span class="tszs"><%=Resources.SunResource.QA_TEXTAREA_WORDS_COUNTER%></span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -115,7 +116,7 @@
                                         &nbsp;
                                     </td>
                                     <td height="50">
-                                        <input type="submit" onclick="return checkform();" name="Submit2" value="<%=qa==null?"提问":"修改"%>"
+                                        <input type="submit" onclick="return checkform();" name="Submit2" value="<%=qa==null?"Resources.SunResource.QA_BUTTON_ASK":"Resources.SunResource.ADMIN_DBCONFIG_LIST_EDIT"%>"
                                             class="greenbtu" />
                                     </td>
                                 </tr>

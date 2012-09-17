@@ -46,7 +46,7 @@
                 messages: {
                 energyRate: {
                         required: "<span class='error'>&nbsp;<%=Resources.SunResource.PAGECONFIG_MENU_ERROR1%></span>",
-                        number: "<span class='error'>&nbsp;<%=Resources.SunResource.PAGECONFIG_MENU_ERROR1%></span>""
+                        number: "<span class='error'>&nbsp;<%=Resources.SunResource.PAGECONFIG_MENU_ERROR1%></span>"
                     }
                 },
                 success: function(em) {

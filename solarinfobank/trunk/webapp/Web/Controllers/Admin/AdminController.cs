@@ -3137,9 +3137,19 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             return Content("清理完成!");
         }
 
-        public ActionResult Answer()
+        public ActionResult Answer(string id)
         {
-            return View(@"qa/list", QAService.GetInstance().Search(string.Empty, -1));
+            int page = 0;
+            int.TryParse(id, out page);
+            page = page < 1 ? 1 : page;
+            IList<QA> qalist = QAService.GetInstance().Search(string.Empty, -1, string.Empty);
+            Pager pager = new Pager();
+            ViewData["page"] = pager;
+            pager.PageSize = ComConst.PageSize ;
+            pager.PageIndex = page;
+            pager.RecordCount = qalist.Count;
+            qalist = qalist.Skip((page - 1) * pager.PageSize).Take(pager.PageSize).ToList<QA>();
+            return View(@"qa/list", qalist);
         }
 
         public ActionResult PostAnswer(string id)
@@ -3158,7 +3168,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             qa.username = user == null ? "admin" : user.username;
             QAService.GetInstance().Save(qa);
             QAService.GetInstance().UpdateStatus(qa.qid, QA.VALIDATE);
-            return View(@"qa/list", QAService.GetInstance().Search(string.Empty, QA.NORMAL));
+            return View(@"qa/list", QAService.GetInstance().Search(string.Empty, -1, string.Empty));
         }
     }
 }

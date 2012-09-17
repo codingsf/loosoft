@@ -42,11 +42,13 @@
         }
 
         function delitem(id) {
-            $.post("/plant/delcompensation", { id: id },
+            if (confirm('您确定要删除吗')) {
+                $.post("/plant/delcompensation", { id: id },
                 function(data) {
                     if (data == 'ok')
                         document.location.reload(true);
                 });
+            }
         }
 
         $().ready(function() {
@@ -101,7 +103,7 @@
                                 </tr>
                                 <tr>
                                     <td class="pv0212">
-                                        Here you can display visual configuration. By clicking on the elements in the tree
+                                        &nbsp;
                                     </td>
                                 </tr>
                             </table>
@@ -267,14 +269,14 @@
                                     <span style="padding-left: 5px;">起始日期：</span>
                                 </td>
                                 <td width="20%">
-                                    <input name="startDate" type="text" class="txtbu04 Wdate" value="<%=DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd") %>"
+                                    <input name="startDate" onclick="WdatePicker({isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});" type="text" class="txtbu04 Wdate" value="<%=DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd") %>"
                                         size="14" />
                                 </td>
                                 <td width="11%">
                                     <span style="padding-left: 5px;">终止日期：</span>
                                 </td>
                                 <td width="16%">
-                                    <input name="endDate" type="text" class="txtbu04 Wdate" size="14" value="<%=DateTime.Now.ToString("yyyy-MM-dd") %>" />
+                                    <input name="endDate" type="text" class="txtbu04 Wdate" onclick="WdatePicker({isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});" size="14" value="<%=DateTime.Now.ToString("yyyy-MM-dd") %>" />
                                 </td>
                                 <td width="13%">
                                     &nbsp;
@@ -289,7 +291,7 @@
                         <table width="100%" cellpadding="0" cellspacing="0" style="line-height: 24px; text-align: center">
                             <tr>
                                 <td width="33%" height="25" class="subline02">
-                                    <strong>各称</strong>
+                                    <strong>补偿对象名称</strong>
                                 </td>
                                 <td width="15%" class="subline02">
                                     <strong>补偿类型</strong>

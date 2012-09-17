@@ -1926,40 +1926,40 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_ENABLE, Value="true
                                             <table width="100%">
                                                 <tr>
                                                     <td width="8%" align="center">
-                                                        1
+                                                        <%=Resources.SunResource.MONTH_1%>
                                                     </td>
                                                     <td width="8%" align="center">
-                                                        2
+                                                        <%=Resources.SunResource.MONTH_2%>
                                                     </td>
                                                     <td width="8%" align="center">
-                                                        3
+                                                        <%=Resources.SunResource.MONTH_3%>
                                                     </td>
                                                     <td width="8%" align="center">
-                                                        4
+                                                        <%=Resources.SunResource.MONTH_4%>
                                                     </td>
                                                     <td width="8%" align="center">
-                                                        5
+                                                        <%=Resources.SunResource.MONTH_5%>
                                                     </td>
                                                     <td width="8%" align="center">
-                                                        6
+                                                        <%=Resources.SunResource.MONTH_6%>
                                                     </td>
                                                     <td width="8%" align="center">
-                                                        7
+                                                        <%=Resources.SunResource.MONTH_7%>
                                                     </td>
                                                     <td width="8%" align="center">
-                                                        8
+                                                        <%=Resources.SunResource.MONTH_8%>
                                                     </td>
                                                     <td width="8%" align="center">
-                                                        9
+                                                        <%=Resources.SunResource.MONTH_9%>
                                                     </td>
                                                     <td width="8%" align="center">
-                                                        10
+                                                        <%=Resources.SunResource.MONTH_10%>
                                                     </td>
                                                     <td width="8%" align="center">
-                                                        11
+                                                        <%=Resources.SunResource.MONTH_11%>
                                                     </td>
                                                     <td width="8%" align="center">
-                                                        12
+                                                        <%=Resources.SunResource.MONTH_12%>
                                                     </td>
                                                 </tr>
                                                 <tr>

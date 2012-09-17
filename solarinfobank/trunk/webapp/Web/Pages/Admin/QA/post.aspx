@@ -2,7 +2,7 @@
     Inherits="System.Web.Mvc.ViewPage<Cn.Loosoft.Zhisou.SunPower.Domain.QA>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    最新提问  - SolarInfoBank
+    最新提问 - SolarInfoBank
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -69,7 +69,7 @@
             </tr>
         </table>
         <div class="find_yqi">
-        <form method="post" action="/admin/postanswer">
+            <form method="post" action="/admin/postanswer">
             <div class="subrbox01">
                 <div>
                     <table width="90%" height="30" border="0" cellpadding="0" cellspacing="0">
@@ -95,6 +95,7 @@
                             </td>
                             <td width="71%" colspan="2">
                                 <input name="qid" type="hidden" value="<%=Model.id %>" />
+                                <input name="id" type="hidden" value="<%=Model.isanswered?Model.answerslist[0].id:0 %>" />
                                 <%=Model.title %>
                             </td>
                         </tr>
@@ -112,7 +113,7 @@
                             </td>
                             <td>
                                 <p>
-                                    <textarea name="descr" cols="55" rows="10"></textarea>
+                                    <textarea name="descr" cols="55" rows="10"><%=Model.isanswered?Model.answerslist[0].descr:"" %></textarea>
                                 </p>
                             </td>
                         </tr>
@@ -123,11 +124,17 @@
             </div>
             <div>
                 <table width="350" height="60" border="0" align="center" cellpadding="0" cellspacing="0">
-                    <tr>
-                        <td>
-                            <input name="button2" type="submit" class="txtbu03" id="Submit1" value=" 回答 " />
-                        </td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input name="Submit" class="txtbu03" value=" 保存 " type="submit">
+                            </td>
+                            <td>
+                                <input name="Submit2" onclick="window.location='/admin/answer/'" class="txtbu03"
+                                    value=" 取消 " type="button">
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             </form>

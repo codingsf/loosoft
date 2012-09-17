@@ -10,7 +10,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <script src="/script/jquery.js" type="text/javascript"></script>
-
+        <script>
+            function changePage(page) {
+                window.location.href = '/admin/answer/' + page;
+            }
+        </script>
     <style type="text/css">
         .am_line01
         {
@@ -75,13 +79,19 @@
                             <table width="100%" height="29" border="0" cellpadding="0" cellspacing="0" background="/images/am/am_bg03.jpg"
                                 style="border: 1px solid #DADADA; text-align: center; font-weight: bold;">
                                 <tr>
-                                    <td width="33%" align="center" class="lir">
+                                    <td width="30%" align="center" class="lir">
                                         标题
                                     </td>
-                                    <td width="33%" align="center" class="lir">
+                                    <td width="30%" align="center" class="lir">
                                         内容
                                     </td>
-                                    <td width="33%" align="center" class="lir">
+                                    <td width="10%" align="center" class="lir">
+                                        提问人
+                                    </td>
+                                    <td width="15%" align="center" class="lir">
+                                        提问时间
+                                    </td>
+                                    <td width="10%" align="center" class="lir">
                                         操作
                                     </td>
                                 </tr>
@@ -97,22 +107,38 @@
                         <td>
                             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                                 <tr>
-                                    <td width="33%" align="center" class="am_line0<%=i%2 %>">
+                                    <td width="30%" align="center" class="am_line0<%=i%2 %>" title="<%=item.title%>">
                                         <%=StringUtil.cutStr(item.title,30,"...") %>
                                     </td>
-                                    <td width="33%" align="center" class="am_line0<%=i%2 %>">
+                                    <td width="30%" align="center" class="am_line0<%=i%2 %>" title="<%=item.descr%>">
                                         <%=StringUtil.cutStr(item.descr, 30, "...")%>
                                     </td>
-                                    <td width="33%" align="center" class="am_line0<%=i%2 %>">
-                                     <a href="/admin/postanswer/<%=item.id %>" target="_blank">回答</a>   
+                                    <td width="10%" align="center" class="am_line0<%=i%2 %>">
+                                        <%=item.username%>
+                                    </td>
+                                    <td width="15%" align="center" class="am_line0<%=i%2 %>">
+                                        <%=item.pubdate.ToString("yyyy/MM/dd HH:mm")%>
+                                    </td>
+                                    <td width="10%" align="center" class="am_line0<%=i%2 %>">
+                                        <a href="/admin/postanswer/<%=item.id %>">
+                                            <%=item.isanswered?"修改":"回答" %></a>
                                     </td>
                                 </tr>
                             </table>
                         </td>
                     </tr>
                     <%} %>
-                    <tr>
+               <tr>
                         <td height="36" colspan="5" background="/images/am/am_bg02.jpg">
+                            <table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td width="30%">
+                                    </td>
+                                    <td width="70%">
+                                        <%Html.RenderPartial("mpage"); %>
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
                 </table>

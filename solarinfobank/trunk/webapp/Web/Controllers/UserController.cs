@@ -1972,5 +1972,95 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             ViewData["jsstr"] = TempData["jsstr"];
             return View();
         }
+
+        /// <summary>
+        /// 筛选出用户电站非隐藏，工作正常的逆变器的发电量比率大于或者小于设定比率系数的逆变器
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <param name="pid"></param>
+        /// <param name="yyyyMMdd"></param>
+        /// <param name="?"></param>
+        /// <returns></returns>
+        public ActionResult EnergyFilter(int id,int? pid,string yyyyMMdd)
+        {
+            User user = UserService.GetInstance().Get(id);
+
+            IList<Plant> plants = user.allOwnFactPlants;
+            ViewData["plants"] = plants;
+            IList<Plant> handlePlants=null;
+            int timezone=0;
+            if(pid!=null && pid.Value!=0){
+                Plant plant = PlantService.GetInstance().GetPlantInfoById(pid.Value);
+                timezone = plant.timezone;
+                handlePlants = new List<Plant>();
+                handlePlants.Add(plant);
+            }else{
+                handlePlants = plants;
+                timezone = plants[0].timezone;
+            }
+
+            if (yyyyMMdd == null) yyyyMMdd = CalenderUtil.curDateWithTimeZone(timezone, "yyyy-MM-dd");
+            int year = int.Parse(yyyyMMdd.Split('-')[0]);
+            int month = int.Parse(yyyyMMdd.Split('-')[1]);
+            int day = int.Parse(yyyyMMdd.Split('-')[2]);
+            ViewData["yyyyMMdd"] = yyyyMMdd;
+            //循环处理多个电站
+            IList<Hashtable> datas = new List<Hashtable>();
+            Hashtable data = null;
+            DeviceMonthDayData dmdd = null;
+            foreach(Plant plant in handlePlants){
+                if (plant.energyRate == null || double.IsNaN(plant.energyRate.Value))
+                    continue;
+
+                //找出电站非隐藏的逆变器
+                IList<Device> devices = plant.typeDevices(DeviceData.INVERTER_CODE);
+
+                //逐个判断逆变器设备是否有发电量比例告警，并将有告警的设备放入Hashtable中
+                //首先取得电站设备的平均发电量
+                double totalEnergy = 0;
+                int deviceNum = 0;
+                foreach (Device device in devices)
+                {
+                    if (device.isWork(plant.timezone))
+                    {
+                        dmdd = DeviceMonthDayDataService.GetInstance().GetDeviceMonthDayData(year, device.id, month);
+                        totalEnergy += dmdd.getDayData(day);
+                        deviceNum++;
+                    }
+                }
+                double aveageEnergy  = 0;
+                //有设备才计算平均值
+                if (deviceNum > 0)
+                {
+                    aveageEnergy = totalEnergy / deviceNum;
+                }
+                //获取每个设备的发电量比率
+                double rate=0;
+                foreach (Device device in devices)
+                {
+                    if (device.isWork(plant.timezone))
+                    {
+                        data = new Hashtable();
+                        dmdd = DeviceMonthDayDataService.GetInstance().GetDeviceMonthDayData(year, device.id, month);
+                        if (aveageEnergy == 0)
+                            rate = 0;
+                        else
+                            rate = (dmdd.getDayData(day) - aveageEnergy) / aveageEnergy;
+                        if (Math.Abs(rate) < plant.energyRate) continue;
+
+                        rate = Math.Round(rate, 2);
+                        data["plantName"] = plant.name;
+                        data["deviceName"] = device.fullName;
+                        data["energy"] = Math.Round(dmdd.getDayData(day),2);
+                        data["average"] = Math.Round(aveageEnergy,2);
+                        data["rate"] = plant.energyRate;
+                        data["prate"] = rate + "/" + plant.energyRate;
+                        datas.Add(data);
+                    }
+                }
+            }
+            ViewData["datas"] = datas;
+            return View();
+        }
     }
 }

@@ -167,7 +167,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         public ActionResult historyRundata(int deviceId, string yyyyMMdd) {
             Device device = DeviceService.GetInstance().get(deviceId);
             IList<string> allmts = new List<string>();//所有测点
-            IDictionary<string, IDictionary<int, string>> timemtMap = DeviceDayDataService.GetInstance().handleDayData(allmts, device, yyyyMMdd);
+            IDictionary<string, IDictionary<string, string>> timemtMap = DeviceDayDataService.GetInstance().handleDayData(allmts, device, yyyyMMdd);
             ViewData["allmts"] = allmts;
             ViewData["timemtMap"] = timemtMap;
             return View(device);

@@ -7,11 +7,19 @@ using System.Collections;
 using Common;
 using Cn.Loosoft.Zhisou.SunPower.Common;
 using System.Text;
+using System.Web.Script.Serialization;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.Configuration;
+using System.IO;
 
 namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 {
     public class DataDownLoadController : BaseController
     {
+        private static string type_csv = "csv";//报表类型csv
+        private static string type_xls = "xls";//报表类型excel
+        private static string type_pdf = "pdf";//报表类型pdf
         CollectorYearDataService collectorYearDataService = CollectorYearDataService.GetInstance();
         ReportService reportService = ReportService.GetInstance();
         /// <summary>
@@ -465,6 +473,160 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 oList.Add(0);
             }
             return oList;
+        }
+
+        /// <summary>
+        /// 下载设备历史数据
+        /// add by qhb in 20120917 
+        /// </summary>
+        /// <param name="deviceId">设备id</param>
+        /// <param name="yyyyMMdd"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public ActionResult DownLoadRundata(int deviceId, string yyyyMMdd, string type)
+        {
+            //设备
+            Device device = DeviceService.GetInstance().get(deviceId);
+            //或者数据
+            IList<string> allmts = new List<string>();//所有测点
+            IDictionary<string, IDictionary<string, string>> timemtMap = DeviceDayDataService.GetInstance().handleDayData(allmts, device, yyyyMMdd);
+            string filename = device.fullName + yyyyMMdd + Resources.SunResource.DEVICE_HISTORYRUN_DATA;//下载文件名称
+            //判断类型
+            if (type_csv.Equals(type)) {
+                return DownLoadCsvRunData(allmts, timemtMap, filename);
+            }
+            else if (type_xls.Equals(type))
+            {
+                return DownLoadExcelRunData(allmts, timemtMap, filename);
+            }
+            else {
+                return DownLoadPdfRunData(allmts, timemtMap, filename);
+            }
+        }
+
+        /// <summary>
+        /// 输出csv文件
+        /// </summary>
+        /// <param name="allmts"></param>
+        /// <param name="timemtMap"></param>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        public ActionResult DownLoadCsvRunData(IList<string> allmts, IDictionary<string, IDictionary<string, string>> timemtMap, string filename)
+        {
+            CsvStreamWriter scvWriter = new CsvStreamWriter();
+
+            //输入出到csv文件中的数据列表
+            IList<string> dataList = new List<string>();
+            //设置抬头行
+            dataList.Add("                        " + filename + "                       ");
+            //循环设置数据行
+            //设置标题行
+            allmts.Insert(0, Resources.SunResource.REPORT_TIME);
+            dataList.Add(scvWriter.ConvertToSaveLine(allmts));
+            //数据行临时list
+            IList<string> tempList = new List<string>();
+            foreach (string key in timemtMap.Keys) {
+                dataList.Add(scvWriter.ConvertToSaveCell(key) + "," + scvWriter.ConvertToSaveLine(timemtMap[key].Values));
+            }
+
+            scvWriter.AddStrDataList(dataList);
+            scvWriter.Save(Server.MapPath("/") + "tempexportfile/" + filename + ".csv");
+            return File(Server.MapPath("/") + "tempexportfile/" + filename + ".csv", "text/csv; charset=UTF-8", urlcode(filename) + ".csv");
+        }
+
+        /// <summary>
+        /// 导出excel数据
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="serieNo"></param>
+        /// <returns></returns>
+        public ActionResult DownLoadExcelRunData(IList<string> allmts, IDictionary<string, IDictionary<string, string>> timemtMap, string filename)
+        {
+            IList<ExcelData> datas = new List<ExcelData>();
+            ExcelData data = new ExcelData();
+            bool isMulti = false;
+            //标题行
+            IList<string> xList = new List<string>();
+            xList.Add("                        " + filename + "                       ");
+            xList.Add(Resources.SunResource.REPORT_TIME);
+            foreach (string key in timemtMap.Keys)
+            {
+                xList.Add(key);
+            }
+            data.Rows.Add(xList);
+            datas.Add(data);
+
+            IList<string> tmps = null;
+            foreach (string mtkey in allmts)
+            {
+                data = new ExcelData();
+                tmps = new List<string>();
+                tmps.Add("        ");
+                tmps.Add(mtkey);
+                foreach (string key in timemtMap.Keys)
+                {
+                    //第一列是时间
+                    tmps.Add(timemtMap[key][mtkey]);
+                }
+                data.Rows.Add(tmps);
+                datas.Add(data);
+            }
+
+            ExcelStreamWriter xlsWriter = new ExcelStreamWriter(filename, datas, new string[] { }, "", "", isMulti);
+            xlsWriter.Save(false);
+            return File(xlsWriter.FullName, "text/xls; charset=UTF-8", urlcode(xlsWriter.FileName));
+        }
+
+        /// <summary>
+        /// 导出pdf运行时数据
+        /// </summary>
+        /// <param name="allmts"></param>
+        /// <param name="timemtMap"></param>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        public ActionResult DownLoadPdfRunData(IList<string> allmts, IDictionary<string, IDictionary<string, string>> timemtMap, string filename)
+        {
+            string displayPdfName = filename;
+            string fullPdfPath = Server.MapPath("/") + "tempexportfile/" + filename + ".pdf";
+
+            //-------------------------------以下为生成pdf代码
+            var doc = new Document();
+            //string binPath = Server.MapPath(@"/bin");
+            // BaseFont.AddToResourceSearch(binPath + "/iTextAsian.dll");
+            //BaseFont.AddToResourceSearch(binPath + "/iTextAsianCmaps.dll");
+            //中文支持
+            BaseFont baseFont = BaseFont.CreateFont(ConfigurationManager.AppSettings["languageEncodePath"], BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+
+            //BaseFont baseFont = BaseFont.CreateFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
+
+            iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 9, iTextSharp.text.Font.NORMAL);
+
+            PdfWriter.GetInstance(doc, new FileStream(fullPdfPath, FileMode.Create));
+
+            doc.Open();
+            //生成图表图片
+            PdfPTable table = new PdfPTable(allmts.Count+1);
+            table.AddCell(new PdfPCell(new Phrase(Resources.SunResource.REPORT_TIME, font)));
+
+            foreach (string mtkey in allmts) {
+                table.AddCell(new PdfPCell(new Phrase(mtkey, font)));    
+            }
+            doc.Add(table);
+
+            foreach (string timekey in timemtMap.Keys) {
+                table = new PdfPTable(allmts.Count + 1);
+                table.AddCell(new PdfPCell(new Phrase(timekey, font)));
+                foreach (string mtvalue in timemtMap[timekey].Values) {
+                    table.AddCell(new PdfPCell(new Phrase(mtvalue, font)));    
+                }
+                doc.Add(table);
+            }
+
+            doc.Close();
+            //-----------------------pdf 代码结束
+            ActionResult tmp = File(fullPdfPath, "application/pdf; charset=UTF-8", urlcode(displayPdfName) + ".pdf");
+            return tmp;
+
         }
 
     }

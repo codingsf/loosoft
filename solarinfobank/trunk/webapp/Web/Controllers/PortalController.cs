@@ -1465,6 +1465,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     foreach (FileInfo file in tmpDir.GetFiles())
                     {
                         string fullName = file.FullName.Replace('\\', '/');
+                        if (!file.Extension.Equals(".mp4") && !file.Extension.Equals(".flv")) continue;
                         fullName = string.Format("{0}{1}", video_uri, fullName.Substring(fullName.IndexOf('/')));
                         jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '{4}', '');", subCurLevel++, curLevel, file.Name, "javascript:void(0);", "\"rel=\"" + fullName);
                     }

@@ -5184,4 +5184,12 @@
   <data name="YEAR_COMPENSATION_ENERGY" xml:space="preserve">
     <value>年发电量补偿</value>
   </data>
+  <data name="ENERGYWARN_PERCENT" xml:space="preserve">
+    <value>实际比率</value>
+    <comment>实际比率</comment>
+  </data>
+  <data name="SHARED_INSIDEMASTERPAGE_ENERGYWARN" xml:space="preserve">
+    <value>设备发电量告警</value>
+    <comment>设备发电量告警</comment>
+  </data>
 </root>

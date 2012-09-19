@@ -329,6 +329,11 @@
                                                 href="/user/log">
                                                 <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_LOGS%>(<%=Cn.Loosoft.Zhisou.SunPower.Service.FaultService.GetInstance().GetUserNoConfirmLogsCount(Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser())%>)</a></li>
                                             <%} %>
+                                            
+                                            <li><a onclick="loadContent('content_ajax','/user/energyFilter?id=<%=user.id%>&pid=0','iframe','GET');setcurrent(this);return false;"
+                                                href="/user/energyFilter/<%=user.id%>">
+                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_ENERGYWARN%></a>
+                                            </li>                                       
                                         </ul>
                                     </div>
                                 </div>

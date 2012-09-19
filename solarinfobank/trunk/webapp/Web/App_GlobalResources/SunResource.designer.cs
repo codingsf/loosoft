@@ -4786,6 +4786,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 实际比率 的本地化字符串。
+        /// </summary>
+        internal static string ENERGYWARN_PERCENT {
+            get {
+                return ResourceManager.GetString("ENERGYWARN_PERCENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 发电量补偿设置成功 的本地化字符串。
         /// </summary>
         internal static string ENERGY_RATE_ADD_SUCCESS {
@@ -10482,6 +10491,15 @@ namespace Resources {
         internal static string SHARED_INSIDEMASTERPAGE_DEVICE_MONITOR {
             get {
                 return ResourceManager.GetString("SHARED_INSIDEMASTERPAGE_DEVICE_MONITOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 设备发电量告警 的本地化字符串。
+        /// </summary>
+        internal static string SHARED_INSIDEMASTERPAGE_ENERGYWARN {
+            get {
+                return ResourceManager.GetString("SHARED_INSIDEMASTERPAGE_ENERGYWARN", resourceCulture);
             }
         }
         

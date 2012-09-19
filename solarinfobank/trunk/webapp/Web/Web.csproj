@@ -223,6 +223,10 @@
     <Content Include="SqlMap.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\trunk-back\email-sf\EmailService\EmailService.csproj">
+      <Project>{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}</Project>
+      <Name>EmailService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{6AE1548A-E450-4197-8666-3D31D09527FD}</Project>
       <Name>Common</Name>
@@ -238,10 +242,6 @@
     <ProjectReference Include="..\service\Service.csproj">
       <Project>{326C59B0-0FED-4B56-BE49-8149877228B5}</Project>
       <Name>Service</Name>
-    </ProjectReference>
-    <ProjectReference Include="E:\working\SunInfoBank\trunk\email-sf\EmailService\EmailService.csproj">
-      <Project>{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}</Project>
-      <Name>EmailService</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -543,16 +543,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="dao.config" />
-    <Content Include="Controllers\Content\Ashx\Upload.ashx" />
-    <Content Include="Controllers\Content\Ashx\Drawing.ashx" />
-    <Content Include="Controllers\Content\Ashx\validatecode.ashx" />
     <Content Include="Content\Ashx\Drawing.ashx" />
     <Content Include="Content\Ashx\Upload.ashx" />
     <Content Include="Content\Ashx\validatecode.ashx" />
+    <None Include="app\SolarInfo bank_v1.0.apk" />
     <None Include="Content\images\Thumbs.db" />
     <None Include="Content\jquery\images\Thumbs.db" />
-    <None Include="Controllers\Content\images\Thumbs.db" />
-    <None Include="Controllers\Content\jquery\images\Thumbs.db" />
     <None Include="editor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.cfm" />
     <None Include="editor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.php" />
     <None Include="editor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.pl" />
@@ -991,9 +987,6 @@
     <None Include="Images\sub\.svn\text-base\up09.gif.svn-base" />
     <None Include="Images\sub\.svn\text-base\view_c.gif.svn-base" />
     <None Include="Images\sub\.svn\text-base\zs.gif.svn-base" />
-    <None Include="Images\sub\subico05.psd" />
-    <None Include="Images\sub\Thumbs.db" />
-    <None Include="Images\sub\复件 subico05.psd" />
     <None Include="Images\tc\Thumbs.db" />
     <None Include="Images\Thumbs.db" />
     <Content Include="Pages\Shared\EmptyInside.Master" />
@@ -1101,10 +1094,6 @@
     <Content Include="Pages\Auth\Email.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="App_GlobalResources\SunInfoResource.de.resources" />
-    <EmbeddedResource Include="App_GlobalResources\SunInfoResource.it-ch.resources" />
-    <EmbeddedResource Include="App_GlobalResources\suninforesource.resources" />
-    <EmbeddedResource Include="App_GlobalResources\suninforesource.zh-cn.resources" />
     <Content Include="App_GlobalResources\SunResource.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>SunResource.designer.cs</LastGenOutput>
@@ -1149,22 +1138,6 @@
     <Content Include="Content\swfupload.js" />
     <Content Include="Content\Swf\swfupload.swf" />
     <Content Include="Content\Swf\swfuploadbutton.swf" />
-    <Content Include="Controllers\Content\code.xml" />
-    <Content Include="Controllers\Content\images\amp.gif" />
-    <Content Include="Controllers\Content\images\XPButtonNoText_160x22.png" />
-    <Content Include="Controllers\Content\jquery\formValidator.js" />
-    <Content Include="Controllers\Content\jquery\formValidatorRegex.js" />
-    <Content Include="Controllers\Content\jquery\images\loading.gif" />
-    <Content Include="Controllers\Content\jquery\images\reg1.gif" />
-    <Content Include="Controllers\Content\jquery\images\reg2.gif" />
-    <Content Include="Controllers\Content\jquery\images\reg3.gif" />
-    <Content Include="Controllers\Content\jquery\images\reg4.gif" />
-    <Content Include="Controllers\Content\jquery\jquery-1.2.6.pack.js" />
-    <Content Include="Controllers\Content\jquery\style\validator.css" />
-    <Content Include="Controllers\Content\jquery\style\validatorAuto.css" />
-    <Content Include="Controllers\Content\swfupload.js" />
-    <Content Include="Controllers\Content\Swf\swfupload.swf" />
-    <Content Include="Controllers\Content\Swf\swfuploadbutton.swf" />
     <Content Include="css\wap.css" />
     <Content Include="demoimg\2x-1.png" />
     <Content Include="demoimg\2x-o.png" />
@@ -2334,9 +2307,13 @@
     <Content Include="Images\sub\view_c00.gif" />
     <Content Include="Images\sub\xbg00.jpg" />
     <Content Include="Images\sub\xs.gif" />
+    <Content Include="Images\sub\xxico01.jpg" />
+    <Content Include="Images\sub\xxico02.jpg" />
+    <Content Include="Images\sub\xxico03.jpg" />
+    <Content Include="Images\sub\xxico04.jpg" />
     <Content Include="Images\sub\yc.gif" />
+    <Content Include="Images\sub\zoom.gif" />
     <Content Include="Images\sub\zs.gif" />
-    <Content Include="Images\sub\复件 subico05.gif" />
     <Content Include="Images\Suo.jpg" />
     <Content Include="Images\tc01.gif" />
     <Content Include="Images\tc02.gif" />
@@ -2604,6 +2581,7 @@
     <Content Include="Pages\Plant\deviceStructTree.aspx" />
     <Content Include="Pages\Plant\Compensation.aspx" />
     <Content Include="Pages\Plant\SearchCompensation.aspx" />
+    <Content Include="Pages\Plant\EnergyFilter.aspx" />
     <Content Include="Pages\portal\DeviceStatus.aspx" />
     <Content Include="Pages\portal\Fault.aspx" />
     <Content Include="Pages\portal\HLXchart.aspx" />
@@ -2632,6 +2610,7 @@
     <Content Include="Pages\p\Index.aspx" />
     <Content Include="Pages\QA\Ask.aspx" />
     <Content Include="Pages\QA\ShowAsk.aspx" />
+    <Content Include="Pages\User\EnergyFilter.aspx" />
     <Content Include="Pages\User\Overview.aspx" />
     <Content Include="Pages\Plant\Device\DataCount.aspx" />
     <Content Include="Pages\Plant\Device\EnergyCount.aspx" />
@@ -2816,12 +2795,17 @@
     <Content Include="videodemo2.html" />
     <Content Include="video\earth.swf" />
     <Content Include="video\earth2.swf" />
+    <Content Include="Web.Publish.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\" />
+    <EmbeddedResource Include="App_GlobalResources\SunInfoResource.de.resources" />
+    <EmbeddedResource Include="App_GlobalResources\SunInfoResource.fr-fr.resources" />
+    <EmbeddedResource Include="App_GlobalResources\SunInfoResource.it-ch.resources" />
+    <EmbeddedResource Include="App_GlobalResources\SunInfoResource.ja-jp.resources" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="config\" />
     <Folder Include="Content\bin\bin\zh-cn\" />
-    <Folder Include="Controllers\Content\bin\" />
     <Folder Include="DepartmentPic\de-DE\" />
     <Folder Include="DepartmentPic\Deutschland\" />
     <Folder Include="DepartmentPic\en-US\" />

@@ -521,7 +521,12 @@
                                             <a rel="treemenu" onclick="loadContent('content_ajax','/plant/devicehistorydata/<%=Model.id%>','ajax','GET');setcurrent(this);return false;"
                                                 href="/plant/devicehistorydata/<%=Model.id%>" title="<%=Resources.SunResource.DEVICE_DEVICE_HISTORYRUN_DATA %>"><%=Resources.SunResource.DEVICE_DEVICE_HISTORYRUN_DATA%>
                                             </a>
-                                            </li>                                            
+                                            </li>    
+                                            <li>
+                                            <a rel="treemenu" onclick="loadContent('content_ajax','/plant/energyFilter?id=<%=Model.id%>&uid=<%=user.id%>','iframe','GET');setcurrent(this);return false;"
+                                                href="/plant/energyFilter/<%=Model.id%>" title=""><%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_ENERGYWARN%>
+                                            </a>                                          
+                                            </li>                                                                                      
                                             <%if (AuthService.isAllow(AuthorizationCode.LOGS_LIST))
                                               { %>
                                             <li><a onclick="loadContent('content_ajax','/plant/log/<%=Model.id %>','iframe','GET');setcurrent(this);return false;"

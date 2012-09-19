@@ -50,7 +50,6 @@
           }
         );
     }
-   
     
     var curDeviceId;
     function loadHistoryRunData(deviceId) {
@@ -70,7 +69,7 @@
     function PreviouNextChange(oper) {
             changeDate(oper, 't');
             changeDay(document.getElementById('t'));
-        }
+    }
     
     //改变天
     function changeDay(obj) {
@@ -83,6 +82,13 @@
          if (curDeviceId != -1)
              loadHistoryRunData(curDeviceId)
      }
+
+     function downLoadData() {
+         curDeviceId = $("#dces").val();
+         var yyyyMMdd = $("#curYYYYMMDD").val();
+         window.open("/DataDownLoad/DownLoadRundata?deviceId=" + curDeviceId + "&yyyyMMdd=" + yyyyMMdd + "&type=xls");
+     }
+     
 </script>
 <input type="hidden" value="<%=Model.id%>" id="plantID" />
 
@@ -141,7 +147,7 @@
                             </div> 
                             </td>
                             <td width="10%" class="f_14">
-                            <input name="Submit" id="dload" type="button" onclick="downLoadReports()" class="subbu01"  value="<%=Resources.SunResource.RUN_REPORT_DOWNLOAD%>" />
+                            <input name="Submit" id="dload" type="button" onclick="downLoadData()" class="subbu01"  value="<%=Resources.SunResource.RUN_REPORT_DOWNLOAD%>" />
                             </td>
                             </tr>
                             </table>

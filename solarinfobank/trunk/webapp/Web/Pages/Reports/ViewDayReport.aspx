@@ -53,7 +53,6 @@
                         readonly="readonly"   value="<%=ViewData["cTime"]%>" style="text-align:center;" />
                      <input type="hidden" id="minDate" value="<%=((IList<SelectListItem>)ViewData["plantYear"])[0].Value%>-01-01" />
                      <input type="hidden" id="maxDate" value="<%=CalenderUtil.curDateWithTimeZone(Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().timezone,"yyyy-MM-dd")%>" /> 
-
                 </div>
           </td>
             <td width="24">

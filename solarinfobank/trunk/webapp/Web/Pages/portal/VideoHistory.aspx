@@ -5,6 +5,94 @@
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
 <%@ Import Namespace="System.Globalization" %>
+<!--临时代码for foxconn-->
+<script runat="server">
+    string tmpCreateVideoFolderTree(IList<DirectoryInfo> topDirectoryInfo, int uplevel, int pid)
+    {
+        string video_uri = ConfigurationManager.AppSettings["history_video_server_uri"];
+        string jsstr = "";
+        if (uplevel == -1)
+        {
+            jsstr += string.Format(" d.add({0}, {1}, '{2}', 'javascript:void(0);', '', '', '/images/tree/folder.gif');", 0, uplevel, "历史视频监控");
+            uplevel++;
+        }
+        //有下级那么就递归调用下级生成脚本。进行累计
+        if (topDirectoryInfo != null && topDirectoryInfo.Count > 0)
+        {
+            DirectoryInfo tmpDir = null;
+            int curLevel = 0;
+            for (int i = 0; i < topDirectoryInfo.Count; i++)
+            {
+                tmpDir = topDirectoryInfo[i];
+                if (tmpDir.GetDirectories().Length == 0 && tmpDir.GetFiles().Length == 0)//没有下级目录并且当前目录没有文件不显示
+                    continue;
+                curLevel = ((uplevel + 1) * 10 + i);
+                jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '/images/tree/folder.gif');", curLevel, uplevel, tmpDir.Name, "javascript:void(0);");
+                int subCurLevel = 1;
+                foreach (FileInfo file in tmpDir.GetFiles())
+                {
+                    string fullName = file.FullName.Replace('\\', '/');
+                    if (!file.Extension.Equals(".mp4") && !file.Extension.Equals(".flv")) continue;
+                    if (file.Extension.Equals(".mp4"))
+                    {
+                        //VideoConvertFlv(fullName, "1280*720", fullName.Substring(0, fullName.LastIndexOf("."))+".flv");
+                    }
+                    fullName = string.Format("{0}{1}", video_uri, fullName.Substring(fullName.IndexOf('/')));
+                    jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '{4}', '');", subCurLevel++, curLevel, file.Name, "javascript:void(0);", "\"rel=\"" + fullName);
+                }
+                if (tmpDir.GetDirectories() != null && tmpDir.GetDirectories().Length > 0)
+                    jsstr += tmpCreateVideoFolderTree(tmpDir.GetDirectories(), curLevel, pid);
+            }
+        }
+        return jsstr;
+    }
+
+    public static string VideoConvertFlv(string FromName, string WidthAndHeight, string ExportName)
+    {
+        string ffmpeg = HttpContext.Current.Server.MapPath("~/FLV/ffmpeg.exe");
+        string Command = "d:\\ffmpeg\\\\bin\\ffmpeg.exe -i "+FromName+" -y -ab 56 -ar 22050 -b 500 -r 15 -s 320*240 " +ExportName;
+        System.Diagnostics.Process p = new System.Diagnostics.Process();
+        p.StartInfo.FileName = ffmpeg;
+        p.StartInfo.Arguments = Command;
+        p.StartInfo.WorkingDirectory = "d:\\ffmpeg";
+        p.StartInfo.UseShellExecute = false;
+        p.StartInfo.RedirectStandardInput = true;
+        p.StartInfo.RedirectStandardOutput = true;
+        p.StartInfo.RedirectStandardError = true;
+        p.StartInfo.CreateNoWindow = false;
+        //开始执行
+        p.Start();
+        p.BeginErrorReadLine();
+        p.WaitForExit();
+        p.Close();
+        p.Dispose();
+        //p.StandardInput.WriteLine(Command);
+        //p.StandardInput.WriteLine("Exit ");
+        return ExportName;
+    }
+
+</script>
+<%
+    User user = UserUtil.getCurUser();
+    Protal protal = ProtalService.GetInstance().GetByUser(user.ParentUserId);
+    Plant plant = Model;
+    IList<VideoMonitor> monitors = VideoMonitorService.GetInstance().GetList(new VideoMonitor() { plantId = plant.id });
+    ViewData["data"] = monitors;
+
+    IList<DirectoryInfo> dirInfos = new List<DirectoryInfo>();
+    foreach (VideoMonitor monitor in monitors)
+    {
+        if (string.IsNullOrEmpty(monitor.videofolder))
+            continue;
+        if (Directory.Exists(monitor.videofolder))
+        {
+            dirInfos.Add(new DirectoryInfo(monitor.videofolder));
+        }
+    }
+    string str = string.Empty;
+    str = tmpCreateVideoFolderTree(dirInfos, -1, plant.id);
+    ViewData["str"] = str;
+ %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -34,8 +122,9 @@
         }
     </style>
 
-    <script>
-        var fileurl = 'http://210.28.216.205:81/74/1339840464605605.flv';
+    <script >
+        var tc = "solarinfobank/solarinfobank1.18/";
+        var fileurl = '';
         function changeClick(obj) {
             $('#video').removeClass("onclick");
             $('#video_pic').removeClass("onclick");
@@ -45,6 +134,7 @@
         $().ready(function() {
             $("a[rel !='']").click(function() {
                 fileurl = $(this).attr("rel");
+                fileurl = fileurl.replace(tc, "");
                 initjwplayer();
             })
 

@@ -116,7 +116,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <param name="device"></param>
         /// <param name="yyyyMMdd"></param>
         /// <returns>//key ：时间点 value ： 测点和值map (key:测点 value：测点值)</returns>
-        public IDictionary<string, IDictionary<int, string>> handleDayData(IList<string> allmts, Device device, string yyyyMMdd)
+        public IDictionary<string, IDictionary<string, string>> handleDayData(IList<string> allmts, Device device, string yyyyMMdd)
         {
             //首先取出某个设备的所有测点的天数据
             string year = yyyyMMdd.Substring(0, 4);
@@ -126,14 +126,24 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             IList<DeviceDayData> deviceDayDatas = this.getDeviceDayDatas(device, year, month, day, day);
             //保存时间点对应的测点值map
             //key ：时间点 value ： 测点和值map (key:测点 value：测点值)
-            IDictionary<string, IDictionary<int, string>> timemtMap = new Dictionary<string, IDictionary<int, string>>();
+            IDictionary<string, IDictionary<string, string>> timemtMap = new Dictionary<string, IDictionary<string, string>>();
             //循环取出所有时间点，并把所有时间点放入map
             string timepoint = "";
-            IDictionary<int, string> mtMap = null;
+            IDictionary<string, string> mtMap = null;
+            MonitorType mt = null;
+            string mtkey = "";
             foreach (DeviceDayData dayData in deviceDayDatas) {
                 if (string.IsNullOrEmpty(dayData.dataContent)) continue;
                 //存储所有测点
-                allmts.Add(MonitorType.getMonitorTypeByCode(dayData.monitorCode).name);
+                mt = MonitorType.getMonitorTypeByCode(dayData.monitorCode);
+
+                if(string.IsNullOrEmpty(mt.unit)){
+                    mtkey = mt.name;
+                }else{
+                    mtkey = mt.name + "(" + mt.unit + ")";
+                }
+                allmts.Add(mtkey);
+
                 string[] datas = dayData.dataContent.Split('#');
                 string[] timedatas=null;
                 foreach(string data in datas){
@@ -145,15 +155,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                         mtMap = timemtMap[timepoint];
                     }
                     else {
-                        mtMap = new Dictionary<int, string>();
+                        mtMap = new Dictionary<string, string>();
                         timemtMap.Add(timepoint, mtMap);
                     }
-                    if (mtMap.ContainsKey(dayData.monitorCode))
+                    if (mtMap.ContainsKey(mtkey))
                     {
-                        mtMap[dayData.monitorCode] = timedatas[1];
+                        mtMap[mtkey] = timedatas[1];
                     }
                     else {
-                        mtMap.Add(dayData.monitorCode, timedatas[1]);
+                        mtMap.Add(mtkey, timedatas[1]);
                     }
                 }
 

@@ -309,9 +309,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             DeviceYearMonthData deviceYearmonth = DeviceYearMonthDataService.GetInstance().GetDeviceYearMonthData(device.id, year);
             float monthsunlingt = deviceYearmonth.getMonthData(month);
             if (monthsunlingt == 0) return 0;
-            float dp = plant.design_power == 0 ? 1 : plant.design_power;
-            return monthEnergy / monthsunlingt * 1000 * dp;
+            double? precictValue = plant.monthpredictValue(month);//发电量预测值
+            if (precictValue != null)
+            {
+                return monthEnergy / precictValue.Value;
+            }
+            else
+            {
+                float dp = plant.design_power == 0 ? 1 : plant.design_power;
+                return monthEnergy / monthsunlingt * 1000 * dp;
+            }
         }
+
         /// <summary>
         /// 取得电站的某年的性能
         /// </summary>

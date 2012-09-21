@@ -1437,7 +1437,7 @@
     <value>Contactez</value>
   </data>
   <data name="SHARED_MAINMASTREPAGE_COPYRIGHT" xml:space="preserve">
-    <value>Copyright @ 2011 SolarInfo Bank , v1.0.17 Alpha , Browse Resolution: 1024x768</value>
+    <value>Copyright &amp;copy;  2012 SolarInfo Bank , v1.0.17 , Browse Resolution: 1024x768</value>
   </data>
   <data name="SHARED_MAINMASTREPAGE_HOME" xml:space="preserve">
     <value>Accueil</value>
@@ -5199,5 +5199,29 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
   <data name="DEVICEMONITORITEM_121_2" xml:space="preserve">
     <value>Courant de phase CA</value>
     <comment>C相电流-当输出类型为2时叫CA线电流</comment>
+  </data>
+  <data name="digitalinputdlq" xml:space="preserve">
+    <value>断路器</value>
+    <comment>断路器</comment>
+  </data>
+  <data name="digitalinputdlq0" xml:space="preserve">
+    <value>闭合</value>
+    <comment>闭合</comment>
+  </data>
+  <data name="digitalinputdlq1" xml:space="preserve">
+    <value>脱扣或者断开</value>
+    <comment>脱扣或者断开</comment>
+  </data>
+  <data name="digitalinputflq" xml:space="preserve">
+    <value>防雷器</value>
+    <comment>防雷器</comment>
+  </data>
+  <data name="digitalinputflq0" xml:space="preserve">
+    <value>故障</value>
+    <comment>故障</comment>
+  </data>
+  <data name="digitalinputflq1" xml:space="preserve">
+    <value>正常</value>
+    <comment>正常</comment>
   </data>
 </root>

@@ -4642,6 +4642,60 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 断路器 的本地化字符串。
+        /// </summary>
+        internal static string digitalinputdlq {
+            get {
+                return ResourceManager.GetString("digitalinputdlq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 闭合 的本地化字符串。
+        /// </summary>
+        internal static string digitalinputdlq0 {
+            get {
+                return ResourceManager.GetString("digitalinputdlq0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 脱扣或者断开 的本地化字符串。
+        /// </summary>
+        internal static string digitalinputdlq1 {
+            get {
+                return ResourceManager.GetString("digitalinputdlq1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 防雷器 的本地化字符串。
+        /// </summary>
+        internal static string digitalinputflq {
+            get {
+                return ResourceManager.GetString("digitalinputflq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 故障 的本地化字符串。
+        /// </summary>
+        internal static string digitalinputflq0 {
+            get {
+                return ResourceManager.GetString("digitalinputflq0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 正常 的本地化字符串。
+        /// </summary>
+        internal static string digitalinputflq1 {
+            get {
+                return ResourceManager.GetString("digitalinputflq1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Unallocated 的本地化字符串。
         /// </summary>
         internal static string DISPLAY_NO_ASSIGNED_PLANT {
@@ -10511,7 +10565,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Copyright @ 2012 SolarInfo Bank , v1.0.17 , Browse Resolution: 1024x768 的本地化字符串。
+        ///   查找类似 Copyright &amp;copy; 2012 SolarInfo Bank , v1.0.17 , Browse Resolution: 1024x768 的本地化字符串。
         /// </summary>
         internal static string SHARED_MAINMASTREPAGE_COPYRIGHT {
             get {

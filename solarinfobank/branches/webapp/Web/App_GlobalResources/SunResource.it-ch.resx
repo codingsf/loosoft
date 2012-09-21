@@ -1852,7 +1852,7 @@
     <comment>联系我们</comment>
   </data>
   <data name="SHARED_MAINMASTREPAGE_COPYRIGHT" xml:space="preserve">
-    <value>Diritto d'autore @ 2012 SolarInfo Bank , v1.0.17 , sfoglia della risoluzione:1024x768</value>
+    <value>Diritto d'autore &amp;copy;  2012 SolarInfo Bank , v1.0.17 , sfoglia della risoluzione:1024x768</value>
     <comment>版权 @ 2012 SolarInfo Bank , v1.0.17, 分辨率: 1024x768</comment>
   </data>
   <data name="SHARED_MAINMASTREPAGE_HOME" xml:space="preserve">
@@ -6541,5 +6541,29 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
   <data name="DEVICEMONITORITEM_121_2" xml:space="preserve">
     <value>Corrente di CA fase</value>
     <comment>C相电流-当输出类型为2时叫CA线电流</comment>
+  </data>
+  <data name="digitalinputdlq" xml:space="preserve">
+    <value>断路器</value>
+    <comment>断路器</comment>
+  </data>
+  <data name="digitalinputdlq0" xml:space="preserve">
+    <value>闭合</value>
+    <comment>闭合</comment>
+  </data>
+  <data name="digitalinputdlq1" xml:space="preserve">
+    <value>脱扣或者断开</value>
+    <comment>脱扣或者断开</comment>
+  </data>
+  <data name="digitalinputflq" xml:space="preserve">
+    <value>防雷器</value>
+    <comment>防雷器</comment>
+  </data>
+  <data name="digitalinputflq0" xml:space="preserve">
+    <value>故障</value>
+    <comment>故障</comment>
+  </data>
+  <data name="digitalinputflq1" xml:space="preserve">
+    <value>正常</value>
+    <comment>正常</comment>
   </data>
 </root>

@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
     <script src="/script/jquery.js" type="text/javascript"></script>
 
@@ -66,12 +66,12 @@
 
                 messages: {
                     code: {
-                    required: "<span class='error'>&nbsp;ÇëÊäÈë±àºÅ</span>",
-                        maxlength: "<span class='error'>&nbsp;ÇëÊäÈë²»³¬¹ı{0}¸ö×Ö·û</span>"
+                    required: "<span class='error'>&nbsp;è¯·è¾“å…¥ç¼–å·</span>",
+                        maxlength: "<span class='error'>&nbsp;è¯·è¾“å…¥ä¸è¶…è¿‡{0}ä¸ªå­—ç¬¦</span>"
                     },
                     password: {
-                    required: "<span class='error'>&nbsp;ÃÜÂë</span>",
-                        maxlength: "<span class='error'>&nbsp;ÇëÊäÈë²»³¬¹ı{0}¸ö×Ö·û</span>"
+                    required: "<span class='error'>&nbsp;å¯†ç </span>",
+                        maxlength: "<span class='error'>&nbsp;è¯·è¾“å…¥ä¸è¶…è¿‡{0}ä¸ªå­—ç¬¦</span>"
                     }
                 },
                 success: function(em) {
@@ -95,12 +95,12 @@
    ViewData["langs"]= Cn.Loosoft.Zhisou.SunPower.Service.LanguageService.GetInstance().GetList();
  %>
 <div class="mainbody">
-<!--header¿ªÊ¼-->
+<!--headerå¼€å§‹-->
 <%Html.RenderPartial("header"); %>
 
-<!--½áÊø-->
+<!--ç»“æŸ-->
 
-<!--main¿ªÊ¼-->
+<!--mainå¼€å§‹-->
 <div class="mainbox">
 
 <% using (Html.BeginForm("admin", "admin", FormMethod.Post, new { @id = "addForm", name = "addForm" }))
@@ -113,7 +113,7 @@
 
             <tr>
               <td width="7%" rowspan="2" align="center"><img src="/images/kj/kjiico02.gif" width="31" height="50" /></td>
-              <td width="93%" class="pv0216">Ìí¼Ó²É¼¯Æ÷
+              <td width="93%" class="pv0216">æ·»åŠ é‡‡é›†å™¨
               
              <a href="/admin/home" style="float:right; font-weight:normal; font-size:13px;">Logout</a> 
               </td>
@@ -138,7 +138,7 @@
       <div class="sb_mid">
         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="29%" height="35" class="pr_10">²É¼¯Æ÷±àºÅ:</td>
+            <td width="29%" height="35" class="pr_10">é‡‡é›†å™¨ç¼–å·:</td>
             <td width="29%"><%= Html.TextBoxFor(model => model.code, new { @class = "txtbu01", @size = "30" })%>
                             <span class="red">*</span></td>
 
@@ -149,7 +149,7 @@
           </tr>
           <tr>
 
-            <td height="35" class="pr_10">ÃÜÂë:</td>
+            <td height="35" class="pr_10">å¯†ç :</td>
             <td><%= Html.TextBoxFor(model => model.password, new { @class = "txtbu01", @size = "30" })%>
                             <span class="red">*</span></td>
             <td><span id="error_password"></span></td>
@@ -179,7 +179,7 @@
       <table width="100%" height="30" border="0" cellpadding="0" cellspacing="0">
         <tr>
           <td width="6%" align="center"><img src="/images/sub/subico010.gif" width="18" height="19" /></td>
-          <td class="f_14"><strong>²É¼¯Æ÷ÁĞ±í</strong></td>
+          <td class="f_14"><strong>é‡‡é›†å™¨åˆ—è¡¨</strong></td>
         </tr>
 
       </table>
@@ -193,27 +193,27 @@
                                     <td width="23%" align="center">
                                         <strong>
 
-                                            ²É¼¯Æ÷±àºÅ</strong>
+                                            é‡‡é›†å™¨ç¼–å·</strong>
 
                                     </td>
                                     <%--   <td width="18%" align="center">
                                         <strong>
-                                           ÀàĞÍ</strong>
+                                           ç±»å‹</strong>
                                     </td>--%>
                                     <td width="18%" align="center">
                                         <strong>
 
-                                            ÃÜÂë</strong>
+                                            å¯†ç </strong>
 
                                     </td>
                                     <td width="19%" align="center">
                                         <strong>
-                                            ÊÇ·ñÆôÓÃ</strong>
+                                            æ˜¯å¦å¯ç”¨</strong>
                                     </td>
                                     <td width="22%" align="center">
                                         <strong>
 
-                                            ²Ù×÷</strong>
+                                            æ“ä½œ</strong>
 
                                     </td>
                                 </tr>
@@ -268,12 +268,12 @@
   </div>
 <%} %>
   </div>
-<!--½áÊø-->
+<!--ç»“æŸ-->
 <div style="clear:both"> </div>
 
-<!--footer¿ªÊ¼-->
+<!--footerå¼€å§‹-->
 <%Html.RenderPartial("footer"); %>
-<!--½áÊø-->
+<!--ç»“æŸ-->
 </div>
 </body>
 </html>

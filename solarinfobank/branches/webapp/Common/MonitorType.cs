@@ -820,7 +820,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             monitorMap.Add(MIC_INVERTER_TOTALDPOWER, new MonitorType() { code = MIC_INVERTER_TOTALDPOWER, unit = "W", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_TOTALENERGY, new MonitorType() { code = MIC_INVERTER_TOTALENERGY, unit = "kWh", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_TOTALPOWERFACTOR, new MonitorType() { code = MIC_INVERTER_TOTALPOWERFACTOR, unit = "", zerotoline = false });
-            monitorMap.Add(MIC_INVERTER_TOTALWGPOWER, new MonitorType() { code = MIC_INVERTER_TOTALWGPOWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_TOTALWGPOWER, new MonitorType() { code = MIC_INVERTER_TOTALWGPOWER, unit = "Var", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_TOTALYGPOWER, new MonitorType() { code = MIC_INVERTER_TOTALYGPOWER, unit = "W", zerotoline = false });
             
             //add by qhb in 20120823

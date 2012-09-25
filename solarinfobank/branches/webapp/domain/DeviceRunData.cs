@@ -106,6 +106,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// add by qhb in 20120914 for 
         /// 3）	直流电压2和直流电流2 仅SG10KTL~SG30KTL之间显示，其他不显示
         /// 直流电压2和直流电流2仅仅没有额定输出功率时显示，有额定功率是只有在10kw-30kw之间才显示
+        /// 新增加SG5KTL-M，SG3KTL-M、SG4KTL-M、SG2KTL，显示直流电压2和直流电流2。
+        /// 对应的额定输出功率分别是 5、3、4、2
         /// </summary>
         /// <param name="power"></param>
         /// <returns></returns>
@@ -113,7 +115,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             IList<int> notDisplayMonitor = new List<int>();//不用显示出来的测点
             if (float.IsNaN(power)) return notDisplayMonitor;
-            if (power <10 || power>30)//这个范围之外时不显示直流电压2和直流电流2
+            if ((power <10 || power>30) && power != 5 && power!=4 && power!=3 && power !=2 )//这个范围之外时不显示直流电压2和直流电流2
             {
                 notDisplayMonitor.Add(MonitorType.MIC_INVERTER_DV2);
                 notDisplayMonitor.Add(MonitorType.MIC_INVERTER_DC2);
@@ -285,13 +287,25 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
                 //重新构造一个实例，以便用tempaffix多语言显示后缀是线程安全
                 string tempaffix = omt.tempaffix;
+                string unit = omt.unit;
+                Boolean isUP = false;//是否进制千位
                 //如果是逆变器要判断abc三项电压和电流的输出类型,将输出类型作为有后缀测点的后缀
                 if (deviceTypeCode == DeviceData.INVERTER_CODE){
                     if (affixMonitors.Contains(monitorCode) && !float.IsNaN(outtype) && (outtype==0 || outtype==2))
                         tempaffix = outtype.ToString();
+                    //add by qhb in 20120921 for 2）逆变器带功率的单位显示kW，不要显示W  （注意大小写）
+                    if (omt.code == MonitorType.MIC_INVERTER_TOTALDPOWER || omt.code == MonitorType.MIC_INVERTER_ADIRECTPOWER || omt.code == MonitorType.MIC_INVERTER_BDIRECTPOWER || omt.code == MonitorType.MIC_INVERTER_CDIRECTPOWER || omt.code == MonitorType.MIC_INVERTER_TOTALYGPOWER)
+                    {
+                        unit = "kW";
+                        isUP = true;
+                    }
+                    if (omt.code == MonitorType.MIC_INVERTER_TOTALWGPOWER) {
+                        unit = "kvar";
+                        isUP = true;
+                    }
                 }
 
-                MonitorType mt = new MonitorType(omt.code, omt.unit, omt.zerotoline, tempaffix);
+                MonitorType mt = new MonitorType(omt.code, unit, omt.zerotoline, tempaffix);
 
                 //排除不显示的测点
                 if (notDisplayMonitor.Contains(mt.code) || notdisplayInverterbyoutType.Contains(mt.code) || notdisplayInverterbyPower.Contains(mt.code)) continue;
@@ -310,12 +324,36 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 if ("-".Equals(value)) continue;
 
                 value = getStatusValue(monitorCode, value);
+
                 if ("0".Equals(value) && MonitorType.getMonitorTypeByCode(monitorCode).zerotoline)
                 {
                     value =  "-";
                 }
+
+                //add by qhb for 单位进制
+                if (isUP)
+                {
+                    try
+                    {
+                        value = Math.Round((double.Parse(value) / 1000), 2).ToString();
+                    }
+                    catch (Exception e)
+                    {
+                        //do nothing
+                    }
+                }
+                //add by qhb in 20120917 for 1）功率因数为0和无功功率为0屏蔽不显示。
+                if (omt.code == MonitorType.MIC_INVERTER_TOTALPOWERFACTOR || omt.code == MonitorType.MIC_INVERTER_TOTALWGPOWER) {
+                    try
+                    {
+                        if (double.Parse(value) == 0)
+                            continue;
+                    }catch{}
+                }
+
                 if (isOorder)
                 {
+
                     if (sortGroup["group1"].Contains(monitorCode))
                     {
                         resGroup1.Add(new KeyValuePair<MonitorType, string>(mt, value));

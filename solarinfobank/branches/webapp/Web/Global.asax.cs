@@ -139,12 +139,12 @@ namespace Web
                     if (lastLoginTime != null)
                     {
                         Application.Remove(Session.SessionID);
-                        Response.Clear();
-                        Response.Write("<script>if (window.parent != null) {window.parent.document.location.href = '/?t';}else {window.document.href = '/?t';}</script>");
-                        Response.End();
-                        return;
                     }
                 }
+                Response.Clear();
+                Response.Write("<script>if (window.parent != null) {window.parent.document.location.href = '/?t';}else {window.document.href = '/?t';}</script>");
+                Response.End();
+                return;
             }
         }
         

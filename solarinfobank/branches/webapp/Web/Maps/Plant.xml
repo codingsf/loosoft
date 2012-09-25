@@ -188,6 +188,11 @@
     <select id="plant_get_list_like_pname"  resultMap="plant_info_result" >
       select *  from  plant_info where upper(name) like upper('%$value$%')
     </select>
+
+    <select id="plant_get_by_name"  resultMap="plant_info_result" >
+      select *  from  plant_info where upper(name) like upper('$value$')
+    </select>
+    
     <update id="update_plant_warning_lasttime">
       update plant_info set waring_lastsendtime=#updatetime# where id=#pid#
     </update>

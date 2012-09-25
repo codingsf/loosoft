@@ -32,7 +32,7 @@
                 foreach (FileInfo file in tmpDir.GetFiles())
                 {
                     string fullName = file.FullName.Replace('\\', '/');
-                    if (!file.Extension.Equals(".mp4") && !file.Extension.Equals(".flv")) continue;
+                    if (!file.Extension.ToLower().Equals(".mp4") && !file.Extension.ToLower().Equals(".flv") && !file.Extension.ToLower().Equals(".wmv")) continue;
                     if (file.Extension.Equals(".mp4"))
                     {
                         //VideoConvertFlv(fullName, "1280*720", fullName.Substring(0, fullName.LastIndexOf("."))+".flv");

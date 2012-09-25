@@ -160,8 +160,11 @@
                                     <input type="text" id="tboxip" size="25" class="txtbu04" />
                                 </td>
                                 <td width="20%" align="right">
-                                <%--    <input type="button" id="btnadd" value="<%=Resources.SunResource.USER_MONITOR_VIDEO_SUBMIT %>"
-                                        class="subbu01" />--%>
+                                       <%if (!ProtalUtil.isBigCustomer())
+                                         { %>
+                                    <input type="button" id="btnadd" value="<%=Resources.SunResource.USER_MONITOR_VIDEO_SUBMIT %>"
+                                        class="subbu01" />
+                                        <%} %>
                                 </td>
                             </tr>
                             <%if (ProtalUtil.isBigCustomer())

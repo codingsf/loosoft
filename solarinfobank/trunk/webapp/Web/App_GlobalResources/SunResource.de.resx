@@ -1448,7 +1448,7 @@
     <value>Kontakt</value>
   </data>
   <data name="SHARED_MAINMASTREPAGE_COPYRIGHT" xml:space="preserve">
-    <value>Copyright @ 2012 SolarInfo Bank , v1.0.18 Alpha ,Beste  Auflösung:1024x768</value>
+    <value>Copyright &amp;copy; 2012 SolarInfo Bank , v1.0.18 Alpha ,Beste  Auflösung:1024x768</value>
   </data>
   <data name="SHARED_MAINMASTREPAGE_HOME" xml:space="preserve">
     <value>Webseite</value>

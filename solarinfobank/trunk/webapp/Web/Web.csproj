@@ -2496,6 +2496,7 @@
     <Content Include="m_img\onbg.jpg" />
     <Content Include="Pages\Admin\Authority\Role.aspx" />
     <Content Include="Pages\Admin\Authority\Roles.aspx" />
+    <Content Include="Pages\Admin\clearpage.aspx" />
     <Content Include="Pages\Admin\CountryCity\Cities.aspx" />
     <Content Include="Pages\Admin\CountryCity\City_edit.aspx" />
     <Content Include="Pages\Admin\CountryCity\Countries.aspx" />

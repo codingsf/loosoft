@@ -1434,7 +1434,7 @@
     <value>連絡</value>
   </data>
   <data name="SHARED_MAINMASTREPAGE_COPYRIGHT" xml:space="preserve">
-    <value>著作権©2012 SolarInfo Bank、v1.0.18 Alpha、解像度： 1024×768</value>
+    <value>著作権 &amp;copy; 2012 SolarInfo Bank、v1.0.18 Alpha、解像度： 1024×768</value>
   </data>
   <data name="SHARED_MAINMASTREPAGE_HOME" xml:space="preserve">
     <value>ホーム</value>

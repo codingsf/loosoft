@@ -330,7 +330,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
-        /// 电站下的所有设备
+        /// 电站下的所有隐藏设备
         /// </summary>
         /// <returns></returns>
         public IList<Device> displayDevices()
@@ -347,7 +347,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             return deviceList;
         }
 
-
         /// <summary>
         /// 显示的 类型设备
         /// </summary>
@@ -362,7 +361,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// </summary>
         /// <param name="deviceType">设备类型代码，参见DeviceData.INVERTER_CODE DeviceData.HUILIUXIANG_CODE等</param>
         /// <returns></returns>
-        public IList<Device> typeDevices(int deviceType, bool isHidden)
+        public IList<Device> typeDevices(int deviceType, bool? isHidden)
         {
             IList<Device> typeDevices = new List<Device>();
             if (allFactUnits == null) return typeDevices;
@@ -370,11 +369,20 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             {
                 if (device.deviceTypeCode == deviceType)
                 {
-                    typeDevices.Add(device);
+                    if (isHidden == null)
+                    {
+                        typeDevices.Add(device);
+                    }
+                    else
+                    {
+                        if(isHidden.Value == device.isHidden)
+                            typeDevices.Add(device);
+                    }
                 }
             }
             return typeDevices;
         }
+
 
         private IList<VideoMonitor> _monitores;
         public IList<VideoMonitor> monitores
@@ -700,8 +708,23 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
         #endregion Model
 
-        public string predictivedata { get; set; }//电站每月预测值:分隔的串
+        public string predictivedata { get; set; }//电站每月预测值逗号(,)分隔的串
 
+        /// <summary>
+        /// 取得某个某个月份的预测值
+        /// </summary>
+        /// <param name="month"></param>
+        /// <returns></returns>
+        public double? monthpredictValue(int month)
+        {
+            if(this.predictivedata==null) return null;
+            string[] values = this.predictivedata.Split(',');
+            if (month >= values.Length) return null;
+            string temp = values[month];
+            if (string.IsNullOrEmpty(temp)) return null;
+            double res = double.Parse(temp);
+            return res;
+        }
 
         public int parentId { get; set; }
 
@@ -1295,7 +1318,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public IList<YearCompensation> yearCompensation { get; set; }
 
         //发电量比例系数
-        public double energyRate { get; set; }
+        public double? energyRate { get; set; }
 
     }
 }

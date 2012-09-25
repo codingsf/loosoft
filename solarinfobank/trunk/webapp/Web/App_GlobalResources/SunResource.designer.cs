@@ -10756,7 +10756,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Copyright @ 2012 SolarInfo Bank , v1.0.18 Alpha , Browse Resolution: 1024x768 的本地化字符串。
+        ///   查找类似 Copyright &amp;copy; 2012 SolarInfo Bank , v1.0.18 Alpha , Browse Resolution: 1024x768 的本地化字符串。
         /// </summary>
         internal static string SHARED_MAINMASTREPAGE_COPYRIGHT {
             get {

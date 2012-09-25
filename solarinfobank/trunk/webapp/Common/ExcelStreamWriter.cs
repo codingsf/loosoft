@@ -19,10 +19,9 @@ namespace Common
         }
     }
 
-
     public class ExcelStreamWriter
     {
-        private string excelPath = System.Configuration.ConfigurationSettings.AppSettings["excel_path"];
+        private string excelPath = System.Configuration.ConfigurationSettings.AppSettings["sys_path"]+"\\tempexportfile";
         private bool isMulti;
         private string chartName;
         private string xName;
@@ -65,6 +64,7 @@ namespace Common
             fileName = DateTime.Now.ToString("yyyyMMddhhmmsss");
             this.excelDatas = _excelDatas;
         }
+
         /// <summary>
         /// 保持excel
         /// </summary>
@@ -129,6 +129,7 @@ namespace Common
                                 }
                             }
                         }
+
                         if (cs.dataRange!=null)
                         {
                             cs.dataRange.NumberFormat = "@";
@@ -153,6 +154,7 @@ namespace Common
                         Console.WriteLine(ee.Message);
                     }
                 }
+
                 xlSheet = null;
                 string fullPath = string.Format("{0}\\{1}.xls", this.excelPath, this.fileName);
                 if (File.Exists(fullPath))
@@ -194,6 +196,7 @@ namespace Common
                 return Excel.XlChartType.xlLine;
             }
         }
+
         public bool Save(string _fileName)
         {
             this.fileName = _fileName;

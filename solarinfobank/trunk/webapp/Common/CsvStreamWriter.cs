@@ -186,19 +186,17 @@ namespace Common
             this.encoding = encoding;
             Save();
         }
-
-
         /// <summary>
-        /// 转换成保存行
+        /// 
         /// </summary>
-        /// <param name="colAL">一行</param>
+        /// <param name="colAL"></param>
         /// <returns></returns>
         public string ConvertToSaveLine(ArrayList colAL)
         {
             string saveLine;
 
             saveLine = "";
-            for (int i = 0;i< colAL.Count;i++)
+            for (int i = 0; i < colAL.Count; i++)
             {
                 if (colAL[i] != null)
                 {
@@ -209,11 +207,45 @@ namespace Common
                     colAL[i] = " ";
                     saveLine += ConvertToSaveCell(colAL[i].ToString());
                 }
-            //格子间以逗号分割
-            if (i < colAL.Count - 1)
+                //格子间以逗号分割
+                if (i < colAL.Count - 1)
+                {
+                    saveLine += ",";
+                }
+            }
+
+            return saveLine;
+        }
+
+        /// <summary>
+        /// 转换成保存行
+        /// </summary>
+        /// <param name="colAL">一行,modify by qhb in 20120917 for 参数arrayList to Icollection</param>
+        /// <returns></returns>
+        public string ConvertToSaveLine(ICollection<string> colAL)
+        {
+            int len = colAL.Count;
+            string[] arr = new string[len];
+            string saveLine;
+            colAL.CopyTo(arr, 0);
+
+            saveLine = "";
+            for (int i = 0;i< arr.Length;i++)
             {
-             saveLine += ",";
-            }    
+                if (arr[i] != null)
+                {
+                    saveLine += ConvertToSaveCell(arr[i].ToString());
+                }
+                else
+                {
+                    arr[i] = " ";
+                    saveLine += ConvertToSaveCell(arr[i].ToString());
+                }
+                //格子间以逗号分割
+                if (i < colAL.Count - 1)
+                {
+                 saveLine += ",";
+                }    
             }
 
             return saveLine;

@@ -86,7 +86,7 @@
                                 <%if (Model != null)
                                       foreach (QA item in Model)
                                       {%>
-                                <li><a href="/qa/showask/<%=item.id %>" target="_blank">
+                                <li><a href="/qa/showask/<%=item.id %>">
                                     <%=item.title%>
                                     <%if (user != null && item.username.Equals(user.username) && item.status != QA.VALIDATE)
                                       { %>

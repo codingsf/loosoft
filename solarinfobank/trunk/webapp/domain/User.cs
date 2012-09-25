@@ -735,6 +735,25 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
+        /// 取得所有管理的电站中所有实际电站
+        /// </summary>
+        public IList<Plant> allOwnFactPlants
+        {
+            get
+            {
+                IList<Plant> factPlants = new List<Plant>();
+                foreach (Plant plant in ownPlants)
+                {
+                    foreach (Plant p in plant.allFactPlants)
+                    {
+                        factPlants.Add(p);
+                    }
+                }
+                return factPlants;
+            }
+        }
+
+        /// <summary>
         /// 当前用户下任何一个电站有绑定采集器
         /// </summary>
         public bool isBindUnit

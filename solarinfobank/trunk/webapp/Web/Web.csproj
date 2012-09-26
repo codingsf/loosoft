@@ -2121,6 +2121,7 @@
     <Content Include="Images\gg01.jpg" />
     <Content Include="Images\gk.gif" />
     <Content Include="Images\globe.gif" />
+    <Content Include="Images\ico05.gif" />
     <Content Include="Images\iji.jpg" />
     <Content Include="Images\img01.gif" />
     <Content Include="Images\img01.jpg" />
@@ -2826,6 +2827,7 @@
     <Folder Include="flash\.svn\tmp\prop-base\" />
     <Folder Include="flash\.svn\tmp\props\" />
     <Folder Include="flash\.svn\tmp\text-base\" />
+    <Folder Include="Images\drak_green\" />
     <Folder Include="Images\kj\.svn\props\" />
     <Folder Include="Images\kj\.svn\tmp\prop-base\" />
     <Folder Include="Images\kj\.svn\tmp\props\" />

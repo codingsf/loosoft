@@ -71,7 +71,7 @@ a:active { color:#000; text-decoration:none;}
 .mainboxdown_l{ float:left; width:447px; height:205px; background:url(../images/bg011.jpg) no-repeat; }
 .mdl01{ text-align:right; padding-top:20px; padding-right:10px;}
 .mdl02{padding-top:10px;padding-left:100px; padding-right:20px;}
-.mdl02 ul{ list-style:none;}
+.mdl02 ul{ list-style:none; float:right;}
 .mdl02 ul li{ height:30px; padding-left:25px; border-bottom:1px dotted #CCCCCC; line-height:30px; background:url(../images/ico05.gif) no-repeat left;width:260px;
 white-space:nowrap;word-break:keep-all;overflow:hidden;text-overflow:ellipsis;}
 .mdl02 .veiwmore{ display:block; padding-left:40px; padding-top:10px;}

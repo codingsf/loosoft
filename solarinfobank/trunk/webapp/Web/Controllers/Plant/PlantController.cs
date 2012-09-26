@@ -2683,8 +2683,10 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
         public ActionResult SaveEnergyRate(Plant plant)
         {
             double? rate = plant.energyRate;
+            double? maxRate = plant.maxEnergyRate;
             plant = plantService.GetPlantInfoById(plant.id);
             plant.energyRate = rate;
+            plant.maxEnergyRate = maxRate;
             plantService.UpdatePlantInfo(plant);
             return View("energyrate", plant);
         }

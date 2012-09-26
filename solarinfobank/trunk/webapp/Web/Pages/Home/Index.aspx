@@ -501,11 +501,12 @@
                     </div>
                     <div class="mdl02">
                         <ul style="margin: 10px 0px 0px 0px">
-                            <li><a href="#" class="dbl">There remained only the question？</a></li>
-                            <li><a href="#" class="dbl">Partially contradicting samples？</a></li>
-                            <li><a href="#" class="dbl">Nartially contradicting samples of thatnly the qn...</a></li>
+                        <%foreach (QA qa in ViewData["RecommendAnswer"] as IList<QA>)
+                          { %>
+                            <li><a href="/qa/showask/<%=qa.id %>" class="dbl"><%=Cn.Loosoft.Zhisou.SunPower.Common.StringUtil.cutStr( qa.title ,50,"...")%></a></li>
+                            <%} %>
                         </ul>
-                        <span class="veiwmore"><a href="#" class="green">+ View more >></a></span></div>
+                        <span class="veiwmore"><a href="/qa/ask" class="green">+ <%= Resources.SunResource.HOME_INDEX_VIEWMORE%> >></a></span></div>
                     <div>
                     </div>
                 </div>

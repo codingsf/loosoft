@@ -3171,5 +3171,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             QAService.GetInstance().UpdateStatus(qa.qid, QA.VALIDATE);
             return Redirect("/admin/answer");
         }
+
+
+        public ActionResult RecommendAnswer(int id)
+        {
+            QA qa= QAService.GetInstance().Get(id);
+            QAService.GetInstance().Recommend(id, !qa.isRecommend);
+            return Content("ok");
+        }
     }
 }

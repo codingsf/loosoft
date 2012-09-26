@@ -5203,4 +5203,13 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
   <data name="ENERGY_RATE" xml:space="preserve">
     <value>发电量补偿</value>
   </data>
+  <data name="HOME_INDEX_VIEWMORE" xml:space="preserve">
+    <value>View More</value>
+  </data>
+  <data name="HIGHT_RATE" xml:space="preserve">
+    <value>过高系数</value>
+  </data>
+  <data name="LOW_RATE" xml:space="preserve">
+    <value>过低系数</value>
+  </data>
 </root>

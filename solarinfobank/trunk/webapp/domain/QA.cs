@@ -21,6 +21,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public int status { get; set; }//状态
         public QA questionentity { get; set; }//问题
         public IList<QA> answerslist { get; set; }//答案列表
+        public bool isRecommend { get; set; }//是否推荐到首页
+
 
         /// <summary>
         /// 是否有回答

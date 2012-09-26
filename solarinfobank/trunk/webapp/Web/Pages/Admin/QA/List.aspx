@@ -5,16 +5,29 @@
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-     有问有答 - SolarInfoBank
+    有问有答 - SolarInfoBank
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <script src="/script/jquery.js" type="text/javascript"></script>
-        <script>
-            function changePage(page) {
-                window.location.href = '/admin/answer/' + page;
-            }
-        </script>
+
+    <script>
+        function changePage(page) {
+            window.location.href = '/admin/answer/' + page;
+        }
+        function recommend(id) {
+            $.get("/admin/recommendanswer", { id: id }, function(data) {
+                if (data == "ok") {
+                    if ($("#answer_" + id).html().indexOf('正常') >=0)
+                        $("#answer_" + id).html('推荐');
+                    else
+                        $("#answer_" + id).html('正常');
+
+                }
+            });
+        }
+    </script>
+
     <style type="text/css">
         .am_line01
         {
@@ -55,7 +68,7 @@
                                 <img src="/images/kj/kjiico01.gif" width="31" height="41" />
                             </td>
                             <td width="93%" class="pv0216">
-                                 有问有答
+                                有问有答
                             </td>
                         </tr>
                         <tr>
@@ -121,14 +134,15 @@
                                     </td>
                                     <td width="10%" align="center" class="am_line0<%=i%2 %>">
                                         <a href="/admin/postanswer/<%=item.id %>">
-                                            <%=item.isanswered?"修改":"回答" %></a>
+                                            <%=item.isanswered?"修改":"回答" %></a> <a id="answer_<%=item.id %>" href="javascript:recommend('<%=item.id %>')">
+                                                <%=item.isRecommend?"正常":"推荐" %></a>
                                     </td>
                                 </tr>
                             </table>
                         </td>
                     </tr>
                     <%} %>
-               <tr>
+                    <tr>
                         <td height="36" colspan="5" background="/images/am/am_bg02.jpg">
                             <table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>

@@ -152,6 +152,7 @@ namespace Web.Controllers
             ViewData["AllTotalEnergy"] = StringUtil.formatDouble(Util.upDigtal(alltotalenergy));
             ViewData["AlldayTotalEnergy"] = StringUtil.formatDouble(Util.upDigtal(dayEnergy));
             ViewData["AllCO2"] = StringUtil.formatDouble(Util.upDigtal(co2Value));
+            ViewData["RecommendAnswer"] = QAService.GetInstance().GetRecommendList();
 
             //取得产品图片
             getPPics();
@@ -228,7 +229,7 @@ namespace Web.Controllers
             ViewData["AllTotalEnergy"] = StringUtil.formatDouble(Util.upDigtal(alltotalenergy));
             ViewData["AlldayTotalEnergy"] = StringUtil.formatDouble(Util.upDigtal(dayEnergy));
             ViewData["AllCO2"] = StringUtil.formatDouble(Util.upDigtal(co2Value));
-
+            ViewData["RecommendAnswer"] = QAService.GetInstance().GetRecommendList();
             getPPics();
 
             getAdPics();

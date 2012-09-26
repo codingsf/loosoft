@@ -34,18 +34,33 @@
                         required: true,
                         number: true,
                         min:0
+                    },
+                    maxEnergyRate: {
+                        required: true,
+                        number: true,
+                        min:0
                     }
                 },
                 errorPlacement: function(error, element) {
                     if (element.attr("name") == "energyRate") {
-                        $("#error_menuDisplayCount").text('');
+                        $("#error_energyrate").text('');
                         error.appendTo("#error_energyrate");
+                        parent.iFrameHeight();
+                    }
+                    if (element.attr("name") == "maxEnergyRate") {
+                        $("#error_maxEnergyRate").text('');
+                        error.appendTo("#error_maxEnergyRate");
                         parent.iFrameHeight();
                     }
                 },
 
                 messages: {
                 energyRate: {
+                        required: "<span class='error'>&nbsp;<%=Resources.SunResource.PAGECONFIG_MENU_ERROR1%></span>",
+                        number: "<span class='error'>&nbsp;<%=Resources.SunResource.PAGECONFIG_MENU_ERROR1%></span>",
+                        min: "<span class='error'>&nbsp;<%=Resources.SunResource.PAGECONFIG_MENU_ERROR1%></span>"
+                    },
+                    maxEnergyRate: {
                         required: "<span class='error'>&nbsp;<%=Resources.SunResource.PAGECONFIG_MENU_ERROR1%></span>",
                         number: "<span class='error'>&nbsp;<%=Resources.SunResource.PAGECONFIG_MENU_ERROR1%></span>",
                         min: "<span class='error'>&nbsp;<%=Resources.SunResource.PAGECONFIG_MENU_ERROR1%></span>"
@@ -124,7 +139,7 @@
                         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                             <tr align="left">
                                 <td height="35" class="" align="left">
-                                    <%=Resources.SunResource.INSIDE_ENERGY_RATE%>：
+                                    <%=Resources.SunResource.LOW_RATE%>：
                                 </td>
                             </tr>
                             <tr align="left">
@@ -139,6 +154,26 @@
                                     <span id="error_energyrate"></span>
                                 </td>
                             </tr>
+                            
+                            
+                             <tr align="left">
+                                <td height="35" class="" align="left">
+                                    <%=Resources.SunResource.HIGHT_RATE%>：
+                                </td>
+                            </tr>
+                            <tr align="left">
+                                <td height="35" class="" align="left">
+                                    <%=Html.TextBoxFor(m => m.maxEnergyRate, new { @class = "txtbu01", style = "width:150px;" })%>
+                                    <span class="red">*</span>
+                                </td>
+                            </tr>
+                            <tr align="left">
+                                <td align="left">
+                                    <span id="error_maxEnergyRate"></span>
+                                </td>
+                            </tr>
+                            
+                            
                             <tr>
                                 <td height="35" class="" align="left">
                                     <%= ViewData["error"] %>

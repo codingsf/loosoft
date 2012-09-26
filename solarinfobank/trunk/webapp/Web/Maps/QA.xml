@@ -15,6 +15,7 @@
       <result property="title"			column="title"/>
       <result property="descr"   column="descr"/>
       <result property="status"   column="status"/>
+      <result property="isRecommend"   column="recommend"/>
 
       <result property="questionentity" lazyLoad="true"	column="qid" select="get_question" />
       <result property="answerslist" lazyLoad="true"	column="id" select="get_question_answers" />
@@ -38,10 +39,13 @@
     <update id="qa_update">
       <![CDATA[update qa set title=#title#, descr=#descr# where id=#id#]]>
     </update>
+
+    <update id="qa_recommend">
+      <![CDATA[update qa set recommend=#isRecommend# where id=#id#]]>
+    </update>
     
     <select id="qa_get_list" resultMap="qa_result">
       <![CDATA[select * from qa where (title like '%$title$%' or descr like '%$descr$%') and qid=0 ]]>
-
       <dynamic prepend="">
         <isParameterPresent>
           <isNotEqual prepend="and" property="status" compareValue="-1">
@@ -57,6 +61,10 @@
 
     <select id="qa_get" resultMap="qa_result">
       <![CDATA[select * from qa where id=#id#]]>
+    </select>
+
+    <select id="qa_get_recommend_list" resultMap="qa_result">
+      <![CDATA[select * from qa where recommend=1 limit 0,3]]>
     </select>
 
     <select id="get_question" resultClass="QA">

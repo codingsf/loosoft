@@ -5281,6 +5281,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 过高系数 的本地化字符串。
+        /// </summary>
+        internal static string HIGHT_RATE {
+            get {
+                return ResourceManager.GetString("HIGHT_RATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 PV Combiner Box Chart 的本地化字符串。
         /// </summary>
         internal static string HLXCHART_HLX_CHART {
@@ -5512,6 +5521,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 View More 的本地化字符串。
+        /// </summary>
+        internal static string HOME_INDEX_VIEWMORE {
+            get {
+                return ResourceManager.GetString("HOME_INDEX_VIEWMORE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Click to view 的本地化字符串。
         /// </summary>
         internal static string HOME_INDEX_VIEW_CLICKVIEW {
@@ -5625,6 +5643,15 @@ namespace Resources {
         internal static string LARGEBUTTONTITLE {
             get {
                 return ResourceManager.GetString("LARGEBUTTONTITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 过低系数 的本地化字符串。
+        /// </summary>
+        internal static string LOW_RATE {
+            get {
+                return ResourceManager.GetString("LOW_RATE", resourceCulture);
             }
         }
         

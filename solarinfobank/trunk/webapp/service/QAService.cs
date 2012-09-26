@@ -46,6 +46,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         {
             return _qaDao.UpdateStatus(id, status);
         }
+        public int Recommend(int id, bool isrecommend)
+        {
+            return _qaDao.Recommend(id, isrecommend);
+        }
 
+        public IList<QA> GetRecommendList()
+        {
+            return _qaDao.GetRecommendList();
+        }
     }
 }

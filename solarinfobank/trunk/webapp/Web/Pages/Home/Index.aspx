@@ -26,9 +26,9 @@
             var endOfCookie;
             if (startOfCookie != -1) {
                 startOfCookie += searchName.length;
-                endOfCookie = myCookie.indexOf(";", startOfCookie); //·Ö¸ô·û;
+                endOfCookie = myCookie.indexOf(";", startOfCookie); //åˆ†éš”ç¬¦;
                 if (endOfCookie == -1) {
-                    endOfCookie = mycookie.indexOf("&", startOfCookie); //·Ö¸ô·û&
+                    endOfCookie = mycookie.indexOf("&", startOfCookie); //åˆ†éš”ç¬¦&
                 }
                 result = decodeURI(myCookie.substring(startOfCookie, endOfCookie)); //unescape decodeURI
             }
@@ -100,15 +100,15 @@
         }
 
 
-        //ÈİÆ÷¶ÔÏó,»¬¶¯¶ÔÏó,ÇĞ»»ÊıÁ¿
+        //å®¹å™¨å¯¹è±¡,æ»‘åŠ¨å¯¹è±¡,åˆ‡æ¢æ•°é‡
         var SlideTrans = function(container, slider, count, options) {
             this._slider = $$(slider);
-            this._container = $$(container); //ÈİÆ÷¶ÔÏó
-            this._timer = null; //¶¨Ê±Æ÷
-            this._count = Math.abs(count); //ÇĞ»»ÊıÁ¿
-            this._target = 0; //Ä¿±êÖµ
-            this._t = this._b = this._c = 0; //tween²ÎÊı
-            this.Index = 0; //µ±Ç°Ë÷Òı
+            this._container = $$(container); //å®¹å™¨å¯¹è±¡
+            this._timer = null; //å®šæ—¶å™¨
+            this._count = Math.abs(count); //åˆ‡æ¢æ•°é‡
+            this._target = 0; //ç›®æ ‡å€¼
+            this._t = this._b = this._c = 0; //tweenå‚æ•°
+            this.Index = 0; //å½“å‰ç´¢å¼•
             this.SetOptions(options);
             this.Auto = !!this.options.Auto;
             this.Duration = Math.abs(this.options.Duration);
@@ -119,9 +119,9 @@
             this.onFinish = this.options.onFinish;
 
             var bVertical = !!this.options.Vertical;
-            this._css = bVertical ? "top" : "left"; //·½Ïò
+            this._css = bVertical ? "top" : "left"; //æ–¹å‘
 
-            //ÑùÊ½ÉèÖÃ
+            //æ ·å¼è®¾ç½®
             var p = CurrentStyle(this._container).position;
             p == "relative" || p == "absolute" || (this._container.style.position = "relative");
             this._container.style.overflow = "hidden";
@@ -132,27 +132,27 @@
         };
         
         SlideTrans.prototype = {
-            //ÉèÖÃÄ¬ÈÏÊôĞÔ
+            //è®¾ç½®é»˜è®¤å±æ€§
             SetOptions: function(options) {
-                this.options = {//Ä¬ÈÏÖµ
-                    Vertical: true, //ÊÇ·ñ´¹Ö±·½Ïò£¨·½Ïò²»ÄÜ¸Ä£©
-                    Auto: true, //ÊÇ·ñ×Ô¶¯
-                    Change: 0, //¸Ä±äÁ¿
-                    Duration: 30, //»¬¶¯³ÖĞøÊ±¼ä
-                    Time: 10, //»¬¶¯ÑÓÊ±
-                    Pause: 3000, //Í£¶ÙÊ±¼ä(AutoÎªtrueÊ±ÓĞĞ§)
-                    onStart: function() { }, //¿ªÊ¼×ª»»Ê±Ö´ĞĞ
-                    onFinish: function() { }, //Íê³É×ª»»Ê±Ö´ĞĞ
-                    Tween: Tween.Quart.easeOut//tweenËã×Ó
+                this.options = {//é»˜è®¤å€¼
+                    Vertical: true, //æ˜¯å¦å‚ç›´æ–¹å‘ï¼ˆæ–¹å‘ä¸èƒ½æ”¹ï¼‰
+                    Auto: true, //æ˜¯å¦è‡ªåŠ¨
+                    Change: 0, //æ”¹å˜é‡
+                    Duration: 30, //æ»‘åŠ¨æŒç»­æ—¶é—´
+                    Time: 10, //æ»‘åŠ¨å»¶æ—¶
+                    Pause: 3000, //åœé¡¿æ—¶é—´(Autoä¸ºtrueæ—¶æœ‰æ•ˆ)
+                    onStart: function() { }, //å¼€å§‹è½¬æ¢æ—¶æ‰§è¡Œ
+                    onFinish: function() { }, //å®Œæˆè½¬æ¢æ—¶æ‰§è¡Œ
+                    Tween: Tween.Quart.easeOut//tweenç®—å­
                 };
                 Extend(this.options, options || {});
             },
-            //¿ªÊ¼ÇĞ»»
+            //å¼€å§‹åˆ‡æ¢
             Run: function(index) {
-                //ĞŞÕıindex
+                //ä¿®æ­£index
                 index == undefined && (index = this.Index);
                 index < 0 && (index = this._count - 1) || index >= this._count && (index = 0);
-                //ÉèÖÃ²ÎÊı
+                //è®¾ç½®å‚æ•°
                 this._target = -Math.abs(this.Change) * (this.Index = index);
                 this._t = 0;
                 this._b = parseInt(CurrentStyle(this._slider)[this.options.Vertical ? "top" : "left"]);
@@ -160,10 +160,10 @@
                 this.onStart();
                 this.Move();
             },
-            //ÒÆ¶¯
+            //ç§»åŠ¨
             Move: function() {
                 clearTimeout(this._timer);
-                //Î´µ½´ïÄ¿±ê¼ÌĞøÒÆ¶¯·ñÔò½øĞĞÏÂÒ»´Î»¬¶¯
+                //æœªåˆ°è¾¾ç›®æ ‡ç»§ç»­ç§»åŠ¨å¦åˆ™è¿›è¡Œä¸‹ä¸€æ¬¡æ»‘åŠ¨
                 if (this._c && this._t < this.Duration) {
                     this.MoveTo(Math.round(this.Tween(this._t++, this._b, this._c, this.Duration)));
                     this._timer = setTimeout(Bind(this, this.Move), this.Time);
@@ -172,19 +172,19 @@
                     this.Auto && (this._timer = setTimeout(Bind(this, this.Next), this.Pause));
                 }
             },
-            //ÒÆ¶¯µ½
+            //ç§»åŠ¨åˆ°
             MoveTo: function(i) {
                 this._slider.style[this._css] = i + "px";
             },
-            //ÏÂÒ»¸ö
+            //ä¸‹ä¸€ä¸ª
             Next: function() {
                 this.Run(++this.Index);
             },
-            //ÉÏÒ»¸ö
+            //ä¸Šä¸€ä¸ª
             Previous: function() {
                 this.Run(--this.Index);
             },
-            //Í£Ö¹
+            //åœæ­¢
             Stop: function() {
                 clearTimeout(this._timer); this.MoveTo(this._target);
             }
@@ -495,26 +495,20 @@
         </div>
         <div class="mainboxdown">
             <div class="mainboxdown_l">
-                <div class="indexicg">
-                    <span style="float: left;">
-                        <%= Resources.SunResource.HOME_INDEX_PLANT_DISTRIBUTION%></span>
+                    <div class="indexicg">
+                        <span style="float: left;">FAQ</span></div>
+                    <div style="clear: both;">
+                    </div>
+                    <div class="mdl02">
+                        <ul style="margin: 10px 0px 0px 0px">
+                            <li><a href="#" class="dbl">There remained only the questionï¼Ÿ</a></li>
+                            <li><a href="#" class="dbl">Partially contradicting samplesï¼Ÿ</a></li>
+                            <li><a href="#" class="dbl">Nartially contradicting samples of thatnly the qn...</a></li>
+                        </ul>
+                        <span class="veiwmore"><a href="#" class="green">+ View more >></a></span></div>
+                    <div>
+                    </div>
                 </div>
-                <div style="clear: both;">
-                </div>
-                <div class="mdl02">
-                    <ul style="margin: 10px 0px 0px 0px; overflow: hidden;">
-                        <%
-                            foreach (Cn.Loosoft.Zhisou.SunPower.Domain.Plant plant in ViewData["newPlants"] as List<Cn.Loosoft.Zhisou.SunPower.Domain.Plant>)
-                            {  
-                        %>
-                        <li>
-                            <%=plant.name.Length>20?plant.name.Substring(0,20):plant.name%></li>
-                        <%} %>
-                    </ul>
-                </div>
-                <div>
-                </div>
-            </div>
             <div class="mainboxdown_r">
                 <div class="indexicg">
                     <span style="float: left;"><%= Resources.SunResource.HOMT_INDEX_MOBILE_TITLE%></span>
@@ -643,7 +637,7 @@
 
         var nums = [], timer, n = $$("idSlider2").getElementsByTagName("li").length,
 	st = new SlideTrans("idContainer2", "idSlider2", n, {
-	    onStart: function() {//ÉèÖÃ°´Å¥ÑùÊ½
+	    onStart: function() {//è®¾ç½®æŒ‰é’®æ ·å¼
 	        forEach(nums, function(o, i) { o.className = st.Index == i ? "on" : ""; })
 	    }
 	});

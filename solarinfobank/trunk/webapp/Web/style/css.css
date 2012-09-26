@@ -52,7 +52,8 @@ a:active { color:#848484; text-decoration:none;}
 .header_r{ float:right; height:84px; width:711px; background:url(../images/bg04.jpg) no-repeat;}
 .header_rt{color:#008C44; padding-right:10px; padding-top:2px; text-align:right;}
 .header_rdh{ height:30px; padding-top:18px;}
-.header_rdhl{ color:#E0EADF;text-align:center; float:left; padding-left:260px; padding-top:8px;}.header_rdhl span{ margin:5px;}
+.header_rdhl{ color:#E0EADF;text-align:center; float:left; padding-left:260px; padding-top:8px;}
+.header_rdhl span{ margin:5px;}
 .header_rdhr{ float:right; height:32px; width:150px; padding-right:24px;}
 .sec_sys{ color:#649244;}
 
@@ -76,10 +77,15 @@ a:active { color:#848484; text-decoration:none;}
 
 .mainboxdown{height:205px;}
 .mainboxdown_l{ float:left; width:447px; height:205px; background:url(../images/bg011.jpg) no-repeat; }
+
 .mdl01{ text-align:right; padding-top:20px; padding-right:10px;}
-.mdl02{padding-top:8px;padding-left:200px; padding-right:20px;}
+.mdl02{padding-top:10px;padding-left:100px; padding-right:20px;}
 .mdl02 ul{ list-style:none;}
-.mdl02 ul li{ height:30px; padding-left:25px; border-bottom:1px dotted #CCCCCC; line-height:30px; background:url(../images/ico05.jpg) no-repeat left;}
+.mdl02 ul li{ height:30px; padding-left:25px; border-bottom:1px dotted #CCCCCC; line-height:30px; background:url(../images/ico05.gif) no-repeat left;width:260px;
+white-space:nowrap;word-break:keep-all;overflow:hidden;text-overflow:ellipsis;}
+.mdl02 .veiwmore{ display:block; padding-left:40px; padding-top:10px;}
+
+
 .mainboxdown_r{ float:right; width:546px; height:205px; background:url(../images/bg012.jpg) no-repeat;}
 .mdl03{ width:482px; height:85px; margin:70px auto 0px auto;}
 .mdl03_l{ float:left;padding-top:20px;}
@@ -100,7 +106,10 @@ em .success{ background-image:url(/images/sub/right.gif); font-variant:normal; f
 img{ border:none;}
 .tip{ color:#535353; font-variant:normal; font-style:normal;}
 
-.dyreen:link{color:#bb2603; text-decoration:none;}.dyreen:visited {color:#bb2603; text-decoration:none;}.dyreen:hover {color:#bb2603; text-decoration:underline;}.dyreen:active {color:#bb2603; text-decoration:none;}
+.dyreen:link{color:#bb2603; text-decoration:none;}
+.dyreen:visited {color:#bb2603; text-decoration:none;}
+.dyreen:hover {color:#bb2603; text-decoration:underline;}
+.dyreen:active {color:#bb2603; text-decoration:none;}
 .sl01{font-size:12px; color:#40851B; line-height:20px; font-size:11px;width:100%;}
 .sl01 ul{ list-style:none; margin:0px; padding:0px;}
 .sl01 ul li{ float:left; background:url(/images/slico.gif) no-repeat; padding-left:8px; margin-right:5px;}

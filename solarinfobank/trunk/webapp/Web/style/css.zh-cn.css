@@ -70,15 +70,22 @@ a:active { color:#000; text-decoration:none;}
 .mainboxdown{height:205px;}
 .mainboxdown_l{ float:left; width:447px; height:205px; background:url(../images/bg011.jpg) no-repeat; }
 .mdl01{ text-align:right; padding-top:20px; padding-right:10px;}
-.mdl02{padding-top:8px;padding-left:200px; padding-right:20px;}
+.mdl02{padding-top:10px;padding-left:100px; padding-right:20px;}
 .mdl02 ul{ list-style:none;}
-.mdl02 ul li{ height:30px; padding-left:25px; border-bottom:1px dotted #CCCCCC; line-height:30px; background:url(../images/ico05.jpg) no-repeat left;}
+.mdl02 ul li{ height:30px; padding-left:25px; border-bottom:1px dotted #CCCCCC; line-height:30px; background:url(../images/ico05.gif) no-repeat left;width:260px;
+white-space:nowrap;word-break:keep-all;overflow:hidden;text-overflow:ellipsis;}
+.mdl02 .veiwmore{ display:block; padding-left:40px; padding-top:10px;}
+
 .mainboxdown_r{ float:right; width:546px; height:205px; background:url(../images/bg012.jpg) no-repeat;}
+
+
 .mdl03{ width:482px; height:85px; margin:70px auto 0px auto;}
 .mdl03_l{ float:left;padding-top:20px;}
 .mdl03_m{ float:left; }
 .mdl03_m img{ border:2px solid #A5C582; margin:0px 12px;}
 .mdl03_r{ float:left;padding-top:20px;}
+
+
 
 .indexicg{  color:#4A8247; font-size:22px; height:25px; padding:15px 0px 0px 20px; font-family:"微软雅黑";}
 .indexicg2{ color:#4A8247; font-size:22px; padding:10px 0px 0px 14px;font-family:"微软雅黑"}

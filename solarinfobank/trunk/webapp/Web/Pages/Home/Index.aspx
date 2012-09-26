@@ -344,7 +344,7 @@
         <tr>
          
           <td width="100%" style="color:#EF8700; font-weight:bold;">
-           <span id="Span1">
+           <span id="error">
           <%if (Request.QueryString.ToString().Equals("t"))
             { %>
             <img src="images/tx.jpg" width="12" height="11" id="Img1" /> &nbsp; <%=Resources.SunResource.HOME_INDEX_LOG_FAIL_TIME_OUT%>       
@@ -365,7 +365,7 @@
       </td>
       <td width="153" rowspan="2">
       <input type="submit" class="loginbu" value="<%=Resources.SunResource.HOME_INDEX_LOGIN%>"
-                                            onclick="remember(this)" id="Submit1", tabindex ="3" />
+                                            onclick="remember(this)" id="btnLogin", tabindex ="3" />
       
       </td>
     </tr>

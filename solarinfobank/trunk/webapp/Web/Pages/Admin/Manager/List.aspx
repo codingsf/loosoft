@@ -159,7 +159,7 @@
                                         </div>
                                     </td>
                                     <td width="12%" align="center" class="am_line0<%=i%2 %>">
-                                        <%= Html.Encode(item.create_date.ToString("yyyy/MM/dd"))%>
+                                        <%= Html.Encode(item.create_date.ToString("yyyy-MM-dd"))%>
                                     </td>
                                     <td width="10%" align="center" class="am_line0<%=i%2 %>">
                                         <%if (AuthService.isAllow("admin", "manager_edit"))

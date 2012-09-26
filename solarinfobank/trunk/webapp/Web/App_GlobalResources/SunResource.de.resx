@@ -5623,4 +5623,7 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>设备发电量告警</value>
     <comment>设备发电量告警</comment>
   </data>
+  <data name="ENERGY_RATE" xml:space="preserve">
+    <value>发电量补偿</value>
+  </data>
 </root>

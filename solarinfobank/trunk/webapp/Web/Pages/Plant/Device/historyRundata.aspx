@@ -8,18 +8,19 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server"> 
   <div style="width:100%; font-family: Verdana, Arial, Helvetica, sans-serif;font-size:12px; overflow:auto; overflow-y:hidden;" >
-  <table width="100%" border="1" bordercolor="#A8A8A8"  cellpadding="0" cellspacing="0" style="border-collapse:collapse; line-height:24px;text-align:center">
+    <%IList<string> allmts = ViewData["allmts"] as IList<string>; %>
+ 
+  <table width="<%=allmts.Count <= 0?"100":"160" %>%" border="1" bordercolor="#A8A8A8"  cellpadding="0" cellspacing="0" style="border-collapse:collapse; line-height:24px;text-align:center">
   <tr>
     <td colspan="40" align="left" style="padding-left:10px; "><%=Model.fullName+" "+Resources.SunResource.DEVICE_DEVICE_HISTORYRUN_DATA%></td>
   </tr>
   <tr>
-    <%IList<string> allmts = ViewData["allmts"] as IList<string>; %>
     <td width="5%"><%=allmts.Count > 0 ? Resources.SunResource.REPORT_TIME : Resources.SunResource.CHART_ERROR_NODATA%></td>
     <%
       foreach (string mt in allmts)
       {
     %>
-    <td width="5%"><%=mt%></td>
+    <td width="4%"><%=mt%></td>
     <%} %>
   </tr>
   <% 

@@ -167,13 +167,13 @@
                                                 <%=item.plant == null ? Resources.SunResource.DISPLAY_NO_ASSIGNED_PLANT : item.plant.name%>
                                             </td>
                                             <td width="15%" align="center">
-                                                <%=item.plant == null ? Resources.SunResource.DISPLAY_NO_ASSIGNED_PLANT : DateTime.Now.AddHours(item.plant.timezone).ToString("yyyy/MM/dd hh:mm")%>
+                                                <%=item.plant == null ? Resources.SunResource.DISPLAY_NO_ASSIGNED_PLANT : DateTime.Now.AddHours(item.plant.timezone).ToString("yyyy-MM-dd hh:mm")%>
                                             </td>
                                             <td width="15%" align="center">
-                                                <%=item.importDate.ToString("yyyy/MM/dd hh:mm")%>
+                                                <%=item.importDate.ToString("yyyy-MM-dd hh:mm")%>
                                             </td>
                                             <td width="15%" align="center">
-                                                <%=item.limitDate.ToString("yyyy/MM/dd hh:mm")%>
+                                                <%=item.limitDate.ToString("yyyy-MM-dd hh:mm")%>
                                             </td>
                                             <td width="10%" align="center">
                                                 <%if (item.plant == null)

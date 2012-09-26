@@ -16,7 +16,7 @@
             <table width="100%" border="0" cellpadding="0" style="overflow:hidden; float:left;" cellspacing="0" class="down_line0<%=i%2 %>">
                 <tr>
                     <td width="70%" height="30" align="center">
-                        <%=item.loginTime.ToString("yyyy/MM/dd HH:mm:ss") %>
+                        <%=item.loginTime.ToString("yyyy-MM-dd HH:mm:ss") %>
                     </td>
                     <td width="30%" align="center">
                         <%=item.ip %>

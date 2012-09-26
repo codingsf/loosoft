@@ -12,7 +12,7 @@ using System.Configuration;
 
 namespace Cn.Loosoft.Zhisou.SunPower.Service
 {
-    public  class DeviceDayDataService : BaseService
+    public class DeviceDayDataService : BaseService
     {
 
         //设备天数据缓存中key列表不在需要那个直接用baseMessage.devicedayDataMapList
@@ -61,7 +61,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
 
         public Hashtable GetDaydataList(Device device, string startYYYYMMDDHH, string endYYYYMMDDHH, int intervalMins, int monitorCode)
         {
-            return this.GetDaydataList(null,device, startYYYYMMDDHH, endYYYYMMDDHH, intervalMins, monitorCode);
+            return this.GetDaydataList(null, device, startYYYYMMDDHH, endYYYYMMDDHH, intervalMins, monitorCode);
         }
 
         /// <summary>
@@ -85,17 +85,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             {
                 string year = startYYYYMM.Substring(0, 4);
                 string month = startYYYYMM.Substring(4, 2);
-                return this.getMultiDayBetweenData(XAxis,device, year, month, startDD, endDD, intervalMins, monitorCode);
+                return this.getMultiDayBetweenData(XAxis, device, year, month, startDD, endDD, intervalMins, monitorCode);
             }
             else
             {
                 string year = startYYYYMM.Substring(0, 4);
                 string month = startYYYYMM.Substring(4, 2);
                 int firstEndDD = CalenderUtil.getMonthDays(year + month);
-                Hashtable firstHash = this.getMultiDayBetweenData(XAxis,device, year, month, startDD, firstEndDD, intervalMins, monitorCode);
+                Hashtable firstHash = this.getMultiDayBetweenData(XAxis, device, year, month, startDD, firstEndDD, intervalMins, monitorCode);
                 year = endYYYYMM.Substring(0, 4);
                 month = endYYYYMM.Substring(4, 2);
-                Hashtable secondHash = this.getMultiDayBetweenData(XAxis,device, year, month, 1, endDD, intervalMins, monitorCode);
+                Hashtable secondHash = this.getMultiDayBetweenData(XAxis, device, year, month, 1, endDD, intervalMins, monitorCode);
 
                 foreach (Object obj in secondHash.Keys)
                 {
@@ -150,6 +150,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     if (string.IsNullOrEmpty(data)) continue;
                     timedatas = data.Split(':');
                     timepoint = timedatas[0];
+                    timepoint = string.Format("{0}:{1}:{2}", timepoint.Substring(0, 2), timepoint.Substring(2, 2), timepoint.Substring(4));
                     if (timemtMap.ContainsKey(timepoint))
                     {
                         mtMap = timemtMap[timepoint];
@@ -215,7 +216,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 IList unitPowerDayDatas = new List<BaseDayData>();
                 if (DateTime.Now.Day >= i && DateTime.Now.Day - i <= 1)
                 {
-                    string key = CacheKeyUtil.buildDeviceDayDataKey(device.id, year+month, i, monitorCode);
+                    string key = CacheKeyUtil.buildDeviceDayDataKey(device.id, year + month, i, monitorCode);
                     object obj = MemcachedClientSatat.getInstance().Get(key);
                     if (obj != null)
                     {
@@ -231,7 +232,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             return hhpowerHash;
         }
 
-        private string getDeviceTablename(int deviceTypeCode) {
+        private string getDeviceTablename(int deviceTypeCode)
+        {
             switch (deviceTypeCode)
             {
                 case DeviceData.INVERTER_CODE:
@@ -262,7 +264,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 DeviceDayData dayData = null;
                 foreach (string key in tmp.Keys)
                 {
-                    if (key==null || !tmp.ContainsKey(key)) continue;
+                    if (key == null || !tmp.ContainsKey(key)) continue;
                     dayData = tmp[key];
                     if (dayData == null || !dayData.changed) continue;
                     //加入缓存，设置两天为缓存过期时间，避免时差问题
@@ -279,14 +281,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// 批量保持设备日数据对象
         /// </summary>
         /// <param name="unitDayDatas"></param>
-         public void batchSave(IList<IDictionary<string, DeviceDayData>> devicedayDataMapList)
+        public void batchSave(IList<IDictionary<string, DeviceDayData>> devicedayDataMapList)
         {
             //从需要持久化的list中取出对象
             String[] keyArr;
             foreach (IDictionary<string, DeviceDayData> datadic in devicedayDataMapList)
             {
                 keyArr = datadic.Keys.ToArray();
-                foreach(string key in keyArr){
+                foreach (string key in keyArr)
+                {
                     object obj = MemcachedClientSatat.getInstance().Get(key);
                     if (obj == null)
                     {
@@ -324,7 +327,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                         catch (Exception e)
                         {
                             //这里有些问题，稍后要调试下有插入索引约束异常
-                            LogUtil.error("update" + collectorDayData .deviceType+ " device day data fail:" + e.Message);
+                            LogUtil.error("update" + collectorDayData.deviceType + " device day data fail:" + e.Message);
                         }
                     }
 
@@ -362,7 +365,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <param name="day"></param>
         /// <param name="yearmonth"></param>
         /// <returns></returns>
-        public IList<int> getDeviceDayDataMonitorCodeList(int deviceID, int day, int year, int month,int mtcount)
+        public IList<int> getDeviceDayDataMonitorCodeList(int deviceID, int day, int year, int month, int mtcount)
         {
             string key = "ddym_" + deviceID + "_" + day;
             object obj = MemcachedClientSatat.getInstance().Get(key);

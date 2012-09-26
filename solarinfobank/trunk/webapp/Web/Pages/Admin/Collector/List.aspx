@@ -158,7 +158,7 @@
                                         <% =(item.plant == null ? "<font color='green'>未分配电站</font>" : DateTime.Now.AddHours(item.plant.timezone).ToString("yy/MM/dd HH:mm"))%>
                                     </td>
                                     <td class="am_line0<%=i%2 %>" width="15%" align="center">
-                                        <% =Html.Encode(item.importDate.ToString("yyyy/MM/dd HH:mm")) %>
+                                        <% =Html.Encode(item.importDate.ToString("yyyy-MM-dd HH:mm")) %>
                                     </td>
                                     <td class="am_line0<%=i%2 %>" width="10%" align="center">
                                         <% =Html.Encode(item.isUsed==true?"Yes":"No") %>

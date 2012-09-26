@@ -117,7 +117,7 @@
                                         <%=item.username%>
                                     </td>
                                     <td width="15%" align="center" class="am_line0<%=i%2 %>">
-                                        <%=item.pubdate.ToString("yyyy/MM/dd HH:mm")%>
+                                        <%=item.pubdate.ToString("yyyy-MM-dd HH:mm")%>
                                     </td>
                                     <td width="10%" align="center" class="am_line0<%=i%2 %>">
                                         <a href="/admin/postanswer/<%=item.id %>">

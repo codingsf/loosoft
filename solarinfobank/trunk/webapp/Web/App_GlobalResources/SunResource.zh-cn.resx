@@ -5192,8 +5192,8 @@
     <value>同意《用户协议内容》</value>
   </data>
   <data name="DEVICE_DEVICE_HISTORYRUN_DATA" xml:space="preserve">
-    <value>设备历史运行数据</value>
-    <comment>设备历史运行数据</comment>
+    <value>设备历史数据</value>
+    <comment>设备历史数据</comment>
   </data>
   <data name="PAGE_QA_TITLE" xml:space="preserve">
     <value>有问有答</value>
@@ -5227,7 +5227,7 @@
     <value>发电量补偿设置成功</value>
   </data>
   <data name="INSIDE_ENERGY_RATE" xml:space="preserve">
-    <value>发电量系数</value>
+    <value>逆变器比较</value>
   </data>
   <data name="PLANT_ENERGY_FORECAST_VALUE" xml:space="preserve">
     <value>预测值</value>
@@ -5270,7 +5270,10 @@
     <comment>实际比率</comment>
   </data>
   <data name="SHARED_INSIDEMASTERPAGE_ENERGYWARN" xml:space="preserve">
-    <value>设备发电量告警</value>
-    <comment>设备发电量告警</comment>
+    <value>发电量预警日志</value>
+    <comment>发电量预警日志</comment>
+  </data>
+  <data name="ENERGY_RATE" xml:space="preserve">
+    <value>发电量补偿</value>
   </data>
 </root>

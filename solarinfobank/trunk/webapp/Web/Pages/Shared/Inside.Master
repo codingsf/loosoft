@@ -667,7 +667,7 @@
                                     <div class="kjb">
                                         <ul>
                                             <li><a onclick="loadContent('content_ajax','/plant/compensation/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
-                                                href="/plant/compensation/<%=Model.id%>">补偿设置</a></li>
+                                                href="/plant/compensation/<%=Model.id%>"><%=Resources.SunResource.ENERGY_RATE%></a></li>
                                             <%if (AuthService.isAllow(AuthorizationCode.CREATE_CHART))
                                               { %>
                                             <li><a onclick="loadContent('content_ajax','/plant/includecustomcharts/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"

@@ -86,7 +86,7 @@
      function downLoadData() {
          curDeviceId = $("#dces").val();
          var yyyyMMdd = $("#curYYYYMMDD").val();
-         window.open("/DataDownLoad/DownLoadRundata?deviceId=" + curDeviceId + "&yyyyMMdd=" + yyyyMMdd + "&type=xls");
+         window.open("/DataDownLoad/DownLoadRundata?deviceId=" + curDeviceId + "&yyyyMMdd=" + yyyyMMdd + "&type="+$("#type").val());
      }
      
 </script>
@@ -118,6 +118,7 @@
                         <div style='display: block'>
                         <center>
                         <div>
+                   
                         <table width="100%" height="30" border="0" cellpadding="0" cellspacing="0">
                         <tr>
                           <td width="auto" height="30" align="right"><span style="white-space:nowrap"><%=Resources.SunResource.UDEVICE_PAGE_SELECT_DEVICE%>:</span></td>
@@ -126,8 +127,8 @@
                           <option><%=Resources.SunResource.UDEVICE_PAGE_PLEASESELECT%></option>
                           </select>
                           </td>                          
-                          <td width="50%"  class="f_14">
-                           <div class="date_sel" id="Div1" style="padding-bottom:0px; padding-right:160px;">
+                          <td width="30%"  class="f_14">
+                           <div class="date_sel" id="Div1" style="padding-bottom:0px; padding-right:100px;">
                            <table border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td>
@@ -146,6 +147,14 @@
                             </table>
                             </div> 
                             </td>
+                           <td width="10%">
+                                    <select name="type" id="type">
+                                        <option value="csv"> csv</option>
+                                        <option value="xls"> xls</option>
+                                        <option value="pdf"> pdf</option>
+                                    </select>
+                                </td>
+                                
                             <td width="10%" class="f_14">
                             <input name="Submit" id="dload" type="button" onclick="downLoadData()" class="subbu01"  value="<%=Resources.SunResource.RUN_REPORT_DOWNLOAD%>" />
                             </td>

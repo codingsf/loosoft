@@ -7,7 +7,7 @@
 <%@ Import Namespace="System.Globalization" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>
-    发电量系数
+     <%=Resources.SunResource.INSIDE_ENERGY_RATE%>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -79,7 +79,7 @@
                                         <img src="/images/kj/kjiico01.gif" />
                                     </td>
                                     <td class="pv0216">
-                                        发电量系数
+                                        <%=Resources.SunResource.INSIDE_ENERGY_RATE%>
                                     </td>
                                     <td align="right" class="help_r">
                                         <a href="/help/<%=(Session["Culture"] as CultureInfo).Name%>/SolarInfo Bank User Manual.pdf"
@@ -110,7 +110,7 @@
                                     <img src="/images/sub/subico010.gif" width="18" height="19" />
                                 </td>
                                 <td width="94%" class="f_14">
-                                    <strong>发电量系数</strong>
+                                    <strong><%=Resources.SunResource.INSIDE_ENERGY_RATE%></strong>
                                 </td>
                             </tr>
                         </table>
@@ -124,7 +124,7 @@
                         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                             <tr align="left">
                                 <td height="35" class="" align="left">
-                                    发电量系数：
+                                    <%=Resources.SunResource.INSIDE_ENERGY_RATE%>：
                                 </td>
                             </tr>
                             <tr align="left">

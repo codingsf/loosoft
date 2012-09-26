@@ -4795,6 +4795,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 发电量补偿 的本地化字符串。
+        /// </summary>
+        internal static string ENERGY_RATE {
+            get {
+                return ResourceManager.GetString("ENERGY_RATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 发电量补偿设置成功 的本地化字符串。
         /// </summary>
         internal static string ENERGY_RATE_ADD_SUCCESS {

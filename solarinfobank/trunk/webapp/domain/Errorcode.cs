@@ -23,7 +23,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             {
                 keyValues = array.Split(':').ToList<string>();
 
-
                 if (keyValues[0].ToLower().Equals(code.ToLower()))
                 {
                     if (string.IsNullOrEmpty(keyValues[1]))

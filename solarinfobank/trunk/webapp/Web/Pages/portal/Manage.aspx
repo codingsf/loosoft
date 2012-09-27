@@ -157,7 +157,7 @@
                                                    }
                                             %>
                                             <td height="30">
-                                                <input type="checkbox" name="items" value="<%=item.Key %>" /><span><%=item.Value %></span>
+                                                <input type="checkbox" name="items" value="<%=item.Key %>" /> <span><%=item.Value %></span>
                                             </td>
                                             <%} %>
                                         </tr>

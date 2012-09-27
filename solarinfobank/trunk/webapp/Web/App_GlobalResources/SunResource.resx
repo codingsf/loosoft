@@ -5369,7 +5369,7 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <comment>设备历史运行数据</comment>
   </data>
   <data name="PAGE_QA_TITLE" xml:space="preserve">
-    <value>有问有答</value>
+    <value>FAQ</value>
   </data>
   <data name="DEVICE_HISTORYRUN_DATA" xml:space="preserve">
     <value>Run Data</value>
@@ -5468,5 +5468,8 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
   </data>
   <data name="LOW_RATE" xml:space="preserve">
     <value>过低系数</value>
+  </data>
+  <data name="HOME_INDEX_FAQ" xml:space="preserve">
+    <value>FAQ</value>
   </data>
 </root>

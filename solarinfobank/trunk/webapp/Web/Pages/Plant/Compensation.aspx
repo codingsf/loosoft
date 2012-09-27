@@ -152,7 +152,7 @@
                             <table width="100%" height="45" border="0" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td width="7%" rowspan="2" align="center">
-                                        <img src="/images/sub/subico0120.gif" width="31" height="41" />
+                                        <img src="/images/kj/kjiico01.gif"/>
                                     </td>
                                     <td width="93%" class="pv0216">
                                         <%=Resources.SunResource.ENERGY_RATE_TITLE%>

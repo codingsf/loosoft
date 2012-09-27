@@ -5196,7 +5196,7 @@
     <comment>设备历史数据</comment>
   </data>
   <data name="PAGE_QA_TITLE" xml:space="preserve">
-    <value>有问有答</value>
+    <value>FAQ</value>
   </data>
   <data name="DEVICE_HISTORYRUN_DATA" xml:space="preserve">
     <value>运行数据</value>
@@ -5284,5 +5284,8 @@
   </data>
   <data name="LOW_RATE" xml:space="preserve">
     <value>过低系数</value>
+  </data>
+  <data name="HOME_INDEX_FAQ" xml:space="preserve">
+    <value>FAQ</value>
   </data>
 </root>

@@ -5359,6 +5359,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 FAQ 的本地化字符串。
+        /// </summary>
+        internal static string HOME_INDEX_FAQ {
+            get {
+                return ResourceManager.GetString("HOME_INDEX_FAQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Forgot password 的本地化字符串。
         /// </summary>
         internal static string HOME_INDEX_FORGETTEN_PASSWORD {
@@ -6458,7 +6467,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 有问有答 的本地化字符串。
+        ///   查找类似 FAQ 的本地化字符串。
         /// </summary>
         internal static string PAGE_QA_TITLE {
             get {

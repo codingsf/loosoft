@@ -1,12 +1,13 @@
-ï»¿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Shared/ContentInside.Master"
+<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Shared/ContentInside.Master"
     Inherits="System.Web.Mvc.ViewPage<Cn.Loosoft.Zhisou.SunPower.Domain.Plant>" %>
 
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
 <%@ Import Namespace="System.Globalization" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>
-    <%=Resources.SunResource.ADMIN_USER_LIST_USER_LIST%>
+    <%=Resources.SunResource.ENERGY_RATE_TITLE%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -254,7 +255,7 @@
                             </tr>
                             <tr>
                                 <td height="35" style="padding-left: 5px;">
-                                    <span style="padding-right: 5px;"><%=Resources.SunResource.COMPENSATION_VALUE%>(kWh)ï¼š <span class="red">*</span></span>
+                                    <span style="padding-right: 5px;"><%=Resources.SunResource.COMPENSATION_VALUE%>(kWh): <span class="red">*</span></span>
                                 </td>
                                 <td style="padding-left: 5px;">
                                     <input name="compensation" type="text" class="txtbu01" value="" id="compensation" />
@@ -266,7 +267,14 @@
                                     &nbsp;
                                 </td>
                                 <td style="padding-left: 5px;">
+                                <%if (UserUtil.getCurUser().username != UserUtil.demousername)
+                                  { %>
                                     <input name="btnsave" type="submit" class="subbu01" id="btnsave" value="<%=Resources.SunResource.PLANT_ADDPLANT_SAVE%>" />
+                                    <%}
+                                  else
+                                  { %>
+                                    <input name="btnsave" type="submit" class="subbu09" value="<%=Resources.SunResource.PLANT_ADDPLANT_SAVE%>" />
+                                  <%} %>
                                     <input name="Submit232222" type="submit" class="subbu01" value="<%=Resources.SunResource.MONITORITEM_RESET%>" />
                                 </td>
                             </tr>
@@ -302,7 +310,7 @@
                             <tr>
                                 <td width="8%" height="35">
                                     <span style="padding-left: 5px;">
-                                        <%=Resources.SunResource.CUSTOMREPORT_TIME%>ï¼š</span>
+                                        <%=Resources.SunResource.CUSTOMREPORT_TIME%>:</span>
                                 </td>
                                 <td width="22%">
                                     <select name="datetype" id="date_type_slt">
@@ -314,26 +322,35 @@
                                 </td>
                                 <td width="10%" height="35">
                                     <span style="padding-left: 5px;">
-                                        <%=Resources.SunResource.PLANT_REPORTCONFIG_PLANT_NAME%>ï¼š</span>
+                                        <%=Resources.SunResource.PLANT_REPORTCONFIG_PLANT_NAME%>:</span>
                                 </td>
                                 <td width="20%" height="15">
                                     <%= Html.TextBox("plantname",string.Empty, new { @class="txtbu04", size="14"}) %>
                                 </td>
                                 <td width="10%" height="15">
                                     <span style="padding-left: 5px;">
-                                        <%=Resources.SunResource.PLANT_DEVICE_NAME%>ï¼š</span>
+                                        <%=Resources.SunResource.PLANT_DEVICE_NAME%>:</span>
                                 </td>
                                 <td width="17%" height="15">
                                     <%= Html.TextBox("devicename", string.Empty, new { @class = "txtbu04", size = "14" })%>
                                 </td>
                                 <td width="13%">
+                                
+                                  <%if (UserUtil.getCurUser().username != UserUtil.demousername)
+                                    { %>
                                     <input name="search" type="button" onclick="search();" class="subbu01" value="<%=Resources.SunResource.MONITORITEM_SEARCH%>" />
+                                    <%}
+                                    else
+                                    { %>
+                                    <input name="search" type="button"  class="subbu09" value="<%=Resources.SunResource.MONITORITEM_SEARCH%>" />
+                                    
+                                    <%} %>
                                 </td>
                             </tr>
                             <tr id="data_container" style="display: none">
                                 <td width="10%">
                                     <span style="padding-left: 5px;">
-                                        <%=Resources.SunResource.USER_LOG_STARTDAY%>ï¼š</span>
+                                        <%=Resources.SunResource.USER_LOG_STARTDAY%>£º</span>
                                 </td>
                                 <td width="20%">
                                     <input name="startDate" id="startDate" onclick="WdatePicker({isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});"
@@ -342,7 +359,7 @@
                                 </td>
                                 <td width="11%">
                                     <span style="padding-left: 5px;">
-                                        <%=Resources.SunResource.USER_LOG_ENDDAY%>ï¼š</span>
+                                        <%=Resources.SunResource.USER_LOG_ENDDAY%>£º</span>
                                 </td>
                                 <td width="16%">
                                     <input name="endDate" id="endDate" type="text" class="txtbu04 Wdate" onclick="WdatePicker({isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});"

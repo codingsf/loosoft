@@ -2,8 +2,8 @@
 
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
 <%@ Import Namespace="System.Globalization" %>
-
 <table width="100%" cellpadding="0" cellspacing="0" style="line-height: 24px; text-align: center">
     <tr>
         <td width="33%" height="25" class="subline02">
@@ -39,10 +39,19 @@
             kWh
         </td>
         <td class="down_line01">
+            <%if (UserUtil.getCurUser().username != UserUtil.demousername)
+              { %>
             <a href="javascript:edititem(<%=item.type %>,'<%=item.DateStr  %>','<%=item.dataValue %>',<%=item.id %>,'<%=item.isplant %>','<%=item.plantid %>')">
                 <img src="/images/sub/pencil.gif" width="16" height="16" border="0" /></a> &nbsp;
             <a href="javascript:delitem(<%=item.id %>)">
                 <img src="/images/sub/cross.gif" width="16" height="16" border="0" /></a>
+            <%}
+              else
+              { %>
+            <img src="/images/sub/pencil0.gif" width="16" height="16" border="0" />
+            &nbsp;
+            <img src="/images/sub/cross00.gif" width="16" height="16" border="0" />
+            <%} %>
         </td>
     </tr>
     <%} %>

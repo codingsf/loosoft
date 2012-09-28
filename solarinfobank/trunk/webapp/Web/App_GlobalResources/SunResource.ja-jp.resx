@@ -5129,9 +5129,13 @@
     <value>タイトルを入力してください</value>
   </data>
   <data name="QA_SUBTITLE_DESCR" xml:space="preserve">
-    <value>You are in our troubleshooting system for all service queries. By entering a search
-                                query, you can receive useful information and valuable tips on our inverters, communication
-                                products and software programs.</value>
+    <value>You are in our troubleshooting system
+for all service queries. By entering a search
+query, you can receive useful information and
+valuable tips on our inverters,
+communication products and
+software programs.
+</value>
   </data>
   <data name="QA_TEXTAREA_WORDS_COUNTER" xml:space="preserve">
     <value>您还可以输&lt;span id="wordLength"&gt;500&lt;/span&gt;个字</value>
@@ -5215,6 +5219,11 @@
   </data>
   <data name="HOME_INDEX_FAQ" xml:space="preserve">
     <value>FAQ</value>
+  </data>
+  <data name="PLANT_ENERGYFILTER_SUBTITLE" xml:space="preserve">
+    <value>Lower or higher than each kWp Power
+The average value of coefficient will trigger warning
+</value>
   </data>
   <data name="workstatusduanlu" xml:space="preserve">
     <value>短絡</value>

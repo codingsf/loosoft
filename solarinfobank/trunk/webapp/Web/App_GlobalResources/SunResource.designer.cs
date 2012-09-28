@@ -7604,6 +7604,17 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 Lower or higher than each kWp Power
+        ///The average value of coefficient will trigger warning
+        /// 的本地化字符串。
+        /// </summary>
+        internal static string PLANT_ENERGYFILTER_SUBTITLE {
+            get {
+                return ResourceManager.GetString("PLANT_ENERGYFILTER_SUBTITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Predictive value 的本地化字符串。
         /// </summary>
         internal static string PLANT_ENERGY_FORECAST_VALUE {
@@ -9374,9 +9385,13 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 You are in our troubleshooting system for all service queries. By entering a search
-        ///                                query, you can receive useful information and valuable tips on our inverters, communication
-        ///                                products and software programs. 的本地化字符串。
+        ///   查找类似 You are in our troubleshooting system
+        ///for all service queries. By entering a search
+        ///query, you can receive useful information and
+        ///valuable tips on our inverters,
+        ///communication products and
+        ///software programs.
+        /// 的本地化字符串。
         /// </summary>
         internal static string QA_SUBTITLE_DESCR {
             get {

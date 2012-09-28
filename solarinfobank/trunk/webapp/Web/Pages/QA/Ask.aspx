@@ -1,4 +1,4 @@
-<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Cn.Loosoft.Zhisou.SunPower.Domain.QA>>"
+    <%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Cn.Loosoft.Zhisou.SunPower.Domain.QA>>"
     MasterPageFile="~/Pages/Shared/Index.Master" %>
 
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>

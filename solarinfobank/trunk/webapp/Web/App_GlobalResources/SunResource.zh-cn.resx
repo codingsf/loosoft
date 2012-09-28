@@ -5224,7 +5224,7 @@
     <value>标题</value>
   </data>
   <data name="ENERGY_RATE_ADD_SUCCESS" xml:space="preserve">
-    <value>发电量补偿设置成功</value>
+    <value>设置成功</value>
   </data>
   <data name="INSIDE_ENERGY_RATE" xml:space="preserve">
     <value>逆变器比较</value>
@@ -5278,7 +5278,7 @@
     <value>发电量补偿</value>
   </data>
   <data name="HOME_INDEX_VIEWMORE" xml:space="preserve">
-    <value>View More</value>
+    <value>查看更多</value>
   </data>
   <data name="HIGHT_RATE" xml:space="preserve">
     <value>过高系数</value>

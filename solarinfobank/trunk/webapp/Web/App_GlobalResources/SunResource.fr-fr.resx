@@ -4938,13 +4938,13 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
     <comment>额定输出功率</comment>
   </data>
   <data name="HOME_INDEX_RELOAD_VALIDATECODE" xml:space="preserve">
-    <value>点击更换图片</value>
+    <value>Cliquez pour remplacer l'image</value>
   </data>
   <data name="HOME_INDEX_VALIDATECODE" xml:space="preserve">
-    <value>验证码</value>
+    <value>Code de vérification</value>
   </data>
   <data name="INVERTER_EDIT_POWER_RATIO" xml:space="preserve">
-    <value>发电量比例</value>
+    <value>rapport d'énergie</value>
   </data>
   <data name="DEVICEMONITORITEM_141" xml:space="preserve">
     <value>état de défaut</value>
@@ -5085,24 +5085,24 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
     <comment>briseur</comment>
   </data>
   <data name="digitalinputdlq0" xml:space="preserve">
-    <value>闭合</value>
-    <comment>闭合</comment>
+    <value>fermeture</value>
+    <comment>fermeture</comment>
   </data>
   <data name="digitalinputdlq1" xml:space="preserve">
-    <value>脱扣或者断开</value>
-    <comment>脱扣或者断开</comment>
+    <value>déclenchement ou ouverte</value>
+    <comment>déclenchement ou ouverte</comment>
   </data>
   <data name="digitalinputflq" xml:space="preserve">
-    <value>防雷器</value>
-    <comment>防雷器</comment>
+    <value>SPD</value>
+    <comment>SPD</comment>
   </data>
   <data name="digitalinputflq0" xml:space="preserve">
-    <value>故障</value>
-    <comment>故障</comment>
+    <value>faute</value>
+    <comment>faute</comment>
   </data>
   <data name="digitalinputflq1" xml:space="preserve">
-    <value>正常</value>
-    <comment>正常</comment>
+    <value>normal</value>
+    <comment>normal</comment>
   </data>
   <data name="PREVIOUS_STEP" xml:space="preserve">
     <value>Précédent</value>
@@ -5122,19 +5122,19 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
     <comment>历史运行数据</comment>
   </data>
   <data name="QA_BUTTON_ASK" xml:space="preserve">
-    <value>提问</value>
+    <value>interroger</value>
   </data>
   <data name="QA_CONTENT" xml:space="preserve">
-    <value>内容</value>
+    <value>teneur</value>
   </data>
   <data name="QA_NOTICE" xml:space="preserve">
-    <value>请在下面填写您的问题</value>
+    <value>S'il vous plaît remplir votre question</value>
   </data>
   <data name="QA_NOTICE_CONTENT" xml:space="preserve">
-    <value>请输入提问内容</value>
+    <value>S'il vous plaît entrez le Q &amp; A contenu</value>
   </data>
   <data name="QA_NOTICE_TITLE" xml:space="preserve">
-    <value>请输入标题</value>
+    <value>S'il vous plaît entrez un titre</value>
   </data>
   <data name="QA_SUBTITLE_DESCR" xml:space="preserve">
     <value>You are in our troubleshooting system for all service queries. By entering a search
@@ -5145,19 +5145,19 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
     <value>您还可以输&lt;span id="wordLength"&gt;500&lt;/span&gt;个字</value>
   </data>
   <data name="QA_TITLE" xml:space="preserve">
-    <value>标题</value>
+    <value>titre</value>
   </data>
   <data name="ENERGY_RATE_TITLE" xml:space="preserve">
     <value>发电量补偿</value>
   </data>
   <data name="ENERGY_RATE_ADD_SUCCESS" xml:space="preserve">
-    <value>发电量补偿设置成功</value>
+    <value>réglage de la compensation</value>
   </data>
   <data name="INSIDE_ENERGY_RATE" xml:space="preserve">
-    <value>发电量系数</value>
+    <value>coefficient de l'énergie</value>
   </data>
   <data name="PLANT_ENERGY_FORECAST_VALUE" xml:space="preserve">
-    <value>预测值</value>
+    <value>La valeur prédictive</value>
   </data>
   <data name="COMPENSATION_LAST_SEVEN_DAYS" xml:space="preserve">
     <value>Les sept derniers jours</value>
@@ -5192,35 +5192,48 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
     <comment>Compensation de l'énergie quotidienne</comment>
   </data>
   <data name="MONTH_COMPENSATION_ENERGY" xml:space="preserve">
-    <value>月发电量补偿</value>
+    <value>Indemnité mensuelle d'énergie</value>
   </data>
   <data name="TOTAL_COMPENSATION_ENERGY" xml:space="preserve">
-    <value>累计发电量补偿</value>
+    <value>la rémunération totale d'énergie</value>
   </data>
   <data name="YEAR_COMPENSATION_ENERGY" xml:space="preserve">
-    <value>年发电量补偿</value>
+    <value>La rémunération annuelle d'énergie</value>
   </data>
   <data name="ENERGYWARN_PERCENT" xml:space="preserve">
-    <value>实际比率</value>
+    <value>rapport réel</value>
     <comment>实际比率</comment>
   </data>
   <data name="SHARED_INSIDEMASTERPAGE_ENERGYWARN" xml:space="preserve">
-    <value>设备发电量告警</value>
+    <value>Génération journal d'avertissement de capacité</value>
     <comment>设备发电量告警</comment>
   </data>
   <data name="ENERGY_RATE" xml:space="preserve">
-    <value>发电量补偿</value>
+    <value>Génération de compensation capacité</value>
+    <comment>Génération de compensation capacité</comment>
   </data>
   <data name="HOME_INDEX_VIEWMORE" xml:space="preserve">
-    <value>View More</value>
+    <value>Plus d'informations ...</value>
   </data>
   <data name="HIGHT_RATE" xml:space="preserve">
-    <value>过高系数</value>
+    <value>Haut coefficient</value>
   </data>
   <data name="LOW_RATE" xml:space="preserve">
-    <value>过低系数</value>
+    <value>Basse-Coefficient</value>
   </data>
   <data name="HOME_INDEX_FAQ" xml:space="preserve">
     <value>FAQ</value>
+  </data>
+  <data name="workstatusduanlu" xml:space="preserve">
+    <value>court</value>
+    <comment>短路</comment>
+  </data>
+  <data name="workstatusflq0" xml:space="preserve">
+    <value>SPD est normal</value>
+    <comment>正常</comment>
+  </data>
+  <data name="workstatusflq1" xml:space="preserve">
+    <value>l'échec du SPD</value>
+    <comment>故障</comment>
   </data>
 </root>

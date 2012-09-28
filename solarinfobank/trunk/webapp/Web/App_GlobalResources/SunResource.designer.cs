@@ -4726,7 +4726,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 闭合 的本地化字符串。
+        ///   查找类似 Closure 的本地化字符串。
         /// </summary>
         internal static string digitalinputdlq0 {
             get {
@@ -4735,7 +4735,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 脱扣或者断开 的本地化字符串。
+        ///   查找类似 tripping or open 的本地化字符串。
         /// </summary>
         internal static string digitalinputdlq1 {
             get {
@@ -4744,7 +4744,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 防雷器 的本地化字符串。
+        ///   查找类似 SPD 的本地化字符串。
         /// </summary>
         internal static string digitalinputflq {
             get {
@@ -4753,7 +4753,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 故障 的本地化字符串。
+        ///   查找类似 Fault 的本地化字符串。
         /// </summary>
         internal static string digitalinputflq0 {
             get {
@@ -4762,7 +4762,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 正常 的本地化字符串。
+        ///   查找类似 Normal 的本地化字符串。
         /// </summary>
         internal static string digitalinputflq1 {
             get {
@@ -4789,7 +4789,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 实际比率 的本地化字符串。
+        ///   查找类似 Actual ratio 的本地化字符串。
         /// </summary>
         internal static string ENERGYWARN_PERCENT {
             get {
@@ -4798,7 +4798,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 发电量补偿 的本地化字符串。
+        ///   查找类似 Generating capacity compensation 的本地化字符串。
         /// </summary>
         internal static string ENERGY_RATE {
             get {
@@ -4807,7 +4807,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 发电量补偿设置成功 的本地化字符串。
+        ///   查找类似 compensation setting 的本地化字符串。
         /// </summary>
         internal static string ENERGY_RATE_ADD_SUCCESS {
             get {
@@ -5284,7 +5284,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 过高系数 的本地化字符串。
+        ///   查找类似 High-coefficient 的本地化字符串。
         /// </summary>
         internal static string HIGHT_RATE {
             get {
@@ -5470,7 +5470,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 点击更换图片 的本地化字符串。
+        ///   查找类似 Click to replace the picture 的本地化字符串。
         /// </summary>
         internal static string HOME_INDEX_RELOAD_VALIDATECODE {
             get {
@@ -5515,7 +5515,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 验证码 的本地化字符串。
+        ///   查找类似 Verification code 的本地化字符串。
         /// </summary>
         internal static string HOME_INDEX_VALIDATECODE {
             get {
@@ -5533,7 +5533,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 View More 的本地化字符串。
+        ///   查找类似 More… 的本地化字符串。
         /// </summary>
         internal static string HOME_INDEX_VIEWMORE {
             get {
@@ -5596,7 +5596,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 发电量系数 的本地化字符串。
+        ///   查找类似 Energy coefficient 的本地化字符串。
         /// </summary>
         internal static string INSIDE_ENERGY_RATE {
             get {
@@ -5623,7 +5623,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 发电量比例 的本地化字符串。
+        ///   查找类似 Energy ratio 的本地化字符串。
         /// </summary>
         internal static string INVERTER_EDIT_POWER_RATIO {
             get {
@@ -5659,7 +5659,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 过低系数 的本地化字符串。
+        ///   查找类似 Lower-Coefficient 的本地化字符串。
         /// </summary>
         internal static string LOW_RATE {
             get {
@@ -6190,7 +6190,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 月发电量补偿 的本地化字符串。
+        ///   查找类似 Monthly energy  compensation 的本地化字符串。
         /// </summary>
         internal static string MONTH_COMPENSATION_ENERGY {
             get {
@@ -7604,7 +7604,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 预测值 的本地化字符串。
+        ///   查找类似 Predictive value 的本地化字符串。
         /// </summary>
         internal static string PLANT_ENERGY_FORECAST_VALUE {
             get {
@@ -9326,7 +9326,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 提问 的本地化字符串。
+        ///   查找类似 Ask 的本地化字符串。
         /// </summary>
         internal static string QA_BUTTON_ASK {
             get {
@@ -9335,7 +9335,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 内容 的本地化字符串。
+        ///   查找类似 Content 的本地化字符串。
         /// </summary>
         internal static string QA_CONTENT {
             get {
@@ -9344,7 +9344,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 请在下面填写您的问题 的本地化字符串。
+        ///   查找类似 Please fill in your question
+        /// 的本地化字符串。
         /// </summary>
         internal static string QA_NOTICE {
             get {
@@ -9353,7 +9354,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 请输入提问内容 的本地化字符串。
+        ///   查找类似 Please enter the Q &amp; A content
+        /// 的本地化字符串。
         /// </summary>
         internal static string QA_NOTICE_CONTENT {
             get {
@@ -9362,7 +9364,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 请输入标题 的本地化字符串。
+        ///   查找类似 Please enter a title
+        /// 的本地化字符串。
         /// </summary>
         internal static string QA_NOTICE_TITLE {
             get {
@@ -9391,7 +9394,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 标题 的本地化字符串。
+        ///   查找类似 Title
+        /// 的本地化字符串。
         /// </summary>
         internal static string QA_TITLE {
             get {
@@ -10543,7 +10547,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 设备发电量告警 的本地化字符串。
+        ///   查找类似 Generating capacity warning log
+        /// 的本地化字符串。
         /// </summary>
         internal static string SHARED_INSIDEMASTERPAGE_ENERGYWARN {
             get {
@@ -11497,7 +11502,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 累计发电量补偿 的本地化字符串。
+        ///   查找类似 total energy  compensation 的本地化字符串。
         /// </summary>
         internal static string TOTAL_COMPENSATION_ENERGY {
             get {
@@ -13958,7 +13963,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 短路 的本地化字符串。
+        ///   查找类似 Short 的本地化字符串。
         /// </summary>
         internal static string workstatusduanlu {
             get {
@@ -13985,7 +13990,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 防雷器 normal 的本地化字符串。
+        ///   查找类似 SPD is normal
+        /// 的本地化字符串。
         /// </summary>
         internal static string workstatusflq0 {
             get {
@@ -13994,7 +14000,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 防雷器 Fault 的本地化字符串。
+        ///   查找类似 SPD failure 的本地化字符串。
         /// </summary>
         internal static string workstatusflq1 {
             get {
@@ -14102,7 +14108,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 年发电量补偿 的本地化字符串。
+        ///   查找类似 Annual energy  compensation 的本地化字符串。
         /// </summary>
         internal static string YEAR_COMPENSATION_ENERGY {
             get {

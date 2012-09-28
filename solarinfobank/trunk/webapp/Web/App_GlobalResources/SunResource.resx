@@ -5115,13 +5115,13 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <comment>设备运行数据</comment>
   </data>
   <data name="HOME_INDEX_RELOAD_VALIDATECODE" xml:space="preserve">
-    <value>点击更换图片</value>
+    <value>Click to replace the picture</value>
   </data>
   <data name="HOME_INDEX_VALIDATECODE" xml:space="preserve">
-    <value>验证码</value>
+    <value>Verification code</value>
   </data>
   <data name="INVERTER_EDIT_POWER_RATIO" xml:space="preserve">
-    <value>发电量比例</value>
+    <value>Energy ratio</value>
   </data>
   <data name="DEVICEMONITORITEM_141" xml:space="preserve">
     <value>Fault state</value>
@@ -5192,7 +5192,7 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <comment>故障</comment>
   </data>
   <data name="workstatusduanlu" xml:space="preserve">
-    <value>短路</value>
+    <value>Short</value>
     <comment>短路</comment>
   </data>
   <data name="workstatusduanlu0" xml:space="preserve">
@@ -5204,11 +5204,12 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <comment>故障</comment>
   </data>
   <data name="workstatusflq0" xml:space="preserve">
-    <value>防雷器 normal</value>
+    <value>SPD is normal
+</value>
     <comment>正常</comment>
   </data>
   <data name="workstatusflq1" xml:space="preserve">
-    <value>防雷器 Fault</value>
+    <value>SPD failure</value>
     <comment>故障</comment>
   </data>
   <data name="workstatusjnwd0" xml:space="preserve">
@@ -5339,24 +5340,24 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <comment>Breaker</comment>
   </data>
   <data name="digitalinputdlq0" xml:space="preserve">
-    <value>闭合</value>
-    <comment>闭合</comment>
+    <value>Closure</value>
+    <comment>Closure</comment>
   </data>
   <data name="digitalinputdlq1" xml:space="preserve">
-    <value>脱扣或者断开</value>
-    <comment>脱扣或者断开</comment>
+    <value>tripping or open</value>
+    <comment>tripping or open</comment>
   </data>
   <data name="digitalinputflq" xml:space="preserve">
-    <value>防雷器</value>
-    <comment>防雷器</comment>
+    <value>SPD</value>
+    <comment>SPD</comment>
   </data>
   <data name="digitalinputflq0" xml:space="preserve">
-    <value>故障</value>
-    <comment>故障</comment>
+    <value>Fault</value>
+    <comment>Fault</comment>
   </data>
   <data name="digitalinputflq1" xml:space="preserve">
-    <value>正常</value>
-    <comment>正常</comment>
+    <value>Normal</value>
+    <comment>Normal</comment>
   </data>
   <data name="PREVIOUS_STEP" xml:space="preserve">
     <value>Previous</value>
@@ -5378,19 +5379,22 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <comment>历史运行数据</comment>
   </data>
   <data name="QA_BUTTON_ASK" xml:space="preserve">
-    <value>提问</value>
+    <value>Ask</value>
   </data>
   <data name="QA_CONTENT" xml:space="preserve">
-    <value>内容</value>
+    <value>Content</value>
   </data>
   <data name="QA_NOTICE" xml:space="preserve">
-    <value>请在下面填写您的问题</value>
+    <value>Please fill in your question
+</value>
   </data>
   <data name="QA_NOTICE_CONTENT" xml:space="preserve">
-    <value>请输入提问内容</value>
+    <value>Please enter the Q &amp; A content
+</value>
   </data>
   <data name="QA_NOTICE_TITLE" xml:space="preserve">
-    <value>请输入标题</value>
+    <value>Please enter a title
+</value>
   </data>
   <data name="QA_SUBTITLE_DESCR" xml:space="preserve">
     <value>You are in our troubleshooting system for all service queries. By entering a search
@@ -5401,19 +5405,20 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <value>您还可以输&lt;span id="wordLength"&gt;500&lt;/span&gt;个字</value>
   </data>
   <data name="QA_TITLE" xml:space="preserve">
-    <value>标题</value>
+    <value>Title
+</value>
   </data>
   <data name="ENERGY_RATE_TITLE" xml:space="preserve">
     <value>发电量补偿</value>
   </data>
   <data name="ENERGY_RATE_ADD_SUCCESS" xml:space="preserve">
-    <value>发电量补偿设置成功</value>
+    <value>compensation setting</value>
   </data>
   <data name="INSIDE_ENERGY_RATE" xml:space="preserve">
-    <value>发电量系数</value>
+    <value>Energy coefficient</value>
   </data>
   <data name="PLANT_ENERGY_FORECAST_VALUE" xml:space="preserve">
-    <value>预测值</value>
+    <value>Predictive value</value>
   </data>
   <data name="COMPENSATION_LAST_SEVEN_DAYS" xml:space="preserve">
     <value>Last seven days
@@ -5449,36 +5454,38 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <comment>Daily energy  compensation</comment>
   </data>
   <data name="MONTH_COMPENSATION_ENERGY" xml:space="preserve">
-    <value>月发电量补偿</value>
+    <value>Monthly energy  compensation</value>
   </data>
   <data name="TOTAL_COMPENSATION_ENERGY" xml:space="preserve">
-    <value>累计发电量补偿</value>
+    <value>total energy  compensation</value>
   </data>
   <data name="YEAR_COMPENSATION_ENERGY" xml:space="preserve">
-    <value>年发电量补偿</value>
+    <value>Annual energy  compensation</value>
   </data>
   <data name="PLANT_CODE" xml:space="preserve">
     <value>Plant</value>
   </data>
   <data name="ENERGYWARN_PERCENT" xml:space="preserve">
-    <value>实际比率</value>
+    <value>Actual ratio</value>
     <comment>实际比率</comment>
   </data>
   <data name="SHARED_INSIDEMASTERPAGE_ENERGYWARN" xml:space="preserve">
-    <value>设备发电量告警</value>
+    <value>Generating capacity warning log
+</value>
     <comment>设备发电量告警</comment>
   </data>
   <data name="ENERGY_RATE" xml:space="preserve">
-    <value>发电量补偿</value>
+    <value>Generating capacity compensation</value>
+    <comment>Generating capacity compensation</comment>
   </data>
   <data name="HOME_INDEX_VIEWMORE" xml:space="preserve">
-    <value>View More</value>
+    <value>More…</value>
   </data>
   <data name="HIGHT_RATE" xml:space="preserve">
-    <value>过高系数</value>
+    <value>High-coefficient</value>
   </data>
   <data name="LOW_RATE" xml:space="preserve">
-    <value>过低系数</value>
+    <value>Lower-Coefficient</value>
   </data>
   <data name="HOME_INDEX_FAQ" xml:space="preserve">
     <value>FAQ</value>

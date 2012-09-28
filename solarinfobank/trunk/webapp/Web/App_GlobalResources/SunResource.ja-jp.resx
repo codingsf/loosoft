@@ -4933,13 +4933,13 @@
     <value>実行</value>
   </data>
   <data name="HOME_INDEX_RELOAD_VALIDATECODE" xml:space="preserve">
-    <value>点击更换图片</value>
+    <value>絵を交換する場合にクリックし</value>
   </data>
   <data name="HOME_INDEX_VALIDATECODE" xml:space="preserve">
-    <value>验证码</value>
+    <value>検証コード</value>
   </data>
   <data name="INVERTER_EDIT_POWER_RATIO" xml:space="preserve">
-    <value>发电量比例</value>
+    <value>発電量の割合</value>
   </data>
   <data name="DEVICEMONITORITEM_141" xml:space="preserve">
     <value>フォールト状態</value>
@@ -5077,24 +5077,24 @@
     <comment>ブレーカー</comment>
   </data>
   <data name="digitalinputdlq0" xml:space="preserve">
-    <value>闭合</value>
-    <comment>闭合</comment>
+    <value>閉鎖</value>
+    <comment>閉鎖</comment>
   </data>
   <data name="digitalinputdlq1" xml:space="preserve">
-    <value>脱扣或者断开</value>
-    <comment>脱扣或者断开</comment>
+    <value>つまずいたり、切断</value>
+    <comment>つまずいたり、切断</comment>
   </data>
   <data name="digitalinputflq" xml:space="preserve">
-    <value>防雷器</value>
-    <comment>防雷器</comment>
+    <value>SPD</value>
+    <comment>SPD</comment>
   </data>
   <data name="digitalinputflq0" xml:space="preserve">
-    <value>故障</value>
-    <comment>故障</comment>
+    <value>障害</value>
+    <comment>障害</comment>
   </data>
   <data name="digitalinputflq1" xml:space="preserve">
-    <value>正常</value>
-    <comment>正常</comment>
+    <value>ノーマル</value>
+    <comment>ノーマル</comment>
   </data>
   <data name="PREVIOUS_STEP" xml:space="preserve">
     <value>前</value>
@@ -5114,19 +5114,19 @@
     <comment>历史运行数据</comment>
   </data>
   <data name="QA_BUTTON_ASK" xml:space="preserve">
-    <value>提问</value>
+    <value>質問する</value>
   </data>
   <data name="QA_CONTENT" xml:space="preserve">
-    <value>内容</value>
+    <value>コンテンツ</value>
   </data>
   <data name="QA_NOTICE" xml:space="preserve">
-    <value>请在下面填写您的问题</value>
+    <value>下のあなたの質問にご記入ください</value>
   </data>
   <data name="QA_NOTICE_CONTENT" xml:space="preserve">
-    <value>请输入提问内容</value>
+    <value>Q＆Aコンテンツを入力してください</value>
   </data>
   <data name="QA_NOTICE_TITLE" xml:space="preserve">
-    <value>请输入标题</value>
+    <value>タイトルを入力してください</value>
   </data>
   <data name="QA_SUBTITLE_DESCR" xml:space="preserve">
     <value>You are in our troubleshooting system for all service queries. By entering a search
@@ -5137,19 +5137,19 @@
     <value>您还可以输&lt;span id="wordLength"&gt;500&lt;/span&gt;个字</value>
   </data>
   <data name="QA_TITLE" xml:space="preserve">
-    <value>标题</value>
+    <value>タイトル</value>
   </data>
   <data name="ENERGY_RATE_TITLE" xml:space="preserve">
     <value>发电量补偿</value>
   </data>
   <data name="ENERGY_RATE_ADD_SUCCESS" xml:space="preserve">
-    <value>发电量补偿设置成功</value>
+    <value>正常に設定されました</value>
   </data>
   <data name="INSIDE_ENERGY_RATE" xml:space="preserve">
-    <value>发电量系数</value>
+    <value>容量係数の生成</value>
   </data>
   <data name="PLANT_ENERGY_FORECAST_VALUE" xml:space="preserve">
-    <value>预测值</value>
+    <value>予測値</value>
   </data>
   <data name="COMPENSATION_LAST_SEVEN_DAYS" xml:space="preserve">
     <value>最後の7日間</value>
@@ -5184,35 +5184,48 @@
     <comment>補償の毎日の発電量</comment>
   </data>
   <data name="MONTH_COMPENSATION_ENERGY" xml:space="preserve">
-    <value>月发电量补偿</value>
+    <value>毎月のエネルギー出力補償</value>
   </data>
   <data name="TOTAL_COMPENSATION_ENERGY" xml:space="preserve">
-    <value>累计发电量补偿</value>
+    <value>累積発電容量の補償</value>
   </data>
   <data name="YEAR_COMPENSATION_ENERGY" xml:space="preserve">
-    <value>年发电量补偿</value>
+    <value>発電容量の警告ログ</value>
   </data>
   <data name="ENERGYWARN_PERCENT" xml:space="preserve">
-    <value>实际比率</value>
+    <value>実際の率</value>
     <comment>实际比率</comment>
   </data>
   <data name="SHARED_INSIDEMASTERPAGE_ENERGYWARN" xml:space="preserve">
-    <value>设备发电量告警</value>
+    <value>容量アラームを生成するデバイス</value>
     <comment>设备发电量告警</comment>
   </data>
   <data name="ENERGY_RATE" xml:space="preserve">
-    <value>发电量补偿</value>
+    <value>容量補正を生成</value>
+    <comment>容量補正を生成</comment>
   </data>
   <data name="HOME_INDEX_VIEWMORE" xml:space="preserve">
-    <value>View More</value>
+    <value>続きを見る</value>
   </data>
   <data name="HIGHT_RATE" xml:space="preserve">
-    <value>过高系数</value>
+    <value>高すぎる係数</value>
   </data>
   <data name="LOW_RATE" xml:space="preserve">
-    <value>过低系数</value>
+    <value>係数が低い</value>
   </data>
   <data name="HOME_INDEX_FAQ" xml:space="preserve">
     <value>FAQ</value>
+  </data>
+  <data name="workstatusduanlu" xml:space="preserve">
+    <value>短絡</value>
+    <comment>短路</comment>
+  </data>
+  <data name="workstatusflq0" xml:space="preserve">
+    <value>SPDは正常です</value>
+    <comment>正常</comment>
+  </data>
+  <data name="workstatusflq1" xml:space="preserve">
+    <value>SPDの故障</value>
+    <comment>故障</comment>
   </data>
 </root>

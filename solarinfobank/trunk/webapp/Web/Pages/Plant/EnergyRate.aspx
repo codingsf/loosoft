@@ -7,7 +7,7 @@
 <%@ Import Namespace="System.Globalization" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>
-     <%=Resources.SunResource.INSIDE_ENERGY_RATE%>
+    <%=Resources.SunResource.INSIDE_ENERGY_RATE%>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -18,7 +18,6 @@
     <script src="/script/jquery.validate.js" type="text/javascript"></script>
 
     <script type="text/javascript">
-
         function reset() {
             $("#confirmPassword").val('');
             $("#password").val('');
@@ -26,6 +25,21 @@
         }
 
         $().ready(function() {
+            $("#rateEnable").change(function() {
+                //$("#btnsubmit").removeClass("txtbu03");
+                //$("#btnsubmit").removeClass("txtbu06");
+                $(".txtbu01").attr("disabled", true);
+                //$("#btnsubmit").attr("disabled", true);
+                if ($(this).val() == "true") {
+                    $(".txtbu01").attr("disabled", false);
+                    //$("#btnsubmit").attr("disabled", false);
+                    //$("#btnsubmit").addClass("txtbu03");
+
+                } else {
+                    //$("#btnsubmit").addClass("txtbu06");
+                }
+            });
+            $("#rateEnable").change();
             $("#energyRate").get(0).focus();
             $("#userform").validate({
                 errorElement: "em",
@@ -33,12 +47,12 @@
                     energyRate: {
                         required: true,
                         number: true,
-                        min:0
+                        min: 0
                     },
                     maxEnergyRate: {
                         required: true,
                         number: true,
-                        min:0
+                        min: 0
                     }
                 },
                 errorPlacement: function(error, element) {
@@ -55,7 +69,7 @@
                 },
 
                 messages: {
-                energyRate: {
+                    energyRate: {
                         required: "<span class='error'>&nbsp;<%=Resources.SunResource.PAGECONFIG_MENU_ERROR1%></span>",
                         number: "<span class='error'>&nbsp;<%=Resources.SunResource.PAGECONFIG_MENU_ERROR1%></span>",
                         min: "<span class='error'>&nbsp;<%=Resources.SunResource.PAGECONFIG_MENU_ERROR1%></span>"
@@ -125,7 +139,8 @@
                                     <img src="/images/sub/subico010.gif" width="18" height="19" />
                                 </td>
                                 <td width="94%" class="f_14">
-                                    <strong><%=Resources.SunResource.INSIDE_ENERGY_RATE%></strong>
+                                    <strong>
+                                        <%=Resources.SunResource.INSIDE_ENERGY_RATE%></strong>
                                 </td>
                             </tr>
                         </table>
@@ -137,6 +152,23 @@
                             <%=Resources.SunResource.MONITORITEM_NOTE %>:*
                             <%=Resources.SunResource.MONITORITEM_FOR_MUST_FILL_IN_THE_ITEM %></div>
                         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                            <tr align="left">
+                                <td height="35" class="" align="left">
+                                    是否启用：
+                                </td>
+                            </tr>
+                            <tr align="left">
+                                <td height="35" class="" align="left">
+                                    <%=Html.DropDownListFor(model => model.rateEnable, new List<SelectListItem>(){
+                            new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_ENABLE, Value="true"},
+                            new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="false"}
+                            })%>
+                                </td>
+                            </tr>
+                            <tr align="left">
+                                <td align="left">
+                                </td>
+                            </tr>
                             <tr align="left">
                                 <td height="35" class="" align="left">
                                     <%=Resources.SunResource.LOW_RATE%>：
@@ -154,9 +186,7 @@
                                     <span id="error_energyrate"></span>
                                 </td>
                             </tr>
-                            
-                            
-                             <tr align="left">
+                            <tr align="left">
                                 <td height="35" class="" align="left">
                                     <%=Resources.SunResource.HIGHT_RATE%>：
                                 </td>
@@ -172,8 +202,6 @@
                                     <span id="error_maxEnergyRate"></span>
                                 </td>
                             </tr>
-                            
-                            
                             <tr>
                                 <td height="35" class="" align="left">
                                     <%= ViewData["error"] %>
@@ -191,7 +219,8 @@
                                 <%
                                     if (AuthService.isAllow(AuthorizationCode.USER_CHANGE_PASSWORD))
                                     { %>
-                                <input name="Submit2" type="submit" class="txtbu03" value=" <%=Resources.SunResource.MONITORITEM_SAVE %> " />
+                                <input name="Submit2" type="submit" class="txtbu03" value=" <%=Resources.SunResource.MONITORITEM_SAVE %> "
+                                    id="btnsubmit" />
                                 <%}
                                     else
                                     { %>

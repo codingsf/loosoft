@@ -1324,6 +1324,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         //发电量比例系数
         public double? energyRate { get; set; }
         public double? maxEnergyRate { get; set; }
+        public bool rateEnable { get; set; }//是否启用比例系数
 
     }
 }

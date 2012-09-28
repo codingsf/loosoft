@@ -1898,11 +1898,11 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
         /// <returns></returns>
         public ActionResult EnergyFilter(int? id, int? uid, string yyyyMMdd)
         {
-            User user = uid==null?null:UserService.GetInstance().Get(uid.Value);
+            User user = uid == null ? null : UserService.GetInstance().Get(uid.Value);
             IList<Plant> handlePlants = null;
             int timezone = 0;
             Plant curPlant = null;
-            if (id!=null && id.Value != 0)
+            if (id != null && id.Value != 0)
             {
                 curPlant = PlantService.GetInstance().GetPlantInfoById(id.Value);
                 timezone = curPlant.timezone;
@@ -1973,7 +1973,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
                         data["energy"] = Math.Round(dmdd.getDayData(day), 2);
                         data["average"] = Math.Round(aveageEnergy, 2);
                         data["rate"] = plant.energyRate;
-                        data["prate"] = rate+"/"+plant.energyRate;
+                        data["prate"] = rate + "/" + plant.energyRate;
                         datas.Add(data);
                     }
                 }
@@ -2684,9 +2684,11 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
         {
             double? rate = plant.energyRate;
             double? maxRate = plant.maxEnergyRate;
+            bool rateEnable = plant.rateEnable;
             plant = plantService.GetPlantInfoById(plant.id);
             plant.energyRate = rate;
             plant.maxEnergyRate = maxRate;
+            plant.rateEnable = rateEnable;
             plantService.UpdatePlantInfo(plant);
             return View("energyrate", plant);
         }

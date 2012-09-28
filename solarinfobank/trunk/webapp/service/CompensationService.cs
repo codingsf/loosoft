@@ -36,6 +36,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         {
             if (compensation.id > 0)
                 return _compensationDao.Update(compensation);
+
+            IList<Compensation> compensations = _compensationDao.getCompensations(compensation.plantid, compensation.isplant, compensation.type, compensation.year.ToString(), compensation.month.ToString());
+
+            if (compensation.day > 0 && compensations.Count > 0)
+            {
+                var compen = compensations.Where(m => m.day.Equals(compensation.day)).FirstOrDefault<Compensation>();
+                if (compen != null)
+                    _compensationDao.Remove(compen);
+            }
+            if (compensations.Count > 0 && compensation.day == 0)
+                foreach (Compensation comp in compensations)
+                    _compensationDao.Remove(comp);
             return _compensationDao.Insert(compensation);
         }
 
@@ -44,14 +56,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// 给具体补偿对象根据补偿类型进行发电量补偿
         /// </summary>
         private void addEnergy(Compensation compensation)
-        { 
+        {
             //取得补偿对象
             if (compensation.isplant)//电站补偿对象
             {
 
             }
-            else { 
-            
+            else
+            {
+
             }
         }
 

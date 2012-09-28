@@ -49,15 +49,15 @@
       <![CDATA[select * from compensation]]>
       <dynamic prepend="where">
         <isParameterPresent>
-          <isNotEmpty prepend="and" property="plantids">
-            plantid in ($plantids$)
+          <isNotEmpty prepend="or" property="plantid">
+            ((plantid in ($plantid$) and isplant=1)
           </isNotEmpty>
-          <isNotEmpty prepend="and" property="deviceids">
-            plantid in ($deviceids$)
+          <isNotEmpty prepend="or" property="deviceids">
+           (plantid in ($deviceids$) and isplant=0))
           </isNotEmpty>
           <isNotEmpty prepend="and" property="datefilter">
             <![CDATA[
-            compensation_date>#startDate# and compensation_date<#endDate#]]>
+           (compensation_date>#startDate# and compensation_date<#endDate#)]]>
           </isNotEmpty>
         </isParameterPresent>
       </dynamic>

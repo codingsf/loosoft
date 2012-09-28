@@ -2546,23 +2546,30 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
 
             Hashtable table = new Hashtable();
 
-            string plantname = Request.Form["plantname"];
-            ViewData["plantname"] = plantname;
-            if (string.IsNullOrEmpty(plantname) == false)
+            string searchtype = Request.Form["searchtype"];
+            if ("1".Equals(searchtype))//根据电站查询
             {
-                string plantids = string.Empty;
-                IList<Plant> plants = plantService.Getplantlikepname(plantname);
-                foreach (Plant plant in plants)
+                string plantid = Request.Form["plantid"];
+                int pid; int.TryParse(plantid, out pid);
+
+                table.Add("plantid", pid);
+                string dids = "-1";
+                Plant plant = plantService.GetPlantInfoById(pid);
+                foreach (PlantUnit unit in plant.plantUnits)
                 {
-                    if (plant.userID.Equals(user.id))
-                        plantids += string.Format("{0},", plant.id);
+                    foreach (Device device in unit.devices)
+                        dids += string.Format(",{0}", device.id);
                 }
-                if (plantids.LastIndexOf(',') > 0) plantids = plantids.Substring(0, plantids.Length - 1);
-                plantids = string.IsNullOrEmpty(plantids) ? "-1" : plantids;
-                table["plantids"] = plantids;
+                table.Add("deviceids", dids);
 
             }
+            else
+            {
+                table.Add("plantid", -1);
+                table.Add("deviceids", Request.Form["deviceid"]);
+            }
 
+            #region 时间类型
             string datetype = Request.Form["datetype"];
             if (string.IsNullOrEmpty(datetype) == false)
             {
@@ -2572,8 +2579,8 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
 
                     if (datetype.Equals("1"))//最近七天
                     {
-                        table["datefilter"] = DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd"); ;
-                        table["datefilter"] = DateTime.Now.ToString("yyyy-MM-dd");
+                        table["startDate"] = DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd"); ;
+                        table["endDate"] = DateTime.Now.ToString("yyyy-MM-dd");
                     }
                     else//指定日期
                     {
@@ -2582,20 +2589,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
                     }
                 }
             }
-
-            string devicename = Request.Form["devicename"];
-            if (string.IsNullOrEmpty(devicename) == false)
-            {
-                string deviceids = string.Empty;
-                IList<Device> devices = DeviceService.GetInstance().getDeviceListLikeName(devicename);
-                foreach (Device device in devices)
-                {
-                    deviceids += string.Format("{0},", device.id);
-                }
-                if (deviceids.LastIndexOf(',') > 0) deviceids = deviceids.Substring(0, deviceids.Length - 1);
-                deviceids = string.IsNullOrEmpty(deviceids) ? "-1" : deviceids;
-                table["deviceids"] = deviceids;
-            }
+            #endregion
 
             #endregion
             IList<Compensation> compensations = CompensationService.GetInstance().searchCompensation(table);

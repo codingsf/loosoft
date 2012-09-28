@@ -79,7 +79,7 @@
 
          function search(page)
          {
-           $.post("/plant/searchcompensation", {page:page,datetype:$("#date_type_slt").val(),plantname:$("#plantname").val(),devicename:$("#devicename").val(),startDate:$("#startDate").val(),endDate:$("#endDate").val()},
+           $.post("/plant/searchcompensation", {page:page,plantid:plantid, datetype:$("#date_type_slt").val(), searchtype:$("#searchtype").val(),deviceid:$("#searchdevice").val(),startDate:$("#startDate").val(),endDate:$("#endDate").val()},
                 function(data) {
                     $("#list_container").html(data);
                     parent.iFrameHeight();
@@ -97,8 +97,14 @@
                 parent.iFrameHeight();
                 $("#cid").val(0);
             });
-            
-            
+            $("#searchtype").change(function(){
+                $("#searchdevice").attr("disabled",false);
+                if($(this).val()=='1')
+                {   
+                    $("#searchdevice").attr("disabled",true);
+                }
+            })
+            $("#searchtype").change();
             $("#tabdevice").click(function(){
                 $(this).addClass('onclick');
                 $("#tabplant").removeClass('onclick');
@@ -329,17 +335,34 @@
                                 </td>
                                 <td width="10%" height="35">
                                     <span style="padding-left: 5px;">
-                                        <%=Resources.SunResource.PLANT_REPORTCONFIG_PLANT_NAME%>:</span>
+                                        <%-- <%=Resources.SunResource.PLANT_REPORTCONFIG_PLANT_NAME%>--%>补偿类型:</span>
                                 </td>
                                 <td width="20%" height="15">
-                                    <%= Html.TextBox("plantname",string.Empty, new { @class="txtbu04", size="14"}) %>
+                                    <%--<%= Html.TextBox("plantname",string.Empty, new { @class="txtbu04", size="14"}) %>--%>
+                                    <select id="searchtype">
+                                        <option value="1">电站</option>
+                                        <option value="0">设备</option>
+                                    </select>
                                 </td>
                                 <td width="10%" height="15">
                                     <span style="padding-left: 5px;">
                                         <%=Resources.SunResource.PLANT_DEVICE_NAME%>:</span>
                                 </td>
                                 <td width="17%" height="15">
-                                    <%= Html.TextBox("devicename", string.Empty, new { @class = "txtbu04", size = "14" })%>
+                                    <%-- <%= Html.TextBox("devicename", string.Empty, new { @class = "txtbu04", size = "14" })%>--%>
+                                    <select name="sltdevice" id="searchdevice">
+                                        <option selected="selected" value="0">
+                                            <%=Resources.SunResource.UDEVICE_PAGE_SELECT_DEVICE%></option>
+                                        <%foreach (PlantUnit unit in Model.plantUnits)
+                                          {%>
+                                        <optgroup label="<%=unit.displayname%>">
+                                        </optgroup>
+                                        <% foreach (Device device in unit.displayDevices)
+                                           { %>
+                                        <option value="<%=device.id %>">&nbsp;&nbsp;<%=device.fullName%></option>
+                                        <%}
+                                          } %>
+                                    </select>
                                 </td>
                                 <td width="13%">
                                     <%if (UserUtil.getCurUser().username != UserUtil.demousername)
@@ -355,7 +378,7 @@
                             <tr id="data_container" style="display: none">
                                 <td width="10%">
                                     <span style="padding-left: 5px;">
-                                        <%=Resources.SunResource.USER_LOG_STARTDAY%>��</span>
+                                        <%=Resources.SunResource.USER_LOG_STARTDAY%>：</span>
                                 </td>
                                 <td width="20%">
                                     <input name="startDate" id="startDate" onclick="WdatePicker({isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});"
@@ -364,7 +387,7 @@
                                 </td>
                                 <td width="11%">
                                     <span style="padding-left: 5px;">
-                                        <%=Resources.SunResource.USER_LOG_ENDDAY%>��</span>
+                                        <%=Resources.SunResource.USER_LOG_ENDDAY%>：</span>
                                 </td>
                                 <td width="16%">
                                     <input name="endDate" id="endDate" type="text" class="txtbu04 Wdate" onclick="WdatePicker({isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});"

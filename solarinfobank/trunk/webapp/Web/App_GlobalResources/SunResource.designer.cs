@@ -1564,7 +1564,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 最近七天 的本地化字符串。
+        ///   查找类似 Last seven days
+        /// 的本地化字符串。
         /// </summary>
         internal static string COMPENSATION_LAST_SEVEN_DAYS {
             get {
@@ -1573,7 +1574,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 补偿对象名称 的本地化字符串。
+        ///   查找类似 Name 的本地化字符串。
         /// </summary>
         internal static string COMPENSATION_OBJ_NAME {
             get {
@@ -1582,7 +1583,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 一段时间 的本地化字符串。
+        ///   查找类似 Time 的本地化字符串。
         /// </summary>
         internal static string COMPENSATION_PREIOD_TIME {
             get {
@@ -1591,7 +1592,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 补偿记录 的本地化字符串。
+        ///   查找类似 records
+        /// 的本地化字符串。
         /// </summary>
         internal static string COMPENSATION_RECORD {
             get {
@@ -1600,7 +1602,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 补偿时间 的本地化字符串。
+        ///   查找类似 time 的本地化字符串。
         /// </summary>
         internal static string COMPENSATION_TIME {
             get {
@@ -1609,7 +1611,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 补偿类型 的本地化字符串。
+        ///   查找类似 type 的本地化字符串。
         /// </summary>
         internal static string COMPENSATION_TYPE {
             get {
@@ -1618,7 +1620,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 补偿值 的本地化字符串。
+        ///   查找类似 Compensation value 的本地化字符串。
         /// </summary>
         internal static string COMPENSATION_VALUE {
             get {
@@ -2617,7 +2619,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 日发电量补偿 的本地化字符串。
+        ///   查找类似 Daily energy  compensation 的本地化字符串。
         /// </summary>
         internal static string DAY_COMPENSATION_ENERGY {
             get {
@@ -4507,7 +4509,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Device History Run Data 的本地化字符串。
+        ///   查找类似 history data
+        /// 的本地化字符串。
         /// </summary>
         internal static string DEVICE_DEVICE_HISTORYRUN_DATA {
             get {
@@ -4714,7 +4717,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 断路器 的本地化字符串。
+        ///   查找类似 Breaker 的本地化字符串。
         /// </summary>
         internal static string digitalinputdlq {
             get {

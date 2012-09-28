@@ -77,7 +77,7 @@
                                 <img src="/images/kj/kjiico01.gif" />
                             </td>
                             <td width="93%" class="pv0216">
-                                有问有答
+                                FAQ
                             </td>
                         </tr>
                         <tr>

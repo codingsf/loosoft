@@ -5081,8 +5081,8 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
     <value>Numéro de périphérique série</value>
   </data>
   <data name="digitalinputdlq" xml:space="preserve">
-    <value>断路器</value>
-    <comment>断路器</comment>
+    <value>briseur</value>
+    <comment>briseur</comment>
   </data>
   <data name="digitalinputdlq0" xml:space="preserve">
     <value>闭合</value>
@@ -5111,8 +5111,8 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
     <value>D'accord »Accord Utilisateur"</value>
   </data>
   <data name="DEVICE_DEVICE_HISTORYRUN_DATA" xml:space="preserve">
-    <value>Données historiques d'équipement</value>
-    <comment>设备历史运行数据</comment>
+    <value>les données d'historique</value>
+    <comment>les données d'historique</comment>
   </data>
   <data name="PAGE_QA_TITLE" xml:space="preserve">
     <value>FAQ</value>
@@ -5160,28 +5160,36 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
     <value>预测值</value>
   </data>
   <data name="COMPENSATION_LAST_SEVEN_DAYS" xml:space="preserve">
-    <value>最近七天</value>
+    <value>Les sept derniers jours</value>
+    <comment>Les sept derniers jours</comment>
   </data>
   <data name="COMPENSATION_OBJ_NAME" xml:space="preserve">
-    <value>补偿对象名称</value>
+    <value>nom</value>
+    <comment>nom</comment>
   </data>
   <data name="COMPENSATION_PREIOD_TIME" xml:space="preserve">
-    <value>一段时间</value>
+    <value>temps</value>
+    <comment>temps</comment>
   </data>
   <data name="COMPENSATION_RECORD" xml:space="preserve">
-    <value>补偿记录</value>
+    <value>archives</value>
+    <comment>archives</comment>
   </data>
   <data name="COMPENSATION_TIME" xml:space="preserve">
-    <value>补偿时间</value>
+    <value>temps</value>
+    <comment>temps</comment>
   </data>
   <data name="COMPENSATION_TYPE" xml:space="preserve">
-    <value>补偿类型</value>
+    <value>type</value>
+    <comment>type</comment>
   </data>
   <data name="COMPENSATION_VALUE" xml:space="preserve">
-    <value>补偿值</value>
+    <value>valeur de compensation</value>
+    <comment>valeur de compensation</comment>
   </data>
   <data name="DAY_COMPENSATION_ENERGY" xml:space="preserve">
-    <value>日发电量补偿</value>
+    <value>Compensation de l'énergie quotidienne</value>
+    <comment>Compensation de l'énergie quotidienne</comment>
   </data>
   <data name="MONTH_COMPENSATION_ENERGY" xml:space="preserve">
     <value>月发电量补偿</value>

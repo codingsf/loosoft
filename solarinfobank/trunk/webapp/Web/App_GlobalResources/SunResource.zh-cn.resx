@@ -5236,19 +5236,20 @@
     <value>最近七天</value>
   </data>
   <data name="COMPENSATION_OBJ_NAME" xml:space="preserve">
-    <value>补偿对象名称</value>
+    <value>名称</value>
   </data>
   <data name="COMPENSATION_PREIOD_TIME" xml:space="preserve">
     <value>一段时间</value>
   </data>
   <data name="COMPENSATION_RECORD" xml:space="preserve">
-    <value>补偿记录</value>
+    <value>记录</value>
   </data>
   <data name="COMPENSATION_TIME" xml:space="preserve">
-    <value>补偿时间</value>
+    <value>时间</value>
+    <comment>时间</comment>
   </data>
   <data name="COMPENSATION_TYPE" xml:space="preserve">
-    <value>补偿类型</value>
+    <value>类型</value>
   </data>
   <data name="COMPENSATION_VALUE" xml:space="preserve">
     <value>补偿值</value>

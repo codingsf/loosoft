@@ -5073,8 +5073,8 @@
     <value>デバイスのシリアル番号</value>
   </data>
   <data name="digitalinputdlq" xml:space="preserve">
-    <value>断路器</value>
-    <comment>断路器</comment>
+    <value>ブレーカー</value>
+    <comment>ブレーカー</comment>
   </data>
   <data name="digitalinputdlq0" xml:space="preserve">
     <value>闭合</value>
@@ -5103,8 +5103,8 @@
     <value>"利用規約"に同意する</value>
   </data>
   <data name="DEVICE_DEVICE_HISTORYRUN_DATA" xml:space="preserve">
-    <value>設備歴史の運転データ</value>
-    <comment>设备历史运行数据</comment>
+    <value>機器の履歴データ</value>
+    <comment>機器の履歴データ</comment>
   </data>
   <data name="PAGE_QA_TITLE" xml:space="preserve">
     <value>FAQ</value>
@@ -5152,28 +5152,36 @@
     <value>预测值</value>
   </data>
   <data name="COMPENSATION_LAST_SEVEN_DAYS" xml:space="preserve">
-    <value>最近七天</value>
+    <value>最後の7日間</value>
+    <comment>最後の7日間</comment>
   </data>
   <data name="COMPENSATION_OBJ_NAME" xml:space="preserve">
-    <value>补偿对象名称</value>
+    <value>補償·オブジェクト名</value>
+    <comment>補償·オブジェクト名</comment>
   </data>
   <data name="COMPENSATION_PREIOD_TIME" xml:space="preserve">
-    <value>一段时间</value>
+    <value>期間</value>
+    <comment>期間</comment>
   </data>
   <data name="COMPENSATION_RECORD" xml:space="preserve">
-    <value>补偿记录</value>
+    <value>記録</value>
+    <comment>記録</comment>
   </data>
   <data name="COMPENSATION_TIME" xml:space="preserve">
-    <value>补偿时间</value>
+    <value>時間</value>
+    <comment>時間</comment>
   </data>
   <data name="COMPENSATION_TYPE" xml:space="preserve">
-    <value>补偿类型</value>
+    <value>タイプ</value>
+    <comment>タイプ</comment>
   </data>
   <data name="COMPENSATION_VALUE" xml:space="preserve">
-    <value>补偿值</value>
+    <value>補償値</value>
+    <comment>補償値</comment>
   </data>
   <data name="DAY_COMPENSATION_ENERGY" xml:space="preserve">
-    <value>日发电量补偿</value>
+    <value>補償の毎日の発電量</value>
+    <comment>補償の毎日の発電量</comment>
   </data>
   <data name="MONTH_COMPENSATION_ENERGY" xml:space="preserve">
     <value>月发电量补偿</value>

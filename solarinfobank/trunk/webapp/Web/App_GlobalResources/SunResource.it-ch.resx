@@ -6438,8 +6438,8 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>Numero di serie</value>
   </data>
   <data name="digitalinputdlq" xml:space="preserve">
-    <value>断路器</value>
-    <comment>断路器</comment>
+    <value>interruttore</value>
+    <comment>interruttore</comment>
   </data>
   <data name="digitalinputdlq0" xml:space="preserve">
     <value>闭合</value>
@@ -6468,8 +6468,8 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>Accetto "Accordo per gli utenti"</value>
   </data>
   <data name="DEVICE_DEVICE_HISTORYRUN_DATA" xml:space="preserve">
-    <value>Dato storica dell'operazione dell'impianto</value>
-    <comment>设备历史运行数据</comment>
+    <value>dati della cronologia</value>
+    <comment>dati della cronologia</comment>
   </data>
   <data name="PAGE_QA_TITLE" xml:space="preserve">
     <value>FAQ</value>
@@ -6517,28 +6517,36 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>预测值</value>
   </data>
   <data name="COMPENSATION_LAST_SEVEN_DAYS" xml:space="preserve">
-    <value>最近七天</value>
+    <value>Ultimi sette giorni</value>
+    <comment>Ultimi sette giorni</comment>
   </data>
   <data name="COMPENSATION_OBJ_NAME" xml:space="preserve">
-    <value>补偿对象名称</value>
+    <value>nome</value>
+    <comment>nome</comment>
   </data>
   <data name="COMPENSATION_PREIOD_TIME" xml:space="preserve">
-    <value>一段时间</value>
+    <value>tempo</value>
+    <comment>tempo</comment>
   </data>
   <data name="COMPENSATION_RECORD" xml:space="preserve">
-    <value>补偿记录</value>
+    <value>record</value>
+    <comment>record</comment>
   </data>
   <data name="COMPENSATION_TIME" xml:space="preserve">
-    <value>补偿时间</value>
+    <value>tempo</value>
+    <comment>tempo</comment>
   </data>
   <data name="COMPENSATION_TYPE" xml:space="preserve">
-    <value>补偿类型</value>
+    <value>tipo</value>
+    <comment>tipo</comment>
   </data>
   <data name="COMPENSATION_VALUE" xml:space="preserve">
-    <value>补偿值</value>
+    <value>valore di compensazione</value>
+    <comment>valore di compensazione</comment>
   </data>
   <data name="DAY_COMPENSATION_ENERGY" xml:space="preserve">
-    <value>日发电量补偿</value>
+    <value>Energia di compensazione giornaliera</value>
+    <comment>Energia di compensazione giornaliera</comment>
   </data>
   <data name="MONTH_COMPENSATION_ENERGY" xml:space="preserve">
     <value>月发电量补偿</value>

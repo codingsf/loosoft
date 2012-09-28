@@ -187,7 +187,7 @@
                                              <li><a href="/sys/logo/">上传LOGO</a></li>
                                              <li><a href="/sys/name/">输入系统名称</a></li>
                                              <li><a href="/sys/temple/">选择模板</a></li>
-                                             <li><a href="/admin/answer">有问有答管理</a></li>
+                                             <li><a href="/admin/answer">FAQ管理</a></li>
                                         </ul>
                                     </div>
                                 </div>

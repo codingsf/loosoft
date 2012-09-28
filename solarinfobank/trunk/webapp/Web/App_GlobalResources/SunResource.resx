@@ -5335,8 +5335,8 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <value>Serial number</value>
   </data>
   <data name="digitalinputdlq" xml:space="preserve">
-    <value>断路器</value>
-    <comment>断路器</comment>
+    <value>Breaker</value>
+    <comment>Breaker</comment>
   </data>
   <data name="digitalinputdlq0" xml:space="preserve">
     <value>闭合</value>
@@ -5365,8 +5365,10 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <value>Agree《User Agreement》</value>
   </data>
   <data name="DEVICE_DEVICE_HISTORYRUN_DATA" xml:space="preserve">
-    <value>Device History Run Data</value>
-    <comment>设备历史运行数据</comment>
+    <value>history data
+</value>
+    <comment>history data
+</comment>
   </data>
   <data name="PAGE_QA_TITLE" xml:space="preserve">
     <value>FAQ</value>
@@ -5414,28 +5416,37 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <value>预测值</value>
   </data>
   <data name="COMPENSATION_LAST_SEVEN_DAYS" xml:space="preserve">
-    <value>最近七天</value>
+    <value>Last seven days
+</value>
   </data>
   <data name="COMPENSATION_OBJ_NAME" xml:space="preserve">
-    <value>补偿对象名称</value>
+    <value>Name</value>
+    <comment>Name</comment>
   </data>
   <data name="COMPENSATION_PREIOD_TIME" xml:space="preserve">
-    <value>一段时间</value>
+    <value>Time</value>
+    <comment>Time</comment>
   </data>
   <data name="COMPENSATION_RECORD" xml:space="preserve">
-    <value>补偿记录</value>
+    <value>records
+</value>
+    <comment>records</comment>
   </data>
   <data name="COMPENSATION_TIME" xml:space="preserve">
-    <value>补偿时间</value>
+    <value>time</value>
+    <comment>time</comment>
   </data>
   <data name="COMPENSATION_TYPE" xml:space="preserve">
-    <value>补偿类型</value>
+    <value>type</value>
+    <comment>type</comment>
   </data>
   <data name="COMPENSATION_VALUE" xml:space="preserve">
-    <value>补偿值</value>
+    <value>Compensation value</value>
+    <comment>Compensation value</comment>
   </data>
   <data name="DAY_COMPENSATION_ENERGY" xml:space="preserve">
-    <value>日发电量补偿</value>
+    <value>Daily energy  compensation</value>
+    <comment>Daily energy  compensation</comment>
   </data>
   <data name="MONTH_COMPENSATION_ENERGY" xml:space="preserve">
     <value>月发电量补偿</value>

@@ -5,7 +5,7 @@
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    有问有答 - SolarInfoBank
+    FAQ - SolarInfoBank
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -68,7 +68,7 @@
                                 <img src="/images/kj/kjiico01.gif" width="31" height="41" />
                             </td>
                             <td width="93%" class="pv0216">
-                                有问有答
+                                FAQ
                             </td>
                         </tr>
                         <tr>

@@ -36,9 +36,9 @@
             })
         }
 
-        function edititem(type, date, data, cid,plant,plantid) {
+        function edititem(t, date, data, cid,plant,plantid) {
             $("#tabplant").click();
-            type=type;
+            type=t;
             if(plant=='False')
             {
                 $("#tabdevice").click();
@@ -153,7 +153,7 @@
                             <table width="100%" height="45" border="0" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td width="7%" rowspan="2" align="center">
-                                        <img src="/images/kj/kjiico01.gif"/>
+                                        <img src="/images/kj/kjiico01.gif" />
                                     </td>
                                     <td width="93%" class="pv0216">
                                         <%=Resources.SunResource.ENERGY_RATE_TITLE%>
@@ -174,7 +174,8 @@
                 <div class="subrbox01">
                     <div class="bitab">
                         <ul id="bitab">
-                            <li><a id="tabplant" href="javascript:void(0)" class="onclick"><%=Resources.SunResource.PLANT_CODE%></a></li>
+                            <li><a id="tabplant" href="javascript:void(0)" class="onclick">
+                                <%=Resources.SunResource.PLANT_CODE%></a></li>
                             <li></li>
                             <li><a id="tabdevice" href="javascript:void(0)">
                                 <%=Resources.SunResource.PLANT_LOG_DEVICE%></a></li>
@@ -226,7 +227,8 @@
                                         <%=Resources.SunResource.YEAR_COMPENSATION_ENERGY%></label>
                                 </td>
                                 <td width="80%" style="padding-left: 5px;">
-                                    <input id="compensation_energy1" type="text" class="txtbu01 Wdate" value="<%=DateTime.Now.Year %>" onclick="WdatePicker({dateFmt:'yyyy',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});changetype(1);"
+                                    <input id="compensation_energy1" type="text" class="txtbu01 Wdate" value="<%=DateTime.Now.Year %>"
+                                        onclick="WdatePicker({dateFmt:'yyyy',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});changetype(1);"
                                         readonly="readonly" />
                                 </td>
                             </tr>
@@ -238,7 +240,8 @@
                                     </label>
                                 </td>
                                 <td width="80%" style="padding-left: 5px;">
-                                    <input id="compensation_energy2" type="text" class="txtbu01 Wdate" value="<%=DateTime.Now.ToString("yyyy-MM") %>" onclick="WdatePicker({dateFmt:'yyyy-MM',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});changetype(2);"
+                                    <input id="compensation_energy2" type="text" class="txtbu01 Wdate" value="<%=DateTime.Now.ToString("yyyy-MM") %>"
+                                        onclick="WdatePicker({dateFmt:'yyyy-MM',isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});changetype(2);"
                                         readonly="readonly" />
                                 </td>
                             </tr>
@@ -249,13 +252,15 @@
                                         <%=Resources.SunResource.DAY_COMPENSATION_ENERGY%></label>
                                 </td>
                                 <td width="80%" style="padding-left: 5px;">
-                                    <input id="compensation_energy3" type="text" class="txtbu01 Wdate" value="<%=DateTime.Now.ToString("yyyy-MM-dd") %>" onclick="WdatePicker({isShowClear:false,lang:'<%=(Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});;changetype(3);"
+                                    <input id="compensation_energy3" type="text" class="txtbu01 Wdate" value="<%=DateTime.Now.ToString("yyyy-MM-dd") %>"
+                                        onclick="WdatePicker({isShowClear:false,lang:'<%=(Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'});;changetype(3);"
                                         readonly="readonly" />
                                 </td>
                             </tr>
                             <tr>
                                 <td height="35" style="padding-left: 5px;">
-                                    <span style="padding-right: 5px;"><%=Resources.SunResource.COMPENSATION_VALUE%>(kWh): <span class="red">*</span></span>
+                                    <span style="padding-right: 5px;">
+                                        <%=Resources.SunResource.COMPENSATION_VALUE%>(kWh): <span class="red">*</span></span>
                                 </td>
                                 <td style="padding-left: 5px;">
                                     <input name="compensation" type="text" class="txtbu01" value="" id="compensation" />
@@ -267,14 +272,14 @@
                                     &nbsp;
                                 </td>
                                 <td style="padding-left: 5px;">
-                                <%if (UserUtil.getCurUser().username != UserUtil.demousername)
-                                  { %>
+                                    <%if (UserUtil.getCurUser().username != UserUtil.demousername)
+                                      { %>
                                     <input name="btnsave" type="submit" class="subbu01" id="btnsave" value="<%=Resources.SunResource.PLANT_ADDPLANT_SAVE%>" />
                                     <%}
-                                  else
-                                  { %>
+                                      else
+                                      { %>
                                     <input name="btnsave" type="submit" class="subbu09" value="<%=Resources.SunResource.PLANT_ADDPLANT_SAVE%>" />
-                                  <%} %>
+                                    <%} %>
                                     <input name="Submit232222" type="submit" class="subbu01" value="<%=Resources.SunResource.MONITORITEM_RESET%>" />
                                 </td>
                             </tr>
@@ -316,8 +321,10 @@
                                     <select name="datetype" id="date_type_slt">
                                         <option value="0" selected="selected">
                                             <%=Resources.SunResource.PLANT_LOG_ALL%></option>
-                                        <option value="1"><%=Resources.SunResource.COMPENSATION_LAST_SEVEN_DAYS%></option>
-                                        <option value="2"><%=Resources.SunResource.COMPENSATION_PREIOD_TIME%></option>
+                                        <option value="1">
+                                            <%=Resources.SunResource.COMPENSATION_LAST_SEVEN_DAYS%></option>
+                                        <option value="2">
+                                            <%=Resources.SunResource.COMPENSATION_PREIOD_TIME%></option>
                                     </select>
                                 </td>
                                 <td width="10%" height="35">
@@ -335,15 +342,13 @@
                                     <%= Html.TextBox("devicename", string.Empty, new { @class = "txtbu04", size = "14" })%>
                                 </td>
                                 <td width="13%">
-                                
-                                  <%if (UserUtil.getCurUser().username != UserUtil.demousername)
-                                    { %>
+                                    <%if (UserUtil.getCurUser().username != UserUtil.demousername)
+                                      { %>
                                     <input name="search" type="button" onclick="search();" class="subbu01" value="<%=Resources.SunResource.MONITORITEM_SEARCH%>" />
                                     <%}
-                                    else
-                                    { %>
-                                    <input name="search" type="button"  class="subbu09" value="<%=Resources.SunResource.MONITORITEM_SEARCH%>" />
-                                    
+                                      else
+                                      { %>
+                                    <input name="search" type="button" class="subbu09" value="<%=Resources.SunResource.MONITORITEM_SEARCH%>" />
                                     <%} %>
                                 </td>
                             </tr>
@@ -378,16 +383,20 @@
                             <table width="100%" cellpadding="0" cellspacing="0" style="line-height: 24px; text-align: center">
                                 <tr>
                                     <td width="33%" height="25" class="subline02">
-                                        <strong><%=Resources.SunResource.COMPENSATION_OBJ_NAME%></strong>
+                                        <strong>
+                                            <%=Resources.SunResource.COMPENSATION_OBJ_NAME%></strong>
                                     </td>
                                     <td width="15%" class="subline02">
-                                        <strong><%=Resources.SunResource.COMPENSATION_TYPE%></strong>
+                                        <strong>
+                                            <%=Resources.SunResource.COMPENSATION_TYPE%></strong>
                                     </td>
                                     <td width="18%" class="subline02">
-                                        <strong><%=Resources.SunResource.COMPENSATION_TIME%></strong>
+                                        <strong>
+                                            <%=Resources.SunResource.COMPENSATION_TIME%></strong>
                                     </td>
                                     <td width="22%" class="subline02">
-                                        <strong><%=Resources.SunResource.COMPENSATION_VALUE%></strong>
+                                        <strong>
+                                            <%=Resources.SunResource.COMPENSATION_VALUE%></strong>
                                     </td>
                                     <td width="12%" class="subline02">
                                         <strong>

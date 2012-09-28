@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Cn.Loosoft.Zhisou.SunPower.Domain
 {
+    /// <summary>
+    /// 发电量补偿设置
+    /// </summary>
     public class Compensation
     {
         public const int TYPE_TOTAL = 0;

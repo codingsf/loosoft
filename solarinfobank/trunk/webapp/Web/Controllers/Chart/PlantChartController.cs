@@ -915,17 +915,26 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 devices.Add(new DeviceStuct() { deviceId = deviceId, rate = 1.0F, comareObj = plant.name, chartType = ChartType.area, monitorType = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_POWER_CODE), cVal = ComputeType.Avg, deviceType = ChartDeviceType.PLANT, intervalMins = intervalMins });
                 //判断该测点是否有数据,有数据则增加关照对比
                 Hashtable dataHash = CollectorDayDataService.GetInstance().GetUnitDaydataList(plant.allFactUnits, startYYYYMMDDHH, endYYYYMMDDHH, intervalMins, MonitorType.PLANT_MONITORITEM_POWER_CODE);
+                string chartName = LanguageUtil.getDesc("PLANT_CHART_DAY_CHART_POWER");
                 if (dataHash.Count > 0)
                 {
-                    float rate = 1F;
-                    MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE);
-                    devices.Add(new DeviceStuct() { deviceId = plant.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = ChartType.line, monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.PLANT, intervalMins = intervalMins });
+                    Device device = plant.getFirstDetector();
+                    if (device != null)
+                    {
+                        dataHash = DeviceDayDataService.GetInstance().GetDaydataList(null, device, startYYYYMMDDHH, endYYYYMMDDHH, intervalMins, MonitorType.MIC_DETECTOR_SUNLINGHT);
+                        if (dataHash.Keys.Count > 0)//有日照数据
+                        {
+                            chartName = LanguageUtil.getDesc("PLANT_CHART_DAY_CHART");
+                            float rate = 1F;
+                            MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.MIC_DETECTOR_SUNLINGHT);
+                            devices.Add(new DeviceStuct() { deviceId = device.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = ChartType.line, monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.DEVICE, intervalMins = intervalMins });
+                        }
+                    }
                 }
                 else
                 {
                     return Content("error:" + Resources.SunResource.NODATA);
                 }
-                string chartName = LanguageUtil.getDesc("PLANT_CHART_DAY_CHART");
                 //取得用户年度发电量图表数据
                 ChartData chartData = CompareChartService.GetInstance().compareDayHHMultiDeviceMultiMonitor(chartName, devices, startYYYYMMDDHH, endYYYYMMDDHH, intervalMins);
                 //ChartData chartData_large = CompareChartService.GetInstance().compareDayHHMultiDeviceMultiMonitor(chartName, devices, startYYYYMMDDHH, endYYYYMMDDHH, 60);
@@ -965,18 +974,27 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
                 //判断该测点是否有数据,有数据则增加关照对比
                 Hashtable dataHash = CollectorDayDataService.GetInstance().GetUnitDaydataList(plant.allFactUnits, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), MonitorType.PLANT_MONITORITEM_POWER_CODE);
+                string chartName = LanguageUtil.getDesc("PLANT_CHART_DAY_POWER_SUNLIGHT_COMPARE_CHART_POWER");
                 if (dataHash.Count > 0)
                 {
-                    float rate = 1F;
-                    MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE);
-                    devices.Add(new DeviceStuct() { deviceId = plant.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = chartTypes[0], monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.PLANT, intervalMins = int.Parse(intervals[1]) });
+                    Device device = plant.getFirstDetector();
+                    if (device != null)
+                    {
+                        dataHash = DeviceDayDataService.GetInstance().GetDaydataList(null, device, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), MonitorType.MIC_DETECTOR_SUNLINGHT);
+                        if (dataHash.Keys.Count > 0)//有日照数据
+                        {
+                            chartName = LanguageUtil.getDesc("PLANT_CHART_DAY_POWER_SUNLIGHT_COMPARE_CHART");
+                            float rate = 1F;
+                            MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.MIC_DETECTOR_SUNLINGHT);
+                            devices.Add(new DeviceStuct() { deviceId = device.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = chartTypes[0], monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.DEVICE, intervalMins = int.Parse(intervals[1]) });
+                        }
+                    }
                 }
                 else
                 {
                     return Content("error:" + Resources.SunResource.NODATA);
                 }
 
-                string chartName = LanguageUtil.getDesc("PLANT_CHART_DAY_POWER_SUNLIGHT_COMPARE_CHART");
                 //取得用户年度发电量图表数据
                 ChartData chartData = CompareChartService.GetInstance().compareDayHHMultiDeviceMultiMonitor(chartName, devices, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]));
                 //ChartData chartData2 = CompareChartService.GetInstance().compareDayHHMultiDeviceMultiMonitor(chartName, devices, startYYYYMMDDHH, endYYYYMMDDHH, 60);
@@ -1003,18 +1021,26 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 devices.Add(new DeviceStuct() { deviceId = deviceId, rate = 1.0F, comareObj = plant.name, chartType = chartTypes[0], monitorType = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE), cVal = ComputeType.Avg, deviceType = ChartDeviceType.PLANT, intervalMins = int.Parse(intervals[0]) });
                 //判断该测点是否有数据,有数据则增加关照对比
                 Hashtable dataHash = CollectorDayDataService.GetInstance().GetUnitDaydataList(plant.allFactUnits, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), MonitorType.PLANT_MONITORITEM_ENERGY_CODE);
+                string chartName = LanguageUtil.getDesc("PLANT_CHART_DAY_ENERGY_INTENSITY");
                 if (dataHash.Count > 0)
                 {
-                    float rate = 1F;
-                    MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE);
-                    devices.Add(new DeviceStuct() { deviceId = plant.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = chartTypes[0], monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.PLANT, intervalMins = int.Parse(intervals[1]) });
+                    Device device = plant.getFirstDetector();
+                    if (device != null)
+                    {
+                        dataHash = DeviceDayDataService.GetInstance().GetDaydataList(null, device, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), MonitorType.MIC_DETECTOR_SUNLINGHT);
+                        if (dataHash.Keys.Count > 0)//有日照数据
+                        {
+                            chartName = LanguageUtil.getDesc("PLANT_CHART_DAY_ENERGY_SOLAR_INTENSITY");
+                            float rate = 1F;
+                            MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.MIC_DETECTOR_SUNLINGHT);
+                            devices.Add(new DeviceStuct() { deviceId = device.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = chartTypes[0], monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.DEVICE, intervalMins = int.Parse(intervals[1]) });
+                        }
+                    }
                 }
                 else
                 {
                     return Content("error:" + Resources.SunResource.NODATA);
                 }
-
-                string chartName = LanguageUtil.getDesc("PLANT_CHART_DAY_ENERGY_SOLAR_INTENSITY");
                 //取得用户年度发电量图表数据
                 ChartData chartData = CompareChartService.GetInstance().compareDayHHMultiDeviceMultiMonitor(chartName, devices, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]));
                 //TempDataUtil.putChartData(chartData.serieNo, chartData);

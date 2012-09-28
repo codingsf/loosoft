@@ -59,6 +59,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         {
             return _powerDayDataDao.Get(dayData);
         }
+
         /// <summary>
         /// 删除天数据，按照id 
         /// add by qhb in 20120828 

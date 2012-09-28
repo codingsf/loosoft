@@ -286,7 +286,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 for (int i = 0; i < topLevelPlants.Count; i++)
                 {
                     tmpplant = topLevelPlants[i];
-                    curLevel = ((uplevel + 1) * 10 + i);
+                    curLevel = ((uplevel + 1) * 100 + i);
                     // tmpplant.name = string.Format("<div style=\"width:100%; text-align:center;\">{0}</div>", tmpplant.name);
                     jsstr += "myTree.add(" + curLevel + "," + uplevel + ",'<a target=\"_blank\" href=" + (tmpplant.isVirtualPlant ? string.Format("\"/portal/virtual/{0}\"", tmpplant.id) : string.Format("\"/portal/plant/{0}\"", tmpplant.id)) + "><div style=\"width:100%; text-align:center;\">" + tmpplant.name + "</div></a>'," + width + "," + height + ",'#FFDFAE','#F18216');";
                     if (tmpplant.childs != null && tmpplant.childs.Count > 0)
@@ -319,7 +319,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 for (int i = 0; i < topLevelPlants.Count; i++)
                 {
                     tmpplant = topLevelPlants[i];
-                    curLevel = ((uplevel + 1) * 10 + i);
+                    curLevel = ((uplevel + 1) * 100 + i);
                     // tmpplant.name = string.Format("<div style=\"width:100%; text-align:center;\">{0}</div>", tmpplant.name);
                     jsstr += "myTree.add(" + curLevel + "," + uplevel + ",'<a target=\"_blank\" href=" + (tmpplant.isVirtualPlant ? string.Format("\"/virtual/plantrelationstruct/{0}\"", tmpplant.id) : string.Format("\"/plant/overview/{0}\"", tmpplant.id)) + "><div style=\"width:100%; text-align:center;\">" + tmpplant.name + "</div></a>'," + width + "," + height + ",'#FFDFAE','#F18216');";
                     if (tmpplant.childs != null && tmpplant.childs.Count > 0)
@@ -349,7 +349,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             for (int i = 0; i < plant.plantUnits.Count;i++ )
             {
                 pu = plant.plantUnits[i];
-                unitLevel = unitLevel * 10 + i;
+                unitLevel = unitLevel * 100 + i;
                 jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '/images/tree/folder.gif');", unitLevel, topLevel, pu.displayname, "javascript:void(0);");
 
                 //先装机逆变器类型设备节点
@@ -435,7 +435,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 for (int i = 0; i < devices.Count; i++)
                 {
                     device = devices[i];
-                    int tmpLevel = deviceLevel * 10 + i;
+                    int tmpLevel = deviceLevel * 100 + i;
                     //jsstr += "myTree.add(" + tmpLevel + "," + deviceLevel + ",'" + device.fullName + "',80,20,'#FFDFAE','#F18216','javascript:parent.loadRunData(" + device.id + ")');";
                     jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '');", tmpLevel, deviceLevel, device.fullName, "javascript:parent.loadRunData(" + device.id + ")");
 

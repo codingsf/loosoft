@@ -2183,7 +2183,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
                     string dataname = MonitorType.getMonitorTypeByCode(int.Parse(tmpplant.monitorCode)).name;
                     string datavalue = (((tmpplant.device == null)) ? "0"
                         : tmpplant.device.getMonitor(int.Parse(tmpplant.monitorCode)));
-                    curLevel = ((uplevel + 1) * 10 + i);
+                    curLevel = ((uplevel + 1) * 100 + i);
                     jsstr += "myTree.add(" + curLevel + "," + uplevel + ",'" + tmpplant.device.fullName + "<a href=\"#\" onclick=\"deleterelations(" + tmpplant.deviceId + ")\" class=\"closeimg\"><img src=\"/img/plus0.gif\"/></a><img style=\"margin-left:10px;\" src=\"/images/tec/ico" + tmpplant.device.deviceTypeCode + ".jpg\"/><div>" + dataname + ":" + datavalue + "</div>'," + width + "," + height + ",'white','white');";
                     if (tmpplant.childRelation != null && tmpplant.childRelation.Count > 0)
                         jsstr += getjsStr(tmpplant.childRelation, curLevel, width, height);
@@ -2217,7 +2217,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
                         }
                     }
 
-                    curLevel = ((uplevel + 1) * 10 + i);
+                    curLevel = ((uplevel + 1) * 100 + i);
                     jsstr += "myTree.add(" + curLevel + "," + uplevel + ",'" + tmpplant.device.fullName + "<a href=\"#\" ref=\"" + tmpplant.name + "\" onclick=\"deleterelations(" + tmpplant.deviceId + ",this)\" class=\"closeimg\"><img src=\"/img/plus0.gif\"/></a><img style=\"margin-left:10px;\" src=\"/images/tec/ico" + tmpplant.device.deviceTypeCode + ".jpg\"/>" + content + "'," + width + "," + height + ",'white','white');";
                     if (tmpplant.childRelation != null && tmpplant.childRelation.Count > 0)
                         jsstr += getNamejsStr(tmpplant.childRelation, curLevel, width, height, name);
@@ -2241,7 +2241,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
                     string dataname = MonitorType.getMonitorTypeByCode(int.Parse(tmpplant.monitorCode)).name;
                     string datavalue = (((tmpplant.device == null)) ? "0"
                         : tmpplant.device.getMonitor(int.Parse(tmpplant.monitorCode)));
-                    curLevel = ((uplevel + 1) * 10 + i);
+                    curLevel = ((uplevel + 1) * 100 + i);
                     jsstr += "myTree.add(" + curLevel + "," + uplevel + ",'" + tmpplant.device.fullName + "<img style=\"margin-left:10px;\" src=\"/images/tec/ico" + tmpplant.device.deviceTypeCode + ".jpg\"/><div>" + dataname + ":" + datavalue + "</div>'," + width + "," + height + ",'white','white');";
                     if (tmpplant.childRelation != null && tmpplant.childRelation.Count > 0)
                         jsstr += getPortaljsStr(tmpplant.childRelation, curLevel, width, height);
@@ -2275,7 +2275,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
                         }
                     }
 
-                    curLevel = ((uplevel + 1) * 10 + i);
+                    curLevel = ((uplevel + 1) * 100 + i);
                     jsstr += "myTree.add(" + curLevel + "," + uplevel + ",'" + tmpplant.device.fullName + "<img style=\"margin-left:10px;\" src=\"/images/tec/ico" + tmpplant.device.deviceTypeCode + ".jpg\"/>" + content + "'," + width + "," + height + ",'white','white');";
                     if (tmpplant.childRelation != null && tmpplant.childRelation.Count > 0)
                         jsstr += getPortalNamejsStr(tmpplant.childRelation, curLevel, width, height, name);

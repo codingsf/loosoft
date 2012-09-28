@@ -1005,16 +1005,20 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
         /// <summary>
         /// 取得第一个环境监测仪
+        /// 优先取工作的，如果都不工作取得非隐藏的
         /// </summary>
         /// <returns></returns>
         public Device getFirstDetector()
         {
+            Device displaydevice = null;
             foreach (Device device in this.deviceList())
             {
-                if (device.deviceTypeCode == DeviceData.ENVRIOMENTMONITOR_CODE)
-                    return device;
+                if (device.deviceTypeCode == DeviceData.ENVRIOMENTMONITOR_CODE && !device.isHidden){
+                    displaydevice = device;
+                    if (device.isWork(this.timezone)) return device;
+                }
             }
-            return null;
+            return displaydevice;
         }
 
         public DateTime waringLastSendTime { get; set; }

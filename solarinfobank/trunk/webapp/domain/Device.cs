@@ -86,15 +86,16 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
-        /// 是否工作
+        /// 是否工作,不超过一天
         /// add by qhb in 
         /// </summary>
         /// <param name="tz"></param>
         /// <returns></returns>
         public bool isWork(float tz)
         {
-            return  Over1Day(tz);
+            return  !Over1Day(tz);
         }
+
         /// <summary>
         /// 是否超过一小时
         /// </summary>

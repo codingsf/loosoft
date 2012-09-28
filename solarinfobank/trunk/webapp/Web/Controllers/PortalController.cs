@@ -1217,7 +1217,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     tmpDir = topDirectoryInfo[i];
                     if (tmpDir.GetDirectories().Length == 0 && tmpDir.GetFiles().Length == 0 && displayName == null)//没有下级目录并且当前目录没有文件不显示
                         continue;
-                    curLevel = ((uplevel + 1) * 10 + i);
+                    curLevel = ((uplevel + 1) * 100 + i);
                     string path = string.Empty;
                     DirectoryInfo parentDic = tmpDir.Parent;
                     while (parentDic != null)
@@ -1459,7 +1459,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     tmpDir = topDirectoryInfo[i];
                     if (tmpDir.GetDirectories().Length == 0 && tmpDir.GetFiles().Length == 0)//没有下级目录并且当前目录没有文件不显示
                         continue;
-                    curLevel = ((uplevel + 1) * 10 + i);
+                    curLevel = ((uplevel + 1) * 100 + i);
                     jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '/images/tree/folder.gif');", curLevel, uplevel, tmpDir.Name, "javascript:void(0);");
                     int subCurLevel = 1;
                     foreach (FileInfo file in tmpDir.GetFiles())

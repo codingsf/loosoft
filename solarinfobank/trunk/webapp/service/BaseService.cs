@@ -291,5 +291,68 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             int nums = curMins / intervalMins;
             return hh + mid+ (nums * intervalMins).ToString("00");
         }
+
+        /// <summary>
+        /// 将给定数据，增加天天发电量补偿
+        /// </summary>
+        /// <param name="energyHash"></param>
+        protected void addPlantDayEnergy(Hashtable energyHash, Plant plant, string year, string month)
+        {
+            addPlantDayEnergy(energyHash, new List<Plant>{ plant }, year, month);
+
+        }
+
+        /// <summary>
+        /// 将给定数据，增加天天发电量补偿
+        /// </summary>
+        /// <param name="energyHash"></param>
+        protected void addPlantDayEnergy(Hashtable energyHash, IList<Plant> plants, string year, string month)
+        {
+            foreach (Plant plant in plants)
+            {
+                //取出该电站的该月的所有天补偿设置
+                IList<Compensation> comps = CompensationService.GetInstance().getPlantDayCompensations(plant, year, month);
+                String dayKey = "";
+                foreach (Compensation comp in comps)
+                {
+                    dayKey = year+month + comp.day.ToString("00");
+                    energyHash[dayKey] = (energyHash.ContainsKey(dayKey) && energyHash[dayKey]!=null) ? double.Parse(energyHash[dayKey].ToString()) + comp.dataValue : comp.dataValue;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 增加电站某年某些月份的电量补偿
+        /// </summary>
+        /// <param name="energyHash"></param>
+        /// <param name="plant"></param>
+        protected void addPlantMonthEnergy(Hashtable energyHash, Plant plant, string year)
+        {
+            //取出该电站的该月的所有天补偿设置
+            IList<Compensation> comps = CompensationService.GetInstance().getPlantMonthCompensations(plant, year);
+            String dayKey = "";
+            foreach (Compensation comp in comps)
+            {
+                dayKey = comp.year.ToString("00") + comp.month.ToString("00");
+                energyHash[dayKey] = (energyHash.ContainsKey(dayKey) && energyHash[dayKey] != null) ? double.Parse(energyHash[dayKey].ToString()) + comp.dataValue : comp.dataValue;
+            }
+        }
+
+        /// <summary>
+        /// 增加电站某些年度的电量补偿
+        /// </summary>
+        /// <param name="energyHash"></param>
+        /// <param name="plant"></param>
+        protected void addPlantMonthEnergy(Hashtable energyHash, Plant plant)
+        {
+            //取出该电站的该月的所有天补偿设置
+            IList<Compensation> comps = CompensationService.GetInstance().getPlantYearCompensations(plant);
+            String dayKey = "";
+            foreach (Compensation comp in comps)
+            {
+                dayKey = comp.year.ToString("00");
+                energyHash[dayKey] = (energyHash.ContainsKey(dayKey) && energyHash[dayKey] != null) ? double.Parse(energyHash[dayKey].ToString()) + comp.dataValue : comp.dataValue;
+            }
+        }
     }
 }

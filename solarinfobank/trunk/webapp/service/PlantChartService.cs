@@ -386,11 +386,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             KeyValuePair<string, float?[]> data = new KeyValuePair<string, float?[]>();
             if (monthDDEnergy.Count > 0)
             {
+                //add by qhb in 20120928 for 添加补偿发电量
+                string year = startYearMMDD.Substring(0,4);
+                string month = startYearMMDD.Substring(4,2);
+                base.addPlantDayEnergy(monthDDEnergy, plantList, year, month);
+
                 if (newseriekey == null)
                     data = GenerateChartData(mt.name, ic, monthDDEnergy, rate);
                 else
                     data = GenerateChartData(newseriekey, ic, monthDDEnergy, rate);
             }
+
             string comobj = "";//plantList.Count > 1 ? "" : plantList[0].name;
             return ReportBuilder.createJsonChartXY(chartname, xAxis, data, "", unit, chartType, comobj, fromApp);
         }

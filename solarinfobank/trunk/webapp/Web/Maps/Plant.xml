@@ -49,7 +49,7 @@
       <result property="waringLastSendTime"			column="waring_lastsendtime"/>
       <result property="predictivedata"			column="predictivedata"/>
       <result property="energyRate"			column="energy_rate"/>
-      <result property="maxEnergyRate"			column="max_energy_rete"/>
+      <result property="maxEnergyRate"			column="max_energy_rate"/>
       <!-- 级联部分-->
       <result property="plantUnits"	lazyLoad="false"	column="id" select="plantunit_get_list_by_plantid" />
       <result property="monitores"	lazyLoad="false"	column="id" select="videomonitor_get_list_lazy" />

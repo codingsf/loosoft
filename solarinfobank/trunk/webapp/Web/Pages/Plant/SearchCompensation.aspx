@@ -56,4 +56,4 @@
     </tr>
     <%} %>
 </table>
-<%Html.RenderPartial("page"); %>
+ <%Html.RenderPartial("page"); %>

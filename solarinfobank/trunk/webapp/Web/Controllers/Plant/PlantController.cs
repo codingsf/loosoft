@@ -2100,7 +2100,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             StringBuilder sb = new StringBuilder("<select id='monitorCode' name='monitorCode' multiple='multiple' style='width:90px;'>");
             IList<MonitorType> mtypes = MonitorType.getMonitorTypesByTypeCode(device.deviceTypeCode);
             foreach (MonitorType mtype in mtypes)
-                sb.AppendFormat("<option value='{1}'>{0}</option>", mtype.name, mtype.code);
+                sb.AppendFormat("<option value='{1}'> {0}</option>", mtype.name, mtype.code);
             sb.Append("</select>");
             return Content(sb.ToString());
         }

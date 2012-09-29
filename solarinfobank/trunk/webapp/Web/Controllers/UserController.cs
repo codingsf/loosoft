@@ -12,6 +12,7 @@ using Common;
 using Dimac.JMail;
 using EmailService;
 using System.IO;
+using System.Drawing;
 namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 {
     public class UserController : BaseController
@@ -1981,20 +1982,23 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         /// <param name="yyyyMMdd"></param>
         /// <param name="?"></param>
         /// <returns></returns>
-        public ActionResult EnergyFilter(int id,int? pid,string yyyyMMdd)
+        public ActionResult EnergyFilter(int id, int? pid, string yyyyMMdd)
         {
             User user = UserService.GetInstance().Get(id);
 
             IList<Plant> plants = user.allOwnFactPlants;
             ViewData["plants"] = plants;
-            IList<Plant> handlePlants=null;
-            int timezone=0;
-            if(pid!=null && pid.Value!=0){
+            IList<Plant> handlePlants = null;
+            int timezone = 0;
+            if (pid != null && pid.Value != 0)
+            {
                 Plant plant = PlantService.GetInstance().GetPlantInfoById(pid.Value);
                 timezone = plant.timezone;
                 handlePlants = new List<Plant>();
                 handlePlants.Add(plant);
-            }else{
+            }
+            else
+            {
                 handlePlants = plants;
                 timezone = plants[0].timezone;
             }
@@ -2008,7 +2012,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             IList<Hashtable> datas = new List<Hashtable>();
             Hashtable data = null;
             DeviceMonthDayData dmdd = null;
-            foreach(Plant plant in handlePlants){
+            foreach (Plant plant in handlePlants)
+            {
                 if (plant.energyRate == null || double.IsNaN(plant.energyRate.Value))
                     continue;
 
@@ -2028,14 +2033,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                         deviceNum++;
                     }
                 }
-                double aveageEnergy  = 0;
+                double aveageEnergy = 0;
                 //有设备才计算平均值
                 if (deviceNum > 0)
                 {
                     aveageEnergy = totalEnergy / deviceNum;
                 }
                 //获取每个设备的发电量比率
-                double rate=0;
+                double rate = 0;
                 foreach (Device device in devices)
                 {
                     if (device.isWork(plant.timezone))
@@ -2051,8 +2056,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                         rate = Math.Round(rate, 2);
                         data["plantName"] = plant.name;
                         data["deviceName"] = device.fullName;
-                        data["energy"] = Math.Round(dmdd.getDayData(day),2);
-                        data["average"] = Math.Round(aveageEnergy,2);
+                        data["energy"] = Math.Round(dmdd.getDayData(day), 2);
+                        data["average"] = Math.Round(aveageEnergy, 2);
                         data["rate"] = plant.energyRate;
                         data["prate"] = rate + "/" + plant.energyRate;
                         datas.Add(data);
@@ -2060,6 +2065,58 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 }
             }
             ViewData["datas"] = datas;
+            return View();
+        }
+
+
+
+        public ActionResult UploadLogo()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult UploadLogo(HttpPostedFileBase logopic)
+        {
+            User user = UserUtil.getCurUser();
+            try
+            {
+                if (logopic != null && logopic.ContentLength > 0)
+                {
+                    string extensionName = logopic.FileName.Substring(logopic.FileName.LastIndexOf('.'));
+                    if (extensionName.ToLower().Equals(".jpg"))
+                    {
+                        Bitmap myImage = new Bitmap(logopic.InputStream);
+                        if (myImage.Width > 169)
+                        {
+                            ViewData["error"] = "图片宽度不能大于169px";
+                        }
+                        else if (myImage.Height > 40)
+                            ViewData["error"] = "图片高度不能大于40px";
+                        else
+                        {
+                            string path = Server.MapPath("~");
+                            path = string.Format("{0}/ufile/logo", path);
+                            if (System.IO.Directory.Exists(path) == false)
+                                Directory.CreateDirectory(path);
+                            string logoName = user.id + "logo.jpg";
+                            string filePath = Path.Combine(path, logoName);
+                            logopic.SaveAs(filePath);
+                            user = userservice.GetUserByName(user.username);
+                            user.logo = logoName;
+                            userservice.save(user);
+
+                        }
+                    }
+
+                }
+                else
+                    ViewData["error"] = "请选择一个jpg扩展名的图片";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return Content(e.Message);
+            }
             return View();
         }
     }

@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 <%@ Import Namespace="System.Globalization" %>
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
 <style type="text/css">
 <!--
 .ensel {width:134px; height:30px; background:url(/images/ensel.GIF) no-repeat; color:#649244;}
@@ -43,7 +44,7 @@
     <div class="headermain">
         <div class="header_l">
             <a href="/">
-                <img src="/images/logo.jpg" width="169" height="29" border="0" /></a></div>
+                <img src="<%= UserUtil.UserLogo %>" width="169" height="29" border="0" id="logo" /></a></div>
         <div class="header_r">
             <div class="header_rt">
                 <a href="#" id="outpreview">&nbsp;</a>

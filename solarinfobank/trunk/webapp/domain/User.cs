@@ -768,5 +768,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
 
         public IList<RelationConfig> configs { get; set; }
+
+        public string templete { get; set; }
+
+        public string logo { get; set; }
     }
 }

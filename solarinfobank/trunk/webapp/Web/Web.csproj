@@ -2705,6 +2705,7 @@
     <Content Include="Pages\User\IncludeAllPlants.aspx" />
     <Content Include="Pages\User\AddPlant.aspx" />
     <Content Include="Pages\User\portalStructChart.aspx" />
+    <Content Include="Pages\User\UploadLogo.aspx" />
     <Content Include="Pages\Virtual\IncludeOverview.aspx" />
     <Content Include="Pages\Virtual\Plantrelationstruct.aspx" />
     <Content Include="Pages\Virtual\Overview.aspx" />
@@ -2847,6 +2848,7 @@
     <Folder Include="Pages\Admin\Errorcode\.svn\tmp\text-base\" />
     <Folder Include="Properties\DataSources\" />
     <Folder Include="tempexportfile\" />
+    <Folder Include="ufile\logo\" />
     <Folder Include="ufile\Nopic\" />
     <Folder Include="ufile\small\" />
     <Folder Include="xlsx\" />

@@ -23,7 +23,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// author: hbqian
         /// </summary>
         /// <returns></returns>
-        public static User getCurUser() 
+        public static User getCurUser()
         {
             if (System.Web.HttpContext.Current.Session[ComConst.User] == null)
             {
@@ -74,6 +74,22 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         public static void ResetLogin(User user)
         {
             login(user);
+        }
+
+        public static string UserLogo
+        {
+            get
+            {
+                string defaultPath = "/images/logo.jpg";
+                User user = getCurUser();
+                if (user == null)
+                    return defaultPath;
+                string userPath = string.Format("/ufile/logo/{0}", user.logo);
+                string domainPath = System.Web.HttpContext.Current.Server.MapPath("~");
+                if (System.IO.File.Exists(string.Format("{0}{1}", domainPath, userPath)) == false)
+                    return defaultPath;
+                return userPath;
+            }
         }
     }
 }

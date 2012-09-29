@@ -329,11 +329,9 @@
                                                 href="/user/log">
                                                 <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_LOGS%>(<%=Cn.Loosoft.Zhisou.SunPower.Service.FaultService.GetInstance().GetUserNoConfirmLogsCount(Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser())%>)</a></li>
                                             <%} %>
-                                            
                                             <li><a onclick="loadContent('content_ajax','/user/energyFilter?id=<%=user.id%>&pid=0','iframe','GET');setcurrent(this);return false;"
                                                 href="/user/energyFilter/<%=user.id%>">
-                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_ENERGYWARN%></a>
-                                            </li>                                       
+                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_ENERGYWARN%></a> </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -407,7 +405,7 @@
                                             <li><a onclick="loadContent('content_ajax','/portal/manage','iframe','GET');setcurrent(this);return false;"
                                                 href="/portal/manage">门户管理</a></li>
                                             <%} %>
-                                            <%if (AuthService.isAllow(AuthorizationCode.USER_LIST)&&ProtalUtil.isBigCustomer())
+                                            <%if (AuthService.isAllow(AuthorizationCode.USER_LIST) && ProtalUtil.isBigCustomer())
                                               { %>
                                             <li><a onclick="loadContent('content_ajax','/user/plantuser','iframe','GET');setcurrent(this);return false;"
                                                 href="/user/plantuser">
@@ -419,6 +417,8 @@
                                                 href="/user/regsource">
                                                 <%=Resources.SunResource.USER_APPLAY_COLLECTOR_NOTICE%></a></li>
                                             <%} %>
+                                            <li><a onclick="loadContent('content_ajax','/user/uploadlogo','iframe','GET');setcurrent(this);return false;"
+                                                href="/user/uploadlogo">上传LOGO</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -426,8 +426,7 @@
                             <%} %>
                             <div class="kjlbu00 nav">
                                 <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_ANY_QUESTIONS  %>?<br />
-                                <a href="/qa/ask"
-                                    target="_blank" class="green" style="text-decoration: underline;">
+                                <a href="/qa/ask" target="_blank" class="green" style="text-decoration: underline;">
                                     <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_CLICK_HERE_FOR_HELP  %>!</a>
                             </div>
                         </td>

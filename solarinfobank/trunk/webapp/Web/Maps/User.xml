@@ -33,6 +33,8 @@
       <result property="menuDisplayCount"			column="menudisplaycount"/>
       <result property="overviewDisplayCount"			column="overviewdisplaycount"/>
       <result property="isBigCustomer"			column="isBigCustomer"/>
+      <result property="templete"			column="templete"/>
+      <result property="logo"			column="logo"/>
       <!--级联对象集合-->
       <result property="Language"		lazyLoad="true"	column="languageId" select="language_get_lazy" />
       <result property="plantUsers" lazyLoad="true"	column="id"         select="plantuser_get_by_userid" />
@@ -103,7 +105,7 @@
     </insert>
     <!-- 更新用户所有信息-->
     <update id="user_update" parameterClass="User">
-      UPDATE USERINFO SET USERNAME=#username#,firstname=#FirstName#,lastname=#LastName#,TemperatureType=#TemperatureType#,ORGANIZE=#organize#,SEX=#sex#,Fullname=#fullname#,Address=#address#,Postalcode=#postalcode#,Email=#email#,Country=#country#,City=#city#,Tel=#tel#,LanguageId=#languageId#,revenueRate=#revenueRate#,currencies=#currencies#,mobilePhone=#mobilePhone#,faxPhone=#faxPhone#,TemperatureType=#TemperatureType# ,menuDisplayCount=#menuDisplayCount#,overviewDisplayCount=#overviewDisplayCount# WHERE ID=#id#
+      UPDATE USERINFO SET USERNAME=#username#,firstname=#FirstName#,lastname=#LastName#,TemperatureType=#TemperatureType#,ORGANIZE=#organize#,SEX=#sex#,Fullname=#fullname#,Address=#address#,Postalcode=#postalcode#,Email=#email#,Country=#country#,City=#city#,Tel=#tel#,LanguageId=#languageId#,revenueRate=#revenueRate#,currencies=#currencies#,mobilePhone=#mobilePhone#,faxPhone=#faxPhone#,TemperatureType=#TemperatureType# ,menuDisplayCount=#menuDisplayCount#,overviewDisplayCount=#overviewDisplayCount# ,templete=#templete# ,logo=#logo# WHERE ID=#id#
     </update>
     <!-- 更新用户除密码外的其他信息-->
     <update id="user_update_pass" parameterClass="User">

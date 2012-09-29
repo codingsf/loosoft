@@ -6508,7 +6508,7 @@ software programs.</value>
     <value>titolo</value>
   </data>
   <data name="ENERGY_RATE_TITLE" xml:space="preserve">
-    <value>发电量补偿</value>
+    <value>Generazione di compensazione della capacità</value>
   </data>
   <data name="ENERGY_RATE_ADD_SUCCESS" xml:space="preserve">
     <value>l'impostazione di compensazione</value>

@@ -7,19 +7,24 @@
 <table width="100%" cellpadding="0" cellspacing="0" style="line-height: 24px; text-align: center">
     <tr>
         <td width="33%" height="25" class="subline02">
-            <strong>补偿对象名称</strong>
+            <strong>
+                <%=Resources.SunResource.COMPENSATION_OBJ_NAME%></strong>
         </td>
         <td width="15%" class="subline02">
-            <strong>补偿类型</strong>
+            <strong>
+                <%=Resources.SunResource.COMPENSATION_TYPE%></strong>
         </td>
         <td width="18%" class="subline02">
-            <strong>补偿时间</strong>
+            <strong>
+                <%=Resources.SunResource.COMPENSATION_TIME%></strong>
         </td>
         <td width="22%" class="subline02">
-            <strong>补偿值</strong>
+            <strong>
+                <%=Resources.SunResource.COMPENSATION_VALUE%></strong>
         </td>
         <td width="12%" class="subline02">
-            <strong>操作</strong>
+            <strong>
+                <%=Resources.SunResource.MONITORITEM_OPERATE%></strong>
         </td>
     </tr>
     <%foreach (var item in ViewData["compensations"] as IList<Compensation>)
@@ -56,4 +61,4 @@
     </tr>
     <%} %>
 </table>
- <%Html.RenderPartial("page"); %>
+<%Html.RenderPartial("page"); %>

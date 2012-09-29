@@ -5152,7 +5152,7 @@ software programs.
     <value>titre</value>
   </data>
   <data name="ENERGY_RATE_TITLE" xml:space="preserve">
-    <value>发电量补偿</value>
+    <value>Génération de compensation capacité</value>
   </data>
   <data name="ENERGY_RATE_ADD_SUCCESS" xml:space="preserve">
     <value>réglage de la compensation</value>

@@ -5144,7 +5144,7 @@ software programs.
     <value>タイトル</value>
   </data>
   <data name="ENERGY_RATE_TITLE" xml:space="preserve">
-    <value>发电量补偿</value>
+    <value>容量補正を生成</value>
   </data>
   <data name="ENERGY_RATE_ADD_SUCCESS" xml:space="preserve">
     <value>正常に設定されました</value>

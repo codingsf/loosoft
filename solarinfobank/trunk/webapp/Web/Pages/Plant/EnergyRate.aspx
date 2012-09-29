@@ -154,7 +154,7 @@
                         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                             <tr align="left">
                                 <td height="35" class="" align="left">
-                                    是否启用：
+                                    <%=Resources.SunResource.INSIDE_ENERGY_RATE%>：
                                 </td>
                             </tr>
                             <tr align="left">

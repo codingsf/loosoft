@@ -335,13 +335,14 @@
                                 </td>
                                 <td width="10%" height="35">
                                     <span style="padding-left: 5px;">
-                                        <%-- <%=Resources.SunResource.PLANT_REPORTCONFIG_PLANT_NAME%>--%>补偿类型:</span>
+                                        <%=Resources.SunResource.COMPENSATION_TYPE%>:</span>
                                 </td>
                                 <td width="20%" height="15">
-                                    <%--<%= Html.TextBox("plantname",string.Empty, new { @class="txtbu04", size="14"}) %>--%>
                                     <select id="searchtype">
-                                        <option value="1">电站</option>
-                                        <option value="0">设备</option>
+                                        <option value="1">
+                                            <%=Resources.SunResource.DEVICETYPE_0%></option>
+                                        <option value="0">
+                                            <%=Resources.SunResource.PLANT_LOG_DEVICE%></option>
                                     </select>
                                 </td>
                                 <td width="10%" height="15">
@@ -349,7 +350,6 @@
                                         <%=Resources.SunResource.PLANT_DEVICE_NAME%>:</span>
                                 </td>
                                 <td width="17%" height="15">
-                                    <%-- <%= Html.TextBox("devicename", string.Empty, new { @class = "txtbu04", size = "14" })%>--%>
                                     <select name="sltdevice" id="searchdevice">
                                         <option selected="selected" value="0">
                                             <%=Resources.SunResource.UDEVICE_PAGE_SELECT_DEVICE%></option>

@@ -263,7 +263,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
 
             page.RecordCount = totalRecord;//返回查询的所有年数的所有记录
-            page.PageIndex = intValue; ;
+            page.PageIndex = intValue;
             ViewData["user"] = UserService.GetInstance().Get(userId);
             return View("DeviceLogAjax", faults);
         }

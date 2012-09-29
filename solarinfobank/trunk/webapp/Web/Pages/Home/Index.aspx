@@ -36,6 +36,7 @@
             return result;
         } 
    
+   
         /*!
         * SlideTrans
         * Copyright (c) 2010 cloudgamer

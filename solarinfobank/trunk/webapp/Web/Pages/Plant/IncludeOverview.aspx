@@ -512,7 +512,7 @@
                             <td width="79%" class="kjli">
                                 <%=Resources.SunResource.PLANT_OVERVIEW_TOTAL_ENERGRY%><br />
                                 <span class="sz_fb">
-                                    <% =Model.DisplayTotalEnergy%></span>
+                                    <% =ViewData["totalEnergy"]%></span>
                                 <%=Model.TotalEnergyUnit%>
                             </td>
                         </tr>

@@ -111,6 +111,8 @@ namespace Web.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
+            //临时放在这里
+            EnergywarnService.GetInstance().GenerateEnergywarn();
             //ExcelUtil.createChart();
             if (System.Web.HttpContext.Current.Request.Cookies["a_login"] != null)
             {

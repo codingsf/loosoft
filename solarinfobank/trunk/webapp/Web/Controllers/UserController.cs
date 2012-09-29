@@ -293,6 +293,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             page.PageSize = user.overviewDisplayCount;
             page.RecordCount = user.displayPlants.Count;
             ViewData["page"] = page;
+
+            double userTotal = 0;
+            foreach (Plant plant in user.displayPlants) { 
+                userTotal+=CompensationService.GetInstance().getPlantTotalCompensations(plant.id);
+            }
+            //add by qhb 添加补偿设置
+            ViewData["totalEnergy"] = StringUtil.formatDouble(Util.upDigtal(user.TotalEnergy + userTotal), "0.00");
             return View(user);
         }
 

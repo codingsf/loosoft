@@ -523,7 +523,7 @@
                                             </a>
                                             </li>    
                                             <li>
-                                            <a rel="treemenu" onclick="loadContent('content_ajax','/plant/energyFilter?id=<%=Model.id%>&uid=<%=user.id%>','iframe','GET');setcurrent(this);return false;"
+                                            <a rel="treemenu" onclick="loadContent('content_ajax','/plant/energyFilter?id=<%=Model.id%>&pageNo=1','iframe','GET');setcurrent(this);return false;"
                                                 href="/plant/energyFilter/<%=Model.id%>" title=""><%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_ENERGYWARN%>
                                             </a>                                          
                                             </li>                                                                                      

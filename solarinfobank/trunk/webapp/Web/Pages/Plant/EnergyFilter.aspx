@@ -13,16 +13,13 @@
         var plantId = -1;
         $(document).ready(function() {
             parent.iFrameHeight();
-            $("#load").click(function() { search(); });
+            $("#load").click(function() { changePage(1); });
         });
         
-        function search() {
+        function changePage(no) {
             plantId = $("#plant").val();
-            window.location.href="/plant/energyFilter?uid=<%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().id %>&id=<%=Model.id %>"+"&yyyyMMdd="+$("#endDate").attr("value");
+            window.location.href="/plant/energyFilter?id=<%=Model.id %>"+"&startDate="+$("#startDate").attr("value")+"&endDate="+$("#endDate").attr("value")+"&pageNo="+pageNo;
         }
-        var ttl1 = ' <%= Resources.SunResource.USER_LOG_SELECT_ALL%>';
-        var ttl2 = ' <%= Resources.SunResource.PLANT_LOG_SELECT%>';
-        var ttl3 = '% <%= Resources.SunResource.USER_LOG_SELECTED%> ';
     </script>
 
     <script src="../../script/DatePicker/WdatePicker.js" type="text/javascript"></script>
@@ -71,11 +68,12 @@
                         <%=Resources.SunResource.REPORT_TIME%>:
                     </td>
                     <td width="10%">
-                    <input id="endDate" name="endDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})" readonly="readonly" size="15" type="text"
-                        value='<%=ViewData["yyyyMMdd"]%>' class="txtbu04 Wdate" />
+                    <input id="endDate" name="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})" readonly="readonly" size="15" type="text"
+                        value='<%=ViewData["startDate"]%>' class="txtbu04 Wdate" />
                     </td>
                     <td width="10%"  align=right>
-                        &nbsp;
+                       <input id="Text1" name="endDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})" readonly="readonly" size="15" type="text"
+                        value='<%=ViewData["endDate"]%>' class="txtbu04 Wdate" />
                     </td>
                     <td width="15%">
                         &nbsp;                       
@@ -109,7 +107,7 @@
                         
                          <%
                          int i=0;
-                         foreach (Hashtable data in ViewData["datas"] as IList<Hashtable>)
+                         foreach (Energywarn data in ViewData["datas"] as IList<Energywarn>)
                          {
                              i++;
                          %>        
@@ -118,12 +116,12 @@
                           <table width="730" style="word-break:break-all;word-wrap:break-word; line-height:24px;"  border="0" cellpadding="0" cellspacing="0" class="down_line0<%=i%2 %>">
                             <tr>                         
                               <td width="100" align="center">
-                                    <%=data["deviceName"]%>
+                                    <%=data.deviceId%>
                               </td>
-                              <td width="150" align="center"> <%=data["energy"]%></td>
-                              <td width="70" align="center"><%=data["average"]%></td>                  
+                              <td width="150" align="center"> <%=data.factValue%></td>
+                              <td width="70" align="center"><%=data.averageValue%></td>                  
                               <td width="175" align="center">
-                               <%=data["prate"]%>
+                               <%=data.factRate%>
                               </td>
                               </tr>
                           </table>
@@ -149,7 +147,7 @@
                           
                       </table>
 		            </div>      
-		            <div class="sb_down"></div>
+		            <div class="sb_down"></div><%Html.RenderPartial("page"); %>
 		            <br/>
 		            </div>		            
         </div>

@@ -136,6 +136,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             ViewData["plantYear"] = plantYearsList;
 
+            //add by qhb 添加补偿设置
+
+            ViewData["totalEnergy"] = StringUtil.formatDouble(Util.upDigtal(plant.TotalEnergy + CompensationService.GetInstance().getPlantTotalCompensations(plant.id)), "0.00");
+
             return View(plant);
 
         }
@@ -1896,90 +1900,26 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
         /// <param name="yyyyMMdd"></param>
         /// <param name="?"></param>
         /// <returns></returns>
-        public ActionResult EnergyFilter(int? id, int? uid, string yyyyMMdd)
+        public ActionResult EnergyFilter(int? id, string startDate, String endDate, int pageNo)
         {
-            User user = uid == null ? null : UserService.GetInstance().Get(uid.Value);
-            IList<Plant> handlePlants = null;
-            int timezone = 0;
-            Plant curPlant = null;
-            if (id != null && id.Value != 0)
-            {
-                curPlant = PlantService.GetInstance().GetPlantInfoById(id.Value);
-                timezone = curPlant.timezone;
-                handlePlants = new List<Plant>();
-                handlePlants.Add(curPlant);
-            }
-            else
-            {
-                IList<Plant> plants = user.allOwnFactPlants;
-                ViewData["plants"] = plants;
-                handlePlants = plants;
-                timezone = plants[0].timezone;
-            }
+            Plant plant = PlantService.GetInstance().GetPlantInfoById(id.Value);
+            if (string.IsNullOrEmpty(startDate)) startDate = CalenderUtil.curDateWithTimeZone(plant.timezone, "yyyy-MM-dd");
+            if (string.IsNullOrEmpty(endDate)) startDate = CalenderUtil.curBeforeDateWithTimeZone(plant.timezone, "yyyy-MM-dd");
 
-            if (yyyyMMdd == null) yyyyMMdd = CalenderUtil.curDateWithTimeZone(timezone, "yyyy-MM-dd");
-            int year = int.Parse(yyyyMMdd.Split('-')[0]);
-            int month = int.Parse(yyyyMMdd.Split('-')[1]);
-            int day = int.Parse(yyyyMMdd.Split('-')[2]);
-            ViewData["yyyyMMdd"] = yyyyMMdd;
-            //循环处理多个电站
-            IList<Hashtable> datas = new List<Hashtable>();
-            Hashtable data = null;
-            DeviceMonthDayData dmdd = null;
-            foreach (Plant plant in handlePlants)
-            {
-                if (plant.energyRate == null || double.IsNaN(plant.energyRate.Value))
-                    continue;
+            Pager page = new Pager() { PageSize = ComConst.PageSize, PageIndex = pageNo };
+            Hashtable table = new Hashtable();
+            table.Add("page", page);
+            table.Add("startDate", startDate);
+            table.Add("endDate", endDate);
+            IList<Energywarn> lists = EnergywarnService.GetInstance().GetEnergywarnPage(table);
 
-                //找出电站非隐藏的逆变器
-                IList<Device> devices = plant.typeDevices(DeviceData.INVERTER_CODE);
+            ViewData["page"] = page;
 
-                //逐个判断逆变器设备是否有发电量比例告警，并将有告警的设备放入Hashtable中
-                //首先取得电站设备的平均发电量
-                double totalEnergy = 0;
-                int deviceNum = 0;
-                foreach (Device device in devices)
-                {
-                    if (device.isWork(plant.timezone))
-                    {
-                        dmdd = DeviceMonthDayDataService.GetInstance().GetDeviceMonthDayData(year, device.id, month);
-                        totalEnergy += dmdd.getDayData(day);
-                        deviceNum++;
-                    }
-                }
+            ViewData["startDate"] = startDate;
+            ViewData["endDate"] = endDate;
 
-                double aveageEnergy = 0;
-                //有设备才计算平均值
-                if (deviceNum > 0)
-                {
-                    aveageEnergy = totalEnergy / deviceNum;
-                }
-                //获取每个设备的发电量比率
-                double rate = 0;
-                foreach (Device device in devices)
-                {
-                    if (device.isWork(plant.timezone))
-                    {
-                        data = new Hashtable();
-                        dmdd = DeviceMonthDayDataService.GetInstance().GetDeviceMonthDayData(year, device.id, month);
-                        if (aveageEnergy == 0)
-                            rate = 0;
-                        else
-                            rate = (dmdd.getDayData(day) - aveageEnergy) / aveageEnergy;
-                        if (Math.Abs(rate) < plant.energyRate) continue;
-                        rate = Math.Round(rate, 2);
-                        data["plantName"] = plant.name;
-                        data["deviceName"] = device.fullName;
-                        data["energy"] = Math.Round(dmdd.getDayData(day), 2);
-                        data["average"] = Math.Round(aveageEnergy, 2);
-                        data["rate"] = plant.energyRate;
-                        data["prate"] = rate + "/" + plant.energyRate;
-                        datas.Add(data);
-                    }
-                }
-            }
-            ViewData["datas"] = datas;
-            return View(curPlant);
+            ViewData["datas"] = lists;
+            return View(plant);
         }
 
         /// <summary>

@@ -156,6 +156,7 @@
     <Compile Include="Interfaces\ILoginRecordDao.cs" />
     <Compile Include="Interfaces\ICacheDao.cs" />
     <Compile Include="Interfaces\IYearCompensationDao.cs" />
+    <Compile Include="Interfaces\IEnergywarnDao.cs" />
     <Compile Include="MapperDao\AdminControllerActionRoleSqlMapDao.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -330,6 +331,7 @@
     <Compile Include="MapperDao\YearCompensationSqlMapDao.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MapperDao\EnergywarnSqlMapDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

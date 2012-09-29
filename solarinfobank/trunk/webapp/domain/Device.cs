@@ -32,6 +32,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public bool isHidden { get; set; }             //是否隐藏
 
         public string currentPower { get; set; }
+        
         public string name { get; set; }
 
         /// <summary>

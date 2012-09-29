@@ -1324,6 +1324,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         //发电量比例系数
         public double? energyRate { get; set; }
         public double? maxEnergyRate { get; set; }
+
+        public DateTime lastHandleDate { get; set; }   //设备发电量告警最后处理日期，默认是功能上线时间，数据库要设置默认时间为当前时间
+
         public bool rateEnable { get; set; }//是否启用比例系数
 
     }

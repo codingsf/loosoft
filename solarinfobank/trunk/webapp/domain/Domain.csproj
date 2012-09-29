@@ -152,6 +152,7 @@
     <Compile Include="LoginRecord.cs" />
     <Compile Include="DeviceInfo.cs" />
     <Compile Include="YearCompensation.cs" />
+    <Compile Include="Energywarn.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\" />

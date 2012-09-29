@@ -99,9 +99,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <param name="year"></param>
         /// <param name="month"></param>
         /// <returns></returns>
-        public IList<Compensation> getPlantDayCompensations(Plant plant, string year, string month)
+        public IList<Compensation> getPlantDayCompensations(int plantId, string year, string month)
         {
-            return _compensationDao.getCompensations(plant.id, true, Compensation.TYPE_DAY, year, month);
+            return _compensationDao.getCompensations(plantId, true, Compensation.TYPE_DAY, year, month);
         }
 
         /// <summary>
@@ -110,9 +110,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <param name="plant"></param>
         /// <param name="year"></param>
         /// <returns></returns>
-        public IList<Compensation> getPlantMonthCompensations(Plant plant, string year)
+        public IList<Compensation> getPlantMonthCompensations(int plantId, string year)
         {
-            return _compensationDao.getCompensations(plant.id, true, Compensation.TYPE_MONTH, year, null);
+            return _compensationDao.getCompensations(plantId, true, Compensation.TYPE_MONTH, year, null);
         }
 
         /// <summary>
@@ -120,9 +120,58 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// </summary>
         /// <param name="plant"></param>
         /// <returns></returns>
-        public IList<Compensation> getPlantYearCompensations(Plant plant)
+        public IList<Compensation> getPlantYearCompensations(int plantId)
         {
-            return _compensationDao.getCompensations(plant.id, true, Compensation.TYPE_YEAR, null, null);
+            return _compensationDao.getCompensations(plantId, true, Compensation.TYPE_YEAR, null, null);
+        }
+
+        /// <summary>
+        /// 取得电站某个所有年份发电量补偿
+        /// </summary>
+        /// <param name="plant"></param>
+        /// <returns></returns>
+        public double getPlantTotalCompensations(int plantId)
+        {
+            double total = 0;
+            foreach (Compensation com in _compensationDao.getCompensations(plantId, true, Compensation.TYPE_TOTAL, null, null))
+            {
+                total += com.dataValue;
+            }
+            return total;
+        }
+
+
+        /// <summary>
+        /// 取得设备某个月份天发电量补偿
+        /// </summary>
+        /// <param name="device"></param>
+        /// <param name="year"></param>
+        /// <param name="month"></param>
+        /// <returns></returns>
+        public IList<Compensation> getDeviceDayCompensations(int deviceId, string year, string month)
+        {
+            return _compensationDao.getCompensations(deviceId, true, Compensation.TYPE_DAY, year, month);
+        }
+
+        /// <summary>
+        /// 取得设备某个年份所有月度天发电量补偿
+        /// </summary>
+        /// <param name="device"></param>
+        /// <param name="year"></param>
+        /// <returns></returns>
+        public IList<Compensation> getDeviceMonthCompensations(int deviceId, string year)
+        {
+            return _compensationDao.getCompensations(deviceId, true, Compensation.TYPE_MONTH, year, null);
+        }
+
+        /// <summary>
+        /// 取得设备某个所有年份发电量补偿
+        /// </summary>
+        /// <param name="plant"></param>
+        /// <returns></returns>
+        public IList<Compensation> getDeviceYearCompensations(int deviceId)
+        {
+            return _compensationDao.getCompensations(deviceId, true, Compensation.TYPE_YEAR, null, null);
         }
     }
 }

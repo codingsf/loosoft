@@ -29,7 +29,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                         ConfigureHandler handler = new ConfigureHandler(ServiceConfig.Reset);
                         DomDaoManagerBuilder builder = new DomDaoManagerBuilder();
                         builder.ConfigureAndWatch("dao.config", handler);
-    
                         _instance = new ServiceConfig();
                         // TODO:默认为sqlMapDao指定的Context, 要提供对多个Context的支持.
                         _instance._daoManager = IBatisNet.DataAccess.DaoManager.GetInstance("SqlMapDao");

@@ -131,6 +131,7 @@
     <Compile Include="ManagerMonitorCodeService.cs" />
     <Compile Include="MonitorConfigService.cs" />
     <Compile Include="MonthCompensationService.cs" />
+    <Compile Include="EnergywarnProcesser.cs" />
     <Compile Include="ProtalService.cs" />
     <Compile Include="ProtalUtil.cs" />
     <Compile Include="QAService.cs" />
@@ -188,6 +189,7 @@
     <Compile Include="vo\CommonVO.cs" />
     <Compile Include="vo\DigitalInputDetailVO.cs" />
     <Compile Include="YearCompensationService.cs" />
+    <Compile Include="EnergywarnService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

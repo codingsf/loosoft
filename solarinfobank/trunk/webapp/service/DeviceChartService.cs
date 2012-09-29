@@ -97,6 +97,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             KeyValuePair<string, float?[]> data = new KeyValuePair<string, float?[]>();
             if (yearEnergy.Count > 0)
             {
+                //add by qhb in 20120928 for 补偿发电量
+                base.addDeviceYearEnergy(yearEnergy, device.id);
                 data = GenerateChartData(yname, newic, yearEnergy, rate);
             }
 
@@ -147,6 +149,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             KeyValuePair<string, float?[]> data = new KeyValuePair<string, float?[]>();
             if (yearMonthEnergy.Count > 0)
             {
+                //add by qhb in 20120928 for 补偿发电量
+                base.addDeviceMonthEnergy(yearMonthEnergy, device.id, startYearMM, endYearMM);
                 data = GenerateChartData(yname, ic, yearMonthEnergy, rate);
             }
             return ReportBuilder.createJsonChartXY(name, xAxis, data, "", unit, chartType, fromApp);
@@ -183,6 +187,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             KeyValuePair<string, float?[]> data = new KeyValuePair<string, float?[]>();
             if (monthDDEnergy.Count > 0)
             {
+                //add by qhb in 20120928 for 补偿发电量
+                base.addDeviceDayEnergy(monthDDEnergy, device.id, startYearMM, endYearMM);
                 data = GenerateChartData(xname, ic, monthDDEnergy, rate);
             }
             return ReportBuilder.createJsonChartXY(name, xAxis, data, "", unit, chartType, fromApp);
@@ -284,6 +290,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             if (yearEnergy.Count > 0)
             {
                 newseriekey = LanguageUtil.getDesc("ACTUALENERGY");
+                //add by qhb in 20120928 for 补偿发电量
+                base.addDeviceYearEnergy(yearEnergy, invertDevice.id);
                 data = GenerateChartData(newseriekey, newic, yearEnergy, rate);
             }
 
@@ -356,6 +364,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             if (yearMonthEnergy.Count > 0)
             {
                 newseriekey = LanguageUtil.getDesc("ACTUALENERGY");
+                //add by qhb in 20120928 for 补偿发电量
+                base.addDeviceMonthEnergy(yearMonthEnergy, invertDevice.id, startYear.ToString(), endYear.ToString());
                 data = GenerateChartData(newseriekey, ic, yearMonthEnergy, rate);
             }
             //string comobj = "";//plantList.Count > 1 ? "" : plantList[0].name;
@@ -424,6 +434,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             if (monthDDEnergy.Count > 0)
             {
                 newseriekey = LanguageUtil.getDesc("ACTUALENERGY");
+                //add by qhb in 20120928 for 补偿发电量
+                base.addDeviceDayEnergy(monthDDEnergy, invertDevice.id, startYearMMDD, endYearMMDD);
                 data = GenerateChartData(newseriekey, ic, monthDDEnergy, rate);
             }
             //string comobj = "";//plantList.Count > 1 ? "" : plantList[0].name;

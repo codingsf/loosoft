@@ -296,9 +296,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// 将给定数据，增加天天发电量补偿
         /// </summary>
         /// <param name="energyHash"></param>
-        protected void addPlantDayEnergy(Hashtable energyHash, Plant plant, string year, string month)
+        protected void addPlantDayEnergy(Hashtable energyHash, int plantId, string startYearMMDD, string endYearMMDD)
         {
-            addPlantDayEnergy(energyHash, new List<Plant>{ plant }, year, month);
+            Plant plant = PlantService.GetInstance().GetPlantInfoById(plantId);
+            addPlantDayEnergy(energyHash, new List<Plant>{ plant }, startYearMMDD, endYearMMDD);
 
         }
 
@@ -306,12 +307,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// 将给定数据，增加天天发电量补偿
         /// </summary>
         /// <param name="energyHash"></param>
-        protected void addPlantDayEnergy(Hashtable energyHash, IList<Plant> plants, string year, string month)
+        protected void addPlantDayEnergy(Hashtable energyHash, IList<Plant> plants, string startYearMMDD, string endYearMMDD)
         {
+            String year = startYearMMDD.Substring(0, 4);
+            String month = startYearMMDD.Substring(4, 2);
             foreach (Plant plant in plants)
             {
                 //取出该电站的该月的所有天补偿设置
-                IList<Compensation> comps = CompensationService.GetInstance().getPlantDayCompensations(plant, year, month);
+                IList<Compensation> comps = CompensationService.GetInstance().getPlantDayCompensations(plant.id, year, month);
                 String dayKey = "";
                 foreach (Compensation comp in comps)
                 {
@@ -321,15 +324,78 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             }
         }
 
+        protected void addPlantMonthEnergy(Hashtable energyHash, IList<Plant> plants, string startYearMM, string endYearMM)
+        {
+            foreach (Plant plant in plants)
+            {
+                addPlantMonthEnergy(energyHash, plant.id, startYearMM, endYearMM);
+            }
+        }
+
         /// <summary>
         /// 增加电站某年某些月份的电量补偿
         /// </summary>
         /// <param name="energyHash"></param>
         /// <param name="plant"></param>
-        protected void addPlantMonthEnergy(Hashtable energyHash, Plant plant, string year)
+        protected void addPlantMonthEnergy(Hashtable energyHash, int plantId, string startYearMM,string endYearMM)
+        {
+            String year = startYearMM.Substring(0, 4);
+            //取出该电站的该月的所有天补偿设置
+            IList<Compensation> comps = CompensationService.GetInstance().getPlantMonthCompensations(plantId, year);
+            String dayKey = "";
+            foreach (Compensation comp in comps)
+            {
+                dayKey = comp.year.ToString("00") + comp.month.ToString("00");
+                energyHash[dayKey] = (energyHash.ContainsKey(dayKey) && energyHash[dayKey] != null) ? double.Parse(energyHash[dayKey].ToString()) + comp.dataValue : comp.dataValue;
+            }
+        }
+
+        protected void addPlantYearEnergy(Hashtable energyHash, IList<Plant> plants)
+        {
+            foreach (Plant plant in plants) {
+                addPlantYearEnergy(energyHash, plant.id);
+            }
+        }
+        protected void addPlantYearEnergy(Hashtable energyHash, int plantId)
         {
             //取出该电站的该月的所有天补偿设置
-            IList<Compensation> comps = CompensationService.GetInstance().getPlantMonthCompensations(plant, year);
+            IList<Compensation> comps = CompensationService.GetInstance().getPlantYearCompensations(plantId);
+            String dayKey = "";
+            foreach (Compensation comp in comps)
+            {
+                dayKey = comp.year.ToString("00");
+                energyHash[dayKey] = (energyHash.ContainsKey(dayKey) && energyHash[dayKey] != null) ? double.Parse(energyHash[dayKey].ToString()) + comp.dataValue : comp.dataValue;
+            }
+        }
+
+        /// <summary>
+        /// 将给定数据，增加设备天天发电量补偿
+        /// </summary>
+        /// <param name="energyHash"></param>
+        protected void addDeviceDayEnergy(Hashtable energyHash, int deviceId, string startYearMMDD, string endYearMMDD)
+        {
+            String year = startYearMMDD.Substring(0, 4);
+            String month = startYearMMDD.Substring(4, 2);
+            //取出该电站的该月的所有天补偿设置
+            IList<Compensation> comps = CompensationService.GetInstance().getDeviceDayCompensations(deviceId, year, month);
+            String dayKey = "";
+            foreach (Compensation comp in comps)
+            {
+                dayKey = year + month + comp.day.ToString("00");
+                energyHash[dayKey] = (energyHash.ContainsKey(dayKey) && energyHash[dayKey] != null) ? double.Parse(energyHash[dayKey].ToString()) + comp.dataValue : comp.dataValue;
+            }
+        }
+
+        /// <summary>
+        /// 增加设备某年某些月份的电量补偿
+        /// </summary>
+        /// <param name="energyHash"></param>
+        /// <param name="device"></param>
+        protected void addDeviceMonthEnergy(Hashtable energyHash, int deviceId, string startYearMM, string endYearMM)
+        {
+            String year = startYearMM.Substring(0, 4);
+            //取出该电站的该月的所有天补偿设置
+            IList<Compensation> comps = CompensationService.GetInstance().getDeviceMonthCompensations(deviceId, year);
             String dayKey = "";
             foreach (Compensation comp in comps)
             {
@@ -339,14 +405,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         }
 
         /// <summary>
-        /// 增加电站某些年度的电量补偿
+        /// 增加设备某些年度的电量补偿
         /// </summary>
         /// <param name="energyHash"></param>
         /// <param name="plant"></param>
-        protected void addPlantMonthEnergy(Hashtable energyHash, Plant plant)
+        protected void addDeviceYearEnergy(Hashtable energyHash, int deviceId)
         {
             //取出该电站的该月的所有天补偿设置
-            IList<Compensation> comps = CompensationService.GetInstance().getPlantYearCompensations(plant);
+            IList<Compensation> comps = CompensationService.GetInstance().getDeviceYearCompensations(deviceId);
             String dayKey = "";
             foreach (Compensation comp in comps)
             {

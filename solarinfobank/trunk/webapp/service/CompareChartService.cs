@@ -127,12 +127,16 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     IList<PlantUnit> plantUnits = getUnitsBydeviceIDs(deviceId, deviceStuct.deviceType);
                     curName = deviceStuct.name;
                     dataHash = CollectorYearDataService.GetInstance().GetYearDatasByUnits(plantUnits);
+                    //add by qhb in 20120928 for 补偿发电量
+                    base.addPlantYearEnergy(dataHash, int.Parse(deviceId));
                 }
                 else
                 {   //设备
                     Device device = DeviceService.GetInstance().get(int.Parse(deviceId));
                     curName = deviceStuct.name;
                     dataHash = DeviceYearDataService.GetInstance().GetTotalDatasByDevice(device);
+                    //add by qhb in 20120928 for 补偿发电量
+                    base.addDeviceYearEnergy(dataHash, device.id);
                 }
 
                 //如果有多个设备进行编辑，没有数据的时候也显示
@@ -201,12 +205,16 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     IList<PlantUnit> plantUnits = getUnitsBydeviceIDs(deviceId, deviceStuct.deviceType);
                     curName = deviceStuct.name;
                     dataHash = CollectorYearMonthDataService.GetInstance().GetUnitBetweenYearData(plantUnits,startYear,endYear);
+                    //add by qhb in 20120928 for 补偿发电量
+                    base.addPlantMonthEnergy(dataHash, int.Parse(deviceId), startYear.ToString(),endYear.ToString());
                 }
                 else
                 {   //设备
                     Device device = DeviceService.GetInstance().get(int.Parse(deviceId));
                     curName = deviceStuct.name;
                     dataHash = DeviceYearMonthDataService.GetInstance().GetDeviceBetweenYearData(device, startYear, endYear);
+                    //add by qhb in 20120928 for 补偿发电量
+                    base.addDeviceMonthEnergy(dataHash, int.Parse(deviceId), startYear.ToString(), endYear.ToString());
                 }
                 //如果有多个设备进行编辑，没有数据的时候也显示
                 //if (dataHash.Count > 0 )
@@ -300,12 +308,16 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     IList<PlantUnit> plantUnits = getUnitsBydeviceIDs(deviceId, deviceStuct.deviceType);
                     curName = deviceStuct.name;
                     dataHash = CollectorMonthDayDataService.GetInstance().GetUnitBetweenMonthData(plantUnits, startYearMM, endYearMM);
+                    //add by qhb in 20120928 for 补偿发电量
+                    base.addPlantDayEnergy(dataHash, int.Parse(deviceId), startYearMM, endYearMM);
                 }
                 else
                 {   //设备
                     Device device = DeviceService.GetInstance().get(int.Parse(deviceId));
                     curName = deviceStuct.name;
                     dataHash = DeviceMonthDayDataService.GetInstance().DeviceYearMMDDList(device, startYearMMDD, endYearMMDD);
+                    //add by qhb in 20120928 for 补偿发电量
+                    base.addDeviceDayEnergy(dataHash, int.Parse(deviceId), startYearMM, endYearMM);
                 }
                 //如果有多个设备进行编辑，没有数据的时候也显示
                 //if (dataHash.Count > 0)
@@ -587,6 +599,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 //如果有多个设备进行编辑，没有数据的时候也显示
                 //if (dataHash.Count > 0)
                 //{
+                    //add by qhb in 20120928 for 补偿发电量
+                    base.addPlantYearEnergy(dataHash, plantList);
                     KeyValuePair<string, float?[]> data = GenerateChartData(year.ToString(), ic, dataHash, rate);
                     datas.Add(data);
                 //}
@@ -649,6 +663,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 //如果有多个设备进行编辑，没有数据的时候也显示
                 //if (dataHash.Count > 0)
                 //{
+                    //add by qhb in 20120928 for 补偿发电量
+                    base.addDeviceMonthEnergy(dataHash, device.id,year.ToString(),year.ToString());
                     KeyValuePair<string, float?[]> data = GenerateChartData(year.ToString(), ic, dataHash, rate);
                     datas.Add(data);
                 //}
@@ -707,6 +723,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 //如果有多个设备进行编辑，没有数据的时候也显示
                 //if (dataHash.Count > 0)
                 //{
+                    //add by qhb in 20120928 for 补偿发电量
+                    base.addPlantDayEnergy(dataHash, plantList, yearMM, yearMM);
                     KeyValuePair<string, float?[]> data = GenerateChartData(curName, ic, dataHash, rate);
                     datas.Add(data);
                 //}
@@ -765,6 +783,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 //如果有多个设备进行编辑，没有数据的时候也显示
                 //if (dataHash.Count > 0)
                 //{
+                    //add by qhb in 20120928 for 补偿发电量
+                    base.addDeviceDayEnergy(dataHash, device.id, yearMM, yearMM);
                     KeyValuePair<string, float?[]> data = GenerateChartData(curName, ic, dataHash, rate);
                     datas.Add(data);
                 //}

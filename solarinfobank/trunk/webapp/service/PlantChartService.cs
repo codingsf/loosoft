@@ -118,6 +118,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             KeyValuePair<string, float?[]> data = new KeyValuePair<string, float?[]>();
             if (yearEnergy.Count > 0)
             {
+                //add by qhb in 20120928 for 补偿发电量
+                base.addPlantYearEnergy(yearEnergy, plantList);
                 if (newserieKey == null)
                 {
                     data = GenerateChartData(mt.name, newic, yearEnergy, rate);
@@ -254,6 +256,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             KeyValuePair<string, float?[]> data = new KeyValuePair<string, float?[]>();
             if (yearMonthEnergy.Count > 0)
             {
+                //add by qhb in 20120928 for 补偿发电量
+                base.addPlantMonthEnergy(yearMonthEnergy, plantList,startYear.ToString(),endYear.ToString());
                 if (newserieKey == null)
                 {
                     data = GenerateChartData(mt.name, ic, yearMonthEnergy, rate);
@@ -455,6 +459,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             if (monthDDEnergy.Count > 0)
             {
                 newseriekey = LanguageUtil.getDesc("ACTUALENERGY");
+                //add by qhb in 20120928 for 补偿发电量
+                base.addPlantDayEnergy(monthDDEnergy, plantList, startYearMMDD, endYearMMDD);
+
                 data = GenerateChartData(newseriekey, ic, monthDDEnergy, rate);
                 units.Add(mt.unit);
                 //string comobj = "";//plantList.Count > 1 ? "" : plantList[0].name;
@@ -529,6 +536,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             if (yearMonthEnergy.Count > 0)
             {
                 newseriekey = LanguageUtil.getDesc("ACTUALENERGY");
+
+                //add by qhb in 20120928 for 补偿发电量
+                base.addPlantMonthEnergy(yearMonthEnergy, plantList, startYear.ToString(), endYear.ToString());
                 data = GenerateChartData(newseriekey, ic, yearMonthEnergy, rate);
 
                 //string comobj = "";//plantList.Count > 1 ? "" : plantList[0].name;
@@ -619,6 +629,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             if (yearEnergy.Count > 0)
             {
                 newseriekey = LanguageUtil.getDesc("ACTUALENERGY");
+
+                //add by qhb in 20120928 for 补偿发电量
+                base.addPlantYearEnergy(yearEnergy, plantList);
+
                 data = GenerateChartData(newseriekey, newic, yearEnergy, rate);
 
                 datas.Add(data);

@@ -70,6 +70,39 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             return string.Format("{0:" + format + "}", dt);
         }
 
+
+
+        /// <summary>
+        /// 系统当前时间，要考虑时区
+        /// </summary>
+        /// <returns></returns>
+        public static string curBeforeDateWithTimeZone(float timezone, string format)
+        {
+            DateTime dt = DateTime.Now.AddHours(timezone - loaclTz);
+            return string.Format("{0:" + format + "}", dt.AddDays(-1)); 
+        }
+
+        /// <summary>
+        /// 系统当前时间，要考虑时区
+        /// </summary>
+        /// <returns></returns>
+        public static DateTime curDateWithTimeZone(float timezone)
+        {
+            DateTime dt = DateTime.Now.AddHours(timezone - loaclTz);
+            return dt;
+        }
+
+
+        /// <summary>
+        /// 系统当前前一天时间，要考虑时区
+        /// </summary>
+        /// <returns></returns>
+        public static DateTime curBeforeDateWithTimeZone(float timezone)
+        {
+            DateTime dt = DateTime.Now.AddHours(timezone - loaclTz);
+            return dt.AddDays(-1);
+        }
+        
         /// <summary>
         /// 系统当前时间，要考虑时区
         /// </summary>
@@ -94,20 +127,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             return string.Format("{0:" + format + "}", dt);
         }
 
-
-
-        /// <summary>
-        /// 系统当前时间，要考虑时区
-        /// </summary>
-        /// <returns></returns>
-        public static DateTime curDateWithTimeZone(float timezone)
-        {
-            DateTime dt2 = DateTime.Now.AddHours(2);
-            DateTime dt = DateTime.Now.AddHours(-2);
-            DateTime dt3 = DateTime.Now.AddHours(-6.5);
-            DateTime dt4 = DateTime.Now.AddHours(timezone - loaclTz);
-            return dt4;
-        }
         /// <summary>
         /// 格式时间
         /// </summary>

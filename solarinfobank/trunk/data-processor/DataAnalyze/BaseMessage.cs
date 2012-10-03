@@ -22,6 +22,11 @@ namespace DataAnalyze
     /// </summary>
     public class BaseMessage : IMessage
     {
+        protected int istart = 0 * hexbytecharnum; //头区开始下标
+        protected int icount = 41 * hexbytecharnum;//头区字符长度，头区在1.0版本协议中为41个字节，十六进制表示
+        protected int datalencount20 = 8 * hexbytecharnum;//2.0协议中头区中表示协议号位到数据部分之间的协议固定位数
+        protected int versionLength = 19 * hexbytecharnum;//版本在消息中固定开始位置
+
         /// <summary>
         /// bank rul地址
         /// </summary>
@@ -94,6 +99,40 @@ namespace DataAnalyze
                 return messageHeader;
             }
             set { messageHeader = value; }
+        }
+
+        /// <summary>
+        /// 根据版本号取得单个告警信息的长度
+        /// add by qhb in 201208011 for 旧协议的1.1版本做区分
+        /// </summary>
+        /// <returns></returns>
+        protected int getFaultInfoLength()
+        {
+            if (this.largeVersion == 1 && this.smallVersion == 0)
+            {
+                return ProtocolConst.LENGTH_BUG10;
+            }
+            else if (this.largeVersion == 1 && this.smallVersion == 1)
+            {
+                return ProtocolConst.LENGTH_BUG11;
+            }
+            return ProtocolConst.LENGTH_BUG10;
+        }
+        /// <summary>
+        /// 根据协议版本调用不同实例解析告警信息
+        /// </summary>
+        /// <returns></returns>
+        protected Bug parseBug(string bugmsg)
+        {
+            if (this.largeVersion == 1 && this.smallVersion == 0)
+            {
+                return new TcpBug10(bugmsg);
+            }
+            else if (this.largeVersion == 1 && this.smallVersion == 1)
+            {
+                return new TcpBug11(bugmsg);
+            }
+            return new TcpBug10(bugmsg);
         }
 
         /// <summary>
@@ -182,99 +221,112 @@ namespace DataAnalyze
                 DeviceDayData mdd = null;
                 foreach (DeviceDataBase ddb in ListTcpbody)
                 {
-                    int deviceID = GetDeviceId(collectorID, ddb.deviceAddress);
-                    int deviceT = 1;
-                    //根据协议类型取得说属大类型
-                    if (ddb.deviceType == -1)
+                    try
                     {
-                        deviceT = DeviceData.getProtocolTypeByCode(ddb.protocolType).deviceType.code;
-                    }
-                    else
-                    {
-                        deviceT = ddb.deviceType;
-                    }
-                    if (deviceID == 0)
-                    {
-                        //构造设备
-                        device = new Device();
-                        device.collectorID = collectorID;
-                        device.deviceAddress = ddb.deviceAddress.ToString();
-                      
-                        device.deviceTypeCode = deviceT; 
-                        device.deviceModel = new DeviceModel() { code = ddb.deviceXh };
-                        device.status = ddb.deviceState.ToString();
-                        deviceID = DeviceService.GetInstance().Save(device);
-                        LogUtil.info("has new device,collectorID is " + collectorID + ",deviceAddress is "+device.deviceAddress);
-                        //有新设备要更新bank缓存
-                        HttpClientUtil.requestUrl(bank_url);
-                    }
-                    else
-                    {   
-                        //这里影响解析性能，出了型号会变，设备类型也会变所以也要更新
-                        device = DeviceService.GetInstance().get(deviceID);
-                        if (ddb.deviceXh != device.deviceModelCode || (DeviceData.getProtocolTypeByCode(ddb.protocolType).typecode != device.deviceTypeCode))
-                        { 
-                            //型号有变化更新设备信息
-                            device.deviceModelCode = ddb.deviceXh;
-                            device.deviceModel = new DeviceModel() { code = ddb.deviceXh };
-                            device.deviceTypeCode = deviceT; 
-                            //device.name = "";
-                            LogUtil.info("has device update,collectorID is " + collectorID + ",deviceAddress is " + device.deviceAddress);
-                            DeviceService.GetInstance().Save(device);
-
-                            //设备类型编号也要更新bank缓存
-                            HttpClientUtil.requestUrl(bank_url);
-                        }
-                    }
-
-                    //设置设备的发电量
-                    if(ddb.todayEnergy>-1){
-                        deviceEnergyMap[deviceID + ":" +messageHeader.year + messageHeader.month + messageHeader.day] = ddb.todayEnergy;
-                    }
-
-                    //设置设备的增量日照强度，参照发电量记录，用发电量的记录逻辑，因为发电量的设备id是逆变器，现在时环境监测仪所以不会重复，可以用发电量的结构
-                    //如果增量日照强度大于0则表示有就记录下来，用于后面的累计 add by qianhb in 2012/01/13
-                    if(ddb.todaySunshine>-1){
-                        deviceEnergyMap[deviceID + ":" +messageHeader.year + messageHeader.month + messageHeader.day] = ddb.todaySunshine;
-                    }
-                    
-                    //这里需要改进为依据设备时间，防止设备数据的时间和采集器的时间是不一致的
-                    string mapObjectKey;
-                    IDictionary<string, DeviceDayData> tmpdic = null;
-                    foreach (int key in ddb.historyMonitorMap.Keys)
-                    {
-                        tmpdic = devicedayDataMapList[deviceID%50];
-                        mapObjectKey = CacheKeyUtil.buildDeviceDayDataKey(deviceID, messageHeader.year + messageHeader.month, int.Parse(messageHeader.day), key);
-                        if (!tmpdic.ContainsKey(mapObjectKey))
+                        int deviceID = GetDeviceId(collectorID, ddb.deviceAddress);
+                        int deviceT = 1;
+                        //根据协议类型取得说属大类型
+                        if (ddb.deviceType == -1)
                         {
-                            //先从缓存中取得
-                            mdd = DeviceDayDataService.GetInstance().getDeviceDayData(deviceID, key, int.Parse(messageHeader.day), int.Parse(messageHeader.year), int.Parse(messageHeader.month));
-                            if (mdd == null)
-                                mdd = new DeviceDayData() { deviceID = deviceID, sendDay = int.Parse(messageHeader.day), monitorCode = key, deviceType = ddb.tableType };
-                            else { 
-                                if(mdd.id==0)
-                                    LogUtil.warn("mdd id is 0" + deviceID + "-" + key + "-" + ddb.tableType);
-                            }
-
-                            tmpdic[mapObjectKey] = mdd;
+                            deviceT = DeviceData.getProtocolTypeByCode(ddb.protocolType).deviceType.code;
                         }
                         else
                         {
-                            mdd = tmpdic[mapObjectKey];
+                            deviceT = ddb.deviceType;
                         }
-                        //非持久化属性赋值，用于指定所在表
-                        mdd.yearmonth = messageHeader.year + messageHeader.month;
-                        float newValue = ddb.historyMonitorMap[key] == null ? 0 : float.Parse(ddb.historyMonitorMap[key].ToString());
-                        mdd.dataContent += "#" + messageHeader.hour + messageHeader.minute + messageHeader.second + ":" + newValue;
-                        mdd.sendtime = messageHeader.TimeNow;
-                        mdd.localAcceptTime = DateTime.Now;
-                        mdd.deviceType = ddb.tableType;
-                        mdd.changed = true;
-                        //将功率和关照的最大发生时间记录下来,稍后在优化下
-                        if (key == MonitorType.MIC_INVERTER_TOTALYGPOWER || key == MonitorType.MIC_DETECTOR_SUNLINGHT || key == MonitorType.MIC_BUSBAR_TOTALCURRENT) {
-                            deviceDataCounts.Add(new DeviceDataCount() { deviceId = deviceID, monitorCode = key, year = int.Parse(messageHeader.year), month = int.Parse(messageHeader.month), day = int.Parse(messageHeader.day), deviceTable = TableUtil.DEVICE, maxValue = newValue, maxTime = messageHeader.TimeNow, localAcceptTime = DateTime.Now });
+                        if (deviceID == 0)
+                        {
+                            //构造设备
+                            device = new Device();
+                            device.collectorID = collectorID;
+                            device.deviceAddress = ddb.deviceAddress.ToString();
+
+                            device.deviceTypeCode = deviceT;
+                            device.deviceModel = new DeviceModel() { code = ddb.deviceXh };
+                            device.status = ddb.deviceState.ToString();
+                            deviceID = DeviceService.GetInstance().Save(device);
+                            LogUtil.info("has new device,collectorID is " + collectorID + ",deviceAddress is " + device.deviceAddress);
+                            //有新设备要更新bank缓存
+                            HttpClientUtil.requestUrl(bank_url);
+                        }
+                        else
+                        {
+                            //这里影响解析性能，出了型号会变，设备类型也会变所以也要更新
+                            device = DeviceService.GetInstance().get(deviceID);
+                            if (ddb.deviceXh != device.deviceModelCode || (DeviceData.getProtocolTypeByCode(ddb.protocolType).typecode != device.deviceTypeCode))
+                            {
+                                //型号有变化更新设备信息
+                                device.deviceModelCode = ddb.deviceXh;
+                                device.deviceModel = new DeviceModel() { code = ddb.deviceXh };
+                                device.deviceTypeCode = deviceT;
+                                //device.name = "";
+                                LogUtil.info("has device update,collectorID is " + collectorID + ",deviceAddress is " + device.deviceAddress);
+                                DeviceService.GetInstance().Save(device);
+
+                                //设备类型编号也要更新bank缓存
+                                HttpClientUtil.requestUrl(bank_url);
+                            }
                         }
 
+                        //设置设备的发电量
+                        if (ddb.todayEnergy > -1)
+                        {
+                            deviceEnergyMap[deviceID + ":" + messageHeader.year + messageHeader.month + messageHeader.day] = ddb.todayEnergy;
+                        }
+
+                        //设置设备的增量日照强度，参照发电量记录，用发电量的记录逻辑，因为发电量的设备id是逆变器，现在时环境监测仪所以不会重复，可以用发电量的结构
+                        //如果增量日照强度大于0则表示有就记录下来，用于后面的累计 add by qianhb in 2012/01/13
+                        if (ddb.todaySunshine > -1)
+                        {
+                            deviceEnergyMap[deviceID + ":" + messageHeader.year + messageHeader.month + messageHeader.day] = ddb.todaySunshine;
+                        }
+
+                        //这里需要改进为依据设备时间，防止设备数据的时间和采集器的时间是不一致的
+                        string mapObjectKey;
+                        IDictionary<string, DeviceDayData> tmpdic = null;
+                        foreach (int key in ddb.historyMonitorMap.Keys)
+                        {
+                            tmpdic = devicedayDataMapList[deviceID % 50];
+                            mapObjectKey = CacheKeyUtil.buildDeviceDayDataKey(deviceID, messageHeader.year + messageHeader.month, int.Parse(messageHeader.day), key);
+                            if (!tmpdic.ContainsKey(mapObjectKey))
+                            {
+                                //先从缓存中取得
+                                mdd = DeviceDayDataService.GetInstance().getDeviceDayData(deviceID, key, int.Parse(messageHeader.day), int.Parse(messageHeader.year), int.Parse(messageHeader.month));
+                                if (mdd == null)
+                                    mdd = new DeviceDayData() { deviceID = deviceID, sendDay = int.Parse(messageHeader.day), monitorCode = key, deviceType = ddb.tableType };
+                                else
+                                {
+                                    if (mdd.id == 0)
+                                        LogUtil.warn("mdd id is 0" + deviceID + "-" + key + "-" + ddb.tableType);
+                                }
+
+                                tmpdic[mapObjectKey] = mdd;
+                            }
+                            else
+                            {
+                                mdd = tmpdic[mapObjectKey];
+                            }
+                            //非持久化属性赋值，用于指定所在表
+                            mdd.yearmonth = messageHeader.year + messageHeader.month;
+                            float newValue = ddb.historyMonitorMap[key] == null ? 0 : float.Parse(ddb.historyMonitorMap[key].ToString());
+                            mdd.dataContent += "#" + messageHeader.hour + messageHeader.minute + messageHeader.second + ":" + newValue;
+                            mdd.sendtime = messageHeader.TimeNow;
+                            mdd.localAcceptTime = DateTime.Now;
+                            mdd.deviceType = ddb.tableType;
+                            mdd.changed = true;
+                            //add by qhb in 20120924 for 会写到memcahced 以便持久化能取到改数据.设备天数据集中缓存处有点问题，
+                            MemcachedClientSatat.getInstance().Set(mapObjectKey, mdd);
+                            //将功率和关照的最大发生时间记录下来,稍后在优化下
+                            if (key == MonitorType.MIC_INVERTER_TOTALYGPOWER || key == MonitorType.MIC_DETECTOR_SUNLINGHT || key == MonitorType.MIC_BUSBAR_TOTALCURRENT)
+                            {
+                                deviceDataCounts.Add(new DeviceDataCount() { deviceId = deviceID, monitorCode = key, year = int.Parse(messageHeader.year), month = int.Parse(messageHeader.month), day = int.Parse(messageHeader.day), deviceTable = TableUtil.DEVICE, maxValue = newValue, maxTime = messageHeader.TimeNow, localAcceptTime = DateTime.Now });
+                            }
+
+                        }
+                    }
+                    catch (Exception ee)
+                    {
+                        LogUtil.error(ee.Message);
                     }
                 }
             }
@@ -404,9 +456,9 @@ namespace DataAnalyze
                     fault = new Fault();
                     fault.address = bug.deviceAddress.ToString();
                     fault.errorCode = bug.faultType;
-                    //ErrorItem errorItem = ErrorItem.getErrotItemByCode(bug.faultType);
-                    //fault.errorTypeCode = errorItem == null?ErrorType.ERROR_TYPE_FAULT:errorItem.errorType;
                     fault.errorTypeCode = ErrorItem.getErrorTypefromMemcached(bug.faultType);
+                    fault.data1 = bug.data1;
+                    fault.data2 = bug.data2;
                     fault.sendTime = bug.faultTime;
                     fault.collectorID = colllectorID;
                     fault.confirm = false;
@@ -525,7 +577,23 @@ namespace DataAnalyze
             foreach (DeviceInfo dinfo in this.deviceInfos)
             {
                 deviceId = this.GetDeviceId(collectorId, dinfo.address.ToString());
-                if (deviceId == 0) continue;
+                //add by qhb in 20120827 for 发送设备信息也添加设备
+                if (deviceId == 0){
+                    //构造设备
+                    Device device = new Device();
+                    device.collectorID = collectorId;
+                    device.deviceAddress = dinfo.address.ToString();
+                    if (DataType.deviceTypeNoMap.ContainsKey(dinfo.typemodel))
+                        device.deviceTypeCode = DataType.deviceTypeNoMap[dinfo.typemodel];
+
+                    //device.deviceModel = new DeviceModel() { code = dinfo.typemodel };
+                    //device.status = ddb.deviceState.ToString();
+                    deviceId = DeviceService.GetInstance().Save(device);
+                    LogUtil.info("has new device,collectorID is " + collectorId + ",deviceAddress is " + device.deviceAddress);
+                    //有新设备要更新bank缓存
+                    HttpClientUtil.requestUrl(bank_url);
+                }
+                //add end
                 dinfo.deviceid = deviceId;
                 if (deviceInfoMap.ContainsKey(deviceId))
                 {
@@ -803,6 +871,7 @@ namespace DataAnalyze
             _CollectorCode = _CollectorCode.Replace("\0", "0");//临时处理非法测试数据
             return _CollectorCode;
         }
+
         /// <summary>
         /// 覆写解析方法
         /// </summary>
@@ -889,10 +958,11 @@ namespace DataAnalyze
             int ss = (int)SystemCode.HexNumberToDenary(ssss.Substring(0, 2), false, 8, 'u');
             if (ss > 60) ss = 59;
             this.TimeNow = new DateTime(year, moth, day, hh, mm, ss);
-
-            if (day > 5) {
-                Console.WriteLine("dsfds");
+            if (DateTime.Now.AddDays(2) < this.TimeNow) { //超过服务器时间两天的实时数据抛弃
+                this.hasData = false;
+                return;
             }
+
             string infoData = header.Substring(14 * 2);
             //解析多个信息体
             //每个信息体开始下标

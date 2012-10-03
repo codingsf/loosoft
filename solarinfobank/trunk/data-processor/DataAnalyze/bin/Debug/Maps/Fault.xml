@@ -15,6 +15,8 @@
       <result property="address"			column="Address"/>
       <result property="errorCode"			column="errorCode"/>
       <result property="errorTypeCode"			column="errorTypeCode"/>
+      <result property="data1"			column="data1"/>
+      <result property="data2"			column="data2"/>
       <result property="sendTime"			column="sendTime"/>
       <result property="confirm"			column="isConfirmed"/>
       <result property="device"	lazyLoad="true"	column="deviceID" select="device_get" />
@@ -84,18 +86,16 @@
 
 
     <insert id="fault_insert">
-      <![CDATA[insert into fault_$year$ (collectorID,address,errorCode,errorTypeCode,sendTime,isConfirmed,deviceID) 
-      values(#collectorID#,#address#,#errorCode#,#errorTypeCode#,#sendTime#,#confirm#,#device.id#)]]>
+      <![CDATA[insert into fault_$year$ (collectorID,address,errorCode,errorTypeCode,sendTime,isConfirmed,deviceID,data1,data2) 
+      values(#collectorID#,#address#,#errorCode#,#errorTypeCode#,#sendTime#,#confirm#,#device.id#,#data1#,#data2#)]]>
     </insert>
-
-
 
     <!--发送报告后台需要-->
 
     <select id="interval_sender_load_logs" resultMap="FaultResult" parameterClass="Hashtable">
       <![CDATA[SELECT * FROM fault_$year$ WHERE  sendTime > #lastModified# and collectorid in ($cids$) and isconfirmed=0]]>
     </select>
-    
+
     <!-- 根据设备id，告警代码和是否确认来取得最新一条告警记录 add by qhb in 20120309 for 数据解析器能更新为确认的同类型的告警 -->
     <select id="GetFaultbyDeviceIdTypeStatus" resultMap="FaultResult" parameterClass="Hashtable">
       <![CDATA[SELECT * FROM fault_$year$ WHERE  deviceID = $deviceID$ and errorCode = $errorCode$ and isconfirmed=$confirm$ order by sendTime desc  limit 1]]>

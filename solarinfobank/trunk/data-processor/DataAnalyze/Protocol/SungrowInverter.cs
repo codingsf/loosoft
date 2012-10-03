@@ -34,56 +34,84 @@ namespace Protocol
             string monitorstr = deviceData.Substring(deviceDataHeadLength * hexbytecharnum);
             //按照测点在协议中的顺序依次解析具体测点数据
             //交流电压 0.1
-            double av = (double)SystemCode.HexNumberToDenary(monitorstr.Substring(0 * hexbytecharnum, 2 * hexbytecharnum), true, 16, 'u');
-            av = Math.Round(av * 0.1, 1);
-            realMonitorMap[MonitorType.MIC_INVERTER_AV] = av;
-            historyMonitorMap[MonitorType.MIC_INVERTER_AV] = av;
-
+            ushort avl = (ushort)SystemCode.HexNumberToDenary(monitorstr.Substring(0 * hexbytecharnum, 2 * hexbytecharnum), true, 16, 'u');
+            double av = 0;
+            if (avl != ushort.MaxValue)
+            {//最大值无效
+                av = Math.Round(avl * 0.1, 1);
+                realMonitorMap[MonitorType.MIC_INVERTER_AV] = av;
+                historyMonitorMap[MonitorType.MIC_INVERTER_AV] = av;
+            }
             //交流电流
-            double ac = (double)SystemCode.HexNumberToDenary(monitorstr.Substring(2 * hexbytecharnum, 2 * hexbytecharnum), true, 16, 'u');
-            ac = Math.Round(ac * 0.1, 1);
-            realMonitorMap[MonitorType.MIC_INVERTER_AC] = ac;
-            historyMonitorMap[MonitorType.MIC_INVERTER_AC] = ac;
+            ushort acl = (ushort)SystemCode.HexNumberToDenary(monitorstr.Substring(2 * hexbytecharnum, 2 * hexbytecharnum), true, 16, 'u');
+            double ac = 0;
+            if (acl != ushort.MaxValue)
+            {//最大值无效
+                ac = Math.Round(acl * 0.1, 1);
+                realMonitorMap[MonitorType.MIC_INVERTER_AC] = ac;
+                historyMonitorMap[MonitorType.MIC_INVERTER_AC] = ac;
+            }
             //直流电压
-            double dv = (double)SystemCode.HexNumberToDenary(monitorstr.Substring(4 * hexbytecharnum, 2 * hexbytecharnum), true, 16, 'u');
-            dv = Math.Round(dv * 0.1, 1);
-            realMonitorMap[MonitorType.MIC_INVERTER_DV] = dv;
-            historyMonitorMap[MonitorType.MIC_INVERTER_DV] = dv;
+            ushort dvl = (ushort)SystemCode.HexNumberToDenary(monitorstr.Substring(4 * hexbytecharnum, 2 * hexbytecharnum), true, 16, 'u');
+            if (dvl != ushort.MaxValue)
+            {//最大值无效
+                double dv = Math.Round(dvl * 0.1, 1);
+                realMonitorMap[MonitorType.MIC_INVERTER_DV] = dv;
+                historyMonitorMap[MonitorType.MIC_INVERTER_DV] = dv;
+            }
             //直流电流
-            double dc = (double)SystemCode.HexNumberToDenary(monitorstr.Substring(6 * hexbytecharnum, 2 * hexbytecharnum), true, 16, 'u');
-            dc = Math.Round(dc * 0.1, 1);
-            realMonitorMap[MonitorType.MIC_INVERTER_DC] = dc;
-            historyMonitorMap[MonitorType.MIC_INVERTER_DC] = dc;
+            ushort dcl = (ushort)SystemCode.HexNumberToDenary(monitorstr.Substring(6 * hexbytecharnum, 2 * hexbytecharnum), true, 16, 'u');
+            if (dcl != ushort.MaxValue)//最大值无效
+            {
+                double dc = Math.Round(dcl * 0.1, 1);
+                realMonitorMap[MonitorType.MIC_INVERTER_DC] = dc;
+                historyMonitorMap[MonitorType.MIC_INVERTER_DC] = dc;
+            }
             //逆变器温度 为补吗是啥意思？
-            double invertertemprature = (double)SystemCode.HexNumberToDenary(monitorstr.Substring(8 * hexbytecharnum, 2 * hexbytecharnum), true, 16, 'u');
-            invertertemprature = Math.Round(invertertemprature * 0.1, 1);
-            realMonitorMap[MonitorType.MIC_INVERTER_INVETERTEMPRATURE] = invertertemprature;
-            historyMonitorMap[MonitorType.MIC_INVERTER_INVETERTEMPRATURE] = invertertemprature;
-
+            ushort invertertempraturel = (ushort)SystemCode.HexNumberToDenary(monitorstr.Substring(8 * hexbytecharnum, 2 * hexbytecharnum), true, 16, 'u');
+            if (invertertempraturel != ushort.MaxValue)//最大值无效
+            {
+                double invertertemprature = Math.Round(invertertempraturel * 0.1, 1);
+                realMonitorMap[MonitorType.MIC_INVERTER_INVETERTEMPRATURE] = invertertemprature;
+                historyMonitorMap[MonitorType.MIC_INVERTER_INVETERTEMPRATURE] = invertertemprature;
+            }
             //日发电量
-            double todayEnergy = (double)SystemCode.HexNumberToDenary(monitorstr.Substring(10 * hexbytecharnum, 2 * hexbytecharnum), true, 16, 'u');
-            todayEnergy = Math.Round(todayEnergy * 0.1, 3);
-            realMonitorMap[MonitorType.MIC_INVERTER_TODAYENERGY] = todayEnergy;
-            historyMonitorMap[MonitorType.MIC_INVERTER_TODAYENERGY] = todayEnergy;
-            base.todayEnergy = todayEnergy;
+            ushort todayEnergyl = (ushort)SystemCode.HexNumberToDenary(monitorstr.Substring(10 * hexbytecharnum, 2 * hexbytecharnum), true, 16, 'u');
+            if (todayEnergyl != ushort.MaxValue)//最大值无效
+            {
+                double todayEnergy = Math.Round(todayEnergyl * 0.1, 3);
+                realMonitorMap[MonitorType.MIC_INVERTER_TODAYENERGY] = todayEnergy;
+                historyMonitorMap[MonitorType.MIC_INVERTER_TODAYENERGY] = todayEnergy;
+                base.todayEnergy = todayEnergy;
+            }
 
             //交流发电量即总发电量
             string acEnergyStr = monitorstr.Substring(12 * hexbytecharnum, 4 * hexbytecharnum);
-            long acEnergy = SystemCode.HexNumberToDenary(acEnergyStr, SystemCode.ReversionType_groupinner, 32, 'u');
-            realMonitorMap[MonitorType.MIC_INVERTER_ACENERGY] = acEnergy;
-            historyMonitorMap[MonitorType.MIC_INVERTER_ACENERGY] = acEnergy;
+            uint acEnergyl = (uint)SystemCode.HexNumberToDenary(acEnergyStr, SystemCode.ReversionType_groupinner, 32, 'u');
+            if (acEnergyl != uint.MaxValue)//最大值无效
+            {
+                realMonitorMap[MonitorType.MIC_INVERTER_ACENERGY] = acEnergyl;
+                historyMonitorMap[MonitorType.MIC_INVERTER_ACENERGY] = acEnergyl;
+            }
             //状态信息
-            int statusinfo = (int)SystemCode.HexNumberToDenary(monitorstr.Substring(16 * hexbytecharnum, 2 * hexbytecharnum), true, 16, 'u');
-            realMonitorMap[MonitorType.MIC_INVERTER_DEVICESTATUS] = statusinfo;
+            ushort statusinfo = (ushort)SystemCode.HexNumberToDenary(monitorstr.Substring(16 * hexbytecharnum, 2 * hexbytecharnum), true, 16, 'u');
+            if (statusinfo != ushort.MaxValue)//最大值无效
+            {
+                realMonitorMap[MonitorType.MIC_INVERTER_DEVICESTATUS] = statusinfo;
+            }
             //电网频率
-            double dwpl = (double)SystemCode.HexNumberToDenary(monitorstr.Substring(20 * hexbytecharnum, 2 * hexbytecharnum), true, 16, 'u');
-            dwpl = Math.Round(dwpl * 0.1, 1);
-            realMonitorMap[MonitorType.MIC_INVERTER_DWPL] = dwpl;
-            historyMonitorMap[MonitorType.MIC_INVERTER_DWPL] = dwpl;
+            ushort dwpll = (ushort)SystemCode.HexNumberToDenary(monitorstr.Substring(20 * hexbytecharnum, 2 * hexbytecharnum), true, 16, 'u');
+            if (dwpll != ushort.MaxValue)//最大值无效
+            {
+                double dwpl = Math.Round(dwpll * 0.1, 1);
+                realMonitorMap[MonitorType.MIC_INVERTER_DWPL] = dwpl;
+                historyMonitorMap[MonitorType.MIC_INVERTER_DWPL] = dwpl;
+            }
 
             //总有功功率,协议中无要加工交流电压*交流电流
             double totalygpower = av * ac;
             totalygpower = Math.Round(totalygpower, 1);
+
             realMonitorMap[MonitorType.MIC_INVERTER_TOTALYGPOWER] = totalygpower;
             if (MonitorType.historyMonitorList.Contains(MonitorType.MIC_INVERTER_TOTALYGPOWER))
                 historyMonitorMap[MonitorType.MIC_INVERTER_TOTALYGPOWER] = totalygpower;

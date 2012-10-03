@@ -49,9 +49,13 @@ namespace Protocol
                 historyMonitorMap[MonitorType.MIC_BUSBAR_DCUXVOLT] = DCUXVOLT;
             //数字输入
             int ATAINPUT = (int)SystemCode.HexNumberToDenary(monitorstr.Substring(8 * hexbytecharnum, 4 * hexbytecharnum), true, 32, 'u');
+            //if (MonitorType.historyMonitorList.Contains(MonitorType.MIC_BUSBAR_DIGITALINPUT))
+                //historyMonitorMap[MonitorType.MIC_BUSBAR_DIGITALINPUT] = ATAINPUT;
+
+            //数字输入modify by qhb in 20120825 for 新需求《数据处理新需求整理及工作量评估-调整》这个是U16的，16个字节 ，其中0-4字节用了，其他字节没用，现在要按附录一解析，将一个变量拆成2个 ，分别是防雷器和断路器，界面用2个圆灯表示  ，正常灯是绿色 ，不正常灯是红色，防雷器状态 为1表示正常 ，断路器 为0表示正常。
+            //modify by qhb in 20120825 for 将十进制转化为二进制，然后从后开始依次是bit0 bit1
+            //string inputstr = getFullbitstr(ATAINPUT, 16);
             realMonitorMap[MonitorType.MIC_BUSBAR_DIGITALINPUT] = ATAINPUT;
-            if (MonitorType.historyMonitorList.Contains(MonitorType.MIC_BUSBAR_DIGITALINPUT))
-                historyMonitorMap[MonitorType.MIC_BUSBAR_DIGITALINPUT] = ATAINPUT;
 
             //第一路电流0.01A
             double CURRENT1 = (double)SystemCode.HexNumberToDenary(monitorstr.Substring(18 * hexbytecharnum, 2 * hexbytecharnum), false, 16, 's');

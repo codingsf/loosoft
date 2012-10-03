@@ -138,7 +138,10 @@ namespace Protocol
 
             //数字输入
             int DIGITALINPUT = (int)SystemCode.HexNumberToDenary(monitorstr.Substring(19 * hexbytecharnum, 1 * hexbytecharnum), true, 8, 'u');
-            realMonitorMap[MonitorType.MIC_BUSBAR_DIGITALINPUT] =DIGITALINPUT;
+            //modify by qhb in 20120825 for 将十进制转化为二进制，然后从后开始依次是bit0 bit1
+            //string inputstr = getFullbitstr(DIGITALINPUT, 16);
+            realMonitorMap[MonitorType.MIC_BUSBAR_DIGITALINPUT] = DIGITALINPUT;
+
             //继电器输出
             int JDQOUT = (int)SystemCode.HexNumberToDenary(monitorstr.Substring(20 * hexbytecharnum, 1 * hexbytecharnum), true, 8, 'u');
             realMonitorMap[MonitorType.MIC_BUSBAR_JDQOUT] =JDQOUT;

@@ -24,20 +24,21 @@ namespace DataAnalyze
     {
         //持久化间隔分钟
         static int persistent_interval = ConfigurationSettings.AppSettings["persistent_interval"] == null ? 60 : int.Parse(ConfigurationSettings.AppSettings["persistent_interval"]);
+        public bool runmark = true;//继续现场运行标识
         /// <summary>
         /// 定时从缓存中取得要持久化的数据进行定时持久化
         /// </summary>
-        //public void Processing()
-        //{
-        //    Console.WriteLine("启动持久化线程");
-        //    while (1 == 1)
-        //    {
-        //        persistent_interval = ConfigurationSettings.AppSettings["persistent_interval"] == null ? 60 : int.Parse(ConfigurationSettings.AppSettings["persistent_interval"]);
-        //        Thread.Sleep(persistent_interval * 60 * 1000);
-        //        //持久化数据
-        //        peristentData();
-        //    }
-        //}
+        public void Processing()
+        {
+            Console.WriteLine("启动持久化线程");
+            while (runmark)
+            {
+                persistent_interval = ConfigurationSettings.AppSettings["persistent_interval"] == null ? 60 : int.Parse(ConfigurationSettings.AppSettings["persistent_interval"]);
+                Thread.Sleep(persistent_interval * 60 * 1000);
+                //持久化数据
+                peristentData();
+            }
+        }
   
         public static void peristentData(){
             Console.WriteLine("开始持久化");
@@ -51,6 +52,7 @@ namespace DataAnalyze
                 LogUtil.error("持久化设备天数据异常：" + ee.Message);
 
             }
+
             //持久化采集器天数据
             try
             {

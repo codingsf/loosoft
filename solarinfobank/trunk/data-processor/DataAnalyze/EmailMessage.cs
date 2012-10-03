@@ -95,7 +95,7 @@ namespace DataAnalyze
                 listTcpbody.Add(ddb);
             }
             listTcpbug = new List<Bug>();
-            istart = this.messageContent.Length - ProtocolConst.LENGTH_BUG * 2 * (this.messageHeader.BugNum);
+            istart = this.messageContent.Length - ProtocolConst.LENGTH_BUG10 * 2 * (this.messageHeader.BugNum);
             for (int i = 1; i <= this.messageHeader.BugNum; i++)
             {
                 istart = this.messageContent.IndexOf("[FAULT" + i + "]");

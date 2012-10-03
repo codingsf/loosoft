@@ -45,6 +45,9 @@ namespace DataAnalyze
         /// </summary>
         public const int DataType_paramset= 6;
 
+        //设备类型
+        public static IDictionary<int,int> deviceTypeNoMap = new Dictionary<int,int>();
+
         //--------------------------------和数据接收服务共享数据的memcached key前缀定义-----------------
         /// <summary>
         /// tcp_20_plant_sn+”_”+系统毫秒时间戳+四位随机数
@@ -323,6 +326,21 @@ namespace DataAnalyze
             //deviceTypeMap.Add(831, new InfoUnitAddress(831, 0, "第三十路电流", InfoUnitAddress.sign_type_s, 2, yaoce, DeviceData.CABINET_CODE, SystemCode.ReversionType_all));
             //deviceTypeMap.Add(832, new InfoUnitAddress(832, 0, "第三十一路电流", InfoUnitAddress.sign_type_s, 2, yaoce, DeviceData.CABINET_CODE, SystemCode.ReversionType_all));
             //deviceTypeMap.Add(833, new InfoUnitAddress(833, 0, "第三十二路电流", InfoUnitAddress.sign_type_s, 2, yaoce, DeviceData.CABINET_CODE, SystemCode.ReversionType_all));
+            deviceTypeNoMap.Add(1,DeviceData.INVERTER_CODE);
+            deviceTypeNoMap.Add(2,DeviceData.HUILIUXIANG_CODE);
+            deviceTypeNoMap.Add(3,DeviceData.CABINET_CODE);
+            deviceTypeNoMap.Add(4,DeviceData.CABINET_CODE);
+            deviceTypeNoMap.Add(5,DeviceData.ENVRIOMENTMONITOR_CODE);
+            deviceTypeNoMap.Add(6,DeviceData.AMMETER_CODE);
+            //deviceTypeNoMap.Add(1,DeviceData.INVERTER_CODE);
+            //        1 逆变器
+            //2 汇流箱
+            //3 直流配电柜
+            //4 交流配电柜
+            //5 环境监测装置
+            //6 电表计量装置
+            //7 光伏跟踪系统
+            //8 BMS
         }
     }
 }

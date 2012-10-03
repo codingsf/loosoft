@@ -54,9 +54,14 @@ namespace Protocol
 
             //数字输入
             int ATAINPUT = (int)SystemCode.HexNumberToDenary(monitorstr.Substring(20 * hexbytecharnum, 2 * hexbytecharnum), false, 16, 'u');
+            //realMonitorMap[MonitorType.MIC_BUSBAR_DIGITALINPUT] = ATAINPUT;
+            //if (MonitorType.historyMonitorList.Contains(MonitorType.MIC_BUSBAR_DIGITALINPUT))
+                //historyMonitorMap[MonitorType.MIC_BUSBAR_DIGITALINPUT] = ATAINPUT;
+            //数字输入modify by qhb in 20120825 for 新需求《数据处理新需求整理及工作量评估-调整》这个是U16的，16个字节 ，其中0-4字节用了，其他字节没用，现在要按附录一解析，将一个变量拆成2个 ，分别是防雷器和断路器，界面用2个圆灯表示  ，正常灯是绿色 ，不正常灯是红色，防雷器状态 为1表示正常 ，断路器 为0表示正常。
+            //modify by qhb in 20120825 for 将十进制转化为二进制，然后从后开始依次是bit0 bit1
+            //string inputstr = getFullbitstr(ATAINPUT, 16);
             realMonitorMap[MonitorType.MIC_BUSBAR_DIGITALINPUT] = ATAINPUT;
-            if (MonitorType.historyMonitorList.Contains(MonitorType.MIC_BUSBAR_DIGITALINPUT))
-                historyMonitorMap[MonitorType.MIC_BUSBAR_DIGITALINPUT] = ATAINPUT;
+            //modify  end
 
             //最大电流0.01A
             double maxcurrent = (int)SystemCode.HexNumberToDenary(monitorstr.Substring(22 * hexbytecharnum, 2 * hexbytecharnum), false, 16, 'u');
@@ -192,28 +197,42 @@ namespace Protocol
 
             //状态
             int status = (int)SystemCode.HexNumberToDenary(monitorstr.Substring(82 * hexbytecharnum, 4 * hexbytecharnum), true, 32, 'U');
+            //modify by qhb in 20120825 for 将十进制转化为二进制，然后从后开始依次是bit0 bit1
+            //string statusstr = getFullbitstr(status, 32);
             realMonitorMap[MonitorType.MIC_BUSBAR_STATUS] = status;
-            historyMonitorMap[MonitorType.MIC_BUSBAR_STATUS] = status;
+            //historyMonitorMap[MonitorType.MIC_BUSBAR_STATUS] = status;
 
             //短路数据
             int dxdata = (int)SystemCode.HexNumberToDenary(monitorstr.Substring(86 * hexbytecharnum, 4 * hexbytecharnum), true, 32, 'U');
+            //modify by qhb in 20120825 for 将十进制转化为二进制，然后从后开始依次是bit0 bit1
+            //string dxdatastr = getFullbitstr(dxdata, 32);
             realMonitorMap[MonitorType.MIC_BUSBAR_DUANLUDATA] = dxdata;
-            historyMonitorMap[MonitorType.MIC_BUSBAR_DUANLUDATA] = dxdata;
+            //historyMonitorMap[MonitorType.MIC_BUSBAR_DUANLUDATA] = dxdata;
 
             //电流过高数据
             int dlgg = (int)SystemCode.HexNumberToDenary(monitorstr.Substring(94 * hexbytecharnum, 4 * hexbytecharnum), true, 32, 'U');
+            //modify by qhb in 20120825 for 将十进制转化为二进制，然后从后开始依次是bit0 bit1
+            ///string dlggstr = getFullbitstr(dlgg, 32);
             realMonitorMap[MonitorType.MIC_BUSBAR_DLGGDATA] = dlgg;
-            historyMonitorMap[MonitorType.MIC_BUSBAR_DLGGDATA] = dlgg;
+           // historyMonitorMap[MonitorType.MIC_BUSBAR_DLGGDATA] dlgg dlgg;
 
             //电流过低数据
             int dlgd = (int)SystemCode.HexNumberToDenary(monitorstr.Substring(102 * hexbytecharnum, 4 * hexbytecharnum), true, 32, 'U');
+
+            //modify by qhb in 20120825 for 将十进制转化为二进制，然后从后开始依次是bit0 bit1
+            //string dlgdstr = getFullbitstr(dlgd, 32);
+
             realMonitorMap[MonitorType.MIC_BUSBAR_DLGDDATA] = dlgd;
-            historyMonitorMap[MonitorType.MIC_BUSBAR_DLGDDATA] = dlgd;
+            //historyMonitorMap[MonitorType.MIC_BUSBAR_DLGDDATA] = dlgd;
 
             //开路数据
             int kailudata = (int)SystemCode.HexNumberToDenary(monitorstr.Substring(110 * hexbytecharnum, 4 * hexbytecharnum), true, 32, 'U');
+
+            //modify by qhb in 20120825 for 将十进制转化为二进制，然后从后开始依次是bit0 bit1
+            //string kailudatastr = getFullbitstr(kailudata, 32);
+
             realMonitorMap[MonitorType.MIC_BUSBAR_KAILUDATA] = kailudata;
-            historyMonitorMap[MonitorType.MIC_BUSBAR_KAILUDATA] = kailudata;
+            //historyMonitorMap[MonitorType.MIC_BUSBAR_KAILUDATA] = kailudata;
 
             tableType = TableUtil.HUILIUXIANG;
         }

@@ -37,10 +37,12 @@ namespace DataAnalyze
         /// <param name="cacheorbase">获取数据方式</param>
         public void ProcessingTCP()
         {
+            int times = 0;//一次处理用时
             //电站最大发生值
             Thread.Sleep(1 * 1000);
             while (1 == 1)
             {
+
                 while (!TcpMessagePool.IsNull())
                 {
                     _isWork = true;
@@ -78,7 +80,6 @@ namespace DataAnalyze
                             }
                             continue;
                         }
-
                         
                         //持久化将数据保存到缓存
                         DateTime curdt = DateTime.Now;
@@ -149,7 +150,8 @@ namespace DataAnalyze
                         //
                         AnalyzeCount.lasttime = tcpmessage.messageHeader.TimeNow;
                         //
-                        LogUtil.writeline("成功处理：" + "sn:" + TcpHeader.getSn(messageVO.message) +",key:" +messageVO.key);
+                        LogUtil.writeline("成功处理：" + "sn:" + TcpHeader.getSn(messageVO.message) +",key:" + messageVO.key);
+                        //FileLogUtil.info("成功处理：" + "sn:" + TcpHeader.getSn(messageVO.message) + ",key:" + messageVO.key);
                     }
                     catch (Exception ee)
                     {

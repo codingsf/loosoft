@@ -22,11 +22,6 @@ namespace DataAnalyze
     /// </summary>
     public class TCPMessage : BaseMessage
     {
-        int istart = 0 * hexbytecharnum; //头区开始下标
-        int icount = 41 * hexbytecharnum;//头区字符长度，头区在1.0版本协议中为41个字节，十六进制表示
-        int datalencount20 = 8 * hexbytecharnum;//2.0协议中头区中表示协议号位到数据部分之间的协议固定位数
-        int versionLength = 19 * hexbytecharnum;//版本在消息中固定开始位置
-
         /// <summary>
         /// 构造tcp 消息对象，并解析消息
         /// 一个字节两个字符
@@ -43,12 +38,13 @@ namespace DataAnalyze
             {
                 largeVersion = 2;
                 smallVersion = 0;
-            }else if (headbefore.Equals("6868")) {//1.0旧协议
-                largeVersion = 1;
-                smallVersion = 0;
+            }else if (headbefore.Equals("6868")) {//旧协议区分版本号，因为就协议1.1版本的告警较之多了两个字段
+                //largeVersion = 1;
+                //smallVersion = 0;
+                largeVersion = (int)SystemCode.HexNumberToDenary(this.messageContent.Substring(versionLength, 1 * hexbytecharnum), false, 8, 'u');//协议版本占两个字节， 即两个四个字符,大版本在前
+                smallVersion = (int)SystemCode.HexNumberToDenary(this.messageContent.Substring(versionLength + 1 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 'u');//协议版本占两个字节， 即两个四个字符,大版本在前
             }
-            //largeVersion = (int)SystemCode.HexNumberToDenary(this.messageContent.Substring(versionLength, 1 * hexbytecharnum), false, 8, 'u');//协议版本占两个字节， 即两个四个字符,大版本在前
-            //smallVersion = (int)SystemCode.HexNumberToDenary(this.messageContent.Substring(versionLength + 1 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 'u');//协议版本占两个字节， 即两个四个字符,大版本在前
+
             analysis();
         }
 
@@ -65,9 +61,13 @@ namespace DataAnalyze
             MethodInfo methodInfo = ht.GetMethod(analysisMethodName);
             if (methodInfo == null)
             {
-                LogUtil.info("协议版本不在处理范围之内，传入为" + largeVersion + "." + smallVersion + "，消息为：" + this.messageContent);
+                LogUtil.info("协议版本不在处理范围之内，默认用1.0协议处理传入为" + largeVersion + "." + smallVersion);
+                analysis1_0or0_1();
             }
-            object returnValue = methodInfo.Invoke(this, null);  
+            else
+            {
+                object returnValue = methodInfo.Invoke(this, null);
+            }
         }
 
         /// <summary>
@@ -84,6 +84,15 @@ namespace DataAnalyze
         {
             analysis1_0or0_1();
         }
+
+        /// <summary>
+        /// 起始版本是1.1
+        /// </summary>
+        public void analysis1_1()
+        {
+            analysis1_0or0_1();
+        }
+
         /// <summary>
         /// 起始版本是2.0
         /// </summary>
@@ -108,7 +117,8 @@ namespace DataAnalyze
                         this.messageHeader = new TcpHeader20();
                         this.messageHeader.CollectorCode = msgkey.Substring(DataType.memcacheddata_affix_plantinfo.Length);
                         this.messageHeader.CollectorCode = this.messageHeader.CollectorCode.Substring(0, this.messageHeader.CollectorCode.IndexOf("_"));
-                        this.plantInfo = PlantInfoHandler11.analysis(data);
+                        //暂时屏蔽电站信息
+                        //this.plantInfo = PlantInfoHandler11.analysis(data);
                     }
                     break;
                 case DataType.DataType_rundata:  //实时数据
@@ -291,6 +301,19 @@ namespace DataAnalyze
                                 istart = istart + icount;
                                 break;
                             }
+                        case DeviceData.TYPE_MODBUS_INVERTER03://modbus协议逆变器03，由于03协议只是在02基础上增加数据，前面完全一样，对于新增的数据不处理，所以暂用02协议解析类处理
+                            icount = ProtocolConst.LENGTH_MODBUS_INVERTER03 * 2;
+                            if (istart + icount > this.messageContent.Length)
+                            {
+                                istart = istart + icount;
+                                break;
+                            }
+                            else
+                            {
+                                ddb = new ModbusInverter03(this.messageContent.Substring(istart, icount), this);
+                                istart = istart + icount;
+                                break;
+                            }
                         case DeviceData.TYPE_SUNGROW_BUSBAR://sungrows协议汇流箱
                             icount = ProtocolConst.LENGTH_SUNGROW_BUSBAR * 2;
                             if (istart + icount > this.messageContent.Length)
@@ -380,15 +403,16 @@ namespace DataAnalyze
 
                 //取得告警信息
                 listTcpbug = new List<Bug>();
-                if (this.messageContent.Length > (ProtocolConst.LENGTH_BUG + ProtocolConst.LENGTH_HEAD) * 2)
+                int faultInfoLength = getFaultInfoLength();
+                if (this.messageContent.Length > (faultInfoLength + ProtocolConst.LENGTH_HEAD) * 2)
                 {
-                    istart = this.messageContent.Length - ProtocolConst.LENGTH_BUG * 2 * (this.messageHeader.BugNum);
+                    istart = this.messageContent.Length - faultInfoLength * 2 * (this.messageHeader.BugNum);
                     for (int i = 0; i < this.messageHeader.BugNum; i++)
                     {
-                        string bugmsg = this.messageContent.Substring(istart + i * ProtocolConst.LENGTH_BUG * 2, ProtocolConst.LENGTH_BUG * 2);
+                        string bugmsg = this.messageContent.Substring(istart + i * faultInfoLength * 2, faultInfoLength * 2);
                         try
                         {
-                            Bug tcpb = new TcpBug(bugmsg);
+                            Bug tcpb = parseBug(bugmsg);
                             listTcpbug.Add(tcpb);
                         }
                         catch (Exception buge) {
@@ -405,6 +429,8 @@ namespace DataAnalyze
                 listTcpbug = new List<Bug>();
             }
         }
+
+
     }
 
 

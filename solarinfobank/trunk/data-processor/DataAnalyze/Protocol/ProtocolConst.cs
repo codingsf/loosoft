@@ -7,7 +7,8 @@ namespace Protocol
 {
     public static class ProtocolConst
     {
-        public const int LENGTH_BUG = 9;
+        public const int LENGTH_BUG10 = 9;//旧协议1.0版本的告警信息长度
+        public const int LENGTH_BUG11 = 13;//旧协议1.1版本的告警信息长度
         public const int LENGTH_HEAD = 18;
 
         /// <summary>
@@ -18,7 +19,11 @@ namespace Protocol
         /// 0x02	逆变器（MODBUS协议）
         /// </summary>
         public const int LENGTH_MODBUS_INVERTER = 5 + 96;
-
+        /// <summary>
+        /// 0x03	逆变器（MODBUS协议）add by qhb in 20120811 for 530k
+        /// 机型
+        /// </summary>
+        public const int LENGTH_MODBUS_INVERTER03 = 5 + 148;
 
         /// <summary>
         /// 0x11	汇流箱（SUNGROW协议）

@@ -13,6 +13,9 @@ using Protocol;
 using Cn.Loosoft.Zhisou.SunPower.Common;
 using Cn.Loosoft.Zhisou.SunPower.Service;
 using System.Configuration;
+using System.Diagnostics;
+//using SolarInfoBase;
+
 namespace DataAnalyze
 {
     /// <summary>
@@ -23,52 +26,97 @@ namespace DataAnalyze
         static void Main(string[] args)
         {
             //从后台维护数据表中设置错误码静态数据
-            //ErrorcodeService.GetInstance().setErrorStaticData();
+            ErrorcodeService.GetInstance().setErrorStaticData();
 
-            string syndata = ConfigurationSettings.AppSettings["syndata"];//是否同步数据
-            //MemcachedClientSatat.getInstance("60.166.14.38:11211");
-            //SystemCode.HexNumberToDenary("FC27", false, 16, 's');
+            string validdog = ConfigurationSettings.AppSettings["validdog"];//是否验证狗
             //启动解析线程
             TcpDataProcesser dataProcess = new TcpDataProcesser();
             Thread m_thread = new Thread(new ThreadStart(dataProcess.Processing));
             m_thread.Start();
 
-            //启动清除过期数据线程
-            //FlushProcesser flushProcess = new FlushProcesser();
-            //Thread m_thread2 = new Thread(new ThreadStart(flushProcess.Processing));
-            //m_thread2.Start();
             
             //启动持久化线程
-            //PersistentProcesser persistProcess = new PersistentProcesser();
-            //Thread m_thread3 = new Thread(new ThreadStart(persistProcess.Processing));
-            //m_thread3.Start();
+            PersistentProcesser persistProcess = new PersistentProcesser();
+            Thread m_thread3 = new Thread(new ThreadStart(persistProcess.Processing));
+            m_thread3.Start();
 
-
-            //启动同步数据业务类
-            if (syndata != null && syndata.Equals("true")) {
-                SynDataService.GetInstance().startupforAnalyze();
+            //启动发电量告警线程
+            string energywarn = ConfigurationSettings.AppSettings["energywarn"];//是否启动发电量告警生成
+            Thread m_thread4 = null;
+            if (energywarn == null || energywarn.Equals("true"))
+            {
+                EnergywarnProcesser energywarnProcesser = new EnergywarnProcesser();
+                m_thread4 = new Thread(new ThreadStart(energywarnProcesser.Processing));
+                m_thread4.Start();
             }
 
-            //DataProcess.DataProcessingEmail();
+            LogUtil.info("服务启动成功！");
 
-            LogUtil.info("数据解析服务启动成功！");
-            string strLine;
-            do
+            //解析程序自启动部分
+            string restart_interval = ConfigurationSettings.AppSettings["restart_interval"];
+            int interval = string.IsNullOrEmpty(restart_interval) ? 60 : int.Parse(restart_interval);
+            int tmpinterval = 0;
+            while (1==1)
             {
-                strLine = Console.ReadLine();
-            } while (strLine != null && strLine != "exit");
+                tmpinterval++;
+                if (tmpinterval >= interval)
+                {
+                    Process process = System.Diagnostics.Process.GetCurrentProcess();
+                    System.Diagnostics.Process.Start(System.Reflection.Assembly.GetExecutingAssembly().Location);  //重新开启当前程序
+                    process.Kill();
+                }
+                //启动狗检测程序
+                if (validdog == null || validdog.Equals("true"))
+                {
+                    LogUtil.info("开始检测加密狗");
+                    string result = monitordog();
+                    if (!string.IsNullOrEmpty(result))
+                    {
+                        LogUtil.info(result);
 
-            LogUtil.info("正在退出数据解析服务...");
-            LogUtil.info("持久化剩余缓存数据...");
-            //持久化尚未持久化的缓存数据后退出
-            PersistentProcesser.peristentData();
-            LogUtil.info("剩余数据持久化完成...");
+                        //kill thread
+                        dataProcess.runmark = false;
+                        if (m_thread.IsAlive)
+                            m_thread.Abort();
 
-            //kill thread
-            if (m_thread.IsAlive)
-                m_thread.Abort();
-            //if (m_thread3.IsAlive)
-               // m_thread3.Abort();
+                        persistProcess.runmark = false;
+                        if (m_thread3.IsAlive)
+                            m_thread3.Abort();
+
+                        if (m_thread4!=null && m_thread4.IsAlive)
+                            m_thread4.Abort();
+
+                        LogUtil.info("软件已经停止服务！");
+                    }
+                }
+                Thread.Sleep(60*1000);//线程休息1分钟
+            }
         }
+        
+
+
+        /// <summary>
+        /// 检测狗
+        /// </summary>
+        private static string monitordog()
+        {
+            string result = "请插入加密狗，没有狗请联系软件提供商！";
+            //SoftKeyManager obj = SoftKeyManagerSelector.getSoftKeyObj();
+            //obj.MonitorDog();
+            //if (obj.HasSoftKEY == false)
+            //{
+            //    result = "请插入加密狗，没有狗请联系软件提供商！";
+            //    //MessageBox.Show("无狗");
+            //    if (obj.DeadDays <= 0)
+            //    {
+            //        result = "软件已经到期，请联系软件提供商！";
+            //        //MessageBox.Show("到期¨²");
+            //    }
+            //}
+            //obj.Dispose();
+            return result;
+        }
+
     }
+
 }

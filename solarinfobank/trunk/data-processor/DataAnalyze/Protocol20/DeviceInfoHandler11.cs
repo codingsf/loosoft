@@ -31,6 +31,8 @@ namespace Protocol
             int startIndex = 0;
             //每个设备信息体结束下标
             int endIndex = 68;
+            if(infoData.Length%(88*2)==0)
+                endIndex = 88;
             //逐个取出信息体
             string info;
             DeviceInfo device = null;
@@ -56,18 +58,19 @@ namespace Protocol
                 //设备厂家      32个字节  UTF-8
                 string fac = StringUtil.Hex2UTF8(info.Substring(36 * hexbytecharnum, 32 * hexbytecharnum));
                 //device.name = fac;
+                if (endIndex == 88)
+                {
+                    //设备序列号 16个字节 UTF-8
+                    string sn = StringUtil.Hex2UTF8(info.Substring(68 * hexbytecharnum, 16 * hexbytecharnum));
+                    //device.name = name;
 
-                //设备序列号 16个字节 UTF-8
-                string sn = StringUtil.Hex2UTF8(info.Substring(68 * hexbytecharnum, 16 * hexbytecharnum));
-                //device.name = name;
-
-                //整机版本 4个字节 U8
-                int v1 = (int)SystemCode.HexNumberToDenary(info.Substring(84* hexbytecharnum, 1 * hexbytecharnum), false, 8, 'u');
-                int v2 = (int)SystemCode.HexNumberToDenary(info.Substring(85 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 'u');
-                int v3 = (int)SystemCode.HexNumberToDenary(info.Substring(86 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 'u');
-                int v4 = (int)SystemCode.HexNumberToDenary(info.Substring(87 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 'u');
-                //device.name = name;
-
+                    //整机版本 4个字节 U8
+                    int v1 = (int)SystemCode.HexNumberToDenary(info.Substring(84 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 'u');
+                    int v2 = (int)SystemCode.HexNumberToDenary(info.Substring(85 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 'u');
+                    int v3 = (int)SystemCode.HexNumberToDenary(info.Substring(86 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 'u');
+                    int v4 = (int)SystemCode.HexNumberToDenary(info.Substring(87 * hexbytecharnum, 1 * hexbytecharnum), false, 8, 'u');
+                    //device.name = name;
+                }
                 devices.Add(device);
 
                 infoData = infoData.Substring(endIndex * 2);

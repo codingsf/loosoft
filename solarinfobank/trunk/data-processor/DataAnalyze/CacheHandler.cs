@@ -147,8 +147,14 @@ namespace DataAnalyze
                     m_thread.Name = "memcache Handel Thread-" + i;
                     m_thread.Start();
                 }
-                while (isWork())
+                int times = 0;
+                bool iswork = isWork();
+                //如果线程都在工作并且持续时间一分钟之内继续循环，否则跳出循环，进行以后动作，add by qhb in 20120927 for 解析其中有个现场死了，整个程序
+                //就停在这里了。
+                while (iswork && times < 60)
                 {
+                    times++;
+                    iswork = isWork();
                     Thread.Sleep(1000);
                 }
                 LogUtil.writeline("memcached devicedayDataMap用时：" + (DateTime.Now.Subtract(curdt).TotalSeconds));
@@ -461,12 +467,12 @@ namespace DataAnalyze
         {
             iswork = true;
             string cachekey = string.Empty;
-            IDictionary<string, DeviceDayData> devicedayDataMapList = BaseMessage.devicedayDataMapList[mtKey];
+            IDictionary<string, DeviceDayData> devicedayDataMap = BaseMessage.devicedayDataMapList[mtKey];
             DeviceDayData dayData = null;
             ICollection<string> keys;
             try
             {
-                keys = devicedayDataMapList.Keys.ToArray();
+                keys = devicedayDataMap.Keys.ToArray();
             }
             catch (Exception ee) {
                 LogUtil.error(ee.Message);
@@ -476,8 +482,8 @@ namespace DataAnalyze
             foreach (string key in keys)
             {
                 try{
-                    if (key == null || !devicedayDataMapList.ContainsKey(key)) continue;
-                    dayData = devicedayDataMapList[key];
+                    if (key == null || !devicedayDataMap.ContainsKey(key)) continue;
+                    dayData = devicedayDataMap[key];
                     if (dayData == null || !dayData.changed) continue;
                     //加入缓存，设置两天为缓存过期时间，避免时差问题
                     cachekey = CacheKeyUtil.buildDeviceDayDataKey(dayData.deviceID, dayData.yearmonth, dayData.sendDay, dayData.monitorCode);
@@ -488,7 +494,8 @@ namespace DataAnalyze
                 }
                 catch (Exception onee)
                 {
-                    LogUtil.writeline("handle one devicedayDataMapList of " + key + "error:" + onee.Message);
+                    LogUtil.writeline("handle one devicedayDataMap in devicedayDataMapList ,the mtkey is: " + mtKey + "DeviceDayData is " + key + "error:" + onee.Message);
+                    iswork = false;//出异常了让程序停止工作
                 }
             }
             iswork=false;

@@ -7,6 +7,7 @@ using Cn.Loosoft.Zhisou.SunPower.Domain;
 using Cn.Loosoft.Zhisou.SunPower.Common;
 using System.Collections;
 using IBatisNet.DataAccess;
+using System.Threading;
 
 namespace Cn.Loosoft.Zhisou.SunPower.Service
 {
@@ -35,7 +36,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             _EnergywarnDao = _daoManager.GetDao(typeof(IEnergywarnDao)) as IEnergywarnDao;
         }
 
-
         /// <summary>
         /// 创建一个语言服务
         /// </summary>
@@ -59,13 +59,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             return _EnergywarnDao.GetEnergywarnPage(table);
         }
 
-
         /// <summary>
         /// 生成发电量告警，每次只处理电站的设备上次处理日期的下一天的
         /// </summary>
         public void GenerateEnergywarn()
         {
             //先取出所有电站
+            CacheService.GetInstance().flushCaches();
             IList<Plant> plants = PlantService.GetInstance().GetPlantInfoList();
 
             //循环灭个电站分别对其下面的逆变器设备进行处理
@@ -76,12 +76,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             {
                 timezone = plant.timezone;
                 //如果该电站没有设置系数，那么不处理
-                if (plant.energyRate == null || double.IsNaN(plant.energyRate.Value))
+                if (!plant.rateEnable)
                     continue;
 
                 //找电站的发电量告警的最后处理日期，然后从其第二天进行处理
                 DateTime waitHandleDate = DateTime.Now;
-                if (plant.lastHandleDate.Year == 1)
+                if (plant.lastHandleDate.Year < 2012)
                 { //表示以前没有处理过，那么处理时间从当当前电站时间的前一天
                     waitHandleDate = CalenderUtil.curBeforeDateWithTimeZone(plant.timezone);
                 }
@@ -104,9 +104,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 int deviceNum = 0;
                 foreach (Device device in devices)
                 {
-
-                    //if (device.isWork(plant.timezone))
-                    //{
                     try
                     {
                         dmdd = DeviceMonthDayDataService.GetInstance().GetDeviceMonthDayData(waitHandleDate.Year, device.id, waitHandleDate.Month);
@@ -116,7 +113,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     catch (Exception e) { 
                         
                     }
-                    //}
                 }
 
                 double aveageEnergy = 0;
@@ -133,7 +129,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 {
                     //
                     //并且设备的最后更新时间，小于要处理的日期，说明没有数据也无需处理
-                    //if(device.lastUpdateTime
                     energywarn = new Energywarn();
                     energywarn.collectorId = device.collectorID;
                     energywarn.deviceId = device.id;
@@ -142,21 +137,27 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     {
                         dmdd = DeviceMonthDayDataService.GetInstance().GetDeviceMonthDayData(waitHandleDate.Year, device.id, waitHandleDate.Month);
                         if (aveageEnergy == 0)
-                            rate = 0;
+                            rate = 1;
                         else
-                            rate = (dmdd.getDayData(waitHandleDate.Day) - aveageEnergy) / aveageEnergy;
+                            rate = dmdd.getDayData(waitHandleDate.Day) / aveageEnergy;
                     }
                     catch (Exception e) {
                         continue;
                     }
+                    //正常范围内不提示告警
+                    if (Math.Abs(rate) > plant.energyRate && Math.Abs(rate) < plant.maxEnergyRate) continue;
 
-                    if (Math.Abs(rate) < plant.energyRate) continue;
                     rate = Math.Round(rate, 2);
-                    energywarn.factRate = rate + "/" + plant.energyRate;
+                    if (Math.Abs(rate) <= plant.energyRate)
+                        energywarn.factRate = rate + "/" + plant.energyRate;
+                    else
+                        energywarn.factRate = rate + "/" + plant.maxEnergyRate;
+
                     energywarn.factValue = Math.Round(dmdd.getDayData(waitHandleDate.Day), 2);
                     energywarn.downRate = plant.energyRate.Value;
-                    energywarn.upRate = plant.energyRate.Value;
+                    energywarn.upRate = plant.maxEnergyRate.Value;
                     energywarn.warndate = waitHandleDate;
+                    energywarn.averageValue = Math.Round(aveageEnergy,2);
                     //创建一笔告警日志，存库
                     _EnergywarnDao.Insert(energywarn);
                 }

@@ -102,7 +102,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <returns></returns>
         protected float? computAvg(float newValue, float lastValue, int intervalNum)
         {
-            if (newValue == null || lastValue == null) return null;
             //计算和后一个值的均值
             float cha = 0;
             if (lastValue > newValue)
@@ -300,7 +299,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         {
             Plant plant = PlantService.GetInstance().GetPlantInfoById(plantId);
             addPlantDayEnergy(energyHash, new List<Plant>{ plant }, startYearMMDD, endYearMMDD);
-
         }
 
         /// <summary>

@@ -48,7 +48,7 @@
         <div class="header_r">
             <div class="header_rt">
                 <a href="#" id="outpreview">&nbsp;</a>
-                <a href="/help/<%=(Session["Culture"] as CultureInfo).Name%>/SolarInfo Bank User Manual.pdf" target="_blank" class="dgreen"><%=Resources.SunResource.SHARED_BACKMANAGERMASTERPAGE_WHAT_IS_SUNINFO_BANK%>?</a></div>
+                <a href="/qa/ask" target="_blank" class="dgreen">FAQ</a></div>
             <div class="header_rdh">
                 <div class="header_rdhl">
                     <span><a href="/" class="gwhite"><%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_HOME%></a></span>|<span><a href="/help/<%=(Session["Culture"] as CultureInfo).Name%>/SolarInfo Bank User Manual.pdf" target="_blank" class="gwhite"><%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_USER_MANUAL%></a></span>|

@@ -393,7 +393,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 //add by qhb in 20120928 for 添加补偿发电量
                 string year = startYearMMDD.Substring(0,4);
                 string month = startYearMMDD.Substring(4,2);
-                base.addPlantDayEnergy(monthDDEnergy, plantList, year, month);
+                base.addPlantDayEnergy(monthDDEnergy, plantList, startYearMMDD, startYearMMDD);
 
                 if (newseriekey == null)
                     data = GenerateChartData(mt.name, ic, monthDDEnergy, rate);

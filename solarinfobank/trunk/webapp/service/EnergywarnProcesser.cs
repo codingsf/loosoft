@@ -26,10 +26,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// </summary>
         public void Processing()
         {
-            while (1 == 1)
-            {
+            while (1 == 1) {
                 EnergywarnService.GetInstance().GenerateEnergywarn();
-                Thread.Sleep(6*1000);//1小时
+                Thread.Sleep(6 * 1000);//间隔一分钟
             }
         }
     }

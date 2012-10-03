@@ -69,8 +69,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             IList<int> yearList = collectorYearDataService.GetWorkYears(plant);
             IList<SelectListItem> plantYearsList = Currencies.FillYearItems(yearList);
             ViewData["plantYear"] = plantYearsList;
-
         }
+
         /// <summary>
         /// 功能：电站概览
         /// 描述：大电站的概览，每个小电站的实时数据累加
@@ -86,6 +86,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             Plant plant = PlantService.GetInstance().GetPlantInfoById(id);
             return View(plant);
         }
+
         /// <summary>
         /// 功能：电站概览
         /// 描述：大电站的概览，每个小电站的实时数据累加
@@ -1900,18 +1901,29 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
         /// <param name="yyyyMMdd"></param>
         /// <param name="?"></param>
         /// <returns></returns>
-        public ActionResult EnergyFilter(int? id, string startDate, String endDate, int pageNo)
+        public ActionResult EnergyFilter(int? id, string startDate, String endDate, int? pageNo)
         {
             Plant plant = PlantService.GetInstance().GetPlantInfoById(id.Value);
-            if (string.IsNullOrEmpty(startDate)) startDate = CalenderUtil.curDateWithTimeZone(plant.timezone, "yyyy-MM-dd");
-            if (string.IsNullOrEmpty(endDate)) startDate = CalenderUtil.curBeforeDateWithTimeZone(plant.timezone, "yyyy-MM-dd");
+            if (string.IsNullOrEmpty(endDate)) endDate = CalenderUtil.curDateWithTimeZone(plant.timezone, "yyyy-MM-dd");
+            if (string.IsNullOrEmpty(startDate)) startDate = CalenderUtil.curBeforeDateWithTimeZone(plant.timezone, "yyyy-MM-dd");
+            if (pageNo == null) pageNo = 1 ;
 
-            Pager page = new Pager() { PageSize = ComConst.PageSize, PageIndex = pageNo };
+            Pager page = new Pager() { PageSize = ComConst.PageSize, PageIndex = pageNo.Value };
             Hashtable table = new Hashtable();
             table.Add("page", page);
             table.Add("startDate", startDate);
             table.Add("endDate", endDate);
-            IList<Energywarn> lists = EnergywarnService.GetInstance().GetEnergywarnPage(table);
+            string collectorIds = "";
+            foreach (PlantUnit pu in plant.plantUnits) {
+                collectorIds += "," + pu.collectorID;
+            }
+            if (collectorIds.Length > 0) collectorIds = collectorIds.Substring(1);
+            table.Add("collectorIds", collectorIds);
+            IList<Energywarn> lists = new List<Energywarn>();
+            if (!collectorIds.Equals(""))
+            {
+               lists = EnergywarnService.GetInstance().GetEnergywarnPage(table);
+            }
 
             ViewData["page"] = page;
 

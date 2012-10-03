@@ -39,6 +39,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         }
         /// <summary>
         /// 功能：获取所有电站信息集合
+        /// 注意在解析器中需要将 cacheModel="plant_cache"去掉
         /// </summary>
         /// <returns>返回：电站信息集合</returns>
         public IList<Plant> GetPlantInfoList()

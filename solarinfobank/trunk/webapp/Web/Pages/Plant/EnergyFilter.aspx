@@ -9,16 +9,15 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
-        var pageNo = 1;
         var plantId = -1;
         $(document).ready(function() {
             parent.iFrameHeight();
             $("#load").click(function() { changePage(1); });
         });
-        
-        function changePage(no) {
+
+        function changePage(pageNo) {
             plantId = $("#plant").val();
-            window.location.href="/plant/energyFilter?id=<%=Model.id %>"+"&startDate="+$("#startDate").attr("value")+"&endDate="+$("#endDate").attr("value")+"&pageNo="+pageNo;
+            window.location.href = "/plant/energyFilter?id=<%=Model.id %>" + "&startDate=" + $("#startDate").val() + "&endDate=" + $("#endDate").val() + "&pageNo=" + pageNo;
         }
     </script>
 
@@ -65,18 +64,19 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                     <td width="10%" align=right>
-                        <%=Resources.SunResource.REPORT_TIME%>:
+                        <%=Resources.SunResource.SUMMER_LINGSHI_ENABLED_START_DATE%>:
                     </td>
                     <td width="10%">
-                    <input id="endDate" name="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})" readonly="readonly" size="15" type="text"
+                    <input id="startDate" name="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})" readonly="readonly" size="15" type="text"
                         value='<%=ViewData["startDate"]%>' class="txtbu04 Wdate" />
                     </td>
                     <td width="10%"  align=right>
-                       <input id="Text1" name="endDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})" readonly="readonly" size="15" type="text"
-                        value='<%=ViewData["endDate"]%>' class="txtbu04 Wdate" />
+                        <%=Resources.SunResource.SUMMER_LINGSHI_ENABLED_END_DATE%>:
+                       
                     </td>
                     <td width="15%">
-                        &nbsp;                       
+                        <input id="endDate" name="endDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})" readonly="readonly" size="15" type="text"
+                        value='<%=ViewData["endDate"]%>' class="txtbu04 Wdate" />                     
                     </td>
                     <td width="45%">
                         &nbsp;
@@ -101,6 +101,7 @@
                               <td width="150" align="center"><strong><%=Resources.SunResource.USER_OVERVIEW_ENERGY%></strong></td>
                               <td width="70" align="center"><strong><%=Resources.SunResource.CUSTOMREPORT_AVG%></strong></td>
                               <td width="175" align="center"><strong> <%=Resources.SunResource.ENERGYWARN_PERCENT%></strong></td>
+                              <td width="100" align="center"><strong> <%=Resources.SunResource.PLANT_REPORTCONFIG_TIMES%></strong></td>                              
                               </tr>
                           </table></td>
                         </tr>
@@ -116,19 +117,22 @@
                           <table width="730" style="word-break:break-all;word-wrap:break-word; line-height:24px;"  border="0" cellpadding="0" cellspacing="0" class="down_line0<%=i%2 %>">
                             <tr>                         
                               <td width="100" align="center">
-                                    <%=data.deviceId%>
+                                    <%=data.device.fullName%>
                               </td>
                               <td width="150" align="center"> <%=data.factValue%></td>
                               <td width="70" align="center"><%=data.averageValue%></td>                  
                               <td width="175" align="center">
                                <%=data.factRate%>
                               </td>
+                              <td width="100" align="center">
+                               <%=data.warndate.ToString("yyyy-MM-dd")%>
+                              </td>                              
                               </tr>
                           </table>
                           </td>
                         </tr>
                         <%}
-                             if (i == 1)
+                             if (i == 0)
                              {
                              %>    
                              <tr>

@@ -21,6 +21,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public double downRate { get; set; }//低系数
         public String factRate { get; set; }//实际系数
         public DateTime warndate { get; set; }//告警日期
+        public Device device{ get; set; }//告警设备
 
     }
 }

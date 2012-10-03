@@ -143,15 +143,6 @@ namespace Web
 
             //从后台维护数据表中设置错误码静态数据
             ErrorcodeService.GetInstance().setErrorStaticData();
-            //启动发电量告警处理线程
-            //EnergywarnProcesser energywarnProcesser = new EnergywarnProcesser();
-            //energywarnProcesser.Processing();
-           // while (1 == 1) {
-               // energywarnProcesser.Processing();
-                //Thread.Sleep(1* 1000);
-            //}
-            //Thread m_thread = new Thread(new ThreadStart(energywarnProcesser.Processing));
-           //m_thread.Start();
         }
 
         protected void Application_Error(object sender, EventArgs e)

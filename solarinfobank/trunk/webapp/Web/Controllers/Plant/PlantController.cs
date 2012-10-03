@@ -2561,6 +2561,8 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
 
         public ActionResult SaveCompensation(int id, int plantid, int type, string value, string date, bool isplant)
         {
+            if (plantid.Equals(0))
+                return Content("请选择一个设备");
             double dtemp = 0;
             double.TryParse(value, out dtemp);
             if (date.Length.Equals(4))

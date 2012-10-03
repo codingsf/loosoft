@@ -223,10 +223,6 @@
     <Content Include="SqlMap.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\trunk-back\email-sf\EmailService\EmailService.csproj">
-      <Project>{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}</Project>
-      <Name>EmailService</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{6AE1548A-E450-4197-8666-3D31D09527FD}</Project>
       <Name>Common</Name>
@@ -242,6 +238,10 @@
     <ProjectReference Include="..\service\Service.csproj">
       <Project>{326C59B0-0FED-4B56-BE49-8149877228B5}</Project>
       <Name>Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\working\SunInfoBank\trunk\email-sf\EmailService\EmailService.csproj">
+      <Project>{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}</Project>
+      <Name>EmailService</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

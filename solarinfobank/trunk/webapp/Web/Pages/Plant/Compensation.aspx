@@ -87,6 +87,10 @@
          }
 
         $().ready(function() {
+        
+         $("#btnreset").click(function(){
+                    $("#compensation").val('');
+         });
             search();
             $("#tabplant").click(function(){
                 $(this).addClass('onclick');
@@ -111,6 +115,8 @@
                 $("#device_container").show();
                 parent.iFrameHeight();
                 $("#cid").val(0);
+                isplant=false;
+                $("#plantid").val(0)
             });
         
             $("input[name='radiobutton']").click(function() {
@@ -133,6 +139,8 @@
                       alert('<%=Resources.SunResource.ENERGY_RATE_ADD_SUCCESS%>');
                       search();
                       }
+                      else
+                      alert(data);
                 });
             });
 
@@ -286,7 +294,7 @@
                                       { %>
                                     <input name="btnsave" type="submit" class="subbu09" value="<%=Resources.SunResource.PLANT_ADDPLANT_SAVE%>" />
                                     <%} %>
-                                    <input name="Submit232222" type="submit" class="subbu01" value="<%=Resources.SunResource.MONITORITEM_RESET%>" />
+                                    <input id="btnreset" type="button" class="subbu01" value="<%=Resources.SunResource.MONITORITEM_RESET%>" />
                                 </td>
                             </tr>
                         </table>

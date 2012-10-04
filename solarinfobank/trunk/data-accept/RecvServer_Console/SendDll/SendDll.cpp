@@ -30,7 +30,7 @@ BOOL APIENTRY DllMain( HANDLE hModule,
 //这个接口用于将SOCKET发给指定的DLL
 extern "C" __declspec(dllexport) void Send2Dll(int hSocket,char * strCollector,char * strDeviceID)
 {
-	char strTemp[MAX_PATH];
+	char strTemp[1024];
 	sprintf(strTemp,"SOCKET %d\nCollector %s\nDeviceID %s\r",hSocket,strCollector,strDeviceID);
 
 	//::MessageBox(NULL,strTemp,"这里调用其他DLL，执行升级调试工作。",MB_OK);

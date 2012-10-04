@@ -514,13 +514,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// <returns></returns>
         public Device getFirstDetector()
         {
-            foreach (Device device in this.displayDevices())
+            Device displaydevice = null;
+            foreach (Device device in this.deviceList())
             {
-                if (device.deviceTypeCode == DeviceData.ENVRIOMENTMONITOR_CODE)
-                    return device;
+                if (device.deviceTypeCode == DeviceData.ENVRIOMENTMONITOR_CODE && !device.isHidden)
+                {
+                    displaydevice = device;
+                    if (device.isWork(this.timezone)) return device;
+                }
             }
-            return null;
+            return displaydevice;
         }
+
         /// <summary>
         /// 日照强度
         /// </summary>

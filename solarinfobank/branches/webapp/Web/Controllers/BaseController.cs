@@ -183,6 +183,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 return strname;
             }
         }
+
         /// <summary>
         /// 单个电站的工作年份
         /// </summary>
@@ -293,7 +294,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             for (int i = 0; i < plant.plantUnits.Count; i++)
             {
                 pu = plant.plantUnits[i];
-                unitLevel = unitLevel * 10 + i;
+                unitLevel = unitLevel * 100 + i;
                 jsstr += string.Format("d.add({0}, {1}, '{2}', '{3}', '', '', '');", unitLevel, topLevel, pu.displayname, "javascript:void(0);");
 
                 //先装机逆变器类型设备节点

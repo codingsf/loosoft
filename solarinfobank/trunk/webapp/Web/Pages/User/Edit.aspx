@@ -544,7 +544,7 @@
                                         new SelectListItem(){ Text="°F", Value="F", Selected=Model.TemperatureType.Equals("F")}
 
                                         }, new { @class = "textsy02", style = "width: 180px" })%>
-                                    <%=Html.HiddenFor(m=>m.templete.id) %>
+                                    <%=Html.HiddenFor(m=>m.template.id) %>
                                     <%=Html.HiddenFor(m=>m.logo) %>
                                 </td>
                                 <td>

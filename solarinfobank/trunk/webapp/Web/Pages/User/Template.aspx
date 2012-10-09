@@ -22,7 +22,7 @@
     <table cellpadding="0" cellspacing="0" border="0">
         <tr>
             <td width="793" valign="top" background="/images/kj/kjbg01.jpg">
-                <form id="uploadform" name="uploadform" method="post" action="/user/uploadlogo" enctype="multipart/form-data">
+                <form id="uploadform" name="uploadform" method="post" action="/user/template" enctype="multipart/form-data">
                 <table width="100%" height="63" border="0" cellpadding="0" cellspacing="0" background="/images/kj/kjbg02.jpg">
                     <tr>
                         <td width="8">
@@ -125,6 +125,16 @@
                     </table>
                 </div>
                 </form>
+                <div>
+                    <%foreach (Template template in ViewData["template"] as IList<Template>)
+                      { %>
+                    <div>
+                        <%=template.name %></div>
+                    <input type="radio" name="123" id="456" <%=template.isDefault?"checked=checked ":""%> />
+                    <label for="456">
+                        选择模板</label>
+                    <%} %>
+                </div>
             </td>
         </tr>
     </table>

@@ -1005,7 +1005,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Recource\STSONG.TTF" />
-    <None Include="Recource\templete.xlsx" />
+    <None Include="Recource\template.xlsx" />
     <None Include="video\earth.flv" />
     <Content Include="Images\border.png" />
     <Content Include="Images\borderBottomCenter.png" />
@@ -2450,7 +2450,7 @@
     <Content Include="Maps\DayCompensation.xml" />
     <Content Include="Maps\Compensation.xml" />
     <Content Include="Maps\Energywarn.xml" />
-    <Content Include="Maps\Templete.xml" />
+    <Content Include="Maps\Template.xml" />
     <Content Include="m_img\bg004.jpg" />
     <Content Include="m_img\bg01.jpg" />
     <Content Include="m_img\bg010.jpg" />
@@ -2707,7 +2707,7 @@
     <Content Include="Pages\User\IncludeAllPlants.aspx" />
     <Content Include="Pages\User\AddPlant.aspx" />
     <Content Include="Pages\User\portalStructChart.aspx" />
-    <Content Include="Pages\User\UploadLogo.aspx" />
+    <Content Include="Pages\User\Template.aspx" />
     <Content Include="Pages\Virtual\IncludeOverview.aspx" />
     <Content Include="Pages\Virtual\Plantrelationstruct.aspx" />
     <Content Include="Pages\Virtual\Overview.aspx" />

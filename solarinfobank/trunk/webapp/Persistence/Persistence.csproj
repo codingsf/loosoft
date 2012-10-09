@@ -115,7 +115,7 @@
     <Compile Include="Interfaces\IRelationConfigDao.cs" />
     <Compile Include="Interfaces\IRoleDao.cs" />
     <Compile Include="Interfaces\IRoleFunctionDao.cs" />
-    <Compile Include="Interfaces\ITempleteDao.cs" />
+    <Compile Include="Interfaces\ITemplateDao.cs" />
     <Compile Include="Interfaces\IUserRoleDao.cs" />
     <Compile Include="Interfaces\IAdpic.cs" />
     <Compile Include="Interfaces\IbaseDao.cs" />
@@ -320,7 +320,7 @@
     <Compile Include="MapperDao\RoleSqlMapDao.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MapperDao\TempleteSqlMapDao.cs" />
+    <Compile Include="MapperDao\TemplateSqlMapDao.cs" />
     <Compile Include="MapperDao\UserRoleSqlMapDao.cs">
       <SubType>Code</SubType>
     </Compile>

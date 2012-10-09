@@ -6,7 +6,7 @@
 <%@ Import Namespace="System.Globalization" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <script>
-    function showtemplete(obj) {
+    function showtemplate(obj) {
         var name = $("#reportType").val();
         $("#" + obj.id).attr("href", "/user/reportview?pid=" + $("#id").val() + ",&type=user&index=" + $("#reportType").get(0).selectedIndex + "&name=" + escape(name));
         $("#" + obj.id).colorbox();
@@ -110,7 +110,7 @@
                                             <td>
                                                 <select name="errorType" id="errorType">
                                                     <option value="Error template1"><%=Resources.SunResource.USER_REPORTCONFIG_ERROR_TEMPLATE%>1</option>
-                                                </select><a id="error_href" href="javascript:void(0);" onclick="showtemplete(this);"><%=Resources.SunResource.USER_REPORTCONFIG_VIEW%></a>
+                                                </select><a id="error_href" href="javascript:void(0);" onclick="showtemplate(this);"><%=Resources.SunResource.USER_REPORTCONFIG_VIEW%></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -163,7 +163,7 @@
                                                 
                                                 
                                                 
-                                                <a id="report_templete" href="javascript:void(0);" onclick="showtemplete(this);"><%=Resources.SunResource.USER_REPORTCONFIG_VIEW%></a>
+                                                <a id="report_template" href="javascript:void(0);" onclick="showtemplate(this);"><%=Resources.SunResource.USER_REPORTCONFIG_VIEW%></a>
                                             </td>
                                             <td width="34%">
                                                 <label>

@@ -1026,7 +1026,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
 
         public ActionResult Download()
         {
-            return File("/Recource/templete.xlsx", "application/ms-excel", "Logger-SN Ipmort Bank PXXX.xlsx");
+            return File("/Recource/template.xlsx", "application/ms-excel", "Logger-SN Ipmort Bank PXXX.xlsx");
         }
 
         public ActionResult MailConfig()

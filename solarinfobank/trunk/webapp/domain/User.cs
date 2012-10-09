@@ -774,7 +774,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
         public IList<RelationConfig> configs { get; set; }
 
-        public Templete templete { get; set; }//模板对象
+        public Template template { get; set; }//模板对象
 
         public string logo { get; set; }
 

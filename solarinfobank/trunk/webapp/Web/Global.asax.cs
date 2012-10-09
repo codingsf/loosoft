@@ -128,7 +128,7 @@ namespace Web
         protected void Application_Start()
         {
             //默认模板
-            Application[ComConst.Templete] = TempleteService.GetInstance().getDefault();
+            Application[ComConst.Templete] = TemplateService.GetInstance().getDefault();
 
             AreaRegistration.RegisterAllAreas();
             RegisterRoutes(RouteTable.Routes);

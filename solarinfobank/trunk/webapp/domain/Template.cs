@@ -6,7 +6,7 @@ using System.Text;
 namespace Cn.Loosoft.Zhisou.SunPower.Domain
 {
     [Serializable]
-    public class Templete
+    public class Template
     {
         public int id { get; set; }
         public string name { get; set; }//名称

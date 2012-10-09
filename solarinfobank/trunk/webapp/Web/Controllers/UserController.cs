@@ -295,8 +295,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             ViewData["page"] = page;
 
             double userTotal = 0;
-            foreach (Plant plant in user.displayPlants) { 
-                userTotal+=CompensationService.GetInstance().getPlantTotalCompensations(plant.id);
+            foreach (Plant plant in user.displayPlants)
+            {
+                userTotal += CompensationService.GetInstance().getPlantTotalCompensations(plant.id);
             }
             //add by qhb 添加补偿设置
             ViewData["totalEnergy"] = StringUtil.formatDouble(Util.upDigtal(user.TotalEnergy + userTotal), "0.00");
@@ -2077,13 +2078,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
 
 
-        public ActionResult UploadLogo()
+        public ActionResult template()
         {
+            IList<Template> templates = TemplateService.GetInstance().getList();
+            ViewData["template"] = templates;
             return View();
         }
         [HttpPost]
-        public ActionResult UploadLogo(HttpPostedFileBase logopic)
+        public ActionResult template(HttpPostedFileBase logopic)
         {
+            IList<Template> templates = TemplateService.GetInstance().getList();
+            ViewData["template"] = templates;
             User user = UserUtil.getCurUser();
             try
             {

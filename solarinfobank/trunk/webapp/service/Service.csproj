@@ -190,7 +190,7 @@
     <Compile Include="vo\DigitalInputDetailVO.cs" />
     <Compile Include="YearCompensationService.cs" />
     <Compile Include="EnergywarnService.cs" />
-    <Compile Include="TempleteService.cs" />
+    <Compile Include="TemplateService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

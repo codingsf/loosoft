@@ -6,8 +6,8 @@ using Cn.Loosoft.Zhisou.SunPower.Domain;
 
 namespace Cn.Loosoft.Zhisou.SunPower.Persistence.Interfaces
 {
-    public interface ITempleteDao : IBaseDao<Templete>
+    public interface ITemplateDao : IBaseDao<Template>
     {
-        Templete getDefault();
+        Template getDefault();
     }
 }

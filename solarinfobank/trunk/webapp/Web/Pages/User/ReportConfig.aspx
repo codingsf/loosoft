@@ -13,7 +13,7 @@
             });
             return values == "" ? '-1,' : values;
         }
-        function showtemplete(obj) {
+        function showtemplate(obj) {
             var name = $("#reportType").val();
             $("#" + obj.id).attr("href", "/user/reportview?pid=" + cbxvalue('plants') + "&type=user&index=" + $("#reportType").get(0).selectedIndex + "&name=" + escape(name));
         $("#" + obj.id).colorbox();
@@ -166,7 +166,7 @@
                                             <td>
                                                 <select name="errorType" id="errorType">
                                                     <option value="Error template1"><%=Resources.SunResource.USER_REPORTCONFIG_ERROR_TEMPLATE%>1</option>
-                                                </select>  <a id="error_href" href="javascript:void(0);" onclick="showtemplete(this);"><%=Resources.SunResource.USER_REPORTCONFIG_VIEW%></a>
+                                                </select>  <a id="error_href" href="javascript:void(0);" onclick="showtemplate(this);"><%=Resources.SunResource.USER_REPORTCONFIG_VIEW%></a>
                                                 </td>
                                         </tr>
                                         <tr>
@@ -214,7 +214,7 @@
                                                  <%--<option value="<%=Resources.SunResource.USER_REPORTCONFIG_REPORT_TEMPLATE2%>"><%=Resources.SunResource.USER_REPORTCONFIG_REPORT_TEMPLATE2%></option>--%>
                                                  <%--<option value="<%=Resources.SunResource.USER_REPORTCONFIG_REPORT_TEMPLATE3%>"><%=Resources.SunResource.USER_REPORTCONFIG_REPORT_TEMPLATE3%></option>--%>
                                                  <option value="<%=Resources.SunResource.USER_REPORTCONFIG_REPORT_TEMPLATE4%>"><%=Resources.SunResource.USER_REPORTCONFIG_REPORT_TEMPLATE4%></option>
-                                                </select>  <a id="report_templete" href="javascript:void(0);" onclick="showtemplete(this);"><%=Resources.SunResource.USER_REPORTCONFIG_VIEW%></a>
+                                                </select>  <a id="report_template" href="javascript:void(0);" onclick="showtemplate(this);"><%=Resources.SunResource.USER_REPORTCONFIG_VIEW%></a>
                                                 </td>
                                             <td width="34%">
                                                 <label>

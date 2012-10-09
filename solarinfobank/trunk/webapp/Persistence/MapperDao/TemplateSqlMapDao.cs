@@ -7,11 +7,11 @@ using Cn.Loosoft.Zhisou.SunPower.Persistence.Interfaces;
 
 namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
 {
-    public class TempleteSqlMapDao : BaseSqlDao<Templete>, ITempleteDao
+    public class TemplateSqlMapDao : BaseSqlDao<Template>, ITemplateDao
     {
-        public Templete getDefault()
+        public Template getDefault()
         {
-            return ExecuteQueryForObject<Templete>("get_default_templete", null);
+            return ExecuteQueryForObject<Template>("get_default_template", null);
         }
     }
 }

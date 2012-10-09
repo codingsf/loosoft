@@ -21,6 +21,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         public const int PageSize = 20;
         public const string defaultSysName = "SolarInfo Bank";
         public const string ReportGroupList = "ReportGroupList";
+        public const string Templete = "Templete";
 
 
         /// <summary>

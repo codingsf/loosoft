@@ -91,5 +91,26 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 return userPath;
             }
         }
+
+        /// <summary>
+        /// 获取用户模板如果未设置模板则用系统默认模板
+        /// </summary>
+        public static Templete curTemplete
+        {
+            get
+            {
+                User user = getCurUser();
+                //当前用户没有模板
+                if (user.templete == null)
+                {
+                    Templete defaultTemplete = System.Web.HttpContext.Current.Application[ComConst.Templete] as Templete;
+                    if (defaultTemplete == null)
+                        System.Web.HttpContext.Current.Application[ComConst.Templete] = TempleteService.GetInstance().getDefault();
+                    return System.Web.HttpContext.Current.Application[ComConst.Templete] as Templete;
+                }
+                return user.templete;
+            }
+        }
+
     }
 }

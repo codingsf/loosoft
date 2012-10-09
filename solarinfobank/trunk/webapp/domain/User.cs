@@ -323,7 +323,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// 从18版后出现，改自原先的public IList<Plant> plants方法，原方法随着新门户业务的出现，语义不在清楚了
         /// </summary>
         /// <returns></returns>
-        public IList<Plant> assignedPlants 
+        public IList<Plant> assignedPlants
         {
             get
             {
@@ -361,7 +361,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             get
             {
-                return StringUtil.formatDouble(Util.upDigtal(TotalDayEnergy), "0.00") ;
+                return StringUtil.formatDouble(Util.upDigtal(TotalDayEnergy), "0.00");
             }
         }
 
@@ -401,7 +401,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             get
             {
-                return StringUtil.formatDouble(Util.upDigtal(TotalEnergy),"0.00");
+                return StringUtil.formatDouble(Util.upDigtal(TotalEnergy), "0.00");
             }
         }
 
@@ -487,7 +487,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             get
             {
-                return StringUtil.formatDouble(Util.upDigtal(TotalPower),"0.00");
+                return StringUtil.formatDouble(Util.upDigtal(TotalPower), "0.00");
             }
         }
 
@@ -705,15 +705,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// 自己创建的电站也会在有关系表
         /// </summary>
         /// <returns></returns>
-        public IList<Plant> displayPlants {
-            get{
+        public IList<Plant> displayPlants
+        {
+            get
+            {
                 //IList<Plant> plants = this.createToplevelPlants;
                 //if (plants == null)
                 //{
-                   // plants = new List<Plant>();
+                // plants = new List<Plant>();
                 //}
                 //if (this.relatedPlants!=null)
-                    //plants.Union(this.assignedPlants);
+                //plants.Union(this.assignedPlants);
                 return relatedPlants;
             }
         }
@@ -721,10 +723,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// <summary>
         /// 取得所有分配的电站中所有实际电站
         /// </summary>
-        public IList<Plant> allAssignedFactPlants {
-            get {
+        public IList<Plant> allAssignedFactPlants
+        {
+            get
+            {
                 IList<Plant> factPlants = new List<Plant>();
-                foreach(Plant plant in assignedPlants){
+                foreach (Plant plant in assignedPlants)
+                {
                     foreach (Plant p in plant.allFactPlants)
                     {
                         factPlants.Add(p);
@@ -769,8 +774,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
         public IList<RelationConfig> configs { get; set; }
 
-        public string templete { get; set; }
+        public Templete templete { get; set; }//模板对象
 
         public string logo { get; set; }
+
     }
 }

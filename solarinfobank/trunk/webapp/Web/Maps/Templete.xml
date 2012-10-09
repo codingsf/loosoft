@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="Templete" type="Cn.Loosoft.Zhisou.SunPower.Domain.Templete, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="templete_result" class="Templete">
+      <result property="id"			column="id"/>
+      <result property="name"			column="name"/>
+      <result property="isDefault"			column="isdefault"/>
+      <result property="cssFolder"   column="cssfolder"/>
+      <result property="pic"   column="pic" />
+    </resultMap>
+  </resultMaps>
+
+  <cacheModels>
+    <cacheModel id="templete_cache" implementation="LRU" readOnly="true" serialize="true">
+      <flushInterval minutes="30"/>
+      <flushOnExecute  statement="templete_insert"/>
+      <flushOnExecute  statement="templete_update"/>
+      <flushOnExecute  statement="templete_delete"/>
+      <property name="CacheSize" value="100"/>
+    </cacheModel>
+  </cacheModels>
+
+  <statements>
+    <insert id="templete_insert">
+      <![CDATA[insert into templete (name,isdefault,cssfolder,pic) values (#name#,#isDefault#,#cssFolder#,#pic#)]]>
+    </insert>
+
+    <update id="templete_update">
+      <![CDATA[update templete set name=#name#, isdefault=#isDefault#, cssfolder=#cssFolder#, pic=#pic# where id=#id#]]>
+    </update>
+
+    <select id="templete_lazy" resultMap="templete_result">
+      <![CDATA[select * from templete where id=#value#]]>
+    </select>
+
+    <select id="templete_get_list" resultMap="templete_result">
+      <![CDATA[select * from templete]]>
+    </select>
+
+    <select id="get_default_templete" resultMap="templete_result">
+      <![CDATA[select * from templete where isdefault=1 limit 0,1]]>
+    </select>
+
+  </statements>
+</sqlMap>

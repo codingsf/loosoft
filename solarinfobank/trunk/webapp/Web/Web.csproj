@@ -2450,6 +2450,7 @@
     <Content Include="Maps\DayCompensation.xml" />
     <Content Include="Maps\Compensation.xml" />
     <Content Include="Maps\Energywarn.xml" />
+    <Content Include="Maps\Templete.xml" />
     <Content Include="m_img\bg004.jpg" />
     <Content Include="m_img\bg01.jpg" />
     <Content Include="m_img\bg010.jpg" />

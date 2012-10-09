@@ -148,6 +148,7 @@
     <Compile Include="Role.cs" />
     <Compile Include="RoleFunction.cs" />
     <Compile Include="StructPoint.cs" />
+    <Compile Include="Templete.cs" />
     <Compile Include="UserRole.cs" />
     <Compile Include="LoginRecord.cs" />
     <Compile Include="DeviceInfo.cs" />

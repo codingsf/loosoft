@@ -74,7 +74,7 @@ namespace Web
                 new { controller = "DeviceChart", action = "Chart" },// Parameter defaults
                 new { pId = @"\d+?", dId = @"\d+?" }
             );
-            
+
         }
 
 
@@ -127,6 +127,9 @@ namespace Web
 
         protected void Application_Start()
         {
+            //默认模板
+            Application[ComConst.Templete] = TempleteService.GetInstance().getDefault();
+
             AreaRegistration.RegisterAllAreas();
             RegisterRoutes(RouteTable.Routes);
             ViewEngines.Engines.Clear();

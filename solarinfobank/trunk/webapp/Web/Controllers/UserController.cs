@@ -2084,6 +2084,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             ViewData["template"] = templates;
             return View();
         }
+
+
         [HttpPost]
         public ActionResult template(HttpPostedFileBase logopic)
         {

@@ -35,6 +35,7 @@
       <result property="isBigCustomer"			column="isBigCustomer"/>
       <result property="template"			column="templateId" lazyLoad="true" select="template_lazy"/>
       <result property="logo"			column="logo"/>
+      <result property="sysName"			column="sysname"/>
       <!--级联对象集合-->
       <result property="Language"		lazyLoad="true"	column="languageId" select="language_get_lazy" />
       <result property="plantUsers" lazyLoad="true"	column="id"         select="plantuser_get_by_userid" />
@@ -103,12 +104,12 @@
         SELECT LAST_INSERT_ID() AS id
       </selectKey>
     </insert>
-    
+
     <!-- 更新用户所有信息-->
     <update id="user_update" parameterClass="User">
-      UPDATE USERINFO SET USERNAME=#username#,firstname=#FirstName#,lastname=#LastName#,TemperatureType=#TemperatureType#,ORGANIZE=#organize#,SEX=#sex#,Fullname=#fullname#,Address=#address#,Postalcode=#postalcode#,Email=#email#,Country=#country#,City=#city#,Tel=#tel#,LanguageId=#languageId#,revenueRate=#revenueRate#,currencies=#currencies#,mobilePhone=#mobilePhone#,faxPhone=#faxPhone#,TemperatureType=#TemperatureType# ,menuDisplayCount=#menuDisplayCount#,overviewDisplayCount=#overviewDisplayCount# ,templateid=#template.id# ,logo=#logo# WHERE ID=#id#
+      UPDATE USERINFO SET USERNAME=#username#,firstname=#FirstName#,lastname=#LastName#,TemperatureType=#TemperatureType#,ORGANIZE=#organize#,SEX=#sex#,Fullname=#fullname#,Address=#address#,Postalcode=#postalcode#,Email=#email#,Country=#country#,City=#city#,Tel=#tel#,LanguageId=#languageId#,revenueRate=#revenueRate#,currencies=#currencies#,mobilePhone=#mobilePhone#,faxPhone=#faxPhone#,TemperatureType=#TemperatureType# ,menuDisplayCount=#menuDisplayCount#,overviewDisplayCount=#overviewDisplayCount# ,templateid=#template.id# ,logo=#logo# ,sysname=#sysName# WHERE ID=#id#
     </update>
-    
+
     <!-- 更新用户除密码外的其他信息-->
     <update id="user_update_pass" parameterClass="User">
       UPDATE USERINFO SET USERNAME=#username#,firstname=#FirstName#,lastname=#LastName#,TemperatureType=#TemperatureType#,ORGANIZE=#organize#,SEX=#sex#,Fullname=#fullname#,Address=#address#,Postalcode=#postalcode#,Email=#email#,Country=#country#,City=#city#,Tel=#tel#,LanguageId=#languageId#,revenueRate=#revenueRate#,currencies=#currencies#,mobilePhone=#mobilePhone#,faxPhone=#faxPhone#,TemperatureType=#TemperatureType# WHERE ID=#id#
@@ -142,8 +143,8 @@
     <select id="user_get_languageId_by_id" resultClass="int" >
       select languageId from userInfo where id=#value#
     </select>
-    
-    
+
+
     <delete id="user_delete" resultClass="int">
       delete from userinfo where id=#id#;
       delete from user_role where userId=#id#

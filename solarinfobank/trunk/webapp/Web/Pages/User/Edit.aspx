@@ -546,6 +546,7 @@
                                         }, new { @class = "textsy02", style = "width: 180px" })%>
                                     <%=Html.HiddenFor(m=>m.template.id) %>
                                     <%=Html.HiddenFor(m=>m.logo) %>
+                                    <%=Html.HiddenFor(m=>m.sysName) %>
                                 </td>
                                 <td>
                                     &nbsp;

@@ -13,6 +13,7 @@ using Cn.Loosoft.Zhisou.SunPower.Domain;
 using System.Collections;
 using Common;
 using System.Threading;
+using System.Drawing;
 
 
 namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
@@ -3145,7 +3146,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             IList<QA> qalist = QAService.GetInstance().Search(string.Empty, -1, string.Empty);
             Pager pager = new Pager();
             ViewData["page"] = pager;
-            pager.PageSize = ComConst.PageSize ;
+            pager.PageSize = ComConst.PageSize;
             pager.PageIndex = page;
             pager.RecordCount = qalist.Count;
             qalist = qalist.Skip((page - 1) * pager.PageSize).Take(pager.PageSize).ToList<QA>();
@@ -3162,7 +3163,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
         [HttpPost]
         public ActionResult PostAnswer(QA qa)
         {
-    
+
             User user = UserUtil.getCurUser();
             qa.pubdate = DateTime.Now;
             qa.status = QA.VALIDATE;
@@ -3175,9 +3176,73 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
 
         public ActionResult RecommendAnswer(int id)
         {
-            QA qa= QAService.GetInstance().Get(id);
+            QA qa = QAService.GetInstance().Get(id);
             QAService.GetInstance().Recommend(id, !qa.isRecommend);
             return Content("ok");
+        }
+
+
+        public ActionResult Template()
+        {
+            HttpContext.Application[ComConst.Templete] = null;
+            IList<Template> templates = TemplateService.GetInstance().getList();
+            ViewData["template"] = templates;
+            return View(@"sys/template");
+        }
+
+
+
+
+        [HttpPost]
+        public ActionResult template(HttpPostedFileBase logopic, string sysName, string template)
+        {
+            HttpContext.Application[ComConst.Templete] = null;
+            IList<Template> templates = TemplateService.GetInstance().getList();
+            ViewData["template"] = templates;
+
+            #region 上传图片
+            try
+            {
+                if (logopic != null && logopic.ContentLength > 0)
+                {
+                    string extensionName = logopic.FileName.Substring(logopic.FileName.LastIndexOf('.'));
+                    if (extensionName.ToLower().Equals(".jpg") || extensionName.ToLower().Equals(".gif"))
+                    {
+                        Bitmap myImage = new Bitmap(logopic.InputStream);
+                        if (myImage.Width > 169)
+                        {
+                            ViewData["error"] = "图片宽度不能大于169px";
+                        }
+                        else if (myImage.Height > 40)
+                            ViewData["error"] = "图片高度不能大于40px";
+                        else
+                        {
+                            string filePath = Path.Combine(HttpContext.Server.MapPath("/images/"), "logo.jpg");
+                            logopic.SaveAs(filePath);
+                        }
+                    }
+                    else
+                        ViewData["error"] = "请选择一个jpg扩展名的logo图片";
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return Content(e.Message);
+            }
+            #endregion
+
+
+            #region 系统名称
+            string path = Server.MapPath("~");
+            path = string.Format("{0}sys.txt", path);
+            System.IO.File.WriteAllText(path, sysName);
+            #endregion
+
+            int templateid = 0;
+            int.TryParse(template, out templateid);
+            TemplateService.GetInstance().setDefault(templateid);
+            return View(@"sys/template");
         }
     }
 }

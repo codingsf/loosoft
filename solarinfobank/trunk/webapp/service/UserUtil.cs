@@ -76,6 +76,24 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             login(user);
         }
 
+        public static string SysName
+        {
+            get
+            {
+                User user = getCurUser();
+                if (user == null)
+                {
+                    string path = System.Web.HttpContext.Current.Server.MapPath("~");
+                    path = string.Format("{0}sys.txt", path);
+                    if (System.IO.File.Exists(path))
+                        return System.IO.File.ReadAllText(path);
+                    return string.Empty;
+                }
+                return user.sysName;
+            }
+        }
+
+
         public static string UserLogo
         {
             get
@@ -101,7 +119,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             {
                 User user = getCurUser();
                 //当前用户没有模板
-                if (user.template == null)
+                if (user == null || user.template == null)
                 {
                     Template defaultTemplete = System.Web.HttpContext.Current.Application[ComConst.Templete] as Template;
                     if (defaultTemplete == null)

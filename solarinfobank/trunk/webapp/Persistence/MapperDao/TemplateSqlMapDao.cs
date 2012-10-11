@@ -13,5 +13,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
         {
             return ExecuteQueryForObject<Template>("get_default_template", null);
         }
+
+        public int setDefault(int id)
+        {
+            return ExecuteUpdate("template_set_default", id);
+        }
     }
 }

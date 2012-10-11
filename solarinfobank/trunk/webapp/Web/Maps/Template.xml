@@ -33,13 +33,22 @@
     <update id="template_update">
       <![CDATA[update template set name=#name#, isdefault=#isDefault#, cssfolder=#cssFolder#, pic=#pic# where id=#id#]]>
     </update>
-
+    
+    <update id="template_set_default">
+      <![CDATA[update template set isdefault=0;
+      update template set isdefault=1 where id=#value#]]>
+    </update>
+    
     <select id="template_lazy" resultMap="template_result">
       <![CDATA[select * from template where id=#value#]]>
     </select>
 
     <select id="template_get_list" resultMap="template_result">
       <![CDATA[select * from template]]>
+    </select>
+
+    <select id="template_get" resultMap="template_result">
+      <![CDATA[select * from template where id=#id#]]>
     </select>
 
     <select id="get_default_template" resultMap="template_result">

@@ -2537,6 +2537,7 @@
     <Content Include="Pages\Admin\Record\index.aspx" />
     <Content Include="Pages\Admin\Sys\Logo.aspx" />
     <Content Include="Pages\Admin\Sys\Name.aspx" />
+    <Content Include="Pages\Admin\Sys\Template.aspx" />
     <Content Include="Pages\Admin\User\List.aspx" />
     <Content Include="Pages\Auth\Deny.aspx" />
     <Content Include="Pages\Country\City.aspx" />

@@ -6,11 +6,10 @@
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
 <%@ Import Namespace="System.Globalization" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>
-    上传LOGO
+    <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %> 模板设置
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-<link href="/style/lc.css" rel="stylesheet" type="text/css" />
+    <link href="/style/lc.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
         .mbts
         {
@@ -69,11 +68,13 @@
             vertical-align: middle;
         }
     </style>
+
     <script>
         $().ready(function() {
             var random = new Date().getMilliseconds();
             var src = '<%=UserUtil.UserLogo %>?' + random;
             $("#logo", window.parent.document).attr("src", src);
+            $("#viewlogo").attr("src", src);
         })
     </script>
 
@@ -107,6 +108,7 @@
                         </td>
                     </tr>
                 </table>
+                <form method="post" action="/user/template" enctype="multipart/form-data">
                 <div class="subrbox01">
                     <table width="100%" height="30" border="0" cellpadding="0" cellspacing="0">
                         <tr>
@@ -140,11 +142,12 @@
                                     上传Logo：
                                 </td>
                                 <td width="36%">
-                                    <input name="textfield" type="text" class="txtbu01" />
-                                    <input type="submit" name="Submit32" value="上传" class="sc_btu" />
+                                    <input type="file" name="logopic" style="display: none" id="logopic" onchange="picpath.value=this.value" />
+                                    <input name="picpath" id="picpath" type="text" class="txtbu01" />
+                                    <input type="button" name="Submit32" value="上传" class="sc_btu" onclick="logopic.click();" />
                                 </td>
                                 <td width="46%">
-                                    后面提示错误神马的。。。
+                                    <%= ViewData["error"]%>
                                 </td>
                             </tr>
                             <tr>
@@ -154,7 +157,7 @@
                                 <td>
                                     <div class="mblogo">
                                         <span>当前logo</span>
-                                        <img src="/images/logo.gif" width="168" height="27" />
+                                        <img src="<%= UserUtil.UserLogo %>" width="168" height="27" id="viewlogo" />
                                     </div>
                                 </td>
                                 <td>
@@ -166,7 +169,7 @@
                                     系统名称：
                                 </td>
                                 <td>
-                                    <input name="textfield4" type="text" class="txtbu01" style="width: 250px;" />
+                                    <input name="sysName" type="text" class="txtbu01" style="width: 250px;" value="<%=UserUtil.SysName %>" />
                                 </td>
                                 <td>
                                     &nbsp;
@@ -192,46 +195,14 @@
                     </div>
                     <div class="sb_mid">
                         <ul class="mbchange">
+                            <%foreach (Template template in ViewData["template"] as IList<Template>)
+                              { %>
                             <li>
-                                <img src="/images/mb/style_01.jpg" width="102" height="85" />
+                                <img src="/images/<%=template.pic %>" width="102" height="85" />
                                 <span>
-                                    <input type="radio" name="radiobutton" value="radiobutton" />
-                                    默认 </span></li>
-                            <li>
-                                <img src="/images/mb/style_02.jpg" width="102" height="85" />
-                                <span>
-                                    <input type="radio" name="radiobutton" value="radiobutton" />
-                                    黄色</span> </li>
-                            <li>
-                                <img src="/images/mb/style_03.jpg" width="102" height="85" />
-                                <span>
-                                    <input type="radio" name="radiobutton" value="radiobutton" />
-                                    灰色</span> </li>
-                            <li>
-                                <img src="/images/mb/style_04.jpg" width="102" height="85" />
-                                <span>
-                                    <input type="radio" name="radiobutton" value="radiobutton" />
-                                    蓝色</span> </li>
-                            <li>
-                                <img src="/images/mb/style_05.jpg" width="102" height="85" />
-                                <span>
-                                    <input type="radio" name="radiobutton" value="radiobutton" />
-                                    浅绿</span> </li>
-                            <li>
-                                <img src="/images/mb/style_06.jpg" width="102" height="85" />
-                                <span>
-                                    <input type="radio" name="radiobutton" value="radiobutton" />
-                                    深绿</span> </li>
-                            <li>
-                                <img src="/images/mb/style_07.jpg" width="102" height="85" />
-                                <span>
-                                    <input type="radio" name="radiobutton" value="radiobutton" />
-                                    红色</span> </li>
-                            <li>
-                                <img src="/images/mb/style_08.jpg" width="102" height="85" />
-                                <span>
-                                    <input type="radio" name="radiobutton" value="radiobutton" />
-                                    黑绿</span> </li>
+                                    <input type="radio" name="template"  <%=UserUtil.curTemplete.id.Equals(template.id)?"checked=checked ":""%> value="<%=template.id %>" />
+                                    <%=template.name %> </span></li>
+                            <%} %>
                         </ul>
                     </div>
                     <div class="sb_down">
@@ -253,6 +224,7 @@
                         </td>
                     </tr>
                 </table>
+                </form>
             </td>
         </tr>
     </table>

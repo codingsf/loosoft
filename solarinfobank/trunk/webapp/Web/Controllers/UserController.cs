@@ -2080,6 +2080,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
         public ActionResult template()
         {
+            HttpContext.Application[ComConst.Templete] = null;
             IList<Template> templates = TemplateService.GetInstance().getList();
             ViewData["template"] = templates;
             return View();
@@ -2087,17 +2088,20 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
 
         [HttpPost]
-        public ActionResult template(HttpPostedFileBase logopic)
+        public ActionResult template(HttpPostedFileBase logopic, string sysName, string template)
         {
+            HttpContext.Application[ComConst.Templete] = null;
             IList<Template> templates = TemplateService.GetInstance().getList();
             ViewData["template"] = templates;
             User user = UserUtil.getCurUser();
+
+            #region 上传图片
             try
             {
                 if (logopic != null && logopic.ContentLength > 0)
                 {
                     string extensionName = logopic.FileName.Substring(logopic.FileName.LastIndexOf('.'));
-                    if (extensionName.ToLower().Equals(".jpg"))
+                    if (extensionName.ToLower().Equals(".jpg") || extensionName.ToLower().Equals(".gif"))
                     {
                         Bitmap myImage = new Bitmap(logopic.InputStream);
                         if (myImage.Width > 169)
@@ -2115,22 +2119,30 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                             string logoName = user.id + "logo.jpg";
                             string filePath = Path.Combine(path, logoName);
                             logopic.SaveAs(filePath);
-                            user = userservice.GetUserByName(user.username);
                             user.logo = logoName;
-                            userservice.save(user);
 
                         }
                     }
+                    else
+                        ViewData["error"] = "请选择一个jpg扩展名的图片";
 
                 }
-                else
-                    ViewData["error"] = "请选择一个jpg扩展名的图片";
+
+
+
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 return Content(e.Message);
             }
+            #endregion
+
+            user.sysName = sysName;
+            int templateid = 0;
+            int.TryParse(template, out templateid);
+            user.template = TemplateService.GetInstance().get(templateid);
+            userservice.save(user);
             return View();
         }
     }

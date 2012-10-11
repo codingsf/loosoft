@@ -45,5 +45,16 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             return _templateDao.getDefault();
         }
 
+
+        public int setDefault(int id)
+        {
+            return _templateDao.setDefault(id);
+        }
+
+        public Template get(int id)
+        {
+            return _templateDao.Get(new Template { id = id });
+        }
+
     }
 }

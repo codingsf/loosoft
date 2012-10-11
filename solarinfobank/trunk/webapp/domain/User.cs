@@ -778,5 +778,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
         public string logo { get; set; }
 
+        public string sysName { get; set; }//系统名称
+
     }
 }

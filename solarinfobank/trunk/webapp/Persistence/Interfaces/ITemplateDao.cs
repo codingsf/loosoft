@@ -9,5 +9,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.Interfaces
     public interface ITemplateDao : IBaseDao<Template>
     {
         Template getDefault();
+        int setDefault(int id);
     }
 }

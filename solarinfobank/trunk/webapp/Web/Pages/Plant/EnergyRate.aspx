@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Shared/ContentInside.Master"
+<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Shared/ContentInside.Master"
     Inherits="System.Web.Mvc.ViewPage<Cn.Loosoft.Zhisou.SunPower.Domain.Plant>" %>
 
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
@@ -119,7 +119,7 @@
                                 </tr>
                                 <tr>
                                     <td width="75%">
-                                        &nbsp;
+                                       <%=Resources.SunResource.PLANT_ENERGYFILTER_SUBTITLE%>
                                     </td>
                                     <td width="18%">
                                     </td>

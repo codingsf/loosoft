@@ -5289,11 +5289,10 @@
   <data name="HOME_INDEX_FAQ" xml:space="preserve">
     <value>FAQ</value>
   </data>
-  <data name="PLANT_ENERGYFILTER_SUBTITLE" xml:space="preserve">
-    <value>每kWp发电量低于或高于
-平均值设定系数将触发预警</value>
-  </data>
   <data name="QA_SUBTITLE_DESCR" xml:space="preserve">
     <value>您可以在此输入您想得到解答的问题</value>
+  </data>
+  <data name="PLANT_ENERGYFILTER_SUBTITLE" xml:space="preserve">
+    <value>每kWp发电量低于或高于平均值设定系数将触发预警</value>
   </data>
 </root>

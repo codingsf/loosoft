@@ -37,7 +37,7 @@
                       <%=Resources.SunResource.MONITORITEM_HELP%> </a></td>
                 </tr>
                 <tr>
-                  <td width="75%"><%=Resources.SunResource.PLANT_ENERGYFILTER_SUBTITLE %>&nbsp;</td>
+                  <td width="75%">&nbsp;</td>
                   <td width="18%"></td>
                 </tr>
             </table></td>

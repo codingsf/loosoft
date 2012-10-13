@@ -3,6 +3,18 @@
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
 <%@ Import Namespace="System.Globalization" %>
+<%
+    ViewData["hashlx"] = false;
+    PlantUnit unit = ViewData["plantUnit"] as PlantUnit;
+    foreach (Device dce in unit.devices)
+    {
+        if (dce.deviceTypeCode == DeviceData.HUILIUXIANG_CODE && !dce.isHidden)
+        {
+           ViewData["hashlx"]=true;
+        }
+    }
+%>
+             
 <!--
 <%=Resources.SunResource.INVERTERCOMPAREPAGE_INVERTER_COMPARE_PAGE%></asp:Content>
 -->

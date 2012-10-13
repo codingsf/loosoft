@@ -225,11 +225,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                     try
                     {
                         int value = int.Parse(datas[1]);
+                        if (value == 0) value = 16;
                         displayHxlroute = DeviceData.HUILIUXIANG_CODE * 100 + value;
                     }
                     catch (Exception e)
                     {
-
+                        
                         break;
                     }
                     break;
@@ -258,8 +259,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
             //先取得传感器接入路数，以决定显示多少路汇流箱路数
             int displayHxlroute = 0;
-            if(deviceTypeCode==DeviceData.HUILIUXIANG_CODE){
-                getHlxroute(rundatas);
+            if(deviceTypeCode == DeviceData.HUILIUXIANG_CODE){
+                displayHxlroute = getHlxroute(rundatas);
             }
 
             //如果是逆变器那么先取额定功率

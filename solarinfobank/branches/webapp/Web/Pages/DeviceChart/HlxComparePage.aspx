@@ -3,6 +3,17 @@
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
 <%@ Import Namespace="System.Globalization" %>
+<%
+    ViewData["hasinverter"] = false;
+    PlantUnit unit = ViewData["plantUnit"] as PlantUnit;
+    foreach (Device dce in unit.devices)
+    {
+        if (dce.deviceTypeCode == DeviceData.INVERTER_CODE && !dce.isHidden)
+        {
+            ViewData["hasinverter"] = true;
+        }
+    }
+%>
 <!--
 <%=Resources.SunResource.INVERTERCOMPAREPAGE_INVERTER_COMPARE_PAGE%></asp:Content>
 -->

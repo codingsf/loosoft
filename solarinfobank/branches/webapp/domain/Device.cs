@@ -77,7 +77,20 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 _rundata = value;
             }
         }//实时数据
+
         public Plant plant { get; set; }
+
+        /// <summary>
+        /// 是否工作,不超过一天
+        /// add by qhb in in 20120927
+        /// </summary>
+        /// <param name="tz"></param>
+        /// <returns></returns>
+        public bool isWork(float tz)
+        {
+            return !Over1Day(tz);
+        }
+
         public bool Over1Day(float tz)
         {
             if (runData == null)

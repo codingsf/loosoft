@@ -343,7 +343,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             else
             {
-                reportCode = "error:" + Resources.SunResource.CHART_TIP_NODEVICES;
+                reportCode = "error:" + Resources.SunResource.NODATA;
             }
             return Content(reportCode);
         }
@@ -380,7 +380,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             else
             {
-                reportCode = "error:" + Resources.SunResource.CHART_TIP_NODEVICES;
+                reportCode = "error:" + Resources.SunResource.NODATA;
             }
             return Content(reportCode);
         }
@@ -417,7 +417,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             else
             {
-                reportCode = "error:" + Resources.SunResource.CHART_TIP_NODEVICES;
+                reportCode = "error:" + Resources.SunResource.NODATA;
             }
             return Content(reportCode);
         }
@@ -454,7 +454,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             else
             {
-                reportCode = "error:" + Resources.SunResource.CHART_TIP_NODEVICES;
+                reportCode = "error:" + Resources.SunResource.NODATA;
             }
             return Content(reportCode);
         }
@@ -520,7 +520,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             foreach (Device dce in unit.devices)
             {
-                if (dce.deviceTypeCode == DeviceData.HUILIUXIANG_CODE)
+                if (dce.deviceTypeCode == DeviceData.HUILIUXIANG_CODE && !dce.isHidden)
                 {
                     ViewData["hashlx"] = true;
                     break;
@@ -529,7 +529,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             foreach (Device dce in unit.devices)
             {
-                if (dce.deviceTypeCode == DeviceData.INVERTER_CODE)
+                if (dce.deviceTypeCode == DeviceData.INVERTER_CODE && !dce.isHidden)
                 {
                     ViewData["hasinverter"] = true;
                     break;
@@ -552,7 +552,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             foreach (Device dce in unit.devices)
             {
-                if (dce.deviceTypeCode == DeviceData.HUILIUXIANG_CODE)
+                if (dce.deviceTypeCode == DeviceData.HUILIUXIANG_CODE && !dce.isHidden)
                 {
                     ViewData["hashlx"] = true;
                     break;
@@ -561,7 +561,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             foreach (Device dce in unit.devices)
             {
-                if (dce.deviceTypeCode == DeviceData.INVERTER_CODE)
+                if (dce.deviceTypeCode == DeviceData.INVERTER_CODE && !dce.isHidden)
                 {
                     ViewData["hasinverter"] = true;
                     break;
@@ -661,7 +661,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             foreach (Device dce in unit.devices)
             {
-                if (dce.deviceTypeCode == DeviceData.HUILIUXIANG_CODE)
+                if (dce.deviceTypeCode == DeviceData.HUILIUXIANG_CODE && !dce.isHidden)
                 {
                     ViewData["hashlx"] = true;
                     break;
@@ -670,7 +670,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             foreach (Device dce in unit.devices)
             {
-                if (dce.deviceTypeCode == DeviceData.INVERTER_CODE)
+                if (dce.deviceTypeCode == DeviceData.INVERTER_CODE && !dce.isHidden)
                 {
                     ViewData["hasinverter"] = true;
                     break;

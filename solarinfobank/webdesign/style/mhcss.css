@@ -137,22 +137,6 @@ a:active { color:#000; text-decoration:none;}
 .tjxxtext{ font-size:24px; font-family:Arial, Helvetica, sans-serif;}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .geline{ border-bottom:1px dotted #B1CFB6;}
 .tpsm{ background:url(/images/gf/tpbg.jpg) no-repeat top; width:267px; padding:10px;}
 .ltp{ border-bottom:1px dotted #C2C1C1; line-height:25px;}
@@ -173,7 +157,8 @@ a:active { color:#000; text-decoration:none;}
 .kjrb{ width:210px; height:64px;background:url(/images/gf/kjbg04.gif) no-repeat; padding-top:10px; padding-left:5px; margin:20px 0px;}
 .kjli{ line-height:18px; font-size:14px;}
 
-.gfpr{ padding-right:10px;}.gfgreen{ color:#59903E}
+.gfpr{ padding-right:10px;}
+.gfgreen{ color:#59903E}
 
 
 

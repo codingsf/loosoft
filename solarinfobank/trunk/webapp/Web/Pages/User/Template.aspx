@@ -6,10 +6,10 @@
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
 <%@ Import Namespace="System.Globalization" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %> 模板设置
+    <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>
+    模板设置
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="/style/lc.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
         .mbts
         {
@@ -70,11 +70,35 @@
     </style>
 
     <script>
+
+        function loadjscssfile(filename, filetype) {
+            if (filetype == "js") {
+                var fileref = document.createElement('script')
+                fileref.setAttribute("type", "text/javascript")
+                fileref.setAttribute("src", filename)
+            }
+            else if (filetype == "css") {
+                var fileref = document.createElement("link")
+                fileref.setAttribute("rel", "stylesheet")
+                fileref.setAttribute("type", "text/css")
+                fileref.setAttribute("href", filename)
+            }
+            if (typeof fileref != "undefined")
+                parent.document.getElementsByTagName("head")[0].appendChild(fileref)
+        }
+        function refreshcss() {
+            loadjscssfile("<%= UserUtil.curTemplete.cssFolder %>/style/css.css", "css")
+            loadjscssfile("<%= UserUtil.curTemplete.cssFolder %>/style/sub.css", "css")
+            loadjscssfile("<%= UserUtil.curTemplete.cssFolder %>/style/share.css", "css")
+            loadjscssfile("<%= UserUtil.curTemplete.cssFolder %>/style/lc.css", "css")
+        }
+
         $().ready(function() {
             var random = new Date().getMilliseconds();
             var src = '<%=UserUtil.UserLogo %>?' + random;
             $("#logo", window.parent.document).attr("src", src);
             $("#viewlogo").attr("src", src);
+            refreshcss();
         })
     </script>
 
@@ -200,8 +224,10 @@
                             <li>
                                 <img src="/images/<%=template.pic %>" width="102" height="85" />
                                 <span>
-                                    <input type="radio" name="template"  <%=UserUtil.curTemplete.id.Equals(template.id)?"checked=checked ":""%> value="<%=template.id %>" />
-                                    <%=template.name %> </span></li>
+                                    <input type="radio" name="template" <%=UserUtil.curTemplete.id.Equals(template.id)?"checked=checked ":""%>
+                                        value="<%=template.id %>" />
+                                    <%=template.name %>
+                                </span></li>
                             <%} %>
                         </ul>
                     </div>

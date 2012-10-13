@@ -14,7 +14,7 @@
     <% Html.RenderPartial("css"); %>
     <meta http-equiv="pragma" content="cache" />
     <asp:ContentPlaceHolder ID="CustomHead" runat="server" />
-    <style type="text/css">
+    <%--<style type="text/css">
         #menuShow a.lefttabclick
         {
             height: 25px;
@@ -53,7 +53,7 @@
             text-decoration: none;
             background: #fff;
         }
-    </style>
+    </style>--%>
 
     <script src="../../script/cookie.js" type="text/javascript"></script>
 
@@ -265,7 +265,7 @@
                                     <table width="100%" border="0" cellpadding="0" cellspacing="0">
                                         <tr>
                                             <td width="40" align="center">
-                                                <img src="/images/kj/fico01.jpg" />
+                                                <img src="/images/kj/fico01.png" />
                                             </td>
                                             <td class="kjtt01">
                                                 <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_PLANT_LIST%>
@@ -328,7 +328,7 @@
                                     <table width="100%" border="0" cellpadding="0" cellspacing="0">
                                         <tr>
                                             <td width="40" align="center">
-                                                <img src="/images/kj/fico02.jpg" />
+                                                <img src="/images/kj/fico02.png" />
                                             </td>
                                             <td class="kjtt01">
                                                 <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_PLANT_DATA  %>
@@ -359,7 +359,7 @@
                                     <table width="100%" border="0" cellpadding="0" cellspacing="0">
                                         <tr>
                                             <td width="40" align="center">
-                                                <img src="/images/kj/fico03.jpg" />
+                                                <img src="/images/kj/fico03.png" />
                                             </td>
                                             <td class="kjtt01">
                                                 <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_ANALYSIS_CHART%>
@@ -387,7 +387,7 @@
                                     <table width="100%" border="0" cellpadding="0" cellspacing="0">
                                         <tr>
                                             <td width="40" align="center">
-                                                <img src="/images/kj/fico04.jpg" />
+                                                <img src="/images/kj/fico04.png" />
                                             </td>
                                             <td class="kjtt01">
                                                 <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_CONFIGURATION  %>

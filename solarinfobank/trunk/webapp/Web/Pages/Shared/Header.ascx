@@ -1,16 +1,7 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 <%@ Import Namespace="System.Globalization" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
-<style type="text/css">
-<!--
-.ensel {width:134px; height:30px; background:url(/images/ensel.GIF) no-repeat; color:#649244;}
-.lansel {width:134px;}
-.lansel_down {background:url(/images/lansel_down.gif) no-repeat; height:6px;}
-.lansel_mid {background:url(/images/lansel_bg.gif); padding:3px 0px;}
-.lansel_top {height:5px;background:url(/images/lansel_top.gif) no-repeat;}
-.lmid_list {height:27px; background:url(/images/lansel_line.gif) no-repeat center bottom; color:#649244;}
--->
-</style>
+
 <script type="text/javascript">
     function displayLanguagePanel() {
         document.getElementById("languagePanel").style.display = "block";
@@ -44,12 +35,13 @@
     <div class="headermain">
         <div class="header_l">
             <a href="/">
-                <img src="<%= UserUtil.UserLogo %>" width="169" height="29" border="0" id="logo" /></a></div>
+                &nbsp;<img src="<%= UserUtil.UserLogo %>" width="169" height="29" border="0" id="logo" /></a></div>
         <div class="header_r">
             <div class="header_rt">
                 <a href="#" id="outpreview">&nbsp;</a>
                 <a href="/qa/ask" target="_blank" class="dgreen">FAQ</a></div>
             <div class="header_rdh">
+            <div class="header_rdhname"><span class="wf"><%=UserUtil.SysName %></span> <span class="wr"></span></div>
                 <div class="header_rdhl">
                     <span><a href="/" class="gwhite"><%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_HOME%></a></span>|<span><a href="/help/<%=(Session["Culture"] as CultureInfo).Name%>/SolarInfo Bank User Manual.pdf" target="_blank" class="gwhite"><%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_USER_MANUAL%></a></span>|
                     <span><a href="/public/contactus" target="_blank" class="gwhite"><%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_CONTACTS%></a></span></div>

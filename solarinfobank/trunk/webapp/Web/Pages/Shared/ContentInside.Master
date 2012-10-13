@@ -11,12 +11,6 @@
     </title>
     <meta http-equiv="pragma" content="cache" />
     <% Html.RenderPartial("css"); %>
-    <style type="text/css">
-           #menuShow a.lefttabclick{height:30px; line-height:30px; padding-left:15px; background:url(/images/kj/listbg04.jpg) no-repeat; margin-bottom:1px; color:#4A8125; font-weight:bold; display:block; text-decoration:none;}
-           #menuShow a.current{height:30px; line-height:30px; width:190px;  padding-left:15px; background:url(/images/kj/listbg03.jpg) no-repeat; margin-bottom:1px; color:#4A8125; font-weight:bold; display:block; text-decoration:none;}
-           #dl{ overflow:hidden;}
-           #dl a.lefttabclick{ height:30px; width:190px; line-height:30px; padding-left:15px; margin-bottom:1px; color:#7A9D63; font-weight:bold; display:block; text-decoration:none; background:#fff; overflow:hidden;}
-    </style>
     <script type="text/javascript">
         var exportButtonTitle = "<%=Resources.SunResource.CHART_EXPORT_DATA%>";
         var exportXlsTitle = "<%=Resources.SunResource.CHART_EXPORT_XLS%>";

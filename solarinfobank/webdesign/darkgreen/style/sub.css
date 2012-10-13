@@ -1,11 +1,11 @@
 
 /*”Ô—‘«–ªª*/
-.ensel {width:134px; height:30px; background:url(../Images/ensel.GIF) no-repeat; color:#649244;}
+.ensel {width:134px; height:30px; background:url(../Images/ensel.GIF) no-repeat; color:FFFFFF;}
 .lansel {width:134px;}
 .lansel_down { background:url(../Images/lansel_down.gif) no-repeat; height:6px;}
 .lansel_mid { background:url(../Images/lansel_bg.gif); padding:3px 0px;}
 .lansel_top {height:5px; background:url(../Images/lansel_top.gif) no-repeat;}
-.lmid_list {height:27px; background:url(../Images/lansel_line.gif) no-repeat center bottom; color:#649244;}
+.lmid_list {height:27px; background:url(../Images/lansel_line.gif) no-repeat center bottom;}
 
 .main_wz{ height:24px; line-height:24px; color:#B6B5B5; text-align:right;}
 .mainsubl{ float:left; width:181px;}

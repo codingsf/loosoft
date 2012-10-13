@@ -13,11 +13,6 @@ a:active { color:#000; text-decoration:none;}
 .dgreen:hover {color:#008C44; text-decoration:underline;}
 .dgreen:active {color:#008C44; text-decoration:none;}
 
-.dyreen:link{color:#bb2603; text-decoration:none;}
-.dyreen:visited {color:#bb2603; text-decoration:none;}
-.dyreen:hover {color:#bb2603; text-decoration:underline;}
-.dyreen:active {color:#bb2603; text-decoration:none;}
-
 .dblack:link{color:#999999; text-decoration:none;}
 .dblack:visited {color:#999999; text-decoration:none;}
 .dblack:hover {color:#FF900A; text-decoration:none;}
@@ -119,3 +114,9 @@ white-space:nowrap;word-break:keep-all;overflow:hidden;text-overflow:ellipsis;}
 .mdl02 .veiwmore{ display:block; padding-left:40px; padding-top:10px;}
 
 .click_view{ background:url(../Images/dlown.jpg) no-repeat; width:85px; height:16px; color:#FFFFFF; text-align:center; border:none; font-family:Arial, Helvetica, sans-serif; padding-bottom:5px; cursor:pointer; font-size:12px;}/*手机应用查看按钮*/
+
+
+.dyreen:link{color:#08B079; text-decoration:none;}
+.dyreen:visited {color:#08B079; text-decoration:none;}
+.dyreen:hover {color:#08B079; text-decoration:underline;}
+.dyreen:active {color:#08B079; text-decoration:none;}

@@ -83,10 +83,6 @@ em .success{ background-image:url(../Images/sub/right.gif); font-variant:normal;
 img{ border:none;}
 .tip{ color:#535353; font-variant:normal; font-style:normal;}
 
-.dyreen:link{color:#bb2603; text-decoration:none;}
-.dyreen:visited {color:#bb2603; text-decoration:none;}
-.dyreen:hover {color:#bb2603; text-decoration:underline;}
-.dyreen:active {color:#bb2603; text-decoration:none;}
 
 /*overview页面数据字体演示，add by qhb in 20120218*/
 .sz_fb{font-size:18px; padding-top:5px;} 
@@ -125,3 +121,8 @@ white-space:nowrap;word-break:keep-all;overflow:hidden;text-overflow:ellipsis;}
 .mdl02 .veiwmore{ display:block; padding-left:40px; padding-top:10px;}
 
 .click_view{ background:url(../Images/dlown.jpg) no-repeat; width:85px; height:16px; color:#FFFFFF; text-align:center; border:none; font-family:Arial, Helvetica, sans-serif; padding-bottom:5px; cursor:pointer; font-size:12px;}/*手机应用查看按钮*/
+
+.dyreen:link{color:#08B079; text-decoration:none;}
+.dyreen:visited {color:#08B079; text-decoration:none;}
+.dyreen:hover {color:#08B079; text-decoration:underline;}
+.dyreen:active {color:#08B079; text-decoration:none;}

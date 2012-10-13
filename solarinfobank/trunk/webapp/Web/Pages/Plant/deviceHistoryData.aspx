@@ -3,6 +3,29 @@
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
 <%@ Import Namespace="System.Globalization" %>
 <script type="text/javascript">
+
+    var opened = false;
+    //dom加载完成时执行
+    $(function() {
+        //input获取焦点时在其旁边显示div
+    $('#test').click(function() {
+            if (opened == false) {
+                var input = $(this);
+                var offset = input.offset();
+                //先后设置div的内容、位置，最后显示出来（渐进效果）
+                $('#device_div')
+	            .css('left', offset.left + 'px')
+	            .css('top', offset.top + input.height() + 'px')
+	            .fadeIn();
+                opened = true;
+            } else {
+                $('#device_div').css('display', 'none');
+                opened = false;
+            }
+        });
+
+    });
+    
     function readyinit() {
         plantDeviceInit();
 
@@ -123,11 +146,18 @@
                         <tr>
                           <td width="auto" height="30" align="right"><span style="white-space:nowrap"><%=Resources.SunResource.UDEVICE_PAGE_SELECT_DEVICE%>:</span></td>
                           <td width="auto" align="left" style="padding-left:5px" id="dce_control" >
+                          
                           <select name="dces" id="dces" class="subselect02" style="width:150px">
                           <option><%=Resources.SunResource.UDEVICE_PAGE_PLEASESELECT%></option>
-                          </select>
-                          </td>                          
+                          </select>                    
                           <td width="30%"  class="f_14">
+                          <input type="text" id="test" />
+                          <div id="device_div" style=" display:none;">
+                          <iframe src="/plant/devicestructtree/<%=Model.id %>" width="220" scrolling="auto" frameborder="0"
+                                        height="650">
+                            </iframe>
+                          </div>
+                          </td>      
                            <div class="date_sel" id="Div1" style="padding-bottom:0px; padding-right:100px;">
                            <table border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>

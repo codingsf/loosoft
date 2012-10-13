@@ -191,6 +191,7 @@
     <Compile Include="YearCompensationService.cs" />
     <Compile Include="EnergywarnService.cs" />
     <Compile Include="TemplateService.cs" />
+    <Compile Include="EnergyYearMonthForecastService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

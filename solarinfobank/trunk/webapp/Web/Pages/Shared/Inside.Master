@@ -512,21 +512,18 @@
                                                 <%} %>
                                             </a></li>
                                             <%} %>
-                                            <li>
-                                            <a rel="treemenu" onclick="loadContent('content_ajax','/plant/devicedata/<%=Model.id%>','ajax','GET');setcurrent(this);return false;"
-                                                href="/plant/devicedata/<%=Model.id%>" title="<%=Resources.SunResource.DEVICE_RUN_DATA %>"><%=Resources.SunResource.DEVICE_RUN_DATA %>
-                                            </a>
-                                            </li>
-                                            <li>
-                                            <a rel="treemenu" onclick="loadContent('content_ajax','/plant/devicehistorydata/<%=Model.id%>','ajax','GET');setcurrent(this);return false;"
-                                                href="/plant/devicehistorydata/<%=Model.id%>" title="<%=Resources.SunResource.DEVICE_DEVICE_HISTORYRUN_DATA %>"><%=Resources.SunResource.DEVICE_DEVICE_HISTORYRUN_DATA%>
-                                            </a>
-                                            </li>    
-                                            <li>
-                                            <a rel="treemenu" onclick="loadContent('content_ajax','/plant/energyFilter?id=<%=Model.id%>&pageNo=1','iframe','GET');setcurrent(this);return false;"
-                                                href="/plant/energyFilter/<%=Model.id%>" title=""><%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_ENERGYWARN%>
-                                            </a>                                          
-                                            </li>                                                                                      
+                                            <li><a rel="treemenu" onclick="loadContent('content_ajax','/plant/devicedata/<%=Model.id%>','ajax','GET');setcurrent(this);return false;"
+                                                href="/plant/devicedata/<%=Model.id%>" title="<%=Resources.SunResource.DEVICE_RUN_DATA %>">
+                                                <%=Resources.SunResource.DEVICE_RUN_DATA %>
+                                            </a></li>
+                                            <li><a rel="treemenu" onclick="loadContent('content_ajax','/plant/devicehistorydata/<%=Model.id%>','ajax','GET');setcurrent(this);return false;"
+                                                href="/plant/devicehistorydata/<%=Model.id%>" title="<%=Resources.SunResource.DEVICE_DEVICE_HISTORYRUN_DATA %>">
+                                                <%=Resources.SunResource.DEVICE_DEVICE_HISTORYRUN_DATA%>
+                                            </a></li>
+                                            <li><a rel="treemenu" onclick="loadContent('content_ajax','/plant/energyFilter?id=<%=Model.id%>&pageNo=1','iframe','GET');setcurrent(this);return false;"
+                                                href="/plant/energyFilter/<%=Model.id%>" title="">
+                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_ENERGYWARN%>
+                                            </a></li>
                                             <%if (AuthService.isAllow(AuthorizationCode.LOGS_LIST))
                                               { %>
                                             <li><a onclick="loadContent('content_ajax','/plant/log/<%=Model.id %>','iframe','GET');setcurrent(this);return false;"
@@ -666,8 +663,11 @@
                                 <div class="kjmid" style="display: none" ref="6">
                                     <div class="kjb">
                                         <ul>
+                                            <li><a onclick="loadContent('content_ajax','/plant/energyforecast/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
+                                                href="/plant/energyforecast/<%=Model.id%>">发电量预测值</a></li>
                                             <li><a onclick="loadContent('content_ajax','/plant/compensation/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
-                                                href="/plant/compensation/<%=Model.id%>"><%=Resources.SunResource.ENERGY_RATE%></a></li>
+                                                href="/plant/compensation/<%=Model.id%>">
+                                                <%=Resources.SunResource.ENERGY_RATE%></a></li>
                                             <%if (AuthService.isAllow(AuthorizationCode.CREATE_CHART))
                                               { %>
                                             <li><a onclick="loadContent('content_ajax','/plant/includecustomcharts/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
@@ -686,12 +686,9 @@
                                             <li><a onclick="loadContent('content_ajax','/user/pageconfig','iframe','GET');setcurrent(this);return false;"
                                                 href="/user/pageconfig">
                                                 <%=Resources.SunResource.PAGECONFIG_TITLE %></a></li>
-                                                
-                                                   <li><a onclick="loadContent('content_ajax','/plant/energyrate/<%=Model.id %>','iframe','GET');setcurrent(this);return false;"
+                                            <li><a onclick="loadContent('content_ajax','/plant/energyrate/<%=Model.id %>','iframe','GET');setcurrent(this);return false;"
                                                 href="/plant/energyrate/<%=Model.id %>">
                                                 <%=Resources.SunResource.INSIDE_ENERGY_RATE %></a></li>
-                                                
-                                                
                                             <li><a onclick="loadContent('content_ajax','/user/record','iframe','GET');setcurrent(this);return false;"
                                                 href="/user/record">
                                                 <%=Resources.SunResource.PAGE_USER_LOGINRECORD%></a></li>

@@ -106,6 +106,7 @@
     <Compile Include="Interfaces\ICountryCityDao.cs" />
     <Compile Include="Interfaces\IDeviceRelationDao.cs" />
     <Compile Include="Interfaces\IElecPriceDao.cs" />
+    <Compile Include="Interfaces\IEnergyYearMonthForecastDao.cs" />
     <Compile Include="Interfaces\IErrorcodeDao.cs" />
     <Compile Include="Interfaces\IManagerMonitorCodeSqlMapDao.cs" />
     <Compile Include="Interfaces\IMonitorConfigDao.cs" />
@@ -253,6 +254,7 @@
     <Compile Include="MapperDao\EmailQueueSqlMapDao.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MapperDao\EnergyYearMonthForecastSqlMapDao.cs" />
     <Compile Include="MapperDao\ErrorcodeSqlMapDao.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -2451,6 +2451,7 @@
     <Content Include="Maps\Compensation.xml" />
     <Content Include="Maps\Energywarn.xml" />
     <Content Include="Maps\Template.xml" />
+    <Content Include="Maps\EnergyYearMonthForecast.xml" />
     <Content Include="m_img\bg004.jpg" />
     <Content Include="m_img\bg01.jpg" />
     <Content Include="m_img\bg010.jpg" />
@@ -2587,6 +2588,8 @@
     <Content Include="Pages\Plant\Compensation.aspx" />
     <Content Include="Pages\Plant\SearchCompensation.aspx" />
     <Content Include="Pages\Plant\EnergyFilter.aspx" />
+    <Content Include="Pages\Plant\EnergyForecast.aspx" />
+    <Content Include="Pages\Plant\SearchForecast.aspx" />
     <Content Include="Pages\portal\DeviceStatus.aspx" />
     <Content Include="Pages\portal\Fault.aspx" />
     <Content Include="Pages\portal\HLXchart.aspx" />

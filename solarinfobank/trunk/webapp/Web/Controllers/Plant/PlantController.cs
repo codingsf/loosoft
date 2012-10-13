@@ -1906,7 +1906,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             Plant plant = PlantService.GetInstance().GetPlantInfoById(id.Value);
             if (string.IsNullOrEmpty(endDate)) endDate = CalenderUtil.curDateWithTimeZone(plant.timezone, "yyyy-MM-dd");
             if (string.IsNullOrEmpty(startDate)) startDate = CalenderUtil.curBeforeDateWithTimeZone(plant.timezone, "yyyy-MM-dd");
-            if (pageNo == null) pageNo = 1 ;
+            if (pageNo == null) pageNo = 1;
 
             Pager page = new Pager() { PageSize = ComConst.PageSize, PageIndex = pageNo.Value };
             Hashtable table = new Hashtable();
@@ -1914,7 +1914,8 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             table.Add("startDate", startDate);
             table.Add("endDate", endDate);
             string collectorIds = "";
-            foreach (PlantUnit pu in plant.plantUnits) {
+            foreach (PlantUnit pu in plant.plantUnits)
+            {
                 collectorIds += "," + pu.collectorID;
             }
             if (collectorIds.Length > 0) collectorIds = collectorIds.Substring(1);
@@ -1922,7 +1923,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             IList<Energywarn> lists = new List<Energywarn>();
             if (!collectorIds.Equals(""))
             {
-               lists = EnergywarnService.GetInstance().GetEnergywarnPage(table);
+                lists = EnergywarnService.GetInstance().GetEnergywarnPage(table);
             }
 
             ViewData["page"] = page;
@@ -2640,5 +2641,47 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             plantService.UpdatePlantInfo(plant);
             return View("energyrate", plant);
         }
+
+
+        /// <summary>
+        /// 发电量预测值
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult EnergyForecast(int id)
+        {
+            return View(plantService.GetPlantInfoById(id));
+        }
+
+        public ActionResult SearchForecast(int plantid, int page)
+        {
+            Pager pager = new Pager();
+            pager.PageSize = ComConst.PageSize;
+            pager.PageIndex = page;
+            pager.PageIndex = pager.PageIndex < 1 ? 1 : pager.PageIndex;
+
+            IList<EnergyYearMonthForecast> forecasts = EnergyYearMonthForecastService.GetInstance().GetList(plantid);
+            pager.RecordCount = forecasts.Count;
+            forecasts = forecasts.Skip((pager.PageIndex - 1) * pager.PageSize).Take(pager.PageSize).ToList<EnergyYearMonthForecast>();
+            ViewData["page"] = pager;
+            ViewData["list"] = forecasts;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EnergyForecast(EnergyYearMonthForecast forecast)
+        {
+            if (string.IsNullOrEmpty(forecast.dataKey) == false)
+                forecast.dataKey = forecast.dataKey.Replace("-", "");
+            EnergyYearMonthForecastService.GetInstance().Save(forecast);
+            return Content("ok");
+        }
+
+        public ActionResult DelForecast(int id)
+        {
+            EnergyYearMonthForecastService.GetInstance().Remove(id);
+            return Content("ok");
+        }
+
+
     }
 }

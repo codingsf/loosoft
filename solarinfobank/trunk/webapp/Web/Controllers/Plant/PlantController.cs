@@ -2470,6 +2470,19 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             ViewData["jsstr"] = jsstr;
             return View();
         }
+
+
+        public ActionResult inverterStructTree(string id)
+        {
+            int pid = 0;
+            int.TryParse(id, out pid);
+            Plant plant = PlantService.GetInstance().GetPlantInfoById(pid);
+            string jsstr = base.createInverterContructTree(plant, -1);
+            ViewData["jsstr"] = jsstr;
+            return View();
+        }
+
+
         /// <summary>
         /// 补偿设置
         /// </summary>

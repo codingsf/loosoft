@@ -346,27 +346,27 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             int unitLevel = 1;
             //遍历单元，先显示单元层级
             PlantUnit pu = null;
-            for (int i = 0; i < plant.plantUnits.Count;i++ )
+            for (int i = 0; i < plant.plantUnits.Count; i++)
             {
                 pu = plant.plantUnits[i];
                 unitLevel = unitLevel * 100 + i;
                 jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '/images/tree/folder.gif');", unitLevel, topLevel, pu.displayname, "javascript:void(0);");
 
                 //先装机逆变器类型设备节点
-                IList<Device> devices = pu.typeDevices(DeviceData.INVERTER_CODE,false);
+                IList<Device> devices = pu.typeDevices(DeviceData.INVERTER_CODE, false);
                 if (devices != null && devices.Count > 0)
                 {
-                    deviceLevel = unitLevel+10;
+                    deviceLevel = unitLevel + 10;
                     firstRun = "parent.loadRunData(" + devices[0].id + ");";
                     jsstr += firstRun;
                     jsstr += generateDeviceNode(devices, deviceLevel, unitLevel, DeviceData.getDeviceTypeByCode(DeviceData.INVERTER_CODE).name);
                 }
 
                 //汇流箱类型设备节点
-                devices = pu.typeDevices(DeviceData.HUILIUXIANG_CODE,false);
+                devices = pu.typeDevices(DeviceData.HUILIUXIANG_CODE, false);
                 if (devices != null && devices.Count > 0)
                 {
-                    deviceLevel = unitLevel+20;
+                    deviceLevel = unitLevel + 20;
                     if (string.IsNullOrEmpty(firstRun))
                     {
                         firstRun = "parent.loadRunData(" + devices[0].id + ");";
@@ -376,7 +376,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 }
 
                 //环境监测仪类型设备节点
-                devices = pu.typeDevices(DeviceData.ENVRIOMENTMONITOR_CODE,false);
+                devices = pu.typeDevices(DeviceData.ENVRIOMENTMONITOR_CODE, false);
                 if (devices != null && devices.Count > 0)
                 {
                     deviceLevel = unitLevel + 30;
@@ -400,7 +400,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     jsstr += generateDeviceNode(devices, deviceLevel, unitLevel, DeviceData.getDeviceTypeByCode(DeviceData.CABINET_CODE).name);
                 }
                 //环境监测仪类型设备节点
-                devices = pu.typeDevices(DeviceData.AMMETER_CODE,false);
+                devices = pu.typeDevices(DeviceData.AMMETER_CODE, false);
                 if (devices != null && devices.Count > 0)
                 {
                     deviceLevel = unitLevel + 50;
@@ -415,6 +415,48 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return jsstr;
         }
 
+
+
+
+        /// <summary>
+        /// 创建页面js结构树的脚本
+        /// </summary>
+        /// <param name="topLevelPlants">顶层电站集合</param>
+        /// <param name="level">当前电站层次</param>
+        /// <param name="uplevel">上级电站层次,必须传入-1</param>
+        /// <returns></returns>
+        public string createInverterContructTree(Plant plant, int uplevel)
+        {
+            string jsstr = "";
+            //
+            int topLevel = -1;
+            int deviceLevel = 1;
+            string firstRun = "";
+            int unitLevel = 1;
+            //遍历单元，先显示单元层级
+            PlantUnit pu = null;
+            for (int i = 0; i < plant.plantUnits.Count; i++)
+            {
+                pu = plant.plantUnits[i];
+                unitLevel = unitLevel * 100 + i;
+                jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '/images/tree/folder.gif');", unitLevel, topLevel, pu.displayname, "javascript:void(0);");
+
+                //先装机逆变器类型设备节点
+                IList<Device> devices = pu.typeDevices(DeviceData.INVERTER_CODE, false);
+                if (devices != null && devices.Count > 0)
+                {
+                    deviceLevel = unitLevel + 10;
+                    firstRun = ";";
+                    jsstr += firstRun;
+                    jsstr += generateInterverNode(devices, deviceLevel, unitLevel, DeviceData.getDeviceTypeByCode(DeviceData.INVERTER_CODE).name);
+                }
+            }
+            jsstr += ";d.closeAll();";
+            return jsstr;
+        }
+
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -426,7 +468,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         private string generateDeviceNode(IList<Device> devices, int deviceLevel, int topLevel, string typeName)
         {
             string jsstr = string.Empty;
-           // jsstr += "myTree.add(" + deviceLevel + "," + topLevel + ",'" + typeName + "',80,20,'#FFDFAE','#F18216');";
+            // jsstr += "myTree.add(" + deviceLevel + "," + topLevel + ",'" + typeName + "',80,20,'#FFDFAE','#F18216');";
             jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '/images/tree/folder.gif');", deviceLevel, topLevel, typeName, "javascript:void(0);");
 
             if (devices != null && devices.Count > 0)
@@ -438,6 +480,36 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     int tmpLevel = deviceLevel * 100 + i;
                     //jsstr += "myTree.add(" + tmpLevel + "," + deviceLevel + ",'" + device.fullName + "',80,20,'#FFDFAE','#F18216','javascript:parent.loadRunData(" + device.id + ")');";
                     jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '');", tmpLevel, deviceLevel, device.fullName, "javascript:parent.loadRunData(" + device.id + ")");
+
+                }
+            }
+            return jsstr;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="devices">设备列表</param>
+        /// <param name="deviceLevel">设备层级</param>
+        /// <param name="topLevel">上层级别</param>
+        /// <param name="typeName">设备类型</param>
+        /// <returns></returns>
+        private string generateInterverNode(IList<Device> devices, int deviceLevel, int topLevel, string typeName)
+        {
+            string jsstr = string.Empty;
+            // jsstr += "myTree.add(" + deviceLevel + "," + topLevel + ",'" + typeName + "',80,20,'#FFDFAE','#F18216');";
+            jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '/images/tree/folder.gif');", deviceLevel, topLevel, typeName, "javascript:void(0);");
+
+            if (devices != null && devices.Count > 0)
+            {
+                Device device = null;
+                for (int i = 0; i < devices.Count; i++)
+                {
+                    device = devices[i];
+                    int tmpLevel = deviceLevel * 100 + i;
+                    //jsstr += "myTree.add(" + tmpLevel + "," + deviceLevel + ",'" + device.fullName + "',80,20,'#FFDFAE','#F18216','javascript:parent.loadRunData(" + device.id + ")');";
+                    jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '');", tmpLevel, deviceLevel, device.fullName, "javascript:parent.loadRunData(" + string.Format("{0}", device.id) + ")");
 
                 }
             }

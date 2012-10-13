@@ -2590,6 +2590,7 @@
     <Content Include="Pages\Plant\EnergyFilter.aspx" />
     <Content Include="Pages\Plant\EnergyForecast.aspx" />
     <Content Include="Pages\Plant\SearchForecast.aspx" />
+    <Content Include="Pages\Plant\inverterStructTree.aspx" />
     <Content Include="Pages\portal\DeviceStatus.aspx" />
     <Content Include="Pages\portal\Fault.aspx" />
     <Content Include="Pages\portal\HLXchart.aspx" />

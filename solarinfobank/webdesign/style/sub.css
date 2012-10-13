@@ -108,6 +108,73 @@
 
 .jdbu{ background:url(/Images/am/ad_bu14.gif); width:160px; height:28px; border:none; color:#538253; line-height:28px; text-align:left; padding-left:35px;cursor:pointer}
 
+<<<<<<< .mine
+
+.kjdbu{ background:url(../Images/kj/kjbg06.gif) no-repeat; height:8px;}
+.kjdmid{ background:url(../Images/kj/kjbg07.gif) repeat-y;}
+.kjdbd{ background:url(../Images/kj/kjbg08.gif) no-repeat; height:8px;}
+.kjdpic{ border:5px solid #425441;}
+
+/*发电量数据统计信息*/
+.kjrb{ width:210px; height:64px; margin-bottom:30px; margin-right:30px; background:url(../Images/kj/kjbg04.gif) no-repeat; padding-top:10px; padding-left:5px; float:left;}
+.kjli{ line-height:18px; font-size:14px;}
+
+
+
+.kjb3{}
+.kjb3 ul{ margin:0px; padding:0px; list-style:none;}
+.kjb3 ul li{height:25px; border-bottom:1px dotted #A6C194;}
+.kjb3 ul li a:link{height:25px; line-height:25px; padding-left:15px; margin-bottom:1px; color:#7A9D63; display:block; background:#EEF0ED; }
+.kjb3 ul li a:visited{height:25px; line-height:25px;padding-left:15px;margin-bottom:1px; color:#7A9D63; display:block; background:#EEF0ED;}
+.kjb3 ul li a:hover{height:25px; line-height:25px; padding-left:15px; margin-bottom:1px; color:#7A9D63; font-weight:bold; display:block; text-decoration:none; background:#fff;}
+.kjb3 ul li a:active{height:25px; line-height:25px;padding-left:15px; margin-bottom:1px; color:#7A9D63; display:block; background:#EEF0ED; }
+
+.kjright{ width:793px; float:right;}
+
+.kjdb{ width:229px; height:101px; margin:0px auto 15px auto; background:url(../Images/kj/kjbg05.jpg) no-repeat;}
+.kjdb01{ font-size:16px; color:#2E2525; text-align:center;  line-height:40px; height:40px; padding-top:10px;}
+.kjdb02{font-size:24px; text-align:center; height:32px; padding-top:0px;}
+.bitab{ height:37px; background:url(../Images/sub/subico006.jpg) no-repeat;}
+.bitab ul{ margin:0px; padding-left:20px; list-style:none;}
+.bitab ul li{float:left;}
+.bitab ul li a:link{float:left; height:28px; line-height:28px; border:1px solid #D4D4D4;  color:#413931; font-weight:bold; display:block; padding:0px 15px; margin:0px 5px;  background: #F0F0F0;}
+.bitab ul li a:visited {float:left;height:28px; line-height:28px; border:1px solid #D4D4D4; color:#413931; font-weight:bold; display:block; padding:0px 15px; margin:0px 5px;  background: #F0F0F0;}
+.bitab ul li a:hover {float:left;height:28px; line-height:28px; border-left:1px solid #D4D4D4; border-right:1px solid #D4D4D4;border-top:1px solid #D4D4D4;color:#413931;border-bottom:1px solid #fff; text-decoration:none;font-weight:bold; display:block; padding:0px 15px; margin:0px 5px; background:#fff;}
+.bitab ul li a:active {float:left; height:28px; line-height:28px; border:1px solid #D4D4D4; color:#413931; font-weight:bold; display:block; padding:0px 15px; margin:0px 5px; background: #F0F0F0;}
+
+#bitab .onclick{float:left;height:28px; line-height:28px; border-left:1px solid #D4D4D4; border-right:1px solid #D4D4D4;border-top:1px solid #D4D4D4;color:#413931;border-bottom:1px solid #fff; text-decoration:none;font-weight:bold; display:block; padding:0px 15px; margin:0px 5px; background:#fff;}
+
+
+.bitab1{ height:28px;}
+.bitab1 ul{ margin:0px; padding-left:20px; list-style:none;}
+.bitab1 ul li{float:left;}
+.bitab1 ul li a:link{float:left; height:28px; line-height:28px; border:1px solid #D4D4D4; border-bottom:none;  color:#413931; font-weight:bold; display:block; padding:0px 15px; margin:0px 5px;  background: #F0F0F0;}
+.bitab1 ul li a:visited {float:left;height:28px; line-height:28px; border:1px solid #D4D4D4; border-bottom:none; color:#413931; font-weight:bold; display:block; padding:0px 15px; margin:0px 5px;  background: #F0F0F0;}
+.bitab1 ul li a:hover {float:left;height:28px; line-height:28px; border-left:1px solid #D4D4D4;border-bottom:none;  border-right:1px solid #D4D4D4;border-top:1px solid #D4D4D4;color:#413931;text-decoration:none;font-weight:bold; display:block; padding:0px 15px; margin:0px 5px; background:#fff;}
+.bitab1 ul li a:active {float:left; height:28px; line-height:28px; border:1px solid #D4D4D4; border-bottom:none; color:#413931; font-weight:bold; display:block; padding:0px 15px; margin:0px 5px; background: #F0F0F0;}
+
+#bitab1 .onclick{float:left;height:28px; line-height:28px; border-left:1px solid #D4D4D4;border-bottom:none;  border-right:1px solid #D4D4D4;border-top:1px solid #D4D4D4;color:#413931; text-decoration:none;font-weight:bold; display:block; padding:0px 15px; margin:0px 5px; background:#fff;}
+.bitab03{ height:37px; width:417px; background:url(../Images/kj/kjbg06.gif); background-position:bottom;  background-repeat:no-repeat;}
+.bitab03 ul{ margin:0px; padding-left:20px; list-style:none;}
+.bitab03 ul li{float:left;}
+.bitab03 ul li a:link{float:left; height:28px; line-height:28px; border:1px solid #D4D4D4;  color:#413931; font-weight:bold; display:block; padding:0px 15px; margin:0px 5px;  background: #F0F0F0;}
+.bitab03 ul li a:visited {float:left;height:28px; line-height:28px; border:1px solid #D4D4D4; color:#413931; font-weight:bold; display:block; padding:0px 15px; margin:0px 5px;  background: #F0F0F0;}
+.bitab03 ul li a:hover {float:left;height:28px; line-height:28px; border-left:1px solid #D4D4D4; border-right:1px solid #D4D4D4;border-top:1px solid #D4D4D4;color:#413931;border-bottom:1px solid #fff; text-decoration:none;font-weight:bold; display:block; padding:0px 15px; margin:0px 5px; background:#fff;}
+.bitab03 ul li a:active {float:left; height:28px; line-height:28px; border:1px solid #D4D4D4; color:#413931; font-weight:bold; display:block; padding:0px 15px; margin:0px 5px; background: #F0F0F0;}
+
+
+/*模板设置开始*/
+.mbts{ color:#EB5106; background:#FFF1CA; border:1px solid #F6C97C; padding:5px; line-height:20px; margin-bottom:10px;}
+.mblogo{ border:1px solid #D7D7D7; text-align:center; width:250px;}
+.mblogo span{ display:block; height:20px; line-height:20px; text-align:center; background:#EEEEEE;}
+.mblogo img{ margin:10px 0px;}
+.mbchange{ margin-left:35px; list-style:none; display:inline-table; margin-top:25px;}
+.mbchange li{ float:left; display:block; margin-right:50px; height:130px;}
+.mbchange li img{ border:3px solid #DFDFDF;}
+.mbchange li span{ display:block; text-align:center; height:25px; line-height:25px;}
+.mbchange li input{ vertical-align:middle;}
+/*模板设置结束*/
+=======
 
 .kjdbu{ background:url(../Images/kj/kjbg06.gif) no-repeat; height:8px;}
 .kjdmid{ background:url(../Images/kj/kjbg07.gif) repeat-y;}
@@ -166,3 +233,4 @@
 .mbchange li span{ display:block; text-align:center; height:25px; line-height:25px;}
 .mbchange li input{ vertical-align:middle;}
 /*模板设置结束*/
+>>>>>>> .r313

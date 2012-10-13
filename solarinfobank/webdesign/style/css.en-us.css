@@ -75,11 +75,20 @@ a:active { color:#848484; text-decoration:none;}
 
 
 
+<<<<<<< .mine
+.footer02{ width:1000px;  background: url(/Images/fbg.jpg);height:34px; line-height:34px;margin-top:10px; text-align:center; color:#7E7E7E; margin:0px auto;}
+=======
 .footer02{ width:1000px;  background:url(../Images/fbg.jpg);height:34px; line-height:34px;margin-top:10px; text-align:center; color:#7E7E7E; margin:0px auto;}
+>>>>>>> .r313
 
 
+<<<<<<< .mine
+em .error{ color:Red; font-variant:normal; font-style:normal; background-image:url(/Images/sub/error.gif); background-repeat:no-repeat; padding-left:15px;}
+em .success{ background-image:url(/Images/sub/right.gif); font-variant:normal; font-style:normal; background-repeat:no-repeat; padding-left:15px;color:Green;}
+=======
 em .error{ color:Red; font-variant:normal; font-style:normal; background-image:url(/Images/sub/error.gif); background-repeat:no-repeat; padding-left:15px;}
 em .success{ background-image:url(../Images/sub/right.gif); font-variant:normal; font-style:normal; background-repeat:no-repeat; padding-left:15px;color:Green;}
+>>>>>>> .r313
 img{ border:none;}
 .tip{ color:#535353; font-variant:normal; font-style:normal;}
 
@@ -87,6 +96,27 @@ img{ border:none;}
 .dyreen:visited {color:#bb2603; text-decoration:none;}
 .dyreen:hover {color:#bb2603; text-decoration:underline;}
 .dyreen:active {color:#bb2603; text-decoration:none;}
+<<<<<<< .mine
+
+/*overview页面数据字体演示，add by qhb in 20120218*/
+.sz_fb{font-size:18px; padding-top:5px;} 
+
+
+/*--------------以下为要变动的部分--------------------*/
+/*01标题*/
+.indexicg{ color:#4A8247; font-size:22px; height:25px; padding:10px 0px 0px 20px;}
+.indexicg2{ color:#4A8247; font-size:22px; padding:10px 0px 0px 14px;}
+
+/*02登录部分*/
+.dgr{ color:#3A4E2B;}/*文字样式*/
+.mainboxup_l{ float:left; width:442px; height:207px; background:url(../Images/bg09.jpg) no-repeat;}
+.mainboxup_r{ float:right; background:url(../Images/ico01.gif) no-repeat left; height:79px; padding-left:100px; padding-right:45px; width:365px; margin-top:60px; color:#A2A2A2; font-size:11px;}
+.mrb{ font-size:28px; line-height:40px;}
+.loginbu{background:url(../Images/ico01.jpg) no-repeat; width:60px; height:51px; border:none; cursor:pointer; color:#FFFFFF; font-weight:bold; margin-left:10px; font-family:Arial, Helvetica, sans-serif;}
+
+/*03示例电站*/
+.sl01{font-size:12px; color:#40851B; line-height:20px; font-size:11px;width:100%;}
+=======
 
 /*overview页面数据字体演示，add by qhb in 20120218*/
 .sz_fb{font-size:18px; padding-top:5px;} 
@@ -107,7 +137,26 @@ img{ border:none;}
 
 /*03示例电站*/
 .sl01{font-size:12px;color:#08B47C;line-height:20px; font-size:11px;width:100%;}
+>>>>>>> .r313
 .sl01 ul{ list-style:none; margin:0px; padding:0px;}
+<<<<<<< .mine
+.sl01 ul li{ float:left; background:url(../Images/slico.gif) no-repeat; padding-left:8px; margin-right:5px; line-height:24px;}
+.sl02{color:#666666; font-size:12px;width:100%; padding-top:5px;}
+
+/*04电站数据统计*/
+.mml02{font-size:20px; color:#4B913E;}
+.mml02 ul{ list-style:none; margin:0px; padding-top:20px; padding-left:45px;}
+.mml02 ul li{ height:45px; padding-left:30px;}
+.ddgr{ color:#008C44}/*文字样式*/
+
+/*05问答部分*/
+.mdl02{padding-top:10px;padding-left:100px; padding-right:20px;}
+.mdl02 ul{ list-style:none;}
+.mdl02 ul li{ height:30px; padding-left:25px; border-bottom:1px dotted #CCCCCC; line-height:30px; background:url(../Images/ico05.gif) no-repeat left;width:260px;
+white-space:nowrap;word-break:keep-all;overflow:hidden;text-overflow:ellipsis;}
+.mdl02 .veiwmore{ display:block; padding-left:40px; padding-top:10px;}
+
+.click_view{ background:url(../Images/dlown.jpg) no-repeat; width:85px; height:16px; color:#FFFFFF; text-align:center; border:none; font-family:Arial, Helvetica, sans-serif; padding-bottom:5px; cursor:pointer; font-size:12px;}/*手机应用查看按钮*/=======
 .sl01 ul li{ float:left; background:url(../Images/slico.gif) no-repeat; padding-left:8px; margin-right:5px;}
 .sl02{color:#000; font-size:12px;width:100%; padding-top:5px;}
 
@@ -124,4 +173,4 @@ img{ border:none;}
 white-space:nowrap;word-break:keep-all;overflow:hidden;text-overflow:ellipsis;}
 .mdl02 .veiwmore{ display:block; padding-left:40px; padding-top:10px;}
 
-.click_view{ background:url(../Images/dlown.jpg) no-repeat; width:85px; height:16px; color:#FFFFFF; text-align:center; border:none; font-family:Arial, Helvetica, sans-serif; padding-bottom:5px; cursor:pointer; font-size:12px;}/*手机应用查看按钮*/
+.click_view{ background:url(../Images/dlown.jpg) no-repeat; width:85px; height:16px; color:#FFFFFF; text-align:center; border:none; font-family:Arial, Helvetica, sans-serif; padding-bottom:5px; cursor:pointer; font-size:12px;}/*手机应用查看按钮*/>>>>>>> .r313

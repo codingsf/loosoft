@@ -42,7 +42,7 @@
 .kjb ul li{height:25px;overflow:hidden; text-overflow:ellipsis;white-space:nowrap; }
 .kjb ul li a:link{ overflow:hidden; text-overflow:ellipsis;white-space:nowrap; height:25px; line-height:25px; padding-left:15px; background:url(../Images/kj/listbg01.jpg) no-repeat; margin-bottom:1px; color:#3D3D3D; display:block;}
 .kjb ul li a:visited{overflow:hidden; text-overflow:ellipsis;white-space:nowrap;  height:25px; line-height:25px; padding-left:15px; background:url(../Images/kj/listbg01.jpg) no-repeat; margin-bottom:1px; color:#3D3D3D; display:block;}
-.kjb ul li a:hover{overflow:hidden; text-overflow:ellipsis;white-space:nowrap;  height:25px; line-height:25px;padding-left:15px; background:url(../Images/kj/listbg04.jpg) no-repeat; margin-bottom:1px; color:#E87006; font-weight:bold; display:block; text-decoration:none;}
+.kjb ul li a:hover{overflow:hidden; text-overflow:ellipsis;white-space:nowrap;  height:25px; line-height:25px;padding-left:15px; background:url(../Images/kj/listbg04.jpg) no-repeat; margin-bottom:1px; color:#CC912E; font-weight:bold; display:block; text-decoration:none;}
 .kjb ul li a:active{overflow:hidden; text-overflow:ellipsis;white-space:nowrap;  height:25px; line-height:25px; padding-left:15px; background:url(../Images/kj/listbg01.jpg) no-repeat; margin-bottom:1px; color:#3D3D3D; display:block;}
 
 
@@ -64,6 +64,51 @@
 
 .kjlbu00{ width:192px; padding-bottom:15px; background:url(../Images/kj/kjbu01.jpg) center top no-repeat; height:35px; color:#E87006; text-align:center; padding-top:15px;}
 .kjlbu00 a{ color:#E87006;}
+
+
+#menuShow a.lefttabclick
+        {
+            height: 25px;
+            line-height: 25px;
+            padding-left: 15px;
+            background: url(/images/kj/listbg04.jpg) no-repeat;
+            margin-bottom: 1px;
+            color: #CC912E;
+            font-weight: bold;
+            display: block;
+            text-decoration: none;
+        }
+        #menuShow a.current
+        {
+            height: 30px;
+            line-height: 30px;
+            width: 190px;
+            padding-left: 15px;
+            background: url(/images/kj/listbg03.jpg) no-repeat;
+            margin-bottom: 1px;
+            color: #CC912E;
+            font-weight: bold;
+            display: block;
+            text-decoration: none;
+        }
+        #dl a.lefttabclick
+        {
+            height: 30px;
+            width: 190px;
+            line-height: 30px;
+            padding-left: 15px;
+            margin-bottom: 1px;
+            color: #E87006;
+            font-weight: bold;
+            display: block;
+            text-decoration: none;
+            background: #fff;
+        }
+		
+		  #dl
+        {
+            overflow: hidden;
+        }
 
 
 /*tabÇÐ»»ÑùÊ½Ò»*/

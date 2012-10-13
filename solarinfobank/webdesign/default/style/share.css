@@ -54,6 +54,51 @@
 
 .kjlbu00{ width:192px; padding-bottom:15px; background:url(../Images/kj/kjbu01.jpg) center top no-repeat; height:35px; color:#459001; text-align:center; padding-top:15px;}
 
+
+#menuShow a.lefttabclick
+        {
+            height: 25px;
+            line-height: 25px;
+            padding-left: 15px;
+            background: url(/images/kj/listbg04.jpg) no-repeat;
+            margin-bottom: 1px;
+            color: #4A8125;
+            font-weight: bold;
+            display: block;
+            text-decoration: none;
+        }
+        #menuShow a.current
+        {
+            height: 30px;
+            line-height: 30px;
+            width: 190px;
+            padding-left: 15px;
+            background: url(/images/kj/listbg03.jpg) no-repeat;
+            margin-bottom: 1px;
+            color: #4A8125;
+            font-weight: bold;
+            display: block;
+            text-decoration: none;
+        }
+        #dl a.lefttabclick
+        {
+            height: 30px;
+            width: 190px;
+            line-height: 30px;
+            padding-left: 15px;
+            margin-bottom: 1px;
+            color: #7A9D63;
+            font-weight: bold;
+            display: block;
+            text-decoration: none;
+            background: #fff;
+        }
+		
+		  #dl
+        {
+            overflow: hidden;
+        }
+
 /*tabÇÐ»»ÑùÊ½Ò»*/
 .subico01{ height:30px;}
 .subico01 ul{ margin:0px; padding:0px; list-style:none;}

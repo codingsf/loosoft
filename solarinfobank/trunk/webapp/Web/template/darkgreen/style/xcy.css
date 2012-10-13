@@ -1,0 +1,16 @@
+.xc_main{ border:2px solid #EDEDED;background:#fff; margin-top:10px; padding-top:8px;}
+.xcy_banner{ width:979px; margin:0px auto; height:253px; background:url(/images/xcy/banner_bg.jpg) no-repeat;}
+.xcy_banner01{ font-size:28px; color:#000; padding-top:60px; padding-left:300px; padding-bottom:20px;}
+.xcy_banner02{ color:#629C1D;padding-left:300px; width:400px; line-height:20px;}
+
+.xcy_pr{width:979px; margin:0px auto; padding-top:20px;}
+.xcy_ico01{ background:url(/images/xcy/xcy_ico01.jpg); height:42px; font-size:14px; font-weight:bold; line-height:32px; padding-left:30px; color:#000;}
+.xcy_bu01{ background:url(/images/xcy/xcy_ico02.gif); height:25px; width:129px; padding-left:15px; border:none; cursor:pointer; color:#FFFFFF; font-weight:bold; padding-bottom:3px;}
+.xcy_ab{ padding-top:10px;}
+.xcy_l{ float:left; width:280px; padding-top:20px;}
+.xcy_r{ float:right; width:698px;}
+.xcy_r01{ background:url(/images/xcy/xcy_bg01.jpg) top no-repeat;color:#000px; padding:1px 10px 0px 10px;line-height:22px;}
+
+
+
+.lx_banner{ width:979px; margin:0px auto; height:253px; background:url(../images/xcy/lxbanner.jpg) no-repeat;}.lx_banner01{ font-size:48px; color:#fff; padding-top:100px; padding-left:600px; padding-bottom:10px;}.lx_banner02{ color:#fff;padding-left:600px; width:300px; line-height:20px;}.lx_ab{ background:url(../images/xcy/lxbg01.jpg) no-repeat; padding:15px; line-height:24px;}

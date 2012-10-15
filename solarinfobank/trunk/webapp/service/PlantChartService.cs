@@ -257,7 +257,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             if (yearMonthEnergy.Count > 0)
             {
                 //add by qhb in 20120928 for 补偿发电量
-                base.addPlantMonthEnergy(yearMonthEnergy, plantList,startYear.ToString(),endYear.ToString());
+                base.addPlantMonthEnergy(yearMonthEnergy, plantList, startYearMM, endYearMM.ToString());
                 if (newserieKey == null)
                 {
                     data = GenerateChartData(mt.name, ic, yearMonthEnergy, rate);

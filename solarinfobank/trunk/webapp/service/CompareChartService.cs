@@ -127,8 +127,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     IList<PlantUnit> plantUnits = getUnitsBydeviceIDs(deviceId, deviceStuct.deviceType);
                     curName = deviceStuct.name;
                     dataHash = CollectorYearDataService.GetInstance().GetYearDatasByUnits(plantUnits);
-                    //add by qhb in 20120928 for 补偿发电量
-                    base.addPlantYearEnergy(dataHash, int.Parse(deviceId));
+                    if (deviceStuct.deviceType == ChartDeviceType.PLANT)
+                        //add by qhb in 20120928 for 增加电站补偿发电量
+                        base.addPlantYearEnergy(dataHash, int.Parse(deviceId));
                 }
                 else
                 {   //设备
@@ -205,8 +206,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     IList<PlantUnit> plantUnits = getUnitsBydeviceIDs(deviceId, deviceStuct.deviceType);
                     curName = deviceStuct.name;
                     dataHash = CollectorYearMonthDataService.GetInstance().GetUnitBetweenYearData(plantUnits,startYear,endYear);
-                    //add by qhb in 20120928 for 补偿发电量
-                    base.addPlantMonthEnergy(dataHash, int.Parse(deviceId), startYear.ToString(),endYear.ToString());
+                    if (deviceStuct.deviceType == ChartDeviceType.PLANT)
+                        //add by qhb in 20120928 for 增加电站补偿发电量
+                        base.addPlantMonthEnergy(dataHash, int.Parse(deviceId), startYear.ToString(),endYear.ToString());
                 }
                 else
                 {   //设备
@@ -308,8 +310,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     IList<PlantUnit> plantUnits = getUnitsBydeviceIDs(deviceId, deviceStuct.deviceType);
                     curName = deviceStuct.name;
                     dataHash = CollectorMonthDayDataService.GetInstance().GetUnitBetweenMonthData(plantUnits, startYearMM, endYearMM);
-                    //add by qhb in 20120928 for 补偿发电量
-                    base.addPlantDayEnergy(dataHash, int.Parse(deviceId), startYearMM, endYearMM);
+                    if (deviceStuct.deviceType == ChartDeviceType.PLANT)
+                        //add by qhb in 20120928 for 增加电站补偿发电量
+                        base.addPlantDayEnergy(dataHash, int.Parse(deviceId), startYearMM, endYearMM);
                 }
                 else
                 {   //设备

@@ -31,8 +31,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// <param name="message"></param>
         public static void info(string message)
         {
-            if (loglevel.Equals(INFO))
-                Console.WriteLine(Thread.CurrentThread.Name + ":" + message);
+            if (loglevel.Equals(INFO) )
+            {
+                Console.WriteLine(message);
+            }
         }
 
         /// <summary>
@@ -42,7 +44,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         public static void warn(string message)
         {
             if (loglevel.Equals(INFO) || loglevel.Equals(WARN))
-                Console.WriteLine(Thread.CurrentThread.Name + ":" + message);
+                Console.WriteLine(message);
         }
 
         /// <summary>
@@ -52,7 +54,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         public static void error(string message)
         {
             if (loglevel.Equals(INFO) || loglevel.Equals(WARN) || loglevel.Equals(ERROR))
-                Console.WriteLine(Thread.CurrentThread.Name + ":" + message);
+                Console.WriteLine(message);
         }
         /// <summary>
         /// 固定输出日志
@@ -60,7 +62,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// <param name="message"></param>
         public static void writeline(string message)
         {
-            Console.WriteLine(Thread.CurrentThread.Name + ":" + message);
+            Console.WriteLine(message);
         }
     }
 }

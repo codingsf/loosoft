@@ -1448,7 +1448,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             cabinetMonitors.Add(monitorMap[MIC_BUSBAR_KAILUDATA]);
             typeMonitorsMap.Add(DeviceData.CABINET_CODE, cabinetMonitors);
 
-
             //电表测点
             IList<MonitorType> ammeterMonitors = new List<MonitorType>();
             ammeterMonitors.Add(monitorMap[MIC_AMMETER_SYSFREQUENCY]);

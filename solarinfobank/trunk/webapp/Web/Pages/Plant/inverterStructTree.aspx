@@ -13,7 +13,8 @@
 		<!--
 
         d = new dTree('d');
-
+        d.icon.root="/images/tree/question.gif";
+        d.icon.folderOpen="/images/tree/unit.gif";
         <%=ViewData["jsstr"] %>
         document.write(d);
         d.s(3);

@@ -152,6 +152,8 @@
             });
 
         });
+        
+        
         function clearMessage() {
             $("#errormessage").hide();
         }

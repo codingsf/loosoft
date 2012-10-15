@@ -69,12 +69,41 @@
         }
     </style>
 
+    <script src="/script/jquery.validate.js" type="text/javascript"></script>
+
     <script>
         $().ready(function() {
             var random = new Date().getMilliseconds();
             var src = '<%=UserUtil.UserLogo %>?' + random;
             $("#logo", window.parent.document).attr("src", src);
             $("#viewlogo").attr("src", src);
+
+
+
+
+            $("#mainForm").validate({
+                errorElement: "em",
+                rules: {
+                    sysName: {
+                        required: true
+                    }
+                },
+                errorPlacement: function(error, element) {
+                    if (element.attr("name") == "sysName") {
+                        $("#error_sysname").text('');
+                        error.appendTo("#error_sysname");
+                    }
+                },
+                messages: {
+                    sysName: {
+                        required: "<span class='error'>请输入系统名称 </span>"
+                    }
+                },
+                success: function(em) {
+                }
+            });
+
+
         })
     </script>
 
@@ -106,7 +135,7 @@
                 </td>
             </tr>
         </table>
-        <form method="post" action="/admin/template" enctype="multipart/form-data">
+        <form method="post" action="/admin/template" enctype="multipart/form-data" id="mainForm">
         <div class="subrbox01">
             <table width="100%" height="30" border="0" cellpadding="0" cellspacing="0">
                 <tr>
@@ -155,7 +184,7 @@
                         <td>
                             <div class="mblogo">
                                 <span>当前logo</span>
-                                <img src="<%= UserUtil.UserLogo %>" width="168" height="27"  id="viewlogo"  />
+                                <img src="<%= UserUtil.UserLogo %>" width="168" height="27" id="viewlogo" />
                             </div>
                         </td>
                         <td>
@@ -164,13 +193,13 @@
                     </tr>
                     <tr>
                         <td height="35" class="pr_10">
-                            系统名称：
+                            系统名称：<span class="red">*</span>
                         </td>
                         <td>
                             <input name="sysName" type="text" class="txtbu01" style="width: 250px;" value="<%=UserUtil.SysName %>" />
                         </td>
                         <td>
-                            &nbsp;
+                            <span id="error_sysname"></span>
                         </td>
                     </tr>
                 </table>
@@ -182,7 +211,7 @@
             <table width="100%" height="30" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                     <td width="6%" align="center">
-                        <img src="/images/sub/subico010.gif" width="18" height="19"/>
+                        <img src="/images/sub/subico010.gif" width="18" height="19" />
                     </td>
                     <td class="f_14">
                         <strong>选择模板</strong>
@@ -192,7 +221,8 @@
             <div class="sb_top">
             </div>
             <div class="sb_mid">
-                <ul class="mbchange"><%=UserUtil.curTemplete.id%>
+                <ul class="mbchange">
+                    <%=UserUtil.curTemplete.id%>
                     <%foreach (Template template in ViewData["template"] as IList<Template>)
                       { %>
                     <li>

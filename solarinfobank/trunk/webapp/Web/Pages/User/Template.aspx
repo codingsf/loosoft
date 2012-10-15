@@ -99,8 +99,33 @@
             $("#logo", window.parent.document).attr("src", src);
             $("#viewlogo").attr("src", src);
             refreshcss();
+
+
+            $("#mainForm").validate({
+                errorElement: "em",
+                rules: {
+                    sysName: {
+                        required: true
+                    }
+                },
+                errorPlacement: function(error, element) {
+                    if (element.attr("name") == "sysName") {
+                        $("#error_sysname").text('');
+                        error.appendTo("#error_sysname");
+                    }
+                },
+                messages: {
+                    sysName: {
+                        required: "<span class='error'>请输入系统名称 </span>"
+                    }
+                },
+                success: function(em) {
+                }
+            });
         })
     </script>
+
+    <script src="/script/jquery.validate.js" type="text/javascript"></script>
 
     <table cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -132,7 +157,7 @@
                         </td>
                     </tr>
                 </table>
-                <form method="post" action="/user/template" enctype="multipart/form-data">
+                <form method="post" action="/user/template" enctype="multipart/form-data" id="mainForm">
                 <div class="subrbox01">
                     <table width="100%" height="30" border="0" cellpadding="0" cellspacing="0">
                         <tr>
@@ -190,13 +215,14 @@
                             </tr>
                             <tr>
                                 <td height="35" class="pr_10">
-                                    系统名称：
+                                    系统名称：<span class="red">*</span>
                                 </td>
                                 <td>
-                                    <input name="sysName" type="text" class="txtbu01" style="width: 250px;" value="<%=UserUtil.SysName %>" />
+                                    <input id="sysName" name="sysName" type="text" class="txtbu01" style="width: 250px;"
+                                        value="<%=UserUtil.SysName %>" />
                                 </td>
                                 <td>
-                                    &nbsp;
+                                    <span id="error_sysname"></span>
                                 </td>
                             </tr>
                         </table>

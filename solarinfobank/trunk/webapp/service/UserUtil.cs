@@ -87,7 +87,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     path = string.Format("{0}sys.txt", path);
                     if (System.IO.File.Exists(path))
                         return System.IO.File.ReadAllText(path);
-                    return string.Empty;
+                    return "SolarInfo Bank";
                 }
                 return user.sysName;
             }

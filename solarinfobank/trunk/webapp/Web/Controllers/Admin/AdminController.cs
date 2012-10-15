@@ -1342,7 +1342,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             }
             catch
             {
-                throw;
                 return Content("修改失败");
             }
             return Content("修改成功");

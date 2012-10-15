@@ -1088,7 +1088,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             else
             {
-                reportCode = "error:" + Resources.SunResource.CHART_TIP_NODEVICES;
+                reportCode = "error:" + Resources.SunResource.NODATA;
             }
             return Content(reportCode);
         }
@@ -1124,7 +1124,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             else
             {
-                reportCode = "error:" + Resources.SunResource.CHART_TIP_NODEVICES;
+                reportCode = "error:" + Resources.SunResource.NODATA;
             }
             return Content(reportCode);
         }
@@ -1160,7 +1160,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             else
             {
-                reportCode = "error:" + Resources.SunResource.CHART_TIP_NODEVICES;
+                reportCode = "error:" + Resources.SunResource.NODATA;
             }
             return Content(reportCode);
         }

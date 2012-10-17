@@ -37,8 +37,6 @@ namespace DataAnalyze
         /// <param name="cacheorbase">获取数据方式</param>
         public void ProcessingTCP()
         {
-            int times = 0;//一次处理用时
-            //电站最大发生值
             Thread.Sleep(1 * 1000);
             while (1 == 1)
             {
@@ -57,7 +55,7 @@ namespace DataAnalyze
                     if (messageVO == null)
                     {
                         _isWork = false;
-                        return;
+                        break;
                     }
                     try
                     {

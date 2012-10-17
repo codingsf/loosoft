@@ -14,6 +14,7 @@ using Cn.Loosoft.Zhisou.SunPower.Common;
 using Cn.Loosoft.Zhisou.SunPower.Service;
 using System.Configuration;
 using System.Diagnostics;
+using SolarInfoBase;
 //using SolarInfoBase;
 
 namespace DataAnalyze
@@ -54,7 +55,7 @@ namespace DataAnalyze
 
             //解析程序自启动部分
             string restart_interval = ConfigurationSettings.AppSettings["restart_interval"];
-            int interval = string.IsNullOrEmpty(restart_interval) ? 60 : int.Parse(restart_interval);
+            int interval = string.IsNullOrEmpty(restart_interval) ? 60 : int.Parse(restart_interval);//默认60分钟
             int tmpinterval = 0;
             while (1==1)
             {
@@ -65,7 +66,8 @@ namespace DataAnalyze
                     System.Diagnostics.Process.Start(System.Reflection.Assembly.GetExecutingAssembly().Location);  //重新开启当前程序
                     process.Kill();
                 }
-                //启动狗检测程序
+
+                //循环狗检测程序，这个就要求必须将狗一直插入才能正常运行软件
                 if (validdog == null || validdog.Equals("true"))
                 {
                     LogUtil.info("开始检测加密狗");
@@ -75,16 +77,23 @@ namespace DataAnalyze
                         LogUtil.info(result);
 
                         //kill thread
-                        dataProcess.runmark = false;
-                        if (m_thread.IsAlive)
-                            m_thread.Abort();
+                        if (dataProcess!=null)
+                            dataProcess.runmark = false;
 
-                        persistProcess.runmark = false;
-                        if (m_thread3.IsAlive)
-                            m_thread3.Abort();
+                        if (m_thread!=null)
+                            if (m_thread.IsAlive)
+                                m_thread.Abort();
 
-                        if (m_thread4!=null && m_thread4.IsAlive)
-                            m_thread4.Abort();
+                        if (persistProcess != null)
+                            persistProcess.runmark = false;
+
+                        if (m_thread3 != null)
+                            if (m_thread3.IsAlive)
+                                m_thread3.Abort();
+
+                        if (m_thread4 != null)
+                            if (m_thread4!=null && m_thread4.IsAlive)
+                                m_thread4.Abort();
 
                         LogUtil.info("软件已经停止服务！");
                     }
@@ -100,23 +109,23 @@ namespace DataAnalyze
         /// </summary>
         private static string monitordog()
         {
+            String pwd = "1111111111111111";//软件狗密钥，每套软件不一样，用词制作对应软件的狗
             string result = "请插入加密狗，没有狗请联系软件提供商！";
-            //SoftKeyManager obj = SoftKeyManagerSelector.getSoftKeyObj();
-            //obj.MonitorDog();
-            //if (obj.HasSoftKEY == false)
-            //{
-            //    result = "请插入加密狗，没有狗请联系软件提供商！";
-            //    //MessageBox.Show("无狗");
-            //    if (obj.DeadDays <= 0)
-            //    {
-            //        result = "软件已经到期，请联系软件提供商！";
-            //        //MessageBox.Show("到期¨²");
-            //    }
-            //}
+            SoftKeyManager obj = SoftKeyManagerSelector.getSoftKeyObj(pwd);
+            obj.MonitorDog();
+            if (obj.HasSoftKEY == false)
+            {
+                result = "请插入加密狗，没有狗请联系软件提供商！";
+                //MessageBox.Show("无狗");
+                if (obj.DeadDays <= 0)
+                {
+                    result = "软件已经到期，请联系软件提供商！";
+                    //MessageBox.Show("到期¨²");
+                }
+            }
             //obj.Dispose();
             return result;
         }
-
     }
 
 }

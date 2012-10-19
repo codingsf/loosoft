@@ -170,6 +170,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             IDictionary<string, IDictionary<string, string>> timemtMap = DeviceDayDataService.GetInstance().handleDayData(allmts, device, yyyyMMdd);
             ViewData["allmts"] = allmts;
             ViewData["timemtMap"] = timemtMap;
+            ViewData["devicename"] = device.fullName;
             return View(device);
         }
 

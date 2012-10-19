@@ -10,8 +10,8 @@
 <body>
 
     <script type="text/javascript">
+        var curname;
 		<!--
-
         d = new dTree('d');
         d.icon.root="/images/tree/question.gif";
         d.icon.folderOpen="/images/tree/unitopen.gif";

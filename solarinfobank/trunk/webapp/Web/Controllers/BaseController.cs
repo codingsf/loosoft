@@ -499,7 +499,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         {
             string jsstr = string.Empty;
             // jsstr += "myTree.add(" + deviceLevel + "," + topLevel + ",'" + typeName + "',80,20,'#FFDFAE','#F18216');";
-           // jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '/images/tree/folder.gif');", deviceLevel, topLevel, typeName, "javascript:void(0);");
+            // jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '/images/tree/folder.gif');", deviceLevel, topLevel, typeName, "javascript:void(0);");
 
             if (devices != null && devices.Count > 0)
             {

@@ -45,5 +45,8 @@
 </table>
     </div>
     <div style="height:15px; clear:both; width:100%"></div>
+    <script>
+        document.getElementById("devicename").value = ('<%=ViewData["devicename"] %>');
+    </script>
 </asp:Content>
 

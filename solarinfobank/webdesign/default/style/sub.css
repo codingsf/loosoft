@@ -119,15 +119,6 @@
 .kjli{ line-height:18px; font-size:14px;}
 
 
-
-.kjb3{}
-.kjb3 ul{ margin:0px; padding:0px; list-style:none;}
-.kjb3 ul li{height:25px; border-bottom:1px dotted #A6C194;}
-.kjb3 ul li a:link{height:25px; line-height:25px; padding-left:15px; margin-bottom:1px; color:#7A9D63; display:block; background:#EEF0ED; }
-.kjb3 ul li a:visited{height:25px; line-height:25px;padding-left:15px;margin-bottom:1px; color:#7A9D63; display:block; background:#EEF0ED;}
-.kjb3 ul li a:hover{height:25px; line-height:25px; padding-left:15px; margin-bottom:1px; color:#7A9D63; font-weight:bold; display:block; text-decoration:none; background:#fff;}
-.kjb3 ul li a:active{height:25px; line-height:25px;padding-left:15px; margin-bottom:1px; color:#7A9D63; display:block; background:#EEF0ED; }
-
 .kjright{ width:793px; float:right;}
 
 .kjdb{ width:229px; height:101px; margin:0px auto 15px auto; background:url(../Images/kj/kjbg05.jpg) no-repeat;}

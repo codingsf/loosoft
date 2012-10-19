@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" Inherits="System.Web.Mvc.ViewPage<Cn.Loosoft.Zhisou.SunPower.Domain.User>" %>
 
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
 <%@ Import Namespace="System.Globalization" %>
 <script>document.title = '<%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>  <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_PLANT_OVERVIEW %>'</script>
@@ -440,7 +441,7 @@
                     </td>
                 </tr>
             </table>--%>
-    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background: url(/images/kj/rbg01.jpg) no-repeat right center;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background: url(<%=UserUtil.curTemplete.cssFolder %>/images/kj/rbg01.jpg) no-repeat right center;">
         
         <%if (Model.hasFaultDevice)
           { %>

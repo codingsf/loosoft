@@ -2,6 +2,7 @@
 
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
 <%@ Import Namespace="System.Globalization" %>
 <!--
 <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %> <%=Model.name %> <%=Resources.SunResource.PLANT_OVERVIEW_PLANT_OVERVIEW %></asp:Content>
@@ -391,7 +392,7 @@
     </tr>
 </table>
 <div class="subrbox01">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background: url(/images/kj/rbg01.jpg) no-repeat right center;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background: url(<%=UserUtil.curTemplete.cssFolder %>/images/kj/rbg01.jpg) no-repeat right center;">
         <%if (Model.getDetectorWithRenderSunshine() != null || Model.hasFaultDevice)
           {%>
         <tr>

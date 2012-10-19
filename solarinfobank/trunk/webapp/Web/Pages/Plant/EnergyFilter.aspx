@@ -64,21 +64,21 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                     <td width="10%" align=right>
-                        <%=Resources.SunResource.SUMMER_LINGSHI_ENABLED_START_DATE%>:
+                       <span style="white-space:nowrap"> <%=Resources.SunResource.SUMMER_LINGSHI_ENABLED_START_DATE%>:</span>
                     </td>
-                    <td width="10%">
+                    <td width="25%">
                     <input id="startDate" name="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})" readonly="readonly" size="15" type="text"
                         value='<%=ViewData["startDate"]%>' class="txtbu04 Wdate" />
                     </td>
                     <td width="10%"  align=right>
-                        <%=Resources.SunResource.SUMMER_LINGSHI_ENABLED_END_DATE%>:
+                        <span style="white-space:nowrap"> <%=Resources.SunResource.SUMMER_LINGSHI_ENABLED_END_DATE%>:</span>
                        
                     </td>
-                    <td width="15%">
+                    <td width="25%">
                         <input id="endDate" name="endDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})" readonly="readonly" size="15" type="text"
                         value='<%=ViewData["endDate"]%>' class="txtbu04 Wdate" />                     
                     </td>
-                    <td width="45%">
+                    <td width="30%">
                         &nbsp;
                     </td>
                     <td width="10%" valign="bottom">

@@ -40,6 +40,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         {
             if (user.id == 0)//新增
             {
+                user.sysName = ComConst.defaultSysName;
                 int success = _userDao.Insert(user);
                 if (success > 0)//创建系统报表
                     ReportService.GetInstance().batchCreateSysRunReport(user.id, 0);

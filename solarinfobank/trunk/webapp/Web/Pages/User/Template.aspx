@@ -190,12 +190,11 @@
                                 <td width="18%" height="35" class="pr_10">
                                     上传Logo：
                                 </td>
-                                <td width="36%">
+                                <td colspan="2">
                                     <input type="file" name="logopic" style="display: none" id="logopic" onchange="picpath.value=this.value" />
                                     <input name="picpath" id="picpath" type="text" class="txtbu01" />
                                     <input type="button" name="Submit32" value="上传" class="sc_btu" onclick="logopic.click();" />
-                                </td>
-                                <td width="46%">
+                      
                                     <%= ViewData["error"]%>
                                 </td>
                             </tr>

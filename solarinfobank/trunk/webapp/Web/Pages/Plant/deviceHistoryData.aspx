@@ -175,7 +175,7 @@
                           </select> --%>
                                     <input type="hidden" id="dces" />
                                     <input type="text" style="width: 150px" id="devicename" />
-                                    <div id="device_div" style="display: none; position: absolute; z-index: 999; border:solid 1px #ccc;">
+                                    <div id="device_div" style="display: none; position: absolute; z-index: 999; border:solid 1px #ccc; background-color:#fff; ">
                                         <iframe id="iframe1" name="iframe1" src="/plant/inverterstructtree/<%=Model.id %>"
                                             width="150" scrolling="auto" frameborder="0" height="500"></iframe>
                                     </div>

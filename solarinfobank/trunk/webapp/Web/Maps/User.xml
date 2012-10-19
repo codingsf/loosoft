@@ -99,7 +99,7 @@
 
     <!-- 插入用户-->
     <insert id="user_insert" parameterClass="User">
-      insert into  userinfo(UserName,PassWord,Organize,Sex,FullName,Address,Postalcode,Email,City,Country,Tel,LanguageId,revenueRate,currencies,mobilePhone,faxPhone,temperatureType,firstname,lastname,ParentUserId,menuDisplayCount,overviewDisplayCount) VALUES(#username#,#password#,#organize#,#sex#,#fullname#,#address#,#postalcode#,#email#,#city#,#country#,#tel#,#languageId#,#revenueRate#,#currencies#,#mobilePhone#,#faxPhone#,#TemperatureType#,#FirstName#,#LastName#,#ParentUserId#,4,10)
+      insert into  userinfo(UserName,PassWord,Organize,Sex,FullName,Address,Postalcode,Email,City,Country,Tel,LanguageId,revenueRate,currencies,mobilePhone,faxPhone,temperatureType,firstname,lastname,ParentUserId,menuDisplayCount,overviewDisplayCount,sysname) VALUES(#username#,#password#,#organize#,#sex#,#fullname#,#address#,#postalcode#,#email#,#city#,#country#,#tel#,#languageId#,#revenueRate#,#currencies#,#mobilePhone#,#faxPhone#,#TemperatureType#,#FirstName#,#LastName#,#ParentUserId#,4,10,#sysName#)
       <selectKey resultClass="int" property="id" type="post" >
         SELECT LAST_INSERT_ID() AS id
       </selectKey>

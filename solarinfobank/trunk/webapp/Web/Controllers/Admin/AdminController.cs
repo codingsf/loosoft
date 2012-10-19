@@ -310,6 +310,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                                         dt = DateTime.Now;
                                     dtStr = dt.ToString("yyyy-MM-dd");
                                 }
+                                else
+                                    dtStr = DateTime.Now.ToString("yyyy-MM-dd");
                                 temp = new Collector
                                 {
                                     code = ds.Tables[0].Rows[i][0].ToString(),

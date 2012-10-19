@@ -123,7 +123,7 @@
                             <tr>
                                 <td width="20%" height="35" style="padding-left: 5px;">
                                     <label>
-                                        日期 :
+                                        <%=Resources.SunResource.USER_PORTAL_DATE%> :
                                     </label>
                                 </td>
                                 <td width="80%" style="padding-left: 5px;">
@@ -134,7 +134,7 @@
                             </tr>
                             <tr>
                                 <td height="35" style="padding-left: 5px;">
-                                    <span style="padding-right: 5px;">预测值 : <span class="red">*</span></span>
+                                    <span style="padding-right: 5px;"><%=Resources.SunResource.PLANT_ENERGY_FORECAST_VALUE%> : <span class="red">*</span></span>
                                 </td>
                                 <td style="padding-left: 5px;">
                                     <input name="compensation" type="text" class="txtbu01" value="" id="value" />
@@ -177,7 +177,7 @@
                     </div>
                     <div class="sb_mid">
                         <div id="list_container">
-                            <% Html.RenderAction("searchforecast", new { plantid = 302, page = 1 }); %>
+                            <% Html.RenderAction("searchforecast", new { plantid = this.Model.id, page = 1 }); %>
                         </div>
                     </div>
                     <div class="sb_down">

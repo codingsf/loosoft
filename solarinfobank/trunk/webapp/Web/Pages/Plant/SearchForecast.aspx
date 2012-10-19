@@ -7,10 +7,10 @@
 <table width="100%" cellpadding="0" cellspacing="0" style="line-height: 24px; text-align: center">
     <tr>
         <td width="35%" height="25" class="subline02">
-            <strong>日期</strong>
+            <strong><%=Resources.SunResource.USER_PORTAL_DATE%></strong>
         </td>
         <td width="35%" class="subline02">
-            <strong>预测值</strong>
+            <strong><%=Resources.SunResource.PLANT_ENERGY_FORECAST_VALUE%></strong>
         </td>
         <td width="30%" class="subline02">
             <strong>

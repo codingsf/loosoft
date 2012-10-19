@@ -417,8 +417,11 @@
                                                 href="/user/regsource">
                                                 <%=Resources.SunResource.USER_APPLAY_COLLECTOR_NOTICE%></a></li>
                                             <%} %>
+                                               <%if (UserUtil.getCurUser().username != UserUtil.demousername)
+                                                 { %>
                                             <li><a onclick="loadContent('content_ajax','/user/template','iframe','GET');setcurrent(this);return false;"
                                                 href="/user/template">模板设置</a></li>
+                                                <%} %>
                                         </ul>
                                     </div>
                                 </div>

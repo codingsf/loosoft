@@ -242,10 +242,10 @@
                     <table width="244" height="60" border="0" align="center" cellpadding="0" cellspacing="0">
                         <tr>
                             <td width="111">
-                                <input name="Submit2" type="submit" class="ok_greenbtu" value="保 存" />
+                                <input name="Submit2" type="submit" class="ok_greenbtu" value="<%=Resources.SunResource.MONITORITEM_SAVE%>" />
                             </td>
                             <td width="108">
-                                <input name="Submit3" type="submit" class="no_greybtu" value="重 置" />
+                                <input name="Submit3" type="submit" class="no_greybtu" value="<%=Resources.SunResource.MONITORITEM_RESET%>" />
                             </td>
                         </tr>
                     </table>

@@ -663,8 +663,11 @@
                                 <div class="kjmid" style="display: none" ref="6">
                                     <div class="kjb">
                                         <ul>
+                                          <%if (UserUtil.getCurUser().username != UserUtil.demousername)
+                                            { %>
                                             <li><a onclick="loadContent('content_ajax','/plant/energyforecast/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
                                                 href="/plant/energyforecast/<%=Model.id%>">发电量预测值</a></li>
+                                            <%} %>
                                             <li><a onclick="loadContent('content_ajax','/plant/compensation/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
                                                 href="/plant/compensation/<%=Model.id%>">
                                                 <%=Resources.SunResource.ENERGY_RATE%></a></li>

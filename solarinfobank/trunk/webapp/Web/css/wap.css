@@ -18,7 +18,7 @@ ul,li{ margin:0px; padding:0px;}
 .fr02{ float:left; text-align:center; width:20%; padding-left:10px; padding-top:10px; background:url(/m_img/bu02.gif) no-repeat bottom; height:25px; font-size:14px; color:#FFFFFF; font-weight:bold;  }
 .pfz01{ height:32px; padding-top:20px;}
 .f26{ font-size:26px;  float:left;}
-.rimg{ float:right; margin-top:8px; margin-right:10px;}
+.rimg{ float:right; margin-top:8px; margin-right:10px; }
 .f16{ font-size:16px; line-height:25px;}
 .f14{ font-size:14px; color:#4A4949; line-height:25px; width:100%;}
 .fl55{ float:left; width:55%;}

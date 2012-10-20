@@ -1,3 +1,7 @@
 bule蓝色版
 darkgreen 深绿
 default 默认
+black_green 黑绿
+red 红色
+grey 灰色
+light_green 浅绿

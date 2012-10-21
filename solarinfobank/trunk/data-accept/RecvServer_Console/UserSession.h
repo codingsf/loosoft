@@ -1,7 +1,10 @@
-// UserSession.h: interface for the CUserSession class.
-//
-//////////////////////////////////////////////////////////////////////
-
+/*************************************************
+Copyright:
+Author:bloodhunter
+Date:2012-10-21
+Description:用户会话类声明
+FileName:UserSession.h
+**************************************************/
 #ifndef USERSESSION_H
 #define USERSESSION_H
 
@@ -16,9 +19,9 @@ CUserSession:
 主要用途为收到的数据暂放缓冲区，等待检测是否达到一副完整的包了，
 若完整，则解出，剩下的数据移动到最前面
 */
-
 class CUserSession
 {
+//成员变量
 public:
 	BOOL bWorkStatus;						//是否处于工作状态
 
@@ -65,6 +68,7 @@ public:
 	string strRT_Last;						//最后一次实时数据
 	//END:add by bloodhunter for new protocol at 2012-3-23
 
+//方法成员
 public:
 	CUserSession();
 	~CUserSession();

@@ -1,6 +1,10 @@
-// UserSession.cpp: implementation of the CUserSession class.
-//
-//////////////////////////////////////////////////////////////////////
+/*************************************************
+Copyright:
+Author:bloodhunter
+Date:2012-10-21
+Description:用户会话类实现
+FileName:UserSession.cpp
+**************************************************/
 
 #include "stdafx.h"
 #include "UserSession.h"
@@ -48,7 +52,10 @@ CUserSession::~CUserSession()
 	//END:add by bloodhunter for new protocol at 2012-3-23
 }
 
-//投递WSARECV请求
+/// <summary>
+/// 投递WSARECV请求
+/// </summary>
+/// <returns>操作结果</returns>
 BOOL CUserSession::Recv()
 {
 	if (!bWorkStatus || bDelete)
@@ -68,7 +75,11 @@ BOOL CUserSession::Recv()
 }
 
 //BEGIN:modify by bloodhunter for new protocol at 2012-3-23
-//检测是否收到一个完整的数据消息头部
+/// <summary>
+/// 检测是否收到一个完整的数据消息
+/// </summary>
+/// <param name="iProtocol">int& 协议类型，输出参数</param>
+/// <return>检测结果 false 表示未收到完整的数据消息，true表示已收到一个完整的数据消息</return>
 BOOL CUserSession::HasCompletionPacket(int& iProtocol)
 {
 	if ( dwRecvBytes < CLIENT_HEAD_LEN ) //数据头部4个字节，若小于4，则说明头部数据不够，不处理
@@ -97,6 +108,12 @@ BOOL CUserSession::HasCompletionPacket(int& iProtocol)
 		if (dwRecvBytes < packetCount)
 			return FALSE;
 
+		// BEGIN:Add by bloodhunter at 2012/10/21 for 代码整改
+		// [修改说明]:此处需要对包的长度作基本保证，即是一个合法的数据包
+		if (packetCount < CLIENT_HEAD_LEN + DEVICE_ID_LEN)
+			return FALSE; 
+		// END:Add by bloodhunter at 2012/10/21 for 代码整改
+
 		return TRUE;
 	}
 
@@ -110,11 +127,6 @@ BOOL CUserSession::HasCompletionPacket(int& iProtocol)
 			+ (unsigned char)pRecvBuf[6] * 256 * 256 
 			+ (unsigned char)pRecvBuf[5] * 256 
 			+ (unsigned char)pRecvBuf[4] + 10;
-
-		//int packetCount = (unsigned char)pRecvBuf[7] * 256 * 256 * 256
-		//	+ (unsigned char)pRecvBuf[6] * 256 * 256 
-		//	+ (unsigned char)pRecvBuf[5] * 256 
-		//	+ (unsigned char)pRecvBuf[4] + 10;
 		iProtocol = Protocol69;
 		//数据长度不够，未接收完毕
 		if (dwRecvBytes < packetCount)
@@ -131,45 +143,55 @@ BOOL CUserSession::HasCompletionPacket(int& iProtocol)
 }
 //END:modify by bloodhunter for new protocol at 2012-3-23
 
-//从缓冲区里解出一副完整的数据包，包含数据头部和数据段
+/// <summary>
+/// 从缓冲区里解出一副完整的数据包，包含数据头部和数据段
+/// </summary>
+/// <param name="param">TCP_DATA * 输出参数，完整的数据包寄存器</param>
+/// <param name="iProtocol">协议类型</param>
 void CUserSession::ExtractPacket(TCP_DATA * pTCPData, int iProtocol)
 {
 	//BEGIN:modify by bloodhunter for new protocol at 2012-3-23
 	//int packetCount=(unsigned char)pRecvBuf[3] * 256 + (unsigned char)pRecvBuf[2] + 2;
-	int packetCount;
+	int packetCount;//包长
 	switch(iProtocol)
 	{
+	//老版本协议
 	case Protocol68:
 		packetCount=(unsigned char)pRecvBuf[3] * 256 + (unsigned char)pRecvBuf[2] + 2;
-		break;;
+		break;
+
+	//新版本协议
 	case Protocol69:
 		packetCount = (unsigned char)pRecvBuf[7] * 256 * 256 * 256
 			+ (unsigned char)pRecvBuf[6] * 256 * 256 
 			+ (unsigned char)pRecvBuf[5] * 256 
 			+ (unsigned char)pRecvBuf[4] + 10;
-		//packetCount = (unsigned char)pRecvBuf[7] * 256 * 256 * 256
-		//	+ (unsigned char)pRecvBuf[6] * 256 * 256 
-		//	+ (unsigned char)pRecvBuf[5] * 256 
-		//	+ (unsigned char)pRecvBuf[4] + 10;
 		break;
+	
+	//默认做老版本协议
 	default:
 		packetCount=(unsigned char)pRecvBuf[3] * 256 + (unsigned char)pRecvBuf[2] + 2;
 		break;
 	}
+
 	pTCPData->iProtocol = iProtocol;
 	//END:modify by bloodhunter for new protocol at 2012-3-23
-	pTCPData->dwDataLen=packetCount;
-	pTCPData->pDataContent=new char[packetCount]; //申请长度，拷贝数据
-	memcpy( pTCPData->pDataContent, pRecvBuf, packetCount); 
-	
-	dwRecvBytes = dwRecvBytes-packetCount; //计算剩下的数据长度
 
-	if (dwRecvBytes>0)
+	pTCPData->dwDataLen = packetCount;
+	pTCPData->pDataContent = new char[packetCount]; //申请长度，拷贝数据
+	memcpy(pTCPData->pDataContent, pRecvBuf, packetCount); //此处无需进行异常容错处理，因此方法之前的HasCompletionPacket已经保证了其安全性
+	
+	dwRecvBytes = dwRecvBytes - packetCount; //计算剩下的数据长度
+	if (dwRecvBytes > 0)
 	{
-		memmove( pRecvBuf, pRecvBuf + packetCount, dwRecvBytes); //把剩余的数据移到前面
+		//把剩余的数据移到前面 
+		memmove(pRecvBuf, pRecvBuf + packetCount, dwRecvBytes); //此处无需进行异常容错处理
 	}
 }
 
+/// <summary>
+/// 关闭连接
+/// </summary>
 void CUserSession::CloseSocket()
 {
 	bDelete=TRUE;

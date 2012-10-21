@@ -1,7 +1,15 @@
+/*************************************************
+Copyright:
+Author:bloodhunter
+Date:2012-10-21
+Description:数据操作相关的实现
+FileName:CriticalSection.h
+**************************************************/
 #include "StdAfx.h"
 #include "ExpandType.h"
 #include "DataManage.h"
 #include "DLLLoader.h"
+#include "TCPServer.h"
 extern DLLLoader dllLoader;
 
 DataManage::DataManage(void)
@@ -15,6 +23,11 @@ DataManage::~DataManage(void)
 	dwSeqPackets=0;
 }
 
+/// <summary>
+/// 打开数据库连接
+/// </summary>
+/// <returns>操作结果</returns>
+/// <notice>此方法中为直接读取配置文件，根据文件配置进行数据库打开操作。若日后程序继续扩展，则建议将配置文件单独提取成类，以满足单一职责的原则</notice>
 BOOL DataManage::OpenDB()
 {
 	//读取MYSQL.INI配置文件，以便连接数据库
@@ -52,20 +65,26 @@ BOOL DataManage::OpenDB()
 	return TRUE;
 }
 
+/// <summary>
+/// 供外部调用，将需要存入memcached的数据存入内存缓冲区，等待专职线程进行对应处理。老协议使用
+/// </summary>
+/// <param name="param">DataManage *对象指针</param>
 void DataManage::AddToBuffer(TCP_DATA * pTcpData)
 {
 	m_csBufferQueue.Enter();
-
 	m_BufferQueue.push(pTcpData);
-
 	m_csBufferQueue.Leave();
 }
 
+/// <summary>
+/// 专职方法，用于老版本协议中的数据存入memcached
+/// </summary>
+/// <param name="param">DataManage *对象指针</param>
 DWORD WINAPI SaveToDBThread(LPVOID param)
 {
 	DataManage * pDlg=(DataManage *)param;
 
-	for (;;)
+	while (TCPServer::m_bIsExit)
 	{
 		pDlg->m_csBufferQueue.Enter();
 		if (pDlg->m_BufferQueue.empty())
@@ -77,14 +96,22 @@ DWORD WINAPI SaveToDBThread(LPVOID param)
 
 		TCP_DATA * pTCPData=pDlg->m_BufferQueue.front();
 		pDlg->m_BufferQueue.pop();
+		// BEGIN:Add by bloodhunter at 2012/10/21 for 代码整改
+		// [修改说明]:将锁的解除从函数尾移至此处，用于减少锁冲突的概率，以提供程序的性能
+		pDlg->m_csBufferQueue.Leave();
+		// BEGIN:Add by bloodhunter at 2012/10/21 for 代码整改
 
 		//放入MemCached Server 作为缓存
 		CString strContent;
 		for (int i=0;i<pTCPData->dwDataLen;i++)
 		{
-			char strTemp[4];
+			// BEGIN:Modify by bloodhunter at 2012/10/21 for 代码整改
+			// [修改说明]:临时变量需要初始化
+			//char strTemp[4];
+			char strTemp[4] = {0};
+			// END:Modify by bloodhunter at 2012/10/21 for 代码整改
 			sprintf(strTemp,"%02X ",(unsigned char)pTCPData->pDataContent[i]);
-			strContent+=strTemp;
+			strContent += strTemp;
 		}
 		strContent.TrimRight();
 
@@ -102,22 +129,45 @@ DWORD WINAPI SaveToDBThread(LPVOID param)
 		strID.ReleaseBuffer();
 		strContent.ReleaseBuffer();
 
-		delete []pTCPData->pDataContent;
-		pTCPData->pDataContent=NULL;
-		delete pTCPData;
-		pTCPData=NULL;
+		// BEGIN:Modify by bloodhunter at 2012/10/21 for 代码整改
+		// [修改说明]:此处内存释放时，需要增加额外判断以保证操作安全
+		//delete []pTCPData->pDataContent;
+		//pTCPData->pDataContent=NULL;
+		//delete pTCPData;
+		//pTCPData=NULL;
+		//释放资源
+        if(pTCPData != NULL)
+        {
+            if(pTCPData->pDataContent != NULL)
+            {
+		        delete []pTCPData->pDataContent;
+                pTCPData->pDataContent = NULL;
+            }
+            if(pTCPData->key != NULL)
+            {
+		        delete[]pTCPData->key;
+                pTCPData->key = NULL;
+            }
+		    delete pTCPData;
+		    pTCPData=NULL;
+        }
+		// BEGIN:Modify by bloodhunter at 2012/10/21 for 代码整改
 
-		pDlg->dwSeqPackets++;
-
-		pDlg->m_csBufferQueue.Leave();
+		pDlg->dwSeqPackets++;	
 	}
+
+	// BEGIN:Delete by bloodhunter at 2012/10/21 for 代码整改
+	// [修改说明]:将锁的解除从此处移至前处，用于减少锁冲突的概率，以提供程序的性能
+	//pDlg->m_csBufferQueue.Leave();
+	// BEGIN:Delete by bloodhunter at 2012/10/21 for 代码整改
 
 	return 0L;
 }
 
-
-
-//存buf，等待写入memcache
+/// <summary>
+/// 供外部调用，将需要存入memcached的数据存入内存缓冲区，等待专职线程进行对应处理。新协议使用
+/// </summary>
+/// <param name="pTcpData">需要处理的数据</param>
 void DataManage::AddToMemBuf(TCP_DATA * pTcpData)
 {
 	m_csMap.Enter();
@@ -125,15 +175,16 @@ void DataManage::AddToMemBuf(TCP_DATA * pTcpData)
 	m_csMap.Leave();
 }
 
-
-
-//写memcache线程
+/// <summary>
+/// 专职将内存缓存中的新版本协议的数据写入memcached
+/// </summary>
+/// <param name="param">DataManage对象</param>
 DWORD WINAPI SaveToMemThread(LPVOID param)
 {
 	DataManage * pDlg=(DataManage *)param;
 
 	CString lastKey("");
-	for (;;)
+	while (TCPServer::m_bIsExit)
 	{
 #if 0//测试用，测试append方法是否有效
 			int dwtestRet;
@@ -167,6 +218,7 @@ DWORD WINAPI SaveToMemThread(LPVOID param)
 			Sleep(1000);
 			continue;
 #endif
+		/// 从队列中获取此次需要操作的对象
 		pDlg->m_csMap.Enter();
 		if (pDlg->m_bufMem.empty())
 		{
@@ -177,21 +229,42 @@ DWORD WINAPI SaveToMemThread(LPVOID param)
 
 		TCP_DATA * pTCPData=pDlg->m_bufMem.front();
 		pDlg->m_bufMem.pop();
+		// BEGIN:Add by bloodhunter at 2012/10/21 for 代码整改
+		// [修改说明]:从代码结尾处转移到此处，以减少锁冲突的概率，从而提高程序的性能
+		pDlg->m_csMap.Leave();
+		// END:Add by bloodhunter at 2012/10/21
 
 		if(pTCPData->key == NULL || pTCPData->pDataContent == NULL)
 		{
-			//Sleep(50);
+			// BEGIN:Add by bloodhunter at 2012/10/21 for 代码整改
+			// [修改说明]:此处如果不释放资源有可能导致内存泄露
+			if(pTCPData != NULL)
+			{
+				if(pTCPData->pDataContent != NULL)
+				{
+					delete [] pTCPData->pDataContent;
+					pTCPData->pDataContent = NULL;
+				}
+				if(pTCPData->key != NULL)
+				{
+					delete [] pTCPData->key;
+					pTCPData->key = NULL;
+				}
+				delete pTCPData;
+				pTCPData = NULL;
+			}
+			// END:Add by bloodhunter at 2012/10/21
 			continue;
 		}
 		//放入MemCached Server 作为缓存
-		CString strContent;
+		CString strContent("");
 		if(pTCPData->isHex)
 		{
-			for (int i=0;i<pTCPData->dwDataLen;i++)
+			for (int i=0; i < pTCPData->dwDataLen; i++)
 			{
-				char strTemp[4];
+				char strTemp[4] = {0};
 				sprintf(strTemp,"%02X ",(unsigned char)pTCPData->pDataContent[i]);
-				strContent+=strTemp;
+				strContent += strTemp;
 			}
 			strContent.TrimRight();
 		}
@@ -200,14 +273,14 @@ DWORD WINAPI SaveToMemThread(LPVOID param)
 			strContent.Format("%s", pTCPData->pDataContent);
 		}
 
-		CString strID;
+		CString strID("");
 		strID.Format("%s", pTCPData->key);
 
 		//int dwRet=dllLoader.pSend2MC(strID.GetBuffer(0),strContent.GetBuffer(0));
 		//strID.ReleaseBuffer();
 		//strContent.ReleaseBuffer();
 		int dwRet=dllLoader.pSend2MC((LPTSTR)(LPCTSTR)strID, (LPTSTR)(LPCTSTR)strContent);
-		if (dwRet<0)
+		if (dwRet < 0)
 		{
 			cout << "KEY:[" << (LPTSTR)(LPCTSTR)strID<< "],Error Code:" << dwRet << ",check Memcached Server!" << endl;
 		}
@@ -257,9 +330,12 @@ DWORD WINAPI SaveToMemThread(LPVOID param)
                 pTCPData->key = NULL;
             }
 		    delete pTCPData;
-		    pTCPData=NULL;
+		    pTCPData = NULL;
         }
-		pDlg->m_csMap.Leave();
+		// BEGIN:Delete by bloodhunter at 2012/10/21 for 代码整改
+		// [修改说明]:从代码结尾处转移，以减少锁冲突的概率，从而提高程序的性能
+		//pDlg->m_csMap.Leave();
+		// END:Delete by bloodhunter at 2012/10/21
 		//Sleep(50);
 	}
 	return 0L;

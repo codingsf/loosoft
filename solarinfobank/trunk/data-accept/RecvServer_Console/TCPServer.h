@@ -1,5 +1,11 @@
-#ifndef _TCPSERVER_H_
-#define _TCPSERVER_H_
+/*************************************************
+Copyright:
+Author:bloodhunter
+Date:2012-10-21
+Description:TCPSRV连接类
+FileName:TCPServer.h
+**************************************************/
+#pragma once
 
 #include "StdAfx.h"
 #include "CriticalSection.h"
@@ -58,8 +64,16 @@ public:
 	//BEGIN:add by bloodhunter for new protocol at 2012-3-23
 	void DealNewProtocol(TCP_DATA * pTCPData, CUserSession * pSession);		//处理新协议的数据
 public:	
-	static int iSendConn;
+	static int iSendConn;	//是否在接收请求时发送握手响应。以兼容老版本协议
 	//END:add by bloodhunter for new protocol at 2012-3-23
+
+	// BEGIN:Add by bloodhunter at 2012/10/21 for 代码整改
+	// [修改说明]:防止程序未处理到的异常导致程序假死或memcached客户端出现问题导致无法正确插入数据
+	friend DWORD WINAPI RestartThread (LPVOID pParam);				//定时重启自身
+	static int m_iRestartInterval;									//重启时间间隔，默认0
+	static bool m_bIsExit;											//线程退出标志位
+	// END:Add by bloodhunter at 2012/10/21 for 代码整改
+
 	
 //private:
 	int dwServerPort;
@@ -126,6 +140,3 @@ public:
 		return i + 1;
 	}
 };
-
-
-#endif

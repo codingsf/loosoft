@@ -1,3 +1,11 @@
+/*************************************************
+Copyright:
+Author:bloodhunter
+Date:2012-10-21
+Description:用户会话类实现
+FileName:TCPServer.cpp
+**************************************************/
+
 #include "stdafx.h"
 #include "TCPServer.h"
 #include "DLLLoader.h"
@@ -11,13 +19,18 @@ extern Protocol69Dealer protocol69Dealer;
 using namespace std;
 
 int TCPServer::iSendConn=GetPrivateProfileInt("Server","SendConn",0,"./config.ini");
+int TCPServer::m_iRestartInterval=GetPrivateProfileInt("Server","RestartInterval",0,"./config.ini");
+bool TCPServer::m_bIsExit = true;
 
-//检测心跳数据
+/// <summary>
+/// 检测心跳数据
+/// </summary>
+/// <param name="param">TCPServer *</param>
 DWORD WINAPI TCPServer_KeepLiveThread(LPVOID param)
 {
 	TCPServer * pSvr=(TCPServer *)param;
 
-	for (;;)
+	while (TCPServer::m_bIsExit)
 	{
 		pSvr->m_csOnlineClient.Enter();
 
@@ -89,9 +102,10 @@ DWORD WINAPI TCPServer_KeepLiveThread(LPVOID param)
 	return 0;
 }
 
-
-
-//先做删除标记，延迟60秒删除，以避免多个工作线程收到消息造成重复释放内存，
+/// <summary>
+/// 先做删除标记，延迟60秒删除，以避免多个工作线程收到消息造成重复释放内存，
+/// </summary>
+/// <param name="pSession">CUserSession *用户会话</param>
 void TCPServer::DoClear(CUserSession * pSession)
 {
 	cout << "*** IP=" << pSession->strAddress << ",SOCKET ID=" << pSession->sockAccept << " [离线]" << endl;
@@ -130,9 +144,12 @@ void TCPServer::DoClear(CUserSession * pSession)
 	m_csmapSocket.Leave();
 }
 
-
-
-//一次只提交一个WSARecv IO PENDING
+/// <summary>
+/// 提交异步阻塞接请求WSARecv IO PENDING
+/// </summary>
+/// <param name="pRecvIO"></param>
+/// <param name="pSession"</param>
+/// <param name="dwIOSize"></param>
 void TCPServer::DoRead(PER_IO_DATA * pRecvIO,CUserSession * pSession,DWORD dwIOSize)
 {
 	pSession->LastKeepLive=time(NULL);//更新存活时间
@@ -199,7 +216,7 @@ void TCPServer::DoRead(PER_IO_DATA * pRecvIO,CUserSession * pSession,DWORD dwIOS
 			break;
 		case Protocol68:
 		default:
-			DoParser(pTCPData,pSession);
+			DoParser(pTCPData, pSession);
 			dataManage.AddToBuffer(pTCPData);
 		
 			//返回OK
@@ -223,20 +240,32 @@ void TCPServer::DoRead(PER_IO_DATA * pRecvIO,CUserSession * pSession,DWORD dwIOS
 	}
 }
 
-//解析出采集器ID和设备ID，跟SOCKET句柄关联，以便查找该SOCKET，传递改链接给DLL
+/// <summary>
+/// 解析出采集器ID和设备ID，跟SOCKET句柄关联，以便查找该SOCKET，传递改链接给DLL
+/// </summary>
+/// <param name="pTCPData">TCP_DATA* ，输出参数</param>
+/// <param name="pSession">CUserSession *，输出参数</param>
 void TCPServer::DoParser(TCP_DATA * pTCPData,CUserSession * pSession)
 {
-	char deviceID[DEVICE_ID_LEN+1];
-	memcpy(deviceID,pTCPData->pDataContent+CLIENT_HEAD_LEN,DEVICE_ID_LEN);
+	// BEGIN:Modify by bloodhunter at 2012/10/21 for 代码整改
+	// [修改说明]:临时变量数组需初始化内存
+	//char deviceID[DEVICE_ID_LEN+1];
+	char deviceID[DEVICE_ID_LEN + 1] = {0};
+	// END:Modify by bloodhunter at 2012/10/21 for 代码整改
+	memcpy(deviceID, pTCPData->pDataContent + CLIENT_HEAD_LEN, DEVICE_ID_LEN);//此处容错在之前的函数，检查完整包处保证，并非此处保证
 	deviceID[DEVICE_ID_LEN]='\0';
 
 	//cout << "采集器ID:" << deviceID << " -> SOCKET ID:" << pSession->sockAccept << endl;
 
 	m_csmapSocket.Enter();
-	mapSocket[deviceID]=pSession;
+	mapSocket[deviceID] = pSession;
 	m_csmapSocket.Leave();
 }
-//扫描数据库，获取需要更新或者调试的设备
+
+/// <summary>
+/// 扫描数据库，获取需要更新或者调试的设备
+/// </summary>
+/// <param name="param">DEBUG_PARAM_DATA *</param>
 DWORD WINAPI DebugWorkThread(LPVOID param)
 {
 	DEBUG_PARAM_DATA * pData=(DEBUG_PARAM_DATA *)param;
@@ -286,19 +315,23 @@ DWORD WINAPI DebugWorkThread(LPVOID param)
 	pDlg->m_csmapDebugDevice.Leave();
 
 	//恢复标记
-	pDlg->mapDebugStatus[pData->strCollector]=FALSE;
+	pDlg->mapDebugStatus[pData->strCollector] = FALSE;
 
 	delete pData;
 	pData=NULL;
 
 	return 0L;
 }
-//循环查找ID是否有对应的SOCKET,有说明设备已经上线，则开启DEBUG工作线程
+
+/// <summary>
+/// 循环查找ID是否有对应的SOCKET,有说明设备已经上线，则开启DEBUG工作线程
+/// </summary>
+/// <param name="param">TCPServer *</param>
 DWORD WINAPI CheckDebugThread(LPVOID param)
 {
 	TCPServer * pDlg=(TCPServer *)param;
 
-	for (;;)
+	while (TCPServer::m_bIsExit)
 	{
 		map<CString,map<CString,CString> >::iterator itIndex;
 		for (itIndex=pDlg->mapDebugDevice.begin();itIndex!=pDlg->mapDebugDevice.end();itIndex++)
@@ -364,14 +397,15 @@ DWORD WINAPI CheckDebugThread(LPVOID param)
 	return 0L;
 }
 
-
-
-//扫描数据库，获取需要更新或者调试的设备
+/// <summary>
+/// 扫描数据库，获取需要更新或者调试的设备
+/// </summary>
+/// <param name="param">TCPServer *</param>
 DWORD WINAPI ScanDataBaseThread(LPVOID param)
 {
 	TCPServer * pDlg=(TCPServer *)param;
 
-	for (;;)
+	while (TCPServer::m_bIsExit)
 	{
 		try
 		{
@@ -409,14 +443,15 @@ DWORD WINAPI ScanDataBaseThread(LPVOID param)
 	return -1L;
 }
 
-
-
-//IOCP工作线程
+/// <summary>
+/// //IOCP工作线程
+/// </summary>
+/// <param name="param">TCPServer *</param>
 DWORD WINAPI TCPServer_WorkThread(LPVOID param)
 {
 	TCPServer * pSvr=(TCPServer *)param;
 
-	while (TRUE)
+	while (TCPServer::m_bIsExit)
 	{
 		DWORD dwIOSize=0;
 		PER_IO_DATA * lpPerIOData=NULL;
@@ -452,7 +487,10 @@ DWORD WINAPI TCPServer_WorkThread(LPVOID param)
 	return 0;
 }
 
-
+/// <summary>
+/// //IOCP工作线程
+/// </summary>
+/// <param name="param">TCPServer *</param>
 DWORD WINAPI TCPServer_SocketThread(LPVOID param)
 {
 	TCPServer * pSvr=(TCPServer *)param;
@@ -500,7 +538,7 @@ DWORD WINAPI TCPServer_SocketThread(LPVOID param)
 		return -1;
 	}
 	
-	while (TRUE)
+	while (TCPServer::m_bIsExit)
 	{
 		sockaddr_in remoteAdd;
 		int nLen=sizeof(sockaddr_in);
@@ -540,8 +578,10 @@ DWORD WINAPI TCPServer_SocketThread(LPVOID param)
 	return 0;
 }
 
-
-//得到SOCKET对端的IP和端口
+/// <summary>
+/// 得到SOCKET对端的IP和端口
+/// </summary>
+/// <param name="hSocket">套接字</param>
 CString TCPServer::GetAddressBySocket(SOCKET hSocket)
 {
 	CString szReturn="ERROR";
@@ -557,8 +597,10 @@ CString TCPServer::GetAddressBySocket(SOCKET hSocket)
 	return szReturn;
 }
 
-
-//错误代码转换为文本描述
+/// <summary>
+/// //错误代码转换为文本描述
+/// </summary>
+/// <param name="ret">错误码</param>
 CString TCPServer::ErrorCode2Text(DWORD ret)
 {
 	CString retStr;
@@ -573,17 +615,32 @@ CString TCPServer::ErrorCode2Text(DWORD ret)
 	return retStr;
 }
 
+/// <summary>
+/// 完成端口与硬件绑定
+/// </summary>
+/// <param name="hcomport">完成端口句柄</param>
+/// <param name="hDevice">硬件设备句柄，此app中使用的为socket套接字</param>
+/// <param name="dwCompkey">尾随参数，用于完成端口回调时使用</param>
+/// <return>绑定结果 TRUE成功，FALSE 失败</return>
 BOOL TCPServer::AssociateWithIocompletionPort(HANDLE hcomport, HANDLE hDevice ,DWORD dwCompkey)
 {
 	return(CreateIoCompletionPort(hDevice,hcomport,dwCompkey,0)==hcomport);
 }
 
+/// <summary>
+/// 创建完成端口
+/// </summary>
+/// <param name="dwNumberOfConcurrentThread">完成端口工作线程数</param>
 HANDLE TCPServer::CreateNewIoCompletionPort(DWORD dwNumberOfConcurrentThread )
 {
 	return(CreateIoCompletionPort(INVALID_HANDLE_VALUE,NULL,0,dwNumberOfConcurrentThread));
 }
 
-//将SOCKET绑定在创建好的IOCP句柄上
+/// <summary>
+/// 将SOCKET绑定在创建好的IOCP句柄上
+/// </summary>
+/// <param name="socketAccept">SOCKET套接字</param>
+/// <param name="hiocp">完成端口句柄</param>
 CUserSession * TCPServer::CreateCompletionKey( SOCKET socketAccept,HANDLE hiocp)
 {
 	CUserSession * pSession=new CUserSession;
@@ -612,7 +669,6 @@ CUserSession * TCPServer::CreateCompletionKey( SOCKET socketAccept,HANDLE hiocp)
 	return pSession;
 }
 
-//启动服务器
 TCPServer::TCPServer()
 {
 	//连接数据库失败，退出
@@ -645,6 +701,10 @@ TCPServer::TCPServer()
 	{	
 		m_iCmdThreadID = 0;
 	}
+	// BEGIN:Add by bloodhunter at 2012/10/21 for 代码整改
+	// [修改说明]:防止程序未处理到的异常导致程序假死或memcached客户端出现问题导致无法正确插入数据
+	CreateThread(NULL, 0, RestartThread, this, NULL, NULL);
+	// END:Add by bloodhunter at 2012/10/21 for 代码整改
 }
 
 //关闭服务器
@@ -663,7 +723,11 @@ void TCPServer::StopTCPServer()
 }
 
 //BEGIN:add by bloodhunter for new protocol at 2012-3-23
-//处理新协议部分
+/// <summary>
+/// 处理数据包，新版本协议
+/// </summary>
+/// <param name="pTCPData">TCP_DATA *数据包</param>
+/// <param name="pSession">CUserSession * 用户会话</param>
 void TCPServer::DealNewProtocol(TCP_DATA * pTCPData, CUserSession * pSession)
 {
 	//如果标记为删除，则不再处理
@@ -790,11 +854,16 @@ void TCPServer::DealNewProtocol(TCP_DATA * pTCPData, CUserSession * pSession)
 	}
 }
 //END:add by bloodhunter for new protocol at 2012-3-23
-//处理来自memcache的命令
+
+/// <summary>
+/// 处理来自memcache的命令，新协议使用。
+/// </summary>
+/// <param name="pParam">TCPServer*</param>
+/// <notice>主要用于历史数据请求、历史数据终止、设备参数设置，以后若增加其他对于设备的主动操作，均在此处添加扩展</notice>
 DWORD WINAPI CMDThreadProc(LPVOID pParam)
 {
 	TCPServer* pThis = reinterpret_cast<TCPServer*>(pParam );
-	while(true)//add by bloodhunter at 2012-07-11 for  isExistKey  如果存在问题，则先将此处的true更改为false
+	while(TCPServer::m_bIsExit)//add by bloodhunter at 2012-07-11 for  isExistKey  如果存在问题，则先将此处的true更改为false
 	{	
 		try
 		{
@@ -896,3 +965,57 @@ DWORD WINAPI CMDThreadProc(LPVOID pParam)
 	
 	return 1L;
 }
+
+// BEGIN:Add by bloodhunter at 2012/10/21 for 代码整改
+// [修改说明]:防止程序未处理到的异常导致程序假死或memcached客户端出现问题导致无法正确插入数据
+ DWORD WINAPI RestartThread (LPVOID pParam)
+ {
+	TCPServer* pThis = reinterpret_cast<TCPServer*>(pParam );
+	int iHasRun = 0;//已运行时间，分钟为单位
+
+	//如果配置文件为0，则表示不定时重启
+	if (TCPServer::m_iRestartInterval == 0)
+		return 1L;
+
+	while(true)
+	{
+		/// 到达时间定时重启
+		if (iHasRun == TCPServer::m_iRestartInterval)
+		{
+			//关闭所有处理线程
+			TCPServer::m_bIsExit = true;
+			Sleep(10000);//等待10秒以保证所有线程退出
+			//释放网络资源
+			closesocket(pThis->m_Socket);
+			Sleep(1000);
+			//启动镜像进程
+			PROCESS_INFORMATION piProcInfo; 
+			STARTUPINFO siStartInfo;
+
+			// Set up members of STARTUPINFO structure.
+			siStartInfo.cb = sizeof(STARTUPINFO); 
+			siStartInfo.lpReserved = NULL;
+			siStartInfo.lpReserved2 = NULL; 
+			siStartInfo.cbReserved2 = 0;
+			siStartInfo.lpDesktop = NULL; 
+			siStartInfo.dwFlags = 0;
+			CreateProcess(
+				"RecvServer_Console.exe",
+				NULL,
+				NULL, // process security attributes
+				NULL, // primary thread security attributes
+				false, // handles are inherited
+				CREATE_NEW_CONSOLE, // creation flags
+				NULL, // use parent's environment
+				NULL, // use parent's current directory
+				&siStartInfo, // STARTUPINFO pointer
+				&piProcInfo); // receives PROCESS_INFORMATION
+
+			//退出当前进程
+			exit(-1);
+		}
+		Sleep(60 * 1000);//间隔分钟
+		iHasRun++;
+	}
+ }
+// END:Add by bloodhunter at 2012/10/21 for 代码整改

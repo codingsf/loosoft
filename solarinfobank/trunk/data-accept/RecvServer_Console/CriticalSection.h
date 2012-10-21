@@ -1,10 +1,11 @@
-#ifndef _CRITICALSECTION_H_
-#define _CRITICALSECTION_H_
-
-/*
-CriticalSection:
-临界区控制，用于多线程互斥、锁
-*/
+/*************************************************
+Copyright:
+Author:bloodhunter
+Date:2012-10-21
+Description:临界区控制，用于多线程互斥、锁
+FileName:CriticalSection.h
+**************************************************/
+#pragma once
 
 class CriticalSection
 {
@@ -18,5 +19,3 @@ public:
 	void Enter();
 	void Leave();
 };
-
-#endif

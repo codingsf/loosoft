@@ -371,7 +371,11 @@ int Protocol69Dealer::AnalysisPacket(TCP_DATA* pTCPData, CUserSession* pSession,
 	return New_Session_Errror_Data;
 }
 
-//发送内容
+/// <summary>
+/// 发送内容
+/// </summary>
+/// <param name="pSession">DataInfoStructor& 数据</param>
+/// <param name="pSession">CUserSession * 用户会话</param
 void Protocol69Dealer::SendNewProtocol(CUserSession* pSession, char* pstrContent, int iLen, int iType, int iParentType)
 {
 	iLen = iLen + 8 + 2;//此处的2为类别标识
@@ -438,13 +442,21 @@ void Protocol69Dealer::SendNewProtocol(CUserSession* pSession, char* pstrContent
 	delete[] content;
 }
 
-//发送错误码
+/// <summary>
+/// 发送错误码
+/// </summary>
+/// <param name="pSession">DataInfoStructor& 数据</param>
+/// <param name="pSession">CUserSession * 用户会话</param
 void Protocol69Dealer::SendErrorCode(CUserSession* pSession, int dataType)
 {
 	SendNewProtocol(pSession, 0, 0, New_Procotol_Type_Send_Error, dataType);
 }
 
-//处理注册请求
+/// <summary>
+/// 处理注册请求
+/// </summary>
+/// <param name="pSession">DataInfoStructor& 数据</param>
+/// <param name="pSession">CUserSession * 用户会话</param>
 int Protocol69Dealer::DealRegisterReq(DataInfoStructor& dataInfo, CUserSession * pSession)
 {
     //生成所有用户会话的key
@@ -566,7 +578,11 @@ int Protocol69Dealer::DealRegisterReq(DataInfoStructor& dataInfo, CUserSession *
 	}
 }
 
-//处理验证码
+/// <summary>
+/// 处理验证码
+/// </summary>
+/// <param name="pSession">DataInfoStructor& 数据</param>
+/// <param name="pSession">CUserSession * 用户会话</param>
 int Protocol69Dealer::DealRegisterVerify(DataInfoStructor& dataInfo, CUserSession * pSession)
 {
 	if (pSession->m_iSessionState != New_Session_State_Register_Login)
@@ -671,7 +687,11 @@ int Protocol69Dealer::DealRegisterVerify(DataInfoStructor& dataInfo, CUserSessio
 	}
 }
 
-//处理描述电站信息结构
+/// <summary>
+/// 处理描述电站信息结构
+/// </summary>
+/// <param name="pSession">DataInfoStructor& 数据</param>
+/// <param name="pSession">CUserSession * 用户会话</param>
 int Protocol69Dealer::DealStationInfo(DataInfoStructor& dataInfo, CUserSession * pSession)
 {
 	if (pSession->m_iSessionState != New_Session_State_Register_AuthCode)//必须是已经验证过的状态
@@ -701,7 +721,11 @@ int Protocol69Dealer::DealStationInfo(DataInfoStructor& dataInfo, CUserSession *
 	return New_Session_State_Register_AuthCode;
 }
 
-//处理设备数据
+/// <summary>
+/// 处理设备数据
+/// </summary>
+/// <param name="pSession">DataInfoStructor& 数据</param>
+/// <param name="pSession">CUserSession * 用户会话</param>
 int Protocol69Dealer::DealDeviceInfo(DataInfoStructor& dataInfo, CUserSession * pSession)
 {
 	if (pSession->m_iSessionState != New_Session_State_Register_AuthCode)//必须是已经验证过的状态
@@ -731,7 +755,11 @@ int Protocol69Dealer::DealDeviceInfo(DataInfoStructor& dataInfo, CUserSession * 
 	return New_Session_State_Register_AuthCode;
 }
 
-//处理实时数据
+/// <summary>
+/// 处理实时数据
+/// </summary>
+/// <param name="pSession">DataInfoStructor& 数据</param>
+/// <param name="pSession">CUserSession * 用户会话</param>
 int Protocol69Dealer::DealRunInfo(DataInfoStructor& dataInfo, CUserSession * pSession)
 {
 	if (pSession->m_iSessionState != New_Session_State_Register_AuthCode)//必须是已经验证过的状态
@@ -774,7 +802,11 @@ int Protocol69Dealer::DealRunInfo(DataInfoStructor& dataInfo, CUserSession * pSe
 	return New_Session_State_Register_AuthCode;
 }
 
-//处理历史数据
+/// <summary>
+/// 处理历史数据
+/// </summary>
+/// <param name="pSession">DataInfoStructor& 数据</param>
+/// <param name="pSession">CUserSession * 用户会话</param>
 int Protocol69Dealer::DealHistoryData(DataInfoStructor& dataInfo, CUserSession * pSession)
 {
 	if (pSession->m_iSessionState != New_Session_State_Register_AuthCode)//必须是已经验证过的状态
@@ -811,7 +843,11 @@ int Protocol69Dealer::DealHistoryData(DataInfoStructor& dataInfo, CUserSession *
 	return New_Session_State_Register_AuthCode;
 }
 
-//处理历史故障信息
+/// <summary>
+/// 处理历史故障信息
+/// </summary>
+/// <param name="pSession">DataInfoStructor& 数据</param>
+/// <param name="pSession">CUserSession * 用户会话</param>
 int Protocol69Dealer::DealHistoryFault(DataInfoStructor& dataInfo, CUserSession * pSession)
 {
 	if (pSession->m_iSessionState != New_Session_State_Register_AuthCode)//必须是已经验证过的状态
@@ -848,8 +884,11 @@ int Protocol69Dealer::DealHistoryFault(DataInfoStructor& dataInfo, CUserSession 
 	return New_Session_State_Register_AuthCode;
 }
 
-
-//处理历史数据请求，此处负责下发，并同步等待回应，由一个线程单独调用
+/// <summary>
+/// 处理历史数据请求，此处负责下发，并同步等待回应，由一个线程单独调用
+/// </summary>
+/// <param name="pSession">DataInfoStructor& 数据</param>
+/// <param name="pSession">CUserSession * 用户会话</param>
 int Protocol69Dealer::DealHistoryDataReq(DataInfoStructor& dataInfo, CUserSession * pSession)
 {
 	if (pSession->m_iSessionState != New_Session_State_Register_AuthCode)//必须是已经验证过的状态
@@ -883,7 +922,11 @@ int Protocol69Dealer::DealHistoryDataReq(DataInfoStructor& dataInfo, CUserSessio
 	return 0;
 }
 
-//处理历史数据请求响应
+/// <summary>
+/// 处理历史数据请求响应
+/// </summary>
+/// <param name="pSession">DataInfoStructor& 数据</param>
+/// <param name="pSession">CUserSession * 用户会话</param>
 int Protocol69Dealer::DealHistoryDataRes(DataInfoStructor& dataInfo, CUserSession * pSession)
 {
 	if (pSession->m_iSessionState != New_Session_State_Register_AuthCode)//必须是已经验证过的状态
@@ -898,7 +941,11 @@ int Protocol69Dealer::DealHistoryDataRes(DataInfoStructor& dataInfo, CUserSessio
 	return New_Session_State_Register_AuthCode;
 }
 
-//处理历史数据终止请求，此处负责下发，并同步等到响应，由一个线程单独调用
+/// <summary>
+/// 处理历史数据终止请求，此处负责下发，并同步等到响应，由一个线程单独调用
+/// </summary>
+/// <param name="pSession">DataInfoStructor& 数据</param>
+/// <param name="pSession">CUserSession * 用户会话</param>
 int Protocol69Dealer::DealHistoryDataStopReq(DataInfoStructor& dataInfo, CUserSession * pSession)
 {
 	if (pSession->m_iSessionState != New_Session_State_Register_AuthCode)//必须是已经验证过的状态
@@ -930,7 +977,11 @@ int Protocol69Dealer::DealHistoryDataStopReq(DataInfoStructor& dataInfo, CUserSe
 	return 0;
 }
 
-//处理历史数据终止请求响应
+/// <summary>
+/// 处理历史数据终止请求响应
+/// </summary>
+/// <param name="pSession">DataInfoStructor& 数据</param>
+/// <param name="pSession">CUserSession * 用户会话</param>
 int Protocol69Dealer::DealHistoryDataStopRes(DataInfoStructor& dataInfo, CUserSession * pSession)
 {
 	if (pSession->m_iSessionState != New_Session_State_Register_AuthCode)//必须是已经验证过的状态
@@ -945,7 +996,11 @@ int Protocol69Dealer::DealHistoryDataStopRes(DataInfoStructor& dataInfo, CUserSe
 	return New_Session_State_Register_AuthCode;
 }
 
-//处理参数设置请求，此处负责下发，并同步等待响应，由一个线程单独调用
+/// <summary>
+/// 处理参数设置请求，此处负责下发，并同步等待响应，由一个线程单独调用
+/// </summary>
+/// <param name="pSession">DataInfoStructor& 数据</param>
+/// <param name="pSession">CUserSession * 用户会话</param>
 int Protocol69Dealer::DealParameterSetReq(DataInfoStructor& dataInfo, CUserSession * pSession)
 {
 	if (pSession->m_iSessionState != New_Session_State_Register_AuthCode)//必须是已经验证过的状态
@@ -977,7 +1032,11 @@ int Protocol69Dealer::DealParameterSetReq(DataInfoStructor& dataInfo, CUserSessi
 	return 0;
 }
 
-//处理参数设置响应
+/// <summary>
+/// 处理参数设置响应
+/// </summary>
+/// <param name="pSession">DataInfoStructor& 数据</param>
+/// <param name="pSession">CUserSession * 用户会话</param>
 int Protocol69Dealer::DealParameterSetRes(DataInfoStructor& dataInfo, CUserSession * pSession)
 {
 	if (pSession->m_iSessionState != New_Session_State_Register_AuthCode)//必须是已经验证过的状态
@@ -992,7 +1051,11 @@ int Protocol69Dealer::DealParameterSetRes(DataInfoStructor& dataInfo, CUserSessi
 	return New_Session_State_Register_AuthCode;
 }
 
-//处理错误数据响应
+/// <summary>
+/// 处理错误数据响应
+/// </summary>
+/// <param name="pSession">DataInfoStructor& 数据</param>
+/// <param name="pSession">CUserSession * 用户会话</param>
 int Protocol69Dealer::DealErrorDataRes(DataInfoStructor& dataInfo, CUserSession * pSession)
 {
 	if (pSession->m_iSessionState != New_Session_State_Register_AuthCode)//必须是已经验证过的状态
@@ -1019,6 +1082,10 @@ int Protocol69Dealer::DealErrorDataRes(DataInfoStructor& dataInfo, CUserSession 
 	return New_Session_State_FirstFrame;
 }
 
+/// <summary>
+/// 处理离线信息
+/// </summary>
+/// <param name="pSession">CUserSession * 用户会话</param>
 void Protocol69Dealer::DealOffLine(CUserSession * pSession)
 {
 	//离线

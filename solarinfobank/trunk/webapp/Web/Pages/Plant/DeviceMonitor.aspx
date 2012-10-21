@@ -13,11 +13,10 @@
     <table cellpadding="0" cellspacing="0" border="0">
         <tr>
             <td valign="top" width="793" background="/images/kj/kjbg01.jpg">
-
-                <script type="text/javascript">
+    <script type="text/javascript">
          var currentContainer;
-         var tempData1 ;
-         var tempData2 ;
+         var tempData1;
+         var tempData2;
          var tempData3;
          var tempData4;
          var tempData5;
@@ -707,7 +706,7 @@
                     <div class="sb_down">
                     </div>
                 </div>
-                <%if ((ViewData["data"] as IList<Device>).Count(model => model.deviceTypeCode == (DeviceData.ENVRIOMENTMONITOR_CODE)) > 0)
+                <%if ((ViewData["data"] as IList<Device>).Count(model => model.deviceTypeCode == (DeviceData.ENVRIOMENTMONITOR_CODE)) >= 0)
                   { %>
                 <div class="subrbox01">
                     <div style="padding-top: 5px; font-weight: bold; margin-bottom: 15px; padding-right: 50px;
@@ -1070,7 +1069,7 @@
                     </div>
                 </div>
                 <%} %>
-                <%if ((ViewData["data"] as IList<Device>).Count(model => model.deviceTypeCode == (DeviceData.HUILIUXIANG_CODE)) > 0)
+                <%if ((ViewData["data"] as IList<Device>).Count(model => model.deviceTypeCode == (DeviceData.HUILIUXIANG_CODE)) >= 0)
                   { %>
                 <div class="subrbox01">
                     <div style="padding-top: 5px; font-weight: bold; padding-right: 50px; background: url(/images/sub/namebb.gif) no-repeat;
@@ -1431,7 +1430,7 @@
                     </div>
                 </div>
                 <%} %>
-                <%if ((ViewData["data"] as IList<Device>).Count(model => model.deviceTypeCode == (DeviceData.CABINET_CODE)) > 0)
+                <%if ((ViewData["data"] as IList<Device>).Count(model => model.deviceTypeCode == (DeviceData.CABINET_CODE)) >= 0)
                   { %>
                 <div class="subrbox01">
                     <div style="padding-top: 5px; font-weight: bold; padding-right: 50px; background: url(/images/sub/namebb.gif) no-repeat;
@@ -1791,7 +1790,7 @@
                     </div>
                 </div>
                 <%}%>
-                <%if ((ViewData["data"] as IList<Device>).Count(model => model.deviceTypeCode == (DeviceData.AMMETER_CODE)) > 0)
+                <%if ((ViewData["data"] as IList<Device>).Count(model => model.deviceTypeCode == (DeviceData.AMMETER_CODE)) >= 0)
                   { %>
                 <div class="subrbox01">
                     <div style="padding-top: 5px; font-weight: bold; margin-bottom: 15px; background: url(/images/sub/namebb.gif) no-repeat;

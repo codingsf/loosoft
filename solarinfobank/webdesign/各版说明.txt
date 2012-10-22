@@ -1,4 +1,5 @@
-bule蓝色版
+default 默认
+bule蓝色
 darkgreen 深绿
 default 默认
 black_green 黑绿

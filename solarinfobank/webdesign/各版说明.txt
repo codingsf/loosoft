@@ -1,8 +1,7 @@
-default 默认
-bule蓝色
-darkgreen 深绿
-default 默认
-black_green 黑绿
-red 红色
-grey 灰色
-light_green 浅绿
+bule蓝色版  bule.jpg
+darkgreen 深绿 darkgreen.jpg
+default 默认 default.jpg
+black_green 黑绿 black_green.jpg
+red 红色 red.jpg
+grey 灰色 grey.jpg
+light_green 浅绿 light_green.jpg

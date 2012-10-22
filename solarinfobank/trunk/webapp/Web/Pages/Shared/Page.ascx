@@ -1,17 +1,9 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="down_line00">
-    <%if ((ViewData["page"] as Pager).RecordCount.Equals(0))
-      {%>
-    <tr>
-        <td height="35" align="center" class="pagefy">
-            <%=Resources.SunResource.CHART_ERROR_NODATA%>
-        </td>
-    </tr>
-    <%
-        }
-      else
-      { %>
+    <%if ((ViewData["page"] as Pager).RecordCount > 0)
+      {
+    %>
     <tr>
         <td height="35" align="center" class="pagefy">
             <%if (!(ViewData["page"] as Pager).IsFirst)

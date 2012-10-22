@@ -274,10 +274,10 @@
                             <tr>
                                 <td height="35" style="padding-left: 5px;">
                                     <span style="padding-right: 5px;">
-                                        <%=Resources.SunResource.COMPENSATION_VALUE%>(kWh): <span class="red">*</span></span>
+                                        <%=Resources.SunResource.COMPENSATION_VALUE%>: <span class="red">*</span></span>
                                 </td>
                                 <td style="padding-left: 5px;">
-                                    <input name="compensation" type="text" class="txtbu01" value="" id="compensation" />
+                                    <input name="compensation" type="text" class="txtbu01" value="" id="compensation" /> (kWh)
                                     <span id="error_compensation"></span>
                                 </td>
                             </tr>
@@ -427,7 +427,7 @@
                                     </td>
                                     <td width="22%" class="subline02">
                                         <strong>
-                                            <%=Resources.SunResource.COMPENSATION_VALUE%></strong>
+                                            <%=Resources.SunResource.COMPENSATION_VALUE%> (kWh)</strong>
                                     </td>
                                     <td width="12%" class="subline02">
                                         <strong>

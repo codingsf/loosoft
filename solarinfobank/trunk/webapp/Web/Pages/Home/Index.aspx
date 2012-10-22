@@ -496,21 +496,26 @@
         </div>
         <div class="mainboxdown">
             <div class="mainboxdown_l">
-                    <div class="indexicg">
-                        <span style="float: left;">FAQ</span></div>
-                    <div style="clear: both;">
-                    </div>
-                    <div class="mdl02">
-                        <ul style="margin: 10px 0px 0px 0px">
-                        <%foreach (QA qa in ViewData["RecommendAnswer"] as IList<QA>)
-                          { %>
-                            <li><a href="/qa/showask/<%=qa.id %>" class="dbl"><%=Cn.Loosoft.Zhisou.SunPower.Common.StringUtil.cutStr( qa.title ,50,"...")%></a></li>
-                            <%} %>
-                        </ul>
-                        <span class="veiwmore"><a href="/qa/ask" class="green">+ <%= Resources.SunResource.HOME_INDEX_VIEWMORE%> >></a></span></div>
-                    <div>
-                    </div>
+                <div class="indexicg">
+                    <span style="float: left;">
+                        <%= Resources.SunResource.HOME_INDEX_PLANT_DISTRIBUTION%></span>
                 </div>
+                <div style="clear: both;">
+                </div>
+                <div class="mdl02">
+                    <ul style="margin: 10px 0px 0px 0px; overflow: hidden;">
+                        <%
+                            foreach (Cn.Loosoft.Zhisou.SunPower.Domain.Plant plant in ViewData["newPlants"] as List<Cn.Loosoft.Zhisou.SunPower.Domain.Plant>)
+                            {  
+                        %>
+                        <li>
+                            <%=plant.name.Length>20?plant.name.Substring(0,20):plant.name%></li>
+                        <%} %>
+                    </ul>
+                </div>
+                <div>
+                </div>
+            </div>
             <div class="mainboxdown_r">
                 <div class="indexicg">
                     <span style="float: left;"><%= Resources.SunResource.HOMT_INDEX_MOBILE_TITLE%></span>
@@ -526,7 +531,7 @@
                     </div>
                     <div style="padding-left: 15px;">
                         <label>
-  <input onclick="window.location.href='/app/index'" type="submit" name="Submit2" value="<%= Resources.SunResource.HOME_INDEX_MOBILE_BUTTON%> &gt;&gt;"  style="background:url(/images/dlown.jpg) no-repeat; width:115px; height:16px; color:#FFFFFF; text-align:center; border:none; font-family:Arial, Helvetica, sans-serif; padding-bottom:5px; cursor:pointer;"/>
+  <input onclick="window.location.href='/app/index'" type="submit" name="Submit2" value="<%= Resources.SunResource.HOME_INDEX_MOBILE_BUTTON%> &gt;&gt;"  style="background:url(/images/dlown.jpg) no-repeat; width:85px; height:16px; color:#FFFFFF; text-align:center; border:none; font-family:Arial, Helvetica, sans-serif; padding-bottom:5px; cursor:pointer;"/>
   </label>
                     </div>
                     <div>

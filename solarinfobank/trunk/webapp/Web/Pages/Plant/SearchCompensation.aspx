@@ -20,7 +20,7 @@
         </td>
         <td width="22%" class="subline02">
             <strong>
-                <%=Resources.SunResource.COMPENSATION_VALUE%></strong>
+                <%=Resources.SunResource.COMPENSATION_VALUE%> (kWh) </strong>
         </td>
         <td width="12%" class="subline02">
             <strong>
@@ -41,7 +41,6 @@
         </td>
         <td class="down_line01">
             <%=item.dataValue %>
-            kWh
         </td>
         <td class="down_line01">
             <%if (UserUtil.getCurUser().username != UserUtil.demousername)

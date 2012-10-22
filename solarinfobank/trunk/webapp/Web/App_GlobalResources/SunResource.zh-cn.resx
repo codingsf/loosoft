@@ -5295,4 +5295,7 @@
   <data name="PLANT_ENERGYFILTER_SUBTITLE" xml:space="preserve">
     <value>每kWp发电量低于或高于平均值设定系数将触发预警</value>
   </data>
+  <data name="PLANT_MONTH_DESC" xml:space="preserve">
+    <value>月份</value>
+  </data>
 </root>

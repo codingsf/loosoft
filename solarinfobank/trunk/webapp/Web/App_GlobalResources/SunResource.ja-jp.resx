@@ -5237,4 +5237,7 @@ The average value of coefficient will trigger warning
     <value>SPDの故障</value>
     <comment>故障</comment>
   </data>
+  <data name="PLANT_MONTH_DESC" xml:space="preserve">
+    <value>月份</value>
+  </data>
 </root>

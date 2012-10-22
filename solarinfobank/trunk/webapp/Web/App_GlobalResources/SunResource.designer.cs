@@ -8110,6 +8110,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 月份 的本地化字符串。
+        /// </summary>
+        internal static string PLANT_MONTH_DESC {
+            get {
+                return ResourceManager.GetString("PLANT_MONTH_DESC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Please enter the station name 的本地化字符串。
         /// </summary>
         internal static string PLANT_NAME_DEFAULT_MESSAGE {

@@ -218,7 +218,7 @@
             </table>
             <div class="sb_top">
             </div>
-            <div class="sb_mid">
+            <div class="sb_mid" style="overflow:hidden">
                 <ul class="mbchange">
                     <%=UserUtil.curTemplete.id%>
                     <%foreach (Template template in ViewData["template"] as IList<Template>)

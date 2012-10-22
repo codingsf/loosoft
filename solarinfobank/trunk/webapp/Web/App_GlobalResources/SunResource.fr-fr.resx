@@ -5245,4 +5245,7 @@ The average value of coefficient will trigger warning
     <value>l'échec du SPD</value>
     <comment>故障</comment>
   </data>
+  <data name="PLANT_MONTH_DESC" xml:space="preserve">
+    <value>月份</value>
+  </data>
 </root>

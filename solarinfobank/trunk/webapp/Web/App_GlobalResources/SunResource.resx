@@ -5499,4 +5499,7 @@ software programs.
 The average value of coefficient will trigger warning
 </value>
   </data>
+  <data name="PLANT_MONTH_DESC" xml:space="preserve">
+    <value>月份</value>
+  </data>
 </root>

@@ -4831,6 +4831,14 @@
     <Content Include="Images\map\mapbg0.png" />
     <Content Include="Images\map\n.jpg" />
     <Content Include="Images\map\touming.gif" />
+    <Content Include="Images\mb\black_green.jpg" />
+    <Content Include="Images\mb\bule.jpg" />
+    <Content Include="Images\mb\darkgreen.jpg" />
+    <Content Include="Images\mb\default.jpg" />
+    <Content Include="Images\mb\grey.jpg" />
+    <Content Include="Images\mb\light_green.jpg" />
+    <Content Include="Images\mb\orange.jpg" />
+    <Content Include="Images\mb\red.jpg" />
     <Content Include="Images\minus.gif" />
     <Content Include="Images\minusbottom.gif" />
     <Content Include="Images\musicfolder.gif" />

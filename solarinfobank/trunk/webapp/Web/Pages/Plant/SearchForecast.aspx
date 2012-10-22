@@ -7,10 +7,10 @@
 <table width="100%" cellpadding="0" cellspacing="0" style="line-height: 24px; text-align: center">
     <tr>
         <td width="35%" height="25" class="subline02">
-            <strong><%=Resources.SunResource.USER_PORTAL_DATE%></strong>
+            <strong><%=Resources.SunResource.PLANT_MONTH_DESC%></strong>
         </td>
         <td width="35%" class="subline02">
-            <strong><%=Resources.SunResource.PLANT_ENERGY_FORECAST_VALUE%></strong>
+            <strong><%=Resources.SunResource.PLANT_ENERGY_FORECAST_VALUE%> (kWh)</strong>
         </td>
         <td width="30%" class="subline02">
             <strong>
@@ -21,11 +21,11 @@
       { %>
     <tr>
         <td class="down_line01">
-            <%=item.dataKey %>
+            <%=item.formatKey%>
         </td>
         <td class="down_line01">
             <%=item.dataValue %>
-            kWh
+            
         </td>
         <td class="down_line01">
             <a href="javascript:delitem(<%=item.id %>)">

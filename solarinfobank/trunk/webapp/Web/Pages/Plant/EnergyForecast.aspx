@@ -123,7 +123,7 @@
                             <tr>
                                 <td width="20%" height="35" style="padding-left: 5px;">
                                     <label>
-                                        <%=Resources.SunResource.USER_PORTAL_DATE%> :
+                                        <%=Resources.SunResource.PLANT_MONTH_DESC%> :
                                     </label>
                                 </td>
                                 <td width="80%" style="padding-left: 5px;">
@@ -137,7 +137,7 @@
                                     <span style="padding-right: 5px;"><%=Resources.SunResource.PLANT_ENERGY_FORECAST_VALUE%> : <span class="red">*</span></span>
                                 </td>
                                 <td style="padding-left: 5px;">
-                                    <input name="compensation" type="text" class="txtbu01" value="" id="value" />
+                                    <input name="compensation" type="text" class="txtbu01" value="" id="value" /> (kWh)
                                     <span id="error_value"></span>
                                 </td>
                             </tr>
@@ -147,7 +147,7 @@
                                 </td>
                                 <td style="padding-left: 5px;">
                                     <input name="btnsave" type="submit" class="subbu01" id="btnsave" value="<%=Resources.SunResource.PLANT_ADDPLANT_SAVE%>" />
-                                    <input id="btnreset" type="button" class="subbu01" value="<%=Resources.SunResource.MONITORITEM_RESET%>" />
+                                    <input id="btnreset" type="button" class="subbu01" value="<%=Resources.SunResource.MONITORITEM_RESET%>" /> 
                                 </td>
                             </tr>
                         </table>

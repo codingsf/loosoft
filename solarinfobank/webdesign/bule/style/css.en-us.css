@@ -114,9 +114,9 @@ img{ border:none;}
 .ddgr{ color:#33AAE2;}/*文字样式*/
 
 /*05问答部分*/
-.mdl02{padding-top:10px;padding-left:100px; padding-right:20px;}
+.mdl02{padding-top:10px;padding-left:180px; padding-right:20px;}
 .mdl02 ul{ list-style:none;}
-.mdl02 ul li{ height:30px; padding-left:25px; border-bottom:1px dotted #CCCCCC; line-height:30px; background:url(../Images/ico05.gif) no-repeat left;width:260px;
+.mdl02 ul li{ height:30px; padding-left:25px; border-bottom:1px dotted #CCCCCC; line-height:30px; background:url(../images/ico05.jpg) no-repeat left;width:180px;
 white-space:nowrap;word-break:keep-all;overflow:hidden;text-overflow:ellipsis;}
 .mdl02 .veiwmore{ display:block; padding-left:40px; padding-top:10px;}
 

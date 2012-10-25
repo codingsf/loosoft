@@ -1,0 +1,152 @@
+.lcbox{ width:753px; margin:40px  auto 30px; auto;}
+.lctab{ background: url(../images/lc/lcbg01.jpg); height:45px;}
+.lctab ul{ list-style:none; margin:0px; padding:0px;}
+.lctab ul li{ float:left; text-align:center; display:block; width:220px; height:45px; margin:0 15px; font-size:14px; font-weight: bold; line-height:40px;}
+.lc_yellowbg{ background:url(../images/lc/lcover.jpg) no-repeat; float:left; text-align:center; display:block; width:220px; height:45px; margin:0 15px; font-size:14px; font-weight: bold; line-height:40px; color:#FFFFFF;}
+
+.lcabout{ margin-top:10px;}
+.tlist{ line-height:35px;}
+.tlist input{ vertical-align:middle;} 
+.ss_zk{ background:url(../images/lc/lcbg02.jpg); height:26px;  margin:20px 0;}
+.ss_zk0{height:26px;  margin:0px;}
+.ss_zkico{display:block; height:16px; padding-top:8px; background:url(../images/lc/ss_btu.gif) no-repeat left; padding-left:15px; margin-left:20px; }
+.zk_zkico{display:block; height:16px; padding-top:8px; background:url(../images/lc/zk_btu.gif) no-repeat left; padding-left:15px; margin-left:20px; }
+
+.ok_box{ border-top:1px dotted #969696; margin:30px auto 20px auto; padding-top:20px; text-align:center;}
+.ok_box0{ margin:20px auto; padding-top:20px; text-align:center;}
+
+.no_greybtu{ background:url(../images/lc/lcbtu1.gif); height:34px; text-align:center; line-height:34px; padding:0 15px; font-size:14px; font-weight:bold; color:#fff; border:none; cursor:pointer;}
+
+
+.lcadd01 a{ color:#000000; text-decoration:underline;}
+
+.lcadd02 a{ color:#000000; text-decoration:underline;}
+
+.lcadd01{ background:url(../images/lc/lcadd01.gif) no-repeat left #FBF1D2; padding-left:35px; padding-right:10px; height:25px; margin-top:10px; margin-left:20px; line-height:25px; font-weight:bold; border:1px solid #FFCC00; cursor:pointer; color:#963303;}
+
+.lcadd02{ background:url(../images/lc/lcadd02.gif) no-repeat left #FBF1D2; padding-left:30px; padding-right:10px; height:25px; margin-top:10px; margin-left:10px; line-height:25px; font-weight:bold; border:1px solid #FFCC00; cursor:pointer; color:#963303;}
+
+
+.lcin01{}
+.lcin01 ul{list-style:none; margin:0 0 0 10px; padding:0px;}
+.lcin01 ul li{ float:left; line-height:30px; display:block; padding-right:16px;}
+
+.lcintt01{ border-bottom:1px dotted #ccc; height:34px; margin:0 10px;}
+.lcintt01 span{ line-height:34px;}
+
+.lcsub{ display:block; margin-left:20px; margin-top:10px; height:25px;}
+
+.lcintt02{ line-height:30px; height:30px; padding-left:10px; display:block; font-size:14px; font-weight:bold;}
+.tdstyle01{ background:url(../images/lc/lctdbg01.gif); height:23px; line-height:23px; text-align:center; color:#FFf;}
+.tdstyle02{ background:#F3F3F3;height:26px; line-height:26px; text-align:center; border-top:1px solid #FFFFFF;}
+
+.iv{ vertical-align:middle;}
+.mr20{ margin-right:20px;}
+.mt15{ margin-top:15px;}
+.mt10{ margin-top:10px;}
+.ml15{ margin-left:15px;}
+.ml20{ margin-left:20px;}
+.mr15{ margin-right:15px;}
+.mb30{ margin-bottom:30px;}
+.pb5{ padding-bottom:5px;}
+.fl{ float:left;}
+.fr{ float:right;}
+.lcline{ border-bottom:1px dashed #CECECC; margin:20px 10px; height:1px; display:block;}
+.btua{ background:url(../images/lc/btua.gif);color:#fff; font-weight:bold; height:22px; line-height:22px; padding:0 10px; border-left:1px solid #0A661F; border-right:1px solid #0A661F; border-bottom:none; border-top:none;}
+.btub{ background:url(../images/lc/btub.gif); color:#fff; font-weight:bold; height:22px;line-height:22px; padding:0 10px; border-left:1px solid #3B3B3B; border-right:1px solid #3B3B3B; border-bottom:none; border-top:none;}
+
+/*上传图片开始*/
+.sc_btu{ background:#E8E8E8; height:22px; line-height:22px; padding:0px 15px; text-align:center; border:1px solid #999999; cursor:pointer;}
+
+.sc01{ display:block; text-align:center;}
+.sc02{ display:block; padding-left:100px; color:#FFCC00;}
+.scbox{ background:url(../images/lc/subbg018.jpg); width:150px; height:101px; text-align:center; padding:10px 0; margin-left:20px; float:left;}
+.scbox span{ display:block; height:20px; line-height:20px; text-align:center; margin-top:5px; margin-left:10px;}
+/*上传图片结束*/
+
+.ok_greenbtu{ background:url(../images/lc/lcbtu0.gif); height:34px; text-align:center; line-height:34px; padding:0 15px; font-size:14px; font-weight:bold; color:#fff; border:none; cursor:pointer;}
+
+
+.lcinput01{ background: url(../images/sub/subbg015.jpg); height:21px; line-height:21px; border:1px solid #BFBFBF; width:90px;}
+.lcinput02{ background: url(../images/sub/subbg015.jpg); height:21px; line-height:21px; border:1px solid #BFBFBF; width:150px;}
+
+.sza:link{ color:#8D9113; text-decoration:underline;}
+.sza:visited{ color:#8D9113; text-decoration:underline;}
+.sza:hover{ color:#8D9113; text-decoration:underline;}
+.sza:active{ color:#8D9113; text-decoration:underline;}
+
+.lcts01{ background:#F8F1C3; display:block; padding-left:30px; color:#FF0000; height:25px; line-height:25px; margin-bottom:10px;}
+.lcts02{display:block; padding-left:30px; color:#FF0000; height:25px; line-height:25px; margin-bottom:10px;}=======
+.lcbox{ width:753px; margin:40px  auto 30px; auto;}
+.lctab{ background: url(../images/lc/lcbg01.jpg); height:45px;}
+.lctab ul{ list-style:none; margin:0px; padding:0px;}
+.lctab ul li{ float:left; text-align:center; display:block; width:220px; height:45px; margin:0 15px; font-size:14px; font-weight: bold; line-height:40px;}
+.lc_yellowbg{ background:url(../images/lc/lcover.jpg) no-repeat; float:left; text-align:center; display:block; width:220px; height:45px; margin:0 15px; font-size:14px; font-weight: bold; line-height:40px; color:#FFFFFF;}
+
+.lcabout{ margin-top:10px;}
+.tlist{ line-height:35px;}
+.tlist input{ vertical-align:middle;} 
+.ss_zk{ background:url(../images/lc/lcbg02.jpg); height:26px;  margin:20px 0;}
+.ss_zk0{height:26px;  margin:0px;}
+.ss_zkico{display:block; height:16px; padding-top:8px; background:url(../images/lc/ss_btu.gif) no-repeat left; padding-left:15px; margin-left:20px; }
+.zk_zkico{display:block; height:16px; padding-top:8px; background:url(../images/lc/zk_btu.gif) no-repeat left; padding-left:15px; margin-left:20px; }
+
+.ok_box{ border-top:1px dotted #969696; margin:30px auto 20px auto; padding-top:20px; text-align:center;}
+.ok_box0{ margin:20px auto; padding-top:20px; text-align:center;}
+
+.lcadd01{ background:url(../images/lc/lcadd01.gif) no-repeat left #FBF1D2; padding-left:35px; padding-right:10px; height:25px; margin-top:10px; margin-left:20px; line-height:25px; font-weight:bold; border:1px solid #FFCC00; cursor:pointer; color:#963303;}
+
+.lcadd02{ background:url(../images/lc/lcadd02.gif) no-repeat left #FBF1D2; padding-left:30px; padding-right:10px; height:25px; margin-top:10px; margin-left:10px; line-height:25px; font-weight:bold; border:1px solid #FFCC00; cursor:pointer; color:#963303;}
+
+
+.lcin01{}
+.lcin01 ul{list-style:none; margin:0 0 0 10px; padding:0px;}
+.lcin01 ul li{ float:left;line-height:30px; display:block; padding-right:26px;}
+
+.lcintt01{ border-bottom:1px dotted #ccc; height:34px; margin:0 10px;}
+.lcintt01 span{ line-height:34px;}
+
+.lcsub{ display:block; margin-left:20px; margin-top:10px; height:25px;}
+
+.lcintt02{ line-height:30px; height:30px; padding-left:10px; display:block; font-size:14px; font-weight:bold;}
+.tdstyle01{ background:url(../images/lc/lctdbg01.gif); height:23px; line-height:23px; text-align:center; color:#FFf;}
+.tdstyle02{ background:#F3F3F3;height:26px; line-height:26px; text-align:center; border-top:1px solid #FFFFFF;}
+
+.iv{ vertical-align:middle;}
+.mr20{ margin-right:20px;}
+.mt15{ margin-top:15px;}
+.mt10{ margin-top:10px;}
+.ml15{ margin-left:15px;}
+.ml20{ margin-left:20px;}
+.mr15{ margin-right:15px;}
+.mb30{ margin-bottom:30px;}
+.pb5{ padding-bottom:5px;}
+.fl{ float:left;}
+.fr{ float:right;}
+.lcline{ border-bottom:1px dashed #CECECC; margin:20px 10px; height:1px; display:block;}
+.btua{ background:url(../images/lc/btua.gif);color:#fff; font-weight:bold; height:22px; line-height:22px; padding:0 10px; border-left:1px solid #0A661F; border-right:1px solid #0A661F; border-bottom:none; border-top:none;}
+.btub{ background:url(../images/lc/btub.gif); color:#fff; font-weight:bold; height:22px;line-height:22px; padding:0 10px; border-left:1px solid #3B3B3B; border-right:1px solid #3B3B3B; border-bottom:none; border-top:none;}
+
+/*上传图片开始*/
+.sc_btu{ background:#E8E8E8; height:22px; line-height:22px; padding:0px 15px; text-align:center; border:1px solid #999999; cursor:pointer;}
+
+.sc01{ display:block; text-align:center;}
+.sc02{ display:block; padding-left:100px; color:#FFCC00;}
+.scbox{ background:url(../images/lc/subbg018.jpg); width:150px; height:101px; text-align:center; padding:10px 0; margin-left:20px; float:left;}
+.scbox span{ display:block; height:20px; line-height:20px; text-align:center; margin-top:5px; margin-left:10px;}
+/*上传图片结束*/
+
+.ok_greenbtu{ background:url(../images/lc/lcbtu0.gif); height:34px; text-align:center; line-height:34px; padding:0 15px; font-size:14px; font-weight:bold; color:#fff; border:none; cursor:pointer;}
+
+.no_greybtu{ background:url(../images/lc/lcbtu1.gif); height:34px; text-align:center; line-height:34px; padding:0 15px; font-size:14px; font-weight:bold; color:#fff; border:none; cursor:pointer;}
+
+.lcinput01{ background: url(../images/sub/subbg015.jpg); height:21px; line-height:21px; border:1px solid #BFBFBF; width:90px;}
+.lcinput02{ background: url(../images/sub/subbg015.jpg); height:21px; line-height:21px; border:1px solid #BFBFBF; width:150px;}
+
+.sza:link{ color:#8D9113; text-decoration:underline;}
+.sza:visited{ color:#8D9113; text-decoration:underline;}
+.sza:hover{ color:#8D9113; text-decoration:underline;}
+.sza:active{ color:#8D9113; text-decoration:underline;}
+
+.lcts01{ background:#F8F1C3; display:block; padding-left:30px; color:#FF0000; height:25px; line-height:25px; margin-bottom:10px;}
+.lcts02{display:block; padding-left:30px; color:#FF0000; height:25px; line-height:25px; margin-bottom:10px;}>>>>>>> .r213

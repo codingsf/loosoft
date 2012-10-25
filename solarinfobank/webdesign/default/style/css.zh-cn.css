@@ -18,11 +18,6 @@ a:active { color:#000; text-decoration:none;}
 .dbl:hover {color:#FF900A; text-decoration:none;}
 .dbl:active {color:#333; text-decoration:none;}
 
-.green:link{color:#459001; text-decoration:none;}
-.green:visited {color:#459001; text-decoration:none;}
-.green:hover {color:#459001; text-decoration:underline;}
-.green:active {color:#459001; text-decoration:none;}
-
 .embox{ height:10px;}/*10PX间距空间div*/
 .insy01{ border:1px solid #3A4E2B; width:160px; height:17px;}/*输入框样式*/
 

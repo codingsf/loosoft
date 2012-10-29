@@ -330,9 +330,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                             LogUtil.error("update" + collectorDayData.deviceType + " device day data fail:" + e.Message);
                         }
                     }
-
-                    FileLogUtil.info("成功持久化设备天数据：" + "deviceid:" + collectorDayData.deviceID + ",content:" + collectorDayData.dataContent);
-
+                    try
+                    {
+                        FileLogUtil.info("成功持久化设备天数据：" + "deviceid:" + collectorDayData.deviceID + ",content:" + collectorDayData.dataContent);
+                    }
+                    catch (Exception e) {
+                        LogUtil.warn(e.Message);
+                    }
                     //将变化标识置为false
                     datadic[key].changed = false;
                     //add by qhb in 20120713 for 持久化完成后从map中删除以防止天数据map愈来愈大，代替clearDayDataMap导致对于历史数据时，会将历史数据删除了，而无法持久化

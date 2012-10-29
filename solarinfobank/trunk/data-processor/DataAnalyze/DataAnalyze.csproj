@@ -242,7 +242,6 @@
     <Content Include="bin\Debug\Maps\Monitor.xml" />
     <Content Include="bin\Debug\Maps\MonitorConfig.xml" />
     <Content Include="bin\Debug\Maps\MonitorItem.xml" />
-    <Content Include="bin\Debug\Maps\Plant.xml" />
     <Content Include="bin\Debug\Maps\PlantUnit.xml" />
     <Content Include="bin\Debug\Maps\PlantUser.xml" />
     <Content Include="bin\Debug\Maps\ProductPicture.xml" />
@@ -256,6 +255,9 @@
     <Content Include="bin\Debug\Maps\UserRole.xml" />
     <Content Include="bin\Debug\Maps\VideoMonitor.xml" />
     <Content Include="bin\Debug\Maps\VirtualPlant.xml" />
+    <Content Include="bin\Debug\Maps\Plant17.xml" />
+    <Content Include="bin\Debug\Maps\Plant18.xml" />
+    <Content Include="bin\Debug\Maps\Plant.xml" />
     <Content Include="bin\Debug\providers.config" />
     <Content Include="bin\Debug\SqlMap.config" />
   </ItemGroup>

@@ -125,6 +125,7 @@ namespace DataAnalyze
                             if (tcpmessage.collectorDataCount != null)
                             {
                                 TcpDataProcesser.collectorDataCounts.Add(tcpmessage.collectorDataCount);
+                                LogUtil.error("add collector Count Data 完成:collectorId:" + tcpmessage.collectorDataCount.deviceId + ":" + tcpmessage.collectorDataCount.maxValue+"-"+tcpmessage.collectorDataCount.maxTime);
                             }
                         }
                         catch (Exception ddcEe)

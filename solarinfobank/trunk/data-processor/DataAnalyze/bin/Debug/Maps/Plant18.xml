@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!-- namespace="Plant" 1.3.2version解析器为了兼容17版本数据库，此处xml需要用17版数据库表结构的配置文件-->
+<!-- namespace="Plant" -->
 <sqlMap  namespace=""  xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <alias>
@@ -37,12 +37,32 @@
       <result property="endDate"			column="endDate"/>
       <result property="hours"			column="hours"/>
       <result property="area"			column="area"/>
+      <result property="basePrice"			column="basePrice"/>
+      <result property="parentId"			column="parentId"/>
+      <result property="plantIds"			column="plantIds"/>
+      <result property="isVirtualPlant"			column="isVirtualPlant"/>
       <result property="dst_enable"			column="dst_enable"/>
+      <result property="structPic"			column="structPic"/>
+      <result property="longitudeString"			column="longitudeString"/>
+      <result property="latitudeString"			column="latitudeString"/>
       <result property="VideoMonitorEnable"			column="videoMonitorEnable"/>
       <result property="waringLastSendTime"			column="waring_lastsendtime"/>
+      <result property="predictivedata"			column="predictivedata"/>
+      <result property="energyRate"			column="energy_rate"/>
+      <result property="maxEnergyRate"			column="max_energy_rate"/>
+      <result property="lastHandleDate"			column="lastHandleDate"/>
+      <result property="rateEnable"			column="rate_enable"/>
       <!-- 级联部分-->
       <result property="plantUnits"	lazyLoad="false"	column="id" select="plantunit_get_list_by_plantid" />
       <result property="monitores"	lazyLoad="false"	column="id" select="videomonitor_get_list_lazy" />
+      <!--下级部分，不区分组合和实际电站-->
+      <result property="childs" lazyLoad="true" column="id" select="plant_child_lazy" />
+      <!--上一级电站-->
+      <result property="parentPlant" lazyLoad="true" column="parentId" select="plant_parent_lazy" />
+
+      <result property="ElecPriceList" lazyLoad="true" column="id" select="elecprice_list_lazy" />
+      <!--
+      <result property="yearCompensation" lazyLoad="false" column="id" select="plant_yearcompensation_lazy_getlist" />-->
     </resultMap>
   </resultMaps>
 
@@ -72,11 +92,12 @@
   <statements>
     <!--获取当前用户下所有电站列表 陈波-->
     <select id="plant_get_list"  resultMap="plant_info_result" paramterClass="int" cacheModel="plant_cache">
-      select *  from  plant_info where userid=#value#
+      select *  from  plant_info where userid=#value# and isVirtualPlant=0
     </select>
+
     <!--取得前几个电站-->
     <select id="plant_list_top"  resultMap="plant_info_result" paramterClass="Hashtable" cacheModel="plant_cache">
-      select * from plant_info where isnewplant=1 order by $order$ limit #top#
+      select * from plant_info where isnewplant=1 and isVirtualPlant=0 order by $order$ limit #top#
     </select>
 
     <select id="plant_info_get_lazy"  resultClass="Plant" cacheModel="plant_cache">
@@ -84,13 +105,15 @@
     </select>
 
     <select id="loading_plant_page_list" resultMap="plant_info_result" cacheModel="plant_cache">
-      <![CDATA[  SELECT * from plant_info limit $Start$,$End$]]>
+      <![CDATA[  SELECT * from plant_info where isVirtualPlant=0 limit $Start$,$End$]]>
     </select>
+
     <select id="plant_get_mult" resultMap="plant_info_result" cacheModel="plant_cache">
       <![CDATA[  SELECT * from plant_info where id in ($value$)]]>
     </select>
+
     <select id="loading_plant_page_count" resultClass="int" cacheModel="plant_cache">
-      <![CDATA[SELECT COUNT(1) FROM plant_info 　]]>
+      <![CDATA[SELECT COUNT(1) FROM plant_info where isVirtualPlant=0 　]]>
     </select>
 
     <!--根据id查询电站信息（张月）-->
@@ -99,14 +122,14 @@
     </select>
     <!--添加电站 返回新增列的id （张月）-->
     <insert id="plant_insert" parameterClass="Plant">
-      INSERT INTO  PLANT_INFO( name,postcode,location,country,city,timezone,street,revenueRate,installdate,operater,email,phone,direction,angle,manufacturer,module_type,pic,longitude,userID,latitude,description,design_power,example_plant,videoMonitorEnable,startdate,enddate,hours,dst_enable,area) VALUES( #name#,#postcode#,#location#,#country#,#city#,#timezone#,#street#,#revenueRate#,#installdate#,#operater#,#email#,#phone#,#direction#,#angle#,#manufacturer#,#module_type#,#pic#,#longitude#,#userID#,#latitude#,#description#,#design_power#,#example_plant#,#VideoMonitorEnable#,#startDate#,#endDate#,#hours#,#dst_enable#,#area#)
+      INSERT INTO  PLANT_INFO( name,postcode,location,country,city,timezone,street,revenueRate,installdate,operater,email,phone,direction,angle,manufacturer,module_type,pic,longitude,userID,latitude,description,design_power,example_plant,videoMonitorEnable,startdate,enddate,hours,dst_enable,area,longitudeString,latitudeString,parentId,isVirtualPlant,basePrice,structPic,energy_rate,max_energy_rate) VALUES( #name#,#postcode#,#location#,#country#,#city#,#timezone#,#street#,#revenueRate#,#installdate#,#operater#,#email#,#phone#,#direction#,#angle#,#manufacturer#,#module_type#,#pic#,#longitude#,#userID#,#latitude#,#description#,#design_power#,#example_plant#,#VideoMonitorEnable#,#startDate#,#endDate#,#hours#,#dst_enable#,#area#,#longitudeString#,#latitudeString#,#parentId#,#isVirtualPlant#,#basePrice#,#structPic#,1,1)
       <selectKey resultClass="int" property="id" type="post">
         SELECT LAST_INSERT_ID() AS id
       </selectKey>
     </insert>
     <!-- 根据id删除电站 （张月）-->
     <delete id="plant_delete" parameterClass="Plant">
-      DELETE FROM PLANT_INFO WHERE id=#id#
+      DELETE FROM PLANT_INFO WHERE id=#id#; delete from elec_price where plantid=#id#
     </delete>
     <!--修改电站图片（张月）-->
     <update id="plant_update_pic" paramentClass="Plant">
@@ -114,23 +137,22 @@
     </update>
     <!--修改电站信息（张月）-->
     <update id="plant_update" paramentClass="Plant">
-      UPDATE  PLANT_INFO SET id=#id#,name=#name#,revenueRate=#revenueRate#,videoMonitorEnable=#VideoMonitorEnable#,postcode=#postcode#,location=#location#,country=#country#,city=#city#,timezone=#timezone#,street=#street#,installdate=#installdate#,operater=#operater#,email=#email#,phone=#phone#,direction=#direction#,angle=#angle#,manufacturer=#manufacturer#,module_type=#module_type#,pic=#pic#,longitude=#longitude#,userID=#userID#,latitude=#latitude#,description=#description#,design_power=#design_power#,example_plant=#example_plant#,isNewPlant=#isNewPlant#,startdate=#startDate#,enddate=#endDate#,hours=#hours#,dst_enable=#dst_enable#,area=#area#,longitudeString=#longitudeString#,latitudeString=#latitudeString# WHERE id=#id#
+      UPDATE  PLANT_INFO SET id=#id#,name=#name#,revenueRate=#revenueRate#,videoMonitorEnable=#VideoMonitorEnable#,postcode=#postcode#,location=#location#,country=#country#,city=#city#,timezone=#timezone#,street=#street#,installdate=#installdate#,operater=#operater#,email=#email#,phone=#phone#,direction=#direction#,angle=#angle#,manufacturer=#manufacturer#,module_type=#module_type#,pic=#pic#,longitude=#longitude#,userID=#userID#,latitude=#latitude#,description=#description#,design_power=#design_power#,example_plant=#example_plant#,isNewPlant=#isNewPlant#,startdate=#startDate#,enddate=#endDate#,hours=#hours#,dst_enable=#dst_enable#,area=#area#,longitudeString=#longitudeString#,latitudeString=#latitudeString#, parentId=#parentId#,isVirtualPlant=#isVirtualPlant# ,basePrice=#basePrice#,structPic=#structPic#,predictivedata=#predictivedata#,energy_rate=#energyRate#,max_energy_rate=#maxEnergyRate#,lastHandleDate=#lastHandleDate#,rate_enable=#rateEnable# WHERE id=#id#
     </update>
 
     <!--获取所有的电站(张月改)-->
     <select id="plant_get_all" resultMap="plant_info_result" cacheModel="plant_cache">
-      select *  from  plant_info
+      select *  from  plant_info where isVirtualPlant=0
     </select>
 
     <!--获取所有的电站的个数(张月)-->
     <select id="plant_get_all_num" resultClass="int">
-      select count(*)  from  plant_info
+      select count(*)  from  plant_info where isVirtualPlant=0
     </select>
 
-
     <select id="admin_plant_query_list" parameterClass="Hashtable" resultMap="plant_info_result">
-      select * from plant_info
-      <dynamic prepend="where">
+      select * from plant_info  where isVirtualPlant=0
+      <dynamic prepend="">
         <isParameterPresent>
           <isNotEmpty prepend="and" property="plant.area">
             area = #plant.area#
@@ -156,8 +178,8 @@
     </select>
 
     <select id="admin_plant_query_list_count" parameterClass="Hashtable" resultClass="int">
-      select count(1) from plant_info
-      <dynamic prepend="where">
+      select count(1) from plant_info  where isVirtualPlant=0
+      <dynamic prepend="">
         <isParameterPresent>
           <isNotEmpty prepend="and" property="plant.area">
             area = #plant.area#
@@ -180,11 +202,39 @@
         </isParameterPresent>
       </dynamic>
     </select>
+
     <select id="plant_get_list_like_pname"  resultMap="plant_info_result" >
-      select *  from  plant_info where upper(name) like upper('%$value$%')
+      select *  from  plant_info where upper(name) like upper('%$value$%') and isVirtualPlant=0
     </select>
+
+    <select id="plant_get_by_name"  resultMap="plant_info_result" >
+      select *  from  plant_info where upper(name) like upper('$value$')
+    </select>
+
     <update id="update_plant_warning_lasttime">
       update plant_info set waring_lastsendtime=#updatetime# where id=#pid#
     </update>
+
+    <!--下级电站部分-->
+    <select id="plant_child_lazy" resultMap="plant_info_result">
+      select * from plant_info where parentid=#value#
+    </select>
+    <!--上一级电站部分-->
+    <select id="plant_parent_lazy" resultMap="plant_info_result">
+      select * from plant_info where id=#value#
+    </select>
+    <!--废弃，这里是不符合逻辑的 author:陈波 by qhb 用户所能备指定的下级电站是其创建的一级电站而已
+    <select id="virtualplant_uid_lazy" resultMap="plant_info_result">
+      select * from plant_info where id in (select  plantid from plant_user where userid=#value#) and parentId=0 and isVirtualPlant=1
+    </select>
+    -->
+    <update id="plant_update_parentid">
+      update plant_info set parentid=0 where parentid=#value#
+    </update>
+
+    <!--取得用户创建的所有电站一级电站-->
+    <select id="toplevelplant_get_uid" resultMap="plant_info_result">
+      select * from plant_info where userId=#value# and (parentId is null or parentId=0)
+    </select>
   </statements>
 </sqlMap>

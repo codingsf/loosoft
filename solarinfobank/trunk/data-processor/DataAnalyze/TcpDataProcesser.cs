@@ -241,7 +241,9 @@ namespace DataAnalyze
             try
             {
                 DeviceDataCountService.GetInstance().CacheCollectorCount(collectorDataCounts);
+                LogUtil.info("CacheCollectorCount 完成：" + collectorDataCounts.Count);
                 //电站统计，必须保证所有采集器都在，即每次都统计完整的电站单元，所以不能清空。
+
                 collectorDataCounts.Clear();
             }
             catch (Exception ddccache)

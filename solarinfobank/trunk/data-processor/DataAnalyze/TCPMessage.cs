@@ -168,6 +168,7 @@ namespace DataAnalyze
                     }
                     break;
                 case DataType.DataType_historydata://历史数据
+
                     break;
                 case DataType.DataType_deviceinfo: //设备数据
                     if (innertypemark == 31)

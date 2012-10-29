@@ -315,6 +315,7 @@ namespace DataAnalyze
                             mdd.deviceType = ddb.tableType;
                             mdd.changed = true;
                             //add by qhb in 20120924 for 会写到memcahced 以便持久化能取到改数据.设备天数据集中缓存处有点问题，
+                            //导致曲线数据有丢失现象
                             MemcachedClientSatat.getInstance().Set(mapObjectKey, mdd);
                             //将功率和关照的最大发生时间记录下来,稍后在优化下
                             if (key == MonitorType.MIC_INVERTER_TOTALYGPOWER || key == MonitorType.MIC_DETECTOR_SUNLINGHT || key == MonitorType.MIC_BUSBAR_TOTALCURRENT)
@@ -391,6 +392,9 @@ namespace DataAnalyze
                 mdd.localAcceptTime = DateTime.Now;
                 mdd.yearmonth = messageHeader.year + messageHeader.month;
                 mdd.changed = true;
+                //add by qhb in 20121028 for 会写到memcahced 以便持久化能取到改数据.采集器天数据集中缓存处有点问题，和设备天数据一样的问题。
+                //导致曲线数据有丢失现象
+                MemcachedClientSatat.getInstance().Set(mapObjectKey, mdd);
                 //将功率和关照的最大发生时间记录下来.稍后优化下
                 if (key == MonitorType.PLANT_MONITORITEM_POWER_CODE)
                 {

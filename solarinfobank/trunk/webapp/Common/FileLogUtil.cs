@@ -25,7 +25,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
 
         public static void warn(string msg)
         {
-            msg = "[warn]s" + DateTime.Now.ToString("MMdd HH:mm:ss") + "__" + msg;
+            msg = "[warn]" + DateTime.Now.ToString("MMdd HH:mm:ss") + "__" + msg;
             if ("info".Equals(logLevel) || "debug".Equals(logLevel) || "warn".Equals(logLevel))
             {
                 FileUtil.WriteLine(logpath, getlogFilename(), msg);

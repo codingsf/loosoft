@@ -9,9 +9,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
     public class Template
     {
         public int id { get; set; }
-        public string name { get; set; }//名称
+        // public string name { get; set; }//名称
         public bool isDefault { get; set; }//是否默认模板
         public string cssFolder { get; set; }//css 文件夹路径
         public string pic { get; set; }//预览图
+
+        public string name
+        {
+            get
+            {
+                return LanguageUtil.getDesc("TEMPLATE_NAME" + this.id);
+            }
+        }
     }
 }

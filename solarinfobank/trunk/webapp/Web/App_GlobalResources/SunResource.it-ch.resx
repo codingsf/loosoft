@@ -6628,4 +6628,28 @@ The average value of coefficient will trigger warning
     <value>1、Attenzione: le dimensioni dell'immagine non superi (L 200 * H 50) pixel bitmap 72px (supporto jpg, png, gif) è quello di garantire che l'effetto pagina, preferibilmente trasparente sfondo gif!
 &lt;br/&gt;2、 il sistema dei nomi fino a 18 caratteri </value>
   </data>
+  <data name="TEMPLATE_NAME1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME4" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME5" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME8" xml:space="preserve">
+    <value />
+  </data>
 </root>

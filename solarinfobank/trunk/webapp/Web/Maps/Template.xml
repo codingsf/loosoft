@@ -8,7 +8,6 @@
   <resultMaps>
     <resultMap id="template_result" class="Template">
       <result property="id"			column="id"/>
-      <result property="name"			column="name"/>
       <result property="isDefault"			column="isdefault"/>
       <result property="cssFolder"   column="cssfolder"/>
       <result property="pic"   column="pic" />
@@ -27,11 +26,11 @@
 
   <statements>
     <insert id="template_insert">
-      <![CDATA[insert into template (name,isdefault,cssfolder,pic) values (#name#,#isDefault#,#cssFolder#,#pic#)]]>
+      <![CDATA[insert into template (isdefault,cssfolder,pic) values (#isDefault#,#cssFolder#,#pic#)]]>
     </insert>
 
     <update id="template_update">
-      <![CDATA[update template set name=#name#, isdefault=#isDefault#, cssfolder=#cssFolder#, pic=#pic# where id=#id#]]>
+      <![CDATA[update template set isdefault=#isDefault#, cssfolder=#cssFolder#, pic=#pic# where id=#id#]]>
     </update>
     
     <update id="template_set_default">

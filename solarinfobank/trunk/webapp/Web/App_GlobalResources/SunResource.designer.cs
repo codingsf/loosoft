@@ -11193,6 +11193,78 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        internal static string TEMPLATE_NAME1 {
+            get {
+                return ResourceManager.GetString("TEMPLATE_NAME1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        internal static string TEMPLATE_NAME2 {
+            get {
+                return ResourceManager.GetString("TEMPLATE_NAME2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        internal static string TEMPLATE_NAME3 {
+            get {
+                return ResourceManager.GetString("TEMPLATE_NAME3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        internal static string TEMPLATE_NAME4 {
+            get {
+                return ResourceManager.GetString("TEMPLATE_NAME4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        internal static string TEMPLATE_NAME5 {
+            get {
+                return ResourceManager.GetString("TEMPLATE_NAME5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        internal static string TEMPLATE_NAME6 {
+            get {
+                return ResourceManager.GetString("TEMPLATE_NAME6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        internal static string TEMPLATE_NAME7 {
+            get {
+                return ResourceManager.GetString("TEMPLATE_NAME7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        internal static string TEMPLATE_NAME8 {
+            get {
+                return ResourceManager.GetString("TEMPLATE_NAME8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Select a template 的本地化字符串。
         /// </summary>
         internal static string TEMPLATE_SELECT {

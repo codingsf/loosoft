@@ -5274,4 +5274,28 @@ The average value of coefficient will trigger warning
  pixels 72px bitmap (soutien jpg, png, gif) est de s'assurer que l'effet de page,
  fond de préférence transparent gif!</value>
   </data>
+  <data name="TEMPLATE_NAME1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME4" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME5" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME8" xml:space="preserve">
+    <value />
+  </data>
 </root>

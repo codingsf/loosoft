@@ -5265,4 +5265,28 @@ The average value of coefficient will trigger warning
     <value>ご注意：1、画像サイズはピクセル72pxのビットマップは、（サポートJPG、PNG、GIF）そのページの効果は、好ましくは透明背景のGIFを保証することである（W200×H 50）を超えないように！&lt;br/&gt;
 2、システムは、18文字までの名前を付ける</value>
   </data>
+  <data name="TEMPLATE_NAME1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME4" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME5" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME8" xml:space="preserve">
+    <value />
+  </data>
 </root>

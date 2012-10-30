@@ -5323,4 +5323,28 @@
     <value>1、图片大小不超过(宽200*高50),像素为72px的位图(支持jpg,png,gif)，为保证页面效果，最好是透明背景的gif ！
 &lt;br/&gt;2、系统名称最多18个字符</value>
   </data>
+  <data name="TEMPLATE_NAME1" xml:space="preserve">
+    <value>橘黄</value>
+  </data>
+  <data name="TEMPLATE_NAME2" xml:space="preserve">
+    <value>蓝色</value>
+  </data>
+  <data name="TEMPLATE_NAME3" xml:space="preserve">
+    <value>深绿</value>
+  </data>
+  <data name="TEMPLATE_NAME4" xml:space="preserve">
+    <value>墨绿</value>
+  </data>
+  <data name="TEMPLATE_NAME5" xml:space="preserve">
+    <value>红色</value>
+  </data>
+  <data name="TEMPLATE_NAME6" xml:space="preserve">
+    <value>灰色</value>
+  </data>
+  <data name="TEMPLATE_NAME7" xml:space="preserve">
+    <value>浅绿</value>
+  </data>
+  <data name="TEMPLATE_NAME8" xml:space="preserve">
+    <value>其他</value>
+  </data>
 </root>

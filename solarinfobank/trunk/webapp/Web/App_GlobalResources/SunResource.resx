@@ -5527,4 +5527,28 @@ The average value of coefficient will trigger warning
     <value>1、Please note: the picture size does not exceed (W 200 * H 50) pixels 72px bitmap (support jpg, png, gif) is to ensure that the page effect, preferably transparent background gif!
 &lt;br/&gt;2、the system name up to 18 characters</value>
   </data>
+  <data name="TEMPLATE_NAME1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME4" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME5" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEMPLATE_NAME8" xml:space="preserve">
+    <value />
+  </data>
 </root>

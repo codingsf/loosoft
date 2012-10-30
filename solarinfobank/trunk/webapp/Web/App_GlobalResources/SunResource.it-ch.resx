@@ -6629,25 +6629,25 @@ The average value of coefficient will trigger warning
 &lt;br/&gt;2、 il sistema dei nomi fino a 18 caratteri </value>
   </data>
   <data name="TEMPLATE_NAME1" xml:space="preserve">
-    <value />
+    <value>arancione</value>
   </data>
   <data name="TEMPLATE_NAME2" xml:space="preserve">
-    <value />
+    <value>blu</value>
   </data>
   <data name="TEMPLATE_NAME3" xml:space="preserve">
-    <value />
+    <value>verde scuro</value>
   </data>
   <data name="TEMPLATE_NAME4" xml:space="preserve">
-    <value />
+    <value>verde scuro</value>
   </data>
   <data name="TEMPLATE_NAME5" xml:space="preserve">
-    <value />
+    <value>rosso</value>
   </data>
   <data name="TEMPLATE_NAME6" xml:space="preserve">
-    <value />
+    <value>grigio</value>
   </data>
   <data name="TEMPLATE_NAME7" xml:space="preserve">
-    <value />
+    <value>verde chiaro</value>
   </data>
   <data name="TEMPLATE_NAME8" xml:space="preserve">
     <value />

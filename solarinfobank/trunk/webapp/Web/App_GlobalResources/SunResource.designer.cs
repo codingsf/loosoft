@@ -11193,7 +11193,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 Orange 的本地化字符串。
         /// </summary>
         internal static string TEMPLATE_NAME1 {
             get {
@@ -11202,7 +11202,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 Blue 的本地化字符串。
         /// </summary>
         internal static string TEMPLATE_NAME2 {
             get {
@@ -11211,7 +11211,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 Dark green 的本地化字符串。
         /// </summary>
         internal static string TEMPLATE_NAME3 {
             get {
@@ -11220,7 +11220,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 Dark green 的本地化字符串。
         /// </summary>
         internal static string TEMPLATE_NAME4 {
             get {
@@ -11229,7 +11229,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 Red 的本地化字符串。
         /// </summary>
         internal static string TEMPLATE_NAME5 {
             get {
@@ -11238,7 +11238,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 Gray 的本地化字符串。
         /// </summary>
         internal static string TEMPLATE_NAME6 {
             get {
@@ -11247,7 +11247,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 Light green 的本地化字符串。
         /// </summary>
         internal static string TEMPLATE_NAME7 {
             get {

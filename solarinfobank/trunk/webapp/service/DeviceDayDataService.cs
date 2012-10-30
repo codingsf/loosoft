@@ -130,22 +130,64 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             //循环取出所有时间点，并把所有时间点放入map
             string timepoint = "";
             IDictionary<string, string> mtMap = null;
-            MonitorType mt = null;
+            MonitorType omt = null;
             string mtkey = "";
             foreach (DeviceDayData dayData in deviceDayDatas) {
                 if (string.IsNullOrEmpty(dayData.dataContent)) continue;
                 //存储所有测点
-                mt = MonitorType.getMonitorTypeByCode(dayData.monitorCode);
+                omt = MonitorType.getMonitorTypeByCode(dayData.monitorCode);
+                //add by qhb at 20120829 for 判断逆变器测点是否符合显示规则，参照设备实时数据那里规则
+
+                //如果是逆变器那么先取额定功率
+                float outtype = 0;
+                IList<int> notdisplayInverterbyPower = new List<int>();
+                IList<int> notdisplayInverterbyoutType = new List<int>();
+                if (device.deviceTypeCode == DeviceData.INVERTER_CODE)
+                {
+                    outtype = device.getMonitorValue(MonitorType.MIC_INVERTER_OUTTYPE);
+                    notdisplayInverterbyoutType = DeviceRunData.getnotDisplayMonitor(outtype);
+                    float power = device.getMonitorValue(MonitorType.MIC_INVERTER_POWER);
+                    notdisplayInverterbyPower = DeviceRunData.getnotDisplayMonitorByPower(power);
+                }
+                //排除不显示的测点
+                if (DeviceRunData.notDisplayMonitor.Contains(omt.code) || notdisplayInverterbyoutType.Contains(omt.code) || notdisplayInverterbyPower.Contains(omt.code)) continue;
+
+                //重新构造一个实例，以便用tempaffix多语言显示后缀是线程安全
+                string tempaffix = omt.tempaffix;
+                string unit = omt.unit;
+                Boolean isUP = false;//是否进制千位
+
+                //如果是逆变器要判断abc三项电压和电流的输出类型,将输出类型作为有后缀测点的后缀
+                if (device.deviceTypeCode == DeviceData.INVERTER_CODE)
+                {
+                    if (DeviceRunData.affixMonitors.Contains(dayData.monitorCode) && !float.IsNaN(outtype) && (outtype == 0 || outtype == 2))
+                        tempaffix = outtype.ToString();
+                    //add by qhb in 20120921 for 2）逆变器带功率的单位显示kW，不要显示W  （注意大小写）
+                    if (omt.code == MonitorType.MIC_INVERTER_TOTALDPOWER || omt.code == MonitorType.MIC_INVERTER_ADIRECTPOWER || omt.code == MonitorType.MIC_INVERTER_BDIRECTPOWER || omt.code == MonitorType.MIC_INVERTER_CDIRECTPOWER || omt.code == MonitorType.MIC_INVERTER_TOTALYGPOWER || omt.code == MonitorType.MIC_INVERTER_TOTALWGPOWER)
+                    {
+                        unit = "kW";
+                        isUP = true;
+                    }
+                    if (omt.code == MonitorType.MIC_INVERTER_TOTALWGPOWER)
+                    {
+                        unit = "kvar";
+                        isUP = true;
+                    }
+                }
+                MonitorType mt = new MonitorType(omt.code, unit, omt.zerotoline, tempaffix);
+
 
                 if(string.IsNullOrEmpty(mt.unit)){
                     mtkey = mt.name;
                 }else{
                     mtkey = mt.name + "(" + mt.unit + ")";
                 }
-                allmts.Add(mtkey);
+
 
                 string[] datas = dayData.dataContent.Split('#');
                 string[] timedatas=null;
+                bool isAllZero = true;
+                bool isAllNovalid = true;
                 foreach(string data in datas){
                     if (string.IsNullOrEmpty(data)) continue;
                     timedatas = data.Split(':');
@@ -159,15 +201,65 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                         mtMap = new Dictionary<string, string>();
                         timemtMap.Add(timepoint, mtMap);
                     }
+
+                    String value = timedatas[1];
+                    //如果值为-表示该值无效，不显示该测点，“-”，数据解析器会把发送的无效值固定设为“-”
+                    if ("-".Equals(value))
+                    {
+                        value = "";
+                    }
+                    else
+                    {
+                        isAllNovalid = false;
+                    }
+
+                    //add by qhb for 单位进制
+                    if (isUP)
+                    {
+                        try
+                        {
+                            value = Math.Round((double.Parse(value) / 1000), 2).ToString();
+                        }
+                        catch (Exception e)
+                        {
+                            //do nothing
+                        }
+                    }
+                    //add by qhb in 20121029 for 1）功率因数为0和无功功率为0屏蔽不显示。
+                    if (mt.code == MonitorType.MIC_INVERTER_TOTALPOWERFACTOR || mt.code == MonitorType.MIC_INVERTER_TOTALWGPOWER)
+                    {
+                        try
+                        {
+                            if (double.Parse(value) == 0)
+                                value="";
+                            else
+                            {
+                                isAllZero = false;
+                            }
+                        }
+                        catch { }
+                    }
+                    if ("0".Equals(value) && omt.zerotoline)
+                    {
+                        value = "-";
+                    }
+
                     if (mtMap.ContainsKey(mtkey))
                     {
-                        mtMap[mtkey] = timedatas[1];
+                        mtMap[mtkey] = value;
                     }
                     else {
-                        mtMap.Add(mtkey, timedatas[1]);
+                        mtMap.Add(mtkey, value);
                     }
                 }
-
+                //add by qhb in 20121029 for 1）功率因数为0和无功功率为0屏蔽不显示。
+                if (isAllZero && (mt.code == MonitorType.MIC_INVERTER_TOTALPOWERFACTOR || mt.code == MonitorType.MIC_INVERTER_TOTALWGPOWER))
+                {
+                    continue;
+                }
+                if (isAllNovalid)
+                    continue;
+                allmts.Add(mtkey);
             }
             return timemtMap;
         }

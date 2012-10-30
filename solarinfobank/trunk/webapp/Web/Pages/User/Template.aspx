@@ -173,7 +173,7 @@
                     <div class="sb_top">
                     </div>
                     
-                    <div class="sb_mid"><%=Resources.SunResource.TEMPLATE_CONFIG%>
+                    <div class="sb_mid">
                         <div class="mbts">
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>

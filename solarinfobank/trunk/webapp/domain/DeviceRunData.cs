@@ -19,9 +19,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
     {
         static IDictionary<string, IList<int>> sortGroup = new Dictionary<string, IList<int>>();
 
-        private static IList<int> notDisplayMonitor = new List<int>();//不用显示出来的测点
-        
-        private static IList<int> affixMonitors = new List<int>();//增加临时后缀的测点
+        public static IList<int> notDisplayMonitor = new List<int>();//不用显示出来的测点
+
+        public static IList<int> affixMonitors = new List<int>();//增加临时后缀的测点
 
         static DeviceRunData()
         {
@@ -86,7 +86,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// </summary>
         /// <param name="outtype"></param>
         /// <returns></returns>
-        private static IList<int> getnotDisplayMonitor(float outtype)
+        public static IList<int> getnotDisplayMonitor(float outtype)
         {
             IList<int> notDisplayMonitor = new List<int>();//不用显示出来的测点
             if (float.IsNaN(outtype)) return notDisplayMonitor;
@@ -113,7 +113,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// </summary>
         /// <param name="power"></param>
         /// <returns></returns>
-        private static IList<int> getnotDisplayMonitorByPower(float power)
+        public static IList<int> getnotDisplayMonitorByPower(float power)
         {
             IList<int> notDisplayMonitor = new List<int>();//不用显示出来的测点
             if (float.IsNaN(power)) return notDisplayMonitor;
@@ -255,7 +255,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             IList<KeyValuePair<MonitorType, string>> resGroup3 = new List<KeyValuePair<MonitorType, string>>();
             IList<KeyValuePair<MonitorType, string>> resGroup4 = new List<KeyValuePair<MonitorType, string>>();
             IList<KeyValuePair<MonitorType, string>> resGroup5 = new List<KeyValuePair<MonitorType, string>>();
-            //先取得逆变器的输出类型
 
             string rundatastr = this.rundatastr;
             string[] rundatas = rundatastr.Split('#');

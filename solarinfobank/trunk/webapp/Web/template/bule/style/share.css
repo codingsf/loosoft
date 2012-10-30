@@ -56,10 +56,10 @@
 .kjb3{}
 .kjb3 ul{ margin:0px; padding:0px; list-style:none;}
 .kjb3 ul li{height:25px; width:188px;border-bottom:1px dotted #A6C194;}
-.kjb3 ul li a:link{height:25px; width:188px;line-height:25px; padding-left:15px; margin-bottom:1px; color:#A69500; display:block; background:#F2F4DD; }
-.kjb3 ul li a:visited{height:25px;width:188px; line-height:25px;padding-left:15px;margin-bottom:1px; color:#A69500; display:block; background:#F2F4DD;}
-.kjb3 ul li a:hover{height:25px;width:188px; line-height:25px; padding-left:15px; margin-bottom:1px; color:#A69500; font-weight:bold; display:block; text-decoration:none; background:#fff;}
-.kjb3 ul li a:active{height:25px;width:188px; line-height:25px;padding-left:15px; margin-bottom:1px; color:#A69500; display:block; background:#F2F4DD; }
+.kjb3 ul li a:link{height:25px; width:175px;line-height:25px; padding-left:15px; margin-bottom:1px; color:#A69500; display:block; background:#F2F4DD; }
+.kjb3 ul li a:visited{height:25px;width:175px; line-height:25px;padding-left:15px;margin-bottom:1px; color:#A69500; display:block; background:#F2F4DD;}
+.kjb3 ul li a:hover{height:25px;width:175px; line-height:25px; padding-left:15px; margin-bottom:1px; color:#A69500; font-weight:bold; display:block; text-decoration:none; background:#fff;}
+.kjb3 ul li a:active{height:25px;width:175px; line-height:25px;padding-left:15px; margin-bottom:1px; color:#A69500; display:block; background:#F2F4DD; }
 
 
 .kjlbu00{ width:192px; padding-bottom:15px; background:url(../Images/kj/kjbu01.jpg) center top no-repeat; height:35px; color:#A69500; text-align:center; padding-top:15px;}

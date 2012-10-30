@@ -5205,15 +5205,15 @@ software programs.
     <value>La rémunération annuelle d'énergie</value>
   </data>
   <data name="ENERGYWARN_PERCENT" xml:space="preserve">
-    <value>rapport réel</value>
+    <value>Réelle rapport / Set rapport</value>
     <comment>实际比率</comment>
   </data>
   <data name="SHARED_INSIDEMASTERPAGE_ENERGYWARN" xml:space="preserve">
-    <value>Génération journal d'avertissement de capacité</value>
+    <value>avertissement énergie</value>
     <comment>设备发电量告警</comment>
   </data>
   <data name="ENERGY_RATE" xml:space="preserve">
-    <value>Génération de compensation capacité</value>
+    <value>compensation de l'énergie</value>
     <comment>Génération de compensation capacité</comment>
   </data>
   <data name="HOME_INDEX_VIEWMORE" xml:space="preserve">
@@ -5246,6 +5246,32 @@ The average value of coefficient will trigger warning
     <comment>故障</comment>
   </data>
   <data name="PLANT_MONTH_DESC" xml:space="preserve">
-    <value>月份</value>
+    <value>Mois</value>
+  </data>
+  <data name="ENERGY_FORECAST_VALUE" xml:space="preserve">
+    <value>Energie prédictive Wert</value>
+  </data>
+  <data name="TEMPLATE_CONFIG" xml:space="preserve">
+    <value>Template-Einstellungen</value>
+  </data>
+  <data name="TEMPLATE_SELECT" xml:space="preserve">
+    <value>Wählen Sie eine Vorlage</value>
+  </data>
+  <data name="TEMPLATE_SYS_NAME" xml:space="preserve">
+    <value>Nom du système</value>
+  </data>
+  <data name="TEMPLATE_UPLOAD_CUR_LOGO" xml:space="preserve">
+    <value>Logo actuel</value>
+  </data>
+  <data name="TEMPLATE_UPLOAD_LOGO" xml:space="preserve">
+    <value>Téléchargez Logo</value>
+  </data>
+  <data name="TEMPLATE_UPLOAD_LOGO_ANDSYSNAME" xml:space="preserve">
+    <value>Pour télécharger logo et modifier le nom</value>
+  </data>
+  <data name="TEMPLATE_UPLOAD_LOGO_NOTICE" xml:space="preserve">
+    <value>1, S'il vous plaît noter: la taille de l'image ne ​​dépasse pas (W 200 * H 50)
+ pixels 72px bitmap (soutien jpg, png, gif) est de s'assurer que l'effet de page,
+ fond de préférence transparent gif!</value>
   </data>
 </root>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Shared/ContentInside.Master"
+<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Shared/ContentInside.Master"
     Inherits="System.Web.Mvc.ViewPage" %>
 
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
@@ -7,7 +7,7 @@
 <%@ Import Namespace="System.Globalization" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>
-    模板设置
+    <%=Resources.SunResource.TEMPLATE_CONFIG%>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <style type="text/css">
@@ -142,7 +142,7 @@
                                         <img src="/images/kj/kjiico01.gif" width="36" height="44" />
                                     </td>
                                     <td width="93%" class="pv0216">
-                                        模板设置
+                                        <%=Resources.SunResource.TEMPLATE_CONFIG%>
                                     </td>
                                 </tr>
                                 <tr>
@@ -165,22 +165,23 @@
                                 <img src="/images/sub/subico010.gif" width="18" height="19" />
                             </td>
                             <td class="f_14">
-                                <strong>上传logo与修改名称</strong>
+                                <strong>
+                                    <%=Resources.SunResource.TEMPLATE_UPLOAD_LOGO_ANDSYSNAME%></strong>
                             </td>
                         </tr>
                     </table>
                     <div class="sb_top">
                     </div>
-                    <div class="sb_mid">
+                    
+                    <div class="sb_mid"><%=Resources.SunResource.TEMPLATE_CONFIG%>
                         <div class="mbts">
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td width="8%" valign="top">
-                                        <strong>请注意：</strong>
+                                        <strong><%=Resources.SunResource.MONITORITEM_NOTE %>：</strong>
                                     </td>
                                     <td width="92%" valign="top">
-                                        1、请上传不超过(宽200*高50),像素为72px的位图(支持jpg,png,gif)，为保证页面效果，最好是透明背景的gif ！<br />
-                                        2、系统名称名称设定最好不要超过18个字符，多出字符将显示不出来！
+                                    <%=Resources.SunResource.TEMPLATE_UPLOAD_LOGO_NOTICE %>
                                     </td>
                                 </tr>
                             </table>
@@ -188,13 +189,12 @@
                         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td width="18%" height="35" class="pr_10">
-                                    上传Logo：
+                                    <%=Resources.SunResource.TEMPLATE_UPLOAD_LOGO%> ：
                                 </td>
                                 <td colspan="2">
                                     <input type="file" name="logopic" style="display: none" id="logopic" onchange="picpath.value=this.value" />
                                     <input name="picpath" id="picpath" type="text" class="txtbu01" />
-                                    <input type="button" name="Submit32" value="上传" class="sc_btu" onclick="logopic.click();" />
-                      
+                                    <input type="button" name="Submit32" value="<%=Resources.SunResource.SWF_BUTTON_TEXT%>" class="sc_btu" onclick="logopic.click();" />
                                     <%= ViewData["error"]%>
                                 </td>
                             </tr>
@@ -204,7 +204,7 @@
                                 </td>
                                 <td>
                                     <div class="mblogo">
-                                        <span>当前logo</span>
+                                        <span><%=Resources.SunResource.TEMPLATE_UPLOAD_CUR_LOGO%></span>
                                         <img src="<%= UserUtil.UserLogo %>" width="168" height="27" id="viewlogo" />
                                     </div>
                                 </td>
@@ -214,7 +214,7 @@
                             </tr>
                             <tr>
                                 <td height="35" class="pr_10">
-                                    系统名称：<span class="red">*</span>
+                                    <%=Resources.SunResource.TEMPLATE_SYS_NAME%>：<span class="red">*</span>
                                 </td>
                                 <td>
                                     <input id="sysName" name="sysName" type="text" class="txtbu01" style="width: 250px;"
@@ -236,13 +236,13 @@
                                 <img src="/images/sub/subico010.gif" width="18" height="19" />
                             </td>
                             <td class="f_14">
-                                <strong>选择模板</strong>
+                                <strong><%=Resources.SunResource.TEMPLATE_SELECT%>   </strong>
                             </td>
                         </tr>
                     </table>
                     <div class="sb_top">
                     </div>
-                    <div class="sb_mid" style="overflow:hidden">
+                    <div class="sb_mid" style="overflow: hidden">
                         <ul class="mbchange">
                             <%foreach (Template template in ViewData["template"] as IList<Template>)
                               { %>

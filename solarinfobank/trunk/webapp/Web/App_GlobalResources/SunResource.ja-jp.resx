@@ -5197,11 +5197,11 @@ software programs.
     <value>発電容量の警告ログ</value>
   </data>
   <data name="ENERGYWARN_PERCENT" xml:space="preserve">
-    <value>実際の率</value>
+    <value>実際の比率/より設定</value>
     <comment>实际比率</comment>
   </data>
   <data name="SHARED_INSIDEMASTERPAGE_ENERGYWARN" xml:space="preserve">
-    <value>容量アラームを生成するデバイス</value>
+    <value>発電容量の警告</value>
     <comment>设备发电量告警</comment>
   </data>
   <data name="ENERGY_RATE" xml:space="preserve">
@@ -5238,6 +5238,31 @@ The average value of coefficient will trigger warning
     <comment>故障</comment>
   </data>
   <data name="PLANT_MONTH_DESC" xml:space="preserve">
-    <value>月份</value>
+    <value>月</value>
+  </data>
+  <data name="ENERGY_FORECAST_VALUE" xml:space="preserve">
+    <value>発電容量の予測値</value>
+  </data>
+  <data name="TEMPLATE_CONFIG" xml:space="preserve">
+    <value>テンプレートの設定</value>
+  </data>
+  <data name="TEMPLATE_SELECT" xml:space="preserve">
+    <value>テンプレートを選択</value>
+  </data>
+  <data name="TEMPLATE_SYS_NAME" xml:space="preserve">
+    <value>システム名</value>
+  </data>
+  <data name="TEMPLATE_UPLOAD_CUR_LOGO" xml:space="preserve">
+    <value>現在のロゴ</value>
+  </data>
+  <data name="TEMPLATE_UPLOAD_LOGO" xml:space="preserve">
+    <value>ロゴのアップロード</value>
+  </data>
+  <data name="TEMPLATE_UPLOAD_LOGO_ANDSYSNAME" xml:space="preserve">
+    <value>ロゴをアップロードしたり、名前を変更するには</value>
+  </data>
+  <data name="TEMPLATE_UPLOAD_LOGO_NOTICE" xml:space="preserve">
+    <value>ご注意：1、画像サイズはピクセル72pxのビットマップは、（サポートJPG、PNG、GIF）そのページの効果は、好ましくは透明背景のGIFを保証することである（W200×H 50）を超えないように！&lt;br/&gt;
+2、システムは、18文字までの名前を付ける</value>
   </data>
 </root>

@@ -420,7 +420,7 @@
                                                <%if (UserUtil.getCurUser().username != UserUtil.demousername)
                                                  { %>
                                             <li><a onclick="loadContent('content_ajax','/user/template','iframe','GET');setcurrent(this);return false;"
-                                                href="/user/template">模板设置</a></li>
+                                                href="/user/template"><%=Resources.SunResource.TEMPLATE_CONFIG%></a></li>
                                                 <%} %>
                                         </ul>
                                     </div>

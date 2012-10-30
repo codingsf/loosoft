@@ -5470,16 +5470,16 @@ software programs.
     <value>Plant</value>
   </data>
   <data name="ENERGYWARN_PERCENT" xml:space="preserve">
-    <value>Actual ratio</value>
+    <value>Actual ratio/Set ratio</value>
     <comment>实际比率</comment>
   </data>
   <data name="SHARED_INSIDEMASTERPAGE_ENERGYWARN" xml:space="preserve">
-    <value>Generating capacity warning log
-</value>
+    <value>Energy warning</value>
     <comment>设备发电量告警</comment>
   </data>
   <data name="ENERGY_RATE" xml:space="preserve">
-    <value>Generating capacity compensation</value>
+    <value>Energy compensation
+</value>
     <comment>Generating capacity compensation</comment>
   </data>
   <data name="HOME_INDEX_VIEWMORE" xml:space="preserve">
@@ -5500,6 +5500,31 @@ The average value of coefficient will trigger warning
 </value>
   </data>
   <data name="PLANT_MONTH_DESC" xml:space="preserve">
-    <value>月份</value>
+    <value>Month</value>
+  </data>
+  <data name="ENERGY_FORECAST_VALUE" xml:space="preserve">
+    <value>Energy Predictive value</value>
+  </data>
+  <data name="TEMPLATE_CONFIG" xml:space="preserve">
+    <value>Template Settings</value>
+  </data>
+  <data name="TEMPLATE_SELECT" xml:space="preserve">
+    <value>Select a template</value>
+  </data>
+  <data name="TEMPLATE_SYS_NAME" xml:space="preserve">
+    <value>System Name</value>
+  </data>
+  <data name="TEMPLATE_UPLOAD_CUR_LOGO" xml:space="preserve">
+    <value>Current Logo</value>
+  </data>
+  <data name="TEMPLATE_UPLOAD_LOGO" xml:space="preserve">
+    <value>Upload Logo</value>
+  </data>
+  <data name="TEMPLATE_UPLOAD_LOGO_ANDSYSNAME" xml:space="preserve">
+    <value>To upload Logo and modify the name</value>
+  </data>
+  <data name="TEMPLATE_UPLOAD_LOGO_NOTICE" xml:space="preserve">
+    <value>1、Please note: the picture size does not exceed (W 200 * H 50) pixels 72px bitmap (support jpg, png, gif) is to ensure that the page effect, preferably transparent background gif!
+&lt;br/&gt;2、the system name up to 18 characters</value>
   </data>
 </root>

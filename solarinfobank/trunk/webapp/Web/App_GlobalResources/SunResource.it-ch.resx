@@ -6561,15 +6561,15 @@ software programs.</value>
     <value>Energia di compensazione annuale</value>
   </data>
   <data name="ENERGYWARN_PERCENT" xml:space="preserve">
-    <value>rapporto effettivo</value>
+    <value>Effettivo rapporto / Set rapporto</value>
     <comment>实际比率</comment>
   </data>
   <data name="SHARED_INSIDEMASTERPAGE_ENERGYWARN" xml:space="preserve">
-    <value>Capacità di generazione registro di avvisi</value>
+    <value>Energia avviso</value>
     <comment>设备发电量告警</comment>
   </data>
   <data name="ENERGY_RATE" xml:space="preserve">
-    <value>Generazione di compensazione della capacità</value>
+    <value>Energia compenso</value>
   </data>
   <data name="HOME_INDEX_VIEWMORE" xml:space="preserve">
     <value>Maggiori informazioni ...</value>
@@ -6601,6 +6601,31 @@ The average value of coefficient will trigger warning
     <comment>故障</comment>
   </data>
   <data name="PLANT_MONTH_DESC" xml:space="preserve">
-    <value>月份</value>
+    <value>Mese</value>
+  </data>
+  <data name="ENERGY_FORECAST_VALUE" xml:space="preserve">
+    <value>Energie Predictive Wert</value>
+  </data>
+  <data name="TEMPLATE_CONFIG" xml:space="preserve">
+    <value>Template-Einstellungen</value>
+  </data>
+  <data name="TEMPLATE_SELECT" xml:space="preserve">
+    <value>Wählen Sie eine Vorlage</value>
+  </data>
+  <data name="TEMPLATE_SYS_NAME" xml:space="preserve">
+    <value>Name System</value>
+  </data>
+  <data name="TEMPLATE_UPLOAD_CUR_LOGO" xml:space="preserve">
+    <value>Logo corrente</value>
+  </data>
+  <data name="TEMPLATE_UPLOAD_LOGO" xml:space="preserve">
+    <value>Carica Logo</value>
+  </data>
+  <data name="TEMPLATE_UPLOAD_LOGO_ANDSYSNAME" xml:space="preserve">
+    <value>Per caricare logo e modificare il nome</value>
+  </data>
+  <data name="TEMPLATE_UPLOAD_LOGO_NOTICE" xml:space="preserve">
+    <value>1、Attenzione: le dimensioni dell'immagine non superi (L 200 * H 50) pixel bitmap 72px (supporto jpg, png, gif) è quello di garantire che l'effetto pagina, preferibilmente trasparente sfondo gif!
+&lt;br/&gt;2、 il sistema dei nomi fino a 18 caratteri </value>
   </data>
 </root>

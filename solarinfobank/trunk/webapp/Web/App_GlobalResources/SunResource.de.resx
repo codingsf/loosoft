@@ -5628,15 +5628,15 @@ software programs.
     <value>Jährlicher Energieverbrauch Entschädigung</value>
   </data>
   <data name="ENERGYWARN_PERCENT" xml:space="preserve">
-    <value>tatsächliche Verhältnis</value>
+    <value>Tatsächliche Verhältnis / Set-Verhältnis</value>
     <comment>实际比率</comment>
   </data>
   <data name="SHARED_INSIDEMASTERPAGE_ENERGYWARN" xml:space="preserve">
-    <value>Erzeugungskapazität Warnung log</value>
+    <value>Energie Warnung</value>
     <comment>设备发电量告警</comment>
   </data>
   <data name="ENERGY_RATE" xml:space="preserve">
-    <value>Erzeugungskapazität Entschädigung</value>
+    <value>Energieausgleich</value>
     <comment>Erzeugungskapazität Entschädigung</comment>
   </data>
   <data name="HOME_INDEX_VIEWMORE" xml:space="preserve">
@@ -5669,6 +5669,31 @@ The average value of coefficient will trigger warning
     <comment>故障</comment>
   </data>
   <data name="PLANT_MONTH_DESC" xml:space="preserve">
-    <value>月份</value>
+    <value>Monat</value>
+  </data>
+  <data name="ENERGY_FORECAST_VALUE" xml:space="preserve">
+    <value>Energie Predictive Wert</value>
+  </data>
+  <data name="TEMPLATE_CONFIG" xml:space="preserve">
+    <value>Template-Einstellungen</value>
+  </data>
+  <data name="TEMPLATE_SELECT" xml:space="preserve">
+    <value>Wählen Sie eine Vorlage</value>
+  </data>
+  <data name="TEMPLATE_SYS_NAME" xml:space="preserve">
+    <value>System Name</value>
+  </data>
+  <data name="TEMPLATE_UPLOAD_CUR_LOGO" xml:space="preserve">
+    <value>nuværende Logo</value>
+  </data>
+  <data name="TEMPLATE_UPLOAD_LOGO" xml:space="preserve">
+    <value>Logo hochladen</value>
+  </data>
+  <data name="TEMPLATE_UPLOAD_LOGO_ANDSYSNAME" xml:space="preserve">
+    <value>Um Logo hochladen und ändern Sie den Namen</value>
+  </data>
+  <data name="TEMPLATE_UPLOAD_LOGO_NOTICE" xml:space="preserve">
+    <value>1、Bitte beachten Sie: Das Bild Größe nicht überschreiten (W 200 * H 50) Pixel 72px Bitmap (Unterstützung jpg, png, gif) ist es, sicherzustellen, dass die Seite Wirkung, vorzugsweise transparenten Hintergrund gif!
+&lt;br/&gt;2、 nennen das System bis zu 18 Zeichen </value>
   </data>
 </root>

@@ -18,11 +18,6 @@ a:active { color:#000; text-decoration:none;}
 .dbl:hover {color:#FF900A; text-decoration:none;}
 .dbl:active {color:#333; text-decoration:none;}
 
-.green:link{color:#459001; text-decoration:none;}
-.green:visited {color:#459001; text-decoration:none;}
-.green:hover {color:#459001; text-decoration:underline;}
-.green:active {color:#459001; text-decoration:none;}
-
 .embox{ height:10px;}/*10PX间距空间div*/
 .insy01{ border:1px solid #3A4E2B; width:160px; height:17px;}/*输入框样式*/
 
@@ -102,9 +97,9 @@ img{ border:none;}
 .ddgr{ color:#008C44}/*文字样式*/
 
 /*05问答部分*/
-.mdl02{padding-top:10px;padding-left:100px; padding-right:20px;}
+.mdl02{padding-top:10px;padding-left:180px; padding-right:20px;}
 .mdl02 ul{ list-style:none;}
-.mdl02 ul li{ height:30px; padding-left:25px; border-bottom:1px dotted #CCCCCC; line-height:30px; background:url(../Images/ico05.gif) no-repeat left;width:260px;
+.mdl02 ul li{ height:30px; padding-left:25px; border-bottom:1px dotted #CCCCCC; line-height:30px; background:url(../images/ico05.jpg) no-repeat left;width:180px;
 white-space:nowrap;word-break:keep-all;overflow:hidden;text-overflow:ellipsis;}
 .mdl02 .veiwmore{ display:block; padding-left:40px; padding-top:10px;}
 

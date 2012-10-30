@@ -4789,7 +4789,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Actual ratio 的本地化字符串。
+        ///   查找类似 Actual ratio/Set ratio 的本地化字符串。
         /// </summary>
         internal static string ENERGYWARN_PERCENT {
             get {
@@ -4798,7 +4798,17 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Generating capacity compensation 的本地化字符串。
+        ///   查找类似 Energy Predictive value 的本地化字符串。
+        /// </summary>
+        internal static string ENERGY_FORECAST_VALUE {
+            get {
+                return ResourceManager.GetString("ENERGY_FORECAST_VALUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Energy compensation
+        /// 的本地化字符串。
         /// </summary>
         internal static string ENERGY_RATE {
             get {
@@ -8110,7 +8120,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 月份 的本地化字符串。
+        ///   查找类似 Month 的本地化字符串。
         /// </summary>
         internal static string PLANT_MONTH_DESC {
             get {
@@ -10571,8 +10581,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Generating capacity warning log
-        /// 的本地化字符串。
+        ///   查找类似 Energy warning 的本地化字符串。
         /// </summary>
         internal static string SHARED_INSIDEMASTERPAGE_ENERGYWARN {
             get {
@@ -11171,6 +11180,70 @@ namespace Resources {
         internal static string SWF_BUTTON_TEXT {
             get {
                 return ResourceManager.GetString("SWF_BUTTON_TEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Template Settings 的本地化字符串。
+        /// </summary>
+        internal static string TEMPLATE_CONFIG {
+            get {
+                return ResourceManager.GetString("TEMPLATE_CONFIG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Select a template 的本地化字符串。
+        /// </summary>
+        internal static string TEMPLATE_SELECT {
+            get {
+                return ResourceManager.GetString("TEMPLATE_SELECT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 System Name 的本地化字符串。
+        /// </summary>
+        internal static string TEMPLATE_SYS_NAME {
+            get {
+                return ResourceManager.GetString("TEMPLATE_SYS_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Current Logo 的本地化字符串。
+        /// </summary>
+        internal static string TEMPLATE_UPLOAD_CUR_LOGO {
+            get {
+                return ResourceManager.GetString("TEMPLATE_UPLOAD_CUR_LOGO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Upload Logo 的本地化字符串。
+        /// </summary>
+        internal static string TEMPLATE_UPLOAD_LOGO {
+            get {
+                return ResourceManager.GetString("TEMPLATE_UPLOAD_LOGO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 To upload Logo and modify the name 的本地化字符串。
+        /// </summary>
+        internal static string TEMPLATE_UPLOAD_LOGO_ANDSYSNAME {
+            get {
+                return ResourceManager.GetString("TEMPLATE_UPLOAD_LOGO_ANDSYSNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 1、Please note: the picture size does not exceed (W 200 * H 50) pixels 72px bitmap (support jpg, png, gif) is to ensure that the page effect, preferably transparent background gif!
+        ///&lt;br/&gt;2、the system name up to 18 characters 的本地化字符串。
+        /// </summary>
+        internal static string TEMPLATE_UPLOAD_LOGO_NOTICE {
+            get {
+                return ResourceManager.GetString("TEMPLATE_UPLOAD_LOGO_NOTICE", resourceCulture);
             }
         }
         

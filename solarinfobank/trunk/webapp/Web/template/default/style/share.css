@@ -58,10 +58,10 @@
 .kjb3{}
 .kjb3 ul{ margin:0px; padding:0px; list-style:none;}
 .kjb3 ul li{height:25px;width:188px;overflow:hidden; border-bottom:1px dotted #A6C194;}
-.kjb3 ul li a:link{height:25px;width:188px;overflow:hidden; line-height:25px; padding-left:15px; margin-bottom:1px; color:#7A9D63; display:block; background:#EEF0ED; }
-.kjb3 ul li a:visited{height:25px;width:188px;overflow:hidden; line-height:25px;padding-left:15px;margin-bottom:1px; color:#7A9D63; display:block; background:#EEF0ED;}
-.kjb3 ul li a:hover{height:25px;width:188px;overflow:hidden; line-height:25px; padding-left:15px; margin-bottom:1px; color:#7A9D63; font-weight:bold; display:block; text-decoration:none; background:#fff;}
-.kjb3 ul li a:active{height:25px;width:188px;overflow:hidden; line-height:25px;padding-left:15px; margin-bottom:1px; color:#7A9D63; display:block; background:#EEF0ED; }
+.kjb3 ul li a:link{height:25px;width:175px;overflow:hidden; line-height:25px; padding-left:15px; margin-bottom:1px; color:#7A9D63; display:block; background:#EEF0ED; }
+.kjb3 ul li a:visited{height:25px;width:175px;overflow:hidden; line-height:25px;padding-left:15px;margin-bottom:1px; color:#7A9D63; display:block; background:#EEF0ED;}
+.kjb3 ul li a:hover{height:25px;width:175px;overflow:hidden; line-height:25px; padding-left:15px; margin-bottom:1px; color:#7A9D63; font-weight:bold; display:block; text-decoration:none; background:#fff;}
+.kjb3 ul li a:active{height:25px;width:175px;overflow:hidden; line-height:25px;padding-left:15px; margin-bottom:1px; color:#7A9D63; display:block; background:#EEF0ED; }
 
 
 

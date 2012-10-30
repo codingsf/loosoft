@@ -7,7 +7,7 @@
 <%@ Import Namespace="System.Globalization" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>
-    发电量预测值
+    <%=Resources.SunResource.ENERGY_FORECAST_VALUE%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -89,7 +89,7 @@
                                         <img src="/images/kj/kjiico01.gif" />
                                     </td>
                                     <td width="93%" class="pv0216">
-                                        发电量预测值
+                                        <%=Resources.SunResource.ENERGY_FORECAST_VALUE%>
                                     </td>
                                 </tr>
                                 <tr>

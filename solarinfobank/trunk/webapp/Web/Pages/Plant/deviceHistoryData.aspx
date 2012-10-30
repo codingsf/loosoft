@@ -17,7 +17,7 @@
                 //先后设置div的内容、位置，最后显示出来（渐进效果）
                 $('#device_div')
 	            .css('left', offset.left + 'px')
-	            .css('top', offset.top + input.height() + 'px')
+	            .css('top', offset.top + input.height() + 4 + 'px')
 	            .fadeIn();
                 opened = true;
             } else {
@@ -174,10 +174,10 @@
                           <option><%=Resources.SunResource.UDEVICE_PAGE_PLEASESELECT%></option>
                           </select> --%>
                                     <input type="hidden" id="dces" />
-                                    <input type="text" style="width: 150px" id="devicename" />
-                                    <div id="device_div" style="display: none; position: absolute; z-index: 999; border:solid 1px #ccc; background-color:#fff; ">
+                                    <input type="text" style="width: 200px" id="devicename" />
+                                    <div id="device_div" style="display: none; position: absolute; z-index: 999; border:solid 1px #ccc; background-color:#fff;  min-height:400px;">
                                         <iframe id="iframe1" name="iframe1" src="/plant/inverterstructtree/<%=Model.id %>"
-                                            width="150" scrolling="auto" frameborder="0" height="500"></iframe>
+                                            width="202" scrolling="auto" frameborder="0" style="min-height:400px"></iframe>
                                     </div>
                                 </td>
                                 <td width="30%" class="f_14">

@@ -5320,7 +5320,7 @@
     <value>上传Logo与修改名称</value>
   </data>
   <data name="TEMPLATE_UPLOAD_LOGO_NOTICE" xml:space="preserve">
-    <value>请注意： 1、图片大小不超过(宽200*高50),像素为72px的位图(支持jpg,png,gif)，为保证页面效果，最好是透明背景的gif ！
+    <value>1、图片大小不超过(宽200*高50),像素为72px的位图(支持jpg,png,gif)，为保证页面效果，最好是透明背景的gif ！
 &lt;br/&gt;2、系统名称最多18个字符</value>
   </data>
 </root>

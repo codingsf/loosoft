@@ -1,0 +1,75 @@
+BODY {
+	FONT-FAMILY: "Trebuchet MS", Arial, Helvetica, sans-serif; BACKGROUND: #fff
+}
+TD {
+	TEXT-ALIGN: center
+}
+DIV.example {
+	POSITION: relative; MARGIN-BOTTOM: 20px
+}
+DIV.ie-fix {
+	HEIGHT: 0px; OVERFLOW: visible
+}
+.target {
+	BORDER-BOTTOM: #666666 2px solid; TEXT-ALIGN: center; BORDER-LEFT: #666666 2px solid; PADDING-BOTTOM: 5px; BACKGROUND-COLOR: #00ffff; PADDING-LEFT: 5px; WIDTH: 80px; PADDING-RIGHT: 5px; DISPLAY: block; FLOAT: left; HEIGHT: 45px; BORDER-TOP: #666666 2px solid; BORDER-RIGHT: #666666 2px solid; PADDING-TOP: 5px
+}
+INPUT.alt-target {
+	WIDTH: 80px
+}
+#page {
+	POSITION: relative; PADDING-BOTTOM: 2em; BACKGROUND-COLOR: #eee; MARGIN: 0px auto; PADDING-LEFT: 2em; WIDTH: 600px; PADDING-RIGHT: 2em; PADDING-TOP: 2em
+}
+H3 {
+	BORDER-BOTTOM: #666666 2px solid; MARGIN: 0px 0px 0.4em; COLOR: #666666; FONT-SIZE: 1.2em
+}
+P {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 1em
+}
+.desc {
+	MARGIN-LEFT: 100px
+}
+.source {
+	
+}
+.html-source {
+	BACKGROUND-COLOR: #fff; FONT-FAMILY: "Courier New", Courier, monospace
+}
+.js {
+	BACKGROUND-COLOR: #fff; FONT-FAMILY: "Courier New", Courier, monospace
+}
+.css-source {
+	BACKGROUND-COLOR: #fff; FONT-FAMILY: "Courier New", Courier, monospace
+}
+.html-source TEXTAREA {
+	FONT-FAMILY: "Courier New", Courier, monospace; FONT-SIZE: 11px
+}
+.js TEXTAREA {
+	FONT-FAMILY: "Courier New", Courier, monospace; FONT-SIZE: 11px
+}
+.css-source TEXTAREA {
+	FONT-FAMILY: "Courier New", Courier, monospace; FONT-SIZE: 11px
+}
+.html-link A:focus {
+	OUTLINE-STYLE: none; OUTLINE-COLOR: invert; OUTLINE-WIDTH: medium; -moz-outline: none
+}
+.js-link A:focus {
+	OUTLINE-STYLE: none; OUTLINE-COLOR: invert; OUTLINE-WIDTH: medium; -moz-outline: none
+}
+.css-link A:focus {
+	OUTLINE-STYLE: none; OUTLINE-COLOR: invert; OUTLINE-WIDTH: medium; -moz-outline: none
+}
+#example17 {
+	CURSOR: pointer
+}
+.gmap {
+	POSITION: relative; FONT-FAMILY: Arial, sans-serif; FONT-SIZE: 13px
+}
+.gmap-title {
+	FONT-SIZE: 16px; FONT-WEIGHT: bold
+}
+.gmap-addr {
+	PADDING-BOTTOM: 15px; PADDING-TOP: 5px
+}
+.gmap-close {
+	BORDER-BOTTOM: medium none; POSITION: absolute; BORDER-LEFT: medium none; BORDER-TOP: medium none; TOP: 0px; RIGHT: 0px; BORDER-RIGHT: medium none
+}

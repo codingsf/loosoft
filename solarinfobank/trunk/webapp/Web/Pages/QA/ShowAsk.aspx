@@ -6,10 +6,6 @@
     <%=Resources.SunResource.PAGE_QA_TITLE%>
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="../../style/lc.css" rel="stylesheet" type="text/css" />
-    <link href="../../style/css.css" rel="stylesheet" type="text/css" />
-    <link href="../../style/sub.css" rel="stylesheet" type="text/css" />
-    <link href="../../style/kj.css" rel="stylesheet" type="text/css" />
     <link href="../../style/faq.css" rel="stylesheet" type="text/css" />
     <div class="lcbox">
         <div class="lcabout">

@@ -503,7 +503,7 @@
                 <div style="clear: both;">
                 </div>
                 <div class="mdl02">
-                    <ul style="margin: 10px 0px 0px 0px; padding-left:120px;  overflow: hidden;">
+                    <ul style="margin: 10px 0px 0px 0px; padding-left:60px;  overflow: hidden;">
                         <%
                             foreach (Cn.Loosoft.Zhisou.SunPower.Domain.Plant plant in ViewData["newPlants"] as List<Cn.Loosoft.Zhisou.SunPower.Domain.Plant>)
                             {  

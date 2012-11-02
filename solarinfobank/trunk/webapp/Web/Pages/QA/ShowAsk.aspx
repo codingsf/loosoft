@@ -35,11 +35,11 @@
                         </div>
                         </form>
                         <div class="faq_list">
-                            <span class="faq_list_wz"><a href="/qa/ask" class="green">Back Questions List >> </a>
+                            <span class="faq_list_wz"><a href="/qa/ask" class="green"><%=Resources.SunResource.QA_BACK_QUESTIONS_LIST%> >> </a>
                             </span>
                             <div class="lebo">
                                 <h3>
-                                    Question：</h3>
+                                    <%=Resources.SunResource.QA_TITLE%>：</h3>
                             </div>
                             <div class="rebo">
                                 <h3>
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="faq_answer">
-                            <span class="pname"><strong>Answer</strong></span>
+                            <span class="pname"><strong><%=Resources.SunResource.QA_CONTENT%></strong></span>
                             <%foreach (QA answer in this.Model.answerslist)
                               { %>
                             <div class="pmore">

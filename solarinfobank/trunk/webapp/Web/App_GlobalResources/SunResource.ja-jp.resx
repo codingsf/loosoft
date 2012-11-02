@@ -5289,4 +5289,7 @@ The average value of coefficient will trigger warning
   <data name="TEMPLATE_NAME8" xml:space="preserve">
     <value />
   </data>
+  <data name="QA_BACK_QUESTIONS_LIST" xml:space="preserve">
+    <value>質問一覧に戻る</value>
+  </data>
 </root>

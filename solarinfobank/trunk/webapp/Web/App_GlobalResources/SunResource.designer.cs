@@ -9356,6 +9356,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 Back Questions List 的本地化字符串。
+        /// </summary>
+        internal static string QA_BACK_QUESTIONS_LIST {
+            get {
+                return ResourceManager.GetString("QA_BACK_QUESTIONS_LIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Ask 的本地化字符串。
         /// </summary>
         internal static string QA_BUTTON_ASK {

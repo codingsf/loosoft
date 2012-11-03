@@ -1,0 +1,128 @@
+.dgreen:link{color:#666; text-decoration:none;}
+.dgreen:visited {color:#666; text-decoration:none;}
+.dgreen:hover {color:#666; text-decoration:underline;}
+.dgreen:active {color:#666; text-decoration:none;}
+
+
+.green:link{color:#888; text-decoration:underline;}
+.green:visited {color:#888; text-decoration:underline;}
+.green:hover {color:#888; text-decoration:none;}
+.green:active {color:#888; text-decoration:underline;}
+
+
+
+/*头部*/
+.header{height:84px;width:100%; background:url(../Images/bg01.jpg) no-repeat;}/*通用头部*/
+.headermain{ width:1000px; margin:0px auto; height:84px; background:url(../Images/bg03.jpg) no-repeat;}
+.header_l{ float:left; text-align:center; padding-top:10px; width:200px; height:50px; line-height:50px;}
+.header_l img{ vertical-align:middle;}
+.header_r{ float:right; height:84px; width:711px; background:url(../Images/bg04.jpg) no-repeat;}
+.header_rt{color:#008C44; padding-right:10px; padding-top:2px; text-align:right;}
+.header_rdh{ height:30px; padding-top:18px;}
+.header_rdhname{ float:left; width:220px; font-size:26px; padding-right:60px; font-family:Arial, Helvetica, sans-serif;}
+.header_rdhname .wf{ color:#FFFFFF;}
+.header_rdhname .wr{ color:#fff;}
+.header_rdhl{ color:#E0EADF;text-align:center; float:left; padding-left:0px; padding-top:6px;}
+.header_rdhl span{ margin:5px;}
+.header_rdhr{ float:right; height:32px; width:150px; padding-right:24px;}
+
+
+.gwhite:link{color:#fff; text-decoration:none;}
+.gwhite:visited{color:#fff; text-decoration:none;}
+.gwhite:hover{color:#fff; text-decoration:underline;}
+.gwhite:active{color:#fff; text-decoration:none;}
+
+/*左边*/
+.kjlbox{ width:192px; padding-bottom:15px;}
+.kjlbox_ico{ height:25px; background:url(../Images/kj/kjbg03.jpg) no-repeat;}
+.kjtt01{ color:#fff; font-weight:bold; cursor:pointer;}
+.kjmid{  border-left:1px solid #C8CEC7; border-right:1px solid #C8CEC7; background:#FFFFFF; overflow:hidden;}
+.kjb{}
+.kjb ul{ margin:0px; padding:0px; list-style:none;}
+.kjb ul li{height:25px;overflow:hidden; text-overflow:ellipsis;white-space:nowrap; width:190px;}
+.kjb ul li a:link{ overflow:hidden; text-overflow:ellipsis;white-space:nowrap; height:25px; line-height:25px; padding-left:15px; background:url(../Images/kj/listbg01.jpg) no-repeat; margin-bottom:1px; color:#3D3D3D; display:block; width:190px;}
+.kjb ul li a:visited{overflow:hidden; text-overflow:ellipsis;white-space:nowrap;  height:25px; line-height:25px; padding-left:15px; background:url(../Images/kj/listbg01.jpg) no-repeat; margin-bottom:1px; color:#3D3D3D; display:block; width:190px;}
+.kjb ul li a:hover{overflow:hidden; text-overflow:ellipsis;white-space:nowrap;  height:25px; line-height:25px;padding-left:15px; background:url(../Images/kj/listbg04.jpg) no-repeat; margin-bottom:1px; color:#E87006; font-weight:bold; display:block; text-decoration:none; width:190px;}
+.kjb ul li a:active{overflow:hidden; text-overflow:ellipsis;white-space:nowrap;  height:25px; line-height:25px; padding-left:15px; background:url(../Images/kj/listbg01.jpg) no-repeat; margin-bottom:1px; color:#3D3D3D; display:block; width:190px;}
+
+
+.kjb2{height:25px; width:190px;overflow:hidden; white-space:nowrap;}
+.kjb2 a:link{overflow:hidden; white-space:nowrap;height:25px; width:190px;line-height:25px;padding-left:15px; background:url(../Images/kj/listbg02.jpg) no-repeat; margin-bottom:1px; color:#3D3D3D; display:block;}
+.kjb2 a:visited{overflow:hidden;white-space:nowrap;height:25px;width:190px; line-height:25px; padding-left:15px; background:url(../Images/kj/listbg02.jpg) no-repeat; margin-bottom:1px; color:#3D3D3D; display:block;}
+.kjb2 a:hover{overflow:hidden;white-space:nowrap;height:25px; width:190px;line-height:25px; padding-left:15px; background:url(../Images/kj/listbg03.jpg) no-repeat; margin-bottom:1px; color:#E87006; font-weight:bold; display:block; text-decoration:none;}
+.kjb2 a:active{overflow:hidden;white-space:nowrap;height:25px; width:190px;line-height:25px; padding-left:15px; background:url(../Images/kj/listbg02.jpg) no-repeat; margin-bottom:1px; color:#3D3D3D; display:block;}
+
+
+.kjb3{}
+.kjb3 ul{ margin:0px; padding:0px; list-style:none;}
+.kjb3 ul li{height:25px; width:188px;border-bottom:1px dotted #A6C194;}
+.kjb3 ul li a:link{height:25px; width:175px;line-height:25px; padding-left:15px; margin-bottom:1px; color:#E87006; display:block; background:#FDFBD5; }
+.kjb3 ul li a:visited{height:25px;width:175x; line-height:25px;padding-left:15px;margin-bottom:1px; color:#E87006; display:block; background:#FDFBD5;}
+.kjb3 ul li a:hover{height:25px;width:175px; line-height:25px; padding-left:15px; margin-bottom:1px; color:#E87006; font-weight:bold; display:block; text-decoration:none; background:#fff;}
+.kjb3 ul li a:active{height:25px;width:175px; line-height:25px;padding-left:15px; margin-bottom:1px; color:#E87006; display:block; background:#FDFBD5; }
+
+
+.kjlbu00{ width:192px; padding-bottom:15px; background:url(../Images/kj/kjbu01.jpg) center top no-repeat; height:35px; color:#E87006; text-align:center; padding-top:15px;}
+.kjlbu00 a{ color:#E87006;}
+
+
+#menuShow a.lefttabclick
+        {
+            height: 25px;
+            line-height: 25px;
+            padding-left: 15px;
+            background: url(../images/kj/listbg04.jpg) no-repeat;
+            margin-bottom: 1px;
+            color:#E87006;
+            font-weight: bold;
+            display: block;
+            text-decoration: none;
+        }
+        #menuShow a.current
+        {
+            height: 30px;
+            line-height: 30px;
+            width: 190px;
+            padding-left: 15px;
+            background: url(../images/kj/listbg03.jpg) no-repeat;
+            margin-bottom: 1px;
+            color:#E87006;
+            font-weight: bold;
+            display: block;
+            text-decoration: none;
+        }
+        #dl a.lefttabclick
+        {
+            height: 30px;
+            width: 190px;
+            line-height: 30px;
+            padding-left: 15px;
+            margin-bottom: 1px;
+            color:#E87006;
+            font-weight: bold;
+            display: block;
+            text-decoration: none;
+            background: #fff;
+        }
+		
+		  #dl
+        {
+            overflow: hidden;
+        }
+
+
+/*tab切换样式一*/
+.subico01{ height:30px;}
+.subico01 ul{ margin:0px; padding:0px; list-style:none;}
+.subico01 ul li{ float:left;}
+.subico01 ul li a:link{ float:left; background:url(../Images/sub/subtb2.gif); height:27px; line-height:27px; border:1px solid #727171; padding:0px 15px; text-align:center; color:#FFFFFF; font-weight:bold; display:block;}
+.subico01 ul li a:visited { float:left; background:url(../Images/sub/subtb2.gif); height:27px; line-height:27px; border:1px solid #727171; padding:0px 15px; text-align:center; color:#FFFFFF; font-weight:bold; display:block;}
+.subico01 ul li a:hover { float:left; background:url(../Images/sub/subtb1.gif); height:27px; line-height:27px; color:#FFFFFF; font-weight:bold; border:1px solid #446733; display:block;  }
+.subico01 ul li a:active { float:left; background:url(../Images/sub/subtb2.gif); height:27px; line-height:27px; border:1px solid #727171; padding:0px 15px; text-align:center; color:#FFFFFF; font-weight:bold; display:block;}
+.subico01 ul li .noclick{ float:left; background:url(../Images/sub/subtb2.gif); height:27px; line-height:27px; border:1px solid #727171; padding:0px 15px; text-align:center; color:#FFFFFF; font-weight:bold; display:block;}
+.subico01 ul li .onclick{ float:left; background:url(../Images/sub/subtb1.gif); height:27px; line-height:27px; border:1px solid #727171; padding:0px 15px; text-align:center; color:#FFFFFF; font-weight:bold; display:block;}
+.subico01 ul li a .noclick{ float:left; background:url(../Images/sub/subtb2.gif); height:27px; line-height:27px; border:1px solid #727171; padding:0px 15px; text-align:center; color:#FFFFFF; font-weight:bold; display:block;}
+.subico01 ul li a .onclick{ float:left; background:url(../Images/sub/subtb1.gif); height:27px; line-height:27px; border:1px solid #727171; padding:0px 15px; text-align:center; color:#FFFFFF; font-weight:bold; display:block;}
+
+#change .noclick{ float:left; background:url(../Images/sub/subtb2.gif); height:27px; line-height:27px; border:1px solid #727171; padding:0px 15px; text-align:center; color:#FFFFFF; font-weight:bold; display:block;}
+#change .onclick{ float:left; background:url(../Images/sub/subtb1.gif); height:27px; line-height:27px; border:1px solid #727171; padding:0px 15px; text-align:center; color:#FFFFFF; font-weight:bold; display:block;}

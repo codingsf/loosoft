@@ -1,0 +1,70 @@
+.kjlbu00{ width:192px; padding-bottom:15px; background:url(../images/kj/kjbu01.jpg) center top no-repeat; height:35px; color:#459001; text-align:center; padding-top:15px;}
+.kjlbox{ width:192px; padding-bottom:15px;}
+.kjlbox_ico{ height:25px; background:url(../images/kj/kjbg03.jpg) no-repeat;}
+.kjtt01{ color:#fff; font-weight:bold;}
+.kjmid{border-left:1px solid #C8CEC7; border-right:1px solid #C8CEC7; background:#FFFFFF;}
+.kjb{}
+.kjb ul{ margin:0px; padding:0px; list-style:none;}
+.kjb ul li{height:25px;overflow:hidden; text-overflow:ellipsis;white-space:nowrap; }
+.kjb ul li a:link{ overflow:hidden; text-overflow:ellipsis;white-space:nowrap; height:25px; line-height:25px; padding-left:15px; background:url(../images/kj/listbg01.jpg) no-repeat; margin-bottom:1px; color:#3D3D3D; display:block;}
+.kjb ul li a:visited{overflow:hidden; text-overflow:ellipsis;white-space:nowrap;  height:25px; line-height:25px; padding-left:15px; background:url(../images/kj/listbg01.jpg) no-repeat; margin-bottom:1px; color:#3D3D3D; display:block;}
+.kjb ul li a:hover{overflow:hidden; text-overflow:ellipsis;white-space:nowrap;  height:25px; line-height:25px;padding-left:15px; background:url(../images/kj/listbg04.jpg) no-repeat; margin-bottom:1px; color:#4A8125; font-weight:bold; display:block; text-decoration:none;}
+.kjb ul li a:active{overflow:hidden; text-overflow:ellipsis;white-space:nowrap;  height:25px; line-height:25px; padding-left:15px; background:url(../images/kj/listbg01.jpg) no-repeat; margin-bottom:1px; color:#3D3D3D; display:block;}
+
+
+.kjb2{height:25px; width:190px;overflow:hidden; white-space:nowrap;}
+.kjb2 a:link{overflow:hidden; white-space:nowrap;height:25px; line-height:25px;padding-left:15px; background:url(../images/kj/listbg02.jpg) no-repeat; margin-bottom:1px; color:#3D3D3D; display:block;}
+.kjb2 a:visited{overflow:hidden;white-space:nowrap;height:25px; line-height:25px; padding-left:15px; background:url(../images/kj/listbg02.jpg) no-repeat; margin-bottom:1px; color:#3D3D3D; display:block;}
+.kjb2 a:hover{overflow:hidden;white-space:nowrap;height:25px; line-height:25px; padding-left:15px; background:url(../images/kj/listbg03.jpg) no-repeat; margin-bottom:1px; color:#4A8125; font-weight:bold; display:block; text-decoration:none;}
+.kjb2 a:active{overflow:hidden;white-space:nowrap;height:25px; line-height:25px; padding-left:15px; background:url(../images/kj/listbg02.jpg) no-repeat; margin-bottom:1px; color:#3D3D3D; display:block;}
+
+
+.kjb3{}
+.kjb3 ul{ margin:0px; padding:0px; list-style:none;}
+.kjb3 ul li{height:25px; border-bottom:1px dotted #A6C194;}
+.kjb3 ul li a:link{height:25px; line-height:25px; padding-left:15px; margin-bottom:1px; color:#7A9D63; display:block; background:#EEF0ED; }
+.kjb3 ul li a:visited{height:25px; line-height:25px;padding-left:15px;margin-bottom:1px; color:#7A9D63; display:block; background:#EEF0ED;}
+.kjb3 ul li a:hover{height:25px; line-height:25px; padding-left:15px; margin-bottom:1px; color:#7A9D63; font-weight:bold; display:block; text-decoration:none; background:#fff;}
+.kjb3 ul li a:active{height:25px; line-height:25px;padding-left:15px; margin-bottom:1px; color:#7A9D63; display:block; background:#EEF0ED; }
+
+
+.kjrb{ width:210px; height:64px; margin-bottom:30px; margin-right:30px; background:url(../images/kj/kjbg04.gif) no-repeat; padding-top:10px; padding-left:5px; float:left;}
+.kjli{ line-height:18px; font-size:14px;}
+
+.kjright{ width:793px; float:right;}
+
+.kjdb{ width:229px; height:101px; margin:0px auto 15px auto; background:url(../images/kj/kjbg05.jpg) no-repeat;}
+.kjdb01{ font-size:16px; color:#2E2525; text-align:center;  line-height:40px; height:40px; padding-top:10px;}
+.kjdb02{font-size:24px; text-align:center; height:32px; padding-top:0px;}
+
+
+.bitab{ height:37px; background:url(../images/sub/subico006.jpg) no-repeat;}
+.bitab ul{ margin:0px; padding-left:20px; list-style:none;}
+.bitab ul li{float:left;}
+.bitab ul li a:link{float:left; height:28px; line-height:28px; border:1px solid #D4D4D4;  color:#413931; font-weight:bold; display:block; padding:0px 15px; margin:0px 5px;  background: #F0F0F0;}
+.bitab ul li a:visited {float:left;height:28px; line-height:28px; border:1px solid #D4D4D4; color:#413931; font-weight:bold; display:block; padding:0px 15px; margin:0px 5px;  background: #F0F0F0;}
+.bitab ul li a:hover {float:left;height:28px; line-height:28px; border-left:1px solid #D4D4D4; border-right:1px solid #D4D4D4;border-top:1px solid #D4D4D4;color:#413931;border-bottom:1px solid #fff; text-decoration:none;font-weight:bold; display:block; padding:0px 15px; margin:0px 5px; background:#fff;}
+.bitab ul li a:active {float:left; height:28px; line-height:28px; border:1px solid #D4D4D4; color:#413931; font-weight:bold; display:block; padding:0px 15px; margin:0px 5px; background: #F0F0F0;}
+
+
+.bitab2{ height:37px; background: url(../images/kj/kjbg06.gif) left no-repeat bottom;;}
+.bitab2 ul{ margin:0px; padding-left:20px; list-style:none;}
+.bitab2 ul li{float:left;}
+.bitab2 ul li a:link{float:left; height:28px; line-height:28px; border:1px solid #D4D4D4;  color:#413931; font-weight:bold; display:block; padding:0px 15px; margin:0px 5px;  background: #F0F0F0;}
+.bitab2 ul li a:visited {float:left;height:28px; line-height:28px; border:1px solid #D4D4D4; color:#413931; font-weight:bold; display:block; padding:0px 15px; margin:0px 5px;  background: #F0F0F0;}
+.bitab2 ul li a:hover {float:left;height:28px; line-height:28px; border-left:1px solid #D4D4D4; border-right:1px solid #D4D4D4;border-top:1px solid #D4D4D4;color:#413931;border-bottom:1px solid #fff; text-decoration:none;font-weight:bold; display:block; padding:0px 15px; margin:0px 5px; background:#fff;}
+.bitab2 ul li a:active {float:left; height:28px; line-height:28px; border:1px solid #D4D4D4; color:#413931; font-weight:bold; display:block; padding:0px 15px; margin:0px 5px; background: #F0F0F0;}
+
+
+.kjdbu{ background:url(../images/kj/kjbg06.gif) no-repeat; height:8px;}
+.kjdmid{ background:url(../images/kj/kjbg07.gif) repeat-y;}
+.kjdbd{ background:url(../images/kj/kjbg08.gif) no-repeat; height:8px;}
+
+.kjdpic{ border:5px solid #425441;}
+
+.lbtt{ background:url(../images/kj/tittlebg.jpg) repeat-x bottom; line-height:22px; border:1px solid #EAEAEA;}
+
+
+
+
+.sz_fb{font-size:18px;} 

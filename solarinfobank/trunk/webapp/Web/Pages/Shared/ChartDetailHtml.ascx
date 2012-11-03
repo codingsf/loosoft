@@ -1,4 +1,5 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Cn.Loosoft.Zhisou.SunPower.Common.ChartData>" %>
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -45,14 +46,12 @@
             }
     
         %>
-        <!--header开始-->
-        <div style="background: url(/images/tc_topbg.jpg); height: 57px;">
-            <div style="float: left; height: 57px; padding: 0px 0px 0px 20px; width: 300px;">
-                <img src="/images/tc_logo.jpg" width="206" height="57" /></div>
-            <div style="float: right; padding-right: 10px;">
-                <img src="/images/rlogo.jpg" width="137" height="57" /></div>
-        </div>
-        <!--结束-->
+   
+  <div style="background: url(/images/tc_topbg.jpg); height: 57px;">
+<div style="float:left; height:57px; line-height:50px; padding:0px 0px 0px 20px; width:300px;"> &nbsp;<a href="#"><img src="<%= UserUtil.UserLogo %>" width="168" height="27" border="0" style="vertical-align:middle;"/></a></div>
+<div style="float:right; padding-right:10px; line-height:55px; font-size:18px;"><%= UserUtil.SysName %></div>
+</div>
+
         <!--main开始-->
         <div style="padding: 30px 0px 80px 0px; margin: 0px auto; width: 98%;">
             <div>
@@ -220,7 +219,7 @@
         <div style="width: 100%; background: url(images/fbg.jpg); height: 34px; line-height: 34px;
             margin-top: 10px; text-align: center; color: #7E7E7E; margin: 0px auto;">
             <span>
-                <%=Resources.SunResource.SHARED_MAINMASTREPAGE_COPYRIGHT%></span>
+                <%= string.Format( Resources.SunResource.SHARED_MAINMASTREPAGE_COPYRIGHT, UserUtil.SysName)%></span>
         </div>
         <!--结束-->
     </div>

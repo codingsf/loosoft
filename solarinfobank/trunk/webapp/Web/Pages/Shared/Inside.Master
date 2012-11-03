@@ -513,8 +513,8 @@
                                             </a></li>
                                             <%} %>
                                             <li><a rel="treemenu" onclick="loadContent('content_ajax','/plant/devicedata/<%=Model.id%>','ajax','GET');setcurrent(this);return false;"
-                                                href="/plant/devicedata/<%=Model.id%>" title="<%=Resources.SunResource.DEVICE_RUN_DATA %>">
-                                                <%=Resources.SunResource.DEVICE_RUN_DATA %>
+                                                href="/plant/devicedata/<%=Model.id%>" title="<%=Resources.SunResource.DEVICE_DEVICE_RUN_DATA %>">
+                                                <%=Resources.SunResource.DEVICE_DEVICE_RUN_DATA%>
                                             </a></li>
                                             <li><a rel="treemenu" onclick="loadContent('content_ajax','/plant/devicehistorydata/<%=Model.id%>','ajax','GET');setcurrent(this);return false;"
                                                 href="/plant/devicehistorydata/<%=Model.id%>" title="<%=Resources.SunResource.DEVICE_DEVICE_HISTORYRUN_DATA %>">
@@ -663,7 +663,7 @@
                                 <div class="kjmid" style="display: none" ref="6">
                                     <div class="kjb">
                                         <ul>
-                                          <%if (UserUtil.getCurUser().username != UserUtil.demousername)
+                                          <%if (UserUtil.getCurUser().username != UserUtil.demousername&&1==2)
                                             { %>
                                             <li><a onclick="loadContent('content_ajax','/plant/energyforecast/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
                                                 href="/plant/energyforecast/<%=Model.id%>"><%=Resources.SunResource.ENERGY_FORECAST_VALUE%></a></li>

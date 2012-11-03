@@ -5073,9 +5073,6 @@
     <Content Include="Maps\Energywarn.xml" />
     <Content Include="Maps\Template.xml" />
     <Content Include="Maps\EnergyYearMonthForecast.xml" />
-    <Content Include="monitor\pic\5407-B05_01_20120918_150133_852.mp4" />
-    <Content Include="monitor\pic\5407_01_20120918_110000_362.mp4" />
-    <Content Include="monitor\pic\新建文件夹\20120907\1.mp4" />
     <Content Include="m_img\bg004.jpg" />
     <Content Include="m_img\bg01.jpg" />
     <Content Include="m_img\bg010.jpg" />

@@ -29,15 +29,20 @@
                 //$("#btnsubmit").removeClass("txtbu03");
                 //$("#btnsubmit").removeClass("txtbu06");
                 $(".txtbu01").attr("disabled", true);
+                $(".rel").hide();
                 //$("#btnsubmit").attr("disabled", true);
                 if ($(this).val() == "true") {
                     $(".txtbu01").attr("disabled", false);
+                    $(".rel").show();
+                    
                     //$("#btnsubmit").attr("disabled", false);
                     //$("#btnsubmit").addClass("txtbu03");
 
                 } else {
                     //$("#btnsubmit").addClass("txtbu06");
                 }
+
+                parent.iFrameHeight();
             });
             $("#rateEnable").change();
             $("#energyRate").get(0).focus();
@@ -169,35 +174,35 @@
                                 <td align="left">
                                 </td>
                             </tr>
-                            <tr align="left">
+                            <tr align="left" class="rel">
                                 <td height="35" class="" align="left">
                                     <%=Resources.SunResource.LOW_RATE%>：
                                 </td>
                             </tr>
-                            <tr align="left">
+                            <tr align="left" class="rel">
                                 <td height="35" class="" align="left">
                                     <%=Html.HiddenFor(m=>m.id) %>
                                     <%=Html.TextBoxFor(m => m.energyRate, new { @class = "txtbu01", style = "width:150px;" })%>
                                     <span class="red">*</span>
                                 </td>
                             </tr>
-                            <tr align="left">
+                            <tr align="left" class="rel">
                                 <td align="left">
                                     <span id="error_energyrate"></span>
                                 </td>
                             </tr>
-                            <tr align="left">
+                            <tr align="left" class="rel">
                                 <td height="35" class="" align="left">
                                     <%=Resources.SunResource.HIGHT_RATE%>：
                                 </td>
                             </tr>
-                            <tr align="left">
+                            <tr align="left" class="rel">
                                 <td height="35" class="" align="left">
                                     <%=Html.TextBoxFor(m => m.maxEnergyRate, new { @class = "txtbu01", style = "width:150px;" })%>
                                     <span class="red">*</span>
                                 </td>
                             </tr>
-                            <tr align="left">
+                            <tr align="left" class="rel">
                                 <td align="left">
                                     <span id="error_maxEnergyRate"></span>
                                 </td>

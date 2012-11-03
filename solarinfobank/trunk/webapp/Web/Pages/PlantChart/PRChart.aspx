@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<Cn.Loosoft.Zhisou.SunPower.Domain.Plant>" %>
-
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
 <%@ Import Namespace="System.Globalization" %>
@@ -356,7 +355,7 @@
         <!--footer开始-->
         <div style="width: 100%; background: url(images/fbg.jpg); height: 34px; line-height: 34px;
             margin-top: 10px; text-align: center; color: #7E7E7E; margin: 0px auto;">
-            <span><%=Resources.SunResource.SHARED_MAINMASTREPAGE_COPYRIGHT%></span>
+            <span><%=string.Format(Resources.SunResource.SHARED_MAINMASTREPAGE_COPYRIGHT, Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.SysName)%></span>
         </div>
         <!--结束-->
     </div>

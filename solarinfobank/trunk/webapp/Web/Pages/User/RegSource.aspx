@@ -42,7 +42,9 @@
                         data: {},
                         success: function(result) {
                             if (result == "true")
-                                window.location.reload();
+                            //window.location.reload(true);
+                                $("#row" + id).hide();
+                                parent.iFrameHeight();
                         }
                     });
                 }
@@ -153,7 +155,7 @@
                                 {
                                     i++;
                             %>
-                            <tr>
+                            <tr id="row<%=item.id %>">
                                 <td>
                                     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="down_line0<%=i%2 %>">
                                         <tr>

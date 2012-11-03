@@ -1442,7 +1442,7 @@
     <value>Contact Us</value>
   </data>
   <data name="SHARED_MAINMASTREPAGE_COPYRIGHT" xml:space="preserve">
-    <value>Copyright &amp;copy; 2012 SolarInfo Bank , v1.0.18 Alpha , Browse Resolution: 1024x768</value>
+    <value>Copyright &amp;copy; 2012 {0} , v1.0.18 Alpha , Browse Resolution: 1024x768</value>
   </data>
   <data name="SHARED_MAINMASTREPAGE_HOME" xml:space="preserve">
     <value>Home</value>
@@ -5366,7 +5366,7 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <value>Agree《User Agreement》</value>
   </data>
   <data name="DEVICE_DEVICE_HISTORYRUN_DATA" xml:space="preserve">
-    <value>history data
+    <value>History data
 </value>
     <comment>history data
 </comment>

@@ -71,7 +71,7 @@
             height: 25px;
             line-height: 25px;
             padding-left: 15px;
-            background: url(/images/kj/listbg04.jpg) no-repeat;
+            background:url(../Images/kj/listbg04.jpg) no-repeat;
             margin-bottom: 1px;
             color:#A69500;
             font-weight: bold;
@@ -84,7 +84,7 @@
             line-height: 30px;
             width: 190px;
             padding-left: 15px;
-            background: url(/images/kj/listbg03.jpg) no-repeat;
+            background:url(../Images/kj/listbg03.jpg) no-repeat;
             margin-bottom: 1px;
             color: #A69500;
             font-weight: bold;

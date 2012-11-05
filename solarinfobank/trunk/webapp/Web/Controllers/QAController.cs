@@ -24,6 +24,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             int.TryParse(page, out ipage);
             ipage = ipage < 1 ? 1 : ipage;
             IList<QA> qalist = QAService.GetInstance().Search(kw, QA.VALIDATE, string.IsNullOrEmpty(kw) ? username : string.Empty);
+            qalist = qalist.Where(m => m.isRecommend).ToList<QA>();
             Pager pager = new Pager();
             ViewData["page"] = pager;
             pager.PageSize = 10;

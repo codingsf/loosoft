@@ -167,14 +167,14 @@
                             <tr>
                                 <td width="auto" height="30" align="right">
                                     <span style="white-space: nowrap">
-                                        <%=Resources.SunResource.UDEVICE_PAGE_SELECT_DEVICE%>:</span>
+                                       </span>
                                 </td>
                                 <td width="auto" align="left" style="padding-left: 5px" id="dce_control">
                                     <%-- <select name="dces" id="dces" class="subselect02" style="width:150px">
                           <option><%=Resources.SunResource.UDEVICE_PAGE_PLEASESELECT%></option>
                           </select> --%>
                                     <input type="hidden" id="dces" />
-                                    <input type="text" style="width: 200px" id="devicename" />
+                                    <input type="text" style="width: 200px" id="devicename" value="<%=Resources.SunResource.UDEVICE_PAGE_SELECT_DEVICE%>" onfocus="javascript:if(this.value=='<%=Resources.SunResource.UDEVICE_PAGE_SELECT_DEVICE%>') this.value=''" />
                                     <div id="device_div" style="display: none; position: absolute; z-index: 999; border:solid 1px #ccc; background-color:#fff;  min-height:400px;">
                                         <iframe id="iframe1" name="iframe1" src="/plant/inverterstructtree/<%=Model.id %>"
                                             width="202" scrolling="auto" frameborder="0" style="min-height:400px"></iframe>

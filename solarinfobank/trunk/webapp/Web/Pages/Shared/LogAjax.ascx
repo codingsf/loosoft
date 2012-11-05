@@ -59,11 +59,13 @@
                    <input type="checkbox" id="checkall" name="checkall" />
                  
                  </strong></td>
-                  <td width="170" align="center"><strong><%=Resources.SunResource.PLANT_DEVICEMONITOR_UNIT%></strong> </td>
+                  <td width="140" align="center"><strong><%=Resources.SunResource.PLANT_DEVICEMONITOR_UNIT%></strong> </td>
                   <td width="100" align="center"><strong><%=Resources.SunResource.USER_LOG_DEVICE %></strong> </td>
-                  <td width="150" align="center"><strong><%=Resources.SunResource.USER_LOG_SEND_DATE %></strong></td>
+                  <td width="90" align="center"><strong><%=Resources.SunResource.USER_LOG_SEND_DATE %></strong></td>
                   <td width="70" align="center"><strong><%=Resources.SunResource.USER_LOG_ERROR_TYPE %></strong></td>
                   <td width="90" align="center"><strong><%=Resources.SunResource.USER_LOG_DESCRIPTION %></strong></td>
+                  <td width="70" align="center"><strong><%=Resources.SunResource.DEVICEMONITORITEM_132%></strong></td>
+                  <td width="70" align="center"><strong><%=Resources.SunResource.DEVICEMONITORITEM_133%></strong></td>
                   <td width="75" align="center"><strong> <%=Resources.SunResource.USER_LOG_STATE%></strong></td>
                   </tr>
               </table></td>
@@ -86,7 +88,7 @@
                   <td width="20" height="35" align="center">
                   <input type="checkbox" name="cbx" id="checkbox5" value="<%=log.id %>" />
                   </td>
-                   <td width="170" align="center" style="width:170px; overflow:hidden; white-space:normal;">
+                   <td width="140" align="center" style="width:140px; overflow:hidden; white-space:normal;">
                   <%-- <%if(Request["plant"].Equals("-1")) {%>--%>
                         <%=(plant.name + " -<span style='white-space:nowrap;'> " + plantUnit.displayname)%></span>
                         <%--<%}else{ %>
@@ -100,9 +102,13 @@
                   <td width="100" align="center">
                         <%=log.deviceName %>
                   </td>
-                  <td width="150" align="center"><%=log.sendTime.ToString("yyyy-MM-dd HH:mm:ss")%></td>
+                  <td width="90" align="center"><%=log.sendTime.ToString("yyyy-MM-dd")%>
+                  <br /><%=log.sendTime.ToString("HH:mm:ss")%>
+                  </td>
                   <td width="70" align="center"><%=log.errorTypeName %></td>                  
                   <td width="90" align="center"><div style=" width:90px; overflow:hidden;"><%=log.content %></div> </td>
+                  <td width="70" align="center"><div style=" width:70px; overflow:hidden;"><%=log.data1Desc%></div> </td>
+                  <td width="70" align="center"><div style=" width:60px; overflow:hidden;"><%=log.data2Desc%></div> </td>
                   <td width="75" align="center">
                    <% if (log.confirm)
                    { %>

@@ -53,6 +53,7 @@
 .kjb2 a:active{width:190px;overflow:hidden;white-space:nowrap;height:25px; line-height:25px; padding-left:15px; background:url(../Images/kj/listbg02.jpg) no-repeat; margin-bottom:1px; color:#3D3D3D; display:block;}
 
 .kjlbu00{ width:192px; padding-bottom:15px; background:url(../Images/kj/kjbu01.jpg) center top no-repeat; height:35px; color:#459001; text-align:center; padding-top:15px;}
+.kjlbu00 a{ color:#459001;}
 
 
 .kjb3{}

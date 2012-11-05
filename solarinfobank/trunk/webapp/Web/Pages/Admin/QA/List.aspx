@@ -18,10 +18,10 @@
         function recommend(id) {
             $.get("/admin/recommendanswer", { id: id }, function(data) {
                 if (data == "ok") {
-                    if ($("#answer_" + id).html().indexOf('正常') >=0)
-                        $("#answer_" + id).html('推荐');
+                    if ($("#answer_" + id).html().indexOf('取消') >=0)
+                        $("#answer_" + id).html('发布');
                     else
-                        $("#answer_" + id).html('正常');
+                        $("#answer_" + id).html('取消');
 
                 }
             });
@@ -134,8 +134,11 @@
                                     </td>
                                     <td width="10%" align="center" class="am_line0<%=i%2 %>">
                                         <a href="/admin/postanswer/<%=item.id %>">
-                                            <%=item.isanswered?"修改":"回答" %></a> <a id="answer_<%=item.id %>" href="javascript:recommend('<%=item.id %>')">
-                                                <%=item.isRecommend?"正常":"推荐" %></a>
+                                            <%=item.isanswered?"修改":"回答" %></a> 
+                                            <%if (item.isanswered)
+                                              { %>
+                                            <a id="answer_<%=item.id %>" href="javascript:recommend('<%=item.id %>')"><%=item.isRecommend ? "取消" : "发布"%></a>
+                                            <%} %>
                                     </td>
                                 </tr>
                             </table>

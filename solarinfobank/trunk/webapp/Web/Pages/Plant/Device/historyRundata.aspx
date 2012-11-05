@@ -25,11 +25,12 @@
   </tr>
   <% 
   IDictionary<string, IDictionary<string, string>> timemtMap = ViewData["timemtMap"] as IDictionary<string, IDictionary<string, string>>;
-  
+  int row = 1;
   foreach(string timepoint in timemtMap.Keys)
   {
   %>
-    <tr>
+  
+    <tr <%=(row++%4==0&&row>1) ?"style='background:#eeeeee'":""%>>
     <td><%=timepoint%></td>
     <%
       IDictionary<string, string> mtMap = timemtMap[timepoint];

@@ -223,7 +223,7 @@
     <Content Include="SqlMap.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="E:\working\SunInfoBank\trunk\email-sf\EmailService\EmailService.csproj">
+    <ProjectReference Include="..\..\..\trunk-back\email-sf\EmailService\EmailService.csproj">
       <Project>{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}</Project>
       <Name>EmailService</Name>
     </ProjectReference>

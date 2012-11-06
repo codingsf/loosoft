@@ -91,6 +91,25 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 return sendTime.Year;
             }
         }//表名标示字符
-        
+
+
+        //数据一描述
+        public string data1Desc
+        {
+            get
+            {
+                return data1 == null ? "--" : data1.ToString();
+            }
+        }
+
+        //数据一描述
+        public string data2Desc
+        {
+            get
+            {
+                return data2 == null ? "--" : data2.ToString();
+            }
+        }
+
     }
 }

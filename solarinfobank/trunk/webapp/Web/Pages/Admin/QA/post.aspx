@@ -59,11 +59,6 @@
         });
     </script>
 
-    <link href="../../style/lc.css" rel="stylesheet" type="text/css" />
-    <link href="../../style/css.css" rel="stylesheet" type="text/css" />
-    <link href="../../style/sub.css" rel="stylesheet" type="text/css" />
-    <link href="../../style/kj.css" rel="stylesheet" type="text/css" />
-    <link href="../../style/faq.css" rel="stylesheet" type="text/css" />
     <td width="793" valign="top" background="/images/kj/kjbg01.jpg">
         <table width="100%" height="63" border="0" cellpadding="0" cellspacing="0" background="/images/kj/kjbg02.jpg">
             <tr>

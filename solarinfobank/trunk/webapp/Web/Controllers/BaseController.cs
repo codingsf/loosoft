@@ -275,7 +275,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             string jsstr = "";
             if (uplevel == -1 && topLevelPlants.Count > 1)
             {
-                jsstr += "myTree.add(" + "0" + "," + "-1" + ",'<div style=\"width:100%; text-align:center;\">" + topname + "</div>'," + width + "," + height + ",'#FFDFAE','#F18216');";
+                jsstr += "myTree.add(" + "0" + "," + "-1" + ",'<div style=\"width:100%; text-align:center;\" title=\"" + topname + "\">" + StringUtil.cutStr(topname, 15, "...") + "</div>'," + width + "," + height + ",'#FFDFAE','#F18216');";
                 uplevel++;
             }
             //有下级那么就递归调用下级生成脚本。进行累计
@@ -288,7 +288,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     tmpplant = topLevelPlants[i];
                     curLevel = ((uplevel + 1) * 100 + i);
                     // tmpplant.name = string.Format("<div style=\"width:100%; text-align:center;\">{0}</div>", tmpplant.name);
-                    jsstr += "myTree.add(" + curLevel + "," + uplevel + ",'<a target=\"_blank\" href=" + (tmpplant.isVirtualPlant ? string.Format("\"/portal/virtual/{0}\"", tmpplant.id) : string.Format("\"/portal/plant/{0}\"", tmpplant.id)) + "><div style=\"width:100%; text-align:center;\">" + tmpplant.name + "</div></a>'," + width + "," + height + ",'#FFDFAE','#F18216');";
+                    jsstr += "myTree.add(" + curLevel + "," + uplevel + ",'<a target=\"_blank\" href=" + (tmpplant.isVirtualPlant ? string.Format("\"/portal/virtual/{0}\"", tmpplant.id) : string.Format("\"/portal/plant/{0}\"", tmpplant.id)) + "><div style=\"width:100%; text-align:center;\" title=\"" + tmpplant.name + "\">" + StringUtil.cutStr(tmpplant.name, 15, "...") + "</div></a>'," + width + "," + height + ",'#FFDFAE','#F18216');";
                     if (tmpplant.childs != null && tmpplant.childs.Count > 0)
                         jsstr += createPortalContructTree(tmpplant.childs, curLevel, "", width, height);
                 }
@@ -321,7 +321,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     tmpplant = topLevelPlants[i];
                     curLevel = ((uplevel + 1) * 100 + i);
                     // tmpplant.name = string.Format("<div style=\"width:100%; text-align:center;\">{0}</div>", tmpplant.name);
-                    jsstr += "myTree.add(" + curLevel + "," + uplevel + ",'<a target=\"_blank\" href=" + (tmpplant.isVirtualPlant ? string.Format("\"/virtual/plantrelationstruct/{0}\"", tmpplant.id) : string.Format("\"/plant/overview/{0}\"", tmpplant.id)) + "><div style=\"width:100%; text-align:center;\" title=\"" + tmpplant.name + "\">" + StringUtil.cutStr(tmpplant.name, 10, "...") + "</div></a>'," + width + "," + height + ",'#FFDFAE','#F18216');";
+                    jsstr += "myTree.add(" + curLevel + "," + uplevel + ",'<a target=\"_blank\" href=" + (tmpplant.isVirtualPlant ? string.Format("\"/virtual/plantrelationstruct/{0}\"", tmpplant.id) : string.Format("\"/plant/overview/{0}\"", tmpplant.id)) + "><div style=\"width:100%; text-align:center;\" title=\"" + tmpplant.name + "\">" + StringUtil.cutStr(tmpplant.name, 15, "...") + "</div></a>'," + width + "," + height + ",'#FFDFAE','#F18216');";
                     if (tmpplant.childs != null && tmpplant.childs.Count > 0)
                         jsstr += createPlantContructTree(tmpplant.childs, curLevel, width, height);
                 }

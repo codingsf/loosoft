@@ -4528,7 +4528,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Device Run Data 的本地化字符串。
+        ///   查找类似 Run Data 的本地化字符串。
         /// </summary>
         internal static string DEVICE_DEVICE_RUN_DATA {
             get {

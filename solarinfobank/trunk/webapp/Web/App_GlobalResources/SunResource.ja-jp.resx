@@ -3111,7 +3111,7 @@
     <value>投資収益率</value>
   </data>
   <data name="DEVICE_DEVICE_RUN_DATA" xml:space="preserve">
-    <value>設備の運転データ</value>
+    <value>運転データ</value>
   </data>
   <data name="PLANT_POWERCOUNT_MAX" xml:space="preserve">
     <value>最大値</value>

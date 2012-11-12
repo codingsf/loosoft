@@ -159,7 +159,7 @@
                                     <td>
                                         <table width="100%" height="25" border="0" cellpadding="0" cellspacing="0" class="subline02">
                                             <tr>
-                                                <td width="15%" align="center">
+                                                <td width="5%" align="center">
                                                     <strong>
                                                         <%=Resources.SunResource.PLANT_UNIT_LIST_STATUS %></strong>
                                                     <br />
@@ -218,7 +218,7 @@
                                         <table class="down_line0<%= i%2 %>" border="0" cellpadding="0" cellspacing="0" width="100%">
                                             <tbody>
                                                 <tr>
-                                                    <td align="center" width="15%">
+                                                    <td align="center" width="5%">
                                                         <%
                                                             if (plantUnit.collector.runData != null)
                                                             {

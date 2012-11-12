@@ -124,7 +124,7 @@
                                     <td>
                                         <table width="100%" height="25" border="0" cellpadding="0" cellspacing="0" class="subline02">
                                             <tr>
-                                                <td width="3%" align="center">&nbsp;
+                                                <td width="1%" align="center">&nbsp;
                                                 </td>                                            
                                                 <td width="18%" align="center">
                                                     <strong>
@@ -140,15 +140,15 @@
                                                 </td>
                                                 <td width="10%" align="center">
                                                     <strong>
-                                                        <%=Resources.SunResource.USER_OVERVIEW_PLANT_TODAYENERGY%></strong>
+                                                        <%=Resources.SunResource.USER_OVERVIEW_PLANT_TODAYENERGY%> (kWh)</strong>
                                                 </td>
                                                 <td width="10%" align="center">
                                                     <strong>
-                                                        <%=Resources.SunResource.USER_ALLPLANTS_ENERGY  %></strong>
+                                                        <%=Resources.SunResource.USER_ALLPLANTS_ENERGY  %> (kWh)</strong>
                                                 </td>
                                                 <td width="10%" align="center">
                                                     <strong>
-                                                        <%=Resources.SunResource.USER_OVERVIEW_PLANT_CURRENT_POWER%>
+                                                        <%=Resources.SunResource.USER_OVERVIEW_PLANT_CURRENT_POWER%> (kW)
                                                     </strong>
                                                 </td>
                                                 <td width="15%" align="center">
@@ -167,7 +167,7 @@
                                     <td>
                                         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="down_line0<%=i%2 %>">
                                             <tr>
-                                                <td width="3%" height="35" align="center" style="padding-left: 2px;">
+                                                <td width="1%" height="35" align="center" style="padding-left: 2px;">
                                                     <%if (plant.hasFaultDevice)
                                                       { %>
                                                     <img src="/images/warning_16.gif" alt="" style="float: left;">
@@ -201,19 +201,19 @@
                                                         <%=plant.city%></div>
                                                 </td>
                                                 <td width="10%" align="center">
-                                                    <div style="overflow: hidden;" title="<%=plant.DisplayTotalDayEnergy%>">
-                                                        <%=plant.DisplayTotalDayEnergy%>(<%=plant.TotalDayEnergyUnit%>)
+                                                    <div style="overflow: hidden;" title="<%=plant.TotalDayEnergy%>">
+                                                        <%=plant.TotalDayEnergy%>
                                                     </div>
                                                 </td>
                                                 <td width="10%" align="center">
-                                                    <div style="overflow: hidden;" title="<%=plant.DisplayTotalEnergy%>">
-                                                        <%=plant.DisplayTotalEnergy + "(" + plant.TotalEnergyUnit + ")"%>
+                                                    <div style="overflow: hidden;" title="<%=plant.TotalEnergy%>">
+                                                        <%=plant.TotalEnergy%>
                                                     </div>
                                                 </td>
                                                 <td width="10%" align="center">
-                                                    <div style="overflow: hidden;" title="<%=plant.DisplayTodayTotalPower%>">
-                                                        <%=plant.DisplayTodayTotalPower %>
-                                                        (<%=plant.TodayTotalPowerUnit%>)
+                                                    <div style="overflow: hidden;" title="<%=plant.TodayTotalPower%>">
+                                                        <%=plant.TodayTotalPower%>
+                                                       
                                                     </div>
                                                 </td>
                                                 <td width="15%" align="center">

@@ -3091,7 +3091,7 @@
     <value>Investment/Income</value>
   </data>
   <data name="DEVICE_DEVICE_RUN_DATA" xml:space="preserve">
-    <value>Device Run Data</value>
+    <value>Run Data</value>
   </data>
   <data name="PLANT_POWERCOUNT_MAX" xml:space="preserve">
     <value>Max</value>

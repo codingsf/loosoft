@@ -37,7 +37,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             else
             {
-                User users =UserUtil.getCurUser();
+                User users = UserUtil.getCurUser();
                 IList<int> yearList = collectorYearDataService.GetWorkYears(users.displayPlants);
                 IList<SelectListItem> plantYearsList = Currencies.FillYearItems(yearList);
                 ViewData["plantYear"] = plantYearsList;
@@ -178,7 +178,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
         public ActionResult DownLoadReport(string id, string reportId, string cTime)
         {
-            
+
             DefineReport report = reportService.GetRunReportById(reportId);
             int tId = report.ReportType;
             if (tId == DataReportType.TODAY_REPORT_CODE || tId == DataReportType.WEEK_REPORT_CODE)
@@ -206,13 +206,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             else
             {
-                return DownLoadAllPlantsReport(id,reportId,cTime);
+                return DownLoadAllPlantsReport(id, reportId, cTime);
             }
 
         }
 
         [IsLoginAttribute]
-        public ActionResult DownLoadAllPlantsReport(string id,string reportId,string cTime)
+        public ActionResult DownLoadAllPlantsReport(string id, string reportId, string cTime)
         {
 
             DefineReport report = reportService.GetRunReportById(reportId);
@@ -254,7 +254,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             Hashtable deviceDataHash = obj[2] as Hashtable;
             CsvStreamWriter csv = new CsvStreamWriter();
             dataList.Add("                        " + report.ReportName + "                       ");
-           
+
             ArrayList list2 = new ArrayList();
             list2.Add("                                         " + Resources.SunResource.REPORT_VIEW_TIME);
             if (tId == 2)
@@ -268,7 +268,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             dataList.Add(csv.ConvertToSaveLine(list2));
             dataList.Add(Resources.SunResource.REPORT_PLANT_COUNT_DATA);
             ArrayList list3 = new ArrayList();
-           
+
             int i = 1;
             foreach (int code in itemCode)
             {
@@ -324,9 +324,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 if (workYears.Count > 0)
                 {
                     cTime = workYears[0] + "-" + workYears[workYears.Count - 1];
-                   
+
                 }
-               
+
             }
             else if (tId == DataReportType.WEEK_REPORT_CODE)
             {
@@ -337,7 +337,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 int year2 = int.Parse(wTime[1].Substring(0, 4));
                 int mm2 = int.Parse(wTime[1].Substring(4, 2));
                 int dd2 = int.Parse(wTime[1].Substring(6, 2));
-                 weekTime = year1 + "/" + mm1 + "/" + dd1 + "-" + year2 + "/" + mm2 + "/" + dd2;
+                weekTime = year1 + "/" + mm1 + "/" + dd1 + "-" + year2 + "/" + mm2 + "/" + dd2;
             }
             IList<string> dataList = new List<string>();
             IList<object> obj = reportService.getDatabyItemCodes(report, cTime);
@@ -387,7 +387,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             dataList.Add(csv.ConvertToSaveLine(list3));
             dataList.Add(Resources.SunResource.REPORT_DEVICE_COUNT_DATA);
 
-            foreach (DictionaryEntry de in  deviceDataHash)
+            foreach (DictionaryEntry de in deviceDataHash)
             {
                 i = 1;
                 string tmpcode = de.Key.ToString();
@@ -423,11 +423,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     {
                         for (int m = 0; m < dataArr.Length; m++)
                         {
-                         
-                           list5.Add(dataArr[m]==null?" ":dataArr[m]);
+
+                            list5.Add(dataArr[m] == null ? " " : dataArr[m]);
                         }
                     }
-                   dataList.Add(csv.ConvertToSaveLine(list5));
+                    dataList.Add(csv.ConvertToSaveLine(list5));
                 }
             }
             CsvStreamWriter scvWriter = new CsvStreamWriter();
@@ -487,19 +487,26 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         {
             //设备
             Device device = DeviceService.GetInstance().get(deviceId);
+            string unitName = PlantUnitService.GetInstance().GetPlantUnitByCollectorId(device.collectorID).displayname;
             //或者数据
             IList<string> allmts = new List<string>();//所有测点
             IDictionary<string, IDictionary<string, string>> timemtMap = DeviceDayDataService.GetInstance().handleDayData(allmts, device, yyyyMMdd);
-            string filename = device.fullName + yyyyMMdd + Resources.SunResource.DEVICE_HISTORYRUN_DATA;//下载文件名称
+            string filename = string.Empty;
+            if (yyyyMMdd.Length >= 8)
+                filename = string.Format("{5} {0} {1}-{2}-{3} {4}", device.fullName, yyyyMMdd.Substring(0, 4), yyyyMMdd.Substring(4, 2), yyyyMMdd.Substring(6, 2), Resources.SunResource.DEVICE_HISTORYRUN_DATA, unitName);//下载文件名称
+            else
+                filename = unitName + device.fullName + yyyyMMdd + Resources.SunResource.DEVICE_HISTORYRUN_DATA;//下载文件名称
             //判断类型
-            if (type_csv.Equals(type)) {
+            if (type_csv.Equals(type))
+            {
                 return DownLoadCsvRunData(allmts, timemtMap, filename);
             }
             else if (type_xls.Equals(type))
             {
                 return DownLoadExcelRunData(allmts, timemtMap, filename);
             }
-            else {
+            else
+            {
                 return DownLoadPdfRunData(allmts, timemtMap, filename);
             }
         }
@@ -525,7 +532,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             dataList.Add(scvWriter.ConvertToSaveLine(allmts));
             //数据行临时list
             IList<string> tempList = new List<string>();
-            foreach (string key in timemtMap.Keys) {
+            foreach (string key in timemtMap.Keys)
+            {
                 dataList.Add(scvWriter.ConvertToSaveCell(key) + "," + scvWriter.ConvertToSaveLine(timemtMap[key].Values));
             }
 
@@ -605,19 +613,36 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             doc.Open();
             //生成图表图片
-            PdfPTable table = new PdfPTable(allmts.Count+1);
+
+
+            PdfPTable pdfTitle = new PdfPTable(1);
+            PdfPCell titleCell = new PdfPCell(new Phrase(filename, font));
+            titleCell.Border = 0;
+            titleCell.VerticalAlignment = Element.ALIGN_MIDDLE;
+            titleCell.HorizontalAlignment = Element.ALIGN_CENTER;
+            pdfTitle.AddCell(titleCell);
+            titleCell = new PdfPCell(new Phrase(" ", font));
+            titleCell.Border = 0;
+            pdfTitle.AddCell(titleCell);
+            doc.Add(pdfTitle);
+
+
+            PdfPTable table = new PdfPTable(allmts.Count + 1);
             table.AddCell(new PdfPCell(new Phrase(Resources.SunResource.REPORT_TIME, font)));
 
-            foreach (string mtkey in allmts) {
-                table.AddCell(new PdfPCell(new Phrase(mtkey, font)));    
+            foreach (string mtkey in allmts)
+            {
+                table.AddCell(new PdfPCell(new Phrase(mtkey, font)));
             }
             doc.Add(table);
 
-            foreach (string timekey in timemtMap.Keys) {
+            foreach (string timekey in timemtMap.Keys)
+            {
                 table = new PdfPTable(allmts.Count + 1);
                 table.AddCell(new PdfPCell(new Phrase(timekey, font)));
-                foreach (string mtvalue in timemtMap[timekey].Values) {
-                    table.AddCell(new PdfPCell(new Phrase(mtvalue, font)));    
+                foreach (string mtvalue in timemtMap[timekey].Values)
+                {
+                    table.AddCell(new PdfPCell(new Phrase(mtvalue, font)));
                 }
                 doc.Add(table);
             }

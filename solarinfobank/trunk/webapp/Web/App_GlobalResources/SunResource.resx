@@ -5549,7 +5549,7 @@ The average value of coefficient will trigger warning
     <value>Light green</value>
   </data>
   <data name="TEMPLATE_NAME8" xml:space="preserve">
-    <value />
+    <value>Azure blue</value>
   </data>
   <data name="QA_BACK_QUESTIONS_LIST" xml:space="preserve">
     <value>Back Questions List</value>

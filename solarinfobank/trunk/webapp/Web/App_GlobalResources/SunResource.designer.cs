@@ -11265,7 +11265,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 Azure blue 的本地化字符串。
         /// </summary>
         internal static string TEMPLATE_NAME8 {
             get {

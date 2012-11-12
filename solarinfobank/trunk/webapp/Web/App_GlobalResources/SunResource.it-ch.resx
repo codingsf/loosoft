@@ -3846,7 +3846,7 @@
     <comment>投资收益率</comment>
   </data>
   <data name="DEVICE_DEVICE_RUN_DATA" xml:space="preserve">
-    <value>Dato dell'operazione dell'impianto</value>
+    <value>dati di funzionamento</value>
     <comment>设备运行数据</comment>
   </data>
   <data name="PLANT_POWERCOUNT_MAX" xml:space="preserve">

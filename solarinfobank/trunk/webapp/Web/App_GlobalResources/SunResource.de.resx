@@ -3152,7 +3152,7 @@
     <comment>投资收益率</comment>
   </data>
   <data name="DEVICE_DEVICE_RUN_DATA" xml:space="preserve">
-    <value>Betriebsdaten Gerätezubehör</value>
+    <value>Betriebsdaten</value>
   </data>
   <data name="PLANT_POWERCOUNT_MAX" xml:space="preserve">
     <value>Maximalwert</value>

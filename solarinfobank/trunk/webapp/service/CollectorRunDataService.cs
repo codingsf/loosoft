@@ -139,6 +139,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 try{
                     //if (!runData.changed) continue;
                     string key = CacheKeyUtil.buildCollectorRunDataKey(runData.collectorID);
+                    //原值时间在之后则不更新实时数据 
+                    CollectorRunData odata = (CollectorRunData)mcs.Get(key);
+                    if (odata != null && odata.sendTime > runData.sendTime)
+                        continue;
                     //object obj = mcs.Get(key);
                     //CollectorRunData dsrd = runData;
                     //if (obj != null && !string.IsNullOrEmpty(obj.ToString()))//存在即修改

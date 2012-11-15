@@ -77,6 +77,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
 
                     if (!runData.changed) continue;
                     key = CacheKeyUtil.buildDeviceRunDataKey(runData.deviceID);
+                    //原值时间在之后则不更新实时数据 
+                    DeviceRunData odata = (DeviceRunData)mcs.Get(key);
+                    if (odata != null && odata.updateTime > runData.updateTime)
+                        continue;
                     //直接更新缓存即可
                     mcs.Set(key, runData);
 

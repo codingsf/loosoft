@@ -66,11 +66,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 string value = device.runData.getMonitorValueWithStatus(monitorCode);
                 if (monitorCode == MonitorType.MIC_BUSBAR_STATUS)
                 {
-                    value = StringUtil.getFullbitstr(int.Parse(value), 32);
+                    value = StringUtil.getFullbitstr(int.Parse(value));
                 }
                 else
                 {
-                    value = StringUtil.getFullbitstr(int.Parse(value), 16);
+                    value = StringUtil.getFullbitstr(int.Parse(value));
                 }
                 char[] desArray = new char[value.Length];
                 value.CopyTo(0, desArray, 0, value.Length);
@@ -126,7 +126,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                             if (mcode > 0)
                             {
                                 string routestatusvalue = device.runData.getMonitorValueWithStatus(mcode);
-                                routestatusvalue = StringUtil.getFullbitstr(int.Parse(routestatusvalue), 32);
+                                routestatusvalue = StringUtil.getFullbitstr(int.Parse(routestatusvalue));
                                 char[] routeArray = new char[routestatusvalue.Length];
                                 routestatusvalue.CopyTo(0, routeArray, 0, routestatusvalue.Length);
                                 int m = 0;

@@ -193,14 +193,21 @@
     <%if (int.Parse(ViewData["displayHxlroute"].ToString()) > 8)
       {%>
 	<ul class="xrlist">
-	<li><span class="xfl">1</span><span class="xfr">2</span></li>
-	<li><span class="xfl">3 </span><span class="xfr">4</span></li>
-	<li><span class="xfl">5</span><span class="xfr">6</span></li>
-	<li><span class="xfl">7</span><span class="xfr">8</span></li>
-	<li><span class="xfl">9</span><span class="xfr">10</span></li>
-	<li><span class="xfl">11</span><span class="xfr">12</span></li>
-	<li><span class="xfl">13</span><span class="xfr">14</span></li>
-	<li><span class="xfl">15</span><span class="xfr">16</span></li>
+	<% 
+     int maxlu = int.Parse(ViewData["displayHxlroute"].ToString());
+     for (int mm = 1; mm <= maxlu; mm = mm + 2)
+     {
+        int route1 = mm;
+        int route2 = mm+1;
+      %>
+      	<li>
+      	<span class="xfl"><%=route1%></span>
+      	<%if (route2 <= maxlu)
+         { %>
+      	<span class="xfr"><%=route2%></span>
+      	<%} %>
+      	</li>
+      <%} %>
     </ul>
 	<%}
       else
@@ -230,20 +237,19 @@
     <td width="30%"><%=vo.statusItem%></td>
     <td width="50%">
     <%if(vo.routeStatus!=null){
-          if (int.Parse(ViewData["displayHxlroute"].ToString()) > 8)
-          {%>
-        <ul class="irlist">
+      if (int.Parse(ViewData["displayHxlroute"].ToString()) > 8)
+      {%>
+      <ul class="irlist">
       <%
-        }
-          else { 
-              %>
-                  <ul class="irlist0">
+       }else { 
+      %>
+      <ul class="irlist0">
       <%
-          }
-          for (int ii = 0; ii < vo.routeStatus.Length; ii = ii + 2)
-          {
-              string route1 = vo.routeStatus[ii];
-              string route2 = vo.routeStatus[ii + 1];
+      }
+      for (int ii = 0; ii < vo.routeStatus.Length; ii = ii + 2)
+      {
+          string route1 = vo.routeStatus[ii];
+          string route2 = vo.routeStatus[ii + 1];
       %>
       <li><span class="xfl">
       <%if (route1.Equals(DigitalInputDetailVO.status_no))
@@ -258,7 +264,8 @@
         { %>
         <%=route1%>
       <%} %>
-      </span><span class="xfr">
+      </span>
+      <span class="xfr">
       <%if (route2.Equals(DigitalInputDetailVO.status_no))
         { %>
         <img src="/images/sub/xxico03.jpg" width="10" height="10" />

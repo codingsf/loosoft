@@ -61,8 +61,8 @@
     </select>
 
     <!-- 根据采集编码ID取得数据库中的id-->
-    <select id="collector_get_id_bycode"  resultClass="int" parameterClass="string">
-      select id  from collector_info where code=#value#
+    <select id="collector_get_bycode"  resultMap="collector_result" parameterClass="string">
+      select *  from collector_info where code=#value#
     </select>
 
     <!--根据设备ID和设备密码查询 张月-->

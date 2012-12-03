@@ -202,7 +202,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
                         case ProtalItems.installPower://安装功率
                             ico.Add("data", plant == null ? portalUser.assignedPlants.Sum(m => m.TotalDegignPower).ToString("0") : plant.TotalDegignPower.ToString("0"));
-                            ico.Add(string.Format("unit"), "kWh");
+                            ico.Add(string.Format("unit"), "kWp");
                             ico.Add("displayName", ProtalItems.installPowerDisplayName);
                             break;
 

@@ -90,6 +90,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             return _stationInfoDao.GetCollectorById(id);
         }
 
+        
         /// <summary>
         /// 根据采集器code取得采集器数据库id
         /// </summary>
@@ -97,27 +98,44 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <returns>采集器id</returns>
         public int getCollectorIdbyCode(string code)
         {
-            //先从hash表中取得code对应的id
-            object value = collectorInfoCodeIdHash[code];
-            if (value == null)
-            { //从数据库中取得采集器id
-                int id = _stationInfoDao.GetCollectorIDByCode(code);
-                if (id > 0)
-                {
-                    collectorInfoCodeIdHash[code] = id;
-                    Collector collector = this.Get(id);
-                    if (!collector.isUsed)
-                    {
-                        collector.isUsed = true;
-                        this.Save(collector);
-                    }
-                }
-                return id;
-            }
-            else
+            Collector collector = _stationInfoDao.GetCollectorByCode(code);
+            if (collector != null)
             {
-                return int.Parse(value.ToString());
+                return collector.id;
             }
+            return 0;
+        }
+
+        /// <summary>
+        /// 根据采集器code取得采集器数据库id
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns>采集器id</returns>
+        public Collector getCollectorbyCode(string code)
+        {
+            //先从hash表中取得code对应的id
+           // object value = collectorInfoCodeIdHash[code];
+            //if (value == null)
+            //{ 
+                //从数据库中取得采集器id
+                //int id = _stationInfoDao.CheckCollectorExists(code);
+                //if (id > 0)
+                //{
+                    //collectorInfoCodeIdHash[code] = id;
+                    Collector collector = _stationInfoDao.GetCollectorByCode(code);
+                    if (collector!=null && !collector.isUsed)
+                    {
+                        //collector.isUsed = true;
+                        //this.Save(collector);
+                    }
+                    return collector;
+                //}
+                //return id;
+            //}
+            //else
+            //{
+                //return int.Parse(value.ToString());
+            //}
         }
 
         /// <summary>

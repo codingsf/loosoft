@@ -48,10 +48,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
         /// </summary>
         /// <param name="code">编号</param>
         /// <returns>采集器id，没有则为0</returns>
-        public int GetCollectorIDByCode(string code)
+        public Collector GetCollectorByCode(string code)
         {
-            object obj = base.ExecuteQueryForObject("collector_get_id_bycode", code);
-            return obj == null ? 0 : int.Parse(obj.ToString());
+            return base.ExecuteQueryForObject<Collector>("collector_get_bycode", code);
         }
 
         /// <summary>

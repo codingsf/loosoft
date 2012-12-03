@@ -48,7 +48,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.Interfaces
         /// </summary>
         /// <param name="code">编号</param>
         /// <returns>采集器id，没有则为0</returns>
-        int GetCollectorIDByCode(string code);
+        Collector GetCollectorByCode(string code);
 
         /// <summary>
         /// 查询所有采集器信息

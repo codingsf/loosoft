@@ -458,7 +458,246 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// </summary>
         public static readonly int MIC_BUSBAR_KAILUDATA = int.Parse(DeviceData.HUILIUXIANG_CODE + "33");
 
+        //by zhouhui 2012-11-19
+        /// <summary>
+        /// 第1路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_1POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "34");
 
+        /// <summary>
+        /// 第2路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_2POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "35");
+
+        /// <summary>
+        /// 第3路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_3POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "36");
+
+        /// <summary>
+        /// 第4路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_4POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "37");
+
+        /// <summary>
+        /// 第5路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_5POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "38");
+
+        /// <summary>
+        /// 第6路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_6POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "39");
+
+        /// <summary>
+        /// 第7路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_7POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "40");
+
+        /// <summary>
+        /// 第8路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_8POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "41");
+
+        /// <summary>
+        /// 第9路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_9POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "42");
+
+        /// <summary>
+        /// 第10路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_10POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "43");
+
+        /// <summary>
+        /// 第11路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_11POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "44");
+
+        /// <summary>
+        /// 第12路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_12POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "45");
+
+        /// <summary>
+        /// 第13路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_13POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "46");
+
+        /// <summary>
+        /// 第14路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_14POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "47");
+
+        /// <summary>
+        /// 第15路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_15POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "48");
+
+        /// <summary>
+        /// 第16路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_16POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "49");
+
+        /// <summary>
+        /// 第17路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_17POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "50");
+
+        /// <summary>
+        /// 第18路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_18POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "51");
+
+        /// <summary>
+        /// 第19路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_19POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "52");
+
+        /// <summary>
+        /// 第20路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_20POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "53");
+
+        /// <summary>
+        /// 第21路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_21POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "54");
+
+        /// <summary>
+        /// 第22路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_22POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "55");
+
+        /// <summary>
+        /// 第23路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_23POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "56");
+
+        /// <summary>
+        /// 第24路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_24POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "57");
+
+        /// <summary>
+        /// 第25路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_25POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "58");
+
+        /// <summary>
+        /// 第26路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_26POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "59");
+
+        /// <summary>
+        /// 第27路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_27POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "60");
+
+        /// <summary>
+        /// 第28路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_28POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "61");
+
+        /// <summary>
+        /// 第29路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_29POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "62");
+
+        /// <summary>
+        /// 第30路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_30POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "63");
+
+        /// <summary>
+        /// 第31路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_31POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "64");
+
+        /// <summary>
+        /// 第32路功率
+        /// </summary>
+        public static readonly int MIC_BUSBAR_32POWER = int.Parse(DeviceData.HUILIUXIANG_CODE + "65");
+
+        /// <summary>
+        /// 第17路电流 
+        /// </summary>
+        public static readonly int MIC_BUSBAR_17CURRENT = int.Parse(DeviceData.HUILIUXIANG_CODE + "66");
+
+        /// <summary>
+        /// 第18路电流 
+        /// </summary>
+        public static readonly int MIC_BUSBAR_18CURRENT = int.Parse(DeviceData.HUILIUXIANG_CODE + "67");
+
+        /// <summary>
+        /// 第19路电流 
+        /// </summary>
+        public static readonly int MIC_BUSBAR_19CURRENT = int.Parse(DeviceData.HUILIUXIANG_CODE + "68");
+
+        /// <summary>
+        /// 第20路电流 
+        /// </summary>
+        public static readonly int MIC_BUSBAR_20CURRENT = int.Parse(DeviceData.HUILIUXIANG_CODE + "69");
+
+        /// <summary>
+        /// 第21路电流 
+        /// </summary>
+        public static readonly int MIC_BUSBAR_21CURRENT = int.Parse(DeviceData.HUILIUXIANG_CODE + "70");
+
+        /// <summary>
+        /// 第22路电流 
+        /// </summary>
+        public static readonly int MIC_BUSBAR_22CURRENT = int.Parse(DeviceData.HUILIUXIANG_CODE + "71");
+
+        /// <summary>
+        /// 第23路电流 
+        /// </summary>
+        public static readonly int MIC_BUSBAR_23CURRENT = int.Parse(DeviceData.HUILIUXIANG_CODE + "72");
+
+        /// <summary>
+        /// 第24路电流 
+        /// </summary>
+        public static readonly int MIC_BUSBAR_24CURRENT = int.Parse(DeviceData.HUILIUXIANG_CODE + "73");
+
+        /// <summary>
+        /// 第25路电流 
+        /// </summary>
+        public static readonly int MIC_BUSBAR_25CURRENT = int.Parse(DeviceData.HUILIUXIANG_CODE + "74");
+
+        /// <summary>
+        /// 第26路电流 
+        /// </summary>
+        public static readonly int MIC_BUSBAR_26CURRENT = int.Parse(DeviceData.HUILIUXIANG_CODE + "75");
+
+        /// <summary>
+        /// 第27路电流 
+        /// </summary>
+        public static readonly int MIC_BUSBAR_27CURRENT = int.Parse(DeviceData.HUILIUXIANG_CODE + "76");
+
+        /// <summary>
+        /// 第28路电流 
+        /// </summary>
+        public static readonly int MIC_BUSBAR_28CURRENT = int.Parse(DeviceData.HUILIUXIANG_CODE + "77");
+
+        /// <summary>
+        /// 第29路电流 
+        /// </summary>
+        public static readonly int MIC_BUSBAR_29CURRENT = int.Parse(DeviceData.HUILIUXIANG_CODE + "78");
+
+        /// <summary>
+        /// 第30路电流 
+        /// </summary>
+        public static readonly int MIC_BUSBAR_30CURRENT = int.Parse(DeviceData.HUILIUXIANG_CODE + "79");
+
+        /// <summary>
+        /// 第31路电流 
+        /// </summary>
+        public static readonly int MIC_BUSBAR_31CURRENT = int.Parse(DeviceData.HUILIUXIANG_CODE + "80");
+
+        /// <summary>
+        /// 第32路电流 
+        /// </summary>
+        public static readonly int MIC_BUSBAR_32CURRENT = int.Parse(DeviceData.HUILIUXIANG_CODE + "81");
 
         //环境检测仪测点 定义规则设备类型+"_"+测点在协议中的序号起始序号  一些没放到资源库中
         /// <summary>
@@ -741,15 +980,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
 
             monitorMap.Add(PLANT_MONITORITEM_WINDSPEED, new MonitorType() { code = PLANT_MONITORITEM_WINDSPEED, unit = "m/s", zerotoline = false });
 
-
-
-            monitorMap.Add(MIC_BUSBAR_10CURRENT, new MonitorType() { code = MIC_BUSBAR_10CURRENT, unit = "A", zerotoline = false });
-            monitorMap.Add(MIC_BUSBAR_11CURRENT, new MonitorType() { code = MIC_BUSBAR_11CURRENT, unit = "A", zerotoline = false });
-            monitorMap.Add(MIC_BUSBAR_12CURRENT, new MonitorType() { code = MIC_BUSBAR_12CURRENT, unit = "A", zerotoline = false });
-            monitorMap.Add(MIC_BUSBAR_13CURRENT, new MonitorType() { code = MIC_BUSBAR_13CURRENT, unit = "A", zerotoline = false });
-            monitorMap.Add(MIC_BUSBAR_14CURRENT, new MonitorType() { code = MIC_BUSBAR_14CURRENT, unit = "A", zerotoline = false });
-            monitorMap.Add(MIC_BUSBAR_15CURRENT, new MonitorType() { code = MIC_BUSBAR_15CURRENT, unit = "A", zerotoline = false });
-            monitorMap.Add(MIC_BUSBAR_16CURRENT, new MonitorType() { code = MIC_BUSBAR_16CURRENT, unit = "A", zerotoline = false });
             monitorMap.Add(MIC_BUSBAR_1CURRENT, new MonitorType() { code = MIC_BUSBAR_1CURRENT, unit = "A", zerotoline = false });
             monitorMap.Add(MIC_BUSBAR_2CURRENT, new MonitorType() { code = MIC_BUSBAR_2CURRENT, unit = "A", zerotoline = false });
             monitorMap.Add(MIC_BUSBAR_3CURRENT, new MonitorType() { code = MIC_BUSBAR_3CURRENT, unit = "A", zerotoline = false });
@@ -759,6 +989,31 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             monitorMap.Add(MIC_BUSBAR_7CURRENT, new MonitorType() { code = MIC_BUSBAR_7CURRENT, unit = "A", zerotoline = false });
             monitorMap.Add(MIC_BUSBAR_8CURRENT, new MonitorType() { code = MIC_BUSBAR_8CURRENT, unit = "A", zerotoline = false });
             monitorMap.Add(MIC_BUSBAR_9CURRENT, new MonitorType() { code = MIC_BUSBAR_9CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_10CURRENT, new MonitorType() { code = MIC_BUSBAR_10CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_11CURRENT, new MonitorType() { code = MIC_BUSBAR_11CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_12CURRENT, new MonitorType() { code = MIC_BUSBAR_12CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_13CURRENT, new MonitorType() { code = MIC_BUSBAR_13CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_14CURRENT, new MonitorType() { code = MIC_BUSBAR_14CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_15CURRENT, new MonitorType() { code = MIC_BUSBAR_15CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_16CURRENT, new MonitorType() { code = MIC_BUSBAR_16CURRENT, unit = "A", zerotoline = false });
+            //add by qhb in 20121203 for 增加到32路汇流箱电流
+            monitorMap.Add(MIC_BUSBAR_17CURRENT, new MonitorType() { code = MIC_BUSBAR_17CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_18CURRENT, new MonitorType() { code = MIC_BUSBAR_18CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_19CURRENT, new MonitorType() { code = MIC_BUSBAR_19CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_20CURRENT, new MonitorType() { code = MIC_BUSBAR_20CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_21CURRENT, new MonitorType() { code = MIC_BUSBAR_21CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_22CURRENT, new MonitorType() { code = MIC_BUSBAR_22CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_23CURRENT, new MonitorType() { code = MIC_BUSBAR_23CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_24CURRENT, new MonitorType() { code = MIC_BUSBAR_24CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_25CURRENT, new MonitorType() { code = MIC_BUSBAR_25CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_26CURRENT, new MonitorType() { code = MIC_BUSBAR_26CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_27CURRENT, new MonitorType() { code = MIC_BUSBAR_27CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_28CURRENT, new MonitorType() { code = MIC_BUSBAR_28CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_29CURRENT, new MonitorType() { code = MIC_BUSBAR_29CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_30CURRENT, new MonitorType() { code = MIC_BUSBAR_30CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_31CURRENT, new MonitorType() { code = MIC_BUSBAR_31CURRENT, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_32CURRENT, new MonitorType() { code = MIC_BUSBAR_32CURRENT, unit = "A", zerotoline = false });
+            //add by qhb in 20121203 for 增加到32路汇流箱电流
             monitorMap.Add(MIC_BUSBAR_CGQLINENUM, new MonitorType() { code = MIC_BUSBAR_CGQLINENUM, unit = "", zerotoline = false });
             monitorMap.Add(MIC_BUSBAR_COMMUNICATION, new MonitorType() { code = MIC_BUSBAR_COMMUNICATION, unit = "", zerotoline = false });
             monitorMap.Add(MIC_BUSBAR_DCUXVOLT, new MonitorType() { code = MIC_BUSBAR_DCUXVOLT, unit = "V", zerotoline = false });
@@ -900,47 +1155,43 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             //添加需要做历史的测点
             //汇流箱
             historyMonitorList.Add(MIC_BUSBAR_1CURRENT);
-
             historyMonitorList.Add(MIC_BUSBAR_2CURRENT);
-
             historyMonitorList.Add(MIC_BUSBAR_3CURRENT);
-
             historyMonitorList.Add(MIC_BUSBAR_4CURRENT);
-
             historyMonitorList.Add(MIC_BUSBAR_5CURRENT);
-
             historyMonitorList.Add(MIC_BUSBAR_6CURRENT);
-
-
             historyMonitorList.Add(MIC_BUSBAR_7CURRENT);
-
             historyMonitorList.Add(MIC_BUSBAR_8CURRENT);
-
-
             historyMonitorList.Add(MIC_BUSBAR_9CURRENT);
-
             historyMonitorList.Add(MIC_BUSBAR_10CURRENT);
-
             historyMonitorList.Add(MIC_BUSBAR_11CURRENT);
-
             historyMonitorList.Add(MIC_BUSBAR_12CURRENT);
-
             historyMonitorList.Add(MIC_BUSBAR_13CURRENT);
-
             historyMonitorList.Add(MIC_BUSBAR_14CURRENT);
-
             historyMonitorList.Add(MIC_BUSBAR_15CURRENT);
-
             historyMonitorList.Add(MIC_BUSBAR_16CURRENT);
-
+            //add by qhb in 20121203 for 增加到32路汇流箱电流
+            historyMonitorList.Add(MIC_BUSBAR_17CURRENT);
+            historyMonitorList.Add(MIC_BUSBAR_18CURRENT);
+            historyMonitorList.Add(MIC_BUSBAR_19CURRENT);
+            historyMonitorList.Add(MIC_BUSBAR_20CURRENT);
+            historyMonitorList.Add(MIC_BUSBAR_21CURRENT);
+            historyMonitorList.Add(MIC_BUSBAR_22CURRENT);
+            historyMonitorList.Add(MIC_BUSBAR_23CURRENT);
+            historyMonitorList.Add(MIC_BUSBAR_24CURRENT);
+            historyMonitorList.Add(MIC_BUSBAR_25CURRENT);
+            historyMonitorList.Add(MIC_BUSBAR_26CURRENT);
+            historyMonitorList.Add(MIC_BUSBAR_27CURRENT);
+            historyMonitorList.Add(MIC_BUSBAR_28CURRENT);
+            historyMonitorList.Add(MIC_BUSBAR_29CURRENT);
+            historyMonitorList.Add(MIC_BUSBAR_30CURRENT);
+            historyMonitorList.Add(MIC_BUSBAR_31CURRENT);
+            historyMonitorList.Add(MIC_BUSBAR_32CURRENT);
+            //add by qhb in 20121203 for 增加到32路汇流箱电流end
             historyMonitorList.Add(MIC_BUSBAR_DCUXVOLT);
-
             historyMonitorList.Add(MIC_BUSBAR_JNTEMPRATURE);
-
             historyMonitorList.Add(MIC_BUSBAR_TOTALCURRENT);
-
             historyMonitorList.Add(MIC_BUSBAR_MAXCURRENT);
-
             historyMonitorList.Add(MIC_BUSBAR_AVGCURRENT);
 
 

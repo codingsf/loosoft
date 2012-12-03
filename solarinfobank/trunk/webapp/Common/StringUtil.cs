@@ -209,13 +209,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// <param name="num10"></param>
         /// <param name="fullbits"></param>
         /// <returns></returns>
-        public static string getFullbitstr(int num10, int fullbits)
+        public static string getFullbitstr(int num10)
         {
             string inputstr = Convert.ToString(num10, 2);
             int bits = inputstr.Length;
-            return getStr(16 - bits) + inputstr;
+            return getStr(32 - bits) + inputstr;
         }
-
 
         /// <summary>
         /// 按照传入的位数取得相应位数的0组成的字符串

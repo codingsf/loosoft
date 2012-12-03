@@ -65,6 +65,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         public const int TYPE_MODBUS15_BUSBAR = 0x15;
 
         /// <summary>
+        /// 0x17  光伏汇流箱通信协议（Modbus）V1.7设置定稿.doc
+        /// </summary>
+        public const int TYPE_MODBUS17_BUSBAR = 0x17;
+
+        /// <summary>
         /// 0x13 直流配电柜（SUNGROW协议）
         ///</summary>
         public const int TYPE_SUNGROW_CABINET = 0x13;

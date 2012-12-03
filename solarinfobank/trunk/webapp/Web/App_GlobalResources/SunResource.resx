@@ -5554,4 +5554,68 @@ The average value of coefficient will trigger warning
   <data name="QA_BACK_QUESTIONS_LIST" xml:space="preserve">
     <value>Back Questions List</value>
   </data>
+  <data name="DEVICEMONITORITEM_366" xml:space="preserve">
+    <value>No. 17 Current</value>
+    <comment>第十七路电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_367" xml:space="preserve">
+    <value>No. 18 Current</value>
+    <comment>第十八路电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_368" xml:space="preserve">
+    <value>No. 19 Current</value>
+    <comment>第十九路电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_369" xml:space="preserve">
+    <value>No. 20 Current</value>
+    <comment>第二十路电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_370" xml:space="preserve">
+    <value>No. 21 Current</value>
+    <comment>第二十一路电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_371" xml:space="preserve">
+    <value>No. 22 Current</value>
+    <comment>第二十二路电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_372" xml:space="preserve">
+    <value>No. 23 Current</value>
+    <comment>第二十三路电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_373" xml:space="preserve">
+    <value>No. 24 Current</value>
+    <comment>第二十四路电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_374" xml:space="preserve">
+    <value>No. 25 Current</value>
+    <comment>第二十五路电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_375" xml:space="preserve">
+    <value>No. 26 Current</value>
+    <comment>第二十六路电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_376" xml:space="preserve">
+    <value>No. 27 Current</value>
+    <comment>第二十七路电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_377" xml:space="preserve">
+    <value>No. 28 Current</value>
+    <comment>第二十八路电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_378" xml:space="preserve">
+    <value>No. 29 Current</value>
+    <comment>第二十九路电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_379" xml:space="preserve">
+    <value>No. 30 Current</value>
+    <comment>第三十路电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_380" xml:space="preserve">
+    <value>No. 31 Current</value>
+    <comment>第三十一路电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_381" xml:space="preserve">
+    <value>No. 32 Current</value>
+    <comment>第三十二路电流</comment>
+  </data>
 </root>

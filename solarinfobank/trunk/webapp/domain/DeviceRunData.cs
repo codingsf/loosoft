@@ -320,7 +320,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 //如果是汇流箱非显示路数则跳过
                 if (deviceTypeCode == DeviceData.HUILIUXIANG_CODE)
                 {
-                    if (displayHxlroute > 0 && monitorCode > displayHxlroute && monitorCode <= MonitorType.MIC_BUSBAR_16CURRENT)
+                    if (displayHxlroute > 0 && monitorCode > displayHxlroute && monitorCode <= MonitorType.MIC_BUSBAR_32CURRENT)
                     {
                         continue;
                     }
@@ -595,11 +595,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             if (monitorCode == MonitorType.MIC_BUSBAR_STATUS)
             {
-                value = StringUtil.getFullbitstr(int.Parse(value), 32);
+                value = StringUtil.getFullbitstr(int.Parse(value));
             }
             else
             {
-                value = StringUtil.getFullbitstr(int.Parse(value), 16);
+                value = StringUtil.getFullbitstr(int.Parse(value));
             }
             char[] desArray = new char[value.Length];
             value.CopyTo(0, desArray, 0, value.Length);

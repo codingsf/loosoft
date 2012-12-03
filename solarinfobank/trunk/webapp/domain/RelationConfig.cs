@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Cn.Loosoft.Zhisou.SunPower.Domain
 {
+    /// <summary>
+    /// 各种类型结构图节点设置
+    /// </summary>
     public class RelationConfig
     {
         public const int PlantType = 1;//电站

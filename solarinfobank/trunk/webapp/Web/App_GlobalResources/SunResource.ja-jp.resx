@@ -5296,67 +5296,195 @@ The average value of coefficient will trigger warning
     <value />
   </data>
   <data name="DEVICEMONITORITEM_366" xml:space="preserve">
-    <value>No. 17 Current</value>
+    <value>NO.17回路電流</value>
     <comment>第十七路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_367" xml:space="preserve">
-    <value>No. 18 Current</value>
+    <value>NO.18回路電流</value>
     <comment>第十八路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_368" xml:space="preserve">
-    <value>No. 19 Current</value>
+    <value>NO.19回路電流</value>
     <comment>第十九路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_369" xml:space="preserve">
-    <value>No. 20 Current</value>
+    <value>NO.20回路電流</value>
     <comment>第二十路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_370" xml:space="preserve">
-    <value>No. 21 Current</value>
+    <value>NO.21回路電流</value>
     <comment>第二十一路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_371" xml:space="preserve">
-    <value>No. 22 Current</value>
+    <value>NO.22回路電流</value>
     <comment>第二十二路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_372" xml:space="preserve">
-    <value>No. 23 Current</value>
+    <value>NO.23回路電流</value>
     <comment>第二十三路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_373" xml:space="preserve">
-    <value>No. 24 Current</value>
+    <value>NO.24回路電流</value>
     <comment>第二十四路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_374" xml:space="preserve">
-    <value>No. 25 Current</value>
+    <value>NO.25回路電流</value>
     <comment>第二十五路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_375" xml:space="preserve">
-    <value>No. 26 Current</value>
+    <value>NO.26回路電流</value>
     <comment>第二十六路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_376" xml:space="preserve">
-    <value>No. 27 Current</value>
+    <value>NO.27回路電流</value>
     <comment>第二十七路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_377" xml:space="preserve">
-    <value>No. 28 Current</value>
+    <value>NO.28回路電流</value>
     <comment>第二十八路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_378" xml:space="preserve">
-    <value>No. 29 Current</value>
+    <value>NO.29回路電流</value>
     <comment>第二十九路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_379" xml:space="preserve">
-    <value>No. 30 Current</value>
+    <value>NO.30回路電流</value>
     <comment>第三十路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_380" xml:space="preserve">
-    <value>No. 31 Current</value>
+    <value>NO.31回路電流</value>
     <comment>第三十一路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_381" xml:space="preserve">
-    <value>No. 32 Current</value>
+    <value>NO.32回路電流</value>
     <comment>第三十二路电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_334" xml:space="preserve">
+    <value>NO.1工率</value>
+    <comment>第一路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_335" xml:space="preserve">
+    <value>NO.2工率</value>
+    <comment>第二路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_336" xml:space="preserve">
+    <value>NO.3工率</value>
+    <comment>第三路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_337" xml:space="preserve">
+    <value>NO.4工率</value>
+    <comment>第四路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_338" xml:space="preserve">
+    <value>NO.5工率</value>
+    <comment>第五路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_339" xml:space="preserve">
+    <value>NO.6工率</value>
+    <comment>第六路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_340" xml:space="preserve">
+    <value>NO.7工率</value>
+    <comment>第七路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_341" xml:space="preserve">
+    <value>NO.8工率</value>
+    <comment>第八路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_342" xml:space="preserve">
+    <value>NO.9工率</value>
+    <comment>第九路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_343" xml:space="preserve">
+    <value>NO.10工率</value>
+    <comment>第十路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_344" xml:space="preserve">
+    <value>NO.11工率</value>
+    <comment>第十一路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_345" xml:space="preserve">
+    <value>NO.12工率</value>
+    <comment>第十二路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_346" xml:space="preserve">
+    <value>NO.13工率</value>
+    <comment>第十三路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_347" xml:space="preserve">
+    <value>NO.14工率</value>
+    <comment>第十四路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_348" xml:space="preserve">
+    <value>NO.15工率</value>
+    <comment>第十五路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_349" xml:space="preserve">
+    <value>NO.16工率</value>
+    <comment>第十六路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_350" xml:space="preserve">
+    <value>NO.17工率</value>
+    <comment>第十七路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_351" xml:space="preserve">
+    <value>NO.18工率</value>
+    <comment>第十八路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_352" xml:space="preserve">
+    <value>NO.19工率</value>
+    <comment>第十九路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_353" xml:space="preserve">
+    <value>NO.20工率</value>
+    <comment>第二十路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_354" xml:space="preserve">
+    <value>NO.21工率</value>
+    <comment>第二十一路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_355" xml:space="preserve">
+    <value>NO.22工率</value>
+    <comment>第二十二路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_356" xml:space="preserve">
+    <value>NO.23工率</value>
+    <comment>第二十三路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_357" xml:space="preserve">
+    <value>NO.24工率</value>
+    <comment>第二十四路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_358" xml:space="preserve">
+    <value>NO.25工率</value>
+    <comment>第二十五路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_359" xml:space="preserve">
+    <value>NO.26工率</value>
+    <comment>第二十六路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_360" xml:space="preserve">
+    <value>NO.27工率</value>
+    <comment>第二十七路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_361" xml:space="preserve">
+    <value>NO.28工率</value>
+    <comment>第二十八路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_362" xml:space="preserve">
+    <value>NO.29工率</value>
+    <comment>第二十九路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_363" xml:space="preserve">
+    <value>NO.30工率</value>
+    <comment>第三十功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_364" xml:space="preserve">
+    <value>NO.31工率</value>
+    <comment>第三十一路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_365" xml:space="preserve">
+    <value>NO.32工率</value>
+    <comment>第三十二路功率</comment>
   </data>
 </root>

@@ -3528,6 +3528,294 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 No. 1 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_334 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_334", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 2 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_335 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_335", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 3 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_336 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_336", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 4 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_337 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_337", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 5 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_338 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_338", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 6 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_339 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_339", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 7 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_340 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_340", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 8 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_341 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_341", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 9 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_342 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_342", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 10 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_343 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_343", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 11 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_344 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_344", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 12 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_345 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_345", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 13 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_346 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_346", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 14 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_347 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_347", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 15 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_348 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_348", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 16 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_349 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_349", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 17 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_350 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_350", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 18 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_351 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_351", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 19 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_352 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_352", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 20 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_353 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_353", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 21 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_354 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_354", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 22 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_355 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_355", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 23 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_356 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_356", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 24 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_357 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_357", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 25 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_358 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_358", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 26 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_359 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_359", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 27 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_360 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_360", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 28 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_361 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_361", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 29 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_362 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_362", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 30 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_363 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_363", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 31 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_364 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_364", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 No. 32 Power 的本地化字符串。
+        /// </summary>
+        internal static string DEVICEMONITORITEM_365 {
+            get {
+                return ResourceManager.GetString("DEVICEMONITORITEM_365", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 No. 17 Current 的本地化字符串。
         /// </summary>
         internal static string DEVICEMONITORITEM_366 {

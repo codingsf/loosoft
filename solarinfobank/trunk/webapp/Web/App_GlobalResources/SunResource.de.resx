@@ -1949,7 +1949,7 @@
     <comment>第二路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_303" xml:space="preserve">
-    <value>Nr. 3 - Stro</value>
+    <value>Nr. 3 - Strom</value>
     <comment>第三路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_304" xml:space="preserve">
@@ -5724,67 +5724,195 @@ The average value of coefficient will trigger warning
     <value>Zurück zur Liste der Fragen</value>
   </data>
   <data name="DEVICEMONITORITEM_366" xml:space="preserve">
-    <value>No. 17 Current</value>
+    <value>Nr. 17 - Strom</value>
     <comment>第十七路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_367" xml:space="preserve">
-    <value>No. 18 Current</value>
+    <value>Nr. 18 - Strom</value>
     <comment>第十八路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_368" xml:space="preserve">
-    <value>No. 19 Current</value>
+    <value>Nr. 19 - Strom</value>
     <comment>第十九路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_369" xml:space="preserve">
-    <value>No. 20 Current</value>
+    <value>Nr. 20 - Strom</value>
     <comment>第二十路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_370" xml:space="preserve">
-    <value>No. 21 Current</value>
+    <value>Nr. 21 - Strom</value>
     <comment>第二十一路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_371" xml:space="preserve">
-    <value>No. 22 Current</value>
+    <value>Nr. 22 - Strom</value>
     <comment>第二十二路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_372" xml:space="preserve">
-    <value>No. 23 Current</value>
+    <value>Nr. 23 - Strom</value>
     <comment>第二十三路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_373" xml:space="preserve">
-    <value>No. 24 Current</value>
+    <value>Nr. 24 - Strom</value>
     <comment>第二十四路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_374" xml:space="preserve">
-    <value>No. 25 Current</value>
+    <value>Nr. 25 - Strom</value>
     <comment>第二十五路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_375" xml:space="preserve">
-    <value>No. 26 Current</value>
+    <value>Nr. 26 - Strom</value>
     <comment>第二十六路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_376" xml:space="preserve">
-    <value>No. 27 Current</value>
+    <value>Nr. 27 - Strom</value>
     <comment>第二十七路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_377" xml:space="preserve">
-    <value>No. 28 Current</value>
+    <value>Nr. 28 - Strom</value>
     <comment>第二十八路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_378" xml:space="preserve">
-    <value>No. 29 Current</value>
+    <value>Nr. 29 - Strom</value>
     <comment>第二十九路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_379" xml:space="preserve">
-    <value>No. 30 Current</value>
+    <value>Nr. 30 - Strom</value>
     <comment>第三十路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_380" xml:space="preserve">
-    <value>No. 31 Current</value>
+    <value>Nr. 31 - Strom</value>
     <comment>第三十一路电流</comment>
   </data>
   <data name="DEVICEMONITORITEM_381" xml:space="preserve">
-    <value>No. 32 Current</value>
+    <value>Nr. 32 - Strom</value>
     <comment>第三十二路电流</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_334" xml:space="preserve">
+    <value>Nr. 1 - Macht</value>
+    <comment>第一路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_335" xml:space="preserve">
+    <value>Nr. 2 - Macht</value>
+    <comment>第二路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_336" xml:space="preserve">
+    <value>Nr. 3 - Macht</value>
+    <comment>第三路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_337" xml:space="preserve">
+    <value>Nr. 4 - Macht</value>
+    <comment>第四路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_338" xml:space="preserve">
+    <value>Nr. 5 - Macht</value>
+    <comment>第五路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_339" xml:space="preserve">
+    <value>Nr. 6 - Macht</value>
+    <comment>第六路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_340" xml:space="preserve">
+    <value>Nr. 7 - Macht</value>
+    <comment>第七路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_341" xml:space="preserve">
+    <value>Nr. 8 - Macht</value>
+    <comment>第八路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_342" xml:space="preserve">
+    <value>Nr. 9 - Macht</value>
+    <comment>第九路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_343" xml:space="preserve">
+    <value>Nr. 10 - Macht</value>
+    <comment>第十路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_344" xml:space="preserve">
+    <value>Nr. 11 - Macht</value>
+    <comment>第十一路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_345" xml:space="preserve">
+    <value>Nr. 12 - Macht</value>
+    <comment>第十二路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_346" xml:space="preserve">
+    <value>Nr. 13 - Macht</value>
+    <comment>第十三路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_347" xml:space="preserve">
+    <value>Nr. 14 - Macht</value>
+    <comment>第十四路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_348" xml:space="preserve">
+    <value>Nr. 15 - Macht</value>
+    <comment>第十五路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_349" xml:space="preserve">
+    <value>Nr. 16 - Macht</value>
+    <comment>第十六路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_350" xml:space="preserve">
+    <value>Nr. 17 - Macht</value>
+    <comment>第十七路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_351" xml:space="preserve">
+    <value>Nr. 18 - Macht</value>
+    <comment>第十八路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_352" xml:space="preserve">
+    <value>Nr. 19 - Macht</value>
+    <comment>第十九路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_353" xml:space="preserve">
+    <value>Nr. 20 - Macht</value>
+    <comment>第二十路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_354" xml:space="preserve">
+    <value>Nr. 21 - Macht</value>
+    <comment>第二十一路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_355" xml:space="preserve">
+    <value>Nr. 22 - Macht</value>
+    <comment>第二十二路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_356" xml:space="preserve">
+    <value>Nr. 23 - Macht</value>
+    <comment>第二十三路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_357" xml:space="preserve">
+    <value>Nr. 24 - Macht</value>
+    <comment>第二十四路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_358" xml:space="preserve">
+    <value>Nr. 25 - Macht</value>
+    <comment>第二十五路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_359" xml:space="preserve">
+    <value>Nr. 26 - Macht</value>
+    <comment>第二十六路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_360" xml:space="preserve">
+    <value>Nr. 27 - Macht</value>
+    <comment>第二十七路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_361" xml:space="preserve">
+    <value>Nr. 28 - Macht</value>
+    <comment>第二十八路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_362" xml:space="preserve">
+    <value>Nr. 29 - Macht</value>
+    <comment>第二十九路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_363" xml:space="preserve">
+    <value>Nr. 30 - Macht</value>
+    <comment>第三十功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_364" xml:space="preserve">
+    <value>Nr. 31 - Macht</value>
+    <comment>第三十一路功率</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_365" xml:space="preserve">
+    <value>Nr. 32 - Macht</value>
+    <comment>第三十二路功率</comment>
   </data>
 </root>

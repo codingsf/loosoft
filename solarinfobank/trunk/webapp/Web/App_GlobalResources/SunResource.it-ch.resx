@@ -1852,7 +1852,7 @@
     <comment>联系我们</comment>
   </data>
   <data name="SHARED_MAINMASTREPAGE_COPYRIGHT" xml:space="preserve">
-    <value>Diritto d'autore &amp;copy; 2012 {0} , v1.0.18 Alpha , sfoglia della risoluzione:1024x768</value>
+    <value>Diritto d'autore &amp;copy; 2012 {0} , v1.0.18 Beta , sfoglia della risoluzione:1024x768</value>
     <comment>版权 @ 2011 SolarInfo Bank , v1.0.18 Alpha, 分辨率: 1024x768</comment>
   </data>
   <data name="SHARED_MAINMASTREPAGE_HOME" xml:space="preserve">
@@ -6846,5 +6846,9 @@ The average value of coefficient will trigger warning
   <data name="DEVICEMONITORITEM_365" xml:space="preserve">
     <value>No.32 Potenza</value>
     <comment>第三十二路功率</comment>
+  </data>
+  <data name="PLANT_CHART_DAY_CHART_POWER" xml:space="preserve">
+    <value>Potenza</value>
+    <comment>功率</comment>
   </data>
 </root>

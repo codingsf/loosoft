@@ -1434,7 +1434,7 @@
     <value>联系我们</value>
   </data>
   <data name="SHARED_MAINMASTREPAGE_COPYRIGHT" xml:space="preserve">
-    <value>版权 &amp;copy; 2012 {0} , v1.0.18 Alpha, 分辨率: 1024x768</value>
+    <value>版权 &amp;copy; 2012 {0} , v1.0.18 Beta, 分辨率: 1024x768</value>
   </data>
   <data name="SHARED_MAINMASTREPAGE_HOME" xml:space="preserve">
     <value>首页</value>
@@ -5541,5 +5541,9 @@
   <data name="DEVICEMONITORITEM_365" xml:space="preserve">
     <value>第三十二路功率</value>
     <comment>第三十二路功率</comment>
+  </data>
+  <data name="PLANT_CHART_DAY_CHART_POWER" xml:space="preserve">
+    <value>功率</value>
+    <comment>功率</comment>
   </data>
 </root>

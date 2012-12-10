@@ -7389,6 +7389,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 Power 的本地化字符串。
+        /// </summary>
+        internal static string PLANT_CHART_DAY_CHART_POWER {
+            get {
+                return ResourceManager.GetString("PLANT_CHART_DAY_CHART_POWER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Energy  &amp; Insolation 的本地化字符串。
         /// </summary>
         internal static string PLANT_CHART_DAY_ENERGY_SOLAR_INTENSITY {
@@ -11283,7 +11292,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Copyright &amp;copy; 2012 {0} , v1.0.18 Alpha , Browse Resolution: 1024x768 的本地化字符串。
+        ///   查找类似 Copyright &amp;copy; 2012 {0} , v1.0.18 Beta , Browse Resolution: 1024x768 的本地化字符串。
         /// </summary>
         internal static string SHARED_MAINMASTREPAGE_COPYRIGHT {
             get {

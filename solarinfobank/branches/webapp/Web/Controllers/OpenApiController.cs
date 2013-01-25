@@ -57,6 +57,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 vo.plantName = plant.name;
                 vo.solarIntensity = plant.Sunstrength.ToString();
                 vo.solarIntensityUnit = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE).unit;
+                //add by qhb in 20120106 for 增加逆变器数量
+                IList<Device> inverterDevices = plant.typeDevices(DeviceData.INVERTER_CODE);
+                vo.inverterCount = inverterDevices.Count.ToString();
+                vo.inverterTypeStr = getMainType(inverterDevices, 3);
                 string ts = "";
                 double t = plant.Temperature;
                 User user = UserService.GetInstance().Get((int)plant.userID);
@@ -92,6 +96,48 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return Content(data);
         }
 
+        /// <summary>
+        /// 取得主要前三个设备类型
+        /// </summary>
+        /// <param name="inverterDevices"></param>
+        /// <returns></returns>
+        private string getMainType(IList<Device> inverterDevices,int befornum)
+        {
+            if (inverterDevices == null) return "";
+            IDictionary<string, int> typenumMap = new Dictionary<string, int>();
+            string xinhaoname="";
+            foreach (Device device in inverterDevices) { 
+                xinhaoname = device.xinhaoName;
+                if(xinhaoname==null|| xinhaoname.Equals(""))continue;
+                if (typenumMap.Keys.Contains(xinhaoname))
+                {
+                    typenumMap[xinhaoname] = typenumMap[xinhaoname] + 1;
+                }
+                else {
+                    typenumMap[xinhaoname] = 1;
+                }
+            }
+            //给放到新map中
+            IDictionary<int, string> numtypeMap = new Dictionary<int, string>();
+            List<int> numList = new List<int>();
+            int num;
+            foreach (string xinhao in typenumMap.Keys)
+            {
+                num = typenumMap[xinhao];
+                numtypeMap[num] = xinhao;
+                numList.Add(num);
+            }
+            //给数量map的key排序
+            numList.Sort(delegate(int left, int right) { return right - left; });
+            //找出前三个最多的设备类型
+            string typestr="";
+            for (int i = 0; i < numList.Count; i++) {
+                if (i > befornum-1) break;
+                typestr = "," + numtypeMap[numList[i]];
+            }
+
+            return typestr.Length > 0 ? typestr.Substring(1) : typestr;
+        }
         /// <summary>
         /// 电站月天数据
         /// </summary>

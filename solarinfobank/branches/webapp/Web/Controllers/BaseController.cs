@@ -137,17 +137,22 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
     /// </summary>
     public static class WebUtil
     {
-
+        /// <summary>
+        /// 未同步
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public static string getClientIp(HttpRequestBase request)
         {
             string ip = "";
             if (request.ServerVariables["HTTP_VIA"] != null) // using proxy
             {
-                ip = request.ServerVariables["HTTP_X_FORWARDED_FOR"].ToString();  // Return real client IP.
+
+                ip = request.ServerVariables["HTTP_X_FORWARDED_FOR"]==null?"":request.ServerVariables["HTTP_X_FORWARDED_FOR"].ToString();  // Return real client IP.
             }
             else// not using proxy or can't get the Client IP
             {
-                ip = request.ServerVariables["REMOTE_ADDR"].ToString(); //While it can't get the Client IP, it will return proxy IP.
+                ip = request.ServerVariables["REMOTE_ADDR"] == null ? "" : request.ServerVariables["REMOTE_ADDR"].ToString(); //While it can't get the Client IP, it will return proxy IP.
             }
             return ip;
         }

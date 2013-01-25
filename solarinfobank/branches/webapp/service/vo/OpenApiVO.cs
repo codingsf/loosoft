@@ -85,6 +85,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service.vo
         public string organize { get; set; }         //所属公司
         [DataMember(Order = 20)]
         public string installDate { get; set; }         //安装日期
+        [DataMember(Order = 21)]
+        public string inverterCount { get; set; }         //所属公司
+        [DataMember(Order = 22)]
+        public string inverterTypeStr { get; set; }         //安装日期
     }
 
     /// <summary>

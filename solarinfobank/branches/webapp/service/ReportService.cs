@@ -332,7 +332,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     datahash.Add(DataItem.TODAY_ENERGY, StringUtil.formatFloat(energy) + " " + MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE).unit);
                     //今日CO2减排
                     double co2reduce = Plant.computeCO2Reduce(co2Rate, energy);
-                    datahash.Add(DataItem.TODAY_AVOIDED_CO2, StringUtil.formatDouble(co2reduce) + " " + Plant.computeReduceUnit(co2reduce));
+                    datahash.Add(DataItem.TODAY_AVOIDED_CO2, StringUtil.formatDouble(co2reduce) + " " + Plant.computeReduceUnit(co2Rate * energy));
                     //日收入
                     datahash.Add(DataItem.TODAY_REVENUE, user.currencies+" " +Currencies.format(user.currencies, energy * user.revenueRate));
 
@@ -364,7 +364,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     datahash.Add(DataItem.WEEK_ENERGY, StringUtil.formatDouble(w_energy) + " " + MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE).unit);
                     //周CO2减排
                     double co2reduce1 = Plant.computeCO2Reduce(co2Rate, w_energy);
-                    datahash.Add(DataItem.WEEK_AVOIDED_CO2, StringUtil.formatDouble(co2reduce1) + " " + Plant.computeReduceUnit(co2reduce1));
+                    datahash.Add(DataItem.WEEK_AVOIDED_CO2, StringUtil.formatDouble(co2reduce1) + " " + Plant.computeReduceUnit(co2Rate*w_energy));
                     //周收益
                     datahash.Add(DataItem.WEEK_REVENUE, user.currencies+" "+Currencies.format(user.currencies, w_revenue));
                     //累计总发电量
@@ -393,7 +393,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     datahash.Add(DataItem.MONTH_ENERGY, StringUtil.formatDouble(m_energy) + " " + MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE).unit);
                     //月CO2减排
                     double co2reduce_m = Plant.computeCO2Reduce(co2Rate, m_energy);
-                    datahash.Add(DataItem.MONTH_AVOIDED_CO2, StringUtil.formatDouble(co2reduce_m) + " " + Plant.computeReduceUnit(co2reduce_m));
+                    datahash.Add(DataItem.MONTH_AVOIDED_CO2, StringUtil.formatDouble(co2reduce_m) + " " + Plant.computeReduceUnit(co2Rate * m_energy));
                     //月收益
                     datahash.Add(DataItem.MONTH_REVENUE,user.currencies+" "+ Currencies.format(user.currencies, m_revenue));
                     //累计总发电量
@@ -425,7 +425,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     //年CO2减排
 
                     double co2reduce_y = Plant.computeCO2Reduce(co2Rate,y_energy);
-                    datahash.Add(DataItem.YEAR_AVOIDED_CO2, StringUtil.formatDouble(co2reduce_y) + " " + Plant.computeReduceUnit(co2reduce_y));
+                    datahash.Add(DataItem.YEAR_AVOIDED_CO2, StringUtil.formatDouble(co2reduce_y) + " " + Plant.computeReduceUnit(co2Rate * y_energy));
                     //年收益
                     datahash.Add(DataItem.YEAR_REVENUE, user.currencies+" "+Currencies.format(user.currencies, y_revenue));
                     //累计总发电量
@@ -482,7 +482,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     //今日CO2减排
 
                     double co2reduce = Plant.computeCO2Reduce(co2Rate, energy);
-                    datahash.Add(DataItem.TODAY_AVOIDED_CO2, StringUtil.formatDouble(co2reduce) + " " + Plant.computeReduceUnit(co2reduce));
+                    datahash.Add(DataItem.TODAY_AVOIDED_CO2, StringUtil.formatDouble(co2reduce) + " " + Plant.computeReduceUnit(co2Rate * energy));
                     //日收入
                     datahash.Add(DataItem.TODAY_REVENUE, plant.currencies+" " +Currencies.format(plant.currencies,energy * plant.revenueRate));
  
@@ -495,7 +495,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     datahash.Add(DataItem.TODAY_TOTAL_AVOIDED_CO2, StringUtil.formatDouble(plant.Reductiong) + " " + plant.ReductiongUnit);
 
                     //投资收益
-                    datahash.Add(DataItem.TODAY_RATE, Math.Round(energy / plant.design_power,2));
+                    datahash.Add(DataItem.TODAY_RATE, Math.Round(energy / plant.design_power,2) + " kWh/kWp");
 
                     return datahash;
                //--------周报表数据--------------
@@ -510,7 +510,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     datahash.Add(DataItem.WEEK_ENERGY,StringUtil.formatDouble(w_energy,"0.00") + " " + MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE).unit);
                     //周CO2减排
                     double co2reduce1 = Plant.computeCO2Reduce(co2Rate, w_energy);
-                    datahash.Add(DataItem.WEEK_AVOIDED_CO2, co2reduce1 + " " + Plant.computeReduceUnit(co2reduce1));
+                    datahash.Add(DataItem.WEEK_AVOIDED_CO2, co2reduce1 + " " + Plant.computeReduceUnit(co2Rate * w_energy));
                     //周收益
                     datahash.Add(DataItem.WEEK_REVENUE, plant.currencies+" "+Currencies.format(plant.currencies, w_energy * plant.revenueRate));
                     //累计总发电量
@@ -521,7 +521,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     datahash.Add(DataItem.WEEK_TOTAL_AVOIDED_CO2, StringUtil.formatDouble(plant.Reductiong) + " " + plant.ReductiongUnit);
 
                     //投资收益
-                    datahash.Add(DataItem.WEEK_RATE, Math.Round(w_energy / plant.design_power, 2));
+                    datahash.Add(DataItem.WEEK_RATE, Math.Round(w_energy / plant.design_power, 2) + " kWh/kWp");
                     return datahash;
                 //--------月报表------------
                 case DataReportType.MONTH_REPORT_CODE:
@@ -534,7 +534,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     datahash.Add(DataItem.MONTH_ENERGY,StringUtil.formatDouble(m_energy,"0.00") + " " + MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE).unit);
                     //月CO2减排
                     double co2reduce_m = Plant.computeCO2Reduce(co2Rate, m_energy);
-                    datahash.Add(DataItem.MONTH_AVOIDED_CO2, StringUtil.formatDouble(co2reduce_m) + " " + Plant.computeReduceUnit(co2reduce_m));
+                    datahash.Add(DataItem.MONTH_AVOIDED_CO2, StringUtil.formatDouble(co2reduce_m) + " " + Plant.computeReduceUnit(co2Rate * m_energy));
                     //月收益
                     datahash.Add(DataItem.MONTH_REVENUE, plant.currencies+" "+Currencies.format(plant.currencies, m_energy * plant.revenueRate));
                     //累计总发电量
@@ -545,7 +545,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     datahash.Add(DataItem.MONTH_TOTAL_AVOIDED_CO2, StringUtil.formatDouble(plant.Reductiong) + " " + plant.ReductiongUnit);
 
                     //投资收益
-                    datahash.Add(DataItem.MONTH_RATE, Math.Round(m_energy / plant.design_power, 2));
+                    datahash.Add(DataItem.MONTH_RATE, Math.Round(m_energy / plant.design_power, 2) + " kWh/kWp");
                     return datahash;
                 //------年报表-----------------
                 case DataReportType.YEAR_REPORT_CODE:
@@ -560,7 +560,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     datahash.Add(DataItem.YEAR_ENERGY, StringUtil.formatDouble(y_energy,"0.00") + " " + MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE).unit);
                     //年CO2减排
                     double co2reduce_y = Plant.computeCO2Reduce(co2Rate, y_energy);
-                    datahash.Add(DataItem.YEAR_AVOIDED_CO2, StringUtil.formatDouble(co2reduce_y) + " " + Plant.computeReduceUnit(co2reduce_y));
+                    datahash.Add(DataItem.YEAR_AVOIDED_CO2, StringUtil.formatDouble(co2reduce_y) + " " + Plant.computeReduceUnit(co2Rate * y_energy));
                     //年收益
                     datahash.Add(DataItem.YEAR_REVENUE, plant.currencies+" "+Currencies.format(plant.currencies, y_energy * plant.revenueRate));
                     //累计总发电量
@@ -570,7 +570,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     //累计CO2减排
                     datahash.Add(DataItem.YEAR_TOTAL_AVOIDED_CO2, StringUtil.formatDouble(plant.Reductiong) + " " + plant.ReductiongUnit);
                     //投资收益
-                    datahash.Add(DataItem.YEAR_RATE, Math.Round(y_energy / plant.design_power, 2));
+                    datahash.Add(DataItem.YEAR_RATE, Math.Round(y_energy / plant.design_power, 2) + " kWh/kWp");
                     return datahash;
                 //------总量报表-----------------
                 case DataReportType.TOTAL_REPORT_CODE:
@@ -581,7 +581,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     //累计CO2减排
                     datahash.Add(DataItem.TOTAL_AVOIDED_CO2, StringUtil.formatDouble(plant.Reductiong) + " " + plant.ReductiongUnit);
                     //投资收益
-                    datahash.Add(DataItem.TOTAL_RATE, Math.Round(plant.TotalEnergy / plant.design_power, 2));
+                    datahash.Add(DataItem.TOTAL_RATE, Math.Round(plant.TotalEnergy / plant.design_power, 2) + " kWh/kWp");
                     return datahash;
                 default:
                     return datahash;

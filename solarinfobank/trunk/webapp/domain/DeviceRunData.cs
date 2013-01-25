@@ -146,8 +146,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                     try
                     {
                         int value = int.Parse(datas[1]);
-                        if (value == 0) value = 16;
-                        displayHxlroute = DeviceData.HUILIUXIANG_CODE * 100 + value;
+                        if (value == 0) value = 32;
+                        displayHxlroute = value;
                     }
                     catch (Exception e)
                     {
@@ -176,7 +176,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         private float _todayEnergy = 0;
 
         /// <summary>
-        /// 实时今日发电量，非持久化
+        /// 实时今日发电量，非持久化,注意这里的今日发电量是实时数据里面的今日发电量，而不是真正的外部时间的今日发电量
         /// </summary>
         public float todayEnergy
         {
@@ -318,11 +318,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 if (notDisplayMonitor.Contains(mt.code) || notdisplayInverterbyoutType.Contains(mt.code) || notdisplayInverterbyPower.Contains(mt.code)) continue;
 
                 //如果是汇流箱非显示路数则跳过
-                if (deviceTypeCode == DeviceData.HUILIUXIANG_CODE)
+                if (deviceTypeCode == DeviceData.HUILIUXIANG_CODE && ((monitorCode>=MonitorType.MIC_BUSBAR_17CURRENT &&monitorCode<=MonitorType.MIC_BUSBAR_32CURRENT)||(monitorCode>=MonitorType.MIC_BUSBAR_1CURRENT &&monitorCode<=MonitorType.MIC_BUSBAR_16CURRENT)) )
                 {
-                    if (displayHxlroute > 0 && monitorCode > displayHxlroute && monitorCode <= MonitorType.MIC_BUSBAR_32CURRENT)
+                    if (displayHxlroute > 0)
                     {
-                        continue;
+                        if (monitorCode >= 366)
+                        {
+                            if (monitorCode - 365 + 16 > displayHxlroute) continue;
+                        }
+                        else {
+                            if (monitorCode - 300 > displayHxlroute) continue;
+                        }
                     }
                 }
 

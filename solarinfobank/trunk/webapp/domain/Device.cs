@@ -440,6 +440,45 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
+        /// 取得设备状态吗，0：待机，1正常，3故障
+        /// </summary>
+        /// <returns></returns>
+        public int getStatusDefinedValue()
+        {
+            if (this.runData == null)
+                return 0;
+
+            float value = 0;
+
+            if (this.deviceTypeCode == DeviceData.INVERTER_CODE)
+            {
+                value = this.getMonitorValue(MonitorType.MIC_INVERTER_DEVICESTATUS);
+            }
+            else if (this.deviceTypeCode == DeviceData.HUILIUXIANG_CODE)
+            {
+                value = this.getMonitorValue(MonitorType.MIC_BUSBAR_STATUS);
+            }
+            else if (this.deviceTypeCode == DeviceData.ENVRIOMENTMONITOR_CODE)
+            {
+                value = 1;
+            }
+            else if (this.deviceTypeCode == DeviceData.CABINET_CODE)
+            {
+                value = this.getMonitorValue(MonitorType.MIC_BUSBAR_STATUS);
+            }
+
+            if (value.Equals("-"))
+            {
+                if (DateTime.Now.AddDays(-1) > this.runData.updateTime)
+                    return 3;
+                else
+                    return 1;
+            }
+            else
+                return 1;
+        }
+
+        /// <summary>
         /// 是否有增量日照测点
         /// </summary>
         public bool isRenderSunlight()

@@ -980,6 +980,41 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
 
             monitorMap.Add(PLANT_MONITORITEM_WINDSPEED, new MonitorType() { code = PLANT_MONITORITEM_WINDSPEED, unit = "m/s", zerotoline = false });
 
+            //add by qhb in 20121203 for 增加到32路汇流箱32路功率
+            monitorMap.Add(MIC_BUSBAR_1POWER, new MonitorType() { code = MIC_BUSBAR_1POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_2POWER, new MonitorType() { code = MIC_BUSBAR_2POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_3POWER, new MonitorType() { code = MIC_BUSBAR_3POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_4POWER, new MonitorType() { code = MIC_BUSBAR_4POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_5POWER, new MonitorType() { code = MIC_BUSBAR_5POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_6POWER, new MonitorType() { code = MIC_BUSBAR_6POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_7POWER, new MonitorType() { code = MIC_BUSBAR_7POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_8POWER, new MonitorType() { code = MIC_BUSBAR_8POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_9POWER, new MonitorType() { code = MIC_BUSBAR_9POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_10POWER, new MonitorType() { code = MIC_BUSBAR_10POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_11POWER, new MonitorType() { code = MIC_BUSBAR_11POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_12POWER, new MonitorType() { code = MIC_BUSBAR_12POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_13POWER, new MonitorType() { code = MIC_BUSBAR_13POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_14POWER, new MonitorType() { code = MIC_BUSBAR_14POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_15POWER, new MonitorType() { code = MIC_BUSBAR_15POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_16POWER, new MonitorType() { code = MIC_BUSBAR_16POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_17POWER, new MonitorType() { code = MIC_BUSBAR_17POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_18POWER, new MonitorType() { code = MIC_BUSBAR_18POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_19POWER, new MonitorType() { code = MIC_BUSBAR_19POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_20POWER, new MonitorType() { code = MIC_BUSBAR_20POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_21POWER, new MonitorType() { code = MIC_BUSBAR_21POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_22POWER, new MonitorType() { code = MIC_BUSBAR_22POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_23POWER, new MonitorType() { code = MIC_BUSBAR_23POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_24POWER, new MonitorType() { code = MIC_BUSBAR_24POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_25POWER, new MonitorType() { code = MIC_BUSBAR_25POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_26POWER, new MonitorType() { code = MIC_BUSBAR_26POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_27POWER, new MonitorType() { code = MIC_BUSBAR_27POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_28POWER, new MonitorType() { code = MIC_BUSBAR_28POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_29POWER, new MonitorType() { code = MIC_BUSBAR_29POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_30POWER, new MonitorType() { code = MIC_BUSBAR_30POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_31POWER, new MonitorType() { code = MIC_BUSBAR_31POWER, unit = "W", zerotoline = false });
+            monitorMap.Add(MIC_BUSBAR_32POWER, new MonitorType() { code = MIC_BUSBAR_32POWER, unit = "W", zerotoline = false });
+
+
             monitorMap.Add(MIC_BUSBAR_1CURRENT, new MonitorType() { code = MIC_BUSBAR_1CURRENT, unit = "A", zerotoline = false });
             monitorMap.Add(MIC_BUSBAR_2CURRENT, new MonitorType() { code = MIC_BUSBAR_2CURRENT, unit = "A", zerotoline = false });
             monitorMap.Add(MIC_BUSBAR_3CURRENT, new MonitorType() { code = MIC_BUSBAR_3CURRENT, unit = "A", zerotoline = false });
@@ -1562,7 +1597,198 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             /// 第十六路电流
             /// </summary>
             huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_16CURRENT]);
-
+            /// <summary>
+            /// 第十七路电流
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_17CURRENT]);
+            /// <summary>
+            /// 第十八路电流
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_18CURRENT]);
+            /// <summary>
+            /// 第十九路电流
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_19CURRENT]);
+            /// <summary>
+            /// 第二十路电流
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_20CURRENT]);
+            /// <summary>
+            /// 第二十一路电流
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_21CURRENT]);
+            /// <summary>
+            /// 第二十二路电流
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_22CURRENT]);
+            /// <summary>
+            /// 第二十三路电流
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_23CURRENT]);
+            /// <summary>
+            /// 第二十四电流
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_24CURRENT]);
+            /// <summary>
+            /// 第二十五路电流
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_25CURRENT]);
+            /// <summary>
+            /// 第二十六路电流
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_26CURRENT]);
+            /// <summary>
+            /// 第二十七路电流
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_27CURRENT]);
+            /// <summary>
+            /// 第二十八路电流
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_28CURRENT]);
+            /// <summary>
+            /// 第二十九路电流
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_29CURRENT]);
+            /// <summary>
+            /// 第三十路电流
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_30CURRENT]);
+            /// <summary>
+            /// 第三十一路电流
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_31CURRENT]);
+            /// <summary>
+            /// 第三十二路电流
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_32CURRENT]);
+            /// <summary>
+            /// 第一路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_1POWER]);
+            /// <summary>
+            /// 第二路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_2POWER]);
+            /// <summary>
+            /// 第三路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_3POWER]);
+            /// <summary>
+            /// 第四路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_4POWER]);
+            /// <summary>
+            /// 第五路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_5POWER]);
+            /// <summary>
+            /// 第六路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_6POWER]);
+            /// <summary>
+            /// 第七路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_7POWER]);
+            /// <summary>
+            /// 第八路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_8POWER]);
+            /// <summary>
+            /// 第九路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_9POWER]);
+            /// <summary>
+            /// 第十路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_10POWER]);
+            /// <summary>
+            /// 第十一路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_11POWER]);
+            /// <summary>
+            /// 第十二路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_12POWER]);
+            /// <summary>
+            /// 第十三路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_13POWER]);
+            /// <summary>
+            /// 第十四路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_14POWER]);
+            /// <summary>
+            /// 第十五路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_15POWER]);
+            /// <summary>
+            /// 第十六路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_16POWER]);
+            /// <summary>
+            /// 第十七路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_17POWER]);
+            /// <summary>
+            /// 第十八路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_18POWER]);
+            /// <summary>
+            /// 第十九路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_19POWER]);
+            /// <summary>
+            /// 第二十路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_20POWER]);
+            /// <summary>
+            /// 第二十一路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_21POWER]);
+            /// <summary>
+            /// 第二十二路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_22POWER]);
+            /// <summary>
+            /// 第二十三路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_23POWER]);
+            /// <summary>
+            /// 第二十四电流
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_24POWER]);
+            /// <summary>
+            /// 第二十五路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_25POWER]);
+            /// <summary>
+            /// 第二十六路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_26POWER]);
+            /// <summary>
+            /// 第二十七路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_27POWER]);
+            /// <summary>
+            /// 第二十八路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_28POWER]);
+            /// <summary>
+            /// 第二十九路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_29POWER]);
+            /// <summary>
+            /// 第三十路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_30POWER]);
+            /// <summary>
+            /// 第三十一路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_31POWER]);
+            /// <summary>
+            /// 第三十二路功率
+            /// </summary>
+            huiliuxiangMonitors.Add(monitorMap[MIC_BUSBAR_32POWER]);
 
             typeMonitorsMap.Add(DeviceData.HUILIUXIANG_CODE, huiliuxiangMonitors);
 

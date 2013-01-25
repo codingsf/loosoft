@@ -75,11 +75,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// <returns></returns>
         public static string upEnergyUnit(double TotalEnergy)
         {
-            if (TotalEnergy > 1000000)
+            if (TotalEnergy >= 1000000000)
+                return "TWh";
+            else if (TotalEnergy >= 1000000)
                 return "GWh";
-            else
-                if (TotalEnergy > 1000)
-                    return "MWh";
+            else if (TotalEnergy >= 1000)
+                return "MWh";
             return "kWh";
         }
 
@@ -90,11 +91,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// <returns></returns>
         public static string upPowerUnit(double power)
         {
-            if (power > 1000000)
+            if (power >= 1000000000)
+                return "TW";
+            else if (power >= 1000000)
                 return "GW";
-            else
-                if (power > 1000)
-                    return "MW";
+            else if (power >= 1000)
+                return "MW";
             return "kW";
         }
 
@@ -137,7 +139,5 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             seconds = (int)((temp - minutes) * 60.0);
             return degree.ToString() + "," + minutes.ToString() + "," + seconds.ToString() + ",";
         }
-
-
     }
 }

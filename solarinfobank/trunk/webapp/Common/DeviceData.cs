@@ -135,7 +135,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             protocolTypeMap.Add(TYPE_SUNGROW_BUSBAR, new ProtocolType() { code = TYPE_SUNGROW_BUSBAR, typecode = HUILIUXIANG_CODE, name = "汇流箱SUNGROW协议" });
             protocolTypeMap.Add(TYPE_MODBUS_BUSBAR, new ProtocolType() { code = TYPE_MODBUS_BUSBAR, typecode = HUILIUXIANG_CODE, name = "汇流箱MODEBUS协议" });
             protocolTypeMap.Add(TYPE_MODBUS15_BUSBAR, new ProtocolType() { code = TYPE_MODBUS15_BUSBAR, typecode = HUILIUXIANG_CODE, name = "汇流箱装置光伏阵列汇流箱通讯协议（Modbus）V1.1.1.0" });
-
+            protocolTypeMap.Add(TYPE_MODBUS17_BUSBAR, new ProtocolType() { code = TYPE_MODBUS17_BUSBAR, typecode = HUILIUXIANG_CODE, name = "光伏汇流箱通信协议（Modbus）V1.7设置定稿.doc" });
+            
             protocolTypeMap.Add(TYPE_SUNGROW_DETECTOR, new ProtocolType() { code = TYPE_SUNGROW_DETECTOR, typecode = ENVRIOMENTMONITOR_CODE, name = "环境检测仪SUNGROW协议" });
             protocolTypeMap.Add(TYPE_MODBUS_DETECTOR, new ProtocolType() { code = TYPE_MODBUS_DETECTOR, typecode = ENVRIOMENTMONITOR_CODE, name = "环境检测仪MODBUS协议" });
             protocolTypeMap.Add(TYPE_MODBUS_DETECTOR_V1020, new ProtocolType() { code = TYPE_MODBUS_DETECTOR_V1020, typecode = ENVRIOMENTMONITOR_CODE, name = "环境检测仪MODBUS V1.0.2.0版协议" });

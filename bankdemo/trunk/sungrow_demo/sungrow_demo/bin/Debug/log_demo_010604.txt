@@ -1,0 +1,33 @@
+[debug]sungrow_demo_0106 04:57:41__write demo port:328844
+[debug]sungrow_demo_0106 04:57:41__start http server
+[debug]sungrow_demo_0106 04:58:34__sendCmdMessage to 198806:close detail
+[debug]sungrow_demo_0106 04:58:37__start play index
+[debug]sungrow_demo_0106 04:58:37__中断失效，解析播放
+[debug]sungrow_demo_0106 04:58:38__start play index
+[debug]sungrow_demo_0106 04:58:38__中断失效，解析播放
+[debug]sungrow_demo_0106 04:58:39__start play index
+[debug]sungrow_demo_0106 04:58:39__中断失效，解析播放
+[debug]sungrow_demo_0106 04:58:40__start play index
+[debug]sungrow_demo_0106 04:58:40__中断失效，解析播放
+[debug]sungrow_demo_0106 04:58:41__start play index
+[debug]sungrow_demo_0106 04:58:41__中断失效，解析播放
+[debug]sungrow_demo_0106 04:58:41__进入地球
+[debug]sungrow_demo_0106 04:58:43__sendCmdMessage to 198806:close detail
+[debug]sungrow_demo_0106 04:58:44__轮播详细页面:475上海世博中国馆
+[debug]sungrow_demo_0106 04:58:48__sendCmdMessage to 198806:open-475
+[debug]sungrow_demo_0106 04:59:20__sendCmdMessage to 198806:close detail
+[debug]sungrow_demo_0106 04:59:21__start play index
+[debug]sungrow_demo_0106 04:59:21__中断失效，解析播放
+[debug]sungrow_demo_0106 04:59:22__start play index
+[debug]sungrow_demo_0106 04:59:22__中断失效，解析播放
+[debug]sungrow_demo_0106 04:59:23__start play index
+[debug]sungrow_demo_0106 04:59:23__中断失效，解析播放
+[debug]sungrow_demo_0106 04:59:24__start play index
+[debug]sungrow_demo_0106 04:59:24__中断失效，解析播放
+[debug]sungrow_demo_0106 04:59:25__start play index
+[debug]sungrow_demo_0106 04:59:25__中断失效，解析播放
+[debug]sungrow_demo_0106 04:59:25__进入地球
+[debug]sungrow_demo_0106 04:59:25__sendCmdMessage to 198806:close detail
+[debug]sungrow_demo_0106 04:59:28__轮播详细页面:475上海世博中国馆
+[debug]sungrow_demo_0106 04:59:32__sendCmdMessage to 198806:open-475
+[debug]sungrow_demo_0106 04:59:39__clare httpserver

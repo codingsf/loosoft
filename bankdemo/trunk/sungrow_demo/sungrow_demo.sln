@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sungrow_demo", "sungrow_demo\sungrow_demo.csproj", "{C16B83DB-5617-4774-8135-40C5E4DDEE81}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C16B83DB-5617-4774-8135-40C5E4DDEE81}.Debug|x86.ActiveCfg = Debug|x86
+		{C16B83DB-5617-4774-8135-40C5E4DDEE81}.Debug|x86.Build.0 = Debug|x86
+		{C16B83DB-5617-4774-8135-40C5E4DDEE81}.Release|x86.ActiveCfg = Release|x86
+		{C16B83DB-5617-4774-8135-40C5E4DDEE81}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

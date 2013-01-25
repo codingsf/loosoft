@@ -1,0 +1,5 @@
+[error]sungrow_demo_0116 08:38:55__ControlCenter error:   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 sungrow_demo.ControlCenter.orderPlants(List`1 plants, String plantOrder) 位置 D:\work\project\loosoft\sungrowdemo\sungrow_demo\sungrow_demo\ControlCenter.cs:行号 98
+   在 sungrow_demo.ControlCenter..ctor() 位置 D:\work\project\loosoft\sungrowdemo\sungrow_demo\sungrow_demo\ControlCenter.cs:行号 60
+[debug]sungrow_demo_0116 08:38:55__sendCmdMessage to 198806:close detail
+[error]sungrow_demo_0116 08:38:55__playIndex error:   在 sungrow_demo.ControlCenter.playIndex() 位置 D:\work\project\loosoft\sungrowdemo\sungrow_demo\sungrow_demo\ControlCenter.cs:行号 189

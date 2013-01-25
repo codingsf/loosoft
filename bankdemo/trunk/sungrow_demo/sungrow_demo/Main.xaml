@@ -1,0 +1,145 @@
+﻿<Window x:Class="sungrow_demo.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="多电站演示系统" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" Name="WelcomeWindow" Width="1052" Height="615"  mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignHeight="615" d:DesignWidth="1052" Loaded="WelcomeWindow_Loaded" MouseDown="WelcomeWindow_MouseDown">
+    <Grid Name="contentContainer" MouseDown="contentContainer_MouseDown">
+        <Grid.Background>
+            <ImageBrush ImageSource="/sungrow_demo;component/images/main/suc_bg.jpg" />
+        </Grid.Background>
+        <TextBox Height="16" HorizontalAlignment="Left" Margin="553,96,0,455"  Name="tbxUserName" VerticalAlignment="Center" Width="117" FontSize="12" BorderThickness="0" Text=""  MouseDown="tbxUserName_MouseDown"/>
+        <Image Height="21" HorizontalAlignment="Left" Margin="1004,2,0,0" Name="imgClose" Stretch="Fill" VerticalAlignment="Top" Width="24" Source="/sungrow_demo;component/images/main/suc_big.png" MouseUp="exitSystem_Click" />
+        <Image Height="21" HorizontalAlignment="Left" Margin="974,2,0,0" Name="imgSmall" Source="/sungrow_demo;component/images/main/suc_sm.png" Stretch="Fill" VerticalAlignment="Top" Width="24" MouseUp="imgSmall_MouseUp" />
+        <TextBox BorderThickness="0" FontSize="12" Height="16" HorizontalAlignment="Left" Margin="730,96,0,455" Name="tbxUserPwd" VerticalAlignment="Center" Width="117" Text="" MouseDown="tbxUserPwd_MouseDown" />
+        <Button Height="22" HorizontalAlignment="Left" Margin="850,117,0,0" Name="btnGetPlants" VerticalAlignment="Top" Width="64" Click="btnGetPlants_Click" BorderThickness="0" MouseDown="btnGetPlants_MouseDown">
+            <Image  Source="/sungrow_demo;component/images/main/suc_bu02.png" Width="64" Height="22" Margin="-3,-3,0,0" />
+        </Button>
+        <Button Height="23" HorizontalAlignment="Left" Margin="927,117,0,0" Name="btnSave" Click="btnSave_Click"  VerticalAlignment="Top" Width="65" BorderThickness="0">
+            <Image  Source="/sungrow_demo;component/images/main/suc_bu01.png" Width="64" Height="22" Margin="-3,-3,0,0" />
+        </Button>
+        <Button Height="23" Name="btnStart" Width="65" Margin="39,550,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="0" Click="btnStart_Click">
+            <Image  Source="/sungrow_demo;component/images/main/suc_bu03.png" Width="64" Height="22" Margin="-3,-3,0,0" />
+
+        </Button>
+        <Button Canvas.Left="92" Canvas.Top="340" Height="23" Width="65" Margin="122,550,844,0" HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="0" Name="btnReStart" Click="btnReStart_Click" >
+            <Image  Source="/sungrow_demo;component/images/main/suc_bu04.png" Width="64" Height="22" Margin="-3,-3,0,0" />
+
+        </Button>
+        <Button Canvas.Left="170" Canvas.Top="340" Height="23" Name="btnClose" Width="65" Margin="204,550,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="0" Click="exitSystem_Click">
+            <Image  Source="/sungrow_demo;component/images/main/suc_bu05.png" Width="64" Height="22" Margin="-3,-3,0,0" />
+
+        </Button>
+        <Canvas x:Name="plantsList" Margin="29,182,2,62"></Canvas>
+        <Image Height="28" HorizontalAlignment="Left" Margin="39,112,0,0" Name="imgPlant" Stretch="Fill" VerticalAlignment="Top" Width="102" Source="/sungrow_demo;component/images/main/suc_tab01.png" MouseUp="imgPlant_MouseUp" />
+        <Image Height="28" HorizontalAlignment="Left" Margin="142,112,0,0" Name="imgGrobal" Source="/sungrow_demo;component/images/main/suc_tab04.png" Stretch="Fill" VerticalAlignment="Top" Width="102" MouseUp="imgGrobal_MouseUp" />
+
+        <Canvas x:Name="grolbaConfig" Margin="42,101,0,64" Visibility="Hidden"  MouseDown="grolbaConfig_MouseDown">
+            <Label Canvas.Left="50" Canvas.Top="180" Content="{DynamicResource MainPageMainCount}" Height="28" Name="label1" />
+            <Label Canvas.Left="241" Canvas.Top="180" Content="(s)" Height="28" Name="label11" />
+            <TextBox Canvas.Left="134" Canvas.Top="182" Height="20" Name="tbxmainpageinterval" Width="110" BorderThickness="0" MouseDown="tbxmainpageinterval_MouseDown">
+                <TextBox.Background>
+                    <ImageBrush ImageSource="/sungrow_demo;component/images/main/suc_sy02.png" />
+                </TextBox.Background>
+            </TextBox>
+            <Label Canvas.Left="98" Canvas.Top="84" Content="{DynamicResource MainPageHeight}" Height="28" Name="label3" />
+            <Label Canvas.Left="241" Canvas.Top="84" Content="(km)" Height="28" Name="label31" />
+            <TextBox Canvas.Left="134" Canvas.Top="87" Height="20" Name="tbxheight" Width="110" BorderThickness="0" MouseDown="tbxheight_MouseDown" >
+                <TextBox.Background>
+                    <ImageBrush ImageSource="/sungrow_demo;component/images/main/suc_sy02.png" />
+                </TextBox.Background>
+            </TextBox>
+            <Label Canvas.Left="52" Canvas.Top="113" Content="{DynamicResource MainPageTipsCount}" Height="28" Name="label6" />
+            <Label Canvas.Left="241" Canvas.Top="113" Content="(s)" Height="28" Name="label61" />
+            <TextBox Canvas.Left="134" Canvas.Top="117" Height="20" Name="tbxtipsinterval" Width="110" BorderThickness="0" MouseDown="tbxtipsinterval_MouseDown">
+                <TextBox.Background>
+                    <ImageBrush ImageSource="/sungrow_demo;component/images/main/suc_sy02.png" />
+                </TextBox.Background>
+            </TextBox>
+            <Label Canvas.Left="16" Canvas.Top="145" Content="{DynamicResource MainPageDetailCount}" Height="28" Name="label7" />
+            <Label Canvas.Left="241" Canvas.Top="145" Content="(s)" Height="28" Name="label71" />
+            <TextBox Canvas.Left="134" Canvas.Top="150" Height="20" Name="tbxdetailinterval" Width="110" BorderThickness="0" MouseDown="tbxdetailinterval_MouseDown">
+                <TextBox.Background>
+                    <ImageBrush ImageSource="/sungrow_demo;component/images/main/suc_sy02.png" />
+                </TextBox.Background>
+            </TextBox>
+            <Label Canvas.Left="70" Canvas.Top="301" Content="{DynamicResource MainPageBankUrl}" Height="28" Name="label2" />
+            <TextBox BorderThickness="0" Canvas.Left="134" Canvas.Top="305" Height="20" Name="tboxDomain" Width="250" MouseDown="tboxDomain_MouseDown">
+                <TextBox.Background>
+                    <ImageBrush ImageSource="/sungrow_demo;component/images/main/suc_sy03.png" />
+                </TextBox.Background>
+            </TextBox>
+            <Label Canvas.Left="70" Canvas.Top="332" Content="{DynamicResource MainPageSysName}" Height="28" Name="labelSysname" />
+            <TextBox BorderThickness="0" Canvas.Left="134" Canvas.Top="336" Height="20" Name="tboxSysname" Width="350" MouseDown="tboxSysname_MouseDown">
+                <TextBox.Background>
+                    <ImageBrush ImageSource="/sungrow_demo;component/images/main/suc_sy03.png" />
+                </TextBox.Background>
+            </TextBox>
+            <Label Canvas.Left="71" Canvas.Top="272" Content="{DynamicResource MainPageCounterType}" Height="28" Name="label4" />
+            <ComboBox Canvas.Left="133" Canvas.Top="274" Height="23" Name="cbxCounterType" Width="120" IsSynchronizedWithCurrentItem="True" MouseDown="cbxCounterType_MouseDown">
+                <ComboBoxItem Content="当前用户" IsSelected="True" />
+                <ComboBoxItem Content="系统" />
+            </ComboBox>
+            <Label Canvas.Left="54" Canvas.Top="210" Content="{DynamicResource MainPageIncomeRate}" Height="28" Name="label5" />
+            <TextBox BorderThickness="0" Canvas.Left="134" Canvas.Top="212" Height="20" Name="incomeRate" Width="110" MouseDown="incomeRate_MouseDown">
+                <TextBox.Background>
+                    <ImageBrush ImageSource="/sungrow_demo;component/images/main/suc_sy02.png" />
+                </TextBox.Background>
+            </TextBox>
+            <Label Canvas.Left="72" Canvas.Top="239" Content="{DynamicResource MainPageIncomeUnit}" Height="28" Name="label8" />
+            <ComboBox Canvas.Left="134" Canvas.Top="241" Height="23" IsSynchronizedWithCurrentItem="True" Name="cbxCurrencyType" Width="120" MouseDown="cbxCurrencyType_MouseDown">
+                <ComboBoxItem Content="人民币" IsSelected="True"/>
+                <ComboBoxItem Content="美元" />
+                <ComboBoxItem Content="卢布" />
+                <ComboBoxItem Content="韩元" />
+                <ComboBoxItem Content="欧元" />
+                <ComboBoxItem Content="英镑" />
+            </ComboBox>
+            <Grid Canvas.Left="533" Canvas.Top="65" Height="108" Name="displayItems" Width="395" MouseDown="displayItems_MouseDown">
+                    <CheckBox Content="电站数量" Height="16" HorizontalAlignment="Left" Margin="44,25,0,0" Name="cbxPlants" VerticalAlignment="Top" />
+                    <CheckBox Content="今日发电" Height="16" HorizontalAlignment="Left" Margin="44,55,0,0" Name="cbxTodayEnergy" VerticalAlignment="Top" />
+                    <CheckBox Content="累计发电" Height="16" HorizontalAlignment="Left" Margin="44,85,0,0" Name="cbxTotalEnergy" VerticalAlignment="Top" />
+                    <CheckBox Content="今日功率" Height="16"  HorizontalAlignment="Left" Margin="157,25,0,0" Name="cbxTodayPower" VerticalAlignment="Top" />
+                    <CheckBox Content="累计装机容量" Height="16" HorizontalAlignment="Left" Margin="157,55,0,0" Name="cbxTotalDesignPower" VerticalAlignment="Top" />
+                <CheckBox Content="累计等效树木" Height="16" HorizontalAlignment="Left" Margin="157,85,0,0" Name="cbxTotalTrees" VerticalAlignment="Top" />
+            </Grid>
+            <Label Canvas.Left="462" Canvas.Top="66" Content="{DynamicResource MainPageItemsList}" Height="28" Name="label9" Width="109" />
+            <Grid Canvas.Left="533" Canvas.Top="182" Height="38" Name="displayPages" Width="395" MouseDown="displayPages_MouseDown">
+                <!--
+                <CheckBox Content="详细汇总页面" Height="16" HorizontalAlignment="Left" Margin="44,10,0,0" Name="cboxPageDetail" VerticalAlignment="Top" />
+                -->
+                <CheckBox Content="功率图表页面" Height="16" HorizontalAlignment="Left" Margin="44,10,0,0" Name="cboxPagePowerChart" VerticalAlignment="Top" />
+                <CheckBox Content="发电量周图表" Height="16" HorizontalAlignment="Left" Margin="157,10,0,0" Name="cboxPageWeekEnergyChart" VerticalAlignment="Top" />
+                <CheckBox Content="发电量月图表" Height="16" HorizontalAlignment="Left" Margin="296,9,0,0" Name="cboxPageMonthEnergyChart" VerticalAlignment="Top" />
+            </Grid>
+            <Label Content="{DynamicResource MainPagePlantItems}" Name="label10" Canvas.Left="462" Canvas.Top="164" Width="109" />
+            <Label Canvas.Left="68" Canvas.Top="368" Content="语言设置" Height="28" Name="label12" />
+            <ComboBox Height="23" Name="cbxMasterLanguage" Width="120" Canvas.Left="134" Canvas.Top="368">
+            </ComboBox>
+            <ComboBox Canvas.Left="269" Canvas.Top="368" Height="23" Name="cbxLanguage" Width="120" >
+            </ComboBox>
+            <Label Canvas.Left="525" Canvas.Top="305" Content="欢迎词" Height="28" Name="label13" />
+            <TextBox Canvas.Left="577" Canvas.Top="302" Height="94" Name="tboxhyc" Width="351" MinLines="1" TextWrapping="Wrap" />
+            <CheckBox Content="累计收益" Height="16" Name="cbxTotalRecome" Canvas.Left="829" Canvas.Top="119" />
+            <CheckBox Content="累计减排" Height="16" Name="cbxTotalCo2" Canvas.Left="830" Canvas.Top="90" />
+            <Label Canvas.Left="500" Canvas.Top="222" Content="首页LOGO" Height="28" Name="label14" />
+            <TextBox BorderThickness="0" Canvas.Left="577" Canvas.Top="227" Height="20" Name="tbxLogoPath" Width="274">
+                <TextBox.Background>
+                    <ImageBrush ImageSource="/sungrow_demo;component/images/main/suc_sy03.png" />
+                </TextBox.Background>
+            </TextBox>
+            <Label Canvas.Left="500" Canvas.Top="262" Content="内页LOGO" Height="28" Name="label15" />
+            <TextBox BorderThickness="0" Canvas.Left="577" Canvas.Top="267" Height="20" Name="tbxInsideLogoPath" Width="274">
+                <TextBox.Background>
+                    <ImageBrush ImageSource="/sungrow_demo;component/images/main/suc_sy03.png" />
+                </TextBox.Background>
+            </TextBox>
+            <Button Canvas.Left="853" Canvas.Top="225" Content="浏览..." Height="23" Name="btnLogoConfirm" Width="75" Click="btnLogoConfirm_Click" />
+            <Button Canvas.Left="853" Canvas.Top="264" Content="浏览..." Height="23" Name="btnInsideLogo" Width="75" Click="btnInsideLogo_Click" />
+        </Canvas>
+        <Label Content="首页" Height="28" HorizontalAlignment="Left" Margin="674,548,0,0" Name="lblMainPage" VerticalAlignment="Top" MouseUp="lblMainPage_MouseUp" />
+        <Label Content="上一页" Height="28" HorizontalAlignment="Left" Margin="723,548,0,0" Name="lblPrePage" VerticalAlignment="Top" MouseUp="lblPrePage_MouseUp" />
+        <Label Content="下一页" Height="28" HorizontalAlignment="Left" Margin="823,548,0,0" Name="lblNextPage" VerticalAlignment="Top" MouseUp="lblNextPage_MouseUp" />
+        <Label Content="2/5页" Height="28" HorizontalAlignment="Left" Margin="776,548,0,0" Name="lblCurPage" VerticalAlignment="Top" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="910,550,0,0" Name="comPageList" VerticalAlignment="Top" Width="80" SelectionChanged="comPageList_SelectionChanged" AllowDrop="False" />
+        <Label Content="跳转" Height="28" HorizontalAlignment="Left" Margin="874,548,0,0" Name="lblSkip" VerticalAlignment="Top" />
+    </Grid>
+</Window>

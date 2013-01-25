@@ -1,0 +1,20 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
+    <s:String x:Key="MainPageHeight">高度</s:String>
+    <s:String x:Key="MainPageTipsCount">气泡显示时长</s:String>
+    <s:String x:Key="MainPageDetailCount">详情子页面显示时长</s:String>
+    <s:String x:Key="MainPageMainCount">首页停留时间</s:String>
+    <s:String x:Key="MainPageIncomeRate">收益转换率</s:String>
+    <s:String x:Key="MainPageIncomeUnit">收益典韦</s:String>
+    <s:String x:Key="MainPageCounterType">汇总方式</s:String>
+    <s:String x:Key="MainPageBankUrl">Bank 网址</s:String>
+    <s:String x:Key="MainPageSysName">系统名称</s:String>
+    <s:String x:Key="MainPageItemsList">首页汇总项目配置</s:String>
+    <s:String x:Key="MainPagePlantItems">电站页面项目配置</s:String>
+    <s:String x:Key="MainPagePlantCount">dianzhanshuliang</s:String>
+    <s:String x:Key="MainPageTodayPower">jinrigonglv</s:String>
+    <s:String x:Key="MainPageTodayEnergy">jinrifadian</s:String>
+    <s:String x:Key="MainPageTotalDesignPower">leijifadianrliang</s:String>
+    <s:String x:Key="MainPageTotalPower">leijifadian</s:String>
+    <s:String x:Key="MainPageTotalTree">leijidengxiaoshumu</s:String>
+</ResourceDictionary>

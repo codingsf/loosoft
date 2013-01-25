@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C16B83DB-5617-4774-8135-40C5E4DDEE81}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>sungrow_demo</RootNamespace>
+    <AssemblyName>sungrow_demo</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxInterop.ShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AxInterop.ShockwaveFlashObjects.dll</HintPath>
+    </Reference>
+    <Reference Include="FlashControlLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\FlashControlLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="HookAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\HookAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.ShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\Interop.ShockwaveFlashObjects.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AcceptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AcceptForm.Designer.cs">
+      <DependentUpon>AcceptForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlCenter.cs" />
+    <Compile Include="DoublePoint.cs" />
+    <Compile Include="FileUtil.cs" />
+    <Compile Include="HttpServer.cs" />
+    <Compile Include="JsonUtil.cs" />
+    <Compile Include="Main.xaml.cs">
+      <DependentUpon>Main.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ConfigPara.cs" />
+    <Compile Include="Model\GERenderPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Model\Kml.cs" />
+    <Compile Include="Model\Pager.cs" />
+    <Compile Include="Model\Util.cs" />
+    <Compile Include="MSG.cs" />
+    <Compile Include="POINT.cs" />
+    <Compile Include="RECT.cs" />
+    <Compile Include="Service\LogUtil.cs" />
+    <Compile Include="Service\Vo\OpenApiVO.cs" />
+    <Compile Include="SystemUtil.cs" />
+    <Compile Include="XMLHelper.cs" />
+    <Page Include="GoogleEarth.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="lang\zh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Service\ConfigManagerService.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="GoogleEarth.xaml.cs">
+      <DependentUpon>GoogleEarth.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="AcceptForm.resx">
+      <DependentUpon>AcceptForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="images\main\Thumbs.db" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Resources\KML_Samples.kml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="EARTHLib">
+      <Guid>{3476FAB2-687F-4EA6-9AC2-88D72DC7D7FC}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\tm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\digital\0.png" />
+    <Resource Include="Resources\digital\1.png" />
+    <Resource Include="Resources\digital\2.png" />
+    <Resource Include="Resources\digital\3.png" />
+    <Resource Include="Resources\digital\4.png" />
+    <Resource Include="Resources\digital\5.png" />
+    <Resource Include="Resources\digital\6.png" />
+    <Resource Include="Resources\digital\7.png" />
+    <Resource Include="Resources\digital\8.png" />
+    <Resource Include="Resources\digital\9.png" />
+    <Resource Include="Resources\digital\dot.png" />
+    <Resource Include="Resources\digital\kt.png" />
+    <Resource Include="Resources\digital\kwh.png" />
+    <Resource Include="Resources\digital\mwh.png" />
+    <Resource Include="Resources\digital\t.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\d.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ff.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\bg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\main\df.jpg" />
+    <Resource Include="images\main\suc_bg.jpg" />
+    <Resource Include="images\main\suc_big.png" />
+    <Resource Include="images\main\suc_bubg.png" />
+    <Resource Include="images\main\suc_linebg.png" />
+    <Resource Include="images\main\suc_sm.png" />
+    <Resource Include="images\main\suc_sy01.png" />
+    <Resource Include="images\main\suc_sy02.png" />
+    <Resource Include="images\main\suc_tabbg.png" />
+    <Resource Include="images\main\suc_tittle.png" />
+    <Resource Include="images\main\suc_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\main\suc_bu01.png" />
+    <Resource Include="images\main\suc_bu02.png" />
+    <Resource Include="images\main\suc_bu03.png" />
+    <Resource Include="images\main\suc_bu04.png" />
+    <Resource Include="images\main\suc_bu05.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\main\suc_tab01.png" />
+    <Resource Include="images\main\suc_tab02.png" />
+    <Resource Include="images\main\suc_tab03.png" />
+    <Resource Include="images\main\suc_tab04.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\main\suc_bg01.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\logo.jpg" />
+    <Resource Include="Resources\mw.png" />
+    <Resource Include="Resources\gw.png" />
+    <Resource Include="Resources\images\3x.png" />
+    <Resource Include="Resources\images\2x.png" />
+    <Resource Include="Resources\kW.png" />
+    <Resource Include="Resources\kWp.png" />
+    <Resource Include="Resources\W.png" />
+    <Resource Include="Resources\ke.PNG" />
+    <Resource Include="Resources\zh-en\ico06.png" />
+    <Resource Include="Resources\zh-en\ico07.png" />
+    <Resource Include="Resources\zh-en\ico08.png" />
+    <Resource Include="Resources\my.png" />
+    <Resource Include="Resources\rmb.png" />
+    <Resource Include="Resources\zh-en\ico01.png" />
+    <Resource Include="Resources\zh-en\ico02.png" />
+    <Resource Include="Resources\zh-en\ico03.png" />
+    <Resource Include="Resources\zh-en\ico04.png" />
+    <Resource Include="Resources\zh-en\ico05.png" />
+    <Resource Include="Resources\digital\Mt.png" />
+    <Resource Include="Resources\digital\F.png" />
+    <Resource Include="Resources\digital\Gt.png" />
+    <Resource Include="Resources\digital\GWh.png" />
+    <Resource Include="Resources\digital\kg.png" />
+    <Resource Include="Resources\top.jpg" />
+    <Resource Include="Resources\bot.jpg" />
+    <Resource Include="Resources\bot_line.jpg" />
+    <Resource Include="Resources\hanyuan.png" />
+    <Resource Include="Resources\lubu.png" />
+    <Resource Include="Resources\ouyuan.png" />
+    <Resource Include="Resources\ybang.png" />
+    <Content Include="Resources\demo.swf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\main\suc_sy03.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

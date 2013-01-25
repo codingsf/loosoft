@@ -75,6 +75,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         {
             return _plantUnit.Get(new PlantUnit { id = id });
         }
+
         /// <summary>
         /// 功能：删除电站单元
         /// 描述：根据电站id和电站单元id删除电站单元
@@ -91,6 +92,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
 
             return _plantUnit.DeletePlantUnit(plantId, plantUnitId);
         }
+
         /// <summary>
         /// 功能：根据电站Id和单元Id获取所有的电站单元
         /// 作者：张月
@@ -131,6 +133,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         public PlantUnit GetPlantUnitByCollectorId(int collectorID)
         {
             return _plantUnit.GetPlantUnitByCollectorId(collectorID);
+        }
+
+        /// <summary>
+        /// 取得所有单元
+        /// </summary>
+        /// <returns></returns>
+        public IList<PlantUnit> getAllUnits() {
+            return _plantUnit.Getlist(new PlantUnit());
         }
 
     }

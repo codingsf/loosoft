@@ -151,11 +151,6 @@ function formatYLabellarge() {
         return this.value;
     }
 }
-//格式化一位小数
-function formatBit(value) {
-    var newstr = (value + 0.00001).toString();
-    return newstr.substring(0, newstr.indexOf('.') + 4) * 1000;
-}
 
 ///格式化一位小数
 function formatBit(value) {
@@ -326,16 +321,20 @@ function comDataByCharttype(tmpSerie, series) {
 //对y轴数据的极小值进行放大树立，但是不影响显示真正的值
 function handleMinData(ydata, yMax, yMin, name) {
     var keyvalue = "";
+    var rate = 0.01;
     for (var i = 0; i < ydata.length; i++) {
         //先保留原始值
         keyvalue = globalCategories[i] + name + "*&" + ydata[i];
         
         globalOldYvalue.push(keyvalue);
         //当前值和最大值的比率，小于1%即增加到1%
-        if (ydata[i] != null && ydata[i] != "null" && ydata[i] > 0 && ydata[i] / yMax < 0.04) {
-            ydata[i] = yMax * 0.04;
-        } else if (ydata[i] != null && ydata[i] != "null" && ydata[i] < 0 && ydata[i] / yMin < 0.04) {
-            ydata[i] = yMin * 0.04;
+        if (ydata[i] == 0) {
+            ydata[i] = yMax * 0.005; //0值给放大点，以便能显示出来
+            //if (ydata[i] == 0) ydata[i] = 0.1;
+        } else if (ydata[i] != null && ydata[i] != "null" && ydata[i] > 0 && ydata[i] / yMax < rate) {
+            ydata[i] = yMax * rate;
+        } else if (ydata[i] != null && ydata[i] != "null" && ydata[i] < 0 && ydata[i] / yMin < rate) {
+            ydata[i] = yMin * rate;
         }
     }
     return ydata;
@@ -582,7 +581,7 @@ function defineChartWithDetail(curContainer, isDetail) {
             },
             line: {
                 shadow: false,
-                lineWidth: 2,
+                lineWidth: 1,
                 brightness: 0.2,
                 marker: {
                     enabled: true,

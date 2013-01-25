@@ -202,12 +202,12 @@
                                                 </td>
                                                 <td width="10%" align="center">
                                                     <div style="overflow: hidden;" title="<%=plant.TotalDayEnergy%>">
-                                                        <%=plant.TotalDayEnergy%>
+                                                        <%=plant.TotalDayEnergy.ToString("0.00")%>
                                                     </div>
                                                 </td>
                                                 <td width="10%" align="center">
                                                     <div style="overflow: hidden;" title="<%=plant.TotalEnergy%>">
-                                                        <%=plant.TotalEnergy%>
+                                                        <%=plant.TotalEnergy.ToString("0.00")%>
                                                     </div>
                                                 </td>
                                                 <td width="10%" align="center">

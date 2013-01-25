@@ -158,7 +158,7 @@
       { %>    
     <table width="500" border="1" cellpadding="0" cellspacing="0" bordercolor="#D8D8D8" class="xtable">
   <tr>
-    <td colspan="3" background="images/sub/xbg00.jpg" bgcolor="#F5F5F5"><strong style=" float:left; padding-left:10px;">数字输入</strong></td>
+    <td colspan="3" background="images/sub/xbg00.jpg" bgcolor="#F5F5F5"><strong style=" float:left; padding-left:10px;"><%=Resources.SunResource.DEVICEMONITORITEM_319%></strong></td>
   </tr>
   
     <%
@@ -189,7 +189,7 @@
       { %>  
 <table width="500" border="1" cellpadding="0" cellspacing="0" bordercolor="#D8D8D8" class="xtable">
   <tr>
-    <td colspan="3" align="left" background="images/sub/xbg00.jpg" bgcolor="#F5F5F5" ><strong  style=" float:left; padding-left:10px;">工作状态</strong>
+    <td colspan="3" align="left" background="images/sub/xbg00.jpg" bgcolor="#F5F5F5" ><strong  style=" float:left; padding-left:10px;"><%=Resources.SunResource.PLANT_DEVICEMONITOR_DEVICE_STATUS%></strong>
     <%if (int.Parse(ViewData["displayHxlroute"].ToString()) > 8)
       {%>
 	<ul class="xrlist">

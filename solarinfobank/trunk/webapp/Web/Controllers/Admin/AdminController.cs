@@ -2488,14 +2488,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                             break;
 
                         case "40"://今日发电量
-
-                            //object data = ReflectionUtil.getProperty(DeviceMonthDayDataService.GetInstance().GetDeviceMonthDayData(DateTime.Now.Year, d.id, DateTime.Now.Month), string.Format("d_{0}", DateTime.Now.Day));
-                            //rowData.Add(data == null ? "0" : data.ToString());
-                            if (d.runData == null)
-                                rowData.Add("0");
-                            else
-                                rowData.Add(d.runData.todayEnergy.ToString("0.0"));
-
+                            rowData.Add(d.TodayEnergy(d.plant.timezone).ToString("0.00"));
                             break;
 
                         case "41"://本月发电量                      
@@ -2531,7 +2524,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                 {
                     case "40"://今日发电量
 
-                        rowData.Add(string.Format("{0}:<br />∑{1}", "今日发电量统计", computeEnergyUnit(devices.Where(m => m.runData != null).Sum(m => m.runData.todayEnergy))));
+                        rowData.Add(string.Format("{0}:<br />∑{1}", "今日发电量统计", computeEnergyUnit(devices.Where(m => m.runData != null).Sum(m => m.TodayEnergy(m.plant.timezone)))));
                         break;
 
                     case "41"://本月发电量

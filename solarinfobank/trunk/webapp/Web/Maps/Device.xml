@@ -72,7 +72,7 @@
       DELETE FROM device WHERE ID=#id#
     </delete>
     <update id="device_update">
-      UPDATE device SET deviceTypeCode=#deviceTypeCode#,deviceModelCode=#deviceModel.code#,name=#name# WHERE id=#id#
+      UPDATE device SET deviceTypeCode=#deviceTypeCode#,deviceModelCode=#deviceModel.code#,name=#name#,deviceAddress=#deviceAddress# WHERE id=#id#
     </update>
     
     <update id="device_update_currentpower" parameterClass="Hashtable">

@@ -269,16 +269,16 @@
         });
     }
         
-        //ifame自适应高度,被包含的页面，内部有影响页面长度的要在页面中完成操作好再次调用这个方法。如:parent.iFrameHeight();
-        function iFrameHeight() {
-          //set current page title 
-           document.title=(document.getElementById('mainFrame').contentWindow.document.title);
-            var ifm = document.getElementById("mainFrame");
-            var subWeb = document.frames ? document.frames["mainFrame"].document : ifm.contentDocument;
-            if (ifm != null && subWeb != null) {
-                ifm.height = subWeb.body.scrollHeight;
-            }
+    //ifame自适应高度,被包含的页面，内部有影响页面长度的要在页面中完成操作好再次调用这个方法。如:parent.iFrameHeight();
+    function iFrameHeight() {
+      //set current page title 
+       document.title=(document.getElementById('mainFrame').contentWindow.document.title);
+        var ifm = document.getElementById("mainFrame");
+        var subWeb = document.frames ? document.frames["mainFrame"].document : ifm.contentDocument;
+        if (ifm != null && subWeb != null) {
+            ifm.height = subWeb.body.scrollHeight;
         }
+    }
     </script>
 
     <script src="/script/DatePicker/WdatePicker.js" type="text/javascript"></script>

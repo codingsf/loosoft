@@ -11,9 +11,7 @@
     <link media="screen" rel="stylesheet" href="http://colorpowered.com/colorbox/core/example1/colorbox.css" />
     <td width="793" valign="top" background="/images/kj/kjbg01.jpg">
 
-        <script>
-
-
+        <script type="text/javascript">
             var pagesize = 1;
             var obfield = '';
             function cbxvalue(name) {

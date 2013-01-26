@@ -2145,6 +2145,7 @@
     <Content Include="Pages\Plant\AmmeterEdit.aspx" />
     <Content Include="Pages\Plant\deviceStructChart.aspx" />
     <Content Include="Pages\Plant\EnergyRate.aspx" />
+    <Content Include="Pages\Plant\PlantUser.aspx" />
     <Content Include="Pages\Plant\portalStructChart.aspx" />
     <Content Include="Pages\Plant\Share.aspx" />
     <Content Include="Pages\Plant\Virtualedit.aspx" />
@@ -2189,6 +2190,7 @@
     <Content Include="Pages\p\Index.aspx" />
     <Content Include="Pages\QA\Ask.aspx" />
     <Content Include="Pages\QA\ShowAsk.aspx" />
+    <Content Include="Pages\User\AddUser.aspx" />
     <Content Include="Pages\User\EnergyFilter.aspx" />
     <Content Include="Pages\User\Overview.aspx" />
     <Content Include="Pages\Plant\Device\DataCount.aspx" />
@@ -2203,7 +2205,7 @@
     <Content Include="Pages\Plant\Log.aspx" />
     <Content Include="Pages\Plant\ModifyDeviceMonitor.aspx" />
     <Content Include="Pages\Plant\PlantReport.aspx" />
-    <Content Include="Pages\Plant\PlantUser.aspx" />
+    <Content Include="Pages\Plant\PortalUser.aspx" />
     <Content Include="Pages\Plant\PowerCount.aspx" />
     <Content Include="Pages\Plant\ReportConfig.aspx" />
     <Content Include="Pages\Plant\Information.aspx" />
@@ -2256,6 +2258,8 @@
     <Content Include="Pages\User\PlantEdit.aspx" />
     <Content Include="Pages\Public\StaticPage.aspx" />
     <Content Include="Pages\User\Map.aspx" />
+    <Content Include="Pages\User\PlantUserAdd.aspx" />
+    <Content Include="Pages\User\PlantUsers.aspx" />
     <Content Include="Pages\User\StructConfig.aspx" />
     <Content Include="Pages\User\PRChart.aspx" />
     <Content Include="Pages\User\ViewCustomChart.aspx" />

@@ -801,5 +801,26 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 return refreshStartDate.ToString("yyyy-MM-dd");
             }
         }
+
+
+        //管理的电站
+        public IList<Plant> plants
+        {
+            get
+            {
+                IList<Plant> _plantList = new List<Plant>();
+                if (this.plantUsers == null) return _plantList;
+
+                foreach (PlantUser plantUser in this.plantUsers)
+                {
+                    if (plantUser.plant != null)
+                        _plantList.Add(plantUser.plant);
+                }
+                return _plantList;
+            }
+        }
+
+
+
     }
 }

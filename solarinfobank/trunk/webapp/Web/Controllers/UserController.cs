@@ -2186,5 +2186,27 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             userservice.save(user);
             return View();
         }
+
+
+        [IsLoginAttribute]
+        public ActionResult PlantUsers()
+        {
+            User user = UserUtil.getCurUser();
+            return View(user);
+        }
+
+
+        [IsLoginAttribute]
+        public ActionResult AddUser()
+        {
+            return View();
+        }
+
+        [IsLoginAttribute]
+        public ActionResult PlantUserAdd()
+        {
+            return View();
+        }
+
     }
 }

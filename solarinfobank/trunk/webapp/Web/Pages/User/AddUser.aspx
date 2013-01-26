@@ -7,5 +7,5 @@
    <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>   <%=Resources.SunResource.PLANT_ADDPLANT_ADD_PLANT  %> 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-   <% Html.RenderAction("useradd", "user"); %>
+   <% Html.RenderAction("plantuseradd", "user"); %>
 </asp:Content>

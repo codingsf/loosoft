@@ -1611,7 +1611,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             return View(plant);
         }
 
-        public ActionResult PlantUser(string id)
+        public ActionResult PortalUser(string id)
         {
             int pid = 0;
             int.TryParse(id, out pid);
@@ -2766,6 +2766,11 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             return Content("ok");
         }
 
-
+        public ActionResult PlantUser(string id)
+        {
+            int pid = 0;
+            int.TryParse(id, out pid);
+            return View(FindPlant(pid));
+        }
     }
 }

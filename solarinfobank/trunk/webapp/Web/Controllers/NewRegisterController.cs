@@ -320,7 +320,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             else
             {
                 plantid = PlantService.GetInstance().AddPlantInfo(plant);
-                PlantUserService.GetInstance().AddPlantUser(new PlantUser { plantID = plantid, userID = int.Parse(plant.userID.ToString()) });//添加电站时，向电站用户关系表中加记录
+                PlantPortalUserService.GetInstance().AddPlantPortalUser(new PlantPortalUser { plantID = plantid, userID = int.Parse(plant.userID.ToString()) });//添加电站时，向电站用户关系表中加记录
+                PlantUserService.GetInstance().AddPlantUser(new PlantUser { plantID = plantid, userID = int.Parse(plant.userID.ToString()) });
             }
             UserUtil.ResetLogin(UserUtil.getCurUser());
             return Redirect("/newregister/addplantcontrol?plantid=" + plantid);

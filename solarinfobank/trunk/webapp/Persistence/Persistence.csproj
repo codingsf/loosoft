@@ -111,6 +111,7 @@
     <Compile Include="Interfaces\IManagerMonitorCodeSqlMapDao.cs" />
     <Compile Include="Interfaces\IMonitorConfigDao.cs" />
     <Compile Include="Interfaces\IMonthCompensationDao.cs" />
+    <Compile Include="Interfaces\IPlantUserDao.cs" />
     <Compile Include="Interfaces\IProtalDao.cs" />
     <Compile Include="Interfaces\IQADao.cs" />
     <Compile Include="Interfaces\IRelationConfigDao.cs" />
@@ -136,7 +137,7 @@
     <Compile Include="Interfaces\IFaultDao.cs" />
     <Compile Include="Interfaces\IItemConfigDao.cs" />
     <Compile Include="Interfaces\IManagerDao.cs" />
-    <Compile Include="Interfaces\IPlantUserDao.cs" />
+    <Compile Include="Interfaces\IPlantPortalUserDao.cs" />
     <Compile Include="Interfaces\IReportDao.cs" />
     <Compile Include="Interfaces\IVideoMonitorDao.cs" />
     <Compile Include="Interfaces\IMonitorItemDao .cs" />
@@ -290,6 +291,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MapperDao\PlantUnitSqlMapDao.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MapperDao\PlantPortalUserSqlMapDao.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MapperDao\PlantUserSqlMapDao.cs">

@@ -27,7 +27,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
         ManagerService managerService = ManagerService.GetInstance();
         ProductPictureService productPictureService = ProductPictureService.GetInstance();
         AdpicService adpicService = AdpicService.GetInstance();
-        PlantUserService plantUserService = PlantUserService.GetInstance();
+        PlantPortalUserService plantUserService = PlantPortalUserService.GetInstance();
         UserService userService = UserService.GetInstance();
         PlantService plantService = PlantService.GetInstance();
         [IsLoginAttributeAdmin]
@@ -411,8 +411,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
         public ActionResult Userdel(int id)
         {
             User user = userService.Get(id);
-            IList<PlantUser> childuser = user.plantUsers;
-            foreach (PlantUser pu in childuser)
+            IList<PlantPortalUser> childuser = user.plantPortalUsers;
+            foreach (PlantPortalUser pu in childuser)
                 userService.Delete(pu.userID);//删除当前用户子用户
             userService.Delete(id);
             if (user.ParentUserId == 0)
@@ -938,15 +938,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
         {
             Plant plantInfo = plantService.GetPlantInfoById(id);
             User user = userService.GetUserByName(UserUtil.demousername);
-            PlantUser plantUser = new PlantUser();
-            plantUser.userID = user.id;
-            plantUser.plantID = id;
-            PlantUser plant = plantUserService.GetPlantUserByPlantIDUserID(plantUser);//判断电站是否是示例电站
+            PlantPortalUser plantPortalUser = new PlantPortalUser();
+            plantPortalUser.userID = user.id;
+            plantPortalUser.plantID = id;
+            PlantPortalUser plant = plantUserService.GetPlantUserByPlantIDUserID(plantPortalUser);//判断电站是否是示例电站
             if (plant == null)
             {
                 plantInfo.example_plant = true;//将电站标记为示例电站
                 plantService.UpdatePlantInfo(plantInfo);
-                plantUserService.AddPlantUser(plantUser);
+                plantUserService.AddPlantPortalUser(plantPortalUser);
             }
             else
                 ViewData["error"] = "This plant is exampleplant!";
@@ -962,7 +962,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
         {
             Plant plantInfo = plantService.GetPlantInfoById(id);
             User user = userService.GetUserByName(UserUtil.demousername);
-            PlantUser plantUser = new PlantUser();
+            PlantPortalUser plantUser = new PlantPortalUser();
             plantUser.userID = user.id;
             plantUser.plantID = id;
             plantInfo.example_plant = false;
@@ -2734,13 +2734,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             UserUtil.login(loginUser);
             if (loginUser.ParentUserId == 0)
             {
-                if (loginUser.plantUsers.Count == 1)
+                if (loginUser.plantPortalUsers.Count == 1)
                 {
                     return RedirectToAction("overview", "plant", new { @id = base.FirstPlant.id });
                 }
                 else
                 {
-                    if (loginUser.plantUsers.Count > 0)
+                    if (loginUser.plantPortalUsers.Count > 0)
                     {
                         //用户登陆默认显示选中左边导航栏中的"所有电站"，右边窗口打开"电站列表"页面。 
                         //Session["firstLogin"] = true;
@@ -2760,9 +2760,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                     ModelState.AddModelError("Error", "您的账户中无电站,暂时不能登录");
                     return View(loginUser);
                 }
-                if (loginUser.plantUsers.Count == 1)
+                if (loginUser.plantPortalUsers.Count == 1)
                 {
-                    return RedirectToAction("virtual", "portal", new { @id = loginUser.plantUsers[0].plantID });
+                    return RedirectToAction("virtual", "portal", new { @id = loginUser.plantPortalUsers[0].plantID });
                 }
                 else
                     return RedirectToAction("index", "portal");

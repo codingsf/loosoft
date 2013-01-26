@@ -109,7 +109,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         public int DeletePlantById(int id)
         {
             plantUnitService.DeletePlantUnitByPlant(id);//根据电站id删除电站单元
-            PlantUserService.GetInstance().DelPlantUserByPlantID(id);// 删除电站对应用户
+            PlantPortalUserService.GetInstance().DelPlantUserByPlantID(id);// 删除电站对应用户
             return _plantInfo.Remove(new Plant { id = id });
         }
 

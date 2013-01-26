@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="PlantPortalUser" type="Cn.Loosoft.Zhisou.SunPower.Domain.PlantPortalUser, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="plantportaluser_info_result" class="PlantPortalUser">
+      <result property="id"			column="id"/>
+      <result property="plantID"			column="plantID"/>
+      <result property="userID"			column="userID"/>
+      <result property="RoleId"			column="roleId"/>
+      <result property="shared"			column="shared"/>
+      <!--级联对象集合-->
+
+      <result property="plant" lazyLoad="false"	column="plantID" select="plant_get" />
+      <!--避免在非懒加载的情况下循环递归加载
+      <result property="User"  lazyLoad="true"	column="userID"  select="user_get_lazy" />
+      -->
+    </resultMap>
+  </resultMaps>
+
+  <cacheModels>
+    <cacheModel id="plantportaluser_info_cache" implementation="LRU" readOnly="true" serialize="false">
+      <flushInterval minutes="30"/>
+      <flushOnExecute  statement="portalcloseplant"/>
+      <flushOnExecute  statement="plantuser_insert"/>
+      <flushOnExecute  statement="plantuser_update"/>
+      <flushOnExecute  statement="plantuser_delete"/>
+      <flushOnExecute  statement="plantportaluser_delete_by_plantid"/>
+      <flushOnExecute  statement="plantportaluser_delete_by_userid"/>
+      <flushOnExecute  statement="plant_insert"/>
+      <flushOnExecute  statement="plant_delete"/>
+      <flushOnExecute  statement="plant_update_pic"/>
+      <flushOnExecute  statement="plant_update"/>
+      <property name="CacheSize" value="1000"/>
+    </cacheModel>
+  </cacheModels>
+
+  <statements>
+    <select id="openportalplant_get_by_plantid"  resultMap="plantportaluser_info_result"  cacheModel="plantportaluser_info_cache">
+      select *  from  plant_portaluser where plantId=#value#
+    </select>
+    <delete id="portalcloseplant"  resultClass="int" parameterClass="Hashtable">
+      delete from plant_portaluser where plantId=#pid# and UserId=#uid#
+    </delete>
+    <!--根据userID,plantID获取当前用户的电站-->
+    <select id="plantportaluser_get_by_userid_plantid"  resultMap="plantportaluser_info_result" parameterClass="PlantPortalUser" cacheModel="plantportaluser_info_cache">
+      select *  from  plant_portaluser where userID=#userID# and plantID=#plantID#
+    </select>
+    <!--根据userID获取当前用户的电站cacheModel="plantportaluser_info_cache"-->
+    <select id="plantportaluser_get_by_userid" resultMap="plantportaluser_info_result" >
+      select *  from  plant_portaluser where userID=#value#
+    </select>
+    <!--根据userID获取当前用户的创建的可以管理的而不是分配的电站，区别在于shared=0cacheModel="plantportaluser_info_cache"-->
+    <select id="ownplantportaluser_get_by_userid" resultMap="plantportaluser_info_result" >
+      select *  from  plant_portaluser where userID=#value# and shared=0
+    </select>
+    <!--根据id获取所有-->
+    <select id="plantportaluser_get"  resultMap="plantportaluser_info_result" parameterClass="PlantPortalUser" cacheModel="plantportaluser_info_cache">
+      select *  from  plant_portaluser where id=#id#
+    </select>
+    <!--获取所有的用户电站-->
+    <select id="plantportaluser_get_list"  resultMap="plantportaluser_info_result" cacheModel="plantportaluser_info_cache">
+      select *  from  plant_portaluser
+    </select>
+    <!--添加电站用户的对应-->
+    <insert id="plantportaluser_insert" parameterClass="PlantPortalUser">
+      INSERT INTO  plant_portaluser(plantID,userID,RoleId,shared) VALUES( #plantID#,#userID#,#RoleId#,#shared#)
+      <selectKey resultClass="int" property="id" type="post">
+        SELECT LAST_INSERT_ID() AS id
+      </selectKey>
+    </insert>
+    <!--修改电站用户的对应-->
+    <update id="plantportaluser_update" paramentClass="PlantPortalUser">
+      UPDATE  plant_portaluser SET id=#id#,plantID=#plantID#,userID=#userID#,RoleId=#RoleId#,shared=#shared# WHERE id=#id#
+    </update>
+    <!-- 删除电站用户的对应-->
+    <delete id="plantportaluser_delete" paramentClass="PlantPortalUser">
+      DELETE FROM plant_portaluser WHERE id=#id#
+    </delete>
+    
+    <!-- 根据plantID和userID删除电站用户的对应-->
+    <delete id="plantportaluser_delete_by_plantid" paramentClass="int">
+      DELETE FROM plant_portaluser WHERE plantID=#plantID#
+    </delete>
+
+    <delete id="plantportaluser_delete_by_userid" paramentClass="int">
+      DELETE FROM plant_portaluser WHERE  userid=#value#
+    </delete>
+    
+    <select id="getportalusers_byplantid" resultClass="User">
+      select * from userinfo where id in ( select userid from plant_portaluser where plantid in($value$) and shared=1)
+    </select>
+  </statements>
+</sqlMap>

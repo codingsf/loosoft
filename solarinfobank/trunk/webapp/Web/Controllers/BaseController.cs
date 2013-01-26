@@ -61,7 +61,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (filterContext.HttpContext.Session[ComConst.User] != null && (UserUtil.getCurUser()).plantUsers.Count <= 0)
+            if (filterContext.HttpContext.Session[ComConst.User] != null && (UserUtil.getCurUser()).plantPortalUsers.Count <= 0)
             {
                 filterContext.HttpContext.Response.Redirect("/user/addplant");
             }

@@ -28,7 +28,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         PlantService plantService = PlantService.GetInstance();          //电站信息服务
         PlantUnitService plantUnitService = PlantUnitService.GetInstance();  //电站单元服务
         ItemConfigService itemConfigService = ItemConfigService.GetInstance();
-        PlantUserService plantUserService = PlantUserService.GetInstance();
+        PlantPortalUserService plantUserService = PlantPortalUserService.GetInstance();
         UserService userService = UserService.GetInstance();
         CollectorYearDataService collectorYearDataService = CollectorYearDataService.GetInstance();
 
@@ -414,7 +414,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             plant.userID = UserUtil.getCurUser().id;
             if (plant.energyRate == null || plant.energyRate.Value == 0) plant.energyRate = 1;
             int plantid = plantService.AddPlantInfo(plant);
-            plantUserService.AddPlantUser(new PlantUser { plantID = plantid, userID = int.Parse(plant.userID.ToString()) });//添加电站时，向电站用户关系表中加记录
+            plantUserService.AddPlantPortalUser(new PlantPortalUser { plantID = plantid, userID = int.Parse(plant.userID.ToString()) });//添加电站时，向电站用户关系表中加记录
             UserUtil.ResetLogin(UserUtil.getCurUser());
             return RedirectToAction("profile", "plant", new { @id = plant.id });
         }
@@ -2019,7 +2019,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             Hashtable roleTable = new Hashtable();
             foreach (User u in users)
             {
-                int roleId = plantUserService.GetPlantUserByPlantIDUserID(new PlantUser { plantID = id, userID = u.id }).RoleId;
+                int roleId = plantUserService.GetPlantUserByPlantIDUserID(new PlantPortalUser { plantID = id, userID = u.id }).RoleId;
                 if (roleId == 0)
                     roleTable.Add(u.username, string.Empty);
                 else

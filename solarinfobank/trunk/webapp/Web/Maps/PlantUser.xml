@@ -10,8 +10,6 @@
       <result property="id"			column="id"/>
       <result property="plantID"			column="plantID"/>
       <result property="userID"			column="userID"/>
-      <result property="RoleId"			column="roleId"/>
-      <result property="shared"			column="shared"/>
       <!--级联对象集合-->
 
       <result property="plant" lazyLoad="false"	column="plantID" select="plant_get" />
@@ -53,10 +51,6 @@
     <select id="plantuser_get_by_userid" resultMap="plantuser_info_result" >
       select *  from  plant_user where userID=#value#
     </select>
-    <!--根据userID获取当前用户的创建的可以管理的而不是分配的电站，区别在于shared=0cacheModel="plantuser_info_cache"-->
-    <select id="ownplantuser_get_by_userid" resultMap="plantuser_info_result" >
-      select *  from  plant_user where userID=#value# and shared=0
-    </select>
     <!--根据id获取所有-->
     <select id="plantuser_get"  resultMap="plantuser_info_result" parameterClass="PlantUser" cacheModel="plantuser_info_cache">
       select *  from  plant_user where id=#id#
@@ -67,20 +61,19 @@
     </select>
     <!--添加电站用户的对应-->
     <insert id="plantuser_insert" parameterClass="PlantUser">
-      INSERT INTO  plant_user(plantID,userID,RoleId,shared) VALUES( #plantID#,#userID#,#RoleId#,#shared#)
+      INSERT INTO  plant_user(plantID,userID) VALUES( #plantID#,#userID#)
       <selectKey resultClass="int" property="id" type="post">
         SELECT LAST_INSERT_ID() AS id
       </selectKey>
     </insert>
     <!--修改电站用户的对应-->
     <update id="plantuser_update" paramentClass="PlantUser">
-      UPDATE  plant_user SET id=#id#,plantID=#plantID#,userID=#userID#,RoleId=#RoleId#,shared=#shared# WHERE id=#id#
+      UPDATE  plant_user SET id=#id#,plantID=#plantID#,userID=#userID# WHERE id=#id#
     </update>
     <!-- 删除电站用户的对应-->
     <delete id="plantuser_delete" paramentClass="PlantUser">
       DELETE FROM plant_user WHERE id=#id#
     </delete>
-    
     <!-- 根据plantID和userID删除电站用户的对应-->
     <delete id="plantuser_delete_by_plantid" paramentClass="int">
       DELETE FROM plant_user WHERE plantID=#plantID#
@@ -89,9 +82,5 @@
     <delete id="plantuser_delete_by_userid" paramentClass="int">
       DELETE FROM plant_user WHERE  userid=#value#
     </delete>
-    
-    <select id="getusers_byplantid" resultClass="User">
-      select * from userinfo where id in ( select userid from plant_user where plantid in($value$) and shared=1) 
-    </select>
   </statements>
 </sqlMap>

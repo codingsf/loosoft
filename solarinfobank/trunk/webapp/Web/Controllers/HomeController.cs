@@ -123,9 +123,9 @@ namespace Web.Controllers
                 User loginUser = UserUtil.getCurUser();
                 if (loginUser.ParentUserId > 0)
                 {
-                    if (loginUser.plantUsers.Count == 1)
+                    if (loginUser.plantPortalUsers.Count == 1)
                     {
-                        return RedirectToAction("virtual", "portal", new { @id = loginUser.plantUsers[0].plantID });
+                        return RedirectToAction("virtual", "portal", new { @id = loginUser.plantPortalUsers[0].plantID });
                     }
                     else
                         return RedirectToAction("index", "portal");
@@ -139,7 +139,7 @@ namespace Web.Controllers
             User userinfo = UserService.GetInstance().GetUserByName(UserUtil.demousername);
             if (userinfo != null)
             {
-                IList<PlantUser> plant = PlantUserService.GetInstance().GetAllPlantUserByUserID(new PlantUser { userID = userinfo.id });
+                IList<PlantPortalUser> plant = PlantPortalUserService.GetInstance().GetAllPlantUserByUserID(new PlantPortalUser { userID = userinfo.id });
                 ViewData["examplePlant"] = plant;
             }
             double alltotalenergy = DeviceRunDataService.GetInstance().GetAllTotalEnergy();
@@ -212,7 +212,7 @@ namespace Web.Controllers
             User userinfo = UserService.GetInstance().GetUserByName(UserUtil.demousername);
             if (userinfo != null)
             {
-                IList<PlantUser> plant = PlantUserService.GetInstance().GetAllPlantUserByUserID(new PlantUser { userID = userinfo.id });
+                IList<PlantPortalUser> plant = PlantPortalUserService.GetInstance().GetAllPlantUserByUserID(new PlantPortalUser { userID = userinfo.id });
                 ViewData["examplePlant"] = plant;
             }
             ViewData["newPlants"] = newPlants;
@@ -328,14 +328,14 @@ namespace Web.Controllers
                         if (!loginUser.isBindUnit)
                             return Redirect("/newregister/addunit");
 
-                        if (loginUser.plantUsers.Count == 1)
+                        if (loginUser.plantPortalUsers.Count == 1)
                         {
                             return RedirectToAction("allplants", "user");
                             //return RedirectToAction("overview", "plant", new { @id = base.FirstPlant.id });
                         }
                         else
                         {
-                            if (loginUser.plantUsers.Count > 0)
+                            if (loginUser.plantPortalUsers.Count > 0)
                             {
                                 //用户登陆默认显示选中左边导航栏中的"所有电站"，右边窗口打开"电站列表"页面。 
                                 //Session["firstLogin"] = true;
@@ -358,7 +358,7 @@ namespace Web.Controllers
 
                         if (loginUser.relatedPlants.Count==1)
                         {
-                            return RedirectToAction(loginUser.relatedPlants[0].isVirtualPlant ? "virtual" : "plant", "portal", new { @id = loginUser.plantUsers[0].plantID,@isLogin=1 });
+                            return RedirectToAction(loginUser.relatedPlants[0].isVirtualPlant ? "virtual" : "plant", "portal", new { @id = loginUser.plantPortalUsers[0].plantID,@isLogin=1 });
                         }
                         else
                             return RedirectToAction("index", "portal", new {@isLogin=1});

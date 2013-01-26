@@ -13,25 +13,25 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
     /// 作者：张月
     /// 时间：2011年4月24日
     /// </summary>
-    public class PlantUserSqlMapDao:BaseSqlDao<PlantUser>, IPlantUserDao
+    public class PlantPortalUserSqlMapDao : BaseSqlDao<PlantPortalUser>, IPlantPortalUserDao
     {
 
         /// <summary>
         /// 获取所有的电站用户关系对应
         /// </summary>
         /// <returns></returns>
-        public IList<PlantUser> GetAllPlantUser()
+        public IList<PlantPortalUser> GetAllPlantUser()
         {
-            return ExecuteQueryForList<PlantUser>("plantuser_get_list", null);
+            return ExecuteQueryForList<PlantPortalUser>("plantuser_get_list", null);
         }
         /// <summary>
         /// 根据userID查询电站
         /// </summary>
         /// <param name="plantUser">电站用户关系对应实体</param>
         /// <returns></returns>
-        public IList<PlantUser> GetAllPlantUserByUserID(PlantUser plantUser)
+        public IList<PlantPortalUser> GetAllPlantUserByUserID(PlantPortalUser plantUser)
         {
-            return ExecuteQueryForList<PlantUser>("plantuser_get_by_userid", plantUser.userID);
+            return ExecuteQueryForList<PlantPortalUser>("plantportaluser_get_by_userid", plantUser.userID);
         }
         /// <summary>
         /// 根据plantID，userID删除
@@ -40,25 +40,25 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
         /// <returns></returns>
         public int DelPlantUserByPlantID(int pid)
         {
-            return ExecuteDelete("plantuser_delete_by_plantid", pid);
+            return ExecuteDelete("plantportaluser_delete_by_plantid", pid);
         }
         /// <summary>
         /// 根据plantID，userID查询
         /// </summary>
         /// <param name="plantUser">电站用户关系对应实体</param>
         /// <returns></returns>
-        public PlantUser GetPlantUserByPlantIDUserID(PlantUser plantUser)
+        public PlantPortalUser GetPlantUserByPlantIDUserID(PlantPortalUser plantUser)
         {
-            return  ExecuteQueryForObject<PlantUser>("plantuser_get_by_userid_plantid", plantUser);
+            return ExecuteQueryForObject<PlantPortalUser>("plantportaluser_get_by_userid_plantid", plantUser);
         }
 
         #region IPlantUserDao 成员
 
 
-        public IList<PlantUser> GetOpenPlant(int plantId)
+        public IList<PlantPortalUser> GetOpenPlant(int plantId)
         {
-            return  ExecuteQueryForList<PlantUser>("openplant_get_by_plantid", plantId);
-           
+            return ExecuteQueryForList<PlantPortalUser>("openportalplant_get_by_plantid", plantId);
+
         }
 
         #endregion
@@ -71,17 +71,24 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
             Hashtable table = new Hashtable();
             table.Add("pid", pid);
             table.Add("uid", uid);
-            return ExecuteDelete("closeplant", table);
-            
+            return ExecuteDelete("portalcloseplant", table);
+
         }
 
 
         public int DelPlantUserByUserId(int uid)
         {
-            return ExecuteDelete("plantuser_delete_by_userid", uid);
-            
+            return ExecuteDelete("plantportaluser_delete_by_userid", uid);
+
         }
 
         #endregion
-    }
+
+        public IList<User> GetusersByplantid(int pid)
+        {
+            return ExecuteQueryForList<User>("getportalusers_byplantid", pid);
+        }
+
+
+   }
 }

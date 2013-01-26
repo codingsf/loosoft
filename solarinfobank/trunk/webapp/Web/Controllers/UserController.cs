@@ -24,7 +24,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         ItemConfigService itemConfigService = ItemConfigService.GetInstance();
         UserService userservice = UserService.GetInstance();
         ReportConfigService reportConfigService = ReportConfigService.GetInstance();
-        PlantUserService plantUserService = PlantUserService.GetInstance();
+        PlantPortalUserService plantPortalUserService = PlantPortalUserService.GetInstance();
         // GET: /User/
         private static string singlemark_true = "1";//是分配单个电站
         private static string singlemark_false = "0";//分配多个电站
@@ -457,8 +457,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             CountryCity area = CountryCityService.GetInstance().GetCity(plant.country);
             plant.area = area == null ? string.Empty : area.weather_code;
             int plantid = plantService.AddPlantInfo(plant);
-            plantUserService.AddPlantUser(new PlantUser { plantID = plantid, userID = int.Parse(plant.userID.ToString()) });//添加电站时，向电站用户关系表中加记录
-
+            plantPortalUserService.AddPlantPortalUser(new PlantPortalUser { plantID = plantid, userID = int.Parse(plant.userID.ToString()) });//添加电站时，向电站用户关系表中加记录
+            PlantUserService.GetInstance().AddPlantUser(new PlantUser { plantID = plantid, userID = int.Parse(plant.userID.ToString()) });
             string start = Request.Form["fstart"];
             string end = Request.Form["fend"];
             string price = Request.Form["fprice"];
@@ -522,7 +522,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             //将该电站下的子电站和当前操作人重新建立关联
             foreach (Plant subplant in plant.childs)
             {
-                plantUserService.AddPlantUser(new PlantUser() { plantID = subplant.id, userID = (int)plant.userID });
+                plantPortalUserService.AddPlantPortalUser(new PlantPortalUser() { plantID = subplant.id, userID = (int)plant.userID });
             }
 
             //实际电站删除单元
@@ -1042,19 +1042,19 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         [IsLoginAttribute]
         public ActionResult OpenPlant(int id)
         {
-            PlantUser plantUser = new PlantUser();
+            PlantPortalUser plantUser = new PlantPortalUser();
             plantUser.plantID = id;
-            IList<PlantUser> plantsUser = plantUserService.GetOpenPlant(id);
+            IList<PlantPortalUser> plantsUser = plantPortalUserService.GetOpenPlant(id);
             ViewData["data"] = plantsUser;
             return View(plantUser);
         }
 
         [IsLoginAttribute]
         [HttpPost]
-        public ActionResult OpenPlant(PlantUser plantUser)
+        public ActionResult OpenPlant(PlantPortalUser plantUser)
         {
             bool exists = false;
-            IList<PlantUser> plantsUser = plantUserService.GetOpenPlant(plantUser.plantID);
+            IList<PlantPortalUser> plantsUser = plantPortalUserService.GetOpenPlant(plantUser.plantID);
             ViewData["data"] = plantsUser;
             User user = userservice.GetUserByName(plantUser.username);//查询是否存在该用户
             if (user == null)
@@ -1065,7 +1065,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             else
             {
                 User tmpUser;
-                foreach (PlantUser pUser in plantsUser)
+                foreach (PlantPortalUser pUser in plantsUser)
                 {
                     tmpUser = UserService.GetInstance().Get(pUser.userID);
                     if (tmpUser.username.Equals(plantUser.username))
@@ -1083,7 +1083,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 else
                 {
                     plantUser.userID = user.id;
-                    plantUserService.AddPlantUser(plantUser);
+                    plantPortalUserService.AddPlantPortalUser(plantUser);
                     return RedirectToAction("IncludeAllplants", "user");
                 }
             }
@@ -1093,7 +1093,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         public ActionResult ClosePlant(int id)
         {
             string uid = Request.QueryString["uid"];
-            plantUserService.ClosePlant(id, int.Parse(uid));
+            plantPortalUserService.ClosePlant(id, int.Parse(uid));
             return RedirectToAction("openplant", new { id = id });
         }
         [IsLoginAttribute]
@@ -1135,7 +1135,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [IsLoginAttribute]
-        public ActionResult Users()
+        public ActionResult PortalUsers()
         {
             User user = UserUtil.getCurUser();
             //string ids = string.Empty;
@@ -1183,7 +1183,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     if (string.IsNullOrEmpty(p))
                         continue;
                     bool shared = user.ParentUserId > 0 ? true : false;
-                    plantUserService.AddPlantUser(new PlantUser() { userID = id, plantID = int.Parse(p), shared = shared });
+                    plantPortalUserService.AddPlantPortalUser(new PlantPortalUser() { userID = id, plantID = int.Parse(p), shared = shared });
                 }
             }
             UserRoleService.GetInstance().Insert(new UserRole() { userId = id, roleId = int.Parse(role) });
@@ -1205,7 +1205,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         }
 
         [IsLoginAttribute]
-        public ActionResult UserAdd()
+        public ActionResult PortalUserAdd()
         {
             User user = UserUtil.getCurUser();
             ViewData["displayPlants"] = user.createToplevelPlants;
@@ -1220,7 +1220,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [IsLoginAttribute]
-        public ActionResult UserEdit()
+        public ActionResult PortalUserEdit()
         {
             string uid = Request.QueryString["uid"];
             int id = 0;
@@ -1239,7 +1239,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [IsLoginAttribute]
-        public ActionResult UserEdit(User user, string role, bool mail)
+        public ActionResult PortalUserEdit(User user, string role, bool mail)
         {
             user.password = EncryptUtil.EncryptDES(user.password, EncryptUtil.defaultKey);
             int roleId = 0;
@@ -1296,7 +1296,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         /// 用户分配的电站
         /// </summary>
         /// <returns></returns>
-        public ActionResult UserPlants()
+        public ActionResult PortalUserPlants()
         {
             User user = UserUtil.getCurUser();
             //当前用户创建的电站
@@ -1305,8 +1305,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             int id = 0;
             int.TryParse(uid, out id);
             //该用户已分配电站
-            IList<PlantUser> userPlants = plantUserService.GetAllPlantUserByUserID(new PlantUser() { userID = id });
-            userPlants = userPlants.Where(m => m.shared).ToList<PlantUser>();
+            IList<PlantPortalUser> userPlants = plantPortalUserService.GetAllPlantUserByUserID(new PlantPortalUser() { userID = id });
+            userPlants = userPlants.Where(m => m.shared).ToList<PlantPortalUser>();
             ViewData["roles"] = user.Roles;
             user = userservice.Get(id);
             ViewData["uname"] = user.username;
@@ -1316,26 +1316,26 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
         [HttpPost]
         [IsLoginAttribute]
-        public ActionResult UserPlantEdit()
+        public ActionResult PortalUserPlantEdit()
         {
             string str = Request.Form["plants"];
             string uid = Request.Form["uid"];
             int id = 0;
             int.TryParse(uid, out id);
-            plantUserService.DelPlantUserByUserId(id);
+            plantPortalUserService.DelPlantUserByUserId(id);
             if (string.IsNullOrEmpty(str) == false)
                 foreach (string p in str.Split(','))
                 {
                     if (string.IsNullOrEmpty(p))
                         break;
-                    plantUserService.AddPlantUser(new PlantUser() { plantID = int.Parse(p), userID = id });
+                    plantPortalUserService.AddPlantPortalUser(new PlantPortalUser() { plantID = int.Parse(p), userID = id });
                 }
 
             return Redirect("/user/portaluser");
         }
 
         [IsLoginAttribute]
-        public ActionResult DeleteUser()
+        public ActionResult DeletePortalUser()
         {
             string uid = Request.QueryString["uid"];
             int id = 0;
@@ -1373,7 +1373,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult ViewInfo(string id)
+        public ActionResult PortalViewInfo(string id)
         {
             int uid = 0;
             int.TryParse(id, out uid);
@@ -1822,7 +1822,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 {
                     if (pid.Contains(string.Format("{0},", pnt.id)) == false)
                     {
-                        plantUserService.AddPlantUser(new PlantUser() { plantID = pnt.id, userID = user.id });
+                        plantPortalUserService.AddPlantPortalUser(new PlantPortalUser() { plantID = pnt.id, userID = user.id });
                     }
                 }
             }
@@ -1836,9 +1836,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             //先批量清楚原有父id
             plantService.UpdateParentId(vid);
             //删除组合电站的用户和电站对应关系
-            plantUserService.ClosePlant(vid, user.id);
+            plantPortalUserService.ClosePlant(vid, user.id);
             //建立创建的
-            plantUserService.AddPlantUser(new PlantUser() { plantID = vid, userID = user.id });
+            plantPortalUserService.AddPlantPortalUser(new PlantPortalUser() { plantID = vid, userID = user.id });
 
             string[] array = pids.Split(',');
 
@@ -1853,7 +1853,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     plantService.Save(plant);
 
                     //删除被组合电站的用户和电站对应关系
-                    plantUserService.DelPlantUserByPlantID(plant.id);
+                    plantPortalUserService.DelPlantUserByPlantID(plant.id);
                 }
 
             }
@@ -1937,7 +1937,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             //如果不是报仇分配单个电站，那么要先清空改用户的已分配电站
             if (singlemark_false.Equals(singlemark))
             {
-                plantUserService.DelPlantUserByUserId(uid);
+                plantPortalUserService.DelPlantUserByUserId(uid);
             }
 
             string[] pid_array = pids.Split(',');
@@ -1947,9 +1947,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 if (string.IsNullOrEmpty(pid_array[i])) continue;
                 int pid = int.Parse(pid_array[i]);
                 //如果关系已经存在即不在建立关系
-                PlantUser pu = plantUserService.GetPlantUserByPlantIDUserID(new PlantUser() { plantID = pid, userID = uid });
+                PlantPortalUser pu = plantPortalUserService.GetPlantUserByPlantIDUserID(new PlantPortalUser() { plantID = pid, userID = uid });
                 if (pu == null)
-                    plantUserService.AddPlantUser(new PlantUser { RoleId = roleId, userID = uid, plantID = pid, shared = true });
+                    plantPortalUserService.AddPlantPortalUser(new PlantPortalUser { RoleId = roleId, userID = uid, plantID = pid, shared = true });
             }
             return Content("ok");
         }
@@ -2202,10 +2202,153 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return View();
         }
 
+
+        [HttpPost]
+        [IsLoginAttribute]
+        public ActionResult AddUser(User user, bool mail, string role)
+        {
+            string plants = Request.Form["plants"];
+            user.ParentUserId = UserUtil.getCurUser().id;
+            user.TemperatureType = "C";
+            user.currencies = "$";
+            user.languageId = 1;
+            user.sex = "0";
+            string password = user.password;
+            user.password = EncryptUtil.EncryptDES(user.password, EncryptUtil.defaultKey);
+            int id = userservice.save(user);
+            if (string.IsNullOrEmpty(plants) == false)
+                foreach (string p in plants.Split(','))
+                {
+                    if (string.IsNullOrEmpty(p))
+                        continue;
+                  PlantUserService.GetInstance().AddPlantUser(new PlantUser() { userID = id, plantID = int.Parse(p) });
+                }
+            UserRoleService.GetInstance().Insert(new UserRole() { userId = id, roleId = int.Parse(role) });
+
+            if (mail)
+            {
+                try
+                {
+                    EmailQueue queue = new EmailQueue();
+                    queue.content = string.Format(Resources.SunResource.USER_CONTROLLER_FINDPASSWORD_EMAIL_BODY, user.username, password);
+                    queue.receiver = user.email;
+                    queue.title = Resources.SunResource.USER_CONTROLLER_FINDPASSWORD_EMAIL_SUBJECT;
+                    SendUserMail(queue);
+                }
+                catch { }
+
+            }
+            return Redirect("/user/plantuser");
+        }
+
+
         [IsLoginAttribute]
         public ActionResult PlantUserAdd()
         {
             return View();
+        }
+        [IsLoginAttribute]
+        public ActionResult DeleteUser()
+        {
+            string uid = Request.QueryString["uid"];
+            int id = 0;
+            int.TryParse(uid, out id);
+            userservice.Delete(id);
+            return Redirect("/user/plantuser");
+        }
+
+        [IsLoginAttribute]
+        public ActionResult UserEdit()
+        {
+            string uid = Request.QueryString["uid"];
+            int id = 0;
+            int.TryParse(uid, out id);
+            User user = userservice.Get(id);
+            ViewData["roleId"] = Request.QueryString["role"].Trim();
+            return View(user);
+        }
+
+        public ActionResult ViewInfo(string id)
+        {
+            int uid = 0;
+            int.TryParse(id, out uid);
+            User user = userservice.Get(uid);
+            return View(user);
+        }
+
+        [IsLoginAttribute]
+        public ActionResult PlantUser()
+        {
+            return View();
+        }
+
+        [IsLoginAttribute]
+        public ActionResult Users()
+        {
+            User user = UserUtil.getCurUser();
+            return View(user);
+        }
+
+        [HttpPost]
+        [IsLoginAttribute]
+        public ActionResult UserEdit(User user, string role, bool mail)
+        {
+            user.password = EncryptUtil.EncryptDES(user.password, EncryptUtil.defaultKey);
+            int roleId = 0;
+            int.TryParse(role, out roleId);
+            UserRoleService.GetInstance().Save(new UserRole() { userId = user.id, roleId = roleId });
+            user.TemperatureType = "C";
+            user.currencies = "$";
+            user.languageId = 1;
+            user.sex = "0";
+            userservice.save(user);
+            userservice.UpdatePassword(user.id, user.password);
+
+            if (mail)
+            {
+                try
+                {
+                    EmailQueue queue = new EmailQueue();
+                    queue.content = string.Format(Resources.SunResource.USER_CONTROLLER_FINDPASSWORD_EMAIL_BODY, user.username, user.depassword);
+                    queue.receiver = user.email;
+                    queue.title = Resources.SunResource.USER_CONTROLLER_FINDPASSWORD_EMAIL_SUBJECT;
+                    SendUserMail(queue);
+                }
+                catch { }
+            }
+            return Redirect("/user/plantuser");
+
+        }
+
+        public ActionResult UserPlants()
+        {
+            string uid = Request.QueryString["uid"];
+            int id = 0;
+            int.TryParse(uid, out id);
+            IList<PlantUser> userPlants = PlantUserService.GetInstance().GetAllPlantUserByUserID(new PlantUser() { userID = id });
+            return View(userPlants);
+        }
+
+
+        [HttpPost]
+        [IsLoginAttribute]
+        public ActionResult UserPlantEdit()
+        {
+            string str = Request.Form["plants"];
+            string uid = Request.Form["uid"];
+            int id = 0;
+            int.TryParse(uid, out id);
+            PlantUserService.GetInstance().
+            DelPlantUserByUserId(id);
+            if (string.IsNullOrEmpty(str) == false)
+                foreach (string p in str.Split(','))
+                {
+                    if (string.IsNullOrEmpty(p))
+                        break;
+                    PlantUserService.GetInstance().AddPlantUser(new PlantUser() { plantID = int.Parse(p), userID = id });
+                }
+
+            return Redirect("/user/plantuser");
         }
 
     }

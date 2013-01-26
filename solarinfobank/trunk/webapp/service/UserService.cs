@@ -61,7 +61,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <returns>是否成功</returns>
         public bool Delete(int userId)
         {
-            PlantUserService.GetInstance().DelPlantUserByUserId(userId);// 删除电站对应用户
+            PlantPortalUserService.GetInstance().DelPlantUserByUserId(userId);// 删除电站对应用户
             return _userDao.Remove(new User { id = userId }) > 0 ? true : false;
         }
 

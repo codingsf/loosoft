@@ -47,7 +47,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
         private int _parentUserId;
 
-        private IList<PlantUser> _plantUsers;
+        private IList<PlantPortalUser> _plantPortalUsers;
 
         /// <summary>
         /// auto_increment
@@ -242,18 +242,21 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// <summary>
         /// 所有关联的电站
         /// </summary>
-        public IList<PlantUser> plantUsers
+        public IList<PlantPortalUser> plantPortalUsers
         {
             get
             {
 
-                return _plantUsers;
+                return _plantPortalUsers;
             }
             set
             {
-                _plantUsers = value;
+                _plantPortalUsers = value;
             }
         }
+
+
+        public IList<PlantUser> plantUsers { get; set; }
 
         private UserRole _userRole;
         public UserRole UserRole
@@ -285,9 +288,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             get
             {
                 IList<Plant> _plantList = new List<Plant>();
-                if (this.plantUsers == null) return _plantList;
+                if (this.plantPortalUsers == null) return _plantList;
 
-                foreach (PlantUser plantUser in this.plantUsers)
+                foreach (PlantPortalUser plantUser in this.plantPortalUsers)
                 {
                     if (plantUser.plant != null)
                         _plantList.Add(plantUser.plant);
@@ -307,9 +310,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             get
             {
                 IList<Plant> _plantList = new List<Plant>();
-                if (this.plantUsers == null) return _plantList;
+                if (this.plantPortalUsers == null) return _plantList;
 
-                foreach (PlantUser plantUser in this.plantUsers)
+                foreach (PlantPortalUser plantUser in this.plantPortalUsers)
                 {
                     if (plantUser.plant != null && !plantUser.shared)
                         _plantList.Add(plantUser.plant);
@@ -328,9 +331,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             get
             {
                 IList<Plant> _plantList = new List<Plant>();
-                if (this.plantUsers == null) return _plantList;
+                if (this.plantPortalUsers == null) return _plantList;
 
-                foreach (PlantUser plantUser in this.plantUsers)
+                foreach (PlantPortalUser plantUser in this.plantPortalUsers)
                 {
                     if (plantUser.plant != null && plantUser.shared)
                         _plantList.Add(plantUser.plant);
@@ -517,9 +520,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             get
             {
-                if (this.plantUsers.Count > 0)
+                if (this.plantPortalUsers.Count > 0)
                 {
-                    return plantUsers[0].plant;
+                    return plantPortalUsers[0].plant;
                 }
                 else
                 {

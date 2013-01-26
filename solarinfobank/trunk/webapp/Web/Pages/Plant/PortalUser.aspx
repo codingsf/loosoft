@@ -8,5 +8,5 @@
   <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>  <%=Resources.SunResource.ADMIN_USER_LIST_USER_LIST%> 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <% Html.RenderAction("users", "user"); %>
+    <% Html.RenderAction("portalusers", "user"); %>
 </asp:Content>

@@ -97,11 +97,9 @@
           <tbody><tr>
             <td width="8"><img src="/images/kj/kjico02.jpg" width="8" height="63"></td>
             <td width="777">
-            
-            
             <table width="98%" height="45" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td width="7%" rowspan="2" align="center"><img src="/images/sub/subico0120.gif" width="31" height="41"/></td>
+                  <td width="7%" rowspan="2" align="center"><img src="/images/kj/kjiico01.gif"/></td>
                   <td class="pv0216"><%=Resources.SunResource.USER_ADD_USER_CREATE%></td>
                   <td align="right" class="help_r"><a href="/help/<%=(Session["Culture"] as CultureInfo).Name%>/SolarInfo Bank User Manual.pdf" target="_blank" style="color:#59903E; text-decoration:underline;">
                       <%=Resources.SunResource.MONITORITEM_HELP%> </a></td>

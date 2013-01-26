@@ -6,7 +6,7 @@
 <%@ Import Namespace="System.Globalization" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>
-    <%=Resources.SunResource.PLANT_ADDPLANT_ADD_PLANT  %>
+    查看用户信息
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <table cellpadding="0" cellspacing="0" border="0">
@@ -114,7 +114,7 @@
                                 <table width="98%" height="45" border="0" cellpadding="0" cellspacing="0">
                                     <tr>
                                         <td width="7%" rowspan="2" align="center">
-                                            <img src="/images/sub/subico0120.gif" width="31" height="41" />
+                                            <img src="/images/kj/kjiico01.gif" />
                                         </td>
                                         <td class="pv0216">
                                             <%=Resources.SunResource.USER_ADD_USER_SHOW_INFO%>
@@ -162,13 +162,13 @@
                     <div class="sb_mid">
                         <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
                             <tbody>
-                                <tr>
+                                <tr style="display:none">
                                     <td width="30%" height="35" class="pr_10">
                                         <strong>
                                             <%=Resources.SunResource.USER_ADDUSER_USER_ROLE%>： </strong>
                                     </td>
                                     <td width="70%">
-                                        <%=Model.UserRole.Role.displayName %>
+                                        
                                     </td>
                                 </tr>
                                 <tr>
@@ -247,7 +247,8 @@
                                             }
                                         </style>
                                         <ul class="txtbu05">
-                                            <%foreach (Plant plant in Model.plants)
+                                        <!--用户分配的电站-->
+                                            <%foreach (Plant plant in Model.assignedPlants)
                                               { %>
                                             <li><span>
                                                 <%=plant.name %></span> </li>
@@ -271,11 +272,11 @@
                         <tr>
                             <td width="111">
                                 <input name="addUser" class="txtbu03" value="<%=Resources.SunResource.ADMIN_DBCONFIG_LIST_EDIT%>"
-                                    type="button" onclick="window.location.href='/user/useredit?uid=<%=Model.id %>&role=<%=Model.UserRole.roleId %>'">
+                                    type="button" onclick="window.location.href='/user/portaluseredit?uid=<%=Model.id %>&role=0'">
                             </td>
                             <td width="108">
                                 <input name="Submit32" class="txtbu03" value="<%=Resources.SunResource.ADMIN_COLLECTOR_EDIT_CANCEL%>"
-                                    type="button" onclick="window.location.href='/user/plantUser'">
+                                    type="button" onclick="window.location.href='/user/portalUser'">
                             </td>
                         </tr>
                     </tbody>

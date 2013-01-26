@@ -8,5 +8,5 @@
   <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>  <%=Resources.SunResource.SHARED_INSIDE_PLANT_USER%> 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <% Html.RenderAction("portalusers", "user"); %>
+    <% Html.RenderAction("users", "user"); %>
 </asp:Content>

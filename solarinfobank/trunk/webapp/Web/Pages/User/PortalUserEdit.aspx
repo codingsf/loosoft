@@ -3,7 +3,7 @@
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
 <%@ Import Namespace="System.Globalization" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-   <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>   <%=Resources.SunResource.PLANT_ADDPLANT_ADD_PLANT  %> 
+   <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>   编辑用户
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -106,7 +106,7 @@
           </tr>
         </tbody></table>
         
-        <form method="post" action="/user/useredit" name="editForm" id="editForm">
+        <form method="post" action="/user/portaluseredit" name="editForm" id="editForm">
           <div class="subrbox01">
 
             <div>
@@ -123,7 +123,7 @@
               <div></div>
               <div class="note01" style="margin-bottom: 10px;"><%=Resources.SunResource.AUTH_REG_NOTE%> :*<%=Resources.SunResource.USER_EDIT_FOR_MUST_FILL_IN_THE_ITEM1%></div>
               <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="font-size:12px;">
-                <tbody><tr>
+                <tbody><tr style="display:none">
                   <td class="pr_10" width="29%" height="35"><%=Resources.SunResource.USER_ADDUSER_USER_ROLE%>： </td>
                   <td>
                    <%=Html.RadioButton("role", 1, ViewData["roleId"].ToString().Trim() == "1")%>
@@ -187,7 +187,7 @@
           <table align="center" border="0" cellpadding="0" cellspacing="0" width="244" height="60">
             <tbody><tr>
               <td width="111"><input name="Submit22" class="txtbu03" value="<%=Resources.SunResource.USER_EDIT_SAVE%>" type="submit"></td>
-              <td width="108"><input name="Submit32" class="txtbu03" value="<%=Resources.SunResource.ADMIN_COLLECTOR_EDIT_CANCEL%>" type="button" onclick="window.location='/user/plantUser'"></td>
+              <td width="108"><input name="Submit32" class="txtbu03" value="<%=Resources.SunResource.ADMIN_COLLECTOR_EDIT_CANCEL%>" type="button" onclick="window.location='/user/portalUser'"></td>
             </tr>
           </tbody></table>
           </form>

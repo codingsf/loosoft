@@ -4,42 +4,12 @@
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
 <%@ Import Namespace="System.Globalization" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-   <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>  分配电站
+   <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>   <%=Resources.SunResource.PLANT_ADDPLANT_ADD_PLANT  %> 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <table cellpadding=0 cellspacing=0 border=0>
 <tr>
  <td background="/images/kj/kjbg01.jpg" valign="top" width="793">
- <script language="javascript" type="text/javascript">
-                    function getradio(name) {
-                        return $("input[name='" + name + "']:checked").val();
-                    }
-
-                    function getcheckboxes(name,attr) {
-                        var values = "";
-                        $("input[name='" + name + "']:checked").each(function() {
-                            values += $(this).attr(attr) + ",";
-                        });
-                        values == "" ? '-1,' : values;
-                        return values;
-                    }
-
-                    $().ready(function() {
-                        $("#btnSave").click(function() {
-                            $.ajax({
-                                type: "POST",
-                                url: "/user/saveshareplant",
-                                data: { singlemark: '0', pids: getcheckboxes('plant', 'ref'), ut: 1, role: getradio('role'), uname: '<%=ViewData["uname"] %>', upwd: '<%=ViewData["pwd"] %>', ucfmpwd: '', email: '', sendmail: 'false' },
-                                success: function(result) {
-                                    if (result == "ok")
-                                        window.location.href = "/user/portalUser";
-                                    else
-                                        alert(result.substring(6));
-                                }
-                            });
-                        });
-                    });
-                </script>
  <table background="/images/kj/kjbg02.jpg" border="0" cellpadding="0" cellspacing="0" width="793" height="63">
           <tbody><tr>
             <td width="8"><img src="/images/kj/kjico02.jpg" width="8" height="63"></td>
@@ -81,14 +51,14 @@
                   </style>
                         <ul class="txtbu55">
                   
-               <%foreach (Plant plant in ViewData["plants"] as IList<Plant>)
+               <%foreach (Plant plant in Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().plants)
                  { %>
                   
                   <%
                      var select=false;
                      foreach(var item in Model)
                     {
-                        if (item.plantID==plant.id)
+                        if (item.plantID.Equals(plant.id))
                         {
                             select = true;
                             break;
@@ -97,50 +67,21 @@
                     <%}
                      if (select)
                      { %>
-                       <li> <input type="checkbox" name="plant" checked="checked"  ref="<%=plant.id%>" /><span><%=plant.name%></span>  </li>
+                       <li> <input type="checkbox" name="plants" checked="checked" value="<%=plant.id %>" /><span><%=plant.name%></span>  </li>
                  
                 <%}
                      else
                      {%>
-                      <li>  <input type="checkbox" name="plant" ref="<%=plant.id %>"/><span><%=plant.name%></span>  </li>
+                      <li>  <input type="checkbox" name="plants" value="<%=plant.id %>" /><span><%=plant.name%></span>  </li>
                   <%   }
                  
                      
                  }%>
-                 
                   </ul>
+                  
+                  
                   </td>
                 </tr>
-                
-              <tr style="display:none;">
-                  <td style="padding-top: 10px;" valign="top" width="25%"><span class="pr_10">角色：</span></td>
-                  <td style="padding-top: 10px;" width="75%">
-                  
-                  <table border="0" cellpadding="0" cellspacing="0" width="70%">
-                                        <tr>
-                                            <%int i = 0;
-                                              foreach (var item in ViewData["roles"] as IList<Role>)
-                                              {
-                                                  if (i++ % 2 == 0 && i > 1)
-                                                      Response.Write("<td width=\"33%\" bgcolor=\"#F3F3F3\" style=\"padding-left: 5px;\">&nbsp;</td></tr><tr>");
-                                            %>
-                                            <td width="33%" bgcolor="#F3F3F3">
-                                                <strong>
-                                                    <input checked="checked" type="radio" name="role" value="<%=item.id %>" />
-                                                </strong>
-                                                <%=item.name%>
-                                            </td>
-                                            <%}
-                                              while ((i++ % 3) != 0)
-                                                  Response.Write("<td width=\"33%\" bgcolor=\"#F3F3F3\" style=\"padding-left: 5px;\">&nbsp;</td>");
-                                            %>
-                                        </tr>
-                                    </table>
-                  
-                  </td>
-                </tr>  
-                
-                
 
               </tbody></table>
             </div>
@@ -148,8 +89,8 @@
           </div>
           <table align="center" border="0" cellpadding="0" cellspacing="0" width="244" height="60">
             <tbody><tr>
-              <td width="111"><input id="btnSave" class="txtbu03" value="<%=Resources.SunResource.USER_EDIT_SAVE%>" type="button"></td>
-              <td width="108"><input name="Submit32" class="txtbu03" value="<%=Resources.SunResource.ADMIN_COLLECTOR_EDIT_CANCEL%>" type="button" onclick="window.location='/user/portalUser'"></td>
+              <td width="111"><input name="Submit22" class="txtbu03" value="<%=Resources.SunResource.USER_EDIT_SAVE%>" type="submit"></td>
+              <td width="108"><input name="Submit32" class="txtbu03" value="<%=Resources.SunResource.ADMIN_COLLECTOR_EDIT_CANCEL%>" type="button" onclick="window.location='/user/plantUser'"></td>
             </tr>
 
           </tbody></table>

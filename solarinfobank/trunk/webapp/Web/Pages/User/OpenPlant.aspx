@@ -1,5 +1,5 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Shared/UserInside.Master"
-    Inherits="System.Web.Mvc.ViewPage<Cn.Loosoft.Zhisou.SunPower.Domain.PlantUser>" ValidateRequest="false"  %>
+    Inherits="System.Web.Mvc.ViewPage<Cn.Loosoft.Zhisou.SunPower.Domain.PlantPortalUser>" ValidateRequest="false"  %>
 
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
@@ -167,7 +167,7 @@
                             </tbody></table>
                         </td>
                     </tr>
-<%foreach(var item in (ViewData["data"] as IList<PlantUser>))
+<%foreach (var item in (ViewData["data"] as IList<PlantPortalUser>))
   {if(item.userID==(Session["User"] as User).id)
       continue;
        %>

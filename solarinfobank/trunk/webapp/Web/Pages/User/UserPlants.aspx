@@ -32,7 +32,7 @@
                                 data: { singlemark: '0', pids: getcheckboxes('plant', 'ref'), ut: 1, role: getradio('role'), uname: '<%=ViewData["uname"] %>', upwd: '<%=ViewData["pwd"] %>', ucfmpwd: '', email: '', sendmail: 'false' },
                                 success: function(result) {
                                     if (result == "ok")
-                                        window.location.href = "/user/plantuser";
+                                        window.location.href = "/user/portalUser";
                                     else
                                         alert(result.substring(6));
                                 }
@@ -149,7 +149,7 @@
           <table align="center" border="0" cellpadding="0" cellspacing="0" width="244" height="60">
             <tbody><tr>
               <td width="111"><input id="btnSave" class="txtbu03" value="<%=Resources.SunResource.USER_EDIT_SAVE%>" type="button"></td>
-              <td width="108"><input name="Submit32" class="txtbu03" value="<%=Resources.SunResource.ADMIN_COLLECTOR_EDIT_CANCEL%>" type="button" onclick="window.location='/user/plantUser'"></td>
+              <td width="108"><input name="Submit32" class="txtbu03" value="<%=Resources.SunResource.ADMIN_COLLECTOR_EDIT_CANCEL%>" type="button" onclick="window.location='/user/portalUser'"></td>
             </tr>
 
           </tbody></table>

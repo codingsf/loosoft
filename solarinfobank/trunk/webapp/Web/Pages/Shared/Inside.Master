@@ -173,9 +173,12 @@
             });
             window.parent.scroll(0,0);
          }
+        var plantInterval;
         
         //加载右边内容
         function loadContent(curContainer, url, type, method) {
+           if(plantInterval!=undefined)
+                        clearInterval(plantInterval);
          $("#loading_type").val(type);
             if(url.indexOf("?")>-1)
                 url=url+"&rnd="+Math.random();
@@ -193,6 +196,7 @@
                         window.scrollTo(0,0);
                     },
                     beforeSend: function() {
+                     
                         $('#' + curContainer).empty();
                     }
                 });
@@ -702,9 +706,9 @@
                                             <%} %>
                                             <%if (AuthService.isAllow(AuthorizationCode.USER_LIST))
                                               { %>
-                                            <li><a onclick="loadContent('content_ajax','/plant/plantUser/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
-                                                href="/plant/plantUser/<%=Model.id%>">
-                                                <%=Resources.SunResource.SHARED_INSIDE_PLANT_USER%></a></li>
+                                            <li><a onclick="loadContent('content_ajax','/plant/portaluser/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
+                                                href="/plant/portaluser/<%=Model.id%>">
+                                                <%=Resources.SunResource.SHARED_INSIDE_PORTAL_USER%></a></li>
                                             <%} %>
                                         </ul>
                                     </div>

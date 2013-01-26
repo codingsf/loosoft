@@ -45,6 +45,7 @@
 </style>
 
 <script type="text/javascript">
+        var curchart=1;
         function readyinit() {
             //$('#DayChart').click(displayDayChart);
             $('#MonthDDChart').click(displayMonthDDChart);
@@ -55,6 +56,7 @@
             displayMonthDDChart();
             //initialize(); 
             //$("#map").hide();
+            autoreload();
         }
         
         function changeALT() {
@@ -84,18 +86,21 @@
             changeALT();
         }
         function displayMonthDDChart() {
+            curchart=1;
             curChart = "MonthDDChart";
             monthDDChart("container", 70, false);
             changeALT();
         }
 
         function displayyearMMChart() {
+            curchart=2;
             curChart = "YearMMChart";
             yearMMChart("container", 70, false);
             changeALT();
         }
 
         function displayyearChart() {
+            curchart=3;
             curChart = "YearChart";
             yearChart("container", 70, false);
         }
@@ -306,10 +311,47 @@
         }
 </script>
 
+<script>
+    function autoreload() {
+        if(<%=Model.autoRefresh.ToString().ToLower() %>)
+        userInterval= setInterval("loadoverviewData()",<%=Model.refreshIntervalMS %>);
+    }
+    
+    function refreshChartData()
+    {
+        if(curchart==1)//刷新月
+        displayMonthDDChart();
+         if(curchart==2)//刷新年
+         displayyearMMChart();
+          if(curchart==3)//刷新總體
+          displayyearChart();
+    }
+    function loadoverviewData()
+    {
+    $.ajax({ 
+       url: "/user/includeoverviewdatajson", 
+        data: { rnd: Math.random() }, 
+        success: function (data, textStatus) { 
+            var result=eval("("+data+")");
+            $("#displaytotaldayenergy").html(result.DisplayTotalDayEnergy); 
+            $("#totaldayenergyunit").html(result.TotalDayEnergyUnit); 
+            $("#totalenergy").html(result.totalEnergy); 
+            $("#totalenergyunit").html(result.TotalEnergyUnit); 
+            $("#totaltrees").html(result.TotalTrees); 
+            $("#displayrevenue").html(result.DisplayRevenue); 
+            $("#totalreductiong").html(result.Reductiong); 
+            $("#totalreductiongunit").html(result.ReductiongUnit);  
+            }, 
+       complete: function (XHR, TS) { XHR = null } 
+        }); 
+        refreshChartData();
+    }
+    
+</script>
 <!-- 1b) Optional: the exporting module -->
 <input type="hidden" value="<%=DateTime.Now.Year%>" id="year" />
 <input type="hidden" value="5" id="intervalMins" />
-<input type="hidden" value="column" id="chartType" />
+<input type="hidden" value="column" id="chartType" /> 
 <input type="hidden" value="<%=MonitorType.PLANT_MONITORITEM_POWER_CODE%>" id="mts" />
 <input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>00"
     id="startYYYYMMDDHH" />
@@ -346,7 +388,7 @@
                 </tr>
                 <tr>
                     <td width="75%">
-                        <%=Resources.SunResource.PLANT_OVERVIEW_PLANT_OVERVIEW_DETAIL %>&nbsp;
+                        <%=Model.autoRefresh? string.Format( Resources.SunResource.AUTO_REFRESH_NOTICE,Model.refreshInterval):string.Empty%>&nbsp;
                     </td>
                     <td width="18%">
                     </td>
@@ -358,6 +400,7 @@
         </td>
     </tr>
 </table>
+
 <div class="subrbox01">
     <%--<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background: url(/images/kj/rbg01.jpg) no-repeat right center;">
                 <tr>
@@ -441,6 +484,7 @@
                     </td>
                 </tr>
             </table>--%>
+     <div id="overviewhtml">
     <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background: url(<%=UserUtil.curTemplete.cssFolder %>/images/kj/rbg01.jpg) no-repeat right center;">
         
         <%if (Model.hasFaultDevice)
@@ -484,8 +528,8 @@
                             </td>
                             <td width="79%" class="kjli">
                                 <%=Resources.SunResource.PLANT_OVERVIEW_TODAY_ENERGRY %><br />
-                                <span class="sz_fb"><%=Model.DisplayTotalDayEnergy%></span>                                
-                                <%=Model.TotalDayEnergyUnit %>
+                                <span class="sz_fb" id="displaytotaldayenergy"><%=Model.DisplayTotalDayEnergy%></span>                                
+                             <label id="totaldayenergyunit"><%=Model.TotalDayEnergyUnit %></label>   
                             </td>
                         </tr>
                     </table>
@@ -498,8 +542,8 @@
                             </td>
                             <td width="79%" class="kjli">
                                 <%=Resources.SunResource.PLANT_OVERVIEW_TOTAL_ENERGRY %><br />
-                                <span class="sz_fb"><% = ViewData["totalEnergy"]%></span>                                                                
-                                <%=Model.TotalEnergyUnit %>
+                                <span class="sz_fb" id="totalenergy"><% = ViewData["totalEnergy"]%></span>                                                                
+                              <label id="totalenergyunit"><%=Model.TotalEnergyUnit %></label>  
                             </td>
                         </tr>
                     </table>
@@ -513,7 +557,7 @@
                             <td width="79%" class="kjli">
                                 <%=Resources.SunResource.PLANT_OVERVIEW_TREES%>
                                 <br />
-                                <span class="sz_fb"><%=Model.TotalTrees%></span> <%=Resources.SunResource.PLANT_OVERVIEW_FAMILIES%>         
+                                <span class="sz_fb" id="totaltrees"><%=Model.TotalTrees%></span> <%=Resources.SunResource.PLANT_OVERVIEW_FAMILIES%>         
                             </td>
                         </tr>
                     </table>
@@ -527,7 +571,7 @@
                             <td width="79%" class="kjli">
                                 <%=Resources.SunResource.PLANT_OVERVIEW_REVENUE%><br />
                                 <%=Model.currencies %>
-                                <span class="sz_fb"><%=Model.DisplayRevenue%></span>   
+                                <span class="sz_fb" id="displayrevenue"><%=Model.DisplayRevenue%></span>   
                             </td>
                         </tr>
                     </table>
@@ -541,8 +585,8 @@
                             <td width="79%" class="kjli">
                                 <%=Resources.SunResource.PLANT_OVERVIEW_CO2_AVOIDED %>
                                 <br />
-                                <span class="sz_fb"><%=StringUtil.formatDouble(Model.TotalReductiong) %></span> 
-                                <%=Model.TotalReductiongUnit%>
+                                <span class="sz_fb" id="totalreductiong"><%=StringUtil.formatDouble(Model.TotalReductiong) %></span> 
+                               <label id="totalreductiongunit"><%=Model.TotalReductiongUnit%></label> 
                             </td>
                         </tr>
                     </table>
@@ -550,6 +594,7 @@
             </td>
         </tr>
     </table>
+    </div>
 </div>
 <div class="subrbox01">
     <div class="sb_top">

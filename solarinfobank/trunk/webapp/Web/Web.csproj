@@ -223,7 +223,7 @@
     <Content Include="SqlMap.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\trunk-back\email-sf\EmailService\EmailService.csproj">
+    <ProjectReference Include="E:\working\SunInfoBank\trunk\email-sf\EmailService\EmailService.csproj">
       <Project>{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}</Project>
       <Name>EmailService</Name>
     </ProjectReference>
@@ -2106,6 +2106,7 @@
     <Content Include="Pages\Admin\Sys\Logo.aspx" />
     <Content Include="Pages\Admin\Sys\Name.aspx" />
     <Content Include="Pages\Admin\Sys\Template.aspx" />
+    <Content Include="Pages\Admin\User\Edit.aspx" />
     <Content Include="Pages\Admin\User\List.aspx" />
     <Content Include="Pages\Auth\Deny.aspx" />
     <Content Include="Pages\Country\City.aspx" />
@@ -2158,6 +2159,7 @@
     <Content Include="Pages\Plant\EnergyForecast.aspx" />
     <Content Include="Pages\Plant\SearchForecast.aspx" />
     <Content Include="Pages\Plant\inverterStructTree.aspx" />
+    <Content Include="Pages\Plant\IncludeOverviewHtml.aspx" />
     <Content Include="Pages\portal\DeviceStatus.aspx" />
     <Content Include="Pages\portal\Fault.aspx" />
     <Content Include="Pages\portal\HLXchart.aspx" />
@@ -2257,9 +2259,9 @@
     <Content Include="Pages\User\StructConfig.aspx" />
     <Content Include="Pages\User\PRChart.aspx" />
     <Content Include="Pages\User\ViewCustomChart.aspx" />
-    <Content Include="Pages\User\PlantUser.aspx" />
+    <Content Include="Pages\User\PortalUser.aspx" />
     <Content Include="Pages\User\Users.aspx" />
-    <Content Include="Pages\User\AddUser.aspx" />
+    <Content Include="Pages\User\AddPortalUser.aspx" />
     <Content Include="Pages\User\UserAdd.aspx" />
     <Content Include="Pages\User\UserEdit.aspx" />
     <Content Include="Pages\User\UserPlants.aspx" />
@@ -2281,6 +2283,7 @@
     <Content Include="Pages\User\AddPlant.aspx" />
     <Content Include="Pages\User\portalStructChart.aspx" />
     <Content Include="Pages\User\Template.aspx" />
+    <Content Include="Pages\User\IncludeOverviewHtml.aspx" />
     <Content Include="Pages\Virtual\IncludeOverview.aspx" />
     <Content Include="Pages\Virtual\Plantrelationstruct.aspx" />
     <Content Include="Pages\Virtual\Overview.aspx" />

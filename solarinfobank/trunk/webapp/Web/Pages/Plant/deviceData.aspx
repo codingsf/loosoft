@@ -3,11 +3,29 @@
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
 <%@ Import Namespace="System.Globalization" %>
+
+<script>
+    function autoreload() {
+    if(<%=ViewData["autoRefresh"] %>)
+        setInterval("loaddeviceData()",<%=ViewData["refreshInterval"] %>);
+    }
+    //
+    function loaddeviceData(){
+    if(curDeviceId!=undefined&&curDeviceId!=""&&curDeviceId!="undefined")
+        loadRunData(curDeviceId);
+    }
+    
+</script>
+
+
     <script type="text/javascript">
 
         function readyinit() {
+            autoreload();
         }
-        var curDeviceId;
+        var curDeviceId="";
+        
+        
         function loadRunData(deviceId) {
             curDeviceId = deviceId;
             $("#container").empty();
@@ -164,7 +182,7 @@
                   <td width="93%" class="pv0216"><%=Resources.SunResource.DEVICE_RUN_DATA %></td>
                 </tr>
                 <tr>
-                  <td><%=Resources.SunResource.CHART_DAY_COMPARE_DETAIL%>&nbsp;</td>
+                  <td><%=(bool.Parse(ViewData["autoRefresh"].ToString ())? string.Format(Resources.SunResource.AUTO_REFRESH_NOTICE, int.Parse(ViewData["refreshInterval"].ToString())/1000) : string.Empty)%>&nbsp;</td>
                 </tr>
             </table></td>
             <td width="6" align="right"><img src="/images/kj/kjico03.jpg" width="6" height="63" /></td>

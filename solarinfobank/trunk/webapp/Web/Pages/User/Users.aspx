@@ -50,12 +50,12 @@
                         <tbody>
                             <tr>
                                 <td align="center" width="6%">
-                                    <a href="/user/adduser" class="dbl">
+                                    <a href="/user/addportaluser" class="dbl">
                                         <img src="/images/sub/subico016.gif" alt="Add" title="<%=Resources.SunResource.MONITORITEM_ADD %>"
                                             width="15" height="16"></a>
                                 </td>
                                 <td width="94%">
-                                    <a href="/user/adduser" class="dbl">
+                                    <a href="/user/addportaluser" class="dbl">
                                         <%=Resources.SunResource.MONITORITEM_ADD %></a>
                                 </td>
                             </tr>

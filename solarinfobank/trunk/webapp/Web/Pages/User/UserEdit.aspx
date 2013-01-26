@@ -187,7 +187,7 @@
           <table align="center" border="0" cellpadding="0" cellspacing="0" width="244" height="60">
             <tbody><tr>
               <td width="111"><input name="Submit22" class="txtbu03" value="<%=Resources.SunResource.USER_EDIT_SAVE%>" type="submit"></td>
-              <td width="108"><input name="Submit32" class="txtbu03" value="<%=Resources.SunResource.ADMIN_COLLECTOR_EDIT_CANCEL%>" type="button" onclick="window.location='/user/plantUser'"></td>
+              <td width="108"><input name="Submit32" class="txtbu03" value="<%=Resources.SunResource.ADMIN_COLLECTOR_EDIT_CANCEL%>" type="button" onclick="window.location='/user/portalUser'"></td>
             </tr>
           </tbody></table>
           </form>

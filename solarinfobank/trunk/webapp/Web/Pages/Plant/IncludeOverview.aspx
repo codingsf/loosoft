@@ -46,6 +46,7 @@
         { %>
         displayDayChart();
         <%}%>
+        autoreload();
     }
 
     function changeALT() {
@@ -56,6 +57,7 @@
     }
 
     function displayDayChart() {
+        curchart=1;
         $("#intervalMins").val($("#intervalSelect").val());
         curChart = "DayChart";
         dayChart("container", 70, false);
@@ -63,6 +65,8 @@
         changeALT();
     }
     function displayMonthDDChart() {
+        curchart=2;
+    
         curChart = "MonthChart";
         monthChart("container", 70, false);
         $("#countDataDiv").empty();
@@ -70,6 +74,8 @@
     }
 
     function displayyearMMChart() {
+        curchart=3;
+    
         curChart = "YearChart";
         yearChart("container", 70, false);
         $("#countDataDiv").empty();
@@ -77,6 +83,8 @@
     }
 
     function displayyearChart() {
+        curchart=4;
+    
         curChart = "TotalChart";
         totalChart("container", 70, false);
         $("#countDataDiv").empty();
@@ -283,6 +291,7 @@
     function addZero(val) {
         return val < 10 ? "0" + val : val;
     }
+    
     function changePreDay(obj) {
         var d = obj.value;
         var nextDay = new Date(Date.parse(d.replace(/-/g, "/")));
@@ -341,6 +350,50 @@
     }
 </script>
 
+<script>
+    var curchart=1;
+    function autoreload() {
+        if(<%=ViewData["autoRefresh"] %>)
+            plantInterval= setInterval("loadoverviewData()",<%=ViewData["refreshInterval"] %>);
+    }
+    
+    function refreshChartData()
+    {
+        if(curchart==1)//刷新日
+        displayDayChart();
+         if(curchart==2)//刷新月
+         displayMonthDDChart();
+          if(curchart==3)//刷新年
+          displayyearMMChart();
+           if(curchart==4)//刷新总体
+          displayyearChart();
+    }
+    function loadoverviewData()
+    {
+    $.ajax({ 
+       url: "/plant/includeoverviewdatajson/"+$("#pid").val(), 
+        data: { rnd: Math.random() }, 
+        success: function (data, textStatus) {
+            var result=eval("("+data+")");
+            $("#displaytotaldayenergy").html(result.DisplayTotalDayEnergy); 
+            $("#totaldayenergyunit").html(result.TotalDayEnergyUnit); 
+            $("#temperature").html(result.Temperature); 
+            $("#temperaturetype").html(result.TemperatureType); 
+            $("#sunstrength").html(result.Sunstrength); 
+            $("#totalenergy").html(result.totalEnergy); 
+            $("#totalenergyunit").html(result.TotalEnergyUnit); 
+            $("#reductiong").html(result.Reductiong); 
+            $("#reductiongunit").html(result.ReductiongUnit); 
+            $("#displayrevenue").html(result.DisplayRevenue); 
+            }, 
+       complete: function (XHR, TS) { XHR = null } 
+        }); 
+        refreshChartData();
+    }
+    
+</script>
+
+
 <input type="hidden" value="<%=Model.id%>" id="pid" />
 <input type="hidden" value="<%=System.DateTime.Now.Year%>" id="year" />
 <input type="hidden" value="column" id="chartType" />
@@ -378,7 +431,7 @@
                 </tr>
                 <tr>
                     <td width="75%" class="pv0212">
-                        <%=Resources.SunResource.PLANT_OVERVIEW_PLANT_OVERVIEW_DETAIL %>
+                        <%=(bool.Parse(ViewData["autoRefresh"].ToString ())? string.Format(Resources.SunResource.AUTO_REFRESH_NOTICE, int.Parse(ViewData["refreshInterval"].ToString())/1000) : string.Empty)%>&nbsp;
                         &nbsp;
                     </td>
                     <td width="18%">
@@ -392,6 +445,7 @@
     </tr>
 </table>
 <div class="subrbox01">
+<div id="overviewhtml">
     <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background: url(<%=UserUtil.curTemplete.cssFolder %>/images/kj/rbg01.jpg) no-repeat right center;">
         <%if (Model.getDetectorWithRenderSunshine() != null || Model.hasFaultDevice)
           {%>
@@ -405,7 +459,6 @@
                        <%if (Model.getDetectorWithRenderSunshine()!= null)
                          { %>
                         <td width="200" valign="top">
-                        
                             <table width="100%" border="0" cellspacing="0" cellpadding="0" background="/images/sub/tlbg.gif"
                                 style="height: 34px">
                           
@@ -467,9 +520,9 @@
                             </td>
                             <td width="79%" class="kjli">
                                 <%=Resources.SunResource.PLANT_OVERVIEW_TODAY_ENERGRY%><br />
-                                <span class="sz_fb">
-                                    <%=Model.DisplayTotalDayEnergy%></span>
-                                <%=Model.TotalDayEnergyUnit%>
+                                <span class="sz_fb" id="displaytotaldayenergy">
+                                    <%=Model.DisplayTotalDayEnergy%></span><label id="totaldayenergyunit">
+                                <%=Model.TotalDayEnergyUnit%></label>
                             </td>
                         </tr>
                     </table>
@@ -482,7 +535,7 @@
                             </td>
                             <td width="79%" class="kjli">
                                 <%=Resources.SunResource.PLANT_OVERVIEW_TEMPERATURE%><br />
-                                <span class="sz_fb">
+                                <span class="sz_fb" id="temperature">
                                 <%if (Model.getFirstDetector() != null)
                                   {%>
                                 <%=Model.getFirstDetector().getMonitorValue(MonitorType.MIC_DETECTOR_ENRIONMENTTEMPRATURE)%>
@@ -490,9 +543,9 @@
                                 else
                               { %>
                                     <%=ViewData["temp"] != null ? ((ViewData["temp"] as float?).Equals(double.NaN) ? "" : ViewData["temp"].ToString()) : string.Empty%></span>
-                               <%}%>
+                               <%}%><label id="temperaturetype">
                                 °<%=(Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser()).TemperatureType.ToUpper()%>
-                               
+                               </label>
                             </td>
                         </tr>
                     </table>
@@ -506,7 +559,7 @@
                             <td width="79%" class="kjli">
                                 <%=Resources.SunResource.PLANT_OVERVIEW_SOLAR_RADIATION_INTENSITY%>
                                 <br />
-                                <span class="sz_fb">
+                                <span class="sz_fb" id="sunstrength">
                                     <%=(Model.Sunstrength!=null)?Model.Sunstrength.ToString():""%></span> W/m2
                             </td>
                         </tr>
@@ -520,9 +573,9 @@
                             </td>
                             <td width="79%" class="kjli">
                                 <%=Resources.SunResource.PLANT_OVERVIEW_TOTAL_ENERGRY%><br />
-                                <span class="sz_fb">
-                                    <% =ViewData["totalEnergy"]%></span>
-                                <%=Model.TotalEnergyUnit%>
+                                <span class="sz_fb" id="totalenergy">
+                                    <% =ViewData["totalEnergy"]%></span><label id="totalenergyunit">
+                                <%=Model.TotalEnergyUnit%></label>
                             </td>
                         </tr>
                     </table>
@@ -536,9 +589,9 @@
                             <td width="79%" class="kjli">
                                 <%=Resources.SunResource.PLANT_OVERVIEW_CO2_AVOIDED%>
                                 <br />
-                                <span class="sz_fb">
-                                    <%=Model.Reductiong %></span>
-                                <%=Model.ReductiongUnit%>
+                                <span class="sz_fb" id="reductiong">
+                                    <%=Model.Reductiong %></span><label id="reductiongunit">
+                                <%=Model.ReductiongUnit%></label>
                             </td>
                         </tr>
                     </table>
@@ -553,7 +606,7 @@
                                 <%=Resources.SunResource.PLANT_OVERVIEW_REVENUE%>
                                 <br />
                                 <%=Model.currencies %>
-                                <span class="sz_fb">
+                                <span class="sz_fb" id="displayrevenue">
                                     <%= Model.DisplayRevenue%></span>
                             </td>
                         </tr>
@@ -562,6 +615,7 @@
             </td>
         </tr>
     </table>
+    </div>
 </div>
 <div class="subrbox01">
     <div class="sb_top">

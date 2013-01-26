@@ -102,7 +102,7 @@
                             </td>
                             <td width="200">
                                 <input type="button" id="btnsaveconfig" value="保存" class="subbu01" />
-                                <input type="button" onclick="window.location.href='/user/plantuser'" value="返回"
+                                <input type="button" onclick="window.location.href='/user/portaluser'" value="返回"
                                     class="subbu01" />
                             </td>
                         </tr>

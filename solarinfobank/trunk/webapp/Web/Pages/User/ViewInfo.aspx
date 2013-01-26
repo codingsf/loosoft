@@ -276,7 +276,7 @@
                             </td>
                             <td width="108">
                                 <input name="Submit32" class="txtbu03" value="<%=Resources.SunResource.ADMIN_COLLECTOR_EDIT_CANCEL%>"
-                                    type="button" onclick="window.location.href='/user/plantUser'">
+                                    type="button" onclick="window.location.href='/user/portalUser'">
                             </td>
                         </tr>
                     </tbody>

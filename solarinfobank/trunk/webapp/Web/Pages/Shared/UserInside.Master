@@ -162,9 +162,13 @@
             window.parent.scroll(0,0);
             
          }
+         var userInterval;
          
         //加载右边内容
         function loadContent(curContainer, url, type,method) {
+           if(userInterval!=undefined)
+                        clearInterval(userInterval);
+                        
          $("#loading_type").val(type);
             if(url.indexOf("?")>-1)
                 url=url+"&rnd="+Math.random();
@@ -407,9 +411,9 @@
                                             <%} %>
                                             <%if (AuthService.isAllow(AuthorizationCode.USER_LIST) && ProtalUtil.isBigCustomer())
                                               { %>
-                                            <li><a onclick="loadContent('content_ajax','/user/plantuser','iframe','GET');setcurrent(this);return false;"
-                                                href="/user/plantuser">
-                                                <%=Resources.SunResource.SHARED_INSIDE_PLANT_USER%></a></li>
+                                            <li><a onclick="loadContent('content_ajax','/user/portaluser','iframe','GET');setcurrent(this);return false;"
+                                                href="/user/portaluser">
+                                                <%=Resources.SunResource.SHARED_INSIDE_PORTAL_USER%></a></li>
                                             <%} %>
                                             <%if (AuthService.isAllow(AuthorizationCode.APPLY_DATASOURCE) && Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().username != UserUtil.demousername)
                                               { %>

@@ -10,6 +10,7 @@ using System.Text;
 using Cn.Loosoft.Zhisou.SunPower.Common;
 using System.Globalization;
 using Common;
+using Cn.Loosoft.Zhisou.SunPower.Common.vo;
 
 namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 {
@@ -136,6 +137,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             IList<SelectListItem> plantYearsList = Currencies.FillYearItems(yearList);
 
             ViewData["plantYear"] = plantYearsList;
+            ViewData["autoRefresh"] = curUser.autoRefresh.ToString().ToLower();
+            ViewData["refreshInterval"] = curUser.refreshIntervalMS;
 
             //add by qhb 添加补偿设置
 
@@ -144,6 +147,72 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return View(plant);
 
         }
+
+        public ActionResult IncludeOverviewDataJson(int id)
+        {
+            object temperature;
+            User curUser = UserUtil.getCurUser();
+            Plant plant = PlantService.GetInstance().GetPlantInfoById(id);
+            plant.currencies = curUser.currencies;
+            temperature = plant.Temperature;
+            if (double.IsNaN(plant.Temperature))
+            {
+                CityCodeService codeService = CityCodeService.GetInstance();
+                temperature = codeService.GetTemperature(plant.city);
+            }
+            //修正了温度不存在显示0的问题
+            if (!double.IsNaN(((double)temperature)) && temperature != null)
+            {
+                User user = UserUtil.getCurUser();
+                if (user != null && !user.TemperatureType.ToLower().Equals("c"))
+                {
+                    temperature = Math.Round(32 + ((double)temperature * 1.8), 1);
+                }
+            }
+            else
+                temperature = "";
+
+            OverviewDataVO overviewDataVO = new OverviewDataVO();
+            overviewDataVO.DisplayTotalDayEnergy = plant.DisplayTotalDayEnergy;
+            overviewDataVO.TotalDayEnergyUnit = plant.TotalDayEnergyUnit;
+            if (plant.getFirstDetector() != null)
+                overviewDataVO.Temperature = plant.getFirstDetector().getMonitorValue(MonitorType.MIC_DETECTOR_ENRIONMENTTEMPRATURE).ToString();
+            else
+                overviewDataVO.Temperature = temperature != null ? ((temperature as float?).Equals(double.NaN) ? "" : temperature.ToString()) : string.Empty;
+            overviewDataVO.TemperatureType = string.Format("°{0}", curUser.TemperatureType.ToUpper());
+            overviewDataVO.Sunstrength = (plant.Sunstrength != null) ? plant.Sunstrength.ToString() : "";
+            overviewDataVO.SunstrengthUnit = "W/m2";
+            overviewDataVO.totalEnergy = StringUtil.formatDouble(Util.upDigtal(plant.TotalEnergy + CompensationService.GetInstance().getPlantTotalCompensations(plant.id)), "0.00");
+            overviewDataVO.TotalEnergyUnit = plant.TotalEnergyUnit;
+            overviewDataVO.Reductiong = plant.Reductiong.ToString();
+            overviewDataVO.ReductiongUnit = plant.ReductiongUnit;
+            overviewDataVO.currencies = plant.currencies;
+            overviewDataVO.DisplayRevenue = plant.DisplayRevenue;
+
+            //overviewDataVO.DisplayTotalDayEnergy = new Random().Next(65535).ToString();
+            //overviewDataVO.TotalDayEnergyUnit = new Random().Next(65535).ToString();
+
+            //overviewDataVO.Temperature = new Random().Next(65535).ToString();
+            //overviewDataVO.TemperatureType = new Random().Next(65535).ToString();
+            //overviewDataVO.Sunstrength = new Random().Next(65535).ToString();
+            //overviewDataVO.SunstrengthUnit = new Random().Next(65535).ToString();
+            //overviewDataVO.totalEnergy = new Random().Next(65535).ToString();
+            //overviewDataVO.TotalEnergyUnit = new Random().Next(65535).ToString();
+            //overviewDataVO.Reductiong = new Random().Next(65535).ToString();
+            //overviewDataVO.ReductiongUnit = new Random().Next(65535).ToString();
+            //overviewDataVO.currencies = new Random().Next(65535).ToString();
+            //overviewDataVO.DisplayRevenue = new Random().Next(65535).ToString();
+
+
+
+            return Json(overviewDataVO, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult IncludeOverviewHtml(int id)
+        {
+            return IncludeOverview(id);
+        }
+
         /// <summary>
         /// 功能：电站详细信息
         /// 描述：根据电站id获取电站信息
@@ -2361,6 +2430,8 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
 
             IList<SelectListItem> plantYearsList = Currencies.FillYearItems(yearList);
             ViewData["plantYear"] = plantYearsList;
+            ViewData["autoRefresh"] = user.autoRefresh.ToString().ToLower();
+            ViewData["refreshInterval"] = user.refreshIntervalMS;
             return View(plant);
         }
 

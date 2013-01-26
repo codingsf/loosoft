@@ -144,7 +144,7 @@
                     </tr>
                 </tbody>
             </table>
-            <form action="/user/adduser" method="post" id="editForm">
+            <form action="/user/addportaluser" method="post" id="editForm">
             <div class="subrbox01">
                 <div>
                     <table border="0" cellpadding="0" cellspacing="0" width="90%" height="30">
@@ -283,7 +283,7 @@
                         </td>
                         <td width="108">
                             <input name="Submit32" class="txtbu03" value="<%=Resources.SunResource.ADMIN_COLLECTOR_EDIT_CANCEL%>"
-                                type="button" onclick="window.location.href='/user/plantUser'">
+                                type="button" onclick="window.location.href='/user/portalUser'">
                         </td>
                     </tr>
                 </tbody>

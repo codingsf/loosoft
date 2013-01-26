@@ -63,7 +63,7 @@
                                     <td width="15%" align="center" class="lir">
                                         编号
                                     </td>
-                                    <td width="45%" align="center" class="lir">
+                                    <td width="40%" align="center" class="lir">
                                         用户名
                                     </td>
                                     <td width="15%" align="center" class="lir">
@@ -72,7 +72,7 @@
                                     <td width="15%" align="center" class="lir">
                                         性别
                                     </td>
-                                    <td width="10%" align="center" class="lir">
+                                    <td width="15%" align="center" class="lir">
                                         操作
                                     </td>
                                 </tr>
@@ -91,7 +91,7 @@
                                     <td width="15%" align="center" class="am_line0<%=i%2 %>">
                                         <%=i %>
                                     </td>
-                                    <td width="45%" align="center" class="am_line0<%=i%2 %>">
+                                    <td width="40%" align="center" class="am_line0<%=i%2 %>">
                                         <%= user.username %>
                                     </td>
                                     <td width="15%" align="center" class="am_line0<%=i%2 %>">
@@ -100,7 +100,7 @@
                                     <td width="15%" align="center" class="am_line0<%=i%2 %>">
                                         <%=Html.Encode(user.sex == "1" ? "女" : "男")%>
                                     </td>
-                                    <td width="10%" align="center" class="am_line0<%=i%2 %>">
+                                    <td width="15%" align="center" class="am_line0<%=i%2 %>">
                                         <%if (AuthService.isAllow("admin", "userdel"))
                                           { %>
                                         <a href="/admin/userdel/<%=user.id %>" onclick="return confirm('您确定要删除吗')">
@@ -110,6 +110,12 @@
                                           { %>
                                         <img src="/images/sub/nodelete.gif" alt="删除" title="删除" />
                                         <%} %>
+                                        
+                                          <a href="/admin/useredit/<%=user.id %>" >
+                                            <img src="/images/sub/pencil.gif" alt="刷新设置" title="刷新设置" /></a>
+                                            
+                                            
+                                            
                                         <a target="_blank" href="/admin/infocenter/<%=user.id %>">
                                             <img src="/images/sub/iji.jpg" alt="用户中心" title="用户中心" /></a> 
                                             <a href="/admin/bitcustomer/<%=user.id %>">

@@ -383,7 +383,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
         [IsLoginAttributeAdmin]
         public ActionResult Users(string id)
         {
-
             int no = 0;
             int.TryParse(id, out no);
             Pager page = new Pager() { PageSize = ComConst.PageSize, PageIndex = no };
@@ -391,6 +390,22 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             IList<User> users = userInfoService.GetUsersByPage(page);
             ViewData["page"] = page;
             return View(@"user/list", users);
+        }
+
+        public ActionResult Useredit(int id)
+        {
+            User user = userService.Get(id);
+            return View(@"user/edit", user);
+        }
+
+        public ActionResult Usersave(User user)
+        {
+            User syncUser = userService.Get(user.id);
+            syncUser.autoRefresh = user.autoRefresh;
+            syncUser.refreshInterval = user.refreshInterval;
+            syncUser.refreshStartDate = user.refreshStartDate;
+            userService.save(syncUser);
+            return Redirect(@"/admin/users");
         }
 
         public ActionResult Userdel(int id)

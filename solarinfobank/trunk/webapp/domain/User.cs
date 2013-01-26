@@ -780,5 +780,26 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
         public string sysName { get; set; }//系统名称
 
+        public bool autoRefresh { get; set; }//自动刷新
+
+        public int refreshInterval { get; set; }//刷新间隔
+
+        public DateTime refreshStartDate { get; set; }//开始时间
+
+        public int refreshIntervalMS
+        {
+            get
+            {
+                return refreshInterval * 1000;
+            }
+        }
+
+        public string refreshStartDateFormat
+        {
+            get
+            {
+                return refreshStartDate.ToString("yyyy-MM-dd");
+            }
+        }
     }
 }

@@ -13,6 +13,7 @@ using Dimac.JMail;
 using EmailService;
 using System.IO;
 using System.Drawing;
+using Cn.Loosoft.Zhisou.SunPower.Common.vo;
 namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 {
     public class UserController : BaseController
@@ -215,7 +216,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             //取得用户年度发电量图表数据
             string startYM = (DateTime.Now.Year - 1) + "" + DateTime.Now.Month;
             string endYM = DateTime.Now.Year + "" + DateTime.Now.Month;
-            ChartData chartData = PlantChartService.GetInstance().YearMMChartBypList(UserUtil.getCurUser().displayPlants, startYM, endYM, ChartType.line, "kWh");
+            Cn.Loosoft.Zhisou.SunPower.Common.ChartData chartData = PlantChartService.GetInstance().YearMMChartBypList(UserUtil.getCurUser().displayPlants, startYM, endYM, ChartType.line, "kWh");
             string reportData = JsonUtil.convertToJson(chartData, typeof(Cn.Loosoft.Zhisou.SunPower.Common.ChartData));
             ViewData[ComConst.ReportCode] = reportData;
             ItemConfig itemConfig = itemConfigService.GetItemConfigByName(ItemConfig.CO2);
@@ -305,6 +306,46 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         }
 
 
+
+
+        public ActionResult IncludeOverViewHtml()
+        {
+
+            return IncludeOverView();
+        }
+
+        public ActionResult IncludeOverviewDataJson()
+        {
+            OverviewDataVO overviewDataVO = new OverviewDataVO();
+            User user = UserUtil.getCurUser();
+            double userTotal = 0;
+            foreach (Plant plant in user.displayPlants)
+                userTotal += CompensationService.GetInstance().getPlantTotalCompensations(plant.id);
+            overviewDataVO.DisplayTotalDayEnergy = user.DisplayTotalDayEnergy;
+            overviewDataVO.TotalDayEnergyUnit = user.TotalDayEnergyUnit;
+            overviewDataVO.totalEnergy = StringUtil.formatDouble(Util.upDigtal(user.TotalEnergy + userTotal), "0.00");
+            overviewDataVO.TotalEnergyUnit = user.TotalEnergyUnit;
+            overviewDataVO.TotalTrees = user.TotalTrees.ToString();
+            overviewDataVO.DisplayRevenue = user.DisplayRevenue;
+            overviewDataVO.Reductiong = StringUtil.formatDouble(user.TotalReductiong);
+            overviewDataVO.ReductiongUnit = user.TotalReductiongUnit;
+
+
+
+
+            //overviewDataVO.DisplayTotalDayEnergy = new Random().Next(65535).ToString();
+            //overviewDataVO.TotalDayEnergyUnit = new Random().Next(65535).ToString();
+            //overviewDataVO.totalEnergy = new Random().Next(65535).ToString();
+            //overviewDataVO.TotalEnergyUnit = new Random().Next(65535).ToString();
+            //overviewDataVO.TotalTrees = new Random().Next(65535).ToString();
+            //overviewDataVO.DisplayRevenue = new Random().Next(65535).ToString();
+            //overviewDataVO.Reductiong = new Random().Next(65535).ToString();
+            //overviewDataVO.ReductiongUnit = new Random().Next(65535).ToString();
+
+
+
+            return Json(overviewDataVO, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult Plantspage(int index)
         {
             User user = UserUtil.getCurUser();
@@ -1056,7 +1097,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return RedirectToAction("openplant", new { id = id });
         }
         [IsLoginAttribute]
-        public ActionResult PlantUser()
+        public ActionResult PortalUser()
         {
             return View();
         }
@@ -1116,7 +1157,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return View(user);
         }
         [IsLoginAttribute]
-        public ActionResult AddUser()
+        public ActionResult AddPortalUser()
         {
 
             return View();
@@ -1124,7 +1165,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
         [HttpPost]
         [IsLoginAttribute]
-        public ActionResult AddUser(User user, bool mail, string role)
+        public ActionResult AddPortalUser(User user, bool mail, string role)
         {
             string plants = Request.Form["plants"];
             user.ParentUserId = UserUtil.getCurUser().id;
@@ -1160,7 +1201,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 catch { }
 
             }
-            return Redirect("/user/plantuser");
+            return Redirect("/user/portaluser");
         }
 
         [IsLoginAttribute]
@@ -1224,7 +1265,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 }
                 catch { }
             }
-            return Redirect("/user/plantuser");
+            return Redirect("/user/portaluser");
         }
 
         /// <summary>
@@ -1290,7 +1331,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     plantUserService.AddPlantUser(new PlantUser() { plantID = int.Parse(p), userID = id });
                 }
 
-            return Redirect("/user/plantuser");
+            return Redirect("/user/portaluser");
         }
 
         [IsLoginAttribute]
@@ -1300,7 +1341,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             int id = 0;
             int.TryParse(uid, out id);
             userservice.Delete(id);
-            return Redirect("/user/plantuser");
+            return Redirect("/user/portaluser");
         }
 
         [HttpPost]

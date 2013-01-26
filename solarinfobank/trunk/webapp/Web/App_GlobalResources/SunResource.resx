@@ -5750,4 +5750,10 @@ The average value of coefficient will trigger warning
     <value>Power</value>
     <comment>功率</comment>
   </data>
+  <data name="SHARED_INSIDE_PORTAL_USER" xml:space="preserve">
+    <value>门户用户</value>
+  </data>
+  <data name="AUTO_REFRESH_NOTICE" xml:space="preserve">
+    <value>该页面数据间隔{0}S自动刷新一次</value>
+  </data>
 </root>

@@ -1417,6 +1417,7 @@ function showBigPic(name, id) {
                                                                 <%=Html.HiddenFor(Model=>Model.id) %>
                                                                 <%=Html.HiddenFor(Model=>Model.isNewPlant) %>
                                                                 <%=Html.HiddenFor(Model=>Model.example_plant) %>
+                                                                <%=Html.HiddenFor(Model=>Model.lastHandleDate) %>
                                                                 <%=Html.HiddenFor(Model => Model.userID, new { @class="txtbu01" })%>
                                                                 <%= Html.TextBoxFor(model => model.name, new { @class = "txtbu01" })%>
                                                                 <span class="red">*</span>

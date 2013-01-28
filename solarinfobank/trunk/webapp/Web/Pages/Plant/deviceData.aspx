@@ -3,7 +3,6 @@
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
 <%@ Import Namespace="System.Globalization" %>
-
 <script>
     function autoreload() {
     if(<%=ViewData["autoRefresh"] %>)
@@ -17,135 +16,21 @@
     
 </script>
 
-
     <script type="text/javascript">
-
-        function readyinit() {
-            autoreload();
-        }
-        var curDeviceId="";
-        
-        
         function loadRunData(deviceId) {
-            curDeviceId = deviceId;
-            $("#container").empty();
-            $("#container").html('');
-            $.ajax({
-                type: "GET",
-                url: "/device/RunData",
-                data: { id: deviceId, rad: Math.random() },
-                success: function(result) {
-                
-                    $('#container').empty();
-                    $('#container').html(result);
-                    $('#loading').hide();
-                }
-            });
         }
-        function initDisplayLargeMonitorChart(monitorCode) {
-            var aimDay = $("#curYYYYMMDD").val();
-            if (aimDay) {
-                aimDay = aimDay.replace("-", "").replace("-", "");
-            }
-            var preDay = getBeforDay(aimDay);
-            preDay = preDay.substring(0, 4) + "-" + preDay.substring(4, 6) + "-" + preDay.substring(6, 8);
-
-            $(".larget").val(preDay);
-            $("#mtStartYYYYMMDDHH").val(getBeforDay(aimDay) + "00")
-            $("#mtEndYYYYMMDDHH").val(aimDay + "23")
-
-            //$("#mtStartYYYYMMDDHH").val($("#curYYYYMMDD").val() + "00")
-            //$("#mtEndYYYYMMDDHH").val($("#curYYYYMMDD").val() + "23")
-            $("#larget").val($("#curYYYYMMDD2").val());
-            displayLargeMonitorChart(monitorCode);
-        } 
-         function displayLargeMonitorChart(monitorCode) {
-            if(powermc == monitorCode){
-                $("#chartType").val('area');
-            }else{
-                $("#chartType").val('line');
-            }
-             $("#toLarge" + monitorCode).colorbox({ width: "100%", inline: true, href: "#inline_example1" });
-             $("#monitorCode").val(monitorCode);
-             monitorDayChart("monitor_container", 130, true);
-         }
-        var powermc =  <%=MonitorType.MIC_INVERTER_TOTALYGPOWER %>;
-        function monitorDayChart(curContainer, ajaxImgTop, isLarge) {
-            $("#intervalMins").val(5)
-            $.ajax({
-                type: "POST",
-                url: "/DeviceChart/MonitorDayChart",
-                data: { dId: curDeviceId, startYYYYMMDDHH: $("#mtStartYYYYMMDDHH").val(), endYYYYMMDDHH: $("#mtEndYYYYMMDDHH").val(), chartType: $("#chartType").val(), monitorCode: $("#monitorCode").val(), intervalMins: $("#intervalMins").val() },
-                success: function(result) {
-                    if (appendChartError(curContainer, result, ajaxImgTop)) {
-                        return;
-                    }
-                    var data = eval('(' + result + ')')
-                    setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#mtStartYYYYMMDDHH").val().substring(0, 8), data.name);
-                    setyAxis(data);
-                    setySeriesArr(data.series);
-                    var intervalMins = $("#intervalMins").val();
-                    var interval = isLarge ? 60 / intervalMins : 60 / intervalMins;
-                    showDetails(result, $("#mtEndYYYYMMDDHH").val());
-                    setCategoriesWithInterval(data.categories, isLarge, interval);
-
-                    defineChart(curContainer);
-
-                    //修改标题
-                    chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
-
-                },
-                beforeSend: function() {
-                    $('#' + curContainer).empty();
-                    $('#' + curContainer).append("<center><img src=\"/Images/ajax_loading.gif\" style=\"margin-top: " + ajaxImgTop + "px;\" /></center>");
-                }
-            });
-        }
-        
-        function displayLargeMonitorChart(monitorCode) {
-            if (powermc == monitorCode) {
-                $("#chartType").val('area');
-            } else {
-                $("#chartType").val('line');
-            }
-            $("#toLarge" + monitorCode).colorbox({ width: "100%", inline: true, href: "#inline_example1" });
-            $("#monitorCode").val(monitorCode);
-            monitorDayChart("monitor_container", 130, true);
-        }
-               
-        function changeMonitorPreDay(obj) {
-            var d = obj.value;
-            var nextDay = new Date(Date.parse(d.replace(/-/g, "/")));
-            nextDay.setDate(nextDay.getDate() + 1);
-            var temp = nextDay.getFullYear() + "-" + addZero(nextDay.getMonth() + 1) + "-" + addZero(nextDay.getDate());
-            $("#larget").val(temp);
-            changeMonitorDay(document.getElementById('larget'))
-        }
-        function LargetPreviouNextChange(oper){
-                changeDate(oper, 'larget');
-                changeMonitorDay(document.getElementById('larget'));
-        }
-        
-           
-        function changeMonitorDay(obj) {
-             var aimDay = obj.value;
-             if (aimDay) {
-                 aimDay = aimDay.replace("-", "").replace("-", "");
-             }
-             $("#mtStartYYYYMMDDHH").val(getBeforDay(aimDay) + "00")
-             $("#mtEndYYYYMMDDHH").val(aimDay + "23")
-             displayLargeMonitorChart($("#monitorCode").val());
-             
-             aimDay = getBeforDay(aimDay);
-             aimDay = aimDay.substring(0, 4) + "-" + aimDay.substring(4, 6) + "-" + aimDay.substring(6, 8);
-             if ($("." + obj.id) != undefined) {
-                    $("." + obj.id).val(aimDay);
-             }
-         }
-         
-
     </script>
-        <input type="hidden" value="<%=ViewData["unitID"] %>" id="unitId" />
+    
+    <script type="text/javascript">
+        var isFirst = true;
+        function readyinit() {
+            deviceChartInit();
+        }
+        function deviceChartInit() {
+            loadContent('content_container_control', '/plant/devicedataoverview/<%=ViewData["plantID"] %>/<%=ViewData["deviceID"] %>/<%=ViewData["unitID"] %>', 'ajax', 'GET');
+        }
+</script>
+<input type="hidden" value="<%=ViewData["unitID"] %>" id="unitId" />
 <input type="hidden" value="<%=ViewData["deviceID"] %>" id="deviceID" />
 <input type="hidden" value="<%=ViewData["plantID"] %>" id="plantID" />
 
@@ -199,7 +84,7 @@
                             </iframe>
                         </div>
                         <!--右边边设备数据-->
-                        <div style=" float:right; width:500px; text-align:left;" id="container"></div>
+                        <div style=" float:right; width:500px; text-align:left;" id="content_container_control"></div>
                         </div>
                         <div style="clear: both; height: 60px;">
                         </div>
@@ -243,3 +128,4 @@
                 </div>
         </div>
 <script>    document.title = '<%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %> <%=Model.name %> <%=Resources.SunResource.DEVICE_RUN_DATA %>'</script>
+       

@@ -801,6 +801,22 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return View(plant);
         }
 
+
+
+        public ActionResult DeviceDataOverview(int plantId, int deviceId, int unitId)
+        {
+            Plant plant = PlantService.GetInstance().GetPlantInfoById(plantId);
+
+            ViewData["deviceID"] = deviceId;
+            ViewData["device"] = DeviceService.GetInstance().get(deviceId); ;
+            ViewData["plantID"] = plantId;
+            ViewData["unitID"] = unitId;
+            FillPlantYears(plantId.ToString());
+            return View(plant);
+        }
+
+
+
         /// <summary>
         /// 保留，废弃
         /// </summary>
@@ -2422,7 +2438,11 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
         {
             User user = UserUtil.getCurUser();
             Plant plant = PlantService.GetInstance().GetPlantInfoById(id);
-
+            ViewData["plantID"] = plant.id;
+            if(plant.plantUnits.Count>0)
+                ViewData["unitID"] = plant.plantUnits[0].id ;//第一个单元
+            if(plant.plantUnits[0].displayDevices.Count>0)
+             ViewData["deviceID"]=plant.plantUnits[0].displayDevices[0].id;//第一个设备
             string startYM = (DateTime.Now.Year - 1) + "" + DateTime.Now.Month.ToString("00");
             string endYM = DateTime.Now.Year + "" + DateTime.Now.Month.ToString("00");
 

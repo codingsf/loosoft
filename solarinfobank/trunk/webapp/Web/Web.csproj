@@ -2138,6 +2138,7 @@
     <Content Include="Pages\Plant\ChangePassword.aspx" />
     <Content Include="Pages\Plant\Device\CurrentCount.aspx" />
     <Content Include="Pages\Plant\Device\historyRundata.aspx" />
+    <Content Include="Pages\Plant\Device\副本 RunData.aspx" />
     <Content Include="Pages\Plant\Map.aspx" />
     <Content Include="Pages\Plant\AmmeterList.aspx" />
     <Content Include="Pages\Plant\AmmeterEdit.aspx" />
@@ -2159,6 +2160,8 @@
     <Content Include="Pages\Plant\SearchForecast.aspx" />
     <Content Include="Pages\Plant\inverterStructTree.aspx" />
     <Content Include="Pages\Plant\IncludeOverviewHtml.aspx" />
+    <Content Include="Pages\Plant\DeviceDataOverview.aspx" />
+    <Content Include="Pages\Plant\副本 deviceData.aspx" />
     <Content Include="Pages\portal\DeviceStatus.aspx" />
     <Content Include="Pages\portal\Fault.aspx" />
     <Content Include="Pages\portal\HLXchart.aspx" />

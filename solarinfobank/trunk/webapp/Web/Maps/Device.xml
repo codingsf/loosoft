@@ -16,12 +16,16 @@
       <result property="isHidden"			column="isHidden"/>
       <result property="name"			column="name"/>
       <result property="status"			column="status"/>
+      <result property="parentId"			column="parentId"/>
+      <result property="plantUnitId"			column="plantUnitId"/>
       <!--级联对象-->
       <result property="deviceModel" lazyLoad="true" column="deviceModelCode" select="devicemodel_get" />
       <!--避免在非懒加载的情况下循环递归加载
       <result property="collector"	 lazyLoad="true" column="collectorID"     select="collector_get" />
       -->
       <result property="runData"	   lazyLoad="true" column="id"              select="devicerundata_get" />
+      <result property="child"	   lazyLoad="true" column="id"              select="device_get_childs" />
+      <result property="plantUnit"	   lazyLoad="true" column="plantUnitId"              select="plantunit_get" />
     </resultMap>
   </resultMaps>
   
@@ -40,6 +44,16 @@
   
   
   <statements>
+
+    <select id="device_get_plantunitid_lazy"  resultMap="DeviceResult" parameterClass="int" cacheModel="device_cache">
+      SELECT *  FROM  device WHERE plantunitId=#value# and (parentId is null or parentId=0)
+    </select>
+    
+    <select id="device_get_childs"  resultMap="DeviceResult" parameterClass="int" cacheModel="device_cache">
+      SELECT *  FROM  device WHERE parentId=#value#
+    </select>
+
+
     <select id="device_get_list"  resultMap="DeviceResult" parameterClass="int" cacheModel="device_cache">
       SELECT *  FROM device where collectorID=#collectorID#
     </select>
@@ -55,10 +69,10 @@
     </select>
     
     <select id="GET_INVERTER_TYPE"  resultMap="DeviceResult" parameterClass="string" cacheModel="device_cache">
-      SELECT  * FROM device  WHERE collectorID=#value# GROUP BY TYPE
+      select  * from device  where collectorID=#value# GROUP BY TYPE
     </select>
     <select id="device_get"  resultMap="DeviceResult" parameterClass="int" cacheModel="device_cache">
-      SELECT *  FROM  device WHERE ID=#value#
+      select *  from  device where id=#value#
     </select>
 
     <select id="device_get_like_name"  resultMap="DeviceResult" parameterClass="int" cacheModel="device_cache">
@@ -66,13 +80,13 @@
     </select>
     
     <select id="INVERTER_GET_BY_PLANTID" resultMap="DeviceResult" parameterClass="string" cacheModel="device_cache">
-      SELECT *  FROM  device WHERE collectorID=#value#
+      select *  from  device where collectorID=#value#
     </select>
     <delete id="device_delete" parameterClass="Device">
-      DELETE FROM device WHERE ID=#id#
+      delete from device where id=#id#
     </delete>
     <update id="device_update">
-      UPDATE device SET deviceTypeCode=#deviceTypeCode#,deviceModelCode=#deviceModel.code#,name=#name#,deviceAddress=#deviceAddress# WHERE id=#id#
+      update device set deviceTypeCode=#deviceTypeCode#,deviceModelCode=#deviceModel.code#,name=#name#,deviceAddress=#deviceAddress#,parentId=#parentId# ,plantUnitId=#plantUnitId# WHERE id=#id#
     </update>
     
     <update id="device_update_currentpower" parameterClass="Hashtable">
@@ -84,7 +98,7 @@
     </update>
 
     <update id="updateDevice" parameterClass="Hashtable">
-      update device set name=#name#,currentPower=#currentPower# where id=#id#
+      update device set name=#name#,currentPower=#currentPower# ,parentId=#parentId# ,plantUnitId=#plantUnitId# where id=#id#
     </update>
 
     <!--根据采集器id和设备地址取得设备 cacheModel="device_cache" 为了确保取得设备，先将缓存去掉-->

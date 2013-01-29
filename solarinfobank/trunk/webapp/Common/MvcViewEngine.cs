@@ -26,13 +26,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             };
 
             ViewLocationFormats = new[] {
+                "~/Pages/{1}/{0}.aspx",
+                "~/Pages/{1}/{0}.ascx",
                 "~/Pages/plant/{1}/{0}.aspx",
                 "~/Pages/user/{1}/{0}.aspx",
                 "~/Pages/admin/{1}/{0}.aspx",
                //"~/Pages/admin/itemconfig/{0}.aspx",
                 "~/Pages/report/{1}/{0}.aspx",
-                "~/Pages/{1}/{0}.aspx",
-                "~/Pages/{1}/{0}.ascx",
                 "~/Pages/Shared/{0}.aspx",
                 "~/Pages/Shared/{0}.ascx"
             };

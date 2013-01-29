@@ -2162,6 +2162,9 @@
     <Content Include="Pages\Plant\IncludeOverviewHtml.aspx" />
     <Content Include="Pages\Plant\DeviceDataOverview.aspx" />
     <Content Include="Pages\Plant\副本 deviceData.aspx" />
+    <Content Include="Pages\Plant\RelationConfig.aspx" />
+    <Content Include="Pages\Plant\LeftRelation.aspx" />
+    <Content Include="Pages\Plant\RightRelation.aspx" />
     <Content Include="Pages\portal\DeviceStatus.aspx" />
     <Content Include="Pages\portal\Fault.aspx" />
     <Content Include="Pages\portal\HLXchart.aspx" />
@@ -2250,7 +2253,9 @@
     <Content Include="Pages\User\ChangePassword.aspx" />
     <Content Include="Pages\User\CustomChart.aspx" />
     <Content Include="Pages\User\DayCompare.aspx" />
-    <Content Include="Pages\User\Edit.aspx" />
+    <Content Include="Pages\User\Edit.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Pages\User\EnergyMonthCompare.aspx" />
     <Content Include="Pages\User\IncludeOverview.aspx" />
     <Content Include="Pages\User\OpenPlant.aspx" />
@@ -2353,6 +2358,7 @@
     <Content Include="script\DatePicker\skin\whyGreen\datepicker.css" />
     <Content Include="script\DatePicker\skin\whyGreen\img.gif" />
     <Content Include="script\DatePicker\WdatePicker.js" />
+    <Content Include="script\dtree.css" />
     <Content Include="script\dtree.js" />
     <Content Include="script\ECOTree.js" />
     <Content Include="script\ECOTree1.js" />
@@ -8148,7 +8154,6 @@
     <Content Include="videodemo2.html" />
     <Content Include="video\earth.swf" />
     <Content Include="video\earth2.swf" />
-    <Content Include="Web.Publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\SunInfoResource.de.resources" />

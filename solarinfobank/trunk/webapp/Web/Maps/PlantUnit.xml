@@ -15,6 +15,7 @@
    
       <!--级联对象集合-->
       <result property="collector"	lazyLoad="false"	column="collectorID" select="collector_get" />
+      <result property="logicalDevices"	lazyLoad="true"	column="id" select="device_get_plantunitid_lazy" />
     </resultMap>
 
     <resultMap id="plant_unit_result_lazy" class="PlantUnit">

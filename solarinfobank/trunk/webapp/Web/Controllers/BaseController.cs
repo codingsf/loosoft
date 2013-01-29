@@ -548,6 +548,59 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return jsstr;
         }
 
+
+        public string generateDeviceRelation(Plant plant)
+        {
+            string jsstr = string.Empty;
+            int curLevel = 1;
+            int uplevel = -1;
+            jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '{4}');", curLevel, uplevel, plant.name, "javascript:void(0);", "");
+            int topLevel = 1;
+            int deviceLevel = 1;
+            int unitLevel = 1;
+            //遍历单元，先显示单元层级
+            PlantUnit pu = null;
+            for (int i = 0; i < plant.plantUnits.Count; i++)
+            {
+                pu = plant.plantUnits[i];
+                unitLevel = unitLevel * 100 + i;
+                jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '');", unitLevel, topLevel, pu.displayname, string.Format("javascript:setPara({0},{1},{2});",pu.id,"true",pu.id));
+
+                //先装机逆变器类型设备节点
+                IList<Device> devices = pu.logicalDevices;
+                if (devices != null && devices.Count > 0)
+                {
+                    deviceLevel = unitLevel + 10;
+                    jsstr += generateDeviceRelation(devices, deviceLevel, unitLevel, pu.id);
+                }
+            }
+            return jsstr;
+        }
+
+
+
+        public string generateDeviceRelation(IList<Device> devices, int deviceLevel, int uplevel,int unitId)
+        {
+            string jsstr = string.Empty;
+            //有下级那么就递归调用下级生成脚本。进行累计
+            if (devices != null && devices.Count > 0)
+            {
+                Device device = null;
+                int curLevel = 0;
+                for (int i = 0; i < devices.Count; i++)
+                {
+                    device = devices[i];
+                    curLevel = ((uplevel + 1) * 100 + i);
+                    jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '');", curLevel, uplevel, device.fullName, string.Format("javascript:setPara({0},{1},{2});", device.id, "false", unitId));
+                    if (device.child != null && device.child.Count > 0)
+                    {
+                        int tmpLevel =((uplevel + 1) * 100 + i);
+                        jsstr += generateDeviceRelation(device.child, tmpLevel, curLevel, unitId);
+                    }
+                }
+            }
+            return jsstr;
+        }
     }
 
 }

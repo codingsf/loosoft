@@ -375,7 +375,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                     }
                     else
                     {
-                        if(isHidden.Value == device.isHidden)
+                        if (isHidden.Value == device.isHidden)
                             typeDevices.Add(device);
                     }
                 }
@@ -451,7 +451,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             get
             {
-                return StringUtil.formatDouble(Util.upDigtal(TotalDayEnergy),"0.00");
+                return StringUtil.formatDouble(Util.upDigtal(TotalDayEnergy), "0.00");
             }
         }
         /// <summary>
@@ -511,7 +511,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             get
             {
-                return StringUtil.formatDouble(Util.upDigtal(TotalEnergy),"0.00");
+                return StringUtil.formatDouble(Util.upDigtal(TotalEnergy), "0.00");
             }
         }
 
@@ -541,7 +541,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             get
             {
-                return StringUtil.formatDouble(Util.upDigtal(TodayTotalPower),"0.00");
+                return StringUtil.formatDouble(Util.upDigtal(TodayTotalPower), "0.00");
             }
         }
 
@@ -617,7 +617,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                         break;
                     }
                 }
- 
+
                 //如果没有电站数据才取设备数据
                 if (_temperature == null || double.IsNaN(_temperature.Value))
                 {
@@ -630,7 +630,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                     }
 
                 }
-                return _temperature == null || double.IsNaN(_temperature.Value) ? double.NaN : Math.Round(_temperature.Value,2);
+                return _temperature == null || double.IsNaN(_temperature.Value) ? double.NaN : Math.Round(_temperature.Value, 2);
             }
         }
 
@@ -669,7 +669,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                         tmp = detector.getMonitorValue(MonitorType.MIC_DETECTOR_SUNLINGHT);
                     }
                 }
-                return tmp==null || float.IsNaN(tmp.Value) ? 0 : tmp;;
+                return tmp == null || float.IsNaN(tmp.Value) ? 0 : tmp; ;
             }
         }
 
@@ -717,7 +717,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// <returns></returns>
         public double? monthpredictValue(int month)
         {
-            if(this.predictivedata==null) return null;
+            if (this.predictivedata == null) return null;
             string[] values = this.predictivedata.Split(',');
             if (month >= values.Length) return null;
             string temp = values[month];
@@ -1013,7 +1013,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             Device displaydevice = null;
             foreach (Device device in this.deviceList())
             {
-                if (device.deviceTypeCode == DeviceData.ENVRIOMENTMONITOR_CODE && !device.isHidden){
+                if (device.deviceTypeCode == DeviceData.ENVRIOMENTMONITOR_CODE && !device.isHidden)
+                {
                     displaydevice = device;
                     if (device.isWork(this.timezone)) return device;
                 }

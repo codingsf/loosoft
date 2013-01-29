@@ -205,21 +205,31 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         [IsLoginAttribute]
         public ActionResult Save(int plantid, PlantUnit plantunit)
         {
-
             //foreach (PlantUnit plantunit in plantunits)
             //{  //根据采集器名称和密码判断该采集器设否存在
             Collector collector = collectorInfoService.GetClollectorByCodePass(plantunit.collector.code, plantunit.collector.password);
             if (collector != null && (collector.userId == 0 || collector.userId == UserUtil.getCurUser().id))
             {
+
                 PlantUnit plantUnit = plantUnitService.GetPlantUnitByCollectorId(collector.id);//根据collectorID去查询，该采集器是否已经绑定了电站
                 if (plantUnit == null)
                 {
                     plantunit.collector.id = collector.id;
                     plantunit.collectorID = collector.id;
                     plantunit.collector = collector;
-                    plantUnitService.AddPlantUnit(plantunit);//添加电站单元
+                    int plantUnitId = plantUnitService.AddPlantUnit(plantunit);//添加电站单元
                     collector.isUsed = true;//如果采集器已经和单元绑定了就为已用状态
                     collectorInfoService.Save(collector);
+                    //绑定采集器 要更新设备的plantunitid parentId
+                    foreach (Device device in collector.devices)
+                    {
+                        device.parentId = 0;
+                        device.plantUnitId = plantUnitId;
+                        if (device.deviceModel == null) device.deviceModel = new DeviceModel();
+                        DeviceService.GetInstance().Save(device);
+                    }
+
+
                     if (Request["fromurl"] == null || Request["fromurl"].Equals(""))
                         return RedirectToAction("list", "unit", new { @id = plantid });
                     else

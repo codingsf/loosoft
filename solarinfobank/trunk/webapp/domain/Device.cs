@@ -487,5 +487,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 return runData.hasMonitor(MonitorType.MIC_DETECTOR_DAYRADIATION);
             return false;
         }
+
+        public int parentId { get; set; }//上级
+        public int plantUnitId { get; set; }//电站单元id
+        public IList<Device> child { get; set; }//通过设备关系虚拟的设备
+        public PlantUnit plantUnit { get; set; }
     }
 }

@@ -2439,10 +2439,10 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             User user = UserUtil.getCurUser();
             Plant plant = PlantService.GetInstance().GetPlantInfoById(id);
             ViewData["plantID"] = plant.id;
-            if(plant.plantUnits.Count>0)
-                ViewData["unitID"] = plant.plantUnits[0].id ;//第一个单元
-            if(plant.plantUnits[0].displayDevices.Count>0)
-             ViewData["deviceID"]=plant.plantUnits[0].displayDevices[0].id;//第一个设备
+            if (plant.plantUnits.Count > 0)
+                ViewData["unitID"] = plant.plantUnits[0].id;//第一个单元
+            if (plant.plantUnits[0].displayDevices.Count > 0)
+                ViewData["deviceID"] = plant.plantUnits[0].displayDevices[0].id;//第一个设备
             string startYM = (DateTime.Now.Year - 1) + "" + DateTime.Now.Month.ToString("00");
             string endYM = DateTime.Now.Year + "" + DateTime.Now.Month.ToString("00");
 
@@ -2791,6 +2791,76 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             int pid = 0;
             int.TryParse(id, out pid);
             return View(FindPlant(pid));
+        }
+
+        //电站设备关系设置
+        public ActionResult LeftRelation(string id)
+        {
+            int pid = 0;
+            int.TryParse(id, out pid);
+            Plant plant = plantService.GetPlantInfoById(pid);
+            string jsstr = generateDeviceRelation(plant);
+            ViewData["jsstr"] = jsstr;
+            return View();
+        }
+
+        //电站设备关系设置
+        public ActionResult RightRelation(string id)
+        {
+            int pid = 0;
+            int.TryParse(id, out pid);
+            Plant plant = plantService.GetPlantInfoById(pid);
+            string jsstr = generateDeviceRelation(plant);
+            ViewData["jsstr"] = jsstr;
+            return View();
+        }
+
+        //电站设备关系设置
+        public ActionResult relationConfig(string id)
+        {
+            return View();
+        }
+
+
+        public ActionResult move(int leftid, int leftunitId, int rightid, int rightunitId, bool leftisunit, bool rightisunit, int movetype)
+        {
+            try
+            {
+                Device device = null;
+                switch (movetype)
+                {
+                    //左边移动到右边
+                    case 1:
+                        device = DeviceService.GetInstance().get(leftid);
+                        device.plantUnitId = rightunitId;
+                        device.parentId = rightisunit ? 0 : rightid;
+                        DeviceService.GetInstance().Save(device);
+                        foreach (Device tmp in device.child)
+                        {
+                            tmp.parentId = rightisunit ? 0 : rightid;
+                            if (tmp.deviceModel == null) tmp.deviceModel = new DeviceModel();
+                            DeviceService.GetInstance().Save(tmp);
+                        }
+                        break;
+                    //右边移动到左边
+                    case 2:
+                        device = DeviceService.GetInstance().get(rightid);
+                        device.plantUnitId = leftunitId;
+                        device.parentId = leftisunit ? 0 : leftid;
+                        DeviceService.GetInstance().Save(device);
+                        foreach (Device tmp in device.child)
+                        {
+                            tmp.parentId = leftisunit ? 0 : leftid;
+                            if (tmp.deviceModel == null) tmp.deviceModel = new DeviceModel();
+                            DeviceService.GetInstance().Save(tmp);
+                        }
+                        break;
+                }
+            }
+            catch (Exception e) { return Content(e.Message); }
+
+            return Content("ok");
+
         }
     }
 }

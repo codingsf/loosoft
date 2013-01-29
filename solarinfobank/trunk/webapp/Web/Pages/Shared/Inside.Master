@@ -706,6 +706,12 @@
                                 <%=Resources.SunResource.SHARED_INSIDE_PLANT_USER%></a></li>
                             <%} %>
                             
+                            
+                             <li><a onclick="loadContent('content_ajax','/plant/relationconfig/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
+                                href="/plant/relation/<%=Model.id%>">设备关系设置</a></li>
+                                
+                                
+                            
                                             <%if (Cn.Loosoft.Zhisou.SunPower.Service.ProtalUtil.isBigCustomer())
                                               { %>
                                             <li><a onclick="loadContent('content_ajax','/plant/devicerelation/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"

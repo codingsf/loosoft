@@ -140,8 +140,7 @@
                                             <br />
                                             <div id="divAddDevice">
                                                 <a href="javascript:void(0)" id="btnAddDevice" name="btnAddDevice" onclick="lefttoright()">
-                                                    <img src="/images/sub/add.gif" width="18" height="18" border="0" /><br />
-                                                    <%=Resources.SunResource.MONITORITEM_ADD%></a></div>
+                                                    右移</a></div>
                                             <br />
                                         </td>
                                     </tr>
@@ -151,8 +150,7 @@
                                             <br />
                                             <div id="divDelDevice">
                                                 <a href="javascript:void(0)" id="btnDelDevice" name="btnDelDevice" onclick="righttoleft()">
-                                                    <img src="/images/sub/delete.gif" width="18" height="18" border="0" /><br />
-                                                    <%=Resources.SunResource.MONITORITEM_DELETE%></a>
+                                                   左移</a>
                                             </div>
                                         </td>
                                     </tr>

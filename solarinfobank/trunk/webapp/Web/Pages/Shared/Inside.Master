@@ -174,11 +174,10 @@
             window.parent.scroll(0,0);
          }
         var plantInterval;
-        
+        var chartInterval;
         //加载右边内容
         function loadContent(curContainer, url, type, method) {
-           if(plantInterval!=undefined)
-                        clearInterval(plantInterval);
+   
          $("#loading_type").val(type);
             if(url.indexOf("?")>-1)
                 url=url+"&rnd="+Math.random();
@@ -196,7 +195,10 @@
                         window.scrollTo(0,0);
                     },
                     beforeSend: function() {
-                     
+                     if(plantInterval!=undefined)
+                        clearInterval(plantInterval);
+                         if(chartInterval!=undefined)
+                        clearInterval(chartInterval);
                         $('#' + curContainer).empty();
                     }
                 });

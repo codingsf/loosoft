@@ -8,8 +8,13 @@
     <link href="../../style/dtree.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-
+<script>
+    function setPara(_did, _isunit, _unitid) {
+        parent.loadRunData(_did)
+    }
+</script>
     <script type="text/javascript">
+    
 		<!--
         d = new dTree('d');
 

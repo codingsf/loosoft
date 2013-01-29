@@ -13,6 +13,7 @@
 <body> 
 
     <script type="text/javascript">
+        var chartId = 0;
         $(document).ready(function() {
             $('#MonthChart').click(displayMonthDDChart);
             $('#YearChart').click(displayyearMMChart);
@@ -29,6 +30,7 @@
 
         }
         function displayDayChart() {
+            chartId = 0;
             $("#chartType").val("line,line");
             $("#countDataDiv").empty();
             //document.getElementById("dayIntervalDiv").style.display = "block";
@@ -39,6 +41,7 @@
         }
 
         function displayDaykWpChart() {
+            chartId = 1;
             $("#chartType").val("column,column");
             //document.getElementById("dayIntervalDiv").style.display = "block";
             $("#selectTable").show();
@@ -49,6 +52,7 @@
         }
 
         function displayMonthDDChart() {
+            chartId = 2;
             $("#chartType").val("column");
             //document.getElementById("dayIntervalDiv").style.display = "none";
             $("#selectTable").show();
@@ -58,6 +62,7 @@
             changeALT();
         }
         function displayyearMMChart() {
+            chartId = 3;
             $("#chartType").val("column");
             //document.getElementById("dayIntervalDiv").style.display = "none";
             $("#selectTable").show();
@@ -68,6 +73,7 @@
         }
 
         function displayyearChart() {
+            chartId = 4;
             $("#chartType").val("column");
             //document.getElementById("dayIntervalDiv").style.display = "none";
             $("#selectTable").hide();

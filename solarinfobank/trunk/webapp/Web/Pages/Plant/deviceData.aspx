@@ -3,15 +3,25 @@
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
 <%@ Import Namespace="System.Globalization" %>
+
 <script>
     function autoreload() {
     if(<%=ViewData["autoRefresh"] %>)
-        setInterval("loaddeviceData()",<%=ViewData["refreshInterval"] %>);
+     chartInterval= setInterval("loaddeviceData()",<%=ViewData["refreshInterval"] %>);
     }
     //
     function loaddeviceData(){
-    if(curDeviceId!=undefined&&curDeviceId!=""&&curDeviceId!="undefined")
-        loadRunData(curDeviceId);
+    //显示图表 这里比较麻烦
+    if(curtab==1)
+    {
+        if(chartId==0)displayDayChart();
+        if(chartId==1)displayDaykWpChart();
+        if(chartId==2)displayMonthDDChart();
+        if(chartId==3)displayyearMMChart();
+        if(chartId==4)displayyearChart();
+    }
+    if(curtab==2)displayRunData();
+    if(curtab==3)displayFault();
     }
     
 </script>
@@ -25,6 +35,7 @@
         var isFirst = true;
         function readyinit() {
             deviceChartInit();
+            autoreload();
         }
         function deviceChartInit() {
             loadContent('content_container_control', '/plant/devicedataoverview/<%=ViewData["plantID"] %>/<%=ViewData["deviceID"] %>/<%=ViewData["unitID"] %>', 'ajax', 'GET');

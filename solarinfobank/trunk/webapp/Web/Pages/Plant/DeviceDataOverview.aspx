@@ -25,8 +25,10 @@
     }
 </style>
 
+
 <script type="text/javascript">
         var pageNo = 1;
+        var curtab=1;//默认图表
         function readyinit() {
             $('#rundata').click(displayRunData);
             $('#chart').click(displayChart);
@@ -49,17 +51,20 @@
             changeTopStyle('prchart');
         }
         function displayRunData() {
+            curtab=2;
             loadData("rundata");
             changeTopStyle('rundata');
         }
         
         function displayChart() {
+            curtab=1;
             loadData("chart");
             changeTopStyle('chart');
             changeALT() ;
         }
         
         function displayFault() {
+            curtab=3;
             loadData("fault");
             changeTopStyle('fault')
         }
@@ -77,6 +82,7 @@
         
         function loadRunData(deviceId)
         {
+            $("#deviceID").val(deviceId);
             var did=deviceId;
             var uid=$('#unitId').val();
             var pid=<%=Model.id %>
@@ -94,7 +100,8 @@
                     $('#container').empty();
                     $('#container').html(result);
                     $('#loading').hide();
-                }
+                }, 
+                complete: function (XHR, TS) { XHR = null } 
             });
         }
 
@@ -108,7 +115,8 @@
                 success: function(result) {
                     $("#container").empty();
                     $("#container").append(result);
-                }
+                }, 
+                complete: function (XHR, TS) { XHR = null } 
             });
         }
 
@@ -123,7 +131,8 @@
                     showDetails(result);
                     $("#container").empty();
                     $("#container").append(result);
-                }
+                }, 
+                complete: function (XHR, TS) { XHR = null } 
             });
         }
 
@@ -139,7 +148,8 @@
                     showDetails(result);
                     $("#container").empty();
                     $("#container").append(result);
-                }
+                }, 
+                complete: function (XHR, TS) { XHR = null } 
             });
         }
         
@@ -191,7 +201,8 @@
                  beforeSend: function() {
                      $('#' + curContainer).empty();
                      $('#' + curContainer).append("<center><img src=\"/Images/ajax_loading.gif\" style=\"margin-top: " + ajaxImgTop + "px;\" /></center>");
-                 }
+                 }, 
+                complete: function (XHR, TS) { XHR = null } 
              });
          }
          

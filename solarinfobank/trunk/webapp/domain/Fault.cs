@@ -12,14 +12,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
     /// Time: 2011年2月17日 11:34:33
     /// </summary>
     [Serializable]
-   
+
     public class Fault
     {
         #region Model
         //编号  非空
         public int id { get; set; }
         //采集器Id  非空
-        public int  collectorID { get; set; }
+        public int collectorID { get; set; }
         //地址  非空
         public string address { get; set; }
         /// <summary>
@@ -49,17 +49,19 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public DateTime sendTime { get; set; }
         public bool confirm { get; set; }
         #endregion Model
-     
+
 
         //告警信息代码  非持久化
         public string inforank { get; set; }
         public string collectorString { get; set; }//chenbo added
 
         //告警类型名称
-        public string errorTypeName { 
-            get {
+        public string errorTypeName
+        {
+            get
+            {
                 return ErrorType.getErrortypeByCode(this.errorTypeCode).name;
-            } 
+            }
         }
         //告警类型名称
         public string deviceName
@@ -71,21 +73,24 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         //信息内容  非空
-        public string content { 
-            get {
+        public string content
+        {
+            get
+            {
                 ErrorItem error = ErrorItem.getErrotItemByCode(this.errorCode);
-                    if(error!=null)
-                    {
-                        return error.name;
-                    }
-                    return LanguageUtil.getDesc("UNKNOWN");
-            } 
+                if (error != null)
+                {
+                    return error.name;
+                }
+                return LanguageUtil.getDesc("UNKNOWN");
+            }
         }
 
         //是否确认  非空
         public string confirmed { get; set; }
 
-        public int year {
+        public int year
+        {
             get
             {
                 return sendTime.Year;

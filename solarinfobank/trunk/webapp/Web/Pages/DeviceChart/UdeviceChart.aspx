@@ -156,7 +156,6 @@
         </td>
     </tr>
 </table>
-<!--
 <div class="subrbox03">
 		  <table width="69%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -181,7 +180,6 @@
               </tr>--%>
           </table>
 </div>
---!>
 <div id="content_container_control">
 </div>
 <script type="text/javascript">document.title = '<%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %> <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_DEVICE_LIST %>'</script>

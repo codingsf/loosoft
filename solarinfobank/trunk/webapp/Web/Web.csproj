@@ -2194,6 +2194,7 @@
     <Content Include="Pages\p\Index.aspx" />
     <Content Include="Pages\QA\Ask.aspx" />
     <Content Include="Pages\QA\ShowAsk.aspx" />
+    <Content Include="Pages\Shared\DeviceFault.ascx" />
     <Content Include="Pages\User\AddUser.aspx" />
     <Content Include="Pages\User\EnergyFilter.aspx" />
     <Content Include="Pages\User\Overview.aspx" />

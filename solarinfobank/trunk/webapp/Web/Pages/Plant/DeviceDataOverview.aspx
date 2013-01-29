@@ -85,7 +85,7 @@
         
         function loadRunDataHtml() {
             $("#container").empty();
-            $("#container").html('<img src="/Images/ajax_loading.gif" style="margin-left:350px;" />');
+            $("#container").html('<img src="/Images/ajax_loading.gif" style="margin-left:210px;" />');
             $.ajax({
                 type: "GET",
                 url: "/device/RunData",
@@ -100,10 +100,10 @@
 
         function loadLog(No) {
             $("#container").empty();
-            $("#container").html('<img src="/Images/ajax_loading.gif" style="margin-left:350px;" />');
+            $("#container").html('<img src="/Images/ajax_loading.gif" style="margin-left:210px;" />');
             $.ajax({
                 type: "POST",
-                url: "/device/LoadLog",
+                url: "/device/devicefault",
                 data: { userId:<%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().id %>,dId: $("#deviceID").val(), pageNo: No },
                 success: function(result) {
                     $("#container").empty();
@@ -114,7 +114,7 @@
 
         function loadChartData() {
             $("#container").empty();
-            $("#container").html('<img src="/Images/ajax_loading.gif" style="margin-left:350px;" />');
+            $("#container").html('<img src="/Images/ajax_loading.gif" style="margin-left:210px;" />');
             $.ajax({
                 type: "POST",
                 url: "/DeviceChart/Chart",
@@ -130,7 +130,7 @@
 
         function loadPRChartData() {
             $("#container").empty();
-            $("#container").html('<img src="/Images/ajax_loading.gif" style="margin-left:350px;" />');
+            $("#container").html('<img src="/Images/ajax_loading.gif" style="margin-left:210px;" />');
             $.ajax({
                 type: "POST",
                 url: "/DeviceChart/PRChart",
@@ -280,21 +280,24 @@
     id="mtStartYYYYMMDDHH" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>23"
     id="mtEndYYYYMMDDHH" />
-<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy")%>" id="year" />
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy")%>"
+    id="year" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")%>01"
     id="startYYYYMMDD" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"MM")%>"
     id="month" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")+CalenderUtil.getCurMonthDays(Model.timezone)%>"
     id="endYYYYMMDD" />
-<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy")%>01" id="startYM" />
-<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy")%>12" id="endYM" />
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy")%>01"
+    id="startYM" />
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy")%>12"
+    id="endYM" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>"
     id="curYYYYMMDD" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy-MM-dd")%>"
     id="curYYYYMMDD2" />
-
-    <div class="">
+<div class="subrbox01" style="width: 560px">
+    <div class="bitab">
         <ul id="bitab">
             <li><a href="javascript:void(0);" id="chart">
                 <%=Resources.SunResource.CHART_CHART %></a></li>
@@ -309,52 +312,57 @@
                 <%=Resources.SunResource.CHART_FAULT %></a></li>
         </ul>
     </div>
-    <div class="">
-        <!-- This contains the hidden content for inline calls -->
-        <div style='display: none'>
-            <div id='inline_example1' style='padding: 10px; background: #fff;'>
-                <center>
-                    <div id='monitor_container' style="width: 90%; height: 400px; margin-left: 40px;
-                        margin-right: 40px;">
-                    </div>
-                    <div id="date_MonitorDayChart">
-                        <div id="selectMonitorTable" style="margin-top: 10px;">
-                            <table border="0" align="center" cellpadding="0" cellspacing="0">
-                                <tr>
-                                    <td width="24">
-                                        <img src="/images/chartLeft.gif" width="24" height="21" id="left" onclick="LargetPreviouNextChange('left')"
-                                            style="cursor: pointer;" />
-                                    </td>
-                                    <td align="center">
-                                        <input name="t" type="text" size="12" class="indate larget" onclick="WdatePicker({onpicked:function(){changeMonitorPreDay(this);},skin:'whyGreen',lang:'<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>',isShowClear:false,minDate:'<%=((IList<SelectListItem>)ViewData["plantYear"])[0].Value+"-01-01" %>',maxDate: '<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy-MM-dd")%>'})"
-                                            readonly="readonly" value="<%=DateTime.Parse( CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy-MM-dd")).AddDays(-1).ToString("yyyy-MM-dd")%>"
-                                            style="text-align: center;" />
-                                        -
-                                        <input name="t" type="text" id="larget" size="12" class="indate" onclick="WdatePicker({onpicked:function(){changeMonitorDay(this);},skin:'whyGreen',lang:'<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>',isShowClear:false,minDate:'<%=((IList<SelectListItem>)ViewData["plantYear"])[0].Value+"-01-01" %>',maxDate: '<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy-MM-dd")%>'})"
-                                            readonly="readonly" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy-MM-dd")%>"
-                                            style="text-align: center;" />
-                                        <input type="hidden" id="minDate" value="<%=((IList<SelectListItem>)ViewData["plantYear"])[0].Value%>-01-01" />
-                                        <input type="hidden" id="maxDate" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy-MM-dd")%>" />
-                                    </td>
-                                    <td width="24">
-                                        <img src="/images/chartRight.gif" width="24" height="21" id="right" onclick="LargetPreviouNextChange('right')"
-                                            style="cursor: pointer;" />
-                                    </td>
-                                </tr>
-                            </table>
+    <div class="sb_mid" style="width: 560px">
+        <div class="">
+            <!-- This contains the hidden content for inline calls -->
+            <div style='display: none'>
+                <div id='inline_example1' style='padding: 10px; background: #fff;'>
+                    <center>
+                        <div id='monitor_container' style="width: 90%; height: 400px; margin-left: 40px;
+                            margin-right: 40px;">
                         </div>
+                        <div id="date_MonitorDayChart">
+                            <div id="selectMonitorTable" style="margin-top: 10px;">
+                                <table border="0" align="center" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td width="24">
+                                            <img src="/images/chartLeft.gif" width="24" height="21" id="left" onclick="LargetPreviouNextChange('left')"
+                                                style="cursor: pointer;" />
+                                        </td>
+                                        <td align="center">
+                                            <input name="t" type="text" size="12" class="indate larget" onclick="WdatePicker({onpicked:function(){changeMonitorPreDay(this);},skin:'whyGreen',lang:'<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>',isShowClear:false,minDate:'<%=((IList<SelectListItem>)ViewData["plantYear"])[0].Value+"-01-01" %>',maxDate: '<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy-MM-dd")%>'})"
+                                                readonly="readonly" value="<%=DateTime.Parse( CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy-MM-dd")).AddDays(-1).ToString("yyyy-MM-dd")%>"
+                                                style="text-align: center;" />
+                                            -
+                                            <input name="t" type="text" id="larget" size="12" class="indate" onclick="WdatePicker({onpicked:function(){changeMonitorDay(this);},skin:'whyGreen',lang:'<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>',isShowClear:false,minDate:'<%=((IList<SelectListItem>)ViewData["plantYear"])[0].Value+"-01-01" %>',maxDate: '<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy-MM-dd")%>'})"
+                                                readonly="readonly" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy-MM-dd")%>"
+                                                style="text-align: center;" />
+                                            <input type="hidden" id="minDate" value="<%=((IList<SelectListItem>)ViewData["plantYear"])[0].Value%>-01-01" />
+                                            <input type="hidden" id="maxDate" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy-MM-dd")%>" />
+                                        </td>
+                                        <td width="24">
+                                            <img src="/images/chartRight.gif" width="24" height="21" id="right" onclick="LargetPreviouNextChange('right')"
+                                                style="cursor: pointer;" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </center>
+                </div>
+            </div>
+            <div style='display: none'>
+                <center>
+                    <div id='large_container_chart' style="width: 90%; height: 400px; margin-left: 40px;
+                        margin-right: 40px; text-align: center;">
                     </div>
                 </center>
             </div>
-        </div>
-        <div style='display: none'>
-            <center>
-                <div id='large_container_chart' style="width: 90%; height: 400px; margin-left: 40px;
-                    margin-right: 40px; text-align: center;">
-                </div>
-            </center>
-        </div>
-        <!-- 数据容器 -->
-        <div id="container">
+            <!-- 数据容器 -->
+            <div id="container">
+            </div>
         </div>
     </div>
+    <div class="sb_down" style="width: 560px">
+    </div>
+</div>

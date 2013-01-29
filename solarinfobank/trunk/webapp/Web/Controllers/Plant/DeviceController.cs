@@ -447,5 +447,76 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             ViewData["yearddc"] = yearddc;
             return View();
         }
+
+
+
+        /// <summary>
+        /// 2012/1/29 设备告警数据
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="dId"></param>
+        /// <param name="pageNo"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult DeviceFault(int userId, int dId, string pageNo)
+        {
+
+            int totalRecord = 0;
+            int yyyy = DateTime.Now.Year;
+            int intValue = 0;
+            int.TryParse(pageNo, out intValue);
+
+            Pager page = new Pager() { PageSize = ComConst.PageSize, PageIndex = intValue };
+            Hashtable table = new Hashtable();
+            table.Add("page", page);
+            Fault fault = new Fault() { confirmed = "0", device = new Device() { id = dId }, sendTime = DateTime.Now };
+            table.Add("fault", fault);
+            ViewData["page"] = page;
+            IList<Fault> faultsList = faultService.GetDeviceLogsPage(table);
+            totalRecord += (table["page"] as Pager).RecordCount;
+            int startIndex = (intValue - 1) * page.PageSize;//当前页码的开始索引
+            IList<Fault> faults = new List<Fault>();
+
+            if (totalRecord > startIndex)
+            {
+                foreach (Fault item in faultsList)
+                {
+                    if (faults.Count < page.PageSize)
+                        faults.Add(item);
+                    else
+                        break;
+                }
+            }
+
+
+            while (yyyy-- > DateTime.Now.Year - 5)
+            {
+                //改成开始时间
+                page.PageIndex = Math.Abs(startIndex + page.PageSize - totalRecord) / page.PageSize;
+                fault.sendTime = fault.sendTime.AddYears(-1);
+                faultsList = faultService.GetDeviceLogsPage(table);
+                int skip = 0;
+                if (Math.Abs(totalRecord - startIndex) < page.PageSize)
+                    skip = totalRecord - startIndex;
+
+                totalRecord += (table["page"] as Pager).RecordCount;
+                if (totalRecord > startIndex)
+                {
+                    foreach (Fault item in faultsList)
+                    {
+                        if (faults.Count < page.PageSize && skip++ >= 0)
+                            faults.Add(item);
+                    }
+                }
+
+            }
+
+            page.RecordCount = totalRecord;//返回查询的所有年数的所有记录
+            page.PageIndex = intValue;
+            ViewData["user"] = UserService.GetInstance().Get(userId);
+            return View("devicefault", faults);
+        }
+
+
     }
 }

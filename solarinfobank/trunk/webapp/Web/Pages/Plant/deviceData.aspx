@@ -79,12 +79,12 @@
                         <div>
                         <!--左边设备导航-->
                         <div style="float:left;">                   
-                            <iframe src="/plant/devicestructtree/<%=Model.id %>" width="220" scrolling="auto" frameborder="0"
+                            <iframe src="/plant/devicestructtree/<%=Model.id %>" width="150" scrolling="auto" frameborder="0"
                                         height="650">
                             </iframe>
                         </div>
                         <!--右边边设备数据-->
-                        <div style=" float:right; width:500px; text-align:left;" id="content_container_control"></div>
+                        <div style=" float:right; width:570px; text-align:left;" id="content_container_control"></div>
                         </div>
                         <div style="clear: both; height: 60px;">
                         </div>

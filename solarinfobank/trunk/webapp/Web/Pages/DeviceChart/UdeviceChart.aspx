@@ -121,6 +121,7 @@
     id="startYYYYMMDD" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")+CalenderUtil.getCurMonthDays(Model.timezone) %>"
     id="endYYYYMMDD" />
+
 <table width="100%" height="63" border="0" cellpadding="0" cellspacing="0" background="/images/kj/kjbg02.jpg">
     <tr>
         <td width="8">
@@ -157,6 +158,7 @@
     </tr>
 </table>
 <div class="subrbox03">
+    <!--
 		  <table width="69%" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td width="auto" height="30" align="right"><span style="white-space:nowrap"><%=Resources.SunResource.UDEVICE_PAGE_SELECT_DEVICE%>:</span></td>
@@ -178,7 +180,7 @@
                   <input type="radio" name="deviceType" value="2" onclick="loadInvertCompare();"/>        
                   <span style="white-space:nowrap"><%=Resources.SunResource.DEVICETYPE_3%></span></td>
               </tr>--%>
-          </table>
+          </table>-->
 </div>
 <div id="content_container_control">
 </div>

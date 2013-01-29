@@ -35,7 +35,7 @@
         var isFirst = true;
         function readyinit() {
             deviceChartInit();
-            autoreload();
+            //autoreload();
         }
         function deviceChartInit() {
             loadContent('content_container_control', '/plant/devicedataoverview/<%=ViewData["plantID"] %>/<%=ViewData["deviceID"] %>/<%=ViewData["unitID"] %>', 'ajax', 'GET');

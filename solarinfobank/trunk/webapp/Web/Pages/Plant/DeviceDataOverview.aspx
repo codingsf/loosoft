@@ -29,6 +29,9 @@
 <script type="text/javascript">
         var pageNo = 1;
         var curtab=1;//默认图表
+        if(chartInterval!=undefined)
+            clearInterval(chartInterval);
+        autoreload();
         function readyinit() {
             $('#rundata').click(displayRunData);
             $('#chart').click(displayChart);

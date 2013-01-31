@@ -276,6 +276,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
         //通过管理配置出来的虚拟设备
         public IList<Device> logicalDevices { get; set; }
-
+        public Plant plant { get; set; }
     }
 }

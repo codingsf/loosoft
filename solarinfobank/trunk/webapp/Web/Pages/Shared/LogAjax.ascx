@@ -73,13 +73,13 @@
             
              <%
                  int i = 1;
-                 Plant plant;
-                 PlantUnit plantUnit;
+                 //Plant plant;
+                // PlantUnit plantUnit;
                  foreach (Fault log in Model)
                  {
                      //改为根据plantunitid获取电站名称 不是原来的采集器id
-                     plantUnit = PlantUnitService.GetInstance().GetPlantUnitById(log.device.plantUnitId);
-                     plant = PlantService.GetInstance().GetPlantInfoById(plantUnit.plantID);
+                     //plantUnit = PlantUnitService.GetInstance().GetPlantUnitById(log.device.plantUnitId);
+                    // plant = PlantService.GetInstance().GetPlantInfoById(plantUnit.plantID);
                      i++;
                         %>        
              <tr>
@@ -91,7 +91,8 @@
                   </td>
                    <td width="140" align="center" style="width:140px; overflow:hidden; white-space:normal;">
                   <%-- <%if(Request["plant"].Equals("-1")) {%>--%>
-                        <%=(plant.name + " -<span style='white-space:nowrap;'> " + plantUnit.displayname)%></span>
+                       <%-- <%=(plant.name + " -<span style='white-space:nowrap;'> " + plantUnit.displayname)%>--%><%=(log.plantName + " -<span style='white-space:nowrap;'> " +log.unitName)%></span>
+                        
                         <%--<%}else{ %>
                         <%=plantUnit.displayname%>
                         <%} %>--%>

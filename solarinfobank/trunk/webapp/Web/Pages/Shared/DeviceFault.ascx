@@ -65,10 +65,10 @@
              <%
                  int i = 1;
                  
-                 PlantUnit plantUnit;
+               //  PlantUnit plantUnit;
                  foreach (Fault log in Model)
                  {
-                     plantUnit = PlantUnitService.GetInstance().GetPlantUnitByCollectorId(log.collectorID);
+                   //  plantUnit = PlantUnitService.GetInstance().GetPlantUnitByCollectorId(log.collectorID);
                      i++;
                         %>        
              <tr>

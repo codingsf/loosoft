@@ -116,5 +116,25 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             }
         }
 
+        public string plantName
+        {
+            get
+            {
+                if (device != null && device.plantUnit != null && device.plantUnit.plant != null)
+                    return this.device.plantUnit.plant.name;
+                return "";
+            }
+        }
+
+        public string unitName
+        {
+            get
+            {
+                if (device != null && device.plantUnit != null)
+                return this.device.plantUnit.displayname;
+                return string.Empty;
+            }
+        }
+
     }
 }

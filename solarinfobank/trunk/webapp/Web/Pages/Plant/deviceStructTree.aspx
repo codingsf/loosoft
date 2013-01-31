@@ -10,6 +10,7 @@
 <body>
 <script>
     function setPara(_did, _isunit, _unitid) {
+    if(!_isunit)
         parent.loadRunData(_did)
     }
 </script>

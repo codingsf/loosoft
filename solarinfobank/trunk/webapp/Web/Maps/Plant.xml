@@ -223,6 +223,10 @@
     <select id="plant_parent_lazy" resultMap="plant_info_result">
       select * from plant_info where id=#value#
     </select>
+
+    <select id="plant_get_lazy" resultClass="Plant">
+      select * from plant_info where id=#value#
+    </select>
     <!--废弃，这里是不符合逻辑的 author:陈波 by qhb 用户所能备指定的下级电站是其创建的一级电站而已
     <select id="virtualplant_uid_lazy" resultMap="plant_info_result">
       select * from plant_info where id in (select  plantid from plant_user where userid=#value#) and parentId=0 and isVirtualPlant=1

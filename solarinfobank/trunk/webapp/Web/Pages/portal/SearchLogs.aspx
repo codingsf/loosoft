@@ -44,18 +44,19 @@
                 </tr>
                 <%
                     int i = 0;
-                    Plant plant;
-                    PlantUnit plantUnit;
+                   // Plant plant;
+                   // PlantUnit plantUnit;
 
                     foreach (Fault log in Model)
                     {
                         i++;
-                        plantUnit = Cn.Loosoft.Zhisou.SunPower.Service.PlantUnitService.GetInstance().GetPlantUnitByCollectorId(log.collectorID);
-                        plant = Cn.Loosoft.Zhisou.SunPower.Service.PlantService.GetInstance().GetPlantInfoById(plantUnit.plantID);
+                       // plantUnit = Cn.Loosoft.Zhisou.SunPower.Service.PlantUnitService.GetInstance().GetPlantUnitByCollectorId(log.collectorID);
+                       // plant = Cn.Loosoft.Zhisou.SunPower.Service.PlantService.GetInstance().GetPlantInfoById(plantUnit.plantID);
                 %>
                 <tr>
                     <td align="center" class="down_line0<%=i%2 %>">
-                        <%=(plant.name + " - " + plantUnit.displayname)%>
+                       <%-- <%=(plant.name + " - " + plantUnit.displayname)%>--%>
+                        <%=(log.plantName+ " - " + log.unitName)%>
                     </td>
                     <td align="center" class="down_line0<%=i%2 %>">
                         <%=log.deviceName %>

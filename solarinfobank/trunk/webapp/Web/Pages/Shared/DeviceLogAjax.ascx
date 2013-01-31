@@ -67,11 +67,11 @@
              <%
                  int i = 1;
                  
-                 PlantUnit plantUnit;
+                // PlantUnit plantUnit;
                  foreach (Fault log in Model)
                  {
                      //plantUnit = PlantUnitService.GetInstance().GetPlantUnitByCollectorId(log.collectorID);
-                     plantUnit = PlantUnitService.GetInstance().GetPlantUnitById(log.device.plantUnitId);
+                    // plantUnit = PlantUnitService.GetInstance().GetPlantUnitById(log.device.plantUnitId);
                      i++;
                         %>        
              <tr>
@@ -82,8 +82,8 @@
                   <input type="checkbox" name="cbx" id="checkbox5" value="<%=log.id %>" />
                   </td>
                    <td width="20%" align="center">
-                       <div style="overflow:hidden;" title="<%=plantUnit.displayname %>">
-                        <%=plantUnit.displayname %>
+                       <div style="overflow:hidden;" title="<%=log.unitName %>">
+                       <%-- <%=plantUnit.displayname %>--%> <%=log.unitName %>
                        </div>                  
                   </td>
                   <td width="20%" align="center"><%=log.sendTime.ToString("yyyy-MM-dd HH:mm:ss")%></td>

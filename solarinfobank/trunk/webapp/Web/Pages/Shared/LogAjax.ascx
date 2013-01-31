@@ -77,7 +77,8 @@
                  PlantUnit plantUnit;
                  foreach (Fault log in Model)
                  {
-                     plantUnit = PlantUnitService.GetInstance().GetPlantUnitByCollectorId(log.collectorID);
+                     //改为根据plantunitid获取电站名称 不是原来的采集器id
+                     plantUnit = PlantUnitService.GetInstance().GetPlantUnitById(log.device.plantUnitId);
                      plant = PlantService.GetInstance().GetPlantInfoById(plantUnit.plantID);
                      i++;
                         %>        

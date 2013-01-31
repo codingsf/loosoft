@@ -28,7 +28,7 @@
     <select id="loading_pager_page_list" resultMap="FaultResult" parameterClass="Pager">
       SELECT fault.* FROM fault_$fault.year$ as fault  where  ORDER BY fault.sendTime DESC LIMIT $Start$,$End$
     </select>
-
+    
     <select id="loading_pager_page_count" resultClass="int" parameterClass="Hashtable">
       <![CDATA[SELECT COUNT(1) FROM fault_$fault.year$]]>
     </select>
@@ -36,6 +36,7 @@
     <select id="get_user_not_confirm_logs_count" resultClass="int" parameterClass="Hashtable">
       <![CDATA[SELECT COUNT(1) FROM fault_$year$ where collectorid in ($ids$) and isconfirmed=0]]>
     </select>
+    
     <select id="loading_hashtable_page_list" resultMap="FaultResult" parameterClass="Hashtable">
       <![CDATA[SELECT fault.* FROM fault_$fault.year$ fault WHERE  fault.errorTypeCode IN ($fault.inforank$)  AND SENDTIME >= #fault.sendTime# and SENDTIME < #endTime# AND fault.collectorID in ($fault.collectorString$) AND fault.isConfirmed in ($fault.confirmed$) ORDER BY fault.sendTime DESC LIMIT $page.Start$,$page.End$　]]>
     </select>

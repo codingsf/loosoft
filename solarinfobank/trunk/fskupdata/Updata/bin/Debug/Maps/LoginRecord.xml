@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="LoginRecord" type="Cn.Loosoft.Zhisou.SunPower.Domain.LoginRecord, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="LoginRecordResult" class="LoginRecord">
+      <result property="id"			column="Id"/>
+      <result property="userId"			column="userId"/>
+      <result property="username"			column="username"/>
+      <result property="ip"			column="ip"/>
+      <result property="loginTime"			column="loginTime"/>
+      <result property="localZone"			column="localZone"/>
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+    <select id="loginrecord_get" resultClass="LoginRecord">
+      select * FROM loginrecord  where id=#id# order by  date_add(logintime ,INTERVAL localzone hour)  desc
+    </select>
+    <insert id="loginrecord_insert">
+      <![CDATA[insert into loginrecord (userId,username,ip,loginTime,localZone) 
+      values(#userId#,#username#,#ip#,#loginTime#,#localZone#)]]>
+    </insert>
+    <select id="loginrecord_get_list" resultClass="LoginRecord">
+      select * from loginrecord where userid=#userId#  order by date_add(logintime ,INTERVAL localzone hour) desc
+    </select>
+
+    <select id="loading_loginrecord_page_list" resultClass="LoginRecord">
+      <![CDATA[  SELECT * from loginrecord ]]>
+      <dynamic prepend="WHERE">
+        <isNotEmpty prepend="AND"  property="uname">
+          <![CDATA[  username like '%$uname$%'  ]]>
+        </isNotEmpty>
+      </dynamic>
+    <![CDATA[ order by date_add(logintime ,INTERVAL localzone hour) desc limit $page.Start$,$page.End$]]>
+    </select>
+
+    
+    <select id="loading_loginrecord_page_count" resultClass="int" >
+      <![CDATA[SELECT COUNT(1) from loginrecord 　]]>
+      <dynamic prepend="WHERE">
+        <isNotEmpty prepend="AND"  property="uname">
+          <![CDATA[ username like '%$uname$%' ]]>
+        </isNotEmpty>
+      </dynamic>
+    </select>
+
+  </statements>
+</sqlMap>

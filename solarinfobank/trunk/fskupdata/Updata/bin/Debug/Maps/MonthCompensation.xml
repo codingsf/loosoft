@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="MonthCompensation" type="Cn.Loosoft.Zhisou.SunPower.Domain.MonthCompensation, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="monthcompensation_result" class="MonthCompensation">
+      <result property="id"			column="id"/>
+      <result property="month"			column="month"/>
+      <result property="compensation_value"			column="compensation_value"/>
+      <result property="yearCompensation" lazyLoad="true"	column="year_compensation_id" select="yearcompensation_lazy_get" />
+      <result property="dayCompensationes" lazyLoad="false"	column="id" select="month_daycompensation_lazy_get" />
+
+    </resultMap>
+  </resultMaps>
+
+  <cacheModels>
+
+  </cacheModels>
+
+  <statements>
+    <select id="monthcompensation_lazy_get" resultClass="MonthCompensation">
+      <![CDATA[select * from  month_compensation where id=#value# ]]>
+    </select>
+
+    <select id="year_monthcompensation_lazy_get" resultMap="monthcompensation_result">
+      <![CDATA[select * from  month_compensation where year_compensation_id=#value# ]]>
+    </select>
+    
+    
+  </statements>
+</sqlMap>

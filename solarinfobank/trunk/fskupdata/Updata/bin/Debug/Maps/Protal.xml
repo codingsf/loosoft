@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="Protal" type="Cn.Loosoft.Zhisou.SunPower.Domain.Protal, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="protal_result" class="Protal">
+      <result property="id"			column="id"/>
+      <result property="uid"			column="uid"/>
+      <result property="name"			column="name"/>
+      <result property="logo"			column="logo"/>
+      <result property="footer"			column="footer"/>
+      <result property="items"   column="items"/>
+      <result property="rate"   column="rate"/>
+      <result property="markPic"   column="markPic"/>
+    </resultMap>
+  </resultMaps>
+
+  <cacheModels>
+
+  </cacheModels>
+
+  <statements>
+    <insert id="protal_insert">
+      insert into portal (uid,name,logo,footer,items,rate,markpic) values (#uid#,#name#,#logo#,#footer#,#items#,#rate#,#markPic#)
+    </insert>
+
+    <update id="protal_update">
+      update portal set name=#name#,logo=#logo#,footer=#footer#,items=#items#,rate=#rate#,markpic=#markPic# where id=#id#
+    </update>
+
+    <select id="protal_get" resultMap="protal_result">
+      select * from portal where uid=#uid# limit 0,1
+    </select>
+  </statements>
+</sqlMap>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="Template" type="Cn.Loosoft.Zhisou.SunPower.Domain.Template, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="template_result" class="Template">
+      <result property="id"			column="id"/>
+      <result property="isDefault"			column="isdefault"/>
+      <result property="cssFolder"   column="cssfolder"/>
+      <result property="pic"   column="pic" />
+    </resultMap>
+  </resultMaps>
+
+  <cacheModels>
+    <cacheModel id="template_cache" implementation="LRU" readOnly="true" serialize="true">
+      <flushInterval minutes="30"/>
+      <flushOnExecute  statement="template_insert"/>
+      <flushOnExecute  statement="template_update"/>
+      <flushOnExecute  statement="template_delete"/>
+      <property name="CacheSize" value="100"/>
+    </cacheModel>
+  </cacheModels>
+
+  <statements>
+    <insert id="template_insert">
+      <![CDATA[insert into template (isdefault,cssfolder,pic) values (#isDefault#,#cssFolder#,#pic#)]]>
+    </insert>
+
+    <update id="template_update">
+      <![CDATA[update template set isdefault=#isDefault#, cssfolder=#cssFolder#, pic=#pic# where id=#id#]]>
+    </update>
+    
+    <update id="template_set_default">
+      <![CDATA[update template set isdefault=0;
+      update template set isdefault=1 where id=#value#]]>
+    </update>
+    
+    <select id="template_lazy" resultMap="template_result">
+      <![CDATA[select * from template where id=#value#]]>
+    </select>
+
+    <select id="template_get_list" resultMap="template_result">
+      <![CDATA[select * from template]]>
+    </select>
+
+    <select id="template_get" resultMap="template_result">
+      <![CDATA[select * from template where id=#id#]]>
+    </select>
+
+    <select id="get_default_template" resultMap="template_result">
+      <![CDATA[select * from template where isdefault=1 limit 0,1]]>
+    </select>
+
+  </statements>
+</sqlMap>

@@ -149,6 +149,16 @@ namespace Updata
             }
         }
 
+        /// <summary>
+        /// 向富士康上传接口传送数据
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="plantName"></param>
+        /// <param name="unitName"></param>
+        /// <param name="deviceAddress"></param>
+        /// <param name="deviceTypeCode"></param>
+        /// <param name="dataCollectTime"></param>
+        /// <param name="realDataValueStr"></param>
         private void callwebservice(string url,string plantName, string unitName, string deviceAddress, int deviceTypeCode, string dataCollectTime, string realDataValueStr)
         { 
             //Web服务的地址
@@ -195,6 +205,7 @@ namespace Updata
         private string getInverterRunDataStr(Device device,Collector collector) {
             StringBuilder sb = new StringBuilder();
             //1	逆变器运行状态	　	　	0：待机（waiting）1：正常（normal）3：故障（fault）	1
+
             sb.Append(device.getStatusDefinedValue()).Append(",");
             //2	逆变器输入总功率	W	0.1W
             sb.Append("333.4").Append(",");
@@ -267,6 +278,11 @@ namespace Updata
             return sb.ToString();
         }
 
+        /// <summary>
+        /// 获取设备
+        /// </summary>
+        /// <param name="device"></param>
+        /// <returns></returns>
         private string getHlxRunDataStr(Device device)
         {
             StringBuilder sb = new StringBuilder();
@@ -378,46 +394,87 @@ namespace Updata
         
         private string getAmmeterRunDataStr(Device device)
         {
+
+            string[] dataarr = new string[18];
+            if (device.runData != null && device.runData.rundatastr != null)
+            {
+                analyzeArr(device.runData.rundatastr, dataarr);
+            }
+
+
             StringBuilder sb = new StringBuilder();
             
             //1	設備状态			"0：待机（waiting）1：正常（normal）3：故障（fault）"		1
             sb.Append(device.getStatusDefinedValue()).Append(",");
-            //2	有功功率	W	0.1W		有功功率	46095
-            sb.Append("46095").Append(",");
-            //3	无功功率	Var	0.1Var		無功功率	6982.5
-            sb.Append("6982.5").Append(",");
-            //4	视在功率	VA	0.1VA		視在功率	46597.5
-            sb.Append("46597.5").Append(",");
-            //5	有功电量	KWH	0.1KWH		有功電量	48366.16
-            sb.Append("48366.16").Append(",");
-            //6	无功电量	KVarh	0.1KVarh		無功電量	1393.7
-            sb.Append("1393.7").Append(",");
-            //7	功率因数				系統功率因素	0.9892
-            sb.Append("0.9892").Append(",");
-            //8	波有功電量	KWH	0.1KWH		波有功電量	1.17
-            sb.Append("1.17").Append(",");
-            //9	峰有功電量	KWH	0.1KWH		峰有功電量	17113.46
-            sb.Append("17113.46").Append(",");
-            //10	谷有功電量	KWH	0.1KWH		谷有功電量	1832.39
-            sb.Append("1832.39").Append(",");
-            //11	平有功電量	KWH	0.1KWH		平有功電量	29418.38
-            sb.Append("29418.38").Append(",");
-            //12	故障代碼			請提供故障代碼對照表	E0030	
-            sb.Append("21504").Append(",");
-            //13	壓量程U0				壓量程U0	250
-            sb.Append("250").Append(",");
-            //14	流量程I0				流量程I0	5
-            sb.Append("5").Append(",");
-            //15	壓比UBB				壓比UBB	1
-            sb.Append("1").Append(",");
-            //16	流比IBB				流比IBB	100
-            sb.Append("100").Append(",");
-            //17	CEIL1				CEIL1	0
-            sb.Append("0").Append(",");
-            //18	CEIL2				CEIL2	0
-            sb.Append("0");
+            string value = "";
+            for (int i = 0; i < dataarr.Length; i++)
+            {
+                if (dataarr[i] != null)
+                {
+                    value = dataarr[i];
+                }
+                sb.Append(value);
+                if(i<dataarr.Length-1){
+                    sb.Append(",");
+                }
+            }
+            ////2	有功功率	W	0.1W		有功功率	46095
+            //sb.Append("46095").Append(",");
+            ////3	无功功率	Var	0.1Var		無功功率	6982.5
+            //sb.Append("6982.5").Append(",");
+            ////4	视在功率	VA	0.1VA		視在功率	46597.5
+            //sb.Append("46597.5").Append(",");
+            ////5	有功电量	KWH	0.1KWH		有功電量	48366.16
+            //sb.Append("48366.16").Append(",");
+            ////6	无功电量	KVarh	0.1KVarh		無功電量	1393.7
+            //sb.Append("1393.7").Append(",");
+            ////7	功率因数				系統功率因素	0.9892
+            //sb.Append("0.9892").Append(",");
+            ////8	波有功電量	KWH	0.1KWH		波有功電量	1.17
+            //sb.Append("1.17").Append(",");
+            ////9	峰有功電量	KWH	0.1KWH		峰有功電量	17113.46
+            //sb.Append("17113.46").Append(",");
+            ////10	谷有功電量	KWH	0.1KWH		谷有功電量	1832.39
+            //sb.Append("1832.39").Append(",");
+            ////11	平有功電量	KWH	0.1KWH		平有功電量	29418.38
+            //sb.Append("29418.38").Append(",");
+            ////12	故障代碼			請提供故障代碼對照表	E0030	
+            //sb.Append("21504").Append(",");
+            ////13	壓量程U0				壓量程U0	250
+            //sb.Append("250").Append(",");
+            ////14	流量程I0				流量程I0	5
+            //sb.Append("5").Append(",");
+            ////15	壓比UBB				壓比UBB	1
+            //sb.Append("1").Append(",");
+            ////16	流比IBB				流比IBB	100
+            //sb.Append("100").Append(",");
+            ////17	CEIL1				CEIL1	0
+            //sb.Append("0").Append(",");
+            ////18	CEIL2				CEIL2	0
+            //sb.Append("0");
             return sb.ToString();
 
         }
+
+        private void analyzeArr(string rundatastr, string[] dataarr) { 
+
+
+                string[] rundatas = rundatastr.Split('#');
+                string[] datas = null;
+                string key="";
+                string value="":
+                foreach (string data in rundatas)
+                {
+                    datas = data.Split(':');
+                    key = datas[0];
+                    value = datas[1];
+                    if(map.containkee(key)){
+                        int index = map.get(key);
+                        dataarr[index]=value;
+                    }
+                }
+                            
+        }
+
     }
 }

@@ -158,24 +158,6 @@
     <None Include="bin\Debug\Updata.vshost.exe.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\webapp\Common\Common.csproj">
-      <Project>{6AE1548A-E450-4197-8666-3D31D09527FD}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\webapp\domain\Domain.csproj">
-      <Project>{62D09DAB-D223-4BD0-9FDD-F3A8F52B8510}</Project>
-      <Name>Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\webapp\Persistence\Persistence.csproj">
-      <Project>{46EF4BEC-0CF6-40C4-8D55-DBEEAB0E12F3}</Project>
-      <Name>Persistence</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\webapp\service\Service.csproj">
-      <Project>{326C59B0-0FED-4B56-BE49-8149877228B5}</Project>
-      <Name>Service</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <COMReference Include="MSXML2">
       <Guid>{F5078F18-C551-11D3-89B9-0000F81FE221}</Guid>
       <VersionMajor>6</VersionMajor>
@@ -184,6 +166,24 @@
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\webapp\Common\Common.csproj">
+      <Project>{6AE1548A-E450-4197-8666-3D31D09527FD}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\webapp\domain\Domain.csproj">
+      <Project>{62D09DAB-D223-4BD0-9FDD-F3A8F52B8510}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\webapp\Persistence\Persistence.csproj">
+      <Project>{46EF4BEC-0CF6-40C4-8D55-DBEEAB0E12F3}</Project>
+      <Name>Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\webapp\service\Service.csproj">
+      <Project>{326C59B0-0FED-4B56-BE49-8149877228B5}</Project>
+      <Name>Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "BankDemo", "BankDemo\BankDemo.vdproj", "{FADC4AEF-34B6-4B12-A1E8-E0569B1EB85C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sungrow_demo", "..\sungrow_demo\sungrow_demo\sungrow_demo.csproj", "{C16B83DB-5617-4774-8135-40C5E4DDEE81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sungrow_touch", "..\sungrow_touch\sungrow_touch\sungrow_touch.csproj", "{8355DAFB-4377-41DB-8257-FD072EDA3E61}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FADC4AEF-34B6-4B12-A1E8-E0569B1EB85C}.Debug|x86.ActiveCfg = Debug
+		{FADC4AEF-34B6-4B12-A1E8-E0569B1EB85C}.Debug|x86.Build.0 = Debug
+		{FADC4AEF-34B6-4B12-A1E8-E0569B1EB85C}.Release|x86.ActiveCfg = Release
+		{FADC4AEF-34B6-4B12-A1E8-E0569B1EB85C}.Release|x86.Build.0 = Release
+		{C16B83DB-5617-4774-8135-40C5E4DDEE81}.Debug|x86.ActiveCfg = Debug|x86
+		{C16B83DB-5617-4774-8135-40C5E4DDEE81}.Debug|x86.Build.0 = Debug|x86
+		{C16B83DB-5617-4774-8135-40C5E4DDEE81}.Release|x86.ActiveCfg = Release|x86
+		{C16B83DB-5617-4774-8135-40C5E4DDEE81}.Release|x86.Build.0 = Release|x86
+		{8355DAFB-4377-41DB-8257-FD072EDA3E61}.Debug|x86.ActiveCfg = Debug|x86
+		{8355DAFB-4377-41DB-8257-FD072EDA3E61}.Debug|x86.Build.0 = Debug|x86
+		{8355DAFB-4377-41DB-8257-FD072EDA3E61}.Release|x86.ActiveCfg = Release|x86
+		{8355DAFB-4377-41DB-8257-FD072EDA3E61}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

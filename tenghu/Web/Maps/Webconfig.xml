@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Webconfig" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="Webconfig" type="Cn.Loosoft.Zhisou.Tenghu.Domain.Webconfig, Domain" />
+  </alias>
+
+  <resultMaps>
+
+  </resultMaps>
+  
+  
+  <cacheModels>
+
+  </cacheModels>
+  
+  
+  <statements>
+  
+
+    <select id="webconfig_get_list"  resultClass="Webconfig">
+      select *  from  webconfig
+    </select>
+    
+    <select id="webconfig_get"  resultClass="Webconfig">
+      select *  from  webconfig limit 0,1
+    </select>
+
+
+    <update id="webconfig_update">
+      update  webconfig set name=#name#,domain=#domain#,beian=#beian#,title=#title#,keyword=#keyword#,descr=#descr#,tel=#tel# where id=#id#
+    </update>
+
+
+    <insert id="webconfig_insert">
+      insert into  webconfig (name,domain,beian,title,keyword,descr,tel) values (#name#,#domain#,#beian#,#title#,#keyword#,#descr#,#tel#)
+    </insert>
+  </statements>
+</sqlMap>

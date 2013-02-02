@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Video" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="Video" type="Cn.Loosoft.Zhisou.Tenghu.Domain.Video, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="videoresult" class="Video">
+      <result property="id"			column="id"/>
+      <result property="name"			column="name"/>
+      <result property="descr"			column="descr"/>
+      <result property="path"			column="path"/>
+      <result property="img"			column="img"/>
+      <result property="isdisplay"			column="isdisplay"/>
+      <result property="sortorder"			column="sortorder"/>
+      <result property="category"	lazyLoad="true"	column="categoryid" select="category_get_lazy" />
+
+    </resultMap>
+  </resultMaps>
+  
+  
+  <cacheModels>
+
+  </cacheModels>
+  
+  
+  <statements>
+    
+    <select id="video_get"  resultMap="videoresult">
+      select *  from  video where id=#id#
+    </select>
+
+    <select id="video_get_list"  resultMap="videoresult">
+      select *  from  video order by categoryid
+    </select>
+
+    <select id="video_get_list_category"  resultMap="videoresult">
+      select *  from  video where categoryid=#value#
+    </select>
+    
+    
+
+    <update id="video_update" >
+      update  video set name=#name#,descr=#descr#,path=#path#,isDisplay=#isdisplay#,sortOrder=#sortorder#,img=#img# where id=#id#
+    </update>
+
+    <insert id="video_insert" >
+      insert into  video ( name,descr,categoryid,path,isDisplay,sortOrder,img)  values ( #name#,#descr#,#category.id#,#path#,#isdisplay#,#sortorder#,#img#)
+    </insert>
+    
+    <delete id="video_delete" >
+      delete  from  video where id=#id#
+    </delete>
+
+
+  </statements>
+</sqlMap>

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Product" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="Product" type="Cn.Loosoft.Zhisou.Tenghu.Domain.Product, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="productresult" class="Product">
+      <result property="id"			column="id"/>
+      <result property="pid"			column="pid"/>
+      <result property="name"			column="name"/>
+      <result property="descr"			column="descr"/>
+      <result property="isdisplay"			column="isdisplay"/>
+      <result property="createtime"			column="createtime"/>
+      <result property="pdfpath"			column="pdfpath"/>
+      <result property="category"	lazyLoad="true"	column="pid" select="category_get_lazy" />
+      <result property="maincategory"	lazyLoad="true"	column="mid" select="category_get_lazy" />
+
+    </resultMap>
+  </resultMaps>
+  
+  
+  <cacheModels>
+
+  </cacheModels>
+  
+  
+  <statements>
+  
+
+    <select id="product_get_list"  resultMap="productresult">
+      select *  from  product order by id desc
+    </select>
+    
+    <select id="product_get_category"  resultMap="productresult">
+      select *  from  product where mid=#value# order by id desc
+    </select>
+    
+    <select id="product_get"  resultMap="productresult">
+      select *  from  product where id=#id# order by id desc
+    </select>
+
+    <select id="product_get_lazy"  resultMap="productresult">
+      select *  from  product where id=#value# order by id desc
+    </select>
+    
+
+    <delete id="product_delete">
+      delete   from  product where id=#id#
+    </delete>
+
+
+
+    <update id="product_update">
+      update  product set name=#name#,mid=#mid#,descr=#descr#,isdisplay=#isdisplay#,createtime=#createtime#,pid=#pid#,pdfpath=#pdfpath# where id=#id#
+    </update>
+
+
+    <insert id="product_insert">
+      insert into  product (name,descr,isdisplay,createtime,pid,mid,pdfpath) values (#name#,#descr#,#isdisplay#,#createtime#,#pid#,#mid#,#pdfpath#)
+    </insert>
+
+    <select id="product_page_list" resultMap="productresult">
+      <![CDATA[  SELECT * from product limit $Start$,$End$]]>
+    </select>
+
+    <select id="product_page_count" resultClass="int">
+      <![CDATA[select count(1) from product]]>
+    </select>
+    
+    
+    
+  </statements>
+</sqlMap>

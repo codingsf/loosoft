@@ -1,0 +1,15 @@
+G:\suninfobankapp\Common\bin\Debug\Common.dll
+G:\suninfobankapp\Common\bin\Debug\Common.pdb
+G:\suninfobankapp\Common\obj\Debug\ResolveAssemblyReference.cache
+G:\suninfobankapp\Common\obj\Debug\Common.dll
+G:\suninfobankapp\Common\obj\Debug\Common.pdb
+G:\tenghu\Common\bin\Debug\Common.dll
+G:\tenghu\Common\bin\Debug\Common.pdb
+G:\tenghu\Common\obj\Debug\ResolveAssemblyReference.cache
+G:\tenghu\Common\obj\Debug\Common.dll
+G:\tenghu\Common\obj\Debug\Common.pdb
+G:\googlecode\tenghu\Common\bin\Debug\Common.dll
+G:\googlecode\tenghu\Common\bin\Debug\Common.pdb
+G:\googlecode\tenghu\Common\obj\Debug\ResolveAssemblyReference.cache
+G:\googlecode\tenghu\Common\obj\Debug\Common.dll
+G:\googlecode\tenghu\Common\obj\Debug\Common.pdb

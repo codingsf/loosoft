@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Zhuanli" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="Zhuanli" type="Cn.Loosoft.Zhisou.Tenghu.Domain.Zhuanli, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="zhuanliresult" class="Zhuanli">
+      <result property="id"			column="id"/>
+      <result property="name"			column="name"/>
+      <result property="type"			column="type"/>
+      <result property="num"			column="num"/>
+      <result property="descr"			column="descr"/>
+      <result property="url"			column="url"/>
+      <result property="category"	lazyLoad="true"	column="type" select="category_get_lazy" />
+    </resultMap>
+  </resultMaps>
+  
+  
+  <cacheModels>
+
+  </cacheModels>
+  
+  
+  <statements>
+    
+    <select id="zhuanli_get_list"  resultMap="zhuanliresult">
+      select *  from  zhuanli order by type
+    </select>
+
+    <select id="zhuanli_get"  resultMap="zhuanliresult">
+      select *  from  zhuanli where id=#id#
+    </select>
+
+    
+    
+
+    <update id="zhuanli_update">
+      update zhuanli set name=#name#,type=#type#,num=#num#,descr=#descr# where id=#id#
+    </update>
+    
+    <delete id="zhuanli_delete">
+      delete from  zhuanli where id=#id#
+    </delete>
+
+    <insert id="zhuanli_insert">
+      insert into  zhuanli (name,type,num,descr,url) values (#name#,#type#,#num#,#descr#,#url#)
+    </insert>
+
+
+    <select id="zhuanli_page_list" resultMap="zhuanliresult">
+      <![CDATA[  SELECT * from zhuanli  order by type limit $Start$,$End$]]>
+    </select>
+
+    <select id="zhuanli_page_count" resultClass="int">
+      <![CDATA[select count(1) from zhuanli]]>
+    </select>
+    
+  
+</statements>
+</sqlMap>

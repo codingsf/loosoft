@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="ServiceInfo" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="ServiceInfo" type="Cn.Loosoft.Zhisou.Tenghu.Domain.ServiceInfo, Domain" />
+  </alias>
+
+  <resultMaps>
+ 
+  </resultMaps>
+  
+  
+  <cacheModels>
+
+  </cacheModels>
+  
+  
+  <statements>
+  
+
+    <select id="serviceinfo_get_list" resultClass="ServiceInfo">
+      select *  from  service where areaid =#areaid#
+    </select>
+
+    <select id="serviceinfo_search" resultClass="ServiceInfo">
+      select *  from  service where addr like "%$value$%"
+    </select>
+
+    
+    
+    <select id="serviceinfo_get_list_type" resultClass="ServiceInfo">
+      select *  from  service where areaid =#aid# and nettypeid=#tid#
+    </select>
+    
+
+    <select id="serviceinfo_get" resultClass="ServiceInfo">
+      select *  from  service where id=#id#
+    </select>
+    
+    <update id="serviceinfo_update"  >
+      update service  set areaid=#areaid#,nettypeid=#nettypeid#,addr=#addr#,post=#post#,tel=#tel#,descr=#descr# ,latitude=#latitude# ,longitude=#longitude#,issale=#issale# where id=#id#
+    </update>
+
+    <delete id="serviceinfo_delete">
+      delete from  service where id=#id#
+    </delete>
+
+    <insert id="serviceinfo_insert">
+      insert into  service (areaid,nettypeid,addr,post,tel,descr,latitude,longitude,issale) values (#areaid#,#nettypeid#,#addr#,#post#,#tel#,#descr#,#latitude# ,#longitude#,#issale#)
+    </insert>
+    
+    <select id="serviceinfo_page_list" resultClass="ServiceInfo">
+      <![CDATA[  SELECT * from service limit $Start$,$End$]]>
+    </select>
+
+    <select id="serviceinfo_page_count" resultClass="int">
+      <![CDATA[select count(1) from service]]>
+    </select>
+    
+  </statements>
+</sqlMap>

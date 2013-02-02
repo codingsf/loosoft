@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Category" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="Category" type="Cn.Loosoft.Zhisou.Tenghu.Domain.Category, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="categoryresult" class="Category">
+      <result property="id"			column="Id"/>
+      <result property="name"			column="name"/>
+      <result property="pid"			column="pid"/>
+      <result property="url"			column="url"/>
+      <result property="isDisplay"			column="isDisplay"/>
+      <result property="sortOrder"			column="sortOrder"/>
+      <result property="descr"			column="descr"/>
+      <result property="ChildCategory"	lazyLoad="true"	column="id" select="select_child_category" />
+    </resultMap>
+  </resultMaps>
+  
+  
+  <cacheModels>
+
+  </cacheModels>
+  
+  
+  <statements>
+    
+    <select id="category_get_list"  resultMap="categoryresult">
+      select *  from  category where pid=0
+    </select>
+
+
+    <select id="category_get"  resultMap="categoryresult">
+      select *  from  category where id=#id#
+    </select>
+    
+    <select id="select_child_category"  resultMap="categoryresult">
+      select *  from  category where pid=#value#
+    </select>
+
+    <delete id="category_delete">
+      delete from  category where id=#id#
+    </delete>
+
+    <update id="category_update">
+      update category set name=#name#,pid=#pid#,url=#url#,isDisplay=#isDisplay#,sortOrder=#sortOrder# ,descr=#descr# where id=#id#
+    </update>
+
+    <select id="category_get_lazy"  resultClass="Category">
+      select *  from  category where id=#value#
+    </select>
+
+    <insert id="category_insert">
+      insert into category (name,pid,isdisplay,descr) values(#name#,#pid#,1,#descr#)
+    </insert>
+</statements>
+</sqlMap>

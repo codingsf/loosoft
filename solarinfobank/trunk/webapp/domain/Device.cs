@@ -441,6 +441,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
         /// <summary>
         /// 取得设备状态吗，0：待机，1正常，3故障
+        /// for foxconn
         /// </summary>
         /// <returns></returns>
         public int getStatusDefinedValue()

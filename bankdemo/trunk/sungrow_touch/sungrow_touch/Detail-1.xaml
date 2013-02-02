@@ -1,0 +1,89 @@
+﻿<Window x:Class="sungrow_touch.Detail_1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="详细页面" Height="768" Width="1366" WindowStartupLocation="CenterScreen" Name="detailWindow" AllowsTransparency="True" WindowStyle="None" Background="#00FFFFFF" Loaded="detailWindow_Loaded" KeyDown="detailWindow_KeyDown">
+    <Grid Margin="0,0,0,0" x:Name="LayoutRoot" Height="768" Width="1366" MouseDown="LayoutRoot_MouseDown">
+        <Grid.Background>
+            <ImageBrush ImageSource="/sungrow_touch;component/Resources/images/bgbg.zh-en.jpg"/>
+        </Grid.Background>
+        <Grid.RenderTransform>
+            <MatrixTransform></MatrixTransform>
+        </Grid.RenderTransform>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="197*" />
+            <ColumnDefinition Width="953*" />
+            <ColumnDefinition Width="216*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150*" />
+            <RowDefinition Height="618*" />
+        </Grid.RowDefinitions>
+        <Label Content="" Height="85" Grid.Column="1" FontSize="58" FontFamily="Microsoft YaHei" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="lblPlantName" Foreground="#19181D"   Visibility="Visible" Width="Auto"></Label>
+        <Grid Grid.Row="1" Grid.ColumnSpan="3" Name="gird1" Visibility="Visible" Margin="0,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="63*" />
+                <ColumnDefinition Width="1238*" />
+                <ColumnDefinition Width="65*" />
+            </Grid.ColumnDefinitions>
+            <!--
+            <Image Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"  Height="102" Name="imgPreWindow" Stretch="Fill"  Source="/sungrow_touch;component/Resources/Images/move_left.png" Width="63" MouseLeftButtonDown="imgPreWindow_MouseLeftButtonDown" Visibility="Hidden" />
+            <Image Grid.Row="0" Grid.Column="2"  VerticalAlignment="Center"  Height="102" Name="imgNextWindow" Stretch="Fill"  Source="/sungrow_touch;component/Resources/Images/move_right.png" Width="63" MouseLeftButtonDown="imgNextWindow_KeyDown" Visibility="Visible" />
+            -->
+            <Grid  x:Name="gidPowerGrid" Visibility="Hidden" VerticalAlignment="Top"  Height="535" Grid.Column="1" Margin="2,0,0,0">
+                <Grid x:Name="gidPowerChartContainer"  VerticalAlignment="Center"  Height="380" Margin="33,39,33,88"></Grid>
+                <Label Content="" Height="45" Width="300" FontSize="27" FontFamily="Microsoft YaHei" HorizontalAlignment="Left" Name="lblPowerDate1" VerticalAlignment="Top" Foreground="#19181D"  Margin="285,0,0,0"></Label>
+                <Label Content="" Height="45" Width="165" FontSize="27" FontFamily="Microsoft YaHei" HorizontalAlignment="Left" Name="lblPowerDate2" VerticalAlignment="Top" Foreground="#19181D"  Margin="775,1,0,0"></Label>
+                <Image Height="40" MouseLeftButtonDown="imgPre_MouseLeftButtonDown" HorizontalAlignment="Left" Margin="455,445,0,0" Name="imgPre" Stretch="Fill" VerticalAlignment="Top" Source="/sungrow_touch;component/Resources/Images/02/datel.png" Width="36"/>
+                <Image Height="40" MouseLeftButtonDown="imgNext_MouseLeftButtonDown" HorizontalAlignment="Left" Margin="749,445,0,0" Name="imgNext" Source="/sungrow_touch;component/Resources/Images/02/datert.png" Stretch="Fill" VerticalAlignment="Top" Width="36" />
+                <Image Height="40" HorizontalAlignment="Left" Margin="630,445,0,0" Name="tboxPowerStartDate1" Source="/sungrow_touch;component/Resources/Images/02/dater.png" Stretch="Fill" VerticalAlignment="Top" Width="120"/>
+                <Image Height="40" HorizontalAlignment="Left" Margin="489,445,0,0" Name="tboxPowerStartDate2" Source="/sungrow_touch;component/Resources/Images/02/datelt.png" Stretch="Fill" VerticalAlignment="Top" Width="120"/>
+                <Image Height="2" HorizontalAlignment="Left" Margin="609,465,0,0" Name="tboxPowerStartDate3" Stretch="Fill" VerticalAlignment="Top" Width="21" Source="/sungrow_touch;component/Resources/Images/02/line.png" />
+                <Calendar Height="170" Visibility="Hidden" HorizontalAlignment="Left" Margin="432,275,0,0" Name="calStartDate" VerticalAlignment="Top" Width="180" MouseDown="calStartDate_MouseDown"/>
+                <Calendar Height="170" Visibility="Hidden" HorizontalAlignment="Left" Margin="612,275,0,0" Name="calEndDate" VerticalAlignment="Top" Width="180" />
+                <Label Content="11/11"  Height="40" FontSize="19" HorizontalAlignment="Left" Margin="491,448,0,0" Name="tbxStartDate" VerticalAlignment="Top" MouseLeftButtonDown="tbxStartDate_MouseLeftButtonDown" Tag="2011/11/11" />
+                <Label Content="11/11" Height="40" FontSize="19" HorizontalAlignment="Left" Margin="634,448,0,0" Name="tbxEndDate" VerticalAlignment="Top" MouseLeftButtonDown="tbxEndDate_MouseLeftButtonDown"  Tag="2011/11/11"/>
+            </Grid>
+            <Grid x:Name="gidEnergyGrid" Visibility="Hidden"  VerticalAlignment="Top"  Height="535" Grid.Column="1" Background="#00FFFFFF" Margin="4,0,0,0">
+                <Grid x:Name="gidEnergyChartContainer"  VerticalAlignment="Center"  Height="380" Margin="31,39,0,88" HorizontalAlignment="Left" Width="1170">
+                </Grid>
+                <Label Height="50" Width="Auto" FontSize="27" FontFamily="Microsoft YaHei"  HorizontalAlignment="Center" Name="lblEnergyTitle" VerticalAlignment="Top" Foreground="#19181D" Margin="0,0,0,0"></Label>
+                <Image Height="40"  MouseLeftButtonDown="imgPreEnergy_MouseLeftButtonDown" HorizontalAlignment="Left" Margin="452,445,0,0" Name="imgPreEnergy" Stretch="Fill" VerticalAlignment="Top" Source="/sungrow_touch;component/Resources/Images/02/datel.png" Width="36"/>
+                <Image Height="40"  MouseLeftButtonDown="imgNextEnergy_MouseLeftButtonDown"  HorizontalAlignment="Left" Margin="749,445,0,0" Name="imgNextEnergy" Source="/sungrow_touch;component/Resources/Images/02/datert.png" Stretch="Fill" VerticalAlignment="Top" Width="36" />
+                <Image Height="40" HorizontalAlignment="Left" Margin="630,445,0,0" Name="image3" Source="/sungrow_touch;component/Resources/Images/02/dater.png" Stretch="Fill" VerticalAlignment="Top" Width="120" />
+                <Image Height="40" HorizontalAlignment="Left" Margin="488,445,0,0" Name="image4" Source="/sungrow_touch;component/Resources/Images/02/datelt.png" Stretch="Fill" VerticalAlignment="Top" Width="120" />
+                <Image Height="2" HorizontalAlignment="Left" Margin="609,465,0,0" Name="image5" Stretch="Fill" VerticalAlignment="Top" Width="21" Source="/sungrow_touch;component/Resources/Images/02/line.png" />
+                <Calendar Height="170"   Visibility="Hidden" HorizontalAlignment="Left" Margin="432,275,0,0" Name="cal10Start" VerticalAlignment="Top" Width="180"  MouseDown="cal10Start_MouseDown" Panel.ZIndex="1" />
+                <Calendar Height="170"   Visibility="Hidden" HorizontalAlignment="Left" Margin="612,275,0,0" Name="cal10End" VerticalAlignment="Top" Width="180"  MouseDown="cal10End_MouseDown" Panel.ZIndex="1" />
+                <Label Content="11/11" Height="40" FontSize="19" HorizontalAlignment="Right" Margin="0,448,626,0" Name="tbx10StartDate" VerticalAlignment="Top" MouseLeftButtonDown="tbx10StartDate_MouseLeftButtonDown" Width="121" />
+                <Label Content="11/11" Height="40" FontSize="19" HorizontalAlignment="Left" Margin="634,448,0,0" Name="tbx10EndDate" VerticalAlignment="Top" MouseLeftButtonDown="tbx10EndDate_MouseLeftButtonDown" Width="115" />
+            </Grid>
+            <Grid x:Name="gidPlantInfo" VerticalAlignment="Top"  Height="551" Grid.Column="1" Margin="12,0,2,0">
+                <!--
+                <Image Height="420" Name="imgPlantBg" Stretch="Fill" VerticalAlignment="Top" Width="1013" Source="/sungrow_touch;component/Resources/Images/01/sj_bg.png" Margin="39,38,92,0" />
+                -->
+                <Label Content="" FontFamily="Microsoft YaHei" Height="40" HorizontalAlignment="Left" Margin="145,271,0,0" Name="lblinstallData" VerticalAlignment="Top" FontSize="24"  Foreground="#19181D" Width="200" />
+                <Label Content="" FontFamily="Microsoft YaHei" Height="40" HorizontalAlignment="Left" Margin="145,316,0,0" Name="lblDesignPower" VerticalAlignment="Top" FontSize="24"  Foreground="#19181D" Width="200" />
+                <Label Content="" FontFamily="Microsoft YaHei" Height="40" HorizontalAlignment="Left" Margin="145,359,0,0" Name="lblStreet" VerticalAlignment="Top" FontSize="24"  Foreground="#19181D" Width="200" />
+                <Label Content="" FontFamily="Microsoft YaHei" Height="40" HorizontalAlignment="Left" Margin="145,404,0,0" Name="lblLocation" VerticalAlignment="Top" FontSize="24"  Foreground="#19181D" Width="200" />
+                <Label Content="" FontFamily="Microsoft YaHei" Height="40" HorizontalAlignment="Left" Margin="145,448,0,0" Name="lblinverterCount" VerticalAlignment="Top" FontSize="24"  Foreground="#19181D" Width="200" />
+                <TextBlock FontFamily="Microsoft YaHei" Height="70" HorizontalAlignment="Left" Margin="145,492,0,0" Name="lblinvertertypeStr" VerticalAlignment="Top" FontSize="24"  Foreground="#19181D" Width="200" TextWrapping="Wrap" ></TextBlock>
+                <Canvas Height="36" HorizontalAlignment="Left" Margin="485,84,0,0" Name="todayEnCanvas" VerticalAlignment="Top" Width="275" />
+                <Canvas Height="36" HorizontalAlignment="left" Margin="485,242,0,0" Name="curPowerCanvas" VerticalAlignment="Top" Width="275" />
+                <Canvas Height="36" HorizontalAlignment="Left" Margin="933,84,0,0" Name="ttlEnCanvas" VerticalAlignment="Top" Width="268" />
+                <Canvas Height="36" HorizontalAlignment="Left" Margin="933,242,0,0" Name="co2Canvas" VerticalAlignment="Top" Width="268" />
+                <Canvas Height="36" HorizontalAlignment="Left" Margin="485,396,0,0" Name="imageCanvas" VerticalAlignment="Top" Width="275" />
+                <Canvas Height="36" HorizontalAlignment="Left" Margin="933,396,0,0" Name="tmCanvas" VerticalAlignment="Top" Width="268" />
+                <Image Height="216" HorizontalAlignment="Left" Margin="14,45,0,0" Name="imgPlant" Stretch="Fill" VerticalAlignment="Top" Width="300" Source="/sungrow_touch;component/Resources/Images/img01.jpg" Visibility="Hidden" />
+            </Grid>
+            <Image Height="32" HorizontalAlignment="Left" Name="imageChange1" Stretch="Fill" VerticalAlignment="Top" Width="32" Source="/sungrow_touch;component/Resources/Images/szbg021.png" Margin="530,516,0,0" Grid.Column="1" MouseDown="imageChange1_MouseDown" Visibility="Hidden"/>
+            <Image Height="32" HorizontalAlignment="Left" Name="imageChange2" Stretch="Fill" VerticalAlignment="Top" Width="32" Source="/sungrow_touch;component/Resources/Images/szbg021.png" Margin="580,516,0,0" Grid.Column="1" MouseDown="imageChange2_MouseDown" Visibility="Hidden"/>
+            <Image Height="32" HorizontalAlignment="Left" Name="imageChange3" Stretch="Fill" VerticalAlignment="Top" Width="32" Source="/sungrow_touch;component/Resources/Images/szbg021.png" Margin="630,516,0,0" Grid.Column="1" MouseDown="imageChange3_MouseDown" Visibility="Hidden"/>
+            <Image Height="32" HorizontalAlignment="Left" Name="imageChange4" Stretch="Fill" VerticalAlignment="Top" Width="32" Source="/sungrow_touch;component/Resources/Images/szbg021.png" Margin="680,516,0,0" Grid.Column="1" MouseDown="imageChange4_MouseDown" Visibility="Hidden"/>
+
+            <Image Margin="1039,573,1,8" Width="106" Height="37" Name="imgContinue" Stretch="Fill" Source="/sungrow_touch;component/Resources/Images/bottom_back.png" MouseDown="imgContinue_MouseLeftButtonDown" Grid.Column="1" />
+            <Image Margin="1200,573,1,8" Width="136" Height="37" Name="imgIndex" Stretch="Fill" Source="/sungrow_touch;component/Resources/Images/bottom_back.png" MouseDown="imgIndex_MouseDown" Grid.Column="1" />
+        </Grid>
+        <Image Grid.RowSpan="2" Height="50" HorizontalAlignment="Left" Margin="30,45,0,0" Name="imginsideLogo" Stretch="Fill" VerticalAlignment="Top"  Grid.ColumnSpan="2" Source="/sungrow_touch;component/Resources/images/insidelogo.png" Width="260" />
+    </Grid>
+
+</Window>

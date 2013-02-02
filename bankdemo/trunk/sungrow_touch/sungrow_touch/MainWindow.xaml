@@ -1,0 +1,7 @@
+﻿<Window x:Class="sungrow_touch.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="468" Width="624"  AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" Name="WelcomeWindow" Background="#00FFFFFF">
+    <Grid x:Name="LayoutRoot"  Width="500" Height="400">
+    </Grid>
+</Window>

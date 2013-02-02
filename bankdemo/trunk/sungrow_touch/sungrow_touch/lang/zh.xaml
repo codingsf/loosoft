@@ -1,0 +1,7 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
+    <s:String x:Key="ZH_ChartYesterday">昨天</s:String>
+    <s:String x:Key="ZH_ChartToday">今天</s:String>
+    <s:String x:Key="ZH_ChartWeekEnergy">近7日发电量</s:String>
+    <s:String x:Key="ZH_ChartMonthEnergy">近31日发电量</s:String>
+</ResourceDictionary>

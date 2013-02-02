@@ -231,5 +231,22 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             }
             return sb.ToString();
         }
+
+        /// <summary>
+        /// 将数值转成指定位数的字符串，用0补齐
+        /// </summary>
+        /// <param name="num"></param>
+        /// <param name="bits"></param>
+        /// <returns></returns>
+        public static string getstr(string numstr, int bits) {
+            if (numstr.Length > bits) return numstr;
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < bits; i++)
+            {
+                sb.Append("0");
+            }
+            sb.Append(numstr);
+            return sb.ToString(sb.Length - bits,bits);
+        }
     }
 }

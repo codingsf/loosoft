@@ -625,20 +625,29 @@ namespace Updata
             return sb.ToString();
         }
 
-
+        /// <summary>
+        /// 比较时间 如果一致返回true 否则返回false 更新最后时间
+        /// </summary>
+        /// <param name="plantId"></param>
+        /// <param name="lastSendTime"></param>
+        /// <returns></returns>
         private bool compareSendTime(string plantId, DateTime lastSendTime)
         {
-            DateTime outTime;
-            if (presendtime.ContainsKey(plantId))
+            try
             {
-                presendtime.TryGetValue(plantId, out outTime);
-                if (lastSendTime.Equals(outTime))
-                    return true;
-                presendtime[plantId] = lastSendTime;
+                DateTime outTime;
+                if (presendtime.ContainsKey(plantId))
+                {
+                    presendtime.TryGetValue(plantId, out outTime);
+                    if (lastSendTime.Equals(outTime))
+                        return true;
+                    presendtime[plantId] = lastSendTime;
+                    return false;
+                }
+                presendtime.Add(new KeyValuePair<string, DateTime>(plantId, lastSendTime));
                 return false;
             }
-            presendtime.Add(new KeyValuePair<string, DateTime>(plantId, lastSendTime));
-            return false;
+            catch { return false; }
         }
     }
 }

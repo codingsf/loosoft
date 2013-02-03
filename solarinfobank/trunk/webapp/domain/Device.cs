@@ -448,7 +448,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             if (this.runData == null)
                 return 0;
-
+            //if (DateTime.Now.AddDays(-1) > this.runData.updateTime)
+                //return 3;
             float value = 0;
 
             if (this.deviceTypeCode == DeviceData.INVERTER_CODE)
@@ -467,7 +468,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             {
                 value = this.getMonitorValue(MonitorType.MIC_BUSBAR_STATUS);
             }
-
+            
             if (value.Equals("-"))
             {
                 if (DateTime.Now.AddDays(-1) > this.runData.updateTime)
@@ -476,7 +477,16 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                     return 1;
             }
             else
-                return 1;
+            {
+                int statusvalue= (int)value;
+                if (statusvalue == ErrorItem.error_daiji)
+                    return 0;
+                else if (statusvalue == ErrorItem.error_run)
+                {
+                    return 1;
+                }
+                return 3;
+            }
         }
 
         /// <summary>

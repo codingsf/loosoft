@@ -193,18 +193,20 @@ namespace Updata
                 //plantName = plant.parentPlant.name;
                 //}
                 //}
-                if (device != null && pu != null)
+                if (device != null && pu != null &&　device.runData != null)
                 {
                     string deviceId = string.Format("{0}-{1}-{2}", pu.displayname, device.deviceTypeCode, StringUtil.getstr(device.deviceAddress, 3));
 
                     try
                     {
-                        if (!compareSendTime(deviceId, device.runData.updateTime))
+                        //发送过的不再发送了
+                        bool isSended = compareSendTime(deviceId, device.runData.updateTime);
+                        if (!isSended)
                             handleDevice(device, pu, plantName);
                         else
                         {
-                            Console.WriteLine("-----设备" + deviceId + device.runData.updateTime.ToString() + "已经发送过" + "-------------");
-                            FileLogUtil.info("-----设备" + deviceId + device.runData.updateTime.ToString() + "已经发送过" + "-------------");
+                            Console.WriteLine("-----设备" + deviceId + "已经发送过,上次数据采集时间：" + device.runData.updateTime.ToString() + "-------------");
+                            FileLogUtil.info("-----设备" + deviceId + "已经发送过，上次数据采集时间：" + device.runData.updateTime.ToString() + "-------------");
                         }
                     }
                     catch (Exception e)

@@ -11,7 +11,7 @@
           <AspNetDebugging>True</AspNetDebugging>
           <NativeDebugging>False</NativeDebugging>
           <SQLDebugging>False</SQLDebugging>
-          <PublishCopyOption>ProjectFiles</PublishCopyOption>
+          <PublishCopyOption>RunFiles</PublishCopyOption>
           <PublishTargetLocation>D:\publish\tenghu\</PublishTargetLocation>
           <PublishDeleteAllFiles>True</PublishDeleteAllFiles>
           <PublishCopyAppData>True</PublishCopyAppData>

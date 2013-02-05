@@ -13,13 +13,15 @@ namespace Web.Controllers
     {
         public ActionResult Index()
         {
-            ViewData["images"] = ImageService.GetInstance().GetList();
-            ViewData["jianjie"] = CategoryService.GetInstance().Get(8);
-            ViewData["news"] = NewsService.GetInstance().GetHotNews(4);
-
+            LinqDAO.CategoryDAL dal = new LinqDAO.CategoryDAL();
+            
+            //ViewData["images"] = ImageService.GetInstance().GetList();
+            //ViewData["jianjie"] = CategoryService.GetInstance().Get(8);
+            //ViewData["news"] = NewsService.GetInstance().GetHotNews(4);
+            ViewData["data"] = new LinqDAO.CategoryDAL().GetList();
             return View();
         }
-
+        /*
 
         public ActionResult Search(string keyword)
         {
@@ -44,6 +46,6 @@ namespace Web.Controllers
             return PartialView();
         }  
       
-
+        */
     }
 }

@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "service\Service.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{863CE0C0-D865-4028-B026-5DBBC0B47756}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLinq", "DataLinq\DataLinq.csproj", "{F327CA5A-EF81-4D3B-ABC1-5487FCF511D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqDAO", "LinqDAO\LinqDAO.csproj", "{B15E0783-264E-48BC-A4DF-102AC05D49E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,14 @@ Global
 		{863CE0C0-D865-4028-B026-5DBBC0B47756}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{863CE0C0-D865-4028-B026-5DBBC0B47756}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{863CE0C0-D865-4028-B026-5DBBC0B47756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F327CA5A-EF81-4D3B-ABC1-5487FCF511D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F327CA5A-EF81-4D3B-ABC1-5487FCF511D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F327CA5A-EF81-4D3B-ABC1-5487FCF511D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F327CA5A-EF81-4D3B-ABC1-5487FCF511D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B15E0783-264E-48BC-A4DF-102AC05D49E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B15E0783-264E-48BC-A4DF-102AC05D49E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B15E0783-264E-48BC-A4DF-102AC05D49E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B15E0783-264E-48BC-A4DF-102AC05D49E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

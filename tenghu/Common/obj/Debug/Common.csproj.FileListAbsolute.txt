@@ -13,3 +13,8 @@ G:\googlecode\tenghu\Common\bin\Debug\Common.pdb
 G:\googlecode\tenghu\Common\obj\Debug\ResolveAssemblyReference.cache
 G:\googlecode\tenghu\Common\obj\Debug\Common.dll
 G:\googlecode\tenghu\Common\obj\Debug\Common.pdb
+G:\googlecode\tenghucode\Common\bin\Debug\Common.dll
+G:\googlecode\tenghucode\Common\bin\Debug\Common.pdb
+G:\googlecode\tenghucode\Common\obj\Debug\ResolveAssemblyReference.cache
+G:\googlecode\tenghucode\Common\obj\Debug\Common.dll
+G:\googlecode\tenghucode\Common\obj\Debug\Common.pdb

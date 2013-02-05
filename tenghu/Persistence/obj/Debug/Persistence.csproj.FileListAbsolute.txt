@@ -25,3 +25,12 @@ G:\googlecode\tenghu\Persistence\bin\Debug\Domain.pdb
 G:\googlecode\tenghu\Persistence\obj\Debug\ResolveAssemblyReference.cache
 G:\googlecode\tenghu\Persistence\obj\Debug\Persistence.dll
 G:\googlecode\tenghu\Persistence\obj\Debug\Persistence.pdb
+G:\googlecode\tenghucode\Persistence\bin\Debug\Persistence.dll
+G:\googlecode\tenghucode\Persistence\bin\Debug\Persistence.pdb
+G:\googlecode\tenghucode\Persistence\bin\Debug\Common.dll
+G:\googlecode\tenghucode\Persistence\bin\Debug\Domain.dll
+G:\googlecode\tenghucode\Persistence\bin\Debug\Common.pdb
+G:\googlecode\tenghucode\Persistence\bin\Debug\Domain.pdb
+G:\googlecode\tenghucode\Persistence\obj\Debug\ResolveAssemblyReference.cache
+G:\googlecode\tenghucode\Persistence\obj\Debug\Persistence.dll
+G:\googlecode\tenghucode\Persistence\obj\Debug\Persistence.pdb

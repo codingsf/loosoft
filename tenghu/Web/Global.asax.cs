@@ -24,7 +24,7 @@ namespace Web
 
             routes.MapRoute(
                 "Default", // Route name
-                "{controller}/{action}/{id}", // URL with parameters
+                "{controller}.aspx/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
 
@@ -36,7 +36,7 @@ namespace Web
 
             RegisterRoutes(RouteTable.Routes);
 
-            Application["webconfig"] = WebconfigService.GetInstance().Get();
+          //  Application["webconfig"] = WebconfigService.GetInstance().Get();
         }
 
         protected void Application_Error(object sender, EventArgs e)

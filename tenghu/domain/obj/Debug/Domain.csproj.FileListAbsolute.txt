@@ -20,3 +20,10 @@ G:\googlecode\tenghu\domain\bin\Debug\Common.pdb
 G:\googlecode\tenghu\domain\obj\Debug\ResolveAssemblyReference.cache
 G:\googlecode\tenghu\domain\obj\Debug\Domain.dll
 G:\googlecode\tenghu\domain\obj\Debug\Domain.pdb
+G:\googlecode\tenghucode\domain\bin\Debug\Domain.dll
+G:\googlecode\tenghucode\domain\bin\Debug\Domain.pdb
+G:\googlecode\tenghucode\domain\bin\Debug\Common.dll
+G:\googlecode\tenghucode\domain\bin\Debug\Common.pdb
+G:\googlecode\tenghucode\domain\obj\Debug\ResolveAssemblyReference.cache
+G:\googlecode\tenghucode\domain\obj\Debug\Domain.dll
+G:\googlecode\tenghucode\domain\obj\Debug\Domain.pdb

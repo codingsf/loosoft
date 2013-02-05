@@ -1,0 +1,6 @@
+G:\googlecode\tenghucode\DataLinq\bin\Debug\DataLinq.dll.config
+G:\googlecode\tenghucode\DataLinq\bin\Debug\DataLinq.dll
+G:\googlecode\tenghucode\DataLinq\bin\Debug\DataLinq.pdb
+G:\googlecode\tenghucode\DataLinq\obj\Debug\ResolveAssemblyReference.cache
+G:\googlecode\tenghucode\DataLinq\obj\Debug\DataLinq.dll
+G:\googlecode\tenghucode\DataLinq\obj\Debug\DataLinq.pdb

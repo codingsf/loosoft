@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="host6728845" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=win-hyms2k-bjzw01.xincache.cn;Initial Catalog=host6728845;Persist Security Info=True;User ID=host6728845" SettingsObjectName="DataLinq.Properties.Settings" SettingsPropertyName="host6728845ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="host6728845.category" Member="Category">
+    <Type Name="Category">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="pid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="url" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="isdisplay" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="sortorder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="descr" Type="System.String" DbType="VarChar(2550)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="host6728845.webconfig" Member="webconfig">
+    <Type Name="webconfig">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="domain" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="beian" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="title" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="keyword" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="descr" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="tel" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="host6728845.video" Member="video">
+    <Type Name="video">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="descr" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="path" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="isdisplay" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="sortorder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="img" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="categoryid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="host6728845.image" Member="Image">
+    <Type Name="Image">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="pic" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="url" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="host6728845.job" Member="job">
+    <Type Name="job">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="descr" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="xueli" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="jyan" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="renshu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="displayday" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="xshui" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="zhuanye" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="host6728845.link" Member="link">
+    <Type Name="link">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="url" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="isdisplay" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="host6728845.orderinfo" Member="orderinfo">
+    <Type Name="orderinfo">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="area" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="categoryid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="productid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="time" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="payment" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="uname" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="company" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="tel" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="address" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="comment" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="type" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="host6728845.zhuanli" Member="zhuanli">
+    <Type Name="zhuanli">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="type" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="num" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="descr" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="url" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="host6728845.product" Member="product">
+    <Type Name="product">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="mid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="pid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="descr" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="isdisplay" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="createtime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="pdfpath" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="host6728845.manager" Member="manager">
+    <Type Name="manager">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="islocked" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="issuper" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="host6728845.service" Member="service">
+    <Type Name="service">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="areaid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nettypeid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="addr" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="post" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="tel" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="descr" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="issale" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="latitude" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="longitude" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="host6728845.news" Member="news">
+    <Type Name="news">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="categoryid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="descr" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="publicuser" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="publictime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ishot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="sortorder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

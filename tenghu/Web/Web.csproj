@@ -71,15 +71,7 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AboutController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\AuthController.cs" />
-    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\NewsController.cs" />
-    <Compile Include="Controllers\PatentController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -103,13 +95,17 @@
       <Project>{6AE1548A-E450-4197-8666-3D31D09527FD}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataLinq\DataLinq.csproj">
+      <Project>{F327CA5A-EF81-4D3B-ABC1-5487FCF511D9}</Project>
+      <Name>DataLinq</Name>
+    </ProjectReference>
     <ProjectReference Include="..\domain\Domain.csproj">
       <Project>{62D09DAB-D223-4BD0-9FDD-F3A8F52B8510}</Project>
       <Name>Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Persistence\Persistence.csproj">
-      <Project>{46EF4BEC-0CF6-40C4-8D55-DBEEAB0E12F3}</Project>
-      <Name>Persistence</Name>
+    <ProjectReference Include="..\LinqDAO\LinqDAO.csproj">
+      <Project>{B15E0783-264E-48BC-A4DF-102AC05D49E3}</Project>
+      <Name>LinqDAO</Name>
     </ProjectReference>
     <ProjectReference Include="..\service\Service.csproj">
       <Project>{326C59B0-0FED-4B56-BE49-8149877228B5}</Project>
@@ -955,69 +951,7 @@
     <Content Include="video\pic\20110915023910.jpg" />
     <Content Include="video\pic\20110915024208.jpg" />
     <Content Include="video\pic\default\default_video.jpg" />
-    <Content Include="Views\Admin\Index.aspx" />
-    <Content Include="Views\Admin\AddNew.aspx" />
-    <Content Include="Views\Admin\AddProduct.aspx" />
-    <Content Include="Views\Admin\Image.aspx" />
-    <Content Include="Views\Admin\Qiye.aspx" />
-    <Content Include="Views\Admin\Categories.aspx" />
-    <Content Include="Views\Admin\Order.aspx" />
-    <Content Include="Views\Admin\Video.aspx" />
-    <Content Include="Views\Admin\Videos.aspx" />
-    <Content Include="Views\Admin\Service.aspx" />
-    <Content Include="Views\Admin\ChildCategory.aspx" />
-    <Content Include="Views\Admin\ServiceList.aspx" />
-    <Content Include="Views\Admin\OrderView.aspx" />
-    <Content Include="Views\Admin\Banner.aspx" />
-    <Content Include="Views\Auth\Login.aspx" />
-    <Content Include="Views\Admin\WebConfig.aspx" />
-    <Content Include="Views\Admin\My.aspx" />
-    <Content Include="Views\Admin\AddJob.aspx" />
-    <Content Include="Views\Admin\AddUser.aspx" />
-    <Content Include="Views\Admin\Links.aspx" />
-    <Content Include="Views\Admin\Zhuanli.aspx" />
-    <Content Include="Views\Admin\News.aspx" />
-    <Content Include="Views\Admin\Jobs.aspx" />
-    <Content Include="Views\Admin\ZhuanliList.aspx" />
-    <Content Include="Views\Admin\Products.aspx" />
-    <Content Include="Views\About\Index.aspx" />
-    <Content Include="Views\Contact\Index.aspx" />
-    <Content Include="Views\Contact\Info.aspx" />
     <Content Include="Views\Home\Index.aspx" />
-    <Content Include="Views\About\More.aspx" />
-    <Content Include="Views\Contact\Job.aspx" />
-    <Content Include="Views\Contact\JobInfo.aspx" />
-    <Content Include="Views\Home\Search.aspx" />
-    <Content Include="Views\News\Index.aspx" />
-    <Content Include="Views\News\Info.aspx" />
-    <Content Include="Views\News\More.aspx" />
-    <Content Include="Views\News\Video.aspx" />
-    <Content Include="Views\News\Videoinfo.aspx" />
-    <Content Include="Views\Patent\Filter.aspx" />
-    <Content Include="Views\Patent\Info.aspx" />
-    <Content Include="Views\Patent\Videoinfo.aspx" />
-    <Content Include="Views\Product\List.aspx" />
-    <Content Include="Views\Product\Info.aspx" />
-    <Content Include="Views\Product\View.aspx" />
-    <Content Include="Views\Product\Buy.aspx" />
-    <Content Include="Views\Product\Success.aspx" />
-    <Content Include="Views\Service\Download.aspx" />
-    <Content Include="Views\Service\Info.aspx" />
-    <Content Include="Views\Service\Video.aspx" />
-    <Content Include="Views\Service\Index.aspx" />
-    <Content Include="Views\Service\Support.aspx" />
-    <Content Include="Views\Service\Network.aspx" />
-    <Content Include="Views\Service\Videoinfo.aspx" />
-    <Content Include="Views\Shared\AdminHeader.ascx" />
-    <Content Include="Views\Shared\AdminLeft.ascx" />
-    <Content Include="Views\Shared\AdminMenu.ascx" />
-    <Content Include="Views\Shared\Footer.ascx" />
-    <Content Include="Views\Shared\MainPage.ascx" />
-    <Content Include="Views\Shared\Page.ascx" />
-    <Content Include="Views\Product\Index.aspx" />
-    <Content Include="Views\Patent\Index.aspx" />
-    <Content Include="Views\Shared\ServiceControl.ascx" />
-    <Content Include="Views\Shared\Header.ascx" />
     <Content Include="MSSqlMaps\Category.xml" />
     <Content Include="MSSqlMaps\Image.xml" />
     <Content Include="MSSqlMaps\Job.xml" />
@@ -1039,10 +973,6 @@
     <None Include="ckeditor\ckeditor_php5.php" />
     <None Include="ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <None Include="ckfinder\userfiles\.htaccess" />
-    <None Include="images\login\Thumbs.db" />
-    <None Include="images\Thumbs.db" />
-    <None Include="img\ny\Thumbs.db" />
-    <None Include="img\Thumbs.db" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ckfinder\userfiles\flash\" />

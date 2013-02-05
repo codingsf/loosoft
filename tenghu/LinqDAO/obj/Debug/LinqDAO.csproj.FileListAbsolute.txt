@@ -1,0 +1,7 @@
+G:\googlecode\tenghucode\LinqDAO\obj\Debug\ResolveAssemblyReference.cache
+G:\googlecode\tenghucode\LinqDAO\bin\Debug\LinqDAO.dll
+G:\googlecode\tenghucode\LinqDAO\bin\Debug\LinqDAO.pdb
+G:\googlecode\tenghucode\LinqDAO\bin\Debug\DataLinq.dll
+G:\googlecode\tenghucode\LinqDAO\bin\Debug\DataLinq.pdb
+G:\googlecode\tenghucode\LinqDAO\obj\Debug\LinqDAO.dll
+G:\googlecode\tenghucode\LinqDAO\obj\Debug\LinqDAO.pdb

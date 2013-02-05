@@ -5,20 +5,22 @@ using System.Text;
 using Cn.Loosoft.Zhisou.Tenghu.Persistence.Interfaces;
 using IBatisNet.DataAccess;
 using Cn.Loosoft.Zhisou.Tenghu.Persistence;
-using Cn.Loosoft.Zhisou.Tenghu.Domain;
+using DataLinq;
+using Cn.Loosoft.Zhisou.Tenghu.Common;
 
 namespace Cn.Loosoft.Zhisou.Tenghu.Service
 {
-   public class JobService
+    public class JobService
     {
-         private static JobService _instance;
-        private IDaoManager _daoManager = null;
-        private IJob _jobDao = null;
-
+        private static JobService _instance;
+        //   private IDaoManager _daoManager = null;
+        // private IJob _jobDao = null;
+        LinqDAO.JobDAL _jobDao = null;
         private JobService()
         {
-            _daoManager = ServiceConfig.GetInstance().DaoManager;
-            _jobDao = _daoManager.GetDao(typeof(IJob)) as IJob;
+            _jobDao = new LinqDAO.JobDAL();
+            //  _daoManager = ServiceConfig.GetInstance().DaoManager;
+            //  _jobDao = _daoManager.GetDao(typeof(IJob)) as IJob;
         }
 
         public static JobService GetInstance()
@@ -32,29 +34,29 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
 
         public IList<Job> GetJobs()
         {
-            return _jobDao.Getlist(new Job());
+            return _jobDao.GetList();
         }
         public Job Get(int id)
         {
-            return _jobDao.Get(new Job() {  id=id});
+            return _jobDao.Get(id);
         }
 
 
-        public int Save(Job job)
+        public void Save(Job job)
         {
             if (job.id > 0)
-                return _jobDao.Update(job);
+                 _jobDao.Update(job);
             else
-                return _jobDao.Insert(job);
+                 _jobDao.Insert(job);
         }
 
-        public int Remove(int id)
+        public void Remove(int id)
         {
-            return _jobDao.Remove(new Job() { id = id });
+             _jobDao.Remove(id);
         }
         public IList<Job> GetPage(Pager page)
         {
-            return _jobDao.GetPageList(page,"job");
+            return _jobDao.GetPage(page);
         }
     }
 }

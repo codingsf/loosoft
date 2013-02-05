@@ -42,9 +42,9 @@ namespace DataLinq
     partial void InsertImage(Image instance);
     partial void UpdateImage(Image instance);
     partial void DeleteImage(Image instance);
-    partial void Insertjob(job instance);
-    partial void Updatejob(job instance);
-    partial void Deletejob(job instance);
+    partial void InsertJob(Job instance);
+    partial void UpdateJob(Job instance);
+    partial void DeleteJob(Job instance);
     partial void Insertlink(link instance);
     partial void Updatelink(link instance);
     partial void Deletelink(link instance);
@@ -130,11 +130,11 @@ namespace DataLinq
 			}
 		}
 		
-		public System.Data.Linq.Table<job> job
+		public System.Data.Linq.Table<Job> Job
 		{
 			get
 			{
-				return this.GetTable<job>();
+				return this.GetTable<Job>();
 			}
 		}
 		
@@ -972,7 +972,7 @@ namespace DataLinq
 	}
 	
 	[Table(Name="host6728845.job")]
-	public partial class job : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Job : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1019,7 +1019,7 @@ namespace DataLinq
     partial void OnzhuanyeChanged();
     #endregion
 		
-		public job()
+		public Job()
 		{
 			OnCreated();
 		}

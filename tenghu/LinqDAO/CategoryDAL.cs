@@ -6,8 +6,9 @@ using DataLinq;
 using System.Data.Linq;
 namespace LinqDAO
 {
-    public class CategoryDAL
+    public class CategoryDAL : BaseDAO<Category, DataClasses1DataContext>
     {
+        /*
         private DataLinq.DataClasses1DataContext objDataContext = new DataLinq.DataClasses1DataContext();
 
         public IList<Category> GetList()
@@ -44,6 +45,18 @@ namespace LinqDAO
         public int Remove(int id)
         {
             return 0;
+        }*/
+        protected override System.Linq.Expressions.Expression<Func<Category, bool>> GetIDSelector(int ID)
+        {
+            return (Item) => Item.id == ID;
+        }
+
+
+
+        public IList<Category> GetList(int cid)
+        {
+            var db = CreateContext();
+            return (from c in db.Category where c.pid.Equals(cid) select c).ToList<Category>();
         }
     }
 }

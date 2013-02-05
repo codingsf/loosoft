@@ -43,8 +43,8 @@
       <Column Name="url" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="host6728845.job" Member="job">
-    <Type Name="job">
+  <Table Name="host6728845.job" Member="Job">
+    <Type Name="Job">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="descr" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />

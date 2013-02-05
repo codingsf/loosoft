@@ -27,7 +27,7 @@
       </nestedChildShapes>
     </classShape>
     <classShape Id="47de5bbd-d48d-496a-9043-ed5cae527d94" absoluteBounds="9.125, 4.25, 2, 2.5266442871093751">
-      <DataClassMoniker Name="/DataClasses1DataContext/job" />
+      <DataClassMoniker Name="/DataClasses1DataContext/Job" />
       <nestedChildShapes>
         <elementListCompartment Id="82f19c55-b18e-49ae-b534-aec18152348d" absoluteBounds="9.14, 4.71, 1.9700000000000002, 1.966644287109375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>

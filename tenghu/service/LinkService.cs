@@ -10,7 +10,7 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
 {
    public class LinkService
     {
-              private static LinkService _instance;
+        private static LinkService _instance;
         private IDaoManager _daoManager = null;
         private ILink _linkDao = null;
 

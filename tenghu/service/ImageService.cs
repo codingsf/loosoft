@@ -8,18 +8,18 @@ using DataLinq;
 
 namespace Cn.Loosoft.Zhisou.Tenghu.Service
 {
-  public class ImageService
+    public class ImageService
     {
-      
+
         private static ImageService _instance;
-        private IDaoManager _daoManager = null;
+        // private IDaoManager _daoManager = null;
         private LinqDAO.ImageDAL _imageDao = null;
 
         private ImageService()
         {
             _imageDao = new LinqDAO.ImageDAL();
             //_daoManager = ServiceConfig.GetInstance().DaoManager;
-           // _productDao = _daoManager.GetDao(typeof(IImage)) as IImage;
+            // _productDao = _daoManager.GetDao(typeof(IImage)) as IImage;
         }
 
         public static ImageService GetInstance()
@@ -38,15 +38,15 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
         }
 
 
-        public int Save(Image image)
+        public void Save(Image image)
         {
             if (image.id > 0)
-                return _imageDao.Update(image);
-            return _imageDao.Insert(image);
+                _imageDao.Update(image);
+            _imageDao.Insert(image);
         }
-        public int Remove(int id)
+        public void Remove(int id)
         {
-            return _imageDao.Remove(id);
+            _imageDao.Remove(id);
         }
 
 

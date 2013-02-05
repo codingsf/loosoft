@@ -66,6 +66,3 @@ G:\googlecode\tenghucode\Web\bin\DataLinq.dll
 G:\googlecode\tenghucode\Web\bin\LinqDAO.dll
 G:\googlecode\tenghucode\Web\bin\LinqDAO.pdb
 G:\googlecode\tenghucode\Web\bin\DataLinq.pdb
-G:\googlecode\tenghucode\Web\bin\IBatisNet.DataMapper.dll
-G:\googlecode\tenghucode\Web\bin\IBatisNet.Common.dll
-G:\googlecode\tenghucode\Web\bin\IBatisNet.DataAccess.dll

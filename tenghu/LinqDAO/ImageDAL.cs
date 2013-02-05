@@ -7,8 +7,9 @@ using System.Data.Linq;
 using Cn.Loosoft.Zhisou.Tenghu.Common;
 namespace LinqDAO
 {
-    public class ImageDAL
+    public class ImageDAL:BaseDAO<Image,DataClasses1DataContext>
     {
+        /*
         private DataLinq.DataClasses1DataContext objDataContext = new DataLinq.DataClasses1DataContext();
 
 
@@ -40,13 +41,19 @@ namespace LinqDAO
         {
             return (from i in objDataContext.Image where i.id.Equals(id) select i).FirstOrDefault<Image>();
         }
-
+        */
         public IList<Image> GetPage(Pager page)
         {
-            var result = (from i in objDataContext.Image select i).Skip(0).Take(1).ToList<Image>();
-            // return _productDao.GetPageList(page, "image");
+            var objDataContext = CreateContext();
+            page.RecordCount = (from i in objDataContext.Image select i).Count();
+            var result = (from i in objDataContext.Image select i).Skip(page.PageIndex).Take(page.PageSize).ToList<Image>();
             return result;
         }
 
+
+        protected override System.Linq.Expressions.Expression<Func<Image, bool>> GetIDSelector(int ID)
+        {
+            return (Item) => Item.id == ID;
+        }
     }
 }

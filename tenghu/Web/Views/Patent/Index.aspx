@@ -1,6 +1,6 @@
-﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Cn.Loosoft.Zhisou.Tenghu.Domain.Zhuanli>>" %>
+﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<IEnumerable<DataLinq.Zhuanli>>" %>
 
-<%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Domain" %>
+<%@ Import Namespace="DataLinq" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Service" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -13,7 +13,7 @@
 
     <script>
     function changePage(index) {
-        window.location.href = "/patent?page=" + index;
+        window.location.href = "/patent.aspx?page=" + index;
     }   
     
     </script>
@@ -52,9 +52,9 @@
                                                 </ul>
                                             </div>
                                             <div class="left_dh04">
-                                                <a href="/product" class="lyn">> 最新产品</a></div>
+                                                <a href="/product.aspx" class="lyn">> 最新产品</a></div>
                                             <div class="left_dh04">
-                                                <a href="/service/network" class="lyn">> 售后服务网点</a></div>
+                                                <a href="/service.aspx/network" class="lyn">> 售后服务网点</a></div>
                                             <div class="left_dh03">
                                             </div>
                                         </div>
@@ -70,7 +70,7 @@
                                                 <div class="sl">
                                                     技术简介</div>
                                                 <div class="sr">
-                                                    <a href="/patent/info">
+                                                    <a href="/patent.aspx/info">
                                                         <img src="/img/ny/more.jpg" border="0" height="7" width="39"></a>
                                                 </div>
                                             </div>

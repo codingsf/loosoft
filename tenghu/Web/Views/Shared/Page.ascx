@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
-<%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Domain" %>
+<%@ Import Namespace="DataLinq" %>
 <% Pager page = (ViewData["page"] as Pager); %>
             <span style="float: right; padding-right: 10px;">
             <%if(page.IsFirst==false)

@@ -3,22 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using IBatisNet.DataAccess;
-using Cn.Loosoft.Zhisou.Tenghu.Persistence;
-using Cn.Loosoft.Zhisou.Tenghu.Persistence.Interfaces;
-using Cn.Loosoft.Zhisou.Tenghu.Domain;
+
+
+using LinqDAO;
+using DataLinq;
 
 namespace Cn.Loosoft.Zhisou.Tenghu.Service
 {
-   public class VideoService
+    public class VideoService
     {
-       private static VideoService _instance;
-        private IDaoManager _daoManager = null;
-        private IVideo _videoDao = null;
+        private static VideoService _instance;
+        //private IDaoManager _daoManager = null;
+        private VideoDAO _videoDao = null;
 
         private VideoService()
         {
-            _daoManager = ServiceConfig.GetInstance().DaoManager;
-            _videoDao = _daoManager.GetDao(typeof(IVideo)) as IVideo;
+            //_daoManager = ServiceConfig.GetInstance().DaoManager;
+            _videoDao = new VideoDAO();
+            //_daoManager.GetDao(typeof(IVideo)) as IVideo;
         }
 
         public static VideoService GetInstance()
@@ -32,30 +34,30 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
 
         public IList<Video> GetList()
         {
-            return _videoDao.Getlist(new Video());
+            return _videoDao.GetList();
         }
 
         public IList<Video> GetListCategory(int cid)
         {
-            return _videoDao.GetVideoCategory(cid);
+            return _videoDao.GetListCategory(cid);
         }
 
-        public int Save(Video video)
+        public void Save(Video video)
         {
             if (video.id > 0)
-                return _videoDao.Update(video);
-            return _videoDao.Insert(video);
+                 _videoDao.Update(video);
+             _videoDao.Insert(video);
         }
 
-        public int Remove(int id)
+        public void Remove(int id)
         {
-            return _videoDao.Remove(new Video() { id= id });
- 
+             _videoDao.Remove(id);
+
         }
 
         public Video Get(int id)
         {
-            return _videoDao.Get(new Video() {  id=id});
+            return _videoDao.Get(id);
         }
     }
 }

@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Cn.Loosoft.Zhisou.Tenghu.Service;
-using Cn.Loosoft.Zhisou.Tenghu.Domain;
+using Cn.Loosoft.Zhisou.Tenghu.Common;
+using DataLinq;
+
 
 namespace Web.Controllers
 {
@@ -14,8 +16,8 @@ namespace Web.Controllers
         public ActionResult Index()
         {
             ViewData["childCat"] = CategoryService.GetInstance().Get(3).ChildCategory;
-            ViewData["qiye"] = NewsService.GetInstance().GetHotNews(11,5);
-            ViewData["chanpin"] = NewsService.GetInstance().GetHotNews(12,5);
+            ViewData["qiye"] = NewsService.GetInstance().GetHotNews(11, 5);
+            ViewData["chanpin"] = NewsService.GetInstance().GetHotNews(12, 5);
             ViewData["video"] = VideoService.GetInstance().GetListCategory(13);
 
             return View();
@@ -27,8 +29,8 @@ namespace Web.Controllers
             Pager p = new Pager();
             p.PageSize = 20;
             int page = 0;
-            int cid=0;
-            int.TryParse(id,out cid);
+            int cid = 0;
+            int.TryParse(id, out cid);
             int.TryParse(Request.QueryString["page"], out page);
             page = page < 1 ? 1 : page;
             p.PageIndex = page;

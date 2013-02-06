@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
-<%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Domain" %>
+<%@ Import Namespace="DataLinq" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Service" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -41,8 +41,8 @@
 			<%} %>
                 </ul>
               </div>
-              <div class="left_dh04"><a href="/product" class="lyn">> 最新产品</a></div>
-              <div class="left_dh04"><a href="/service/network" class="lyn">> 售后服务网点</a></div>
+              <div class="left_dh04"><a href="/product.aspx" class="lyn">> 最新产品</a></div>
+              <div class="left_dh04"><a href="/service.aspx/network" class="lyn">> 售后服务网点</a></div>
               <div class="left_dh03"></div>
             </div>
             <div class="nytel"><%=WebconfigService.GetInstance().Config.tel %></div>
@@ -69,8 +69,8 @@
                           %>
                      
                                <td width="25%" align="center"><div>
-                                   <div><a href="/news/videoinfo/<%=video.id %>"><img src="/video/file/<%=video.pic %>" width="136" height="83" class="video01" /></a></div>
-                                 <div class="video02"><a href="/news/videoinfo/<%=video.id %>"><%=video.name %></a></div>
+                                   <div><a href="/news.aspx/videoinfo/<%=video.id %>"><img src="/video/file/<%=video.pic %>" width="136" height="83" class="video01" /></a></div>
+                                 <div class="video02"><a href="/news.aspx/videoinfo/<%=video.id %>"><%=video.name %></a></div>
                                </div></td>
                             
                             <%

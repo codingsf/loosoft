@@ -2,22 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Cn.Loosoft.Zhisou.Tenghu.Persistence.Interfaces;
+
 using IBatisNet.DataAccess;
-using Cn.Loosoft.Zhisou.Tenghu.Domain;
+using LinqDAO;
+using DataLinq;
+using Cn.Loosoft.Zhisou.Tenghu.Common;
 
 namespace Cn.Loosoft.Zhisou.Tenghu.Service
 {
-  public  class ServiceInfoService
+    public class ServiceInfoService
     {
-      private static ServiceInfoService _instance;
-        private IDaoManager _daoManager = null;
-        private IServiceInfo _serviceDao = null;
+        private static ServiceInfoService _instance;
+        // private IDaoManager _daoManager = null;
+        private ServiceInfoDAO _serviceDao = null;
 
         private ServiceInfoService()
         {
-            _daoManager = ServiceConfig.GetInstance().DaoManager;
-            _serviceDao = _daoManager.GetDao(typeof(IServiceInfo)) as IServiceInfo;
+            // _daoManager = ServiceConfig.GetInstance().DaoManager;
+            _serviceDao = new ServiceInfoDAO();
+            // _daoManager.GetDao(typeof(IServiceInfo)) as IServiceInfo;
         }
 
         public static ServiceInfoService GetInstance()
@@ -31,38 +34,39 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
 
         public ServiceInfo Get(int id)
         {
-            return _serviceDao.Get(new ServiceInfo() { id= id });
+            return _serviceDao.Get(id);
         }
 
         public IList<ServiceInfo> GetList(int id)
         {
-            return _serviceDao.Getlist(new ServiceInfo() {  areaid=id});
+            return _serviceDao.GetList(id);
         }
 
-        public IList<ServiceInfo> GetList(string aid,string tid)
+        public IList<ServiceInfo> GetList(int aid, int tid)
         {
-            return _serviceDao.GetList(aid, tid); 
+            return _serviceDao.GetList(aid, tid);
         }
 
         public IList<ServiceInfo> GetList(string kw)
         {
             return _serviceDao.GetList(kw);
         }
-        public int Save(ServiceInfo info)
+
+        public void Save(ServiceInfo info)
         {
             if (info.id > 0)
-                return _serviceDao.Update(info);
-            return _serviceDao.Insert(info);
+                _serviceDao.Update(info);
+            _serviceDao.Insert(info);
         }
 
-        public int Remove(int id)
+        public void Remove(int id)
         {
-            return _serviceDao.Remove(new ServiceInfo() {  id= id});
+            _serviceDao.Remove(id);
         }
 
         public IList<ServiceInfo> GetPage(Pager page)
         {
-            return _serviceDao.GetPageList(page, "serviceinfo");
+            return _serviceDao.GetPage(page);
         }
 
     }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Cn.Loosoft.Zhisou.Tenghu.Persistence.Interfaces;
+
 using IBatisNet.DataAccess;
-using Cn.Loosoft.Zhisou.Tenghu.Persistence;
+
 using DataLinq;
 using Cn.Loosoft.Zhisou.Tenghu.Common;
 
@@ -15,10 +15,10 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
         private static JobService _instance;
         //   private IDaoManager _daoManager = null;
         // private IJob _jobDao = null;
-        LinqDAO.JobDAL _jobDao = null;
+        LinqDAO.JobDAO _jobDao = null;
         private JobService()
         {
-            _jobDao = new LinqDAO.JobDAL();
+            _jobDao = new LinqDAO.JobDAO();
             //  _daoManager = ServiceConfig.GetInstance().DaoManager;
             //  _jobDao = _daoManager.GetDao(typeof(IJob)) as IJob;
         }

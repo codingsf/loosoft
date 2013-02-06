@@ -2,22 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Cn.Loosoft.Zhisou.Tenghu.Persistence.Interfaces;
+
 using IBatisNet.DataAccess;
-using Cn.Loosoft.Zhisou.Tenghu.Domain;
+using DataLinq;
+using LinqDAO;
 
 namespace Cn.Loosoft.Zhisou.Tenghu.Service
 {
-   public class ManagerService
+    public class ManagerService
     {
-       private static ManagerService _instance;
-        private IDaoManager _daoManager = null;
-        private IManager _managerDao = null;
+        private static ManagerService _instance;
+        // private IDaoManager _daoManager = null;
+        private ManagerDAO _managerDao = null;
 
         private ManagerService()
         {
-            _daoManager = ServiceConfig.GetInstance().DaoManager;
-            _managerDao = _daoManager.GetDao(typeof(IManager)) as IManager;
+            //  _daoManager = ServiceConfig.GetInstance().DaoManager;
+            //  _managerDao = _daoManager.GetDao(typeof(IManager)) as IManager;
+            _managerDao = new ManagerDAO();
         }
 
         public static ManagerService GetInstance()
@@ -33,11 +35,11 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
 
         public IList<Manager> GetList()
         {
-            return _managerDao.Getlist(new Manager());
+            return _managerDao.GetList();
         }
         public Manager Get(int id)
         {
-            return _managerDao.Get(new Manager() {id=id});
+            return _managerDao.Get(id);
         }
 
         public Manager Get(string uname)
@@ -45,15 +47,15 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
             return _managerDao.Get(uname);
         }
 
-        public int Save(Manager manager)
+        public void Save(Manager manager)
         {
             if (manager.id > 0)
-                return _managerDao.Update(manager);
-            return _managerDao.Insert(manager);
+                _managerDao.Update(manager);
+            _managerDao.Insert(manager);
         }
-        public int Remove(int id)
+        public void Remove(int id)
         {
-            return _managerDao.Remove(new Manager() {   id = id });
+             _managerDao.Remove(id);
         }
 
 

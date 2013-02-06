@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using IBatisNet.DataAccess;
-using Cn.Loosoft.Zhisou.Tenghu.Persistence.Interfaces;
-using Cn.Loosoft.Zhisou.Tenghu.Domain;
+
+using LinqDAO;
+using DataLinq;
 
 namespace Cn.Loosoft.Zhisou.Tenghu.Service
 {
-   public class LinkService
+    public class LinkService
     {
         private static LinkService _instance;
-        private IDaoManager _daoManager = null;
-        private ILink _linkDao = null;
+        // private IDaoManager _daoManager = null;
+        private LinkDAO _linkDao = null;
 
         private LinkService()
         {
-            _daoManager = ServiceConfig.GetInstance().DaoManager;
-            _linkDao = _daoManager.GetDao(typeof(ILink)) as ILink;
+            //   _daoManager = ServiceConfig.GetInstance().DaoManager;
+            //  _linkDao = _daoManager.GetDao(typeof(ILink)) as ILink;
+            _linkDao = new LinkDAO();
         }
 
         public static LinkService GetInstance()
@@ -31,24 +33,24 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
 
         public IList<Link> GetLinks()
         {
-            return _linkDao.Getlist(new Link());
+            return _linkDao.GetList();
         }
 
-        public int Save(Link link)
+        public void Save(Link link)
         {
             if (link.id > 0)
-                return _linkDao.Update(link);
-            return _linkDao.Insert(link);
+                _linkDao.Update(link);
+            _linkDao.Insert(link);
         }
 
-        public int Remove(int id)
+        public void Remove(int id)
         {
-            return _linkDao.Remove(new Link() {   id=id});
+            _linkDao.Remove(id);
         }
 
         public Link Get(int id)
         {
-            return _linkDao.Get(new Link() {  id=id});
+            return _linkDao.Get(id);
         }
     }
 }

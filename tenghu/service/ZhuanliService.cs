@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using IBatisNet.DataAccess;
-using Cn.Loosoft.Zhisou.Tenghu.Persistence.Interfaces;
-using Cn.Loosoft.Zhisou.Tenghu.Domain;
+
+using DataLinq;
+using Cn.Loosoft.Zhisou.Tenghu.Common;
+using LinqDAO;
 
 namespace Cn.Loosoft.Zhisou.Tenghu.Service
 {
    public class ZhuanliService
     {
        private static ZhuanliService _instance;
-        private IDaoManager _daoManager = null;
-        private IZhuanli _zhuanliDao = null;
+        //private IDaoManager _daoManager = null;
+        private ZhuanliDAO _zhuanliDao = null;
 
         private ZhuanliService()
         {
-            _daoManager = ServiceConfig.GetInstance().DaoManager;
-            _zhuanliDao = _daoManager.GetDao(typeof(IZhuanli)) as IZhuanli;
+           // _daoManager = ServiceConfig.GetInstance().DaoManager;
+          //  _zhuanliDao = _daoManager.GetDao(typeof(IZhuanli)) as IZhuanli;
+            _zhuanliDao = new ZhuanliDAO();
         }
 
         public static ZhuanliService GetInstance()
@@ -31,28 +34,28 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
 
         public IList<Zhuanli> GetZhuanlis()
         {
-            return _zhuanliDao.Getlist(new Zhuanli());
+            return _zhuanliDao.GetList();
         }
 
-        public int Save(Zhuanli  zhuanli)
+        public void Save(Zhuanli  zhuanli)
         {
             if (zhuanli.id > 0)
-                return _zhuanliDao.Update(zhuanli);
-            return _zhuanliDao.Insert(zhuanli);
+                 _zhuanliDao.Update(zhuanli);
+             _zhuanliDao.Insert(zhuanli);
         }
 
-        public int Remove(int id)
+        public void Remove(int id)
         {
-            return _zhuanliDao.Remove(new Zhuanli () { id = id });
+             _zhuanliDao.Remove(id);
         }
         public IList<Zhuanli> GetPage(Pager page)
         {
-            return _zhuanliDao.GetPageList(page, "zhuanli");
+            return _zhuanliDao.GetPage(page);//, "zhuanli");
         }
 
         public Zhuanli Get(int id)
         {
-            return _zhuanliDao.Get(new Zhuanli() { id = id });
+            return _zhuanliDao.Get(id);
         }
 
 

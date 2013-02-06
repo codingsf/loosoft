@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<Cn.Loosoft.Zhisou.Tenghu.Domain.Video>" %>
-<%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Domain" %>
+﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<DataLinq.Video>" %>
+<%@ Import Namespace="DataLinq" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Service" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -46,13 +46,13 @@
                      }%>
                 </ul>
               </div>
-              <div class="left_dh04"><a href="/product" class="lyn">> 最新产品</a></div>
-              <div class="left_dh04"><a href="/service/network" class="lyn">> 售后服务网点</a></div>
+              <div class="left_dh04"><a href="/product.aspx" class="lyn">> 最新产品</a></div>
+              <div class="left_dh04"><a href="/service.aspx/network" class="lyn">> 售后服务网点</a></div>
               <div class="left_dh03"></div>
             </div>
             <div class="nytel"><%=WebconfigService.GetInstance().Config.tel %></div>
 			</td>
-            <td width="753" rowspan="2" valign="top" class="tdp"><div class="ny_wz"><span class="f11">Welcome to</span> <span class="bulez f11">PROUDTIGER</span> &gt; <a href="/" class="lz">首页</a> &gt; <a href="/news" class="lz">新闻动态</a> &gt; <%=Model.name %> </div>
+            <td width="753" rowspan="2" valign="top" class="tdp"><div class="ny_wz"><span class="f11">Welcome to</span> <span class="bulez f11">PROUDTIGER</span> &gt; <a href="/" class="lz">首页</a> &gt; <a href="/news.aspx" class="lz">新闻动态</a> &gt; <%=Model.name %> </div>
               <div>
 			<div class="ntt"><%=Model.name %></div>
 			<div>

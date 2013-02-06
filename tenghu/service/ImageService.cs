@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Cn.Loosoft.Zhisou.Tenghu.Persistence.Interfaces;
+
 using IBatisNet.DataAccess;
 using DataLinq;
 
@@ -13,11 +13,11 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
 
         private static ImageService _instance;
         // private IDaoManager _daoManager = null;
-        private LinqDAO.ImageDAL _imageDao = null;
+        private LinqDAO.ImageDAO _imageDao = null;
 
         private ImageService()
         {
-            _imageDao = new LinqDAO.ImageDAL();
+            _imageDao = new LinqDAO.ImageDAO();
             //_daoManager = ServiceConfig.GetInstance().DaoManager;
             // _productDao = _daoManager.GetDao(typeof(IImage)) as IImage;
         }

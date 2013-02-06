@@ -4,8 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Cn.Loosoft.Zhisou.Tenghu.Service;
-using Cn.Loosoft.Zhisou.Tenghu.Domain;
+
 using System.IO;
+using DataLinq;
+using Cn.Loosoft.Zhisou.Tenghu.Common;
 
 namespace Cn.Loosoft.Zhisou.Tenghu.Web.Controllers
 {

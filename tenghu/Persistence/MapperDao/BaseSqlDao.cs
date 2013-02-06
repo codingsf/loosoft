@@ -5,7 +5,7 @@ using System.Text;
 using System.Collections;
 using IBatisNet.Common.Pagination;
 using System.Reflection;
-using Cn.Loosoft.Zhisou.Tenghu.Domain;
+
 namespace Cn.Loosoft.Zhisou.Tenghu.Persistence.MapperDao
 {
     public class BaseSqlDao<T> : BaseSqlMapDao

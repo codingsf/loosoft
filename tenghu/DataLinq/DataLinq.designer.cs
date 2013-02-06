@@ -30,42 +30,42 @@ namespace DataLinq
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertCategory(Category instance);
-    partial void UpdateCategory(Category instance);
-    partial void DeleteCategory(Category instance);
-    partial void Insertwebconfig(webconfig instance);
-    partial void Updatewebconfig(webconfig instance);
-    partial void Deletewebconfig(webconfig instance);
-    partial void Insertvideo(video instance);
-    partial void Updatevideo(video instance);
-    partial void Deletevideo(video instance);
+    partial void InsertWebconfig(Webconfig instance);
+    partial void UpdateWebconfig(Webconfig instance);
+    partial void DeleteWebconfig(Webconfig instance);
     partial void InsertImage(Image instance);
     partial void UpdateImage(Image instance);
     partial void DeleteImage(Image instance);
     partial void InsertJob(Job instance);
     partial void UpdateJob(Job instance);
     partial void DeleteJob(Job instance);
-    partial void Insertlink(link instance);
-    partial void Updatelink(link instance);
-    partial void Deletelink(link instance);
-    partial void Insertorderinfo(orderinfo instance);
-    partial void Updateorderinfo(orderinfo instance);
-    partial void Deleteorderinfo(orderinfo instance);
-    partial void Insertzhuanli(zhuanli instance);
-    partial void Updatezhuanli(zhuanli instance);
-    partial void Deletezhuanli(zhuanli instance);
-    partial void Insertproduct(product instance);
-    partial void Updateproduct(product instance);
-    partial void Deleteproduct(product instance);
-    partial void Insertmanager(manager instance);
-    partial void Updatemanager(manager instance);
-    partial void Deletemanager(manager instance);
-    partial void Insertservice(service instance);
-    partial void Updateservice(service instance);
-    partial void Deleteservice(service instance);
-    partial void Insertnews(news instance);
-    partial void Updatenews(news instance);
-    partial void Deletenews(news instance);
+    partial void InsertLink(Link instance);
+    partial void UpdateLink(Link instance);
+    partial void DeleteLink(Link instance);
+    partial void InsertOrderInfo(OrderInfo instance);
+    partial void UpdateOrderInfo(OrderInfo instance);
+    partial void DeleteOrderInfo(OrderInfo instance);
+    partial void InsertProduct(Product instance);
+    partial void UpdateProduct(Product instance);
+    partial void DeleteProduct(Product instance);
+    partial void InsertManager(Manager instance);
+    partial void UpdateManager(Manager instance);
+    partial void DeleteManager(Manager instance);
+    partial void InsertServiceInfo(ServiceInfo instance);
+    partial void UpdateServiceInfo(ServiceInfo instance);
+    partial void DeleteServiceInfo(ServiceInfo instance);
+    partial void InsertCategory(Category instance);
+    partial void UpdateCategory(Category instance);
+    partial void DeleteCategory(Category instance);
+    partial void InsertVideo(Video instance);
+    partial void UpdateVideo(Video instance);
+    partial void DeleteVideo(Video instance);
+    partial void InsertNews(News instance);
+    partial void UpdateNews(News instance);
+    partial void DeleteNews(News instance);
+    partial void InsertZhuanli(Zhuanli instance);
+    partial void UpdateZhuanli(Zhuanli instance);
+    partial void DeleteZhuanli(Zhuanli instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -98,27 +98,11 @@ namespace DataLinq
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Category> Category
+		public System.Data.Linq.Table<Webconfig> Webconfig
 		{
 			get
 			{
-				return this.GetTable<Category>();
-			}
-		}
-		
-		public System.Data.Linq.Table<webconfig> webconfig
-		{
-			get
-			{
-				return this.GetTable<webconfig>();
-			}
-		}
-		
-		public System.Data.Linq.Table<video> video
-		{
-			get
-			{
-				return this.GetTable<video>();
+				return this.GetTable<Webconfig>();
 			}
 		}
 		
@@ -138,271 +122,81 @@ namespace DataLinq
 			}
 		}
 		
-		public System.Data.Linq.Table<link> link
+		public System.Data.Linq.Table<Link> Link
 		{
 			get
 			{
-				return this.GetTable<link>();
+				return this.GetTable<Link>();
 			}
 		}
 		
-		public System.Data.Linq.Table<orderinfo> orderinfo
+		public System.Data.Linq.Table<OrderInfo> OrderInfo
 		{
 			get
 			{
-				return this.GetTable<orderinfo>();
+				return this.GetTable<OrderInfo>();
 			}
 		}
 		
-		public System.Data.Linq.Table<zhuanli> zhuanli
+		public System.Data.Linq.Table<Product> Product
 		{
 			get
 			{
-				return this.GetTable<zhuanli>();
+				return this.GetTable<Product>();
 			}
 		}
 		
-		public System.Data.Linq.Table<product> product
+		public System.Data.Linq.Table<Manager> Manager
 		{
 			get
 			{
-				return this.GetTable<product>();
+				return this.GetTable<Manager>();
 			}
 		}
 		
-		public System.Data.Linq.Table<manager> manager
+		public System.Data.Linq.Table<ServiceInfo> ServiceInfo
 		{
 			get
 			{
-				return this.GetTable<manager>();
+				return this.GetTable<ServiceInfo>();
 			}
 		}
 		
-		public System.Data.Linq.Table<service> service
+		public System.Data.Linq.Table<Category> Category
 		{
 			get
 			{
-				return this.GetTable<service>();
+				return this.GetTable<Category>();
 			}
 		}
 		
-		public System.Data.Linq.Table<news> news
+		public System.Data.Linq.Table<Video> Video
 		{
 			get
 			{
-				return this.GetTable<news>();
+				return this.GetTable<Video>();
 			}
 		}
-	}
-	
-	[Table(Name="host6728845.category")]
-	public partial class Category : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _name;
-		
-		private System.Nullable<int> _pid;
-		
-		private string _url;
-		
-		private System.Nullable<bool> _isdisplay;
-		
-		private System.Nullable<int> _sortorder;
-		
-		private string _descr;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void OnpidChanging(System.Nullable<int> value);
-    partial void OnpidChanged();
-    partial void OnurlChanging(string value);
-    partial void OnurlChanged();
-    partial void OnisdisplayChanging(System.Nullable<bool> value);
-    partial void OnisdisplayChanged();
-    partial void OnsortorderChanging(System.Nullable<int> value);
-    partial void OnsortorderChanged();
-    partial void OndescrChanging(string value);
-    partial void OndescrChanged();
-    #endregion
-		
-		public Category()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id
+		public System.Data.Linq.Table<News> News
 		{
 			get
 			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
+				return this.GetTable<News>();
 			}
 		}
 		
-		[Column(Storage="_name", DbType="VarChar(255)")]
-		public string name
+		public System.Data.Linq.Table<Zhuanli> Zhuanli
 		{
 			get
 			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_pid", DbType="Int")]
-		public System.Nullable<int> pid
-		{
-			get
-			{
-				return this._pid;
-			}
-			set
-			{
-				if ((this._pid != value))
-				{
-					this.OnpidChanging(value);
-					this.SendPropertyChanging();
-					this._pid = value;
-					this.SendPropertyChanged("pid");
-					this.OnpidChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_url", DbType="VarChar(255)")]
-		public string url
-		{
-			get
-			{
-				return this._url;
-			}
-			set
-			{
-				if ((this._url != value))
-				{
-					this.OnurlChanging(value);
-					this.SendPropertyChanging();
-					this._url = value;
-					this.SendPropertyChanged("url");
-					this.OnurlChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_isdisplay", DbType="Bit")]
-		public System.Nullable<bool> isdisplay
-		{
-			get
-			{
-				return this._isdisplay;
-			}
-			set
-			{
-				if ((this._isdisplay != value))
-				{
-					this.OnisdisplayChanging(value);
-					this.SendPropertyChanging();
-					this._isdisplay = value;
-					this.SendPropertyChanged("isdisplay");
-					this.OnisdisplayChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_sortorder", DbType="Int")]
-		public System.Nullable<int> sortorder
-		{
-			get
-			{
-				return this._sortorder;
-			}
-			set
-			{
-				if ((this._sortorder != value))
-				{
-					this.OnsortorderChanging(value);
-					this.SendPropertyChanging();
-					this._sortorder = value;
-					this.SendPropertyChanged("sortorder");
-					this.OnsortorderChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_descr", DbType="VarChar(2550)")]
-		public string descr
-		{
-			get
-			{
-				return this._descr;
-			}
-			set
-			{
-				if ((this._descr != value))
-				{
-					this.OndescrChanging(value);
-					this.SendPropertyChanging();
-					this._descr = value;
-					this.SendPropertyChanged("descr");
-					this.OndescrChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+				return this.GetTable<Zhuanli>();
 			}
 		}
 	}
 	
 	[Table(Name="host6728845.webconfig")]
-	public partial class webconfig : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Webconfig : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -445,7 +239,7 @@ namespace DataLinq
     partial void OntelChanged();
     #endregion
 		
-		public webconfig()
+		public Webconfig()
 		{
 			OnCreated();
 		}
@@ -606,236 +400,6 @@ namespace DataLinq
 					this._tel = value;
 					this.SendPropertyChanged("tel");
 					this.OntelChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[Table(Name="host6728845.video")]
-	public partial class video : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _name;
-		
-		private string _descr;
-		
-		private string _path;
-		
-		private System.Nullable<bool> _isdisplay;
-		
-		private System.Nullable<int> _sortorder;
-		
-		private string _img;
-		
-		private System.Nullable<int> _categoryid;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void OndescrChanging(string value);
-    partial void OndescrChanged();
-    partial void OnpathChanging(string value);
-    partial void OnpathChanged();
-    partial void OnisdisplayChanging(System.Nullable<bool> value);
-    partial void OnisdisplayChanged();
-    partial void OnsortorderChanging(System.Nullable<int> value);
-    partial void OnsortorderChanged();
-    partial void OnimgChanging(string value);
-    partial void OnimgChanged();
-    partial void OncategoryidChanging(System.Nullable<int> value);
-    partial void OncategoryidChanged();
-    #endregion
-		
-		public video()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_name", DbType="VarChar(255)")]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_descr", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string descr
-		{
-			get
-			{
-				return this._descr;
-			}
-			set
-			{
-				if ((this._descr != value))
-				{
-					this.OndescrChanging(value);
-					this.SendPropertyChanging();
-					this._descr = value;
-					this.SendPropertyChanged("descr");
-					this.OndescrChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_path", DbType="VarChar(255)")]
-		public string path
-		{
-			get
-			{
-				return this._path;
-			}
-			set
-			{
-				if ((this._path != value))
-				{
-					this.OnpathChanging(value);
-					this.SendPropertyChanging();
-					this._path = value;
-					this.SendPropertyChanged("path");
-					this.OnpathChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_isdisplay", DbType="Bit")]
-		public System.Nullable<bool> isdisplay
-		{
-			get
-			{
-				return this._isdisplay;
-			}
-			set
-			{
-				if ((this._isdisplay != value))
-				{
-					this.OnisdisplayChanging(value);
-					this.SendPropertyChanging();
-					this._isdisplay = value;
-					this.SendPropertyChanged("isdisplay");
-					this.OnisdisplayChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_sortorder", DbType="Int")]
-		public System.Nullable<int> sortorder
-		{
-			get
-			{
-				return this._sortorder;
-			}
-			set
-			{
-				if ((this._sortorder != value))
-				{
-					this.OnsortorderChanging(value);
-					this.SendPropertyChanging();
-					this._sortorder = value;
-					this.SendPropertyChanged("sortorder");
-					this.OnsortorderChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_img", DbType="VarChar(255)")]
-		public string img
-		{
-			get
-			{
-				return this._img;
-			}
-			set
-			{
-				if ((this._img != value))
-				{
-					this.OnimgChanging(value);
-					this.SendPropertyChanging();
-					this._img = value;
-					this.SendPropertyChanged("img");
-					this.OnimgChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_categoryid", DbType="Int")]
-		public System.Nullable<int> categoryid
-		{
-			get
-			{
-				return this._categoryid;
-			}
-			set
-			{
-				if ((this._categoryid != value))
-				{
-					this.OncategoryidChanging(value);
-					this.SendPropertyChanging();
-					this._categoryid = value;
-					this.SendPropertyChanged("categoryid");
-					this.OncategoryidChanged();
 				}
 			}
 		}
@@ -1226,7 +790,7 @@ namespace DataLinq
 	}
 	
 	[Table(Name="host6728845.link")]
-	public partial class link : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Link : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1253,7 +817,7 @@ namespace DataLinq
     partial void OnisdisplayChanged();
     #endregion
 		
-		public link()
+		public Link()
 		{
 			OnCreated();
 		}
@@ -1360,7 +924,7 @@ namespace DataLinq
 	}
 	
 	[Table(Name="host6728845.orderinfo")]
-	public partial class orderinfo : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class OrderInfo : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1423,7 +987,7 @@ namespace DataLinq
     partial void OntypeChanged();
     #endregion
 		
-		public orderinfo()
+		public OrderInfo()
 		{
 			OnCreated();
 		}
@@ -1709,190 +1273,8 @@ namespace DataLinq
 		}
 	}
 	
-	[Table(Name="host6728845.zhuanli")]
-	public partial class zhuanli : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _name;
-		
-		private System.Nullable<int> _type;
-		
-		private string _num;
-		
-		private string _descr;
-		
-		private string _url;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void OntypeChanging(System.Nullable<int> value);
-    partial void OntypeChanged();
-    partial void OnnumChanging(string value);
-    partial void OnnumChanged();
-    partial void OndescrChanging(string value);
-    partial void OndescrChanged();
-    partial void OnurlChanging(string value);
-    partial void OnurlChanged();
-    #endregion
-		
-		public zhuanli()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_name", DbType="VarChar(255)")]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_type", DbType="Int")]
-		public System.Nullable<int> type
-		{
-			get
-			{
-				return this._type;
-			}
-			set
-			{
-				if ((this._type != value))
-				{
-					this.OntypeChanging(value);
-					this.SendPropertyChanging();
-					this._type = value;
-					this.SendPropertyChanged("type");
-					this.OntypeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_num", DbType="VarChar(255)")]
-		public string num
-		{
-			get
-			{
-				return this._num;
-			}
-			set
-			{
-				if ((this._num != value))
-				{
-					this.OnnumChanging(value);
-					this.SendPropertyChanging();
-					this._num = value;
-					this.SendPropertyChanged("num");
-					this.OnnumChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_descr", DbType="VarChar(255)")]
-		public string descr
-		{
-			get
-			{
-				return this._descr;
-			}
-			set
-			{
-				if ((this._descr != value))
-				{
-					this.OndescrChanging(value);
-					this.SendPropertyChanging();
-					this._descr = value;
-					this.SendPropertyChanged("descr");
-					this.OndescrChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_url", DbType="VarChar(255)")]
-		public string url
-		{
-			get
-			{
-				return this._url;
-			}
-			set
-			{
-				if ((this._url != value))
-				{
-					this.OnurlChanging(value);
-					this.SendPropertyChanging();
-					this._url = value;
-					this.SendPropertyChanged("url");
-					this.OnurlChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[Table(Name="host6728845.product")]
-	public partial class product : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Product : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1935,7 +1317,7 @@ namespace DataLinq
     partial void OnpdfpathChanged();
     #endregion
 		
-		public product()
+		public Product()
 		{
 			OnCreated();
 		}
@@ -2122,7 +1504,7 @@ namespace DataLinq
 	}
 	
 	[Table(Name="host6728845.manager")]
-	public partial class manager : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Manager : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -2153,7 +1535,7 @@ namespace DataLinq
     partial void OnissuperChanged();
     #endregion
 		
-		public manager()
+		public Manager()
 		{
 			OnCreated();
 		}
@@ -2280,7 +1662,7 @@ namespace DataLinq
 	}
 	
 	[Table(Name="host6728845.service")]
-	public partial class service : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class ServiceInfo : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -2331,7 +1713,7 @@ namespace DataLinq
     partial void OnlongitudeChanged();
     #endregion
 		
-		public service()
+		public ServiceInfo()
 		{
 			OnCreated();
 		}
@@ -2557,8 +1939,638 @@ namespace DataLinq
 		}
 	}
 	
+	[Table(Name="host6728845.category")]
+	public partial class Category : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _name;
+		
+		private System.Nullable<int> _pid;
+		
+		private string _url;
+		
+		private System.Nullable<bool> _isdisplay;
+		
+		private System.Nullable<int> _sortorder;
+		
+		private string _descr;
+		
+		private EntitySet<Category> _Category2;
+		
+		private EntitySet<Video> _Video;
+		
+		private EntitySet<News> _News;
+		
+		private EntitySet<Zhuanli> _Zhuanli;
+		
+		private EntityRef<Category> _category1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OnpidChanging(System.Nullable<int> value);
+    partial void OnpidChanged();
+    partial void OnurlChanging(string value);
+    partial void OnurlChanged();
+    partial void OnisdisplayChanging(System.Nullable<bool> value);
+    partial void OnisdisplayChanged();
+    partial void OnsortorderChanging(System.Nullable<int> value);
+    partial void OnsortorderChanged();
+    partial void OndescrChanging(string value);
+    partial void OndescrChanged();
+    #endregion
+		
+		public Category()
+		{
+			this._Category2 = new EntitySet<Category>(new Action<Category>(this.attach_Category2), new Action<Category>(this.detach_Category2));
+			this._Video = new EntitySet<Video>(new Action<Video>(this.attach_Video), new Action<Video>(this.detach_Video));
+			this._News = new EntitySet<News>(new Action<News>(this.attach_News), new Action<News>(this.detach_News));
+			this._Zhuanli = new EntitySet<Zhuanli>(new Action<Zhuanli>(this.attach_Zhuanli), new Action<Zhuanli>(this.detach_Zhuanli));
+			this._category1 = default(EntityRef<Category>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_name", DbType="VarChar(255)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_pid", DbType="Int")]
+		public System.Nullable<int> pid
+		{
+			get
+			{
+				return this._pid;
+			}
+			set
+			{
+				if ((this._pid != value))
+				{
+					if (this._category1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnpidChanging(value);
+					this.SendPropertyChanging();
+					this._pid = value;
+					this.SendPropertyChanged("pid");
+					this.OnpidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_url", DbType="VarChar(255)")]
+		public string url
+		{
+			get
+			{
+				return this._url;
+			}
+			set
+			{
+				if ((this._url != value))
+				{
+					this.OnurlChanging(value);
+					this.SendPropertyChanging();
+					this._url = value;
+					this.SendPropertyChanged("url");
+					this.OnurlChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_isdisplay", DbType="Bit")]
+		public System.Nullable<bool> isdisplay
+		{
+			get
+			{
+				return this._isdisplay;
+			}
+			set
+			{
+				if ((this._isdisplay != value))
+				{
+					this.OnisdisplayChanging(value);
+					this.SendPropertyChanging();
+					this._isdisplay = value;
+					this.SendPropertyChanged("isdisplay");
+					this.OnisdisplayChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_sortorder", DbType="Int")]
+		public System.Nullable<int> sortorder
+		{
+			get
+			{
+				return this._sortorder;
+			}
+			set
+			{
+				if ((this._sortorder != value))
+				{
+					this.OnsortorderChanging(value);
+					this.SendPropertyChanging();
+					this._sortorder = value;
+					this.SendPropertyChanged("sortorder");
+					this.OnsortorderChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_descr", DbType="VarChar(2550)")]
+		public string descr
+		{
+			get
+			{
+				return this._descr;
+			}
+			set
+			{
+				if ((this._descr != value))
+				{
+					this.OndescrChanging(value);
+					this.SendPropertyChanging();
+					this._descr = value;
+					this.SendPropertyChanged("descr");
+					this.OndescrChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Category_Category", Storage="_Category2", ThisKey="id", OtherKey="pid")]
+		public EntitySet<Category> Category2
+		{
+			get
+			{
+				return this._Category2;
+			}
+			set
+			{
+				this._Category2.Assign(value);
+			}
+		}
+		
+		[Association(Name="Category_Video", Storage="_Video", ThisKey="id", OtherKey="categoryid")]
+		public EntitySet<Video> Video
+		{
+			get
+			{
+				return this._Video;
+			}
+			set
+			{
+				this._Video.Assign(value);
+			}
+		}
+		
+		[Association(Name="Category_News", Storage="_News", ThisKey="id", OtherKey="categoryid")]
+		public EntitySet<News> News
+		{
+			get
+			{
+				return this._News;
+			}
+			set
+			{
+				this._News.Assign(value);
+			}
+		}
+		
+		[Association(Name="Category_zhuanli", Storage="_Zhuanli", ThisKey="id", OtherKey="type")]
+		public EntitySet<Zhuanli> Zhuanli
+		{
+			get
+			{
+				return this._Zhuanli;
+			}
+			set
+			{
+				this._Zhuanli.Assign(value);
+			}
+		}
+		
+		[Association(Name="Category_Category", Storage="_category1", ThisKey="pid", OtherKey="id", IsForeignKey=true)]
+		public Category category1
+		{
+			get
+			{
+				return this._category1.Entity;
+			}
+			set
+			{
+				Category previousValue = this._category1.Entity;
+				if (((previousValue != value) 
+							|| (this._category1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._category1.Entity = null;
+						previousValue.Category2.Remove(this);
+					}
+					this._category1.Entity = value;
+					if ((value != null))
+					{
+						value.Category2.Add(this);
+						this._pid = value.id;
+					}
+					else
+					{
+						this._pid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("category1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Category2(Category entity)
+		{
+			this.SendPropertyChanging();
+			entity.category1 = this;
+		}
+		
+		private void detach_Category2(Category entity)
+		{
+			this.SendPropertyChanging();
+			entity.category1 = null;
+		}
+		
+		private void attach_Video(Video entity)
+		{
+			this.SendPropertyChanging();
+			entity.Category = this;
+		}
+		
+		private void detach_Video(Video entity)
+		{
+			this.SendPropertyChanging();
+			entity.Category = null;
+		}
+		
+		private void attach_News(News entity)
+		{
+			this.SendPropertyChanging();
+			entity.Category = this;
+		}
+		
+		private void detach_News(News entity)
+		{
+			this.SendPropertyChanging();
+			entity.Category = null;
+		}
+		
+		private void attach_Zhuanli(Zhuanli entity)
+		{
+			this.SendPropertyChanging();
+			entity.Category = this;
+		}
+		
+		private void detach_Zhuanli(Zhuanli entity)
+		{
+			this.SendPropertyChanging();
+			entity.Category = null;
+		}
+	}
+	
+	[Table(Name="host6728845.video")]
+	public partial class Video : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _name;
+		
+		private string _descr;
+		
+		private string _path;
+		
+		private System.Nullable<bool> _isdisplay;
+		
+		private System.Nullable<int> _sortorder;
+		
+		private string _img;
+		
+		private System.Nullable<int> _categoryid;
+		
+		private EntityRef<Category> _Category;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OndescrChanging(string value);
+    partial void OndescrChanged();
+    partial void OnpathChanging(string value);
+    partial void OnpathChanged();
+    partial void OnisdisplayChanging(System.Nullable<bool> value);
+    partial void OnisdisplayChanged();
+    partial void OnsortorderChanging(System.Nullable<int> value);
+    partial void OnsortorderChanged();
+    partial void OnimgChanging(string value);
+    partial void OnimgChanged();
+    partial void OncategoryidChanging(System.Nullable<int> value);
+    partial void OncategoryidChanged();
+    #endregion
+		
+		public Video()
+		{
+			this._Category = default(EntityRef<Category>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_name", DbType="VarChar(255)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_descr", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string descr
+		{
+			get
+			{
+				return this._descr;
+			}
+			set
+			{
+				if ((this._descr != value))
+				{
+					this.OndescrChanging(value);
+					this.SendPropertyChanging();
+					this._descr = value;
+					this.SendPropertyChanged("descr");
+					this.OndescrChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_path", DbType="VarChar(255)")]
+		public string path
+		{
+			get
+			{
+				return this._path;
+			}
+			set
+			{
+				if ((this._path != value))
+				{
+					this.OnpathChanging(value);
+					this.SendPropertyChanging();
+					this._path = value;
+					this.SendPropertyChanged("path");
+					this.OnpathChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_isdisplay", DbType="Bit")]
+		public System.Nullable<bool> isdisplay
+		{
+			get
+			{
+				return this._isdisplay;
+			}
+			set
+			{
+				if ((this._isdisplay != value))
+				{
+					this.OnisdisplayChanging(value);
+					this.SendPropertyChanging();
+					this._isdisplay = value;
+					this.SendPropertyChanged("isdisplay");
+					this.OnisdisplayChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_sortorder", DbType="Int")]
+		public System.Nullable<int> sortorder
+		{
+			get
+			{
+				return this._sortorder;
+			}
+			set
+			{
+				if ((this._sortorder != value))
+				{
+					this.OnsortorderChanging(value);
+					this.SendPropertyChanging();
+					this._sortorder = value;
+					this.SendPropertyChanged("sortorder");
+					this.OnsortorderChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_img", DbType="VarChar(255)")]
+		public string img
+		{
+			get
+			{
+				return this._img;
+			}
+			set
+			{
+				if ((this._img != value))
+				{
+					this.OnimgChanging(value);
+					this.SendPropertyChanging();
+					this._img = value;
+					this.SendPropertyChanged("img");
+					this.OnimgChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_categoryid", DbType="Int")]
+		public System.Nullable<int> categoryid
+		{
+			get
+			{
+				return this._categoryid;
+			}
+			set
+			{
+				if ((this._categoryid != value))
+				{
+					if (this._Category.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OncategoryidChanging(value);
+					this.SendPropertyChanging();
+					this._categoryid = value;
+					this.SendPropertyChanged("categoryid");
+					this.OncategoryidChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Category_Video", Storage="_Category", ThisKey="categoryid", OtherKey="id", IsForeignKey=true)]
+		public Category Category
+		{
+			get
+			{
+				return this._Category.Entity;
+			}
+			set
+			{
+				Category previousValue = this._Category.Entity;
+				if (((previousValue != value) 
+							|| (this._Category.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Category.Entity = null;
+						previousValue.Video.Remove(this);
+					}
+					this._Category.Entity = value;
+					if ((value != null))
+					{
+						value.Video.Add(this);
+						this._categoryid = value.id;
+					}
+					else
+					{
+						this._categoryid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Category");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[Table(Name="host6728845.news")]
-	public partial class news : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class News : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -2573,11 +2585,13 @@ namespace DataLinq
 		
 		private string _publicuser;
 		
-		private System.Nullable<System.DateTime> _publictime;
+		private System.DateTime _publictime;
 		
 		private System.Nullable<bool> _ishot;
 		
 		private System.Nullable<int> _sortorder;
+		
+		private EntityRef<Category> _Category;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2593,7 +2607,7 @@ namespace DataLinq
     partial void OndescrChanged();
     partial void OnpublicuserChanging(string value);
     partial void OnpublicuserChanged();
-    partial void OnpublictimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnpublictimeChanging(System.DateTime value);
     partial void OnpublictimeChanged();
     partial void OnishotChanging(System.Nullable<bool> value);
     partial void OnishotChanged();
@@ -2601,8 +2615,9 @@ namespace DataLinq
     partial void OnsortorderChanged();
     #endregion
 		
-		public news()
+		public News()
 		{
+			this._Category = default(EntityRef<Category>);
 			OnCreated();
 		}
 		
@@ -2637,6 +2652,10 @@ namespace DataLinq
 			{
 				if ((this._categoryid != value))
 				{
+					if (this._Category.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OncategoryidChanging(value);
 					this.SendPropertyChanging();
 					this._categoryid = value;
@@ -2706,8 +2725,8 @@ namespace DataLinq
 			}
 		}
 		
-		[Column(Storage="_publictime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> publictime
+		[Column(Storage="_publictime", DbType="DateTime NOT NULL")]
+		public System.DateTime publictime
 		{
 			get
 			{
@@ -2762,6 +2781,263 @@ namespace DataLinq
 					this._sortorder = value;
 					this.SendPropertyChanged("sortorder");
 					this.OnsortorderChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Category_News", Storage="_Category", ThisKey="categoryid", OtherKey="id", IsForeignKey=true)]
+		public Category Category
+		{
+			get
+			{
+				return this._Category.Entity;
+			}
+			set
+			{
+				Category previousValue = this._Category.Entity;
+				if (((previousValue != value) 
+							|| (this._Category.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Category.Entity = null;
+						previousValue.News.Remove(this);
+					}
+					this._Category.Entity = value;
+					if ((value != null))
+					{
+						value.News.Add(this);
+						this._categoryid = value.id;
+					}
+					else
+					{
+						this._categoryid = default(int);
+					}
+					this.SendPropertyChanged("Category");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="host6728845.zhuanli")]
+	public partial class Zhuanli : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _name;
+		
+		private System.Nullable<int> _type;
+		
+		private string _num;
+		
+		private string _descr;
+		
+		private string _url;
+		
+		private EntityRef<Category> _Category;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OntypeChanging(System.Nullable<int> value);
+    partial void OntypeChanged();
+    partial void OnnumChanging(string value);
+    partial void OnnumChanged();
+    partial void OndescrChanging(string value);
+    partial void OndescrChanged();
+    partial void OnurlChanging(string value);
+    partial void OnurlChanged();
+    #endregion
+		
+		public Zhuanli()
+		{
+			this._Category = default(EntityRef<Category>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_name", DbType="VarChar(255)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_type", DbType="Int")]
+		public System.Nullable<int> type
+		{
+			get
+			{
+				return this._type;
+			}
+			set
+			{
+				if ((this._type != value))
+				{
+					if (this._Category.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OntypeChanging(value);
+					this.SendPropertyChanging();
+					this._type = value;
+					this.SendPropertyChanged("type");
+					this.OntypeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_num", DbType="VarChar(255)")]
+		public string num
+		{
+			get
+			{
+				return this._num;
+			}
+			set
+			{
+				if ((this._num != value))
+				{
+					this.OnnumChanging(value);
+					this.SendPropertyChanging();
+					this._num = value;
+					this.SendPropertyChanged("num");
+					this.OnnumChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_descr", DbType="VarChar(255)")]
+		public string descr
+		{
+			get
+			{
+				return this._descr;
+			}
+			set
+			{
+				if ((this._descr != value))
+				{
+					this.OndescrChanging(value);
+					this.SendPropertyChanging();
+					this._descr = value;
+					this.SendPropertyChanged("descr");
+					this.OndescrChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_url", DbType="VarChar(255)")]
+		public string url
+		{
+			get
+			{
+				return this._url;
+			}
+			set
+			{
+				if ((this._url != value))
+				{
+					this.OnurlChanging(value);
+					this.SendPropertyChanging();
+					this._url = value;
+					this.SendPropertyChanged("url");
+					this.OnurlChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Category_zhuanli", Storage="_Category", ThisKey="type", OtherKey="id", IsForeignKey=true)]
+		public Category Category
+		{
+			get
+			{
+				return this._Category.Entity;
+			}
+			set
+			{
+				Category previousValue = this._Category.Entity;
+				if (((previousValue != value) 
+							|| (this._Category.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Category.Entity = null;
+						previousValue.Zhuanli.Remove(this);
+					}
+					this._Category.Entity = value;
+					if ((value != null))
+					{
+						value.Zhuanli.Add(this);
+						this._type = value.id;
+					}
+					else
+					{
+						this._type = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Category");
 				}
 			}
 		}

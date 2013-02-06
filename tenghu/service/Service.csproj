@@ -83,7 +83,16 @@
     <Compile Include="CategoryService.cs" />
     <Compile Include="ImageService.cs" />
     <Compile Include="JobService.cs" />
+    <Compile Include="LinkService.cs" />
+    <Compile Include="ManagerService.cs" />
+    <Compile Include="NewsService.cs" />
+    <Compile Include="OrderService.cs" />
+    <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceInfoService.cs" />
+    <Compile Include="VideoService.cs" />
+    <Compile Include="WebconfigService.cs" />
+    <Compile Include="ZhuanliService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
@@ -97,10 +106,6 @@
     <ProjectReference Include="..\LinqDAO\LinqDAO.csproj">
       <Project>{B15E0783-264E-48BC-A4DF-102AC05D49E3}</Project>
       <Name>LinqDAO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Persistence\Persistence.csproj">
-      <Project>{46EF4BEC-0CF6-40C4-8D55-DBEEAB0E12F3}</Project>
-      <Name>Persistence</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

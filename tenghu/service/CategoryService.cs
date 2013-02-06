@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using IBatisNet.DataAccess;
-using Cn.Loosoft.Zhisou.Tenghu.Persistence.Interfaces;
+
 using DataLinq;
 using LinqDAO;
 namespace Cn.Loosoft.Zhisou.Tenghu.Service
@@ -29,10 +29,10 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
             return _instance;
         }
 
-        CategoryDAL _categoryDao = new CategoryDAL();
+        CategoryDAO _categoryDao = new CategoryDAO();
         public IList<Category> GetList()
         {
-            return _categoryDao.GetList();
+            return _categoryDao.GetList().Where(m => m.pid == null).ToList<Category>() ;
         }
 
         public Category Get(int id)

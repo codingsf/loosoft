@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using IBatisNet.Common.Pagination;
-using Cn.Loosoft.Zhisou.Tenghu.Domain;
+
 namespace Cn.Loosoft.Zhisou.Tenghu.Persistence.Interfaces
 {
     public interface IBaseDao<T>

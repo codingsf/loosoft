@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
 
-<%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Domain" %>
+<%@ Import Namespace="DataLinq" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Service" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -39,15 +39,15 @@
                                                 <ul id="lmenu">
                                                     <%foreach (Category cat in ViewData["childCat"] as IList<Category>)
                                                       { %>
-                                                    <li><a href="/product/list/<%=cat.id %>">+
+                                                    <li><a href="/product.aspx/list/<%=cat.id %>">+
                                                         <%=cat.name %></a></li>
                                                     <%} %>
                                                 </ul>
                                             </div>
                                             <div class="left_dh04">
-                                                <a href="/product" class="lyn">> 最新产品</a></div>
+                                                <a href="/product.aspx" class="lyn">> 最新产品</a></div>
                                             <div class="left_dh04">
-                                                <a href="/service/network" class="lyn">> 售后服务网点</a></div>
+                                                <a href="/service.aspx/network" class="lyn">> 售后服务网点</a></div>
                                             <div class="left_dh03">
                                             </div>
                                         </div>
@@ -88,7 +88,7 @@
                                                             <div>
                                                                 <img src="<%=cat.img %>" width="136" height="83" class="video01" /></div>
                                                             <div class="video02">
-                                                                <a href="/product/list/<%=cat.id %>">
+                                                                <a href="/product.aspx/list/<%=cat.id %>">
                                                                     <%=cat.name%></a></div>
                                                         </div>
                                                     </td>

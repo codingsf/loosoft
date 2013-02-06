@@ -49,10 +49,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDAO.cs" />
-    <Compile Include="CategoryDAL.cs" />
+    <Compile Include="CategoryDAO.cs" />
+    <Compile Include="LinkDAO.cs" />
+    <Compile Include="ManagerDAO.cs" />
+    <Compile Include="NewsDAO.cs" />
+    <Compile Include="OrderInfoDAO.cs" />
+    <Compile Include="ProductDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ImageDAL.cs" />
-    <Compile Include="JobDAL.cs" />
+    <Compile Include="ImageDAO.cs" />
+    <Compile Include="JobDAO.cs" />
+    <Compile Include="ServiceInfoDAO.cs" />
+    <Compile Include="VideoDAO.cs" />
+    <Compile Include="WebconfigDAO.cs" />
+    <Compile Include="ZhuanliDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataLinq\DataLinq.csproj">

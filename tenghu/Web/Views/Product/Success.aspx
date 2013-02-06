@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<Cn.Loosoft.Zhisou.Tenghu.Domain.Product>" %>
-<%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Domain" %>
+﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<DataLinq.Product>" %>
+<%@ Import Namespace="DataLinq" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Common" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Service" %>
 
@@ -33,12 +33,12 @@
                 <ul>
            	<%foreach (Category cat in ViewData["childCat"] as IList<Category>)
         { %>
-			<li><a href="/product/list/<%=cat.id %>">+ <%=cat.name %></a></li>
+			<li><a href="/product.aspx/list/<%=cat.id %>">+ <%=cat.name %></a></li>
 			<%} %>
                 </ul>
               </div>
-              <div class="left_dh04"><a href="/product" class="lyn">> 最新产品</a></div>
-              <div class="left_dh04"><a href="/service/network" class="lyn">> 售后服务网点</a></div>
+              <div class="left_dh04"><a href="/product.aspx" class="lyn">> 最新产品</a></div>
+              <div class="left_dh04"><a href="/service.aspx/network" class="lyn">> 售后服务网点</a></div>
               <div class="left_dh03"></div>
             </div>
             <div class="nytel"><%=WebconfigService.GetInstance().Config.tel %></div>
@@ -60,7 +60,7 @@
                 </tr>
                 <tr>
                   <td height="35">&nbsp;</td>
-                  <td><a href="/product">&gt;&gt; 再去浏览其他产品！</a></td>
+                  <td><a href="/product.aspx">&gt;&gt; 再去浏览其他产品！</a></td>
                 </tr>
               </table>
 			</div>

@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Cn.Loosoft.Zhisou.Tenghu.Domain.News>>" %>
-<%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Domain" %>
+﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<IEnumerable<DataLinq.News>>" %>
+<%@ Import Namespace="DataLinq" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Service" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -11,7 +11,7 @@
     <link href="../../css/ny.css" rel="stylesheet" type="text/css" />
     <script>
     function changePage(index) {
-        window.location.href =  '/home/search?keyword=<%=Request.QueryString["keyword"]==null?"":Request.QueryString["keyword"] %>&page=' + index;
+        window.location.href =  '/home.aspx/search?keyword=<%=Request.QueryString["keyword"]==null?"":Request.QueryString["keyword"] %>&page=' + index;
     }   
     
 </script>
@@ -37,8 +37,8 @@
 			<div class="left_dh02">
 </div>
 			
-			<div class="left_dh04"><a href="/product" class="lyn">> 最新产品</a></div>
-			<div class="left_dh04"><a href="/service/network" class="lyn">> 售后服务网点</a></div>
+			<div class="left_dh04"><a href="/product.aspx" class="lyn">> 最新产品</a></div>
+			<div class="left_dh04"><a href="/service.aspx/network" class="lyn">> 售后服务网点</a></div>
 			<div class="left_dh03"></div>
 			  </div>
 			<div class="nytel"><%=WebconfigService.GetInstance().Config.tel %></div>
@@ -54,7 +54,7 @@
                 { %>
 			  <div class="rbox01_m">
                 
-                  <div><a href="/news/info/<%=item.id %>"><strong><%=item.title %></strong></a></div>
+                  <div><a href="/news.aspx/info/<%=item.id %>"><strong><%=item.title %></strong></a></div>
                   <div class="lbla"><%=item.text.Length>70?item.text.Substring(0,70):item.text %>...</div>
                <div class="sline"></div>
 			    </div>

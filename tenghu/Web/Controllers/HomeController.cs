@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Cn.Loosoft.Zhisou.Tenghu.Service;
-using Cn.Loosoft.Zhisou.Tenghu.Domain;
+using Cn.Loosoft.Zhisou.Tenghu.Common;
+using DataLinq;
+
 
 namespace Web.Controllers
 {
@@ -13,15 +15,14 @@ namespace Web.Controllers
     {
         public ActionResult Index()
         {
-            LinqDAO.CategoryDAL dal = new LinqDAO.CategoryDAL();
-            
-            //ViewData["images"] = ImageService.GetInstance().GetList();
-            //ViewData["jianjie"] = CategoryService.GetInstance().Get(8);
-            //ViewData["news"] = NewsService.GetInstance().GetHotNews(4);
-            ViewData["data"] = new LinqDAO.CategoryDAL().GetList();
+            LinqDAO.CategoryDAO dal = new LinqDAO.CategoryDAO();
+
+            ViewData["images"] = ImageService.GetInstance().GetList();
+            ViewData["jianjie"] = CategoryService.GetInstance().Get(8);
+            ViewData["news"] = NewsService.GetInstance().GetHotNews(4);
             return View();
         }
-        /*
+
 
         public ActionResult Search(string keyword)
         {
@@ -42,10 +43,10 @@ namespace Web.Controllers
 
         public ActionResult Header()
         {
-            ViewData["categories"] = CategoryService.GetInstance().GetList("0"); 
+            ViewData["categories"] = CategoryService.GetInstance().GetList(0);
             return PartialView();
-        }  
-      
-        */
+        }
+
+
     }
 }

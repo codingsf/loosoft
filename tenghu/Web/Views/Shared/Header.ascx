@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
-<%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Domain" %>
+<%@ Import Namespace="DataLinq" %>
 
 <script src="/script/dropdowntabs.js" type="text/javascript"></script>
 <link href="/css/bluetabs.css" rel="stylesheet" type="text/css" />
@@ -54,7 +54,7 @@
                                         <a href="#"></a>
                                     </td>
                                     <td align="left" valign="top">
-                                        <input type="image" src="/img/go.jpg" onclick="window.location.href='/home/search?keyword='+$('#keyword').val();" />
+                                        <input type="image" src="/img/go.jpg" onclick="window.location.href='/home.aspx/search?keyword='+$('#keyword').val();" />
                                     </td>
                                 </tr>
                             </table>

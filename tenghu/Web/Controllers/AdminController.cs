@@ -4,8 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Cn.Loosoft.Zhisou.Tenghu.Service;
-using Cn.Loosoft.Zhisou.Tenghu.Domain;
 using System.IO;
+using DataLinq;
+using Cn.Loosoft.Zhisou.Tenghu.Common;
 
 namespace Cn.Loosoft.Zhisou.Tenghu.Web.Controllers
 {
@@ -46,7 +47,7 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Web.Controllers
             return View();
         }
 
-        public ActionResult LoadChildCategory(string id)
+        public ActionResult LoadChildCategory(int  id)
         {
             return Json(CategoryService.GetInstance().GetList(id),JsonRequestBehavior.AllowGet);
         }
@@ -298,7 +299,7 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Web.Controllers
             return View(LinkService.GetInstance().Get(lid));
         }
 
-        public ActionResult Categories(string id)
+        public ActionResult Categories(int  id)
         {
             int cid = 0;
             ViewData["categories"] = CategoryService.GetInstance().GetList(id);
@@ -422,7 +423,7 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Web.Controllers
                 if (image.ContentLength > 0)
                 {
                     image.SaveAs(filePath);
-                    if (video.category.id.Equals(24) == false)
+                    if (video.Category.id.Equals(24) == false)
                         video.img = filename;
                     else
                         video.path = filename;
@@ -543,7 +544,7 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Web.Controllers
                     image.SaveAs(filePath);
                 }
             }
-            catch (Exception e)
+            catch 
             {
                 ViewData["result"] = "添加失败";
                 

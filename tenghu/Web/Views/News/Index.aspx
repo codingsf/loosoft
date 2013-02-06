@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
 
 <%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Service" %>
-<%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Domain" %>
+<%@ Import Namespace="DataLinq" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -42,9 +42,9 @@
                                                 </ul>
                                             </div>
                                             <div class="left_dh04">
-                                                <a href="/product" class="lyn">> 最新产品</a></div>
+                                                <a href="/product.aspx" class="lyn">> 最新产品</a></div>
                                             <div class="left_dh04">
-                                                <a href="/service/network" class="lyn">> 售后服务网点</a></div>
+                                                <a href="/service.aspx/network" class="lyn">> 售后服务网点</a></div>
                                             <div class="left_dh03">
                                             </div>
                                         </div>
@@ -54,14 +54,14 @@
                                     <td width="753" rowspan="2" valign="top" class="tdp">
                                         <div class="ny_wz">
                                             <span class="f11">Welcome to</span> <span class="bulez f11">PROUDTIGER</span> &gt;
-                                            <a href="/" class="lz">首页</a> &gt; <a href="/news" class="lz">新闻动态</a></div>
+                                            <a href="/" class="lz">首页</a> &gt; <a href="/news.aspx" class="lz">新闻动态</a></div>
                                         <div class="rbox01">
                                             <div class="rbox01_ico">
                                                 <div class="sl">
                                                     企业新闻
                                                 </div>
                                                 <div class="sr">
-                                                    <a href="/news/more/11">
+                                                    <a href="/news.aspx/more/11">
                                                         <img src="/img/ny/more.jpg" width="39" border="0" style="height: 7px" /></a></div>
                                             </div>
                                             <% if ((ViewData["qiye"] as IList<News>).Count >= 1)
@@ -69,12 +69,12 @@
                                             <div class="rbox01_m">
                                                 <div>
                                                     <div class="nl02_img">
-                                                        <a href="/news/info/<%=(ViewData["qiye"] as IList<News>)[0].id  %>">
+                                                        <a href="/news.aspx/info/<%=(ViewData["qiye"] as IList<News>)[0].id  %>">
                                                             <img src="<%=(ViewData["qiye"] as IList<News>)[0].imgUrl  %>" width="79" height="46"
                                                                 border="0" /></a></div>
                                                     <div class="nl02_rn">
                                                         <div>
-                                                            <a href="/news/info/<%=(ViewData["qiye"] as IList<News>)[0].id  %>"><strong>
+                                                            <a href="/news.aspx/info/<%=(ViewData["qiye"] as IList<News>)[0].id  %>"><strong>
                                                                 <%=(ViewData["qiye"] as IList<News>)[0].title  %></strong></a></div>
                                                         <div class="lbla">
                                                             <%=(ViewData["qiye"] as IList<News>)[0].text.Length > 80 ? (ViewData["qiye"] as IList<News>)[0].text.Substring(0, 80) : (ViewData["qiye"] as IList<News>)[0].text%>...</div>
@@ -87,12 +87,12 @@
                                                               if (i % 2 == 0)
                                                               {
                                                         %>
-                                                        <li class="nbg"><a href="/news/info/<%=(ViewData["qiye"] as IList<News>)[i].id  %>">
+                                                        <li class="nbg"><a href="/news.aspx/info/<%=(ViewData["qiye"] as IList<News>)[i].id  %>">
                                                             ·<%=(ViewData["qiye"] as IList<News>)[i].title%></a></li>
                                                         <%}
                       else
                       { %>
-                                                        <li><a href="/news/info/<%=(ViewData["qiye"] as IList<News>)[i].id  %>">·<%=(ViewData["qiye"] as IList<News>)[i].title%></a></li>
+                                                        <li><a href="/news.aspx/info/<%=(ViewData["qiye"] as IList<News>)[i].id  %>">·<%=(ViewData["qiye"] as IList<News>)[i].title%></a></li>
                                                         <%}
                   } %>
                                                     </ul>
@@ -106,7 +106,7 @@
                                                     产品新闻
                                                 </div>
                                                 <div class="sr">
-                                                    <a href="/news/more/12">
+                                                    <a href="/news.aspx/more/12">
                                                         <img src="/img/ny/more.jpg" width="39" height="7" border="0" /></a></div>
                                             </div>
                                             <% if ((ViewData["chanpin"] as IList<News>).Count >= 1)
@@ -114,12 +114,12 @@
                                             <div class="rbox01_m">
                                                 <div>
                                                     <div class="nl02_img">
-                                                        <a href="/news/info/<%=(ViewData["chanpin"] as IList<News>)[0].id  %>">
+                                                        <a href="/news.aspx/info/<%=(ViewData["chanpin"] as IList<News>)[0].id  %>">
                                                             <img src="<%=(ViewData["chanpin"] as IList<News>)[0].imgUrl  %>" width="79" height="46"
                                                                 border="0" /></a></div>
                                                     <div class="nl02_rn">
                                                         <div>
-                                                            <a href="/news/info/<%=(ViewData["chanpin"] as IList<News>)[0].id  %>"><strong>
+                                                            <a href="/news.aspx/info/<%=(ViewData["chanpin"] as IList<News>)[0].id  %>"><strong>
                                                                 <%=(ViewData["chanpin"] as IList<News>)[0].title%></strong></a></div>
                                                         <div class="lbla">
                                                             <%=(ViewData["chanpin"] as IList<News>)[0].text.Length > 80 ? (ViewData["chanpin"] as IList<News>)[0].text.Substring(0, 80) : (ViewData["chanpin"] as IList<News>)[0].text%>...</div>
@@ -134,12 +134,12 @@
                                                               if (i % 2 == 0)
                                                               {
                                                         %>
-                                                        <li class="nbg"><a href="/news/info/<%=(ViewData["chanpin"] as IList<News>)[i].id  %>">
+                                                        <li class="nbg"><a href="/news.aspx/info/<%=(ViewData["chanpin"] as IList<News>)[i].id  %>">
                                                             ·<%=(ViewData["chanpin"] as IList<News>)[i].title%></a></li>
                                                         <%}
                       else
                       { %>
-                                                        <li><a href="/news/info/<%=(ViewData["chanpin"] as IList<News>)[i].id  %>">·<%=(ViewData["chanpin"] as IList<News>)[i].title%></a></li>
+                                                        <li><a href="/news.aspx/info/<%=(ViewData["chanpin"] as IList<News>)[i].id  %>">·<%=(ViewData["chanpin"] as IList<News>)[i].title%></a></li>
                                                         <%}
                   } %>
                                                     </ul>
@@ -153,7 +153,7 @@
                                                     视频新闻
                                                 </div>
                                                 <div class="sr">
-                                                    <a href="/news/video">
+                                                    <a href="/news.aspx/video">
                                                         <img src="/img/ny/more.jpg" width="39" height="7" border="0" /></a></div>
                                             </div>
                                             <div class="rbox01_m">

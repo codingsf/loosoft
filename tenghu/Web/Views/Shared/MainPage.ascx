@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
-<%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Domain" %>
+<%@ Import Namespace="DataLinq" %>
+<%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Common" %>
 
 <div>
 			<span class="sl">

@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<Cn.Loosoft.Zhisou.Tenghu.Domain.Product>" %>
-<%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Domain" %>
+﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<DataLinq.Product>" %>
+<%@ Import Namespace="DataLinq" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Service" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -36,33 +36,33 @@
             if (cat.id.Equals(Model.maincategory.id))
             {
                         %>
-			<li><a class="hover" href="/product/list/<%=cat.id %>">+ <%=cat.name%></a></li>
+			<li><a class="hover" href="/product.aspx/list/<%=cat.id %>">+ <%=cat.name%></a></li>
 			<%}else
             { %>
-			<li><a href="/product/list/<%=cat.id %>">+ <%=cat.name%></a></li>
+			<li><a href="/product.aspx/list/<%=cat.id %>">+ <%=cat.name%></a></li>
             
 			<%} }%>
                 </ul>
               </div>
-              <div class="left_dh04"><a href="/product" class="lyn">> 最新产品</a></div>
-              <div class="left_dh04"><a href="/service/network" class="lyn">> 售后服务网点</a></div>
+              <div class="left_dh04"><a href="/product.aspx" class="lyn">> 最新产品</a></div>
+              <div class="left_dh04"><a href="/service.aspx/network" class="lyn">> 售后服务网点</a></div>
               <div class="left_dh03"></div>
             </div>
             <div class="nytel"><%=WebconfigService.GetInstance().Config.tel %></div>
 			</td>
             <td width="753" rowspan="2" valign="top" class="tdp">
 			<div class="ny_wz"><span class="f11">Welcome to</span> <span class="bulez f11">PROUDTIGER</span> &gt; 
-			<a href="/" class="lz">首页</a> &gt; <a href="/product" class="lz">产品展示</a> &gt; <a href="/product/list/<%=Model.maincategory.id %>" class="lz"><%=Model.maincategory.name %></a> &gt;<%=Model.name %></div>
+			<a href="/" class="lz">首页</a> &gt; <a href="/product.aspx" class="lz">产品展示</a> &gt; <a href="/product.aspx/list/<%=Model.maincategory.id %>" class="lz"><%=Model.maincategory.name %></a> &gt;<%=Model.name %></div>
 			<div class="rbox01">
 			<div class="prtt"><%=Model.name %> <%=Model.category.name %></div>
 			<div class="prbt">
 			<div class="prta">
 			<ul id="tab">
-			<li><a href="/product/view/<%=Model.id %>">设备参数</a></li>
+			<li><a href="/product.aspx/view/<%=Model.id %>">设备参数</a></li>
 			<%--<li><a href="#">参数配置</a></li>--%>
 			</ul>
 			</div>
-			<div class="prbu"><a href="/product/file/<%=Model.id %>"><img src="/img/ny/pngimg.gif" width="102" height="18" border="0" /></a><a href="/product/buy/<%=Model.id %>"><img src="/img/ny/buyimg.gif" width="64" height="18" border="0" /></a></div>
+			<div class="prbu"><a href="/product.aspx/file/<%=Model.id %>"><img src="/img/ny/pngimg.gif" width="102" height="18" border="0" /></a><a href="/product.aspx/buy/<%=Model.id %>"><img src="/img/ny/buyimg.gif" width="64" height="18" border="0" /></a></div>
 			</div>
 			  <div class="rbox01_m">
 			  <div>

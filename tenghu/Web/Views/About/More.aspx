@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
-<%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Domain" %>
+<%@ Import Namespace="DataLinq" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Service" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -32,18 +32,18 @@
                 <ul id="lmenu">
                 	<%foreach (Category cat in ViewData["childCat"] as IList<Category>)
                 { %>
-			<li><a href="/about/more/<%=cat.id %>">+ <%=cat.name %></a></li>
+			<li><a href="/about.aspx/more/<%=cat.id %>">+ <%=cat.name %></a></li>
 			        <%} %>
                 </ul>
               </div>
-              <div class="left_dh04"><a href="/product" class="lyn">> 最新产品</a></div>
-              <div class="left_dh04"><a href="/service/network" class="lyn">> 售后服务网点</a></div>
+              <div class="left_dh04"><a href="/product.aspx" class="lyn">> 最新产品</a></div>
+              <div class="left_dh04"><a href="/service.aspx/network" class="lyn">> 售后服务网点</a></div>
               <div class="left_dh03"></div>
             </div>
               <div class="nytel"><%=WebconfigService.GetInstance().Config.tel %></div>
 			</td>
             <td width="753" rowspan="2" valign="top" class="tdp">
-			<div class="ny_wz"><span class="f11">Welcome to</span> <span class="bulez f11">PROUDTIGER</span> > <a href="/home" class="lz">首页</a>  > <a href="/about" class="lz">关于腾虎</a>  >  <%=(ViewData["info"] as Category).name %></div>
+			<div class="ny_wz"><span class="f11">Welcome to</span> <span class="bulez f11">PROUDTIGER</span> > <a href="/home" class="lz">首页</a>  > <a href="/about.aspx" class="lz">关于腾虎</a>  >  <%=(ViewData["info"] as Category).name %></div>
 			<div>
 			<div class="ntt"><%=(ViewData["info"] as Category).name%></div>
 			<div>

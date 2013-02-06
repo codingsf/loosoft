@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
-<%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Domain" %>
+<%@ Import Namespace="DataLinq" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Common" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Service" %>
 
@@ -75,14 +75,14 @@
             </ul>
 </div>
 			
-			<div class="left_dh04"><a href="/product" class="lyn">> 最新产品</a></div>
-			<div class="left_dh04"><a href="/service/network" class="lyn">> 售后服务网点</a></div>
+			<div class="left_dh04"><a href="/product.aspx" class="lyn">> 最新产品</a></div>
+			<div class="left_dh04"><a href="/service.aspx/network" class="lyn">> 售后服务网点</a></div>
 			<div class="left_dh03"></div>
 			  </div>
 			<div class="nytel"><%=WebconfigService.GetInstance().Config.tel %></div>
 			</td>
             <td width="753" rowspan="2" valign="top" class="tdp">
-			<div class="ny_wz"><span class="f11">Welcome to</span> <span class="bulez f11">PROUDTIGER</span> &gt; <a href="/" class="lz">首页</a> &gt; <a href="/service" class="lz">服务</a> &gt; 售后网络</div>
+			<div class="ny_wz"><span class="f11">Welcome to</span> <span class="bulez f11">PROUDTIGER</span> &gt; <a href="/" class="lz">首页</a> &gt; <a href="/service.aspx" class="lz">服务</a> &gt; 售后网络</div>
 			<div class="rbox01">
 			<div class="rbox01_ico">
 			<div class="sl">售后网络</div>

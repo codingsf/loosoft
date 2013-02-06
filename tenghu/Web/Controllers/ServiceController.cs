@@ -4,8 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Cn.Loosoft.Zhisou.Tenghu.Service;
-using Cn.Loosoft.Zhisou.Tenghu.Domain;
+
 using System.IO;
+using Cn.Loosoft.Zhisou.Tenghu.Common;
+using DataLinq;
 
 namespace Cn.Loosoft.Zhisou.Tenghu.Web.Controllers
 {
@@ -87,14 +89,14 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Web.Controllers
             return View();
         }
 
-        public ActionResult Load(string id, string type, string keyword,bool issale)
+        public ActionResult Load(string  id, string type, string keyword,bool issale)
         {
             if (string.IsNullOrEmpty(keyword))
             {
                 if (string.IsNullOrEmpty(type) || type.Equals("-1"))
                     ViewData["data"] = ServiceInfoService.GetInstance().GetList(int.Parse(id));
                 else
-                    ViewData["data"] = ServiceInfoService.GetInstance().GetList(id, type);
+                    ViewData["data"] = ServiceInfoService.GetInstance().GetList(int.Parse(id), int.Parse(type));
             }
             else
                 ViewData["data"] = ServiceInfoService.GetInstance().GetList(keyword);

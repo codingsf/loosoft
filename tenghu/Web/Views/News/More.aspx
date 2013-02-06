@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Cn.Loosoft.Zhisou.Tenghu.Domain.News>>" %>
-<%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Domain" %>
+﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<IEnumerable<DataLinq.News>>" %>
+<%@ Import Namespace="DataLinq" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Service" %>
 
 
@@ -45,13 +45,13 @@
 			<%} %>
                 </ul>
               </div>
-              <div class="left_dh04"><a href="/product" class="lyn">> 最新产品</a></div>
-              <div class="left_dh04"><a href="/service/network" class="lyn">> 售后服务网点</a></div>
+              <div class="left_dh04"><a href="/product.aspx" class="lyn">> 最新产品</a></div>
+              <div class="left_dh04"><a href="/service.aspx/network" class="lyn">> 售后服务网点</a></div>
               <div class="left_dh03"></div>
             </div>
             <div class="nytel"><%=WebconfigService.GetInstance().Config.tel %></div>
 			</td>
-            <td width="753" rowspan="2" valign="top" class="tdp"><div class="ny_wz"><span class="f11">Welcome to</span> <span class="bulez f11">PROUDTIGER</span> &gt; <a href="/" class="lz">首页</a> &gt; <a href="/news" class="lz">新闻动态</a> &gt; <%=(ViewData["category"] as Category).name%> </div>
+            <td width="753" rowspan="2" valign="top" class="tdp"><div class="ny_wz"><span class="f11">Welcome to</span> <span class="bulez f11">PROUDTIGER</span> &gt; <a href="/" class="lz">首页</a> &gt; <a href="/news.aspx" class="lz">新闻动态</a> &gt; <%=(ViewData["category"] as Category).name%> </div>
               <div class="nbu">
 			<%Html.RenderPartial("mainpage"); %>
 			 			  </div>
@@ -61,7 +61,7 @@
 						 
 						 <%foreach (var item in Model)
                          { %>
-						 <li><a href="/news/info/<%=item.id %>">·<%=item.title %></a></li>
+						 <li><a href="/news.aspx/info/<%=item.id %>">·<%=item.title %></a></li>
                          <%} %>
 						 </ul>
 				  </div>

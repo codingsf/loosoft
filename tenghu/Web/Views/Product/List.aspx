@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
-<%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Domain" %>
+<%@ Import Namespace="DataLinq" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Service" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -42,18 +42,18 @@
                 <ul id="lmenu">
            	<%foreach (Category cat in ViewData["childCat"] as IList<Category>)
         { %>
-			<li><a href="/product/list/<%=cat.id %>">+ <%=cat.name %></a></li>
+			<li><a href="/product.aspx/list/<%=cat.id %>">+ <%=cat.name %></a></li>
 			<%} %>
                 </ul>
               </div>
-              <div class="left_dh04"><a href="/product" class="lyn">> 最新产品</a></div>
-              <div class="left_dh04"><a href="/service/network" class="lyn">> 售后服务网点</a></div>
+              <div class="left_dh04"><a href="/product.aspx" class="lyn">> 最新产品</a></div>
+              <div class="left_dh04"><a href="/service.aspx/network" class="lyn">> 售后服务网点</a></div>
               <div class="left_dh03"></div>
             </div>
             <div class="nytel"><%=WebconfigService.GetInstance().Config.tel %></div>
 			</td>
             <td width="753" rowspan="2" valign="top" class="tdp">
-			<div class="ny_wz"><span class="f11">Welcome to</span> <span class="bulez f11">PROUDTIGER</span> &gt; <a href="/" class="lz">首页</a> &gt; <a href="/product" class="lz">产品展示</a> &gt; <%= (ViewData["descr"] as Category).name%></div>
+			<div class="ny_wz"><span class="f11">Welcome to</span> <span class="bulez f11">PROUDTIGER</span> &gt; <a href="/" class="lz">首页</a> &gt; <a href="/product.aspx" class="lz">产品展示</a> &gt; <%= (ViewData["descr"] as Category).name%></div>
 			<div class="rbox01">
 			  <div class="rbox01_ico">
                 <div class="sl">产品</div>
@@ -84,10 +84,10 @@
                           i++; %>
                     
                   <tr>
-                    <td width="38%" class="lbg0<%=i%2+1 %>"><a href="/product/view/<%=product.id %>"><%=product.name %></a></td>
-                    <td width="19%" class="lbg0<%=i%2+1 %>"><a target="_blank" href="/product/view/<%=product.id %>"><img src="/img/ny/moreimg.gif" width="66" height="18" border="0" /></a></td>
-                    <td width="21%" class="lbg0<%=i%2+1 %>"><a href="/product/file/<%=product.id %>"><img src="/img/ny/pngimg.gif" width="102" height="18" border="0" /></a></td>
-                    <td width="22%" class="lbg0<%=i%2+1 %>"> <a href="/product/buy/<%=product.id %>"><img src="/img/ny/buyimg.gif" width="64" height="18" border="0" /></a> </td>
+                    <td width="38%" class="lbg0<%=i%2+1 %>"><a href="/product.aspx/view/<%=product.id %>"><%=product.name %></a></td>
+                    <td width="19%" class="lbg0<%=i%2+1 %>"><a target="_blank" href="/product.aspx/view/<%=product.id %>"><img src="/img/ny/moreimg.gif" width="66" height="18" border="0" /></a></td>
+                    <td width="21%" class="lbg0<%=i%2+1 %>"><a href="/product.aspx/file/<%=product.id %>"><img src="/img/ny/pngimg.gif" width="102" height="18" border="0" /></a></td>
+                    <td width="22%" class="lbg0<%=i%2+1 %>"> <a href="/product.aspx/buy/<%=product.id %>"><img src="/img/ny/buyimg.gif" width="64" height="18" border="0" /></a> </td>
                   </tr>
                   
                   

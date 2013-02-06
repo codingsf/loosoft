@@ -2,22 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Cn.Loosoft.Zhisou.Tenghu.Persistence.Interfaces;
+
 using IBatisNet.DataAccess;
-using Cn.Loosoft.Zhisou.Tenghu.Domain;
+using DataLinq;
+using LinqDAO;
 
 namespace Cn.Loosoft.Zhisou.Tenghu.Service
 {
-   public class WebconfigService
+    public class WebconfigService
     {
-          private static WebconfigService _instance;
-        private IDaoManager _daoManager = null;
-        private IWebconfig _webconfigDao = null;
+        private static WebconfigService _instance;
+        //private IDaoManager _daoManager = null;
+        private WebconfigDAO _webconfigDao = null;
 
         private WebconfigService()
         {
-            _daoManager = ServiceConfig.GetInstance().DaoManager;
-            _webconfigDao = _daoManager.GetDao(typeof(IWebconfig)) as IWebconfig;
+            // _daoManager = ServiceConfig.GetInstance().DaoManager;
+            // _webconfigDao = _daoManager.GetDao(typeof(IWebconfig)) as IWebconfig;
+            _webconfigDao = new WebconfigDAO();
         }
 
         public static WebconfigService GetInstance()
@@ -33,26 +35,29 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
 
         public IList<Webconfig> GetList()
         {
-            return _webconfigDao.Getlist(new Webconfig());
+            return _webconfigDao.GetList();
         }
         public Webconfig Get()
         {
-            return _webconfigDao.Get(new Webconfig());
+            IList<Webconfig> webConfigList = GetList();
+            if (webConfigList.Count >= 1)
+                return webConfigList[0];
+            return new Webconfig();
         }
 
 
-        public int Save(Webconfig webconfig)
+        public void Save(Webconfig webconfig)
         {
             if (webconfig.id > 0)
-                return _webconfigDao.Update(webconfig);
-            return _webconfigDao.Insert(webconfig);
+                _webconfigDao.Update(webconfig);
+            _webconfigDao.Insert(webconfig);
         }
-        public int Remove(int id)
+        public void Remove(int id)
         {
-            return _webconfigDao.Remove(new Webconfig() {   id = id });
+            _webconfigDao.Remove(id);
         }
 
-        public  Webconfig Config
+        public Webconfig Config
         {
             get
             {

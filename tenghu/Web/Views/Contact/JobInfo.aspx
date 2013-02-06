@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<Cn.Loosoft.Zhisou.Tenghu.Domain.Job>" %>
-<%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Domain" %>
+﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<DataLinq.Job>" %>
+<%@ Import Namespace="DataLinq" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.Tenghu.Service" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -37,15 +37,15 @@
             </ul>
 </div>
 			
-			<div class="left_dh04"><a href="/product" class="lyn">> 最新产品</a></div>
-			<div class="left_dh04"><a href="/service/network" class="lyn">> 售后服务网点</a></div>
+			<div class="left_dh04"><a href="/product.aspx" class="lyn">> 最新产品</a></div>
+			<div class="left_dh04"><a href="/service.aspx/network" class="lyn">> 售后服务网点</a></div>
 			<div class="left_dh03"></div>
 			  </div>
 			<div class="nytel"><%=WebconfigService.GetInstance().Config.tel %></div>
 			</td>
             <td width="753" rowspan="2" valign="top" class="tdp">
 			<div class="ny_wz"><span class="f11">Welcome to</span> <span class="bulez f11">PROUDTIGER</span> &gt; 
-			<a href="/" class="lz">首页</a> &gt; <a href="/contact" class="lz">联系我们</a> &gt;  <a href="/contact/job" class="lz">人才招聘</a> &gt; <%=Model.name %> </div>
+			<a href="/" class="lz">首页</a> &gt; <a href="/contact.aspx" class="lz">联系我们</a> &gt;  <a href="/contact.aspx/job" class="lz">人才招聘</a> &gt; <%=Model.name %> </div>
 			<div class="rbox01">
 			<div class="rbox01_ico">
 			<div class="sl">职位说明</div>

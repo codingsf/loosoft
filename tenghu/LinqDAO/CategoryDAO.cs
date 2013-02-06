@@ -6,7 +6,7 @@ using DataLinq;
 using System.Data.Linq;
 namespace LinqDAO
 {
-    public class CategoryDAL : BaseDAO<Category, DataClasses1DataContext>
+    public class CategoryDAO : BaseDAO<Category, DataClasses1DataContext>
     {
         /*
         private DataLinq.DataClasses1DataContext objDataContext = new DataLinq.DataClasses1DataContext();
@@ -56,6 +56,9 @@ namespace LinqDAO
         public IList<Category> GetList(int cid)
         {
             var db = CreateContext();
+            if (cid.Equals(0))
+                return (from c in db.Category where c.pid == null select c).ToList<Category>();
+
             return (from c in db.Category where c.pid.Equals(cid) select c).ToList<Category>();
         }
     }

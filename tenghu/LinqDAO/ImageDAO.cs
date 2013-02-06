@@ -7,7 +7,7 @@ using System.Data.Linq;
 using Cn.Loosoft.Zhisou.Tenghu.Common;
 namespace LinqDAO
 {
-    public class ImageDAL:BaseDAO<Image,DataClasses1DataContext>
+    public class ImageDAO:BaseDAO<Image,DataClasses1DataContext>
     {
         /*
         private DataLinq.DataClasses1DataContext objDataContext = new DataLinq.DataClasses1DataContext();

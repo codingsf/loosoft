@@ -78,11 +78,11 @@
                         
                         
                         
-                        <form method="post" action="/admin/addjob" id="form1">
+                        <form method="post" action="/admin.aspx/addjob" id="form1">
                         <div class="listbox">
                            <table width="600">
                         <tr>
-                        <td width="25"><img src="/images/arrow_r.png" /> </td><td><a href="/admin/jobs" class="lblack">查看职位列表</a></td>
+                        <td width="25"><img src="/images/arrow_r.png" /> </td><td><a href="/admin.aspx/jobs" class="lblack">查看职位列表</a></td>
                         </tr>
                         </table>
                         
@@ -179,7 +179,7 @@
                                             
                                         </script> 
                                         
-                                                                              <input name="Submit2222" type="button" onclick="window.location.href='/admin/jobs'"; class="bulbg" value="返回" />
+                                                                              <input name="Submit2222" type="button" onclick="window.location.href='/admin.aspx/jobs'"; class="bulbg" value="返回" />
                                     </td>
                                 </tr>
                             </table>

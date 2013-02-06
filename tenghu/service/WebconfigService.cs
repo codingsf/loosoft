@@ -50,6 +50,7 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
         {
             if (webconfig.id > 0)
                 _webconfigDao.Update(webconfig);
+            else
             _webconfigDao.Insert(webconfig);
         }
         public void Remove(int id)

@@ -27,7 +27,7 @@
                     <td valign="top" bgcolor="#F1F1F1">
                      <%Html.RenderPartial("adminmenu"); %>
                         
-        <form id="form1" action="/admin/banner" enctype="multipart/form-data"
+        <form id="form1" action="/admin.aspx/banner" enctype="multipart/form-data"
         method="post">
                         <div class="listbox">
                             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="boxta">

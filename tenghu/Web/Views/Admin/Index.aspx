@@ -55,9 +55,9 @@
                                         
                                     </td>
                                     <td class="boxta04">
-                                        <a href="/admin/addnew/<%=each.id %>"  title="编辑新闻" /></>
+                                        <a href="/admin.aspx/addnew/<%=each.id %>"  title="编辑新闻" /></>
                                             <img src="/images/e01.gif" width="18" height="16" border="0" title="编辑新闻" /></a>
-                                            <a onclick="return confirm('确定要删除吗?')" href="/admin/delnew/<%=each.id %>" title="删除新闻"><img
+                                            <a onclick="return confirm('确定要删除吗?')" href="/admin.aspx/delnew/<%=each.id %>" title="删除新闻"><img
                                                 src="/images/e02.jpg" width="18" height="16" border="0"  title="删除新闻"/></a>
                                     </td>
                                 </tr>

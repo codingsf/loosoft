@@ -12,7 +12,7 @@
     <script src="/script/jquery.validate.js" type="text/javascript"></script>
     <script type="text/javascript">
         function loaddata() {
-            $.getJSON("/admin/loadchildcategory?id=" + $('#mid').val(), function(data) {
+            $.getJSON("/admin.aspx/loadchildcategory?id=" + $('#mid').val(), function(data) {
                 $("#pid").empty();
                 for (var i = 0; i < data.length; i++) {
                     $("#pid").append("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
@@ -62,7 +62,7 @@
                      <%Html.RenderPartial("adminmenu"); %>
                         
                         
-                        <form action="/admin/addproduct" method="post" id="form1" enctype = "multipart/form-data">
+                        <form action="/admin.aspx/addproduct" method="post" id="form1" enctype = "multipart/form-data">
                         
                         
                         <div class="listbox">
@@ -71,12 +71,12 @@
                         <tr>
                           <td width="25"><img src="/images/arrow_r.png" /> </td>
                          <td>
-                                       <a href="/admin/categories?id=4" class="lblack">所有产品类别</a>
+                                       <a href="/admin.aspx/categories?id=4" class="lblack">所有产品类别</a>
                          
                          </td>
                          
                         <td width="25"><img src="/images/arrow_r.png" /> </td>
-                        <td><a href="/admin/products" class="lblack">查看产品型号</a></td>
+                        <td><a href="/admin.aspx/products" class="lblack">查看产品型号</a></td>
                         </tr>
                         </table>
                         
@@ -162,7 +162,7 @@
                                     <td class="boxta03">
                                        
                                             <input name="Submit2223" type="submit" class="bulbg" value="新增产品" />
-                                                                                        <input name="Submit2222" type="button" onclick="window.location.href='/admin/products'"; class="bulbg" value="返回" />
+                                                                                        <input name="Submit2222" type="button" onclick="window.location.href='/admin.aspx/products'"; class="bulbg" value="返回" />
                                        
                                     </td>
                                 </tr>

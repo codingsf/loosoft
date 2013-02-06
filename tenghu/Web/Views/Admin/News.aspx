@@ -8,7 +8,7 @@
     <link href="/css/css.css" rel="stylesheet" type="text/css" />
     <script>
         function changePage(index) {
-            window.location.href = '/admin/news/'+index;
+            window.location.href = '/admin.aspx/news/'+index;
         }
     </script>
 </head>
@@ -71,8 +71,8 @@
                                         
                                     </td>
                                     <td class="boxta04">
-                                        <a href="/admin/addnew/<%=each.id %>">
-                                            <img src="/images/e01.gif" width="18" height="16" border="0" title="编辑新闻" /></a><a onclick="return confirm('确定要删除吗?')" href="/admin/delnew/<%=each.id %>"><img
+                                        <a href="/admin.aspx/addnew/<%=each.id %>">
+                                            <img src="/images/e01.gif" width="18" height="16" border="0" title="编辑新闻" /></a><a onclick="return confirm('确定要删除吗?')" href="/admin.aspx/delnew/<%=each.id %>"><img
                                                 src="/images/e02.jpg" width="18" height="16" border="0"  title="删除新闻"/></a>
                                     </td>
                                 </tr>
@@ -82,7 +82,7 @@
                                 		   <tr>
           <td colspan="4" style="border-top: 1px solid rgb(211, 208, 208);" background="images/right_bg01.jpg" height="32">
           <span style="float: left;">
-            <input onclick="window.location.href='/admin/addnew'" name="Submit22" class="bulbg" value="新增新闻" type="submit">
+            <input onclick="window.location.href='/admin.aspx/addnew'" name="Submit22" class="bulbg" value="新增新闻" type="submit">
           </span>
           <% Html.RenderPartial("page"); %>
             </td>

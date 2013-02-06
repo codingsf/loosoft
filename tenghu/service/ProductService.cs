@@ -43,7 +43,7 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
         public void Save(Product product)
         {
             if (product.id > 0)
-                _productDao.Update(product);
+                _productDao.Update(product);else
             _productDao.Insert(product);
         }
         public void Remove(int id)

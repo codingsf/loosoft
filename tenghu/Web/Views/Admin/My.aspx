@@ -51,7 +51,7 @@
                         
                         
                         
-                        <form method="post" action="/admin/my" id="form1">
+                        <form method="post" action="/admin.aspx/my" id="form1">
                         <div class="listbox">
                             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="boxta">
                                 <tr>

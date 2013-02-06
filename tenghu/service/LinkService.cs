@@ -39,7 +39,7 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
         public void Save(Link link)
         {
             if (link.id > 0)
-                _linkDao.Update(link);
+                _linkDao.Update(link);else
             _linkDao.Insert(link);
         }
 

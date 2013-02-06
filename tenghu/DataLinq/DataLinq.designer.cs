@@ -42,30 +42,30 @@ namespace DataLinq
     partial void InsertLink(Link instance);
     partial void UpdateLink(Link instance);
     partial void DeleteLink(Link instance);
-    partial void InsertOrderInfo(OrderInfo instance);
-    partial void UpdateOrderInfo(OrderInfo instance);
-    partial void DeleteOrderInfo(OrderInfo instance);
-    partial void InsertProduct(Product instance);
-    partial void UpdateProduct(Product instance);
-    partial void DeleteProduct(Product instance);
-    partial void InsertManager(Manager instance);
-    partial void UpdateManager(Manager instance);
-    partial void DeleteManager(Manager instance);
-    partial void InsertServiceInfo(ServiceInfo instance);
-    partial void UpdateServiceInfo(ServiceInfo instance);
-    partial void DeleteServiceInfo(ServiceInfo instance);
     partial void InsertCategory(Category instance);
     partial void UpdateCategory(Category instance);
     partial void DeleteCategory(Category instance);
-    partial void InsertVideo(Video instance);
-    partial void UpdateVideo(Video instance);
-    partial void DeleteVideo(Video instance);
     partial void InsertNews(News instance);
     partial void UpdateNews(News instance);
     partial void DeleteNews(News instance);
     partial void InsertZhuanli(Zhuanli instance);
     partial void UpdateZhuanli(Zhuanli instance);
     partial void DeleteZhuanli(Zhuanli instance);
+    partial void InsertManager(Manager instance);
+    partial void UpdateManager(Manager instance);
+    partial void DeleteManager(Manager instance);
+    partial void InsertProduct(Product instance);
+    partial void UpdateProduct(Product instance);
+    partial void DeleteProduct(Product instance);
+    partial void InsertServiceInfo(ServiceInfo instance);
+    partial void UpdateServiceInfo(ServiceInfo instance);
+    partial void DeleteServiceInfo(ServiceInfo instance);
+    partial void InsertVideo(Video instance);
+    partial void UpdateVideo(Video instance);
+    partial void DeleteVideo(Video instance);
+    partial void InsertOrderInfo(OrderInfo instance);
+    partial void UpdateOrderInfo(OrderInfo instance);
+    partial void DeleteOrderInfo(OrderInfo instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -130,51 +130,11 @@ namespace DataLinq
 			}
 		}
 		
-		public System.Data.Linq.Table<OrderInfo> OrderInfo
-		{
-			get
-			{
-				return this.GetTable<OrderInfo>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Product> Product
-		{
-			get
-			{
-				return this.GetTable<Product>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Manager> Manager
-		{
-			get
-			{
-				return this.GetTable<Manager>();
-			}
-		}
-		
-		public System.Data.Linq.Table<ServiceInfo> ServiceInfo
-		{
-			get
-			{
-				return this.GetTable<ServiceInfo>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Category> Category
 		{
 			get
 			{
 				return this.GetTable<Category>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Video> Video
-		{
-			get
-			{
-				return this.GetTable<Video>();
 			}
 		}
 		
@@ -191,6 +151,46 @@ namespace DataLinq
 			get
 			{
 				return this.GetTable<Zhuanli>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Manager> Manager
+		{
+			get
+			{
+				return this.GetTable<Manager>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Product> Product
+		{
+			get
+			{
+				return this.GetTable<Product>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ServiceInfo> ServiceInfo
+		{
+			get
+			{
+				return this.GetTable<ServiceInfo>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Video> Video
+		{
+			get
+			{
+				return this.GetTable<Video>();
+			}
+		}
+		
+		public System.Data.Linq.Table<OrderInfo> OrderInfo
+		{
+			get
+			{
+				return this.GetTable<OrderInfo>();
 			}
 		}
 	}
@@ -923,1022 +923,6 @@ namespace DataLinq
 		}
 	}
 	
-	[Table(Name="host6728845.orderinfo")]
-	public partial class OrderInfo : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _area;
-		
-		private System.Nullable<int> _categoryid;
-		
-		private System.Nullable<int> _productid;
-		
-		private string _time;
-		
-		private string _payment;
-		
-		private string _uname;
-		
-		private string _company;
-		
-		private string _tel;
-		
-		private string _email;
-		
-		private string _address;
-		
-		private string _comment;
-		
-		private string _type;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnareaChanging(string value);
-    partial void OnareaChanged();
-    partial void OncategoryidChanging(System.Nullable<int> value);
-    partial void OncategoryidChanged();
-    partial void OnproductidChanging(System.Nullable<int> value);
-    partial void OnproductidChanged();
-    partial void OntimeChanging(string value);
-    partial void OntimeChanged();
-    partial void OnpaymentChanging(string value);
-    partial void OnpaymentChanged();
-    partial void OnunameChanging(string value);
-    partial void OnunameChanged();
-    partial void OncompanyChanging(string value);
-    partial void OncompanyChanged();
-    partial void OntelChanging(string value);
-    partial void OntelChanged();
-    partial void OnemailChanging(string value);
-    partial void OnemailChanged();
-    partial void OnaddressChanging(string value);
-    partial void OnaddressChanged();
-    partial void OncommentChanging(string value);
-    partial void OncommentChanged();
-    partial void OntypeChanging(string value);
-    partial void OntypeChanged();
-    #endregion
-		
-		public OrderInfo()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_area", DbType="VarChar(11)")]
-		public string area
-		{
-			get
-			{
-				return this._area;
-			}
-			set
-			{
-				if ((this._area != value))
-				{
-					this.OnareaChanging(value);
-					this.SendPropertyChanging();
-					this._area = value;
-					this.SendPropertyChanged("area");
-					this.OnareaChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_categoryid", DbType="Int")]
-		public System.Nullable<int> categoryid
-		{
-			get
-			{
-				return this._categoryid;
-			}
-			set
-			{
-				if ((this._categoryid != value))
-				{
-					this.OncategoryidChanging(value);
-					this.SendPropertyChanging();
-					this._categoryid = value;
-					this.SendPropertyChanged("categoryid");
-					this.OncategoryidChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_productid", DbType="Int")]
-		public System.Nullable<int> productid
-		{
-			get
-			{
-				return this._productid;
-			}
-			set
-			{
-				if ((this._productid != value))
-				{
-					this.OnproductidChanging(value);
-					this.SendPropertyChanging();
-					this._productid = value;
-					this.SendPropertyChanged("productid");
-					this.OnproductidChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_time", DbType="VarChar(11)")]
-		public string time
-		{
-			get
-			{
-				return this._time;
-			}
-			set
-			{
-				if ((this._time != value))
-				{
-					this.OntimeChanging(value);
-					this.SendPropertyChanging();
-					this._time = value;
-					this.SendPropertyChanged("time");
-					this.OntimeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_payment", DbType="VarChar(11)")]
-		public string payment
-		{
-			get
-			{
-				return this._payment;
-			}
-			set
-			{
-				if ((this._payment != value))
-				{
-					this.OnpaymentChanging(value);
-					this.SendPropertyChanging();
-					this._payment = value;
-					this.SendPropertyChanged("payment");
-					this.OnpaymentChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_uname", DbType="VarChar(255)")]
-		public string uname
-		{
-			get
-			{
-				return this._uname;
-			}
-			set
-			{
-				if ((this._uname != value))
-				{
-					this.OnunameChanging(value);
-					this.SendPropertyChanging();
-					this._uname = value;
-					this.SendPropertyChanged("uname");
-					this.OnunameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_company", DbType="VarChar(255)")]
-		public string company
-		{
-			get
-			{
-				return this._company;
-			}
-			set
-			{
-				if ((this._company != value))
-				{
-					this.OncompanyChanging(value);
-					this.SendPropertyChanging();
-					this._company = value;
-					this.SendPropertyChanged("company");
-					this.OncompanyChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_tel", DbType="VarChar(255)")]
-		public string tel
-		{
-			get
-			{
-				return this._tel;
-			}
-			set
-			{
-				if ((this._tel != value))
-				{
-					this.OntelChanging(value);
-					this.SendPropertyChanging();
-					this._tel = value;
-					this.SendPropertyChanged("tel");
-					this.OntelChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_email", DbType="VarChar(255)")]
-		public string email
-		{
-			get
-			{
-				return this._email;
-			}
-			set
-			{
-				if ((this._email != value))
-				{
-					this.OnemailChanging(value);
-					this.SendPropertyChanging();
-					this._email = value;
-					this.SendPropertyChanged("email");
-					this.OnemailChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_address", DbType="VarChar(255)")]
-		public string address
-		{
-			get
-			{
-				return this._address;
-			}
-			set
-			{
-				if ((this._address != value))
-				{
-					this.OnaddressChanging(value);
-					this.SendPropertyChanging();
-					this._address = value;
-					this.SendPropertyChanged("address");
-					this.OnaddressChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_comment", DbType="VarChar(255)")]
-		public string comment
-		{
-			get
-			{
-				return this._comment;
-			}
-			set
-			{
-				if ((this._comment != value))
-				{
-					this.OncommentChanging(value);
-					this.SendPropertyChanging();
-					this._comment = value;
-					this.SendPropertyChanged("comment");
-					this.OncommentChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_type", DbType="VarChar(255)")]
-		public string type
-		{
-			get
-			{
-				return this._type;
-			}
-			set
-			{
-				if ((this._type != value))
-				{
-					this.OntypeChanging(value);
-					this.SendPropertyChanging();
-					this._type = value;
-					this.SendPropertyChanged("type");
-					this.OntypeChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[Table(Name="host6728845.product")]
-	public partial class Product : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private System.Nullable<int> _mid;
-		
-		private System.Nullable<int> _pid;
-		
-		private string _name;
-		
-		private string _descr;
-		
-		private System.Nullable<bool> _isdisplay;
-		
-		private System.Nullable<System.DateTime> _createtime;
-		
-		private string _pdfpath;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnmidChanging(System.Nullable<int> value);
-    partial void OnmidChanged();
-    partial void OnpidChanging(System.Nullable<int> value);
-    partial void OnpidChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void OndescrChanging(string value);
-    partial void OndescrChanged();
-    partial void OnisdisplayChanging(System.Nullable<bool> value);
-    partial void OnisdisplayChanged();
-    partial void OncreatetimeChanging(System.Nullable<System.DateTime> value);
-    partial void OncreatetimeChanged();
-    partial void OnpdfpathChanging(string value);
-    partial void OnpdfpathChanged();
-    #endregion
-		
-		public Product()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_mid", DbType="Int")]
-		public System.Nullable<int> mid
-		{
-			get
-			{
-				return this._mid;
-			}
-			set
-			{
-				if ((this._mid != value))
-				{
-					this.OnmidChanging(value);
-					this.SendPropertyChanging();
-					this._mid = value;
-					this.SendPropertyChanged("mid");
-					this.OnmidChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_pid", DbType="Int")]
-		public System.Nullable<int> pid
-		{
-			get
-			{
-				return this._pid;
-			}
-			set
-			{
-				if ((this._pid != value))
-				{
-					this.OnpidChanging(value);
-					this.SendPropertyChanging();
-					this._pid = value;
-					this.SendPropertyChanged("pid");
-					this.OnpidChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_name", DbType="VarChar(255)")]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_descr", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string descr
-		{
-			get
-			{
-				return this._descr;
-			}
-			set
-			{
-				if ((this._descr != value))
-				{
-					this.OndescrChanging(value);
-					this.SendPropertyChanging();
-					this._descr = value;
-					this.SendPropertyChanged("descr");
-					this.OndescrChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_isdisplay", DbType="Bit")]
-		public System.Nullable<bool> isdisplay
-		{
-			get
-			{
-				return this._isdisplay;
-			}
-			set
-			{
-				if ((this._isdisplay != value))
-				{
-					this.OnisdisplayChanging(value);
-					this.SendPropertyChanging();
-					this._isdisplay = value;
-					this.SendPropertyChanged("isdisplay");
-					this.OnisdisplayChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_createtime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> createtime
-		{
-			get
-			{
-				return this._createtime;
-			}
-			set
-			{
-				if ((this._createtime != value))
-				{
-					this.OncreatetimeChanging(value);
-					this.SendPropertyChanging();
-					this._createtime = value;
-					this.SendPropertyChanged("createtime");
-					this.OncreatetimeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_pdfpath", DbType="VarChar(255)")]
-		public string pdfpath
-		{
-			get
-			{
-				return this._pdfpath;
-			}
-			set
-			{
-				if ((this._pdfpath != value))
-				{
-					this.OnpdfpathChanging(value);
-					this.SendPropertyChanging();
-					this._pdfpath = value;
-					this.SendPropertyChanged("pdfpath");
-					this.OnpdfpathChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[Table(Name="host6728845.manager")]
-	public partial class Manager : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _username;
-		
-		private string _password;
-		
-		private System.Nullable<bool> _islocked;
-		
-		private System.Nullable<bool> _issuper;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnusernameChanging(string value);
-    partial void OnusernameChanged();
-    partial void OnpasswordChanging(string value);
-    partial void OnpasswordChanged();
-    partial void OnislockedChanging(System.Nullable<bool> value);
-    partial void OnislockedChanged();
-    partial void OnissuperChanging(System.Nullable<bool> value);
-    partial void OnissuperChanged();
-    #endregion
-		
-		public Manager()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_username", DbType="VarChar(255)")]
-		public string username
-		{
-			get
-			{
-				return this._username;
-			}
-			set
-			{
-				if ((this._username != value))
-				{
-					this.OnusernameChanging(value);
-					this.SendPropertyChanging();
-					this._username = value;
-					this.SendPropertyChanged("username");
-					this.OnusernameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_password", DbType="VarChar(255)")]
-		public string password
-		{
-			get
-			{
-				return this._password;
-			}
-			set
-			{
-				if ((this._password != value))
-				{
-					this.OnpasswordChanging(value);
-					this.SendPropertyChanging();
-					this._password = value;
-					this.SendPropertyChanged("password");
-					this.OnpasswordChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_islocked", DbType="Bit")]
-		public System.Nullable<bool> islocked
-		{
-			get
-			{
-				return this._islocked;
-			}
-			set
-			{
-				if ((this._islocked != value))
-				{
-					this.OnislockedChanging(value);
-					this.SendPropertyChanging();
-					this._islocked = value;
-					this.SendPropertyChanged("islocked");
-					this.OnislockedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_issuper", DbType="Bit")]
-		public System.Nullable<bool> issuper
-		{
-			get
-			{
-				return this._issuper;
-			}
-			set
-			{
-				if ((this._issuper != value))
-				{
-					this.OnissuperChanging(value);
-					this.SendPropertyChanging();
-					this._issuper = value;
-					this.SendPropertyChanged("issuper");
-					this.OnissuperChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[Table(Name="host6728845.service")]
-	public partial class ServiceInfo : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private System.Nullable<int> _areaid;
-		
-		private System.Nullable<int> _nettypeid;
-		
-		private string _addr;
-		
-		private string _post;
-		
-		private string _tel;
-		
-		private string _descr;
-		
-		private System.Nullable<bool> _issale;
-		
-		private string _latitude;
-		
-		private string _longitude;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnareaidChanging(System.Nullable<int> value);
-    partial void OnareaidChanged();
-    partial void OnnettypeidChanging(System.Nullable<int> value);
-    partial void OnnettypeidChanged();
-    partial void OnaddrChanging(string value);
-    partial void OnaddrChanged();
-    partial void OnpostChanging(string value);
-    partial void OnpostChanged();
-    partial void OntelChanging(string value);
-    partial void OntelChanged();
-    partial void OndescrChanging(string value);
-    partial void OndescrChanged();
-    partial void OnissaleChanging(System.Nullable<bool> value);
-    partial void OnissaleChanged();
-    partial void OnlatitudeChanging(string value);
-    partial void OnlatitudeChanged();
-    partial void OnlongitudeChanging(string value);
-    partial void OnlongitudeChanged();
-    #endregion
-		
-		public ServiceInfo()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_areaid", DbType="Int")]
-		public System.Nullable<int> areaid
-		{
-			get
-			{
-				return this._areaid;
-			}
-			set
-			{
-				if ((this._areaid != value))
-				{
-					this.OnareaidChanging(value);
-					this.SendPropertyChanging();
-					this._areaid = value;
-					this.SendPropertyChanged("areaid");
-					this.OnareaidChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_nettypeid", DbType="Int")]
-		public System.Nullable<int> nettypeid
-		{
-			get
-			{
-				return this._nettypeid;
-			}
-			set
-			{
-				if ((this._nettypeid != value))
-				{
-					this.OnnettypeidChanging(value);
-					this.SendPropertyChanging();
-					this._nettypeid = value;
-					this.SendPropertyChanged("nettypeid");
-					this.OnnettypeidChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_addr", DbType="VarChar(255)")]
-		public string addr
-		{
-			get
-			{
-				return this._addr;
-			}
-			set
-			{
-				if ((this._addr != value))
-				{
-					this.OnaddrChanging(value);
-					this.SendPropertyChanging();
-					this._addr = value;
-					this.SendPropertyChanged("addr");
-					this.OnaddrChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_post", DbType="VarChar(255)")]
-		public string post
-		{
-			get
-			{
-				return this._post;
-			}
-			set
-			{
-				if ((this._post != value))
-				{
-					this.OnpostChanging(value);
-					this.SendPropertyChanging();
-					this._post = value;
-					this.SendPropertyChanged("post");
-					this.OnpostChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_tel", DbType="VarChar(255)")]
-		public string tel
-		{
-			get
-			{
-				return this._tel;
-			}
-			set
-			{
-				if ((this._tel != value))
-				{
-					this.OntelChanging(value);
-					this.SendPropertyChanging();
-					this._tel = value;
-					this.SendPropertyChanged("tel");
-					this.OntelChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_descr", DbType="VarChar(255)")]
-		public string descr
-		{
-			get
-			{
-				return this._descr;
-			}
-			set
-			{
-				if ((this._descr != value))
-				{
-					this.OndescrChanging(value);
-					this.SendPropertyChanging();
-					this._descr = value;
-					this.SendPropertyChanged("descr");
-					this.OndescrChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_issale", DbType="Bit")]
-		public System.Nullable<bool> issale
-		{
-			get
-			{
-				return this._issale;
-			}
-			set
-			{
-				if ((this._issale != value))
-				{
-					this.OnissaleChanging(value);
-					this.SendPropertyChanging();
-					this._issale = value;
-					this.SendPropertyChanged("issale");
-					this.OnissaleChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_latitude", DbType="VarChar(255)")]
-		public string latitude
-		{
-			get
-			{
-				return this._latitude;
-			}
-			set
-			{
-				if ((this._latitude != value))
-				{
-					this.OnlatitudeChanging(value);
-					this.SendPropertyChanging();
-					this._latitude = value;
-					this.SendPropertyChanged("latitude");
-					this.OnlatitudeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_longitude", DbType="VarChar(255)")]
-		public string longitude
-		{
-			get
-			{
-				return this._longitude;
-			}
-			set
-			{
-				if ((this._longitude != value))
-				{
-					this.OnlongitudeChanging(value);
-					this.SendPropertyChanging();
-					this._longitude = value;
-					this.SendPropertyChanged("longitude");
-					this.OnlongitudeChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[Table(Name="host6728845.category")]
 	public partial class Category : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1961,11 +945,13 @@ namespace DataLinq
 		
 		private EntitySet<Category> _Category2;
 		
-		private EntitySet<Video> _Video;
-		
 		private EntitySet<News> _News;
 		
 		private EntitySet<Zhuanli> _Zhuanli;
+		
+		private EntitySet<Video> _Video;
+		
+		private EntitySet<OrderInfo> _OrderInfo;
 		
 		private EntityRef<Category> _category1;
 		
@@ -1992,9 +978,10 @@ namespace DataLinq
 		public Category()
 		{
 			this._Category2 = new EntitySet<Category>(new Action<Category>(this.attach_Category2), new Action<Category>(this.detach_Category2));
-			this._Video = new EntitySet<Video>(new Action<Video>(this.attach_Video), new Action<Video>(this.detach_Video));
 			this._News = new EntitySet<News>(new Action<News>(this.attach_News), new Action<News>(this.detach_News));
 			this._Zhuanli = new EntitySet<Zhuanli>(new Action<Zhuanli>(this.attach_Zhuanli), new Action<Zhuanli>(this.detach_Zhuanli));
+			this._Video = new EntitySet<Video>(new Action<Video>(this.attach_Video), new Action<Video>(this.detach_Video));
+			this._OrderInfo = new EntitySet<OrderInfo>(new Action<OrderInfo>(this.attach_OrderInfo), new Action<OrderInfo>(this.detach_OrderInfo));
 			this._category1 = default(EntityRef<Category>);
 			OnCreated();
 		}
@@ -2156,19 +1143,6 @@ namespace DataLinq
 			}
 		}
 		
-		[Association(Name="Category_Video", Storage="_Video", ThisKey="id", OtherKey="categoryid")]
-		public EntitySet<Video> Video
-		{
-			get
-			{
-				return this._Video;
-			}
-			set
-			{
-				this._Video.Assign(value);
-			}
-		}
-		
 		[Association(Name="Category_News", Storage="_News", ThisKey="id", OtherKey="categoryid")]
 		public EntitySet<News> News
 		{
@@ -2182,7 +1156,7 @@ namespace DataLinq
 			}
 		}
 		
-		[Association(Name="Category_zhuanli", Storage="_Zhuanli", ThisKey="id", OtherKey="type")]
+		[Association(Name="Category_Zhuanli", Storage="_Zhuanli", ThisKey="id", OtherKey="type")]
 		public EntitySet<Zhuanli> Zhuanli
 		{
 			get
@@ -2192,6 +1166,32 @@ namespace DataLinq
 			set
 			{
 				this._Zhuanli.Assign(value);
+			}
+		}
+		
+		[Association(Name="Category_Video", Storage="_Video", ThisKey="id", OtherKey="categoryid")]
+		public EntitySet<Video> Video
+		{
+			get
+			{
+				return this._Video;
+			}
+			set
+			{
+				this._Video.Assign(value);
+			}
+		}
+		
+		[Association(Name="Category_orderinfo", Storage="_OrderInfo", ThisKey="id", OtherKey="categoryid")]
+		public EntitySet<OrderInfo> OrderInfo
+		{
+			get
+			{
+				return this._OrderInfo;
+			}
+			set
+			{
+				this._OrderInfo.Assign(value);
 			}
 		}
 		
@@ -2261,18 +1261,6 @@ namespace DataLinq
 			entity.category1 = null;
 		}
 		
-		private void attach_Video(Video entity)
-		{
-			this.SendPropertyChanging();
-			entity.Category = this;
-		}
-		
-		private void detach_Video(Video entity)
-		{
-			this.SendPropertyChanging();
-			entity.Category = null;
-		}
-		
 		private void attach_News(News entity)
 		{
 			this.SendPropertyChanging();
@@ -2296,276 +1284,29 @@ namespace DataLinq
 			this.SendPropertyChanging();
 			entity.Category = null;
 		}
-	}
-	
-	[Table(Name="host6728845.video")]
-	public partial class Video : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _name;
-		
-		private string _descr;
-		
-		private string _path;
-		
-		private System.Nullable<bool> _isdisplay;
-		
-		private System.Nullable<int> _sortorder;
-		
-		private string _img;
-		
-		private System.Nullable<int> _categoryid;
-		
-		private EntityRef<Category> _Category;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void OndescrChanging(string value);
-    partial void OndescrChanged();
-    partial void OnpathChanging(string value);
-    partial void OnpathChanged();
-    partial void OnisdisplayChanging(System.Nullable<bool> value);
-    partial void OnisdisplayChanged();
-    partial void OnsortorderChanging(System.Nullable<int> value);
-    partial void OnsortorderChanged();
-    partial void OnimgChanging(string value);
-    partial void OnimgChanged();
-    partial void OncategoryidChanging(System.Nullable<int> value);
-    partial void OncategoryidChanged();
-    #endregion
-		
-		public Video()
+		private void attach_Video(Video entity)
 		{
-			this._Category = default(EntityRef<Category>);
-			OnCreated();
+			this.SendPropertyChanging();
+			entity.Category = this;
 		}
 		
-		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id
+		private void detach_Video(Video entity)
 		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
+			this.SendPropertyChanging();
+			entity.Category = null;
 		}
 		
-		[Column(Storage="_name", DbType="VarChar(255)")]
-		public string name
+		private void attach_OrderInfo(OrderInfo entity)
 		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
+			this.SendPropertyChanging();
+			entity.Category = this;
 		}
 		
-		[Column(Storage="_descr", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string descr
+		private void detach_OrderInfo(OrderInfo entity)
 		{
-			get
-			{
-				return this._descr;
-			}
-			set
-			{
-				if ((this._descr != value))
-				{
-					this.OndescrChanging(value);
-					this.SendPropertyChanging();
-					this._descr = value;
-					this.SendPropertyChanged("descr");
-					this.OndescrChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_path", DbType="VarChar(255)")]
-		public string path
-		{
-			get
-			{
-				return this._path;
-			}
-			set
-			{
-				if ((this._path != value))
-				{
-					this.OnpathChanging(value);
-					this.SendPropertyChanging();
-					this._path = value;
-					this.SendPropertyChanged("path");
-					this.OnpathChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_isdisplay", DbType="Bit")]
-		public System.Nullable<bool> isdisplay
-		{
-			get
-			{
-				return this._isdisplay;
-			}
-			set
-			{
-				if ((this._isdisplay != value))
-				{
-					this.OnisdisplayChanging(value);
-					this.SendPropertyChanging();
-					this._isdisplay = value;
-					this.SendPropertyChanged("isdisplay");
-					this.OnisdisplayChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_sortorder", DbType="Int")]
-		public System.Nullable<int> sortorder
-		{
-			get
-			{
-				return this._sortorder;
-			}
-			set
-			{
-				if ((this._sortorder != value))
-				{
-					this.OnsortorderChanging(value);
-					this.SendPropertyChanging();
-					this._sortorder = value;
-					this.SendPropertyChanged("sortorder");
-					this.OnsortorderChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_img", DbType="VarChar(255)")]
-		public string img
-		{
-			get
-			{
-				return this._img;
-			}
-			set
-			{
-				if ((this._img != value))
-				{
-					this.OnimgChanging(value);
-					this.SendPropertyChanging();
-					this._img = value;
-					this.SendPropertyChanged("img");
-					this.OnimgChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_categoryid", DbType="Int")]
-		public System.Nullable<int> categoryid
-		{
-			get
-			{
-				return this._categoryid;
-			}
-			set
-			{
-				if ((this._categoryid != value))
-				{
-					if (this._Category.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OncategoryidChanging(value);
-					this.SendPropertyChanging();
-					this._categoryid = value;
-					this.SendPropertyChanged("categoryid");
-					this.OncategoryidChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Category_Video", Storage="_Category", ThisKey="categoryid", OtherKey="id", IsForeignKey=true)]
-		public Category Category
-		{
-			get
-			{
-				return this._Category.Entity;
-			}
-			set
-			{
-				Category previousValue = this._Category.Entity;
-				if (((previousValue != value) 
-							|| (this._Category.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Category.Entity = null;
-						previousValue.Video.Remove(this);
-					}
-					this._Category.Entity = value;
-					if ((value != null))
-					{
-						value.Video.Add(this);
-						this._categoryid = value.id;
-					}
-					else
-					{
-						this._categoryid = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Category");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
+			this.SendPropertyChanging();
+			entity.Category = null;
 		}
 	}
 	
@@ -3008,7 +1749,7 @@ namespace DataLinq
 			}
 		}
 		
-		[Association(Name="Category_zhuanli", Storage="_Category", ThisKey="type", OtherKey="id", IsForeignKey=true)]
+		[Association(Name="Category_Zhuanli", Storage="_Category", ThisKey="type", OtherKey="id", IsForeignKey=true)]
 		public Category Category
 		{
 			get
@@ -3038,6 +1779,1403 @@ namespace DataLinq
 						this._type = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Category");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="host6728845.manager")]
+	public partial class Manager : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _username;
+		
+		private string _password;
+		
+		private bool _islocked;
+		
+		private bool _issuper;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnusernameChanging(string value);
+    partial void OnusernameChanged();
+    partial void OnpasswordChanging(string value);
+    partial void OnpasswordChanged();
+    partial void OnislockedChanging(bool value);
+    partial void OnislockedChanged();
+    partial void OnissuperChanging(bool value);
+    partial void OnissuperChanged();
+    #endregion
+		
+		public Manager()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_username", DbType="VarChar(255)")]
+		public string username
+		{
+			get
+			{
+				return this._username;
+			}
+			set
+			{
+				if ((this._username != value))
+				{
+					this.OnusernameChanging(value);
+					this.SendPropertyChanging();
+					this._username = value;
+					this.SendPropertyChanged("username");
+					this.OnusernameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_password", DbType="VarChar(255)")]
+		public string password
+		{
+			get
+			{
+				return this._password;
+			}
+			set
+			{
+				if ((this._password != value))
+				{
+					this.OnpasswordChanging(value);
+					this.SendPropertyChanging();
+					this._password = value;
+					this.SendPropertyChanged("password");
+					this.OnpasswordChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_islocked", DbType="Bit NOT NULL")]
+		public bool islocked
+		{
+			get
+			{
+				return this._islocked;
+			}
+			set
+			{
+				if ((this._islocked != value))
+				{
+					this.OnislockedChanging(value);
+					this.SendPropertyChanging();
+					this._islocked = value;
+					this.SendPropertyChanged("islocked");
+					this.OnislockedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_issuper", DbType="Bit NOT NULL")]
+		public bool issuper
+		{
+			get
+			{
+				return this._issuper;
+			}
+			set
+			{
+				if ((this._issuper != value))
+				{
+					this.OnissuperChanging(value);
+					this.SendPropertyChanging();
+					this._issuper = value;
+					this.SendPropertyChanged("issuper");
+					this.OnissuperChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="host6728845.product")]
+	public partial class Product : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.Nullable<int> _mid;
+		
+		private System.Nullable<int> _pid;
+		
+		private string _name;
+		
+		private string _descr;
+		
+		private bool _isdisplay;
+		
+		private System.Nullable<System.DateTime> _createtime;
+		
+		private string _pdfpath;
+		
+		private EntitySet<OrderInfo> _OrderInfo;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnmidChanging(System.Nullable<int> value);
+    partial void OnmidChanged();
+    partial void OnpidChanging(System.Nullable<int> value);
+    partial void OnpidChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OndescrChanging(string value);
+    partial void OndescrChanged();
+    partial void OnisdisplayChanging(bool value);
+    partial void OnisdisplayChanged();
+    partial void OncreatetimeChanging(System.Nullable<System.DateTime> value);
+    partial void OncreatetimeChanged();
+    partial void OnpdfpathChanging(string value);
+    partial void OnpdfpathChanged();
+    #endregion
+		
+		public Product()
+		{
+			this._OrderInfo = new EntitySet<OrderInfo>(new Action<OrderInfo>(this.attach_OrderInfo), new Action<OrderInfo>(this.detach_OrderInfo));
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_mid", DbType="Int")]
+		public System.Nullable<int> mid
+		{
+			get
+			{
+				return this._mid;
+			}
+			set
+			{
+				if ((this._mid != value))
+				{
+					this.OnmidChanging(value);
+					this.SendPropertyChanging();
+					this._mid = value;
+					this.SendPropertyChanged("mid");
+					this.OnmidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_pid", DbType="Int")]
+		public System.Nullable<int> pid
+		{
+			get
+			{
+				return this._pid;
+			}
+			set
+			{
+				if ((this._pid != value))
+				{
+					this.OnpidChanging(value);
+					this.SendPropertyChanging();
+					this._pid = value;
+					this.SendPropertyChanged("pid");
+					this.OnpidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_name", DbType="VarChar(255)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_descr", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string descr
+		{
+			get
+			{
+				return this._descr;
+			}
+			set
+			{
+				if ((this._descr != value))
+				{
+					this.OndescrChanging(value);
+					this.SendPropertyChanging();
+					this._descr = value;
+					this.SendPropertyChanged("descr");
+					this.OndescrChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_isdisplay", DbType="Bit NOT NULL")]
+		public bool isdisplay
+		{
+			get
+			{
+				return this._isdisplay;
+			}
+			set
+			{
+				if ((this._isdisplay != value))
+				{
+					this.OnisdisplayChanging(value);
+					this.SendPropertyChanging();
+					this._isdisplay = value;
+					this.SendPropertyChanged("isdisplay");
+					this.OnisdisplayChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_createtime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> createtime
+		{
+			get
+			{
+				return this._createtime;
+			}
+			set
+			{
+				if ((this._createtime != value))
+				{
+					this.OncreatetimeChanging(value);
+					this.SendPropertyChanging();
+					this._createtime = value;
+					this.SendPropertyChanged("createtime");
+					this.OncreatetimeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_pdfpath", DbType="VarChar(255)")]
+		public string pdfpath
+		{
+			get
+			{
+				return this._pdfpath;
+			}
+			set
+			{
+				if ((this._pdfpath != value))
+				{
+					this.OnpdfpathChanging(value);
+					this.SendPropertyChanging();
+					this._pdfpath = value;
+					this.SendPropertyChanged("pdfpath");
+					this.OnpdfpathChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Product_orderinfo", Storage="_OrderInfo", ThisKey="id", OtherKey="productid")]
+		public EntitySet<OrderInfo> OrderInfo
+		{
+			get
+			{
+				return this._OrderInfo;
+			}
+			set
+			{
+				this._OrderInfo.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_OrderInfo(OrderInfo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product = this;
+		}
+		
+		private void detach_OrderInfo(OrderInfo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product = null;
+		}
+	}
+	
+	[Table(Name="host6728845.service")]
+	public partial class ServiceInfo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.Nullable<int> _areaid;
+		
+		private System.Nullable<int> _nettypeid;
+		
+		private string _addr;
+		
+		private string _post;
+		
+		private string _tel;
+		
+		private string _descr;
+		
+		private bool _issale;
+		
+		private string _latitude;
+		
+		private string _longitude;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnareaidChanging(System.Nullable<int> value);
+    partial void OnareaidChanged();
+    partial void OnnettypeidChanging(System.Nullable<int> value);
+    partial void OnnettypeidChanged();
+    partial void OnaddrChanging(string value);
+    partial void OnaddrChanged();
+    partial void OnpostChanging(string value);
+    partial void OnpostChanged();
+    partial void OntelChanging(string value);
+    partial void OntelChanged();
+    partial void OndescrChanging(string value);
+    partial void OndescrChanged();
+    partial void OnissaleChanging(bool value);
+    partial void OnissaleChanged();
+    partial void OnlatitudeChanging(string value);
+    partial void OnlatitudeChanged();
+    partial void OnlongitudeChanging(string value);
+    partial void OnlongitudeChanged();
+    #endregion
+		
+		public ServiceInfo()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_areaid", DbType="Int")]
+		public System.Nullable<int> areaid
+		{
+			get
+			{
+				return this._areaid;
+			}
+			set
+			{
+				if ((this._areaid != value))
+				{
+					this.OnareaidChanging(value);
+					this.SendPropertyChanging();
+					this._areaid = value;
+					this.SendPropertyChanged("areaid");
+					this.OnareaidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_nettypeid", DbType="Int")]
+		public System.Nullable<int> nettypeid
+		{
+			get
+			{
+				return this._nettypeid;
+			}
+			set
+			{
+				if ((this._nettypeid != value))
+				{
+					this.OnnettypeidChanging(value);
+					this.SendPropertyChanging();
+					this._nettypeid = value;
+					this.SendPropertyChanged("nettypeid");
+					this.OnnettypeidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_addr", DbType="VarChar(255)")]
+		public string addr
+		{
+			get
+			{
+				return this._addr;
+			}
+			set
+			{
+				if ((this._addr != value))
+				{
+					this.OnaddrChanging(value);
+					this.SendPropertyChanging();
+					this._addr = value;
+					this.SendPropertyChanged("addr");
+					this.OnaddrChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_post", DbType="VarChar(255)")]
+		public string post
+		{
+			get
+			{
+				return this._post;
+			}
+			set
+			{
+				if ((this._post != value))
+				{
+					this.OnpostChanging(value);
+					this.SendPropertyChanging();
+					this._post = value;
+					this.SendPropertyChanged("post");
+					this.OnpostChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_tel", DbType="VarChar(255)")]
+		public string tel
+		{
+			get
+			{
+				return this._tel;
+			}
+			set
+			{
+				if ((this._tel != value))
+				{
+					this.OntelChanging(value);
+					this.SendPropertyChanging();
+					this._tel = value;
+					this.SendPropertyChanged("tel");
+					this.OntelChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_descr", DbType="VarChar(255)")]
+		public string descr
+		{
+			get
+			{
+				return this._descr;
+			}
+			set
+			{
+				if ((this._descr != value))
+				{
+					this.OndescrChanging(value);
+					this.SendPropertyChanging();
+					this._descr = value;
+					this.SendPropertyChanged("descr");
+					this.OndescrChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_issale", DbType="Bit NOT NULL")]
+		public bool issale
+		{
+			get
+			{
+				return this._issale;
+			}
+			set
+			{
+				if ((this._issale != value))
+				{
+					this.OnissaleChanging(value);
+					this.SendPropertyChanging();
+					this._issale = value;
+					this.SendPropertyChanged("issale");
+					this.OnissaleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_latitude", DbType="VarChar(255)")]
+		public string latitude
+		{
+			get
+			{
+				return this._latitude;
+			}
+			set
+			{
+				if ((this._latitude != value))
+				{
+					this.OnlatitudeChanging(value);
+					this.SendPropertyChanging();
+					this._latitude = value;
+					this.SendPropertyChanged("latitude");
+					this.OnlatitudeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_longitude", DbType="VarChar(255)")]
+		public string longitude
+		{
+			get
+			{
+				return this._longitude;
+			}
+			set
+			{
+				if ((this._longitude != value))
+				{
+					this.OnlongitudeChanging(value);
+					this.SendPropertyChanging();
+					this._longitude = value;
+					this.SendPropertyChanged("longitude");
+					this.OnlongitudeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="host6728845.video")]
+	public partial class Video : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _name;
+		
+		private string _descr;
+		
+		private string _path;
+		
+		private bool _isdisplay;
+		
+		private System.Nullable<int> _sortorder;
+		
+		private string _img;
+		
+		private System.Nullable<int> _categoryid;
+		
+		private EntityRef<Category> _Category;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OndescrChanging(string value);
+    partial void OndescrChanged();
+    partial void OnpathChanging(string value);
+    partial void OnpathChanged();
+    partial void OnisdisplayChanging(bool value);
+    partial void OnisdisplayChanged();
+    partial void OnsortorderChanging(System.Nullable<int> value);
+    partial void OnsortorderChanged();
+    partial void OnimgChanging(string value);
+    partial void OnimgChanged();
+    partial void OncategoryidChanging(System.Nullable<int> value);
+    partial void OncategoryidChanged();
+    #endregion
+		
+		public Video()
+		{
+			this._Category = default(EntityRef<Category>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_name", DbType="VarChar(255)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_descr", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string descr
+		{
+			get
+			{
+				return this._descr;
+			}
+			set
+			{
+				if ((this._descr != value))
+				{
+					this.OndescrChanging(value);
+					this.SendPropertyChanging();
+					this._descr = value;
+					this.SendPropertyChanged("descr");
+					this.OndescrChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_path", DbType="VarChar(255)")]
+		public string path
+		{
+			get
+			{
+				return this._path;
+			}
+			set
+			{
+				if ((this._path != value))
+				{
+					this.OnpathChanging(value);
+					this.SendPropertyChanging();
+					this._path = value;
+					this.SendPropertyChanged("path");
+					this.OnpathChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_isdisplay", DbType="Bit NOT NULL")]
+		public bool isdisplay
+		{
+			get
+			{
+				return this._isdisplay;
+			}
+			set
+			{
+				if ((this._isdisplay != value))
+				{
+					this.OnisdisplayChanging(value);
+					this.SendPropertyChanging();
+					this._isdisplay = value;
+					this.SendPropertyChanged("isdisplay");
+					this.OnisdisplayChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_sortorder", DbType="Int")]
+		public System.Nullable<int> sortorder
+		{
+			get
+			{
+				return this._sortorder;
+			}
+			set
+			{
+				if ((this._sortorder != value))
+				{
+					this.OnsortorderChanging(value);
+					this.SendPropertyChanging();
+					this._sortorder = value;
+					this.SendPropertyChanged("sortorder");
+					this.OnsortorderChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_img", DbType="VarChar(255)")]
+		public string img
+		{
+			get
+			{
+				return this._img;
+			}
+			set
+			{
+				if ((this._img != value))
+				{
+					this.OnimgChanging(value);
+					this.SendPropertyChanging();
+					this._img = value;
+					this.SendPropertyChanged("img");
+					this.OnimgChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_categoryid", DbType="Int")]
+		public System.Nullable<int> categoryid
+		{
+			get
+			{
+				return this._categoryid;
+			}
+			set
+			{
+				if ((this._categoryid != value))
+				{
+					if (this._Category.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OncategoryidChanging(value);
+					this.SendPropertyChanging();
+					this._categoryid = value;
+					this.SendPropertyChanged("categoryid");
+					this.OncategoryidChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Category_Video", Storage="_Category", ThisKey="categoryid", OtherKey="id", IsForeignKey=true)]
+		public Category Category
+		{
+			get
+			{
+				return this._Category.Entity;
+			}
+			set
+			{
+				Category previousValue = this._Category.Entity;
+				if (((previousValue != value) 
+							|| (this._Category.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Category.Entity = null;
+						previousValue.Video.Remove(this);
+					}
+					this._Category.Entity = value;
+					if ((value != null))
+					{
+						value.Video.Add(this);
+						this._categoryid = value.id;
+					}
+					else
+					{
+						this._categoryid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Category");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="host6728845.orderinfo")]
+	public partial class OrderInfo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _area;
+		
+		private System.Nullable<int> _categoryid;
+		
+		private System.Nullable<int> _productid;
+		
+		private string _time;
+		
+		private string _payment;
+		
+		private string _uname;
+		
+		private string _company;
+		
+		private string _tel;
+		
+		private string _email;
+		
+		private string _address;
+		
+		private string _comment;
+		
+		private string _type;
+		
+		private EntityRef<Category> _Category;
+		
+		private EntityRef<Product> _Product;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnareaChanging(string value);
+    partial void OnareaChanged();
+    partial void OncategoryidChanging(System.Nullable<int> value);
+    partial void OncategoryidChanged();
+    partial void OnproductidChanging(System.Nullable<int> value);
+    partial void OnproductidChanged();
+    partial void OntimeChanging(string value);
+    partial void OntimeChanged();
+    partial void OnpaymentChanging(string value);
+    partial void OnpaymentChanged();
+    partial void OnunameChanging(string value);
+    partial void OnunameChanged();
+    partial void OncompanyChanging(string value);
+    partial void OncompanyChanged();
+    partial void OntelChanging(string value);
+    partial void OntelChanged();
+    partial void OnemailChanging(string value);
+    partial void OnemailChanged();
+    partial void OnaddressChanging(string value);
+    partial void OnaddressChanged();
+    partial void OncommentChanging(string value);
+    partial void OncommentChanged();
+    partial void OntypeChanging(string value);
+    partial void OntypeChanged();
+    #endregion
+		
+		public OrderInfo()
+		{
+			this._Category = default(EntityRef<Category>);
+			this._Product = default(EntityRef<Product>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_area", DbType="VarChar(11)")]
+		public string area
+		{
+			get
+			{
+				return this._area;
+			}
+			set
+			{
+				if ((this._area != value))
+				{
+					this.OnareaChanging(value);
+					this.SendPropertyChanging();
+					this._area = value;
+					this.SendPropertyChanged("area");
+					this.OnareaChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_categoryid", DbType="Int")]
+		public System.Nullable<int> categoryid
+		{
+			get
+			{
+				return this._categoryid;
+			}
+			set
+			{
+				if ((this._categoryid != value))
+				{
+					if (this._Category.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OncategoryidChanging(value);
+					this.SendPropertyChanging();
+					this._categoryid = value;
+					this.SendPropertyChanged("categoryid");
+					this.OncategoryidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_productid", DbType="Int")]
+		public System.Nullable<int> productid
+		{
+			get
+			{
+				return this._productid;
+			}
+			set
+			{
+				if ((this._productid != value))
+				{
+					if (this._Product.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnproductidChanging(value);
+					this.SendPropertyChanging();
+					this._productid = value;
+					this.SendPropertyChanged("productid");
+					this.OnproductidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_time", DbType="VarChar(11)")]
+		public string time
+		{
+			get
+			{
+				return this._time;
+			}
+			set
+			{
+				if ((this._time != value))
+				{
+					this.OntimeChanging(value);
+					this.SendPropertyChanging();
+					this._time = value;
+					this.SendPropertyChanged("time");
+					this.OntimeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_payment", DbType="VarChar(11)")]
+		public string payment
+		{
+			get
+			{
+				return this._payment;
+			}
+			set
+			{
+				if ((this._payment != value))
+				{
+					this.OnpaymentChanging(value);
+					this.SendPropertyChanging();
+					this._payment = value;
+					this.SendPropertyChanged("payment");
+					this.OnpaymentChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_uname", DbType="VarChar(255)")]
+		public string uname
+		{
+			get
+			{
+				return this._uname;
+			}
+			set
+			{
+				if ((this._uname != value))
+				{
+					this.OnunameChanging(value);
+					this.SendPropertyChanging();
+					this._uname = value;
+					this.SendPropertyChanged("uname");
+					this.OnunameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_company", DbType="VarChar(255)")]
+		public string company
+		{
+			get
+			{
+				return this._company;
+			}
+			set
+			{
+				if ((this._company != value))
+				{
+					this.OncompanyChanging(value);
+					this.SendPropertyChanging();
+					this._company = value;
+					this.SendPropertyChanged("company");
+					this.OncompanyChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_tel", DbType="VarChar(255)")]
+		public string tel
+		{
+			get
+			{
+				return this._tel;
+			}
+			set
+			{
+				if ((this._tel != value))
+				{
+					this.OntelChanging(value);
+					this.SendPropertyChanging();
+					this._tel = value;
+					this.SendPropertyChanged("tel");
+					this.OntelChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_email", DbType="VarChar(255)")]
+		public string email
+		{
+			get
+			{
+				return this._email;
+			}
+			set
+			{
+				if ((this._email != value))
+				{
+					this.OnemailChanging(value);
+					this.SendPropertyChanging();
+					this._email = value;
+					this.SendPropertyChanged("email");
+					this.OnemailChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_address", DbType="VarChar(255)")]
+		public string address
+		{
+			get
+			{
+				return this._address;
+			}
+			set
+			{
+				if ((this._address != value))
+				{
+					this.OnaddressChanging(value);
+					this.SendPropertyChanging();
+					this._address = value;
+					this.SendPropertyChanged("address");
+					this.OnaddressChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_comment", DbType="VarChar(255)")]
+		public string comment
+		{
+			get
+			{
+				return this._comment;
+			}
+			set
+			{
+				if ((this._comment != value))
+				{
+					this.OncommentChanging(value);
+					this.SendPropertyChanging();
+					this._comment = value;
+					this.SendPropertyChanged("comment");
+					this.OncommentChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_type", DbType="VarChar(255)")]
+		public string type
+		{
+			get
+			{
+				return this._type;
+			}
+			set
+			{
+				if ((this._type != value))
+				{
+					this.OntypeChanging(value);
+					this.SendPropertyChanging();
+					this._type = value;
+					this.SendPropertyChanged("type");
+					this.OntypeChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Category_orderinfo", Storage="_Category", ThisKey="categoryid", OtherKey="id", IsForeignKey=true)]
+		public Category Category
+		{
+			get
+			{
+				return this._Category.Entity;
+			}
+			set
+			{
+				Category previousValue = this._Category.Entity;
+				if (((previousValue != value) 
+							|| (this._Category.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Category.Entity = null;
+						previousValue.OrderInfo.Remove(this);
+					}
+					this._Category.Entity = value;
+					if ((value != null))
+					{
+						value.OrderInfo.Add(this);
+						this._categoryid = value.id;
+					}
+					else
+					{
+						this._categoryid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Category");
+				}
+			}
+		}
+		
+		[Association(Name="Product_orderinfo", Storage="_Product", ThisKey="productid", OtherKey="id", IsForeignKey=true)]
+		public Product Product
+		{
+			get
+			{
+				return this._Product.Entity;
+			}
+			set
+			{
+				Product previousValue = this._Product.Entity;
+				if (((previousValue != value) 
+							|| (this._Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Product.Entity = null;
+						previousValue.OrderInfo.Remove(this);
+					}
+					this._Product.Entity = value;
+					if ((value != null))
+					{
+						value.OrderInfo.Add(this);
+						this._productid = value.id;
+					}
+					else
+					{
+						this._productid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Product");
 				}
 			}
 		}

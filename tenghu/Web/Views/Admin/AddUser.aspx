@@ -86,10 +86,10 @@
                                         
                                     </td>
                                     <td class="boxta04">
-                                        <a href="/admin/adduser/<%=each.id %>">
+                                        <a href="/admin.aspx/adduser/<%=each.id %>">
                                             <img src="/images/e01.gif" width="18" height="16" border="0" /></a>
                                             
-                                            <a href="/admin/deluser/<%=each.id %>" onclick="return confirm('是否确定删除?')"><img
+                                            <a href="/admin.aspx/deluser/<%=each.id %>" onclick="return confirm('是否确定删除?')"><img
                                                 src="/images/e02.jpg" width="18" height="16" border="0" /></a>
                                     </td>
                                 </tr>
@@ -98,7 +98,7 @@
                                 
                             </table>
                         </div>
-                        <form method="post" action="/admin/adduser" id="form1">
+                        <form method="post" action="/admin.aspx/adduser" id="form1">
                         <div class="listbox">
                             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="boxta">
                                 <tr>

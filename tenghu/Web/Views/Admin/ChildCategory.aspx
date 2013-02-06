@@ -43,7 +43,7 @@
                     </td>
                     <td valign="top" bgcolor="#F1F1F1">
                      <%Html.RenderPartial("adminmenu"); %>
-                        <form method="post" action="/admin/categories" id="form1">
+                        <form method="post" action="/admin.aspx/categories" id="form1">
                         <div class="listbox">
                             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="boxta">
                                 <tr>

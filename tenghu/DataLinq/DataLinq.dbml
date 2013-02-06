@@ -41,58 +41,6 @@
       <Column Name="isdisplay" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="host6728845.orderinfo" Member="OrderInfo">
-    <Type Name="OrderInfo">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="area" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
-      <Column Name="categoryid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="productid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="time" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
-      <Column Name="payment" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
-      <Column Name="uname" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="company" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="tel" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="email" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="address" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="comment" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="type" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="host6728845.product" Member="Product">
-    <Type Name="Product">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="mid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="pid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="descr" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="isdisplay" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="createtime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="pdfpath" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="host6728845.manager" Member="Manager">
-    <Type Name="Manager">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="username" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="password" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="islocked" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="issuper" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="host6728845.service" Member="ServiceInfo">
-    <Type Name="ServiceInfo">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="areaid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="nettypeid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="addr" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="post" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="tel" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="descr" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="issale" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="latitude" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="longitude" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="host6728845.category" Member="Category">
     <Type Name="Category">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -103,23 +51,11 @@
       <Column Name="sortorder" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="descr" Type="System.String" DbType="VarChar(2550)" CanBeNull="true" />
       <Association Name="Category_Category" Member="Category2" ThisKey="id" OtherKey="pid" Type="Category" />
-      <Association Name="Category_Video" Member="Video" ThisKey="id" OtherKey="categoryid" Type="Video" />
       <Association Name="Category_News" Member="News" ThisKey="id" OtherKey="categoryid" Type="News" />
-      <Association Name="Category_zhuanli" Member="Zhuanli" ThisKey="id" OtherKey="type" Type="Zhuanli" />
+      <Association Name="Category_Zhuanli" Member="Zhuanli" ThisKey="id" OtherKey="type" Type="Zhuanli" />
+      <Association Name="Category_Video" Member="Video" ThisKey="id" OtherKey="categoryid" Type="Video" />
+      <Association Name="Category_orderinfo" Member="OrderInfo" ThisKey="id" OtherKey="categoryid" Type="OrderInfo" />
       <Association Name="Category_Category" Member="category1" ThisKey="pid" OtherKey="id" Type="Category" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="host6728845.video" Member="Video">
-    <Type Name="Video">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="descr" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="path" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="isdisplay" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="sortorder" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="img" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="categoryid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Category_Video" Member="Category" ThisKey="categoryid" OtherKey="id" Type="Category" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="host6728845.news" Member="News">
@@ -143,7 +79,75 @@
       <Column Name="num" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="descr" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="url" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Association Name="Category_zhuanli" Member="Category" ThisKey="type" OtherKey="id" Type="Category" IsForeignKey="true" />
+      <Association Name="Category_Zhuanli" Member="Category" ThisKey="type" OtherKey="id" Type="Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="host6728845.manager" Member="Manager">
+    <Type Name="Manager">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="islocked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="issuper" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="host6728845.product" Member="Product">
+    <Type Name="Product">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="mid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="pid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="descr" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="isdisplay" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="createtime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="pdfpath" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="Product_orderinfo" Member="OrderInfo" ThisKey="id" OtherKey="productid" Type="OrderInfo" />
+    </Type>
+  </Table>
+  <Table Name="host6728845.service" Member="ServiceInfo">
+    <Type Name="ServiceInfo">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="areaid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nettypeid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="addr" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="post" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="tel" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="descr" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="issale" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="latitude" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="longitude" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="host6728845.video" Member="Video">
+    <Type Name="Video">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="descr" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="path" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="isdisplay" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="sortorder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="img" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="categoryid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Category_Video" Member="Category" ThisKey="categoryid" OtherKey="id" Type="Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="host6728845.orderinfo" Member="OrderInfo">
+    <Type Name="OrderInfo">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="area" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="categoryid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="productid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="time" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="payment" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="uname" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="company" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="tel" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="address" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="comment" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="type" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="Category_orderinfo" Member="Category" ThisKey="categoryid" OtherKey="id" Type="Category" IsForeignKey="true" />
+      <Association Name="Product_orderinfo" Member="Product" ThisKey="productid" OtherKey="id" Type="Product" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

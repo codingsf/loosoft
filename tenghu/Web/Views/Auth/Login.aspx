@@ -47,7 +47,7 @@
 
 </head>
 <body style="background: #385F8E;">
-            <form method="post" action="/auth/login" id="loginform">
+            <form method="post" action="/auth.aspx/login" id="loginform">
 
     <div class="lgobox">
         <div class="lgobox_top">

@@ -53,10 +53,10 @@
                     </td>
                     <td valign="top" bgcolor="#F1F1F1">
                      <%Html.RenderPartial("adminmenu"); %>
-                        <form method="post" action="/admin/service" id="form1">
+                        <form method="post" action="/admin.aspx/service" id="form1">
                         <table>
                         <tr>
-                        <td width="25"><img src="/images/arrow_r.png"> </td><td><a href="/admin/servicelist" class="lblack">查看销售/售后 列表</a></td>
+                        <td width="25"><img src="/images/arrow_r.png"> </td><td><a href="/admin.aspx/servicelist" class="lblack">查看销售/售后 列表</a></td>
                         </tr>
                         </table>
                         <div class="listbox">
@@ -165,7 +165,7 @@
                                     </td>
                                     <td class="boxta03">
                                             <input name="Submit222" type="submit" class="bulbg" value="添加" />
-                                                                                       <input name="Submit2222" type="button" onclick="window.location.href='/admin/servicelist'"; class="bulbg" value="返回" />
+                                                                                       <input name="Submit2222" type="button" onclick="window.location.href='/admin.aspx/servicelist'"; class="bulbg" value="返回" />
                                     </td>
                                 </tr>
                             </table>

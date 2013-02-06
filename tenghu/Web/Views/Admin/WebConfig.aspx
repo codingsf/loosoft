@@ -24,7 +24,7 @@
                     <td valign="top" bgcolor="#F1F1F1">
                         <% Html.RenderPartial("adminmenu"); %>
                         
-                        <form method="post" action="/admin/updateconfig">
+                        <form method="post" action="/admin.aspx/updateconfig">
                         
                         
                         <div class="listbox">

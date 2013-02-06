@@ -63,7 +63,7 @@
                                     </td>
                                 </tr>
                                 
-                                <%foreach (Cn.Loosoft.Zhisou.Tenghu.Domain.Image each in ViewData["images"] as IList<Cn.Loosoft.Zhisou.Tenghu.Domain.Image>)
+                                <%foreach (DataLinq.Image each in ViewData["images"] as IList<DataLinq.Image>)
                                   { %>
                                 
                                 <tr>
@@ -80,7 +80,7 @@
                                         
                                     </td>
                                     <td class="boxta04">
-                                            <a href="/admin/delimg/<%=each.id %>" onclick="return confirm('是否确定删除?')"><img
+                                            <a href="/admin.aspx/delimg/<%=each.id %>" onclick="return confirm('是否确定删除?')"><img
                                                 src="/images/e02.jpg" width="18" height="16" border="0"  title="删除图片"/></a>
                                     </td>
                                 </tr>
@@ -89,7 +89,7 @@
                                 
                             </table>
                         </div>
-        <form id="form1" action="/admin/upload" enctype="multipart/form-data"
+        <form id="form1" action="/admin.aspx/upload" enctype="multipart/form-data"
         method="post">
                         <div class="listbox">
                             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="boxta">

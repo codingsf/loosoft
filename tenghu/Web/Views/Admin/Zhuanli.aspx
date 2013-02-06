@@ -61,11 +61,11 @@
                         
                         
                         
-                        <form method="post" action="/admin/zhuanli" id="form1">
+                        <form method="post" action="/admin.aspx/zhuanli" id="form1">
                         <div class="listbox">
                         <table width="600">
                         <tr>
-                        <td width="25"><img src="/images/arrow_r.png" /> </td><td><a href="/admin/zhuanlilist" class="lblack">查看专利列表</a></td>
+                        <td width="25"><img src="/images/arrow_r.png" /> </td><td><a href="/admin.aspx/zhuanlilist" class="lblack">查看专利列表</a></td>
                         </tr>
                         </table>
                             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="boxta">
@@ -106,7 +106,7 @@
                                                 new SelectListItem { Text = "发明专利", Value = "20"},
                                                 })%>
                                                 
-                                                <%--<a href="/admin/category?zhuanli" target="_blank">添加专利类型</a>--%>
+                                                <%--<a href="/admin.aspx/category?zhuanli" target="_blank">添加专利类型</a>--%>
                                  
                                        
                                     </td>
@@ -146,7 +146,7 @@
                                     </td>
                                     <td class="boxta03">
                                             <input name="Submit222" type="submit" class="bulbg" value="发布" />
-                                                                                       <input name="Submit2222" type="button" onclick="window.location.href='/admin/zhuanlilist'"; class="bulbg" value="返回" />
+                                                                                       <input name="Submit2222" type="button" onclick="window.location.href='/admin.aspx/zhuanlilist'"; class="bulbg" value="返回" />
                                     </td>
                                 </tr>
                             </table>

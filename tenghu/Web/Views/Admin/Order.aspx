@@ -112,10 +112,10 @@
                                         
                                     </td>
                                     <td class="boxta04">
-                                    <a href="/admin/orderview/<%=each.id %>">
+                                    <a href="/admin.aspx/orderview/<%=each.id %>">
                                             <img src="/images/card.gif" title="查看订单" border="0" height="16" width="18"></a>
                                             
-                                            <a href="/admin/delorder/<%=each.id %>" onclick="return confirm('是否确定删除?')"><img
+                                            <a href="/admin.aspx/delorder/<%=each.id %>" onclick="return confirm('是否确定删除?')"><img
                                                 src="/images/e02.jpg" width="18" height="16" border="0" title="删除订单" /></a>
                                     </td>
                                 </tr>

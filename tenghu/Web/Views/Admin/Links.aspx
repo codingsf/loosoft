@@ -83,10 +83,10 @@
                                         
                                     </td>
                                     <td class="boxta04">
-                                        <a href="/admin/links/<%=each.id %>">
+                                        <a href="/admin.aspx/links/<%=each.id %>">
                                             <img src="/images/e01.gif" width="18" height="16" border="0"  title="编辑链接"/></a>
                                             
-                                            <a href="/admin/dellink/<%=each.id %>" onclick="return confirm('是否确定删除?')"><img
+                                            <a href="/admin.aspx/dellink/<%=each.id %>" onclick="return confirm('是否确定删除?')"><img
                                                 src="/images/e02.jpg" width="18" height="16" border="0"  title="删除链接"/></a>
                                     </td>
                                 </tr>
@@ -95,7 +95,7 @@
                                 
                             </table>
                         </div>
-                        <form method="post" action="/admin/addlink" id="form1">
+                        <form method="post" action="/admin.aspx/addlink" id="form1">
                         <div class="listbox">
                             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="boxta">
                                 <tr>

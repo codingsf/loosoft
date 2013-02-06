@@ -50,7 +50,7 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
         public void Save(Manager manager)
         {
             if (manager.id > 0)
-                _managerDao.Update(manager);
+                _managerDao.Update(manager);else
             _managerDao.Insert(manager);
         }
         public void Remove(int id)

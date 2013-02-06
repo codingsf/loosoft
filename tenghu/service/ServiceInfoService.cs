@@ -55,7 +55,7 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
         public void Save(ServiceInfo info)
         {
             if (info.id > 0)
-                _serviceDao.Update(info);
+                _serviceDao.Update(info);else
             _serviceDao.Insert(info);
         }
 

@@ -45,7 +45,7 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
         public void Save(Video video)
         {
             if (video.id > 0)
-                 _videoDao.Update(video);
+                 _videoDao.Update(video);else
              _videoDao.Insert(video);
         }
 

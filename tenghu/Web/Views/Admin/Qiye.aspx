@@ -30,7 +30,7 @@
                         
                      <%Html.RenderPartial("adminmenu"); %>
                         
-                        <form action="/admin/qiye" method="post" id="form1">
+                        <form action="/admin.aspx/qiye" method="post" id="form1">
                         
                         
                         <div class="listbox">
@@ -59,7 +59,7 @@
                                     new SelectListItem { Text = "技术简介", Value = "18" , Selected=cid.Equals(18)},
                                     new SelectListItem { Text = "联系我们", Value = "7" , Selected=cid.Equals(7)}
                                     
-                                    }, new { onchange = "window.location.href='/admin/qiye?cid='+$('#categoryid').val()" })%>
+                                    }, new { onchange = "window.location.href='/admin.aspx/qiye?cid='+$('#categoryid').val()" })%>
                                     
                                     </td>
                                 </tr>
@@ -70,7 +70,7 @@
                                     <td class="boxta03">
                                         <%=Html.TextAreaFor(m=>m.descr,new {@class="txs"}) %>
                                         <%=Html.HiddenFor(m=>m.id,new {@class="txs"}) %>
-                                        <%=Html.HiddenFor(m=>m.isDisplay,new {@class="txs"}) %>
+                                        <%=Html.HiddenFor(m=>m.isdisplay,new {@class="txs"}) %>
                                         <%=Html.HiddenFor(m=>m.name,new {@class="txs"}) %>
                                         <%=Html.HiddenFor(m=>m.pid,new {@class="txs"}) %>
                                         <%=Html.HiddenFor(m=>m.sortOrder,new {@class="txs"}) %>

@@ -40,7 +40,7 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
         public void Save(Zhuanli  zhuanli)
         {
             if (zhuanli.id > 0)
-                 _zhuanliDao.Update(zhuanli);
+                 _zhuanliDao.Update(zhuanli);else
              _zhuanliDao.Insert(zhuanli);
         }
 

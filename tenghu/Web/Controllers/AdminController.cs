@@ -15,7 +15,7 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Web.Controllers
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             if (filterContext.HttpContext.Session["alogin"] == null)
-                filterContext.HttpContext.Response.Redirect("/auth/login");
+                filterContext.HttpContext.Response.Redirect("/auth.aspx/login");
         }
     }
 

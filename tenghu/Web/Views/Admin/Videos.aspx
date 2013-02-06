@@ -8,7 +8,7 @@
     <link href="/css/css.css" rel="stylesheet" type="text/css" />
     <script>
         function changePage(index) {
-            window.location.href = '/admin/videos/'+index;
+            window.location.href = '/admin.aspx/videos/'+index;
         }
     </script>
 </head>
@@ -63,9 +63,9 @@
                                         
                                     </td>
                                     <td class="boxta04">
-                                        <a href="/admin/video/<%=each.id %>">
+                                        <a href="/admin.aspx/video/<%=each.id %>">
                                             <img src="/images/e01.gif" width="18" height="16" border="0"  title="编辑视频"/></a>
-                                            <a onclick="return confirm('确定要删除吗?')" href="/admin/delvideo/<%=each.id %>"><img
+                                            <a onclick="return confirm('确定要删除吗?')" href="/admin.aspx/delvideo/<%=each.id %>"><img
                                                 src="/images/e02.jpg" width="18" height="16" border="0"  title="删除视频"/></a>
                                     </td>
                                 </tr>
@@ -75,7 +75,7 @@
                                 		   <tr>
           <td colspan="4" style="border-top: 1px solid rgb(211, 208, 208);" background="images/right_bg01.jpg" height="32">
           <span style="float: left;">
-            <input onclick="window.location.href='/admin/video'" name="Submit22" class="bulbg" value="新增视频/资料" type="submit">
+            <input onclick="window.location.href='/admin.aspx/video'" name="Submit22" class="bulbg" value="新增视频/资料" type="submit">
           </span>
           <% Html.RenderPartial("page"); %>
             </td>

@@ -30,7 +30,7 @@
                      <%Html.RenderPartial("adminmenu"); %>
                         
                         
-                        <form action="/admin/addproduct" method="post" id="form1" enctype = "multipart/form-data">
+                        <form action="/admin.aspx/addproduct" method="post" id="form1" enctype = "multipart/form-data">
                         
                         
                         <div class="listbox">
@@ -38,7 +38,7 @@
                            <table width="300">
                         <tr>
                         <td width="25"><img src="/images/arrow_r.png" /> </td>
-                        <td><a href="/admin/order" class="lblack">查看订单列表</a></td>
+                        <td><a href="/admin.aspx/order" class="lblack">查看订单列表</a></td>
                         </tr>
                         </table>
                         

@@ -40,7 +40,7 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
         public void Save(News news)
         {
             if (news.id > 0)
-                _newsDao.Update(news);
+                _newsDao.Update(news);else
             _newsDao.Insert(news);
         }
         public void Remove(int id)

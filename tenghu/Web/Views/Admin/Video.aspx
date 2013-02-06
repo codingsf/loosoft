@@ -52,12 +52,12 @@
                      <%Html.RenderPartial("adminmenu"); %>
                      <table width="600">
                            <tr>
-                        <td width="25"><img src="/images/arrow_r.png" /> </td><td><a href="/admin/videos" class="lblack">查看所有视频/资料</a></td>
+                        <td width="25"><img src="/images/arrow_r.png" /> </td><td><a href="/admin.aspx/videos" class="lblack">查看所有视频/资料</a></td>
                         </tr>
                         </table>
                         
                          
-                        <form method="post" action="/admin/video" id="form1" enctype = "multipart/form-data">
+                        <form method="post" action="/admin.aspx/video" id="form1" enctype = "multipart/form-data">
                         <div class="listbox">
                             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="boxta">
                         
@@ -139,7 +139,7 @@
                                     </td>
                                     <td class="boxta03">
                                             <input name="Submit222" type="submit" class="bulbg" value="添加" />
-                                                                                       <input name="Submit2222" type="button" onclick="window.location.href='/admin/videos'"; class="bulbg" value="返回" />
+                                                                                       <input name="Submit2222" type="button" onclick="window.location.href='/admin.aspx/videos'"; class="bulbg" value="返回" />
                                     </td>
                                 </tr>
                             </table>

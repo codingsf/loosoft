@@ -32,7 +32,7 @@
             $("#cadd").click(function() {
                 $.ajax({
                     type: "GET",
-                    url: "/admin/category?id=3&cname=" + $("#cname").val(),
+                    url: "/admin.aspx/category?id=3&cname=" + $("#cname").val(),
                     data: {},
                     success: function(result) {
                         alert(result);
@@ -64,14 +64,14 @@
                         
                      <%Html.RenderPartial("adminmenu"); %>
                         
-                        <form action="/admin/addnew" method="post" id="form1">
+                        <form action="/admin.aspx/addnew" method="post" id="form1">
                         
                         
                         <div class="listbox">
                         
                           <table width="600">
                         <tr>
-                        <td width="25"><img src="/images/arrow_r.png" /> </td><td><a href="/admin/news" class="lblack">查看新闻列表</a></td>
+                        <td width="25"><img src="/images/arrow_r.png" /> </td><td><a href="/admin.aspx/news" class="lblack">查看新闻列表</a></td>
                         </tr>
                         </table>
                         
@@ -142,7 +142,7 @@
                                     </td>
                                     <td class="boxta03">
                                             <input name="Submit222" type="submit" class="bulbg" value="发布新闻" />
-                                                                                       <input name="Submit2222" type="button" onclick="window.location.href='/admin/news'"; class="bulbg" value="返回" />
+                                                                                       <input name="Submit2222" type="button" onclick="window.location.href='/admin.aspx/news'"; class="bulbg" value="返回" />
                                     </td>
                                 </tr>
                             </table>

@@ -8,7 +8,7 @@
     <link href="/css/css.css" rel="stylesheet" type="text/css" />
     <script>
         function changePage(index) {
-            window.location.href = '/admin/servicelist/'+index;
+            window.location.href = '/admin.aspx/servicelist/'+index;
         }
     </script>
 </head>
@@ -71,7 +71,7 @@
                                         
                                     </td>
                                     <td class="boxta04">
-                                        <a onclick="return confirm('确定要删除吗?')" href="/admin/delservice/<%=each.id %>"><img
+                                        <a onclick="return confirm('确定要删除吗?')" href="/admin.aspx/delservice/<%=each.id %>"><img
                                                 src="/images/e02.jpg" width="18" height="16" border="0" title="删除服务" /></a>
                                     </td>
                                 </tr>
@@ -81,7 +81,7 @@
                                 		   <tr>
           <td colspan="4" style="border-top: 1px solid rgb(211, 208, 208);" background="images/right_bg01.jpg" height="32">
           <span style="float: left;">
-            <input onclick="window.location.href='/admin/service'" name="Submit22" class="bulbg" value="新增销售/售后 服务" type="submit">
+            <input onclick="window.location.href='/admin.aspx/service'" name="Submit22" class="bulbg" value="新增销售/售后 服务" type="submit">
           </span>
           <% Html.RenderPartial("page"); %>
             </td>

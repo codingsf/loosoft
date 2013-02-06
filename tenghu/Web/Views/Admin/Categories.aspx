@@ -49,12 +49,12 @@
                         <tr>
                           <td width="25"><img src="/images/arrow_r.png" /> </td>
                          <td>
-                                       <a href="/admin/categories?id=4" class="lblack">所有产品类别</a>
+                                       <a href="/admin.aspx/categories?id=4" class="lblack">所有产品类别</a>
                          
                          </td>
                          
                         <td width="25"><img src="/images/arrow_r.png" /> </td>
-                        <td><a href="/admin/products" class="lblack">查看产品型号</a></td>
+                        <td><a href="/admin.aspx/products" class="lblack">查看产品型号</a></td>
                         </tr>
                         </table>
                             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="boxta">
@@ -78,13 +78,13 @@
                            
                         
                                     <td class="boxta04">
-                                        <a href="/admin/childcategory/<%=each.id %>">
+                                        <a href="/admin.aspx/childcategory/<%=each.id %>">
                                             <img src="/images/card.gif" width="18" height="16" border="0" title="添加子类别" /></a>
                                             
-                                            <a href="/admin/categories/4?cid=<%=each.id %>">
+                                            <a href="/admin.aspx/categories/4?cid=<%=each.id %>">
                                             <img src="/images/e01.gif" width="18" height="16" border="0" title="编辑类别" /></a>
                                             
-                                            <a href="/admin/delcategory/4?cid=<%=each.id %>" title="删除类别" onclick="return confirm('是否确定删除?')"><img
+                                            <a href="/admin.aspx/delcategory/4?cid=<%=each.id %>" title="删除类别" onclick="return confirm('是否确定删除?')"><img
                                                 src="/images/e02.jpg" width="18" height="16" border="0" /></a>
                                     </td>
                                 </tr>
@@ -99,7 +99,7 @@
                                     <td class="boxta04">
                                     <img src="/images/card01.gif" width="18" height="16" border="0" title="添加子类别" />
                                     <img src="/images/e001.gif" width="18" height="16" border="0" />
-                                            <a href="/admin/delcategory/4?cid=<%=cath.id %>" onclick="return confirm('是否确定删除?')"><img
+                                            <a href="/admin.aspx/delcategory/4?cid=<%=cath.id %>" onclick="return confirm('是否确定删除?')"><img
                                                 src="/images/e02.jpg" width="18" height="16" border="0"  title="删除类别"/></a>
                                     </td>
                                 </tr>
@@ -111,7 +111,7 @@
                         </div>
                         
                         
-                        <form method="post" action="/admin/categories" id="form1">
+                        <form method="post" action="/admin.aspx/categories" id="form1">
                         <div class="listbox">
                             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="boxta">
                                 <tr>

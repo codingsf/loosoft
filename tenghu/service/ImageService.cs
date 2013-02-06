@@ -41,7 +41,7 @@ namespace Cn.Loosoft.Zhisou.Tenghu.Service
         public void Save(Image image)
         {
             if (image.id > 0)
-                _imageDao.Update(image);
+                _imageDao.Update(image);else
             _imageDao.Insert(image);
         }
         public void Remove(int id)

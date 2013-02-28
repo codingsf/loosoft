@@ -1,0 +1,16 @@
+alter table userinfo
+add column autorefresh bit not null default 1,
+add column refreshinterval int not null default 5,
+add column refreshstartdate datetime 
+
+
+CREATE TABLE `plant_portaluser` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `plantID` int(11) NOT NULL,
+  `userID` int(11) NOT NULL,
+  `roleId` int(11) DEFAULT NULL,
+  `shared` bit(1) DEFAULT b'0',
+  PRIMARY KEY (`id`,`plantID`,`userID`),
+  KEY `plantID2userID_index` (`plantID`),
+  KEY `userID_index` (`userID`)
+) ENGINE=MyISAM AUTO_INCREMENT=596 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

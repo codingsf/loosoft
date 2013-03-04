@@ -10,7 +10,6 @@ using Cn.Loosoft.Zhisou.SunPower.Domain;
 using Cn.Loosoft.Zhisou.SunPower.Service;
 using Common;
 using Dimac.JMail;
-using EmailService;
 namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 {
     public class VirtualController : BaseController

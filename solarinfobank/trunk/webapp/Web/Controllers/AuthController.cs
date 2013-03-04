@@ -197,7 +197,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 user.password = EncryptUtil.EncryptDES(user.password, EncryptUtil.defaultKey);
                 uid = userService.save(user);
                 //注册用户默认管理员权限
-                UserRoleService.GetInstance().Insert(new UserRole() { userId = uid, roleId = 3 });
+                UserRoleService.GetInstance().Insert(new UserRole() { userId = uid, roleId = Role.ROLE_SYSMANAGER });
 
                 TempData[ComConst.User] = user;
                 UserUtil.ResetLogin(user);

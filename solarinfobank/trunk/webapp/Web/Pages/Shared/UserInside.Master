@@ -166,6 +166,7 @@
          
         //加载右边内容
         function loadContent(curContainer, url, type,method) {
+       
            if(userInterval!=undefined)
                         clearInterval(userInterval);
                         

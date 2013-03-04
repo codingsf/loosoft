@@ -2035,7 +2035,9 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             Hashtable roleTable = new Hashtable();
             foreach (User u in users)
             {
-                int roleId = plantUserService.GetPlantUserByPlantIDUserID(new PlantPortalUser { plantID = id, userID = u.id }).RoleId;
+                PlantPortalUser ppu = plantUserService.GetPlantUserByPlantIDUserID(new PlantPortalUser { plantID = id, userID = u.id });
+                if(ppu==null)continue;
+                int roleId = ppu.roleId;
                 if (roleId == 0)
                     roleTable.Add(u.username, string.Empty);
                 else
@@ -2044,6 +2046,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             ViewData["roleNames"] = roleTable;
             return View(plant);
         }
+
         /// <summary>
         /// 删除电站和用户分配关系
         /// </summary>
@@ -2066,7 +2069,6 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             IList<SelectListItem> itemList = new List<SelectListItem>();
             User curUser = UserUtil.getCurUser();
             Plant plant = PlantService.GetInstance().GetPlantInfoById(id);
-
 
             //取得可被修改的供分配的电站，所有顶层的电站，但是要排除被修改的组合电站所在的最顶层上级电站
 
@@ -2157,7 +2159,6 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
                 DeviceRelation tmprelation = null;
                 for (int i = 0; i < relations.Count; i++)
                 {
-
                     tmprelation = relations[i];
                     if (string.IsNullOrEmpty(name) == false && tmprelation.name.Equals(name) == false)
                         continue;
@@ -2202,8 +2203,6 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             }
 
             return Redirect("/plant/devicerelation/" + plantId + "?name=" + relation.name);
-
-
         }
 
         private string getjsStr(IList<DeviceRelation> relations, int uplevel, string width, string height)
@@ -2389,7 +2388,6 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             return View();
         }
 
-
         /// <summary>
         /// 获取子设别列表
         /// </summary>
@@ -2411,8 +2409,6 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             sb.Append("</select>");
             return Content(sb.ToString());
         }
-
-
 
         public ActionResult RemoveRelations(string did, string name)
         {

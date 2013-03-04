@@ -15,14 +15,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
 
         //存储解析过的可以列表
         public static string analyzedkey = "analyzedkey";
-        private string poolName = "DataAnalyze";//和数据收发服务保持一致
         private int msgnum = 0;
         private String[] serverlist = { "127.0.0.1:11211" };//要改为配置文件读取
         private MemcachedClient mc = null;
         private SockIOPool pool;
         private static IDictionary<string, MemcachedClientSatat> instances = new Dictionary<string, MemcachedClientSatat>();
 
-        private MemcachedClientSatat()
+        private MemcachedClientSatat(string poolName)
         {
             string memchached = ConfigurationSettings.AppSettings["memchached"];
             string msgnumstr = ConfigurationSettings.AppSettings["msgnum"];
@@ -48,7 +47,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             mc.EnableCompression = false;
         }
 
-        private MemcachedClientSatat(String[] servers)
+        private MemcachedClientSatat(String[] servers, string poolName)
         {
             string msgnumstr = ConfigurationSettings.AppSettings["msgnum"];
             msgnum = msgnumstr == null ? 0 : int.Parse(msgnumstr);
@@ -57,11 +56,19 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
                 analyzedkey = keystr;
             this.serverlist = servers;
             // initialize the pool for memcache servers
-            pool = SockIOPool.GetInstance();
+            try
+            {
+                pool = SockIOPool.GetInstance(poolName);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
             pool.SetServers(serverlist);
             pool.Initialize();
             mc = new MemcachedClient();
-            //mc.PoolName = poolName;
+            mc.PoolName = poolName;
             mc.EnableCompression = false;
         }
 
@@ -73,7 +80,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             MemcachedClientSatat mcs = instances.ContainsKey("default") ? instances["default"] : null;
             if (mcs == null)
             {
-                mcs = new MemcachedClientSatat();
+                mcs = new MemcachedClientSatat("default");
                 instances["default"] = mcs;
             }
             return mcs;
@@ -90,7 +97,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             if (mcs == null)
             {
                 string[] serverList = servers.Split(',');
-                mcs = new MemcachedClientSatat(serverList);
+                mcs = new MemcachedClientSatat(serverList, "selfpool" + servers);
                 instances[servers] = mcs;
             }
             return mcs;

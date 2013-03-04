@@ -54,11 +54,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             get { return plantId; }
             set { plantId = value; }
         }
-        private int userId;
+        private long userId;
         /// <summary>
         /// 所属用户id
         /// </summary>
-        public int UserId
+        public long UserId
         {
             get { return userId; }
             set { userId = value; }

@@ -8,6 +8,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 {
     /// <summary>
     /// userinfo:实体类(属性说明自动提取数据库字段的描述信息)
+    /// bank系统里面用户性质有两种：
+    /// 1.一般用户，可以访问的是标准bank系统
+    /// 2.门户用户，访问门户系统
+    /// 系统中的用户只能是是其中之一，要么能访问标准bank系统，要么能访问门户用户，不允许两个功能都能访问，但是二者入口
+    /// 是一样的，登录会根据器用户性质做不同跳转。两种性质用户都存在userinfo表中，用isBigCustomer做区分的，true标识是门户用户，false表示一般用户
+    /// 一般用户都是有角色的，注册的用户默认都是系统管理员角色，有系统管理员创建的用户（包括已有或者新增的）都有另外角色，门户用户没有角色
+    /// 有系统管理员创建的用户和其创建者有所属关系，用外键parentUserId建立关联
     /// </summary>
     [Serializable]
     public class User
@@ -36,18 +43,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         private double _revenueRate;
         private string _mobilePhone;
         private string _faxPhone;
-
         private string _currencies; //货币种类
         private string _temperatureType;
-
         private string _firstName;
-
-
         private string _lastName;
-
-        private int _parentUserId;
-
-        private IList<PlantPortalUser> _plantPortalUsers;
+        private int _parentUserId;  //创建者id
 
         /// <summary>
         /// auto_increment
@@ -76,6 +76,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             get { return _firstName; }
             set { _firstName = value; }
         }
+
         public int ParentUserId
         {
             get
@@ -86,46 +87,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             {
                 _parentUserId = value;
             }
-        }
-        /// <summary>
-        /// 收益
-        /// </summary>
-        public double revenue
-        {
-            get
-            {
-                double res = 0;
-                if (this.displayPlants == null) return res;
-                foreach (Plant p in this.displayPlants)
-                {
-                    res += p.revenue;
-                }
-                return res;
-            }
-        }
-
-
-        public string DisplayRevenue
-        {
-            get
-            {
-                if (currencies != null && currencies.ToLower().Equals("￥"))
-                {
-                    string revenueString = string.Empty;
-                    revenueString = revenue.ToString("####-####-####-####");
-                    revenueString = revenueString.Replace('-', ',');
-                    while (true)
-                    {
-                        if (revenueString.StartsWith(","))
-                            revenueString = revenueString.Substring(1);
-                        else
-                            break;
-                    }
-                    return revenueString;
-                }
-                return revenue.ToString("N0");
-            }
-
         }
 
         /// <summary>
@@ -240,13 +201,47 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
-        /// 所有关联的电站
+        /// 是否门户用户，用于区分一般电站管理用户和门户用户
+        /// </summary>
+        public bool isBigCustomer { get; set; }
+        /// <summary>
+        /// 门户用户对涉及到的相关结构图的设置参数
+        /// </summary>
+        public IList<RelationConfig> configs { get; set; }
+        /// <summary>
+        /// 用户选择的模版
+        /// </summary>
+        public Template template { get; set; }//模板对象
+        /// <summary>
+        /// 门户用户设置的门户logo
+        /// </summary>
+        public string logo { get; set; }
+        /// <summary>
+        /// 门户用户设置的门户系统名称
+        /// </summary>
+        public string sysName { get; set; }
+        /// <summary>
+        /// 一般用户对应电站概览和实时数据自动刷新的开关状态
+        /// </summary>
+        public bool autoRefresh { get; set; }
+        /// <summary>
+        /// 一般用户设置的自动定时刷新的时间间隔
+        /// </summary>
+        public int refreshInterval { get; set; }
+        /// <summary>
+        /// 自动刷新功能开启时间
+        /// </summary>
+        public DateTime refreshStartDate { get; set; }
+
+        private IList<PlantPortalUser> _plantPortalUsers;
+        /// <summary>
+        /// 用户关联的门户用户电站对象集合
+        /// 用户对应的门户电站从这个集合取得
         /// </summary>
         public IList<PlantPortalUser> plantPortalUsers
         {
             get
             {
-
                 return _plantPortalUsers;
             }
             set
@@ -255,20 +250,32 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             }
         }
 
-
+        /// <summary>
+        /// 一般用户和电站的对应关系集合，包括自己创建的和别人分配过来的
+        /// </summary>
         public IList<PlantUser> plantUsers { get; set; }
 
         private UserRole _userRole;
-        public UserRole UserRole
+        /// <summary>
+        /// 用户对应的用户角色对象，目前系统用户和用户角色是一对一关系
+        /// </summary>
+        public UserRole userRole
         {
-            get { return _userRole; }
+            get {
+                return _userRole; 
+            }
             set
             {
                 _userRole = value;
             }
         }
+
+        /// <summary>
+        /// 系统管理员用户创建的其他一般用户集合
+        /// isBigCustomer=false
+        /// </summary>
         private IList<User> _childUsers;
-        public IList<User> ChildUsers
+        public IList<User> childUsers
         {
             get { return _childUsers; }
             set
@@ -278,8 +285,22 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
+        /// 系统管理员创建的门户用户集合
+        /// isBigCustomer=true
+        /// </summary>
+        private IList<User> _childPortalUsers;
+        public IList<User> childPortalUsers
+        {
+            get { return _childPortalUsers; }
+            set
+            {
+                _childPortalUsers = value;
+            }
+        }
+
+        /// <summary>
         /// 
-        /// 取得用户关联的电站，包括自己创建后建立的关联关系以及别人分配的
+        /// 取得一般用户关联的顶层电站，包括自己创建后建立的关联关系以及别人分配的
         /// 
         /// </summary>
         /// <returns></returns>
@@ -288,9 +309,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             get
             {
                 IList<Plant> _plantList = new List<Plant>();
-                if (this.plantPortalUsers == null) return _plantList;
+                if (this.plantUsers == null) return _plantList;
 
-                foreach (PlantPortalUser plantUser in this.plantPortalUsers)
+                foreach (PlantUser plantUser in this.plantUsers)
                 {
                     if (plantUser.plant != null)
                         _plantList.Add(plantUser.plant);
@@ -300,9 +321,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
-        /// 
-        /// 取得自己创建的可管理的电站，不是别人分配的，shared=false
-        /// add by qhb in 20120915 for
+        /// 取得一般用户自己创建的顶层电站，不是别人分配的，shared=false
+        /// add by qhb in 20120915
         /// </summary>
         /// <returns></returns>
         public IList<Plant> ownPlants
@@ -310,9 +330,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             get
             {
                 IList<Plant> _plantList = new List<Plant>();
-                if (this.plantPortalUsers == null) return _plantList;
+                if (this.plantUsers == null) return _plantList;
 
-                foreach (PlantPortalUser plantUser in this.plantPortalUsers)
+                foreach (PlantUser plantUser in this.plantUsers)
                 {
                     if (plantUser.plant != null && !plantUser.shared)
                         _plantList.Add(plantUser.plant);
@@ -322,11 +342,33 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
-        /// 取得所分配的电站，不包括用户本身创建的电站，都是别人分配给他的电站
+        /// 取得所分配的顶层电站，不包括一般用户本身创建的电站，都是别人分配给他的电站
         /// 从18版后出现，改自原先的public IList<Plant> plants方法，原方法随着新门户业务的出现，语义不在清楚了
         /// </summary>
         /// <returns></returns>
         public IList<Plant> assignedPlants
+        {
+            get
+            {
+                IList<Plant> _plantList = new List<Plant>();
+                if (this.plantUsers == null) return _plantList;
+
+                foreach (PlantUser plantUser in this.plantUsers)
+                {
+                    if (plantUser.plant != null && plantUser.shared)
+                        _plantList.Add(plantUser.plant);
+                }
+                return _plantList;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// 取得门户用户关联的顶层电站，门户用户的电站从业务上说只会是电站创建者（是一般用户）分配过来的
+        /// 从18版后出现，改自原先的public IList<Plant> plants方法，原方法随着新门户业务的出现，语义不在清楚了
+        /// </summary>
+        /// <returns></returns>
+        public IList<Plant> assignedPortalPlants
         {
             get
             {
@@ -341,14 +383,22 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 return _plantList;
             }
         }
+        
+        /// <summary>
+        /// 今日申请的采集器数量
+        /// </summary>
+        public int todayApplyCollectorCount { get; set; }
 
-
-        public int todayApplyCollectorCount { get; set; }//今日申请的采集器数量
-
-        public DateTime lastApplyCollectorDate { get; set; }//最后申请采集器的时间
+        /// <summary>
+        /// 最后申请采集器的时间
+        /// </summary>
+        public DateTime lastApplyCollectorDate { get; set; }
 
         #endregion Model
 
+        /// <summary>
+        /// 用户累计日发电量单位，包含进制规则
+        /// </summary>
         public string TotalDayEnergyUnit
         {
             get
@@ -358,13 +408,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
-        /// 进制显示总今日发电量，凡是字符串
+        /// 进制显示总今日发电量，返回字符串，格式化为“0.00”
         /// </summary>
         public string DisplayTotalDayEnergy
         {
             get
             {
-                return StringUtil.formatDouble(Util.upDigtal(TotalDayEnergy), "0.00");
+                return StringUtil.formatDouble(upTotalDayEnergy, "0.00");
             }
         }
 
@@ -380,7 +430,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
-        /// 用户下所有关联电站的总今日发电量
+        /// 用户下所有关联电站的总今日发电量，不进制
         /// </summary>
         public float TotalDayEnergy
         {
@@ -638,7 +688,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// 取得用户的所有自己创建管理的电站单元
         /// </summary>
         /// <returns></returns>
-        public IList<PlantUnit> ownplantUnits()
+        public IList<PlantUnit> ownPlantUnits()
         {
             IList<PlantUnit> plantUnits = new List<PlantUnit>();
             foreach (Plant plant in this.ownPlants)
@@ -683,7 +733,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public int menuDisplayCount { get; set; }
 
         public int overviewDisplayCount { get; set; }
-
+        /// <summary>
+        /// 是否有告警设备
+        /// 所有的电站中只要有一个即是有告警设备
+        /// </summary>
         public bool hasFaultDevice
         {
             get
@@ -696,42 +749,47 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             }
         }
 
+        /// <summary>
+        /// 一般用户创建的角色集合，一个用户可以创建多个角色
+        /// </summary>
         public IList<Role> Roles { get; set; }
 
         /// <summary>
         /// 用户创建的顶层电站
+        /// 这个和ownPlants实际是一样的
         /// </summary>
         public IList<Plant> createToplevelPlants { get; set; }
 
         /// <summary>
-        /// 在bank里面显示的电站，包括自己创建的顶层电站和别人分配过来的电站
-        /// 自己创建的电站也会在有关系表
+        /// 用户显示的顶层电站列表，一般用户和门户用户各取不同集合列表
         /// </summary>
-        /// <returns></returns>
+        /// <returns>顶层电站列表</returns>
         public IList<Plant> displayPlants
         {
             get
             {
-                //IList<Plant> plants = this.createToplevelPlants;
-                //if (plants == null)
-                //{
-                // plants = new List<Plant>();
-                //}
-                //if (this.relatedPlants!=null)
-                //plants.Union(this.assignedPlants);
-                return relatedPlants;
+                //门户用户取得分配的门户电站
+                if(this.isBigCustomer)
+                    return assignedPortalPlants;
+                else
+                    return relatedPlants;
             }
         }
 
         /// <summary>
         /// 取得所有分配的电站中所有实际电站
+        /// 一般用户和门户所取的集合不同
+        /// 一般用户：assignedPlants
+        /// 门户用户：assignedPortalPlants
         /// </summary>
         public IList<Plant> allAssignedFactPlants
         {
             get
             {
+                
                 IList<Plant> factPlants = new List<Plant>();
-                foreach (Plant plant in assignedPlants)
+                IList<Plant> plants = this.isBigCustomer ? this.assignedPortalPlants : assignedPlants;
+                foreach (Plant plant in plants)
                 {
                     foreach (Plant p in plant.allFactPlants)
                     {
@@ -743,7 +801,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
-        /// 取得所有管理的电站中所有实际电站
+        /// 取得一般用户所拥有的的电站中所有实际电站
         /// </summary>
         public IList<Plant> allOwnFactPlants
         {
@@ -768,27 +826,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             get
             {
-                return this.ownplantUnits().Count > 0;
+                return this.ownPlantUnits().Count > 0;
             }
         }
 
-        public bool isBigCustomer { get; set; }
-
-
-        public IList<RelationConfig> configs { get; set; }
-
-        public Template template { get; set; }//模板对象
-
-        public string logo { get; set; }
-
-        public string sysName { get; set; }//系统名称
-
-        public bool autoRefresh { get; set; }//自动刷新
-
-        public int refreshInterval { get; set; }//刷新间隔
-
-        public DateTime refreshStartDate { get; set; }//开始时间
-
+        /// <summary>
+        /// 用户设置的自动刷新的毫秒间隔
+        /// </summary>
         public int refreshIntervalMS
         {
             get
@@ -796,7 +840,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 return refreshInterval * 1000;
             }
         }
-
+        /// <summary>
+        /// 电站数据刷新功能开启时间，返回"yyyy-MM-dd"
+        /// </summary>
         public string refreshStartDateFormat
         {
             get
@@ -805,25 +851,58 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             }
         }
 
-
-        //管理的电站
+        /// <summary>
+        /// 一般用户管理的电站，包括自己创建的和别人分配的
+        /// 废弃用relatedPlants代替，语义更清晰
+        /// </summary>
         public IList<Plant> plants
         {
             get
             {
-                IList<Plant> _plantList = new List<Plant>();
-                if (this.plantUsers == null) return _plantList;
-
-                foreach (PlantUser plantUser in this.plantUsers)
-                {
-                    if (plantUser.plant != null)
-                        _plantList.Add(plantUser.plant);
-                }
-                return _plantList;
+                return relatedPlants;
             }
         }
 
+        /// <summary>
+        /// 收益
+        /// </summary>
+        public double revenue
+        {
+            get
+            {
+                double res = 0;
+                if (this.displayPlants == null) return res;
+                foreach (Plant p in this.displayPlants)
+                {
+                    res += p.revenue;
+                }
+                return res;
+            }
+        }
+        /// <summary>
+        /// 显示显示的格式化的收益
+        /// </summary>
+        public string DisplayRevenue
+        {
+            get
+            {
+                if (currencies != null && currencies.ToLower().Equals("￥"))
+                {
+                    string revenueString = string.Empty;
+                    revenueString = revenue.ToString("####-####-####-####");
+                    revenueString = revenueString.Replace('-', ',');
+                    while (true)
+                    {
+                        if (revenueString.StartsWith(","))
+                            revenueString = revenueString.Substring(1);
+                        else
+                            break;
+                    }
+                    return revenueString;
+                }
+                return revenue.ToString("N0");
+            }
 
-
+        }
     }
 }

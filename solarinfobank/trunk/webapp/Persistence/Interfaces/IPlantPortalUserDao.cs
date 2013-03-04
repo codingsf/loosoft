@@ -44,13 +44,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.Interfaces
         /// <param name="pid"></param>
         /// <param name="uid"></param>
         /// <returns></returns>
-        int ClosePlant(int pid, int uid);
+        int ClosePlant(int pid, long uid);
         /// <summary>
         /// 根据用户删除电站用户对应关系
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        int DelPlantUserByUserId(int uid);
+        int DelPlantUserByUserId(long uid);
         /// <summary>
         /// 根据电站id取得分配的用户
         /// </summary>

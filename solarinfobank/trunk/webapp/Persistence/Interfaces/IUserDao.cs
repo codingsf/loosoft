@@ -33,18 +33,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.Interfaces
         /// <param name="user">用户字段</param>
         void update(User user);
 
-        int GetLanguageIdById(int id);
-
+        int GetLanguageIdById(long id);
 
         User GerUserbyUserName(string username, string uname);
 
         IList<User> GetUsersByPage(Pager page);
 
-        int UpdatePassword(int uid, string password);
+        int UpdatePassword(long uid, string password);
 
         int UpdateApplyCollectorCount(User user);
 
-        IList<User> GetChildUser(int parentUserId);
+        IList<User> GetChildUser(long parentUserId);
 
         IList<User> GetUsersLikeuname(string uname);
 

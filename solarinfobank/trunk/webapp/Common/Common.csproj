@@ -39,6 +39,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\dll\Castle.DynamicProxy.dll</HintPath>
     </Reference>
+    <Reference Include="Dimac.JMail, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\Dimac.JMail.dll</HintPath>
+    </Reference>
+    <Reference Include="Dimac.JMail.Smtp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\Dimac.JMail.Smtp.dll</HintPath>
+    </Reference>
     <Reference Include="Memcached.ClientLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\dll\Memcached.ClientLibrary.dll</HintPath>
@@ -52,6 +60,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Runtime.Serialization">
@@ -63,6 +72,7 @@
     <Reference Include="System.ServiceModel.Web">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq">
@@ -93,6 +103,7 @@
     <Compile Include="ComConst.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="DeviceData.cs" />
+    <Compile Include="EmailConnectionPool.cs" />
     <Compile Include="EncryptUtil.cs" />
     <Compile Include="ExcelStreamWriter.cs" />
     <Compile Include="ExcelUtil.cs" />
@@ -100,6 +111,7 @@
     <Compile Include="FileUtil.cs" />
     <Compile Include="HttpClientUtil.cs" />
     <Compile Include="LogUtil.cs" />
+    <Compile Include="MailServerPoolObject.cs" />
     <Compile Include="MemcachedClientSatat.cs" />
     <Compile Include="MvcViewEngine.cs" />
     <Compile Include="PicUtil.cs" />
@@ -125,6 +137,7 @@
     <Compile Include="ReflectionUtil.cs" />
     <Compile Include="TempDataUtil.cs" />
     <Compile Include="SynCacheKeyUtil.cs" />
+    <Compile Include="SystemUtil.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

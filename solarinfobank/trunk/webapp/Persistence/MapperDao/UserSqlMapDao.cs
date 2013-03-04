@@ -78,7 +78,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
             return ExecuteQueryForList<User>("loading_users_page_list", page);
         }
 
-        public int GetLanguageIdById(int id)
+        public int GetLanguageIdById(long id)
         {
             return (int)ExecuteQueryForObject("user_get_languageId_by_id", id);
         }
@@ -88,7 +88,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
         #region IUserDao 成员
 
 
-        public int UpdatePassword(int uid, string password)
+        public int UpdatePassword(long uid, string password)
         {
             Hashtable table = new Hashtable();
             table.Add("uid", uid);
@@ -104,7 +104,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
         }
 
 
-        public IList<User> GetChildUser(int parentUserId)
+        public IList<User> GetChildUser(long parentUserId)
         {
             return ExecuteQueryForList<User>("get_child_user_by_userid", parentUserId);
         }

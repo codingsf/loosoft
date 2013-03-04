@@ -423,8 +423,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                 foreach (PlantUnit unit in punits)
                     PlantUnitService.GetInstance().DeletePlantUnitByPlant(unit.plantID);//删除电站 单元关系表
             }
-            if (user.UserRole != null && user.UserRole.id > 0)
-                UserRoleService.GetInstance().Remove(user.UserRole.id);
+            if (user.userRole != null && user.userRole.id > 0)
+                UserRoleService.GetInstance().Remove(user.userRole.id);
+
             return Redirect("/admin/users");
         }
 

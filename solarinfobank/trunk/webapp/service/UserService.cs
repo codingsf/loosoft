@@ -61,7 +61,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <returns>是否成功</returns>
         public bool Delete(int userId)
         {
-            PlantPortalUserService.GetInstance().DelPlantUserByUserId(userId);// 删除电站对应用户
+            // 删除电站对应门户用户
+            PlantPortalUserService.GetInstance().DelPlantUserByUserId(userId);
+            // 删除电站对应一般用户
+            PlantUserService.GetInstance().DelPlantUserByUserId(userId);
             return _userDao.Remove(new User { id = userId }) > 0 ? true : false;
         }
 
@@ -81,8 +84,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             if (id == null)
             {
                 user = _userDao.GetUserByName(userName);
-                //if (user != null)
-                // usernameIdMap[userName] = user.id;
             }
             else
             {

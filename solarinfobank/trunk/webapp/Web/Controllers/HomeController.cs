@@ -106,42 +106,105 @@ namespace Web.Controllers
 
 
         /// <summary>
+        /// 加载首页，以及判断是否自动登录
+        /// modify by hbqian in 2013/02/21 for 调用首页数据加载方法
         /// 修改  陈波
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
         public ActionResult Index()
         {
             if (System.Web.HttpContext.Current.Request.Cookies["a_login"] != null)
             {
                 HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies["a_login"];
-                User user = new User() { username = cookie.Values["un"], password = cookie.Values["pwd"] };
+                User user = new User(){ username = cookie.Values["un"], password = cookie.Values["pwd"] };
+                System.Web.HttpContext.Current.Session[ComConst.validatecode] = "1111";
                 Index(user, true, "0","1111");
             }
 
             if (UserUtil.isLogined())
             {
                 User loginUser = UserUtil.getCurUser();
-                if (loginUser.ParentUserId > 0)
-                {
-                    if (loginUser.plantPortalUsers.Count == 1)
-                    {
-                        return RedirectToAction("virtual", "portal", new { @id = loginUser.plantPortalUsers[0].plantID });
-                    }
-                    else
-                        return RedirectToAction("index", "portal");
-                }
+                if (loginUser.username.Equals("admin"))
+                    return RedirectToAction(@"users", "admin");
                 else
-                    return RedirectToAction("overview", "user");
+                    //判断是否完成注册的三个步骤
+                    return adjustUserPosition(loginUser);
             }
 
-            float co2Rate = ItemConfigService.GetInstance().getCO2Config();
+            loadIndexData();
+            return View();
+        }
 
+        /// <summary>
+        /// 判断非管理员用户登录重定向位置
+        /// </summary>
+        /// <param name="loginUser"></param>
+        /// <returns></returns>
+        private ActionResult adjustUserPosition(User loginUser)
+        {
+            //判断是否完成注册的三个步骤
+            //第二步没有完成依据  用户下没有电站
+            //第三步完成依据 任何电站下没有设备 
+            try
+            {
+                //用户关联的电站
+                IList<Plant> plants = loginUser.relatedPlants;
+                if (plants.Count == 0)
+                    return Redirect("/newregister/addplant");
+
+                //如果只有一个电站，而且这个电站是用户自己创建的要判断是器绑定单元了
+                if (plants.Count == 1 && plants[0].userID == loginUser.id)
+                {
+                    if (!loginUser.isBindUnit)
+                        return Redirect("/newregister/addunit");
+                }
+
+                //然后判断用户关联的电站是否
+                if (plants.Count == 1)
+                {
+                    return RedirectToAction("overview", "plant", new { @id = plants[0].id });
+                }
+                else
+                {
+                    if (plants.Count > 1)
+                    {
+                        //用户登陆默认显示选中左边导航栏中的"所有电站"，右边窗口打开"电站列表"页面。 
+                        //Session["firstLogin"] = true;
+                        return RedirectToAction("allplants", "user");
+                    }
+                    else
+                    {
+                        return RedirectToAction("addoneplant", "user");
+                    }
+                }
+            }
+            catch (Exception ee)
+            {
+                Console.WriteLine("重定向具体页面判断异常：" + ee.Message);
+                //用户登陆默认显示选中左边导航栏中的"所有电站"，右边窗口打开"电站列表"页面。 
+                return RedirectToAction("allplants", "user");
+            }
+        }
+
+        /// <summary>
+        /// 加载首页数据，抽取出来供首页加载方法和首页登录方法调用
+        /// author:hbqian in 2013/02/21 
+        /// </summary>
+        private void loadIndexData()
+        {
+            //取得最新加入的电站
+            IList<Plant> newPlants = PlantService.GetInstance().GetNewPlantInfoList(4);
             User userinfo = UserService.GetInstance().GetUserByName(UserUtil.demousername);
             if (userinfo != null)
             {
-                IList<PlantPortalUser> plant = PlantPortalUserService.GetInstance().GetAllPlantUserByUserID(new PlantPortalUser { userID = userinfo.id });
+                IList<PlantUser> plant = PlantUserService.GetInstance().GetAllPlantUserByUserID(new PlantUser { userID = userinfo.id });
                 ViewData["examplePlant"] = plant;
             }
+            ViewData["newPlants"] = newPlants;
+            float co2Rate = ItemConfigService.GetInstance().getCO2Config();
+            ViewData["AllPlant"] = PlantService.GetInstance().GetPlantNum();
+
             double alltotalenergy = DeviceRunDataService.GetInstance().GetAllTotalEnergy();
             double dayEnergy = CollectorRunDataService.GetInstance().GetAllDayEnergy();
             double co2Value = alltotalenergy * co2Rate;
@@ -151,16 +214,8 @@ namespace Web.Controllers
             ViewData["AllTotalEnergy"] = StringUtil.formatDouble(Util.upDigtal(alltotalenergy));
             ViewData["AlldayTotalEnergy"] = StringUtil.formatDouble(Util.upDigtal(dayEnergy));
             ViewData["AllCO2"] = StringUtil.formatDouble(Util.upDigtal(co2Value));
-            ViewData["RecommendAnswer"] = QAService.GetInstance().GetRecommendList();
-
-            //取得产品图片
             getPPics();
             getAdPics();
-
-            //取得最新加入的电站
-            IList<Plant> newPlants = PlantService.GetInstance().GetNewPlantInfoList(4);
-            ViewData["newPlants"] = newPlants;
-            return View();
         }
 
         /// <summary>
@@ -206,41 +261,51 @@ namespace Web.Controllers
         public ActionResult Index(User user, bool autoLogin, string localZone, string validatecode)
         {
             float lzone = 0;
-            float.TryParse(localZone, out lzone);
-            //取得最新加入的电站
-            IList<Plant> newPlants = PlantService.GetInstance().GetNewPlantInfoList(4);
-            User userinfo = UserService.GetInstance().GetUserByName(UserUtil.demousername);
-            if (userinfo != null)
+            try
             {
-                IList<PlantPortalUser> plant = PlantPortalUserService.GetInstance().GetAllPlantUserByUserID(new PlantPortalUser { userID = userinfo.id });
-                ViewData["examplePlant"] = plant;
+                float.TryParse(localZone, out lzone);
             }
-            ViewData["newPlants"] = newPlants;
-            float co2Rate = ItemConfigService.GetInstance().getCO2Config();
-            ViewData["AllPlant"] = PlantService.GetInstance().GetPlantNum();
-
-            double alltotalenergy = DeviceRunDataService.GetInstance().GetAllTotalEnergy();
-            double dayEnergy = CollectorRunDataService.GetInstance().GetAllDayEnergy();
-            double co2Value = alltotalenergy * co2Rate;
-            ViewData["co2Unit"] = Util.upCo2Unit(co2Value);
-            ViewData["energyUnit"] = Util.upEnergyUnit(alltotalenergy);
-            ViewData["dayenergyUnit"] = Util.upEnergyUnit(dayEnergy);
-            ViewData["AllTotalEnergy"] = StringUtil.formatDouble(Util.upDigtal(alltotalenergy));
-            ViewData["AlldayTotalEnergy"] = StringUtil.formatDouble(Util.upDigtal(dayEnergy));
-            ViewData["AllCO2"] = StringUtil.formatDouble(Util.upDigtal(co2Value));
-            ViewData["RecommendAnswer"] = QAService.GetInstance().GetRecommendList();
-            getPPics();
-
-            getAdPics();
+            catch (Exception ee)
+            {
+                Console.WriteLine("转换时区异常：" + ee.Message);
+                try
+                {
+                    LogUtil.error("登录转换时区异常： " + user == null ? "" : user.username + ee.Message);
+                }
+                catch (Exception ee2)
+                {
+                    Console.WriteLine("写日志文件异常：" + ee2.Message);
+                }
+            }
 
             //验证码验证提示
-            if (ValidateCodeUtil.isValid() && ValidateCodeUtil.Validated(validatecode) == false)
+            try
             {
-                ModelState.AddModelError("Error", "验证码输入错误!");
+                if (validatecode != null && ValidateCodeUtil.Validated(validatecode) == false)
+                {
+                    ModelState.AddModelError("Error", "验证码输入错误!");
+                    System.Web.HttpContext.Current.Response.Cookies["a_login"].Expires = DateTime.Now.AddDays(-1);
+                    loadIndexData();
+                    return View(user);
+                }
+            }
+            catch (Exception ee)
+            {
+                Console.WriteLine("验证码验证异常：" + ee.Message);
+                ModelState.AddModelError("Error", "验证码验证错误!");
                 System.Web.HttpContext.Current.Response.Cookies["a_login"].Expires = DateTime.Now.AddDays(-1);
+                loadIndexData();
                 return View(user);
             }
 
+            //验证用户名输入项
+            if (user == null || user.username == null)
+            {
+                ModelState.AddModelError("Error", "请输入用户名!");
+                System.Web.HttpContext.Current.Response.Cookies["a_login"].Expires = DateTime.Now.AddDays(-1);
+                loadIndexData();
+                return View(user);
+            }
 
             //首先认为是电站用户登录
             User loginUser = userService.GetUserByName(user.username);
@@ -265,28 +330,29 @@ namespace Web.Controllers
                                 return RedirectToAction(@"users", "admin");
                             if (manager.roles == null || manager.roles.Count == 0)
                                 return Content("access denied");
-
-                            foreach (AdminUserRole auserRole in manager.roles)
-                            {
-                                if (auserRole.role != null)
+                            try{
+                                foreach (AdminUserRole auserRole in manager.roles)
                                 {
-
-                                    IList<AdminControllerAction> acas = AdminControllerActionServices.GetInstance().GetList();
-                                    IList<AdminControllerAction> allow = AdminRole.AllowActionsList(acas, auserRole.role.actions);
-                                    foreach (AdminControllerAction aca in allow)
+                                    if (auserRole.role != null)
                                     {
-                                        if (aca.isAutoRedirect)
-                                            return RedirectToAction(@aca.actionName, aca.controllerName);
+
+                                        IList<AdminControllerAction> acas = AdminControllerActionServices.GetInstance().GetList();
+                                        IList<AdminControllerAction> allow = AdminRole.AllowActionsList(acas, auserRole.role.actions);
+                                        foreach (AdminControllerAction aca in allow)
+                                        {
+                                            if (aca.isAutoRedirect)
+                                                return RedirectToAction(@aca.actionName, aca.controllerName);
+                                        }
                                     }
                                 }
                             }
-                            //return RedirectToAction(@"collectors", "admin");
-
+                            catch (Exception ee3) { }
                         }
                         else
                         {
                             System.Web.HttpContext.Current.Response.Cookies["a_login"].Expires = DateTime.Now.AddDays(-1);
                             ModelState.AddModelError("Error", Resources.SunResource.MANAGER_LOGIN_LOCKED);
+                            loadIndexData();
                             return View(user);
                         }
 
@@ -296,6 +362,7 @@ namespace Web.Controllers
                 {
                     System.Web.HttpContext.Current.Response.Cookies["a_login"].Expires = DateTime.Now.AddDays(-1);
                     ModelState.AddModelError("Error", Resources.SunResource.HOME_INDEX_VALIDATED);
+                    loadIndexData();
                     return View(user);
                 }
             }
@@ -317,48 +384,37 @@ namespace Web.Controllers
                     UserUtil.login(loginUser);
 
                     //记录登录记录
-                    string ip = WebUtil.getClientIp(Request);
-                    LoginRecordService.GetInstance().Save(loginUser.id, loginUser.username, ip, lzone);
+                    try
+                    {
+                        string ip = WebUtil.getClientIp(Request);
+                        LoginRecordService.GetInstance().Save(loginUser.id, loginUser.username, ip, lzone);
+                    }
+                    catch (Exception ee)
+                    {
+                        Console.WriteLine("记录ip错误：" + ee.Message);
+                    }
+
+
 
                     //如果是非门户用户进入
-                    if (loginUser.ParentUserId == 0)
+                    if (!loginUser.isBigCustomer)
                     {
-                        if (loginUser.ownPlants.Count == 0)
-                            return Redirect("/newregister/addplant");
-                        if (!loginUser.isBindUnit)
-                            return Redirect("/newregister/addunit");
-
-                        if (loginUser.plantPortalUsers.Count == 1)
-                        {
-                            return RedirectToAction("allplants", "user");
-                            //return RedirectToAction("overview", "plant", new { @id = base.FirstPlant.id });
-                        }
-                        else
-                        {
-                            if (loginUser.plantPortalUsers.Count > 0)
-                            {
-                                //用户登陆默认显示选中左边导航栏中的"所有电站"，右边窗口打开"电站列表"页面。 
-                                //Session["firstLogin"] = true;
-                                return RedirectToAction("allplants", "user");
-                            }
-                            else
-                            {
-                                return RedirectToAction("addoneplant", "user");
-                            }
-                        }
+                        //判断是否完成注册的三个步骤
+                        return adjustUserPosition(loginUser);
                     }
                     else
                     {
+                        IList<Plant> protalPlants = loginUser.assignedPortalPlants;
                         ///判断是否有电站
-                        if (loginUser.assignedPlants == null || loginUser.assignedPlants.Count.Equals(0))
+                        if (protalPlants.Count < 1)
                         {
                             ModelState.AddModelError("Error", "您的账户中无电站,暂时不能登录");
                             return View(user);
                         }
 
-                        if (loginUser.relatedPlants.Count==1)
+                        if (protalPlants.Count == 1)
                         {
-                            return RedirectToAction(loginUser.relatedPlants[0].isVirtualPlant ? "virtual" : "plant", "portal", new { @id = loginUser.plantPortalUsers[0].plantID,@isLogin=1 });
+                            return RedirectToAction(protalPlants[0].isVirtualPlant ? "virtual" : "plant", "portal", new { @id = protalPlants[0].id, @isLogin = 1 });
                         }
                         else
                             return RedirectToAction("index", "portal", new {@isLogin=1});
@@ -373,6 +429,7 @@ namespace Web.Controllers
             //登录失败
             ModelState.AddModelError("Error", "username or password is not validated");
             System.Web.HttpContext.Current.Response.Cookies["a_login"].Expires = DateTime.Now.AddDays(-1);
+            loadIndexData();
             return View(user);
         }
         /// <summary>

@@ -164,17 +164,17 @@
                             <tbody>
                                 <tr>
                                     <td width="30%" height="35" class="pr_10">
-                                        <strong>
+                                        <strong
                                             <%=Resources.SunResource.USER_ADDUSER_USER_ROLE%>： </strong>
                                     </td>
                                     <td width="70%">
-                                        <%=Model.UserRole.Role.displayName %>
+                                        <%=Model.userRole.role.displayName %>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td width="30%" height="35" class="pr_10">
                                         <strong>
-                                            <%=Resources.SunResource.USER_ADDUSER_USER_NAME%>： </strong>
+                                        <%=Resources.SunResource.USER_ADDUSER_USER_NAME%>： </strong>
                                     </td>
                                     <td>
                                         <%= Html.DisplayTextFor(model => model.username)%>
@@ -271,7 +271,7 @@
                         <tr>
                             <td width="111">
                                 <input name="addUser" class="txtbu03" value="<%=Resources.SunResource.ADMIN_DBCONFIG_LIST_EDIT%>"
-                                    type="button" onclick="window.location.href='/user/useredit?uid=<%=Model.id %>&role=<%=Model.UserRole.roleId %>'">
+                                    type="button" onclick="window.location.href='/user/useredit?uid=<%=Model.id %>&role=<%=Model.userRole.roleId %>'">
                             </td>
                             <td width="108">
                                 <input name="Submit32" class="txtbu03" value="<%=Resources.SunResource.ADMIN_COLLECTOR_EDIT_CANCEL%>"

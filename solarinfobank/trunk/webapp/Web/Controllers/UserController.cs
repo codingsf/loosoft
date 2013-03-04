@@ -10,7 +10,6 @@ using Cn.Loosoft.Zhisou.SunPower.Domain;
 using Cn.Loosoft.Zhisou.SunPower.Service;
 using Common;
 using Dimac.JMail;
-using EmailService;
 using System.IO;
 using System.Drawing;
 using Cn.Loosoft.Zhisou.SunPower.Common.vo;
@@ -276,7 +275,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         }
 
         /// <summary>
-        /// 实际的电站总览页面
+        /// 电站总览页面
         /// </summary>
         /// <returns></returns>
         [IsLoginAttribute]
@@ -1129,31 +1128,16 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             return View();
         }
+
         /// <summary>
-        /// 某个用户创建管理的用户还是电站分配了那些用户？问陈波
-        /// modify by qhb in 20120422
+        /// 某个用户创建的电站的门户用户
         /// </summary>
         /// <returns></returns>
         [IsLoginAttribute]
         public ActionResult PortalUsers()
         {
             User user = UserUtil.getCurUser();
-            //string ids = string.Empty;
-            //IList<Plant> vplants = user.
-            //foreach (Plant vplant in vplants)
-            //    ids += vplant.id + ",";
-            //foreach (var plant in user.displayPlants)
-            //    ids += string.Format("{0},", plant.id);
-            //ids += "-1";
-            //IList<User> users = plantUserService.GetusersByplantid(ids);
-            //if (users == null) users = new List<User>();
-            //foreach (User u in user.ChildUsers)
-            //{
-            //    if (users.Where(m => m.id.Equals(u.id)).Count() == 0)
-            //        users.Add(u);
-            //}
-            //users = users.Where(m => m.username != user.username && m.username != "demo").ToList<User>();
-            ViewData["users"] = user.ChildUsers;
+            ViewData["users"] = user.childUsers;
             return View(user);
         }
         [IsLoginAttribute]
@@ -1274,7 +1258,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         /// <param name="queue"></param>
         private void SendUserMail(EmailQueue queue)
         {
-            MailServerPoolObject obj = EmailService.EmailConnectionPool.getMailServerPoolObject();
+            MailServerPoolObject obj = EmailConnectionPool.getMailServerPoolObject();
 
             try
             {
@@ -1949,7 +1933,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 //如果关系已经存在即不在建立关系
                 PlantPortalUser pu = plantPortalUserService.GetPlantUserByPlantIDUserID(new PlantPortalUser() { plantID = pid, userID = uid });
                 if (pu == null)
-                    plantPortalUserService.AddPlantPortalUser(new PlantPortalUser { RoleId = roleId, userID = uid, plantID = pid, shared = true });
+                    plantPortalUserService.AddPlantPortalUser(new PlantPortalUser { roleId = roleId, userID = uid, plantID = pid, shared = true });
             }
             return Content("ok");
         }
@@ -2280,13 +2264,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         public ActionResult PlantUser()
         {
             return View();
-        }
-
-        [IsLoginAttribute]
-        public ActionResult Users()
-        {
-            User user = UserUtil.getCurUser();
-            return View(user);
         }
 
         [HttpPost]

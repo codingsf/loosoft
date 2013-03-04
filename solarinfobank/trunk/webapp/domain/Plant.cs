@@ -4,11 +4,16 @@ using System.Linq;
 using System.Text;
 using Cn.Loosoft.Zhisou.SunPower.Common;
 
-
 namespace Cn.Loosoft.Zhisou.SunPower.Domain
 {
     /// <summary>
     /// plant_info:实体类(属性说明自动提取数据库字段的描述信息)
+    /// 18版后，电站分为两种概念的电站：
+    /// 1.虚拟电站或者叫组合电站，是有一系列电组合而来，这些电站既可以是组合电站也可以是实际电站，组合电站只是反映逻辑上的，一般只有些机构和统计信息的属性
+    /// 
+    /// 2.实际电站即没有下级电站了，能进行具体电站属性设置了
+    /// 叶子电站：没有下级电站的
+    /// 顶层电站：没有上级电站的
     /// </summary>
     [Serializable]
     public class Plant
@@ -35,7 +40,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         private string _module_type;
         private string _pic;
         private double _longitude;
-        private long _userid;
+        private int _userid;
         private double _latitude;
         private string _description;
         private float _design_power;
@@ -44,7 +49,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         private bool _example_plant;
         private bool _videoMonitorEnable;
         private bool _isNewPlant;
-
 
         /// <summary>
         /// auto_increment
@@ -56,7 +60,20 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         private IList<PlantUnit> _plantUnits;
-
+        /// <summary>
+        /// 叶子电站具有的单元
+        /// </summary>
+        public IList<PlantUnit> plantUnits
+        {
+            get
+            {
+                return _plantUnits;
+            }
+            set
+            {
+                _plantUnits = value;
+            }
+        }
 
         /// <summary>
         /// 实际电站的设计功率
@@ -231,10 +248,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             set { _longitude = value; }
             get { return _longitude; }
         }
+
         /// <summary>
-        /// 
+        /// 电站的创建者
         /// </summary>
-        public long userID
+        public int userID
         {
             set { _userid = value; }
             get { return _userid; }
@@ -283,19 +301,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
         public string structPic { get; set; }
 
-        public IList<PlantUnit> plantUnits
-        {
-            get
-            {
-
-                return _plantUnits;
-            }
-            set
-            {
-                _plantUnits = value;
-            }
-        }
-
         public double aveKw_Kwp
         {
             get
@@ -312,7 +317,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
-        /// 电站下的所有设备
+        /// 电站下的所有设备，组合电站递归取得
         /// </summary>
         /// <returns></returns>
         public IList<Device> deviceList()
@@ -707,8 +712,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         #endregion Model
-
-        public string predictivedata { get; set; }//电站每月预测值逗号(,)分隔的串
+        /// <summary>
+        /// 电站每月预测值逗号(,)分隔的串
+        /// </summary>
+        public string predictivedata { get; set; }
 
         /// <summary>
         /// 取得某个某个月份的预测值
@@ -730,7 +737,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
         public string plantIds { get; set; }
         /// <summary>
-        /// 是否组合电站
+        /// 是否组合电站，即虚拟的，不是叶子电站（真实的电站）
         /// </summary>
         public bool isVirtualPlant { get; set; }
 
@@ -1025,7 +1032,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public DateTime waringLastSendTime { get; set; }
 
         /// <summary>
-        /// 是否有告警的设备
+        /// 电站是否有告警的设备
         /// </summary>
         public bool hasFaultDevice
         {
@@ -1268,8 +1275,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 return item;
             }
         }
+
         /// <summary>
-        /// 取得所有实际电站,如果是实际电站 就是自己
+        /// 递归取得所有实际电站,如果是实际电站（叶子电站） 就是自己
         /// </summary>
         /// <returns></returns>
         public IList<Plant> allFactPlants
@@ -1304,9 +1312,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             get
             {
                 IList<PlantUnit> factPlantUnits = new List<PlantUnit>();
-                if (this.allFactPlants != null && this.allFactPlants.Count > 0)
+                IList<Plant> factPlants = this.allFactPlants;
+                if (factPlants!= null && factPlants.Count > 0)
                 {
-                    foreach (Plant plant in this.allFactPlants)
+                    foreach (Plant plant in factPlants)
                     {
                         if (plant.plantUnits != null)
                             foreach (PlantUnit p in plant.plantUnits)

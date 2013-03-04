@@ -103,7 +103,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     user.password = EncryptUtil.EncryptDES(user.password, EncryptUtil.defaultKey);
                     uid = UserService.GetInstance().save(user);
                     //注册用户默认管理员权限
-                    UserRoleService.GetInstance().Insert(new UserRole() { userId = uid, roleId = 3 });
+                    UserRoleService.GetInstance().Insert(new UserRole() { userId = uid, roleId = Role.ROLE_SYSMANAGER });
 
                     TempData[ComConst.User] = user;
                     UserUtil.ResetLogin(user);
@@ -123,17 +123,26 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
         }
 
+        /// <summary>
+        /// 注册时添加一个电站页面
+        /// </summary>
+        /// <returns></returns>
+        [IsLoginAttribute]
         public ActionResult AddPlant()
         {
             User curUser = UserUtil.getCurUser();
             IList<Plant> plants = null;
             if (curUser != null)
-                plants = UserUtil.getCurUser().allAssignedFactPlants;
+                plants = curUser.allOwnFactPlants;
             else
                 plants = new List<Plant>();
             return View(plants);
         }
-
+        /// <summary>
+        /// 添加电站的多个控制页面
+        /// </summary>
+        /// <param name="plantid"></param>
+        /// <returns></returns>
         public ActionResult AddPlantControl(string plantid)
         {
             if (string.IsNullOrEmpty(plantid) == false)
@@ -180,14 +189,22 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             return View();
         }
-
+        /// <summary>
+        /// 单个设备添加页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult AddUnit()
         {
             User user = UserUtil.getCurUser();
             user = UserService.GetInstance().GetUserByName(user.username);
             return View(user.ownPlants);
         }
-
+        /// <summary>
+        /// 删除单个电站设备
+        /// </summary>
+        /// <param name="plantId"></param>
+        /// <param name="unitId"></param>
+        /// <returns></returns>
         public ActionResult RemoveUnit(string plantId, string unitId)
         {
             try
@@ -215,7 +232,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             return Content(true.ToString());
         }
-
+        /// <summary>
+        /// 添加多个设备控制页面
+        /// </summary>
+        /// <param name="plantid"></param>
+        /// <returns></returns>
         public ActionResult PlantUnitControl(string plantid)
         {
             int id = 0;
@@ -229,7 +250,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             ViewData["plantUnits"] = plantUnits;
             return View(plant);
         }
-
+        /// <summary>
+        /// 保存设备
+        /// </summary>
+        /// <param name="unitid"></param>
+        /// <param name="plantid"></param>
+        /// <param name="code"></param>
+        /// <param name="password"></param>
+        /// <param name="displayname"></param>
+        /// <returns></returns>
         public ActionResult UnitSave(string unitid, int plantid, string code, string password, string displayname)
         {
             int uid = 0;
@@ -271,11 +300,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
         }
 
+        /// <summary>
+        /// 保存注册是添的电站信息，新增和修改都可能
+        /// </summary>
+        /// <param name="plant"></param>
+        /// <returns></returns>
         [ValidateInput(false)]
         [AcceptVerbs(HttpVerbs.Post)]
         [IsLoginAttribute]
         public ActionResult SavePlant(Plant plant)
         {
+            //设置电站的经纬度
             string long1 = Request.Form["long1"];
             string long2 = Request.Form["long2"];
             string long3 = Request.Form["long3"];
@@ -308,6 +343,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             plant.latitudeString = string.Format("{0},{1},{2}", lat1, lat2, lat3);
             if (string.IsNullOrEmpty(plant.pic))
                 plant.pic = string.Empty;
+
+            //设置电站的创建者
             plant.userID = UserUtil.getCurUser().id;
             CountryCity area = CountryCityService.GetInstance().GetCity(plant.country);
             plant.area = area == null ? string.Empty : area.weather_code;
@@ -315,21 +352,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             if (plant.id > 0)
             {
                 PlantService.GetInstance().UpdatePlantInfo(plant);
-
             }
             else
             {
                 plantid = PlantService.GetInstance().AddPlantInfo(plant);
-                PlantPortalUserService.GetInstance().AddPlantPortalUser(new PlantPortalUser { plantID = plantid, userID = int.Parse(plant.userID.ToString()) });//添加电站时，向电站用户关系表中加记录
-                PlantUserService.GetInstance().AddPlantUser(new PlantUser { plantID = plantid, userID = int.Parse(plant.userID.ToString()) });
+                //添加电站时，向电站用户关系表中加记录,shared=false表示是自己创建的
+                PlantUserService.GetInstance().AddPlantUser(new PlantUser { plantID = plantid, userID = plant.userID, shared = false, roleId = Role.ROLE_SYSMANAGER});
             }
             UserUtil.ResetLogin(UserUtil.getCurUser());
             return Redirect("/newregister/addplantcontrol?plantid=" + plantid);
         }
-
-
-
-    }
-
-
-}
+    }}

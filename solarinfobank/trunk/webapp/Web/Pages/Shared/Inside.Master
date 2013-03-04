@@ -599,7 +599,7 @@
                                 </div>
                             </div>
                             <%} %>
-                            <%if (Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().UserRole.roleId != 1)
+                            <%if (Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().userRole.roleId != 1)
                               { %>
                             <div class="kjlbox">
                                 <div class="kjlbox_ico">
@@ -651,7 +651,7 @@
                                 </div>
                             </div>
                             <%} %>
-                            <%if (Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().UserRole.roleId != 1)
+                            <%if (Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().userRole.roleId != 1)
                               { %>
                             <div class="kjlbox">
                                 <div class="kjlbox_ico">

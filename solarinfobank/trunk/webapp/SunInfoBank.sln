@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "service\Service.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{6AE1548A-E450-4197-8666-3D31D09527FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailService", "E:\working\SunInfoBank\trunk\email-sf\EmailService\EmailService.csproj", "{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,10 +37,6 @@ Global
 		{6AE1548A-E450-4197-8666-3D31D09527FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AE1548A-E450-4197-8666-3D31D09527FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AE1548A-E450-4197-8666-3D31D09527FD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,7 +12,7 @@
       <result property="uid"			column="uid"/>
       <result property="name"			column="name"/>
       <result property="descr"			column="descr"/>
-      <result property="RoleFunctions" lazyLoad="true"	column="roleId" select="get_functions_by_roleid" />
+      <result property="roleFunctions" lazyLoad="true"	column="roleId" select="get_functions_by_roleid" />
     </resultMap>
   </resultMaps>
   <cacheModels>
@@ -23,7 +23,6 @@
       <flushOnExecute  statement="role_update"/>
       <flushOnExecute  statement="rolefunction_delete"/>
       <flushOnExecute  statement="rolefunction_insert"/>
-
       <property name="CacheSize" value="1000"/>
     </cacheModel>
   </cacheModels>

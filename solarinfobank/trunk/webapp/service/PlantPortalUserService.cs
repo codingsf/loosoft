@@ -122,7 +122,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             return _iplantuserdao.ClosePlant(pid, uid);
         }
 
-        public int DelPlantUserByUserId(int uid)
+        public int DelPlantUserByUserId(long uid)
         {
             return _iplantuserdao.DelPlantUserByUserId(uid);
         }

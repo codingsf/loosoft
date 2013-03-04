@@ -80,11 +80,10 @@
                                 <tr>
                                     <td width="25%" height="35" align="center">
                                      <div title="<%= Model.username %>" style="width:180px; overflow:hidden">
-                                    <img src="/images/sub/user_mature.gif" /> <%=Html.Encode( Model.username)%></div>
+                                    <img src="/images/sub/user_mature.gif" alt=""/> <%=Html.Encode( Model.username)%></div>
                                     </td>
                                     <td width="20%" align="center">
-                                            <%=Html.Encode(Model.UserRole.Role.displayName)%>
-                                     
+                                    <%=Html.Encode(Model.userRole.role.displayName)%>
                                     </td>
                                     <td width="30%" align="center">
                                       <div style="width:220; overflow:hidden"> <%=Html.Encode(Model.email)%></div>
@@ -102,10 +101,10 @@
                         </td>
                     </tr>                
                     <% int i = 0;
-                        foreach (var user in Model.ChildUsers)
+                       foreach (var user in Model.childUsers)
                        {
                            i++;
-                             %>
+                    %>
                     <tr>
                         <td>
                             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="down_line0<%=i%2 %>">
@@ -115,7 +114,7 @@
                                     <%=user.username %></div>
                                     </td>
                                     <td width="20%" align="center">
-                                    <%=user.UserRole.Role.displayName %>
+                                    <%=user.userRole.role.displayName %>
                                     </td>
                                     <td width="30%" align="center">
                                       <div style="width:220; overflow:hidden"> <%=user.email %></div>
@@ -123,12 +122,11 @@
                                     </td>
                                     <td width="25%" align="center">
                                     
-                                    <a href="/user/viewinfo/<%=user.id %>"><img alt="<%=Resources.SunResource.CUSTOMREPORT_VIEW %>" title="<%=Resources.SunResource.CUSTOMREPORT_VIEW %>" src="/Images/sub/ck.gif" border="0" height="16" width="16"></a>
+                                        <a href="/user/viewinfo/<%=user.id %>"><img alt="<%=Resources.SunResource.CUSTOMREPORT_VIEW %>" title="<%=Resources.SunResource.CUSTOMREPORT_VIEW %>" src="/Images/sub/ck.gif" border="0" height="16" width="16"></a>
                                     
-                                    
-                                       <a href="/user/useredit?uid=<%=user.id %>&role=<%=user.UserRole.Role.id %>">
+                                        <a href="/user/useredit?uid=<%=user.id %>&role=<%=user.userRole.role.id %>">
                                             <img src="/images/sub/pencil.gif" alt="<%=Resources.SunResource.PLANT_REPORTCONFIG_EDIT %>" title="<%=Resources.SunResource.PLANT_REPORTCONFIG_EDIT %>" border="0" width="16" height="16"></a>
-                     <a href="/user/userplants?uid=<%=user.id %>">
+                                        <a href="/user/userplants?uid=<%=user.id %>">
                                             <img src="/images/sub/view_c.gif"  border="0" width="16" height="16" alt="<%=Resources.SunResource.USERS_ASSIGN_PLANT %>" title="<%=Resources.SunResource.USERS_ASSIGN_PLANT %>"></a>
                                         <a href="/user/deleteuser/?uid=<%=user.id %>">
                                             <img src="/images/sub/cross.gif" onclick="return confirm('<%=Resources.SunResource.MONITORITEM_SURE_DELETE %>');" title="<%=Resources.SunResource.PLANT_ADDPLANT_DELETE %>" alt="<%=Resources.SunResource.PLANT_ADDPLANT_DELETE %>" border="0" width="16" height="16"></a>
@@ -141,10 +139,6 @@
                             </table>
                         </td>
                     </tr>
-                    
-                    
-                    
-                    
                     
                     <%} %>
                 </tbody></table>

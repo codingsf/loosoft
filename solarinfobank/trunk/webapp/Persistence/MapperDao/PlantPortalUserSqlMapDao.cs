@@ -66,7 +66,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
         #region IPlantUserDao 成员
 
 
-        public int ClosePlant(int pid, int uid)
+        public int ClosePlant(int pid, long uid)
         {
             Hashtable table = new Hashtable();
             table.Add("pid", pid);
@@ -75,8 +75,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
 
         }
 
-
-        public int DelPlantUserByUserId(int uid)
+        public int DelPlantUserByUserId(long uid)
         {
             return ExecuteDelete("plantportaluser_delete_by_userid", uid);
 
@@ -88,7 +87,5 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
         {
             return ExecuteQueryForList<User>("getportalusers_byplantid", pid);
         }
-
-
    }
 }

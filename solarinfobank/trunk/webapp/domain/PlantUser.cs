@@ -6,7 +6,8 @@ using System.Text;
 namespace Cn.Loosoft.Zhisou.SunPower.Domain
 {
     /// <summary>
-    /// 功能：电站和用户的关系
+    /// 功能：电站和一般用户的关系
+    /// 只能关联顶层电站
     /// 作者：张月
     /// 时间：2011年4月24日
     /// </summary>
@@ -20,7 +21,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             this.plantID = plantID;
             this.userID = userID;
         }
-        private int _id;
+        private int _id;//id 自增
         public int id
         {
             get
@@ -31,8 +32,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             {
                 _id = value;
             }
-        } //id 自增
-        private int _plantID;
+        }
+        private int _plantID; //电站id 非空
         public int plantID
         {
             get
@@ -43,9 +44,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             {
                 _plantID = value;
             }
-        } //电站id 非空
+        }
 
-        private int _userID;
+        private int _userID;//用户id 非空
         public int userID
         {
             get
@@ -56,7 +57,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             {
                 _userID = value;
             }
-        }  //用户id 非空
+        }
 
         private string _username;
         public string username
@@ -71,6 +72,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             }
         }
         private Plant _plant;
+        /// <summary>
+        /// 一般用户对应的电站，这个电站一定是顶层电站
+        /// </summary>
         public Plant plant
         {
             get
@@ -82,13 +86,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 _plant = value;
             }
         }
-
-        public int RoleId { get; set; }
+        /// <summary>
+        /// 一般用户对这个电站具有的角色
+        /// 
+        /// </summary>
+        public int roleId { get; set; }
 
         /// <summary>
         /// 是否是被别人分配过来的电站,true:是别人分配的，false是自己创建并管理的
         /// </summary>
         public bool shared { get; set; }
-
     }
 }

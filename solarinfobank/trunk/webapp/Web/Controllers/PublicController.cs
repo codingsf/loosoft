@@ -11,7 +11,6 @@ using Cn.Loosoft.Zhisou.SunPower.Web.Controllers;
 using Cn.Loosoft.Zhisou.SunPower.Domain;
 using System.Timers;
 using System.Text;
-using EmailService;
 using Dimac.JMail;
 
 namespace Web.Controllers
@@ -78,7 +77,7 @@ namespace Web.Controllers
             }
             else
             {
-                MailServerPoolObject obj = EmailService.EmailConnectionPool.getMailServerPoolObject();
+                MailServerPoolObject obj = EmailConnectionPool.getMailServerPoolObject();
                 if (obj == null)
                 {
                     ViewData["error"] = "<em><span id=\"serverError\" class='error'>" + Resources.SunResource.USER_CONTROLLER_FINDPASSWORD_ERROR + "</span></em>";

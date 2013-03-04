@@ -39,12 +39,16 @@
       <result property="autoRefresh"			column="autorefresh"/>
       <result property="refreshInterval"			column="refreshinterval"/>
       <result property="refreshStartDate"			column="refreshstartdate"/>
-      <!--级联对象集合-->
+      <!--级联对象-->
       <result property="Language"		lazyLoad="true"	column="languageId" select="language_get_lazy" />
+      <result property="userRole"   lazyLoad="true"	column="id"         select="get_user_role" />      
+      <!--门户用户和那些电站建立了关系-->
       <result property="plantPortalUsers" lazyLoad="true"	column="id"         select="plantportaluser_get_by_userid" />
+      <!--一般用户和那些电站建立了关系-->
       <result property="plantUsers" lazyLoad="true"	column="id"         select="plantuser_get_by_userid" />
-      <result property="UserRole"   lazyLoad="true"	column="id"         select="get_user_role" />
-      <result property="ChildUsers" lazyLoad="true"	column="id"         select="get_child_user_by_userid" />
+
+      <result property="childUsers" lazyLoad="true"	column="id"         select="get_child_user_by_userid" />
+      <result property="childPortalUsers" lazyLoad="true"	column="id"         select="get_child_portaluser_by_userid" />
       <result property="Roles" lazyLoad="true"	column="id"          select="get_role_uid" />
       <result property="createToplevelPlants" lazyLoad="true"	column="id"         select="toplevelplant_get_uid" />
       <result property="configs" lazyLoad="true"	column="id"         select="relationconfig_get_uid_lazy" />
@@ -133,9 +137,13 @@
     <!--cacheModel="user_get_list_cache"-->
 
     <select id="get_child_user_by_userid"  resultMap="user_info_result"  paramterClass="int" >
-      SELECT *  FROM  userinfo where parentUserid=#value#
+      SELECT *  FROM  userinfo where parentUserid=#value# and isBigCustomer=0
     </select>
 
+    <select id="get_child_portaluser_by_userid"  resultMap="user_info_result"  paramterClass="int" >
+      SELECT *  FROM  userinfo where parentUserid=#value# and isBigCustomer=1
+    </select>
+    
     <select id="loading_users_page_list" resultMap="user_info_result" cacheModel="user_cache">
       <![CDATA[  SELECT * from userinfo limit $Start$,$End$]]>
     </select>

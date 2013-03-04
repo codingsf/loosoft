@@ -42,6 +42,5 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.Interfaces
         int ClosePlant(int pid, int uid);
 
         int DelPlantUserByUserId(int uid);
-
     }
 }

@@ -7,17 +7,12 @@
 
   <resultMaps>
     <resultMap id="plantportaluser_info_result" class="PlantPortalUser">
-      <result property="id"			column="id"/>
-      <result property="plantID"			column="plantID"/>
-      <result property="userID"			column="userID"/>
-      <result property="RoleId"			column="roleId"/>
-      <result property="shared"			column="shared"/>
-      <!--级联对象集合-->
-
+      <result property="id"	column="id"/>
+      <result property="plantID"	column="plantID"/>
+      <result property="userID"		column="userID"/>
+      <result property="roleId"		column="roleId"/>
+      <result property="shared"		column="shared"/>
       <result property="plant" lazyLoad="false"	column="plantID" select="plant_get" />
-      <!--避免在非懒加载的情况下循环递归加载
-      <result property="User"  lazyLoad="true"	column="userID"  select="user_get_lazy" />
-      -->
     </resultMap>
   </resultMaps>
 
@@ -25,9 +20,9 @@
     <cacheModel id="plantportaluser_info_cache" implementation="LRU" readOnly="true" serialize="false">
       <flushInterval minutes="30"/>
       <flushOnExecute  statement="portalcloseplant"/>
-      <flushOnExecute  statement="plantuser_insert"/>
-      <flushOnExecute  statement="plantuser_update"/>
-      <flushOnExecute  statement="plantuser_delete"/>
+      <flushOnExecute  statement="plantportaluser_insert"/>
+      <flushOnExecute  statement="plantportaluser_update"/>
+      <flushOnExecute  statement="plantportaluser_delete"/>
       <flushOnExecute  statement="plantportaluser_delete_by_plantid"/>
       <flushOnExecute  statement="plantportaluser_delete_by_userid"/>
       <flushOnExecute  statement="plant_insert"/>
@@ -67,14 +62,14 @@
     </select>
     <!--添加电站用户的对应-->
     <insert id="plantportaluser_insert" parameterClass="PlantPortalUser">
-      INSERT INTO  plant_portaluser(plantID,userID,RoleId,shared) VALUES( #plantID#,#userID#,#RoleId#,#shared#)
+      INSERT INTO  plant_portaluser(plantID,userID,roleId,shared) VALUES( #plantID#,#userID#,#roleId#,#shared#)
       <selectKey resultClass="int" property="id" type="post">
         SELECT LAST_INSERT_ID() AS id
       </selectKey>
     </insert>
     <!--修改电站用户的对应-->
     <update id="plantportaluser_update" paramentClass="PlantPortalUser">
-      UPDATE  plant_portaluser SET id=#id#,plantID=#plantID#,userID=#userID#,RoleId=#RoleId#,shared=#shared# WHERE id=#id#
+      UPDATE  plant_portaluser SET id=#id#,plantID=#plantID#,userID=#userID#,roleId=#roleId#,shared=#shared# WHERE id=#id#
     </update>
     <!-- 删除电站用户的对应-->
     <delete id="plantportaluser_delete" paramentClass="PlantPortalUser">

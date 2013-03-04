@@ -69,7 +69,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
        /// <param name="userid"></param>
        /// <param name="plantId"></param>
         ReportConfigService configService = ReportConfigService.GetInstance();
-        public void batchCreateSysRunReport(int userid,int plantId) {
+        public void batchCreateSysRunReport(int userid, int plantId)
+        {
             if (plantId == 0)//创建所有电站图表
             {
                 int rpId = 0;

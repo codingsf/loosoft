@@ -4,8 +4,11 @@
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
 <%@ Import Namespace="System.Globalization" %>
-<script>document.title = '<%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>  <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_PLANT_OVERVIEW %>'</script>
-    <%if (Session["firstLogin"] != null)
+<script>
+    document.title = '<%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>  <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_PLANT_OVERVIEW %>'
+</script>
+    <%
+        if (Session["firstLogin"] != null)
       { %>
     <script>        
         loadContent('content_ajax', '/user/includeAllplants', 'iframe', 'GET');
@@ -13,7 +16,9 @@
             $(this).removeClass("lefttabclick");
         });
     </script>
-    <%Session["firstLogin"] = null; Response.End();
+    <%
+            Session["firstLogin"] = null; 
+            Response.End();
     } %>
 <style type="text/css">
     .noclick

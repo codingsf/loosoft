@@ -18,7 +18,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         //编号  非空
         public int id { get; set; }
         //用户Id  非空
-        public int  userId { get; set; }
+        public long  userId { get; set; }
         //用户名  非空
         public string username { get; set; }
         //登录ip 飞库
@@ -28,6 +28,5 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
         public float localZone { get; set; }
         #endregion Model
-     
     }
 }

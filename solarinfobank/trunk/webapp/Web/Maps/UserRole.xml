@@ -11,9 +11,7 @@
       <result property="id"			column="id"/>
       <result property="userId"			column="userId"/>
       <result property="roleId"			column="roleId"/>
-      <!--级联对象集合-->
-      <result property="RoleFunctions" lazyLoad="true"	column="roleId" select="get_functions_by_roleid" />
-      <result property="Role" lazyLoad="true"	column="roleId" select="get_role" />
+      <result property="role" lazyLoad="true"	column="roleId" select="get_role" />
     </resultMap>
   </resultMaps>
   <cacheModels>
@@ -44,7 +42,5 @@
     <delete id="userrole_delete_roleId"  resultClass="int">
       delete from  user_role where roleId= #value#
     </delete>
-    
-    
   </statements>
 </sqlMap>

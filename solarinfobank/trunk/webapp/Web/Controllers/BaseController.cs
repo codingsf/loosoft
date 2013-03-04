@@ -61,7 +61,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (filterContext.HttpContext.Session[ComConst.User] != null && (UserUtil.getCurUser()).plantPortalUsers.Count <= 0)
+            if (filterContext.HttpContext.Session[ComConst.User] != null && (UserUtil.getCurUser()).plantUsers.Count <= 0)
             {
                 filterContext.HttpContext.Response.Redirect("/user/addplant");
             }
@@ -79,8 +79,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             var action = filterContext.RouteData.Values["action"].ToString().ToLower();
             if (user != null)
             {
-
-                foreach (RoleFunction function in user.UserRole.RoleFunctions)
+                foreach (RoleFunction function in user.userRole.roleFunctions)
                 {
                     var role = AuthorizationCode.GetRole(function.functionCode);
                     if (role != null && role.action.Equals(action) && role.controller.Equals(controller))
@@ -235,11 +234,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return PlantService.GetInstance().GetPlantInfoById(id);
         }
 
+        /// <summary>
+        /// 当前用户的第一个电站
+        /// </summary>
         protected Plant FirstPlant
         {
             get
             {
-                return UserUtil.getCurUser().displayPlants.Count > 0 ? UserUtil.getCurUser().displayPlants[0] : null;
+                IList<Plant> plants = UserUtil.getCurUser().displayPlants;
+                return plants.Count > 0 ? plants[0] : null;
             }
         }
 
@@ -548,7 +551,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return jsstr;
         }
 
-
         public string generateDeviceRelation(Plant plant)
         {
             string jsstr = string.Empty;
@@ -577,8 +579,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return jsstr;
         }
 
-
-
         public string generateDeviceRelation(IList<Device> devices, int deviceLevel, int uplevel,int unitId)
         {
             string jsstr = string.Empty;
@@ -602,5 +602,4 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return jsstr;
         }
     }
-
 }

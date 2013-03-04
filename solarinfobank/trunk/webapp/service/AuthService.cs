@@ -42,25 +42,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             if (!plantUser.shared)
                 return true;
 
-            Role role = RoleService.GetInstance().Get(plantUser.RoleId);
+            Role role = RoleService.GetInstance().Get(plantUser.roleId);
             if (role == null) return false;
-            foreach (RoleFunction function in role.RoleFunctions)
-            {
-                if (function.functionCode.Equals(code))
-                {
-                    return true;
-                }
-            }
-
-            //if (user.UserRole == null) return true;
-            //foreach (RoleFunction function in user.UserRole.RoleFunctions)
-            //{
-            //    if (function.functionCode.Equals(code))
-            //    {
-            //        return false;
-            //    }
-            //}
-            return false;
+            return role.isDeny(code);
         }
 
         /// <summary>
@@ -78,17 +62,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 return true;
             if (m.roles == null || m.roles.Count == 0)
                 return false;
-            //foreach (AdminUserRole userRole in m.roles)
-            //{
-            //    if (userRole.role != null)
-            //        if (userRole.role.actions != null)
-            //        {
-            //            foreach (AdminControllerAction aca in userRole.role.actions)
-            //                if (controller.ToLower().Equals(aca.controllerName.ToLower()) && action.ToLower().Equals(aca.actionName.ToLower()))
-            //                    return false;
-            //        }
-            //}
-            //return true;
             IList<AdminControllerAction> allActions = AdminControllerActionServices.GetInstance().GetList();
 
             IList<AdminControllerAction> allallows = new List<AdminControllerAction>();
@@ -110,8 +83,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     return false;
             }
             return true;
-
-
         }
     }
 }

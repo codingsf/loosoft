@@ -36,8 +36,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
 
             if (pid == 0) return true;
 
-            PlantPortalUser plantUser = PlantPortalUserService.GetInstance().GetPlantUserByPlantIDUserID(new PlantPortalUser { userID = user.id, plantID = pid });
-            //根据分配的电站指定的权限
+            PlantUser plantUser = PlantUserService.GetInstance().GetPlantUserByPlantIDUserID(new PlantUser { userID = user.id, plantID = pid });
+            //根据对关联的电站指定的权限
             //是自己创建的电站，则具体权限，只对被分配的电站才需要判断权限。因为权限指定也都是针对分配电站而言。
             if (!plantUser.shared)
                 return true;

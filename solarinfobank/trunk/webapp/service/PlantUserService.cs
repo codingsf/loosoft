@@ -105,7 +105,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             return _iplantuserdao.GetPlantUserByPlantIDUserID(plantUser);
         }
 
-
+        /// <summary>
+        /// 取得某个电站分配的关系，共享的
+        /// </summary>
+        /// <param name="plantId"></param>
+        /// <returns></returns>
         public IList<PlantUser> GetOpenPlant(int plantId)
         {
             return _iplantuserdao.GetOpenPlant(plantId);
@@ -122,5 +126,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             return _iplantuserdao.DelPlantUserByUserId(uid);
         }
 
+        /// <summary>
+        /// 根据电站id取得分配的用户,特指共享用户，不包括自身
+        /// </summary>
+        /// <param name="pid"></param>
+        /// <returns></returns>
+        public IList<User> GetusersByplantid(int pid)
+        {
+            return _iplantuserdao.GetusersByplantid(pid);
+        }
     }
 }

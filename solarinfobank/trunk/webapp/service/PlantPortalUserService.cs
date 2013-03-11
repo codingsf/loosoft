@@ -135,7 +135,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         public IList<User> GetusersByplantid(int pid)
         {
             return _iplantuserdao.GetusersByplantid(pid);
-
         }
     }
 }

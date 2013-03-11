@@ -14,3 +14,23 @@ CREATE TABLE `plant_portaluser` (
   KEY `plantID2userID_index` (`plantID`),
   KEY `userID_index` (`userID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=596 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+增加report_config表的email字段长度到500
+
+CREATE TABLE `compensation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `plantid` int(11) DEFAULT NULL,
+  `isplant` bit(1) DEFAULT NULL,
+  `year` int(11) DEFAULT NULL,
+  `month` int(11) DEFAULT NULL,
+  `day` int(11) DEFAULT NULL,
+  `data_value` double(10,2) DEFAULT NULL,
+  `type` smallint(6) DEFAULT NULL,
+  `compensation_date` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
+
+更行plant_user表的shared标识和plant_info表中电站的userid一致
+
+
+

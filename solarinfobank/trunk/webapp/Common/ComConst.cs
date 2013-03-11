@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Cn.Loosoft.Zhisou.SunPower.Common
 {
+    /// <summary>
+    /// 系统常量定义
+    /// </summary>
     public abstract class ComConst
     {
         public const string User = "User";
@@ -23,7 +26,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         public const string ReportGroupList = "ReportGroupList";
         public const string Templete = "Templete";
 
-
         /// <summary>
         /// 图表div名称
         /// </summary>
@@ -32,7 +34,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// 用户的当前电站
         /// </summary>
         public const string PlantName = "plantName";
-
 
         /// <summary>
         /// 用户电站列表
@@ -49,61 +50,76 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// </summary>
         public const string DeviceList = "DeviceList";
 
-
         /// <summary>
         /// 设备类型：逆变器
         /// </summary>
         public const string DevType_Inverter = "Inverter";
+
         /// <summary>
         /// 设备类型：逆变器
         /// </summary>
         public const string DevType_Plant = "Plant";
+
         /// <summary>
         /// 设备类型：电站单元
         /// </summary>
         public const string DevType_PlantUnit = "PlantUnit";
 
-
         /// <summary>
         /// 检测点：电量
         /// </summary>
         public const string Monitor_Energy = "Energy";
+
         /// <summary>
         /// 检测点：功率
         /// </summary>
         public const string Monitor_Power = "Power";
 
-
         /// <summary>
         /// 图表类型：区域
         /// </summary>
         public const string Subtype_area = "area";
+
         /// <summary>
         /// 图表类型：条状
         /// </summary>
         public const string Subtype_bar = "bar";
+
         /// <summary>
         /// 图表类型：柱形
         /// </summary>
         public const string Subtype_column = "column";
+
         /// <summary>
         /// 图表类型：复合
         /// </summary>
         //public const string Subtype_combo = "combo"; //保留
+
         /// <summary>
         /// 图表类型：曲线
         /// </summary>
         public const string Subtype_line = "line";
+
         /// <summary>
         /// 图表类型：拼图
         /// </summary>
         //public const string Subtype_pie = "pie";//保留
-
-        public static string Time_YEAR = "";//
-        public static string Time_MONTH = "";//
-        public static string Time_DAY = "";//
-        public static string Time_HOUR = "";//
-
+        /// <summary>
+        /// 时间类型-年
+        /// </summary>
+        public static string Time_YEAR = "";
+        /// <summary>
+        /// 时间类型-月
+        /// </summary>
+        public static string Time_MONTH = "";
+        /// <summary>
+        /// 时间类型-天
+        /// </summary>
+        public static string Time_DAY = "";
+        /// <summary>
+        /// 时间类型-小时
+        /// </summary>
+        public static string Time_HOUR = "";
 
         public const string ModelCustomReport = "ModelCustomReport";
 

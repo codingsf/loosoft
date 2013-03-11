@@ -701,25 +701,20 @@
                                             <li><a onclick="loadContent('content_ajax','/user/record','iframe','GET');setcurrent(this);return false;"
                                                 href="/user/record">
                                                 <%=Resources.SunResource.PAGE_USER_LOGINRECORD%></a></li>
-                                                      <%if (AuthService.isAllow(AuthorizationCode.USER_LIST))
-                              { %>
-                            <li><a onclick="loadContent('content_ajax','/plant/plantUser/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
-                                href="/plant/plantUser/<%=Model.id%>">
-                                <%=Resources.SunResource.SHARED_INSIDE_PLANT_USER%></a></li>
-                            <%} %>
-                            
-                            
-                             <li><a onclick="loadContent('content_ajax','/plant/relationconfig/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
-                                href="/plant/relation/<%=Model.id%>">设备关系设置</a></li>
-                                
-                                
-                            
+                                            <%if (AuthService.isAllow(AuthorizationCode.USER_LIST) && UserUtil.getCurUser().id == Model.userID)
+                                            { %>
+                                            <li><a onclick="loadContent('content_ajax','/plant/plantUser/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
+                                                href="/plant/plantUser/<%=Model.id%>">
+                                                <%=Resources.SunResource.SHARED_INSIDE_PLANT_USER%></a></li>
+                                            <%} %>
+                                            <li><a onclick="loadContent('content_ajax','/plant/relationconfig/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
+                                                 href="/plant/relation/<%=Model.id%>">设备关系设置</a></li>
                                             <%if (Cn.Loosoft.Zhisou.SunPower.Service.ProtalUtil.isBigCustomer())
                                               { %>
                                             <li><a onclick="loadContent('content_ajax','/plant/devicerelation/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
                                                 href="/plant/devicerelation/<%=Model.id %>">设备接线图</a></li>
                                             <%} %>
-                                            <%if (AuthService.isAllow(AuthorizationCode.USER_LIST))
+                                            <%if (AuthService.isAllow(AuthorizationCode.USER_LIST) && UserUtil.getCurUser().id==Model.userID)
                                               { %>
                                             <li><a onclick="loadContent('content_ajax','/plant/portaluser/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
                                                 href="/plant/portaluser/<%=Model.id%>">

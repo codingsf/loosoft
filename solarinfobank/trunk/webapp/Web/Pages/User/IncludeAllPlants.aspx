@@ -11,19 +11,20 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <%--此处用于切换语言跳转到当前页面--%>
-    <%if (Session["initurl"] != null && (string.IsNullOrEmpty(Session["initurl"].ToString()) == false))
-      { %>
-
-    <script>
+    <%
+        if (Session["initurl"] != null && (string.IsNullOrEmpty(Session["initurl"].ToString()) == false))
+    {
+    %>
+    <script type="text/javascript">
         $('a[href="<%=Session["initurl"] %>"]', window.parent.document).addClass("lefttabclick");
         $("#current_uri", window.parent.document).val('<%=Session["initurl"] %>');
         parent.loadContent('content_ajax', '<%=Session["initurl"] %>', '<%=Session["loading_type"] %>', 'GET');
     </script>
-
-    <%Session["initurl"] = null; Session["loading_type"] = null; Response.End();
-      } %>
-
-    <script>
+    <%
+        Session["initurl"] = null; Session["loading_type"] = null; Response.End();
+    }
+    %>
+    <script type="text/javascript">
         $(document).ready(function() {
             $("#btnsaveconfig").click(function() {
                 $.get('/user/relationconfig/',
@@ -102,16 +103,15 @@
                                             title="<%=Resources.SunResource.MONITORITEM_ADD%>" /></a>
                                 </td>
                                 <td width="94%">
-                                    <a href="/user/addplant/" class="dbl">
-                                        <%=Resources.SunResource.MONITORITEM_ADD%></a> | <a href="/user/allplants_output/"
-                                            class="dbl">
-                                            <%=Resources.SunResource.DEVICE_MONITOR_EXPORT_CSV%></a>
-                                    <%if (Cn.Loosoft.Zhisou.SunPower.Service.ProtalUtil.isBigCustomer())
+                                    <a href="/user/addplant/" class="dbl"><%=Resources.SunResource.MONITORITEM_ADD%></a>
+                                     | 
+                                    <a href="/user/allplants_output/" class="dbl"><%=Resources.SunResource.DEVICE_MONITOR_EXPORT_CSV%></a>
+                                    <%if (ProtalUtil.isBigCustomer() && UserUtil.getCurUser().ParentUserId == 0)
                                       { %>
-                                    | <a href="/user/shareplant">分配电站 </a>
-                                    <%} %>
+                                    | <a href="/user/shareplant">给门户用户分配电站</a>
+                                    <%}%>
                                 </td>
-                                <%} %>
+                                <%}%>
                             </tr>
                         </table>
                     </div>
@@ -260,11 +260,10 @@
                                                           if (plant.userID.Equals(UserUtil.getCurUser().id))
                                                           {%>
                                                     <a href="/plant/share/<%=plant.id%>?t=<%=plant.isVirtualPlant?1:0 %>&fromurl=/user/includeallplants">
-                                                        <img src="/images/sub/xs.gif" alt="分配电站" title="分配电站" /></a>
-                                                    <%}
-                                                          else
-                                                          {%>
-                                                    <img src="/images/sub/yc.gif" alt="分配电站" title="分配电站" />
+                                                        <img src="/images/sub/xs.gif" alt="给门户用户分配电站" title="给门户用户分配电站" /></a>
+                                                    <%}else
+                                                    {%>
+                                                    <img src="/images/sub/yc.gif" alt="给门户用户分配电站" title="给门户用户分配电站" />
                                                     <%} %>
                                                     <a href="/plant/structpic/<%=plant.id%>?fromurl=/user/includeallplants">
                                                         <img src="/images/sub/fbt.gif" alt=" <%=plant.isVirtualPlant?"电站分布图":"单元分布图" %>"

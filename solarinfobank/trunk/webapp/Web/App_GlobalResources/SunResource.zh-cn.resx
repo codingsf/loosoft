@@ -1350,7 +1350,7 @@
     <value>系统管理</value>
   </data>
   <data name="SHARED_BACKMANAGERMASTERPAGE_USER_LIST" xml:space="preserve">
-    <value>用户列表</value>
+    <value>电站用户列表</value>
   </data>
   <data name="SHARED_BACKMANAGERMASTERPAGE_WHAT_IS_SUNINFO_BANK" xml:space="preserve">
     <value>了解SolarInfo Bank</value>
@@ -4893,7 +4893,7 @@
   <data name="PUBLIC_APP_CONTENT111" xml:space="preserve">
     <value>&lt;p&gt;现在，可以通过移动电话轻松访问用于监控、组织和展示发电厂的在线门户SolarInfo Bank，并将其作为免费的 Android应用程序。
 无论您拥有多大的系统，都能利用 SolarInfo Bank 通过移动电话访问您的发电厂。 因此，电厂操作人员、安装技师和维修人员可以在任何地方访问他们所需的最重要数据。 这样可以节省时间和成本。
-&lt;/p&gt;&lt;p&gt;无论您身在何处，都可利用现有的用户数据访问电厂。 如果您想亲自了解在线电厂监控的工作方式，或者您还没有 SolarInfo Bank 帐户，我们会提供一个演示帐户。&lt;/p&gt;&lt;p&gt;今天或上个月的能源生产情况如何？ 现在，访问电量数据将比以往更容易。 并且，可通过 Android 更加直观简单地了解电厂的使用情况。&lt;/p&gt;&lt;a target='_blank' href='/public/solarinfobank_android'&gt;&lt;img src="/images/xcy/bu03.jpg"/&gt;&lt;/a&gt;</value>
+&lt;/p&gt;&lt;p&gt;无论您身在何处，都可利用现有的用户数据访问电厂。 如果您想亲自了解在线电厂监控的工作方式，或者您还没有 SolarInfo Bank 帐户，我们会提供一个演示帐户。&lt;/p&gt;&lt;p&gt;今天或上个月的能源生产情况如何？ 现在，访问电量数据将比以往更容易。 并且，可通过 Android 更加直观简单地了解电厂的使用情况。&lt;/p&gt;</value>
   </data>
   <data name="ERRORITEM_10752" xml:space="preserve">
     <value>继电器故障</value>
@@ -5551,5 +5551,8 @@
   </data>
   <data name="AUTO_REFRESH_NOTICE" xml:space="preserve">
     <value>该页面数据间隔{0}S自动刷新一次</value>
+  </data>
+  <data name="ENERGY_RATE_TITLE" xml:space="preserve">
+    <value>设置发电量补偿量</value>
   </data>
 </root>

@@ -83,7 +83,6 @@
                       required: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_EMAIL_REQUIRED %></span>",
                       email: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_USERNAME_EMAIL %></span>",
                       maxlength: "<span class='error'>&nbsp;<%=Resources.SunResource.AHTH_REG_CONFIRM_PASSWORD_MINLENGTH %></span>"
-
                   }
               },
               success: function(em) {
@@ -93,7 +92,7 @@
 
     </script>
 
-<table background="/images/kj/kjbg02.jpg" border="0" cellpadding="0" cellspacing="0" width="793" height="63">
+        <table background="/images/kj/kjbg02.jpg" border="0" cellpadding="0" cellspacing="0" width="793" height="63">
           <tbody><tr>
             <td width="8"><img src="/images/kj/kjico02.jpg" width="8" height="63"></td>
             <td width="777">
@@ -109,7 +108,6 @@
                   <td width="18%"></td>
                 </tr>
             </table>
-            
             </td>
             <td align="right" width="6"><img src="/images/kj/kjico03.jpg" width="6" height="63"></td>
           </tr>
@@ -119,11 +117,13 @@
 
             <div>
               <table border="0" cellpadding="0" cellspacing="0" width="90%" height="30">
-                <tbody><tr>
+                <tbody>
+                <tr>
                   <td align="center" width="6%"><img src="/images/sub/subico010.gif" width="18" height="19"></td>
                   <td class="f_14" width="94%"><strong><%=Resources.SunResource.USER_ADD_USER_CREATE%></strong></td>
                 </tr>
-              </tbody></table>
+              </tbody>
+              </table>
             </div>
 
             <div class="sb_top"></div>
@@ -135,40 +135,35 @@
                 <tr>
                   <td width="23%" height="35" class="pr_10"><strong><%=Resources.SunResource.USER_ADDUSER_USER_ROLE%>： </strong></td>
                   <td width="77%">
-                    <%=Html.RadioButton("role",1,true) %>
+                    <%=Html.RadioButton("role",Role.ROLE_LOOKER,true) %>
                     <%=Resources.SunResource.USER_ROLE_1%>
-                    <%=Html.RadioButton("role",2,false) %>
+                    <%=Html.RadioButton("role",Role.ROLE_MAINTAINER,false) %>
                     <%=Resources.SunResource.USER_ROLE_2%>
-                    <%=Html.RadioButton("role",3,false) %>
+                    <%=Html.RadioButton("role",Role.ROLE_SYSMANAGER,false) %>
                     <%=Resources.SunResource.USER_ROLE_3%>
                     </td>
                 </tr>
                 <tr>
                   <td width="23%" height="35" class="pr_10"><strong><%=Resources.SunResource.USER_ADDUSER_USER_NAME%>： </strong></td>
                   <td>
-                  
-                  <%= Html.TextBoxFor(model => model.username, new { @class = "txtbu01",style="width:160px" })%>
-
-                      <span class="redzi">*</span>  &nbsp; <span id="error_username"></span></td>
+                    <%= Html.TextBoxFor(model => model.username, new { @class = "txtbu01",style="width:160px" })%>
+                    <span class="redzi">*</span>  &nbsp; <span id="error_username"></span></td>
                   </tr>
                 <tr>
                   <td height="35" class="pr_10"><span><%=Resources.SunResource.USER_ADDUSER_PASSWORD%>：</span></td>
                   <td>
-                  
-           <%= Html.PasswordFor(model => model.password, new { @class = "txtbu01", style = "width:160px" })%>
+                    <%= Html.PasswordFor(model => model.password, new { @class = "txtbu01", style = "width:160px" })%>
                     <span class="redzi">*</span> &nbsp; <span id="error_password"></span></td>
                   </tr>
                 <tr>
                   <td height="35" class="pr_10"><span><%=Resources.SunResource.AUTH_REG_CONFIRM_PASSWORD%>：</span></td>
                   <td>
-                  
-           <%= Html.Password("repassword", string.Empty, new { @class = "txtbu01", style = "width:160px" })%>
+                    <%= Html.Password("repassword", string.Empty, new { @class = "txtbu01", style = "width:160px" })%>
                     <span class="redzi">*</span> &nbsp; <span id="error_repassword"></span></td>
                   </tr>
                 <tr>
                   <td height="35" class="pr_10"><strong><%=Resources.SunResource.USER_ADDUSER_EMAIL%>：</strong></td>
                   <td>
-                  
                   <%= Html.TextBoxFor(model => model.email, new { @class = "txtbu01", style = "width:160px" })%>
                   <span class="redzi"> &nbsp;</span> &nbsp;&nbsp; <span id="error_email"></span></td>
                   </tr>
@@ -176,14 +171,13 @@
                   <td height="35">&nbsp;</td>
                   <td height="18">
                   <%=Html.CheckBox("mail",false) %>
-<%=Resources.SunResource.USER_ADDUSER_SEND_ACCOUNT_MAIL%> </td>
+                  <%=Resources.SunResource.USER_ADDUSER_SEND_ACCOUNT_MAIL%> </td>
                   </tr>
               </tbody></table>
               <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tbody><tr>
                   <td style="padding-top: 10px;" valign="top" width="23%" class="pr_10"><span><%=Resources.SunResource.USER_ADDUSER_SELECTPLANTS%>：</span></td>
                   <td style="padding-top: 10px;">
-                  
                   <style>
                   .txtbu05{ padding:5px; width:500px; margin:5px; float:left; max-height:200px; overflow:auto;}
                   .txtbu05,.txtbu05 li{  list-style:none; margin:0; padding:0;}
@@ -193,18 +187,14 @@
                   
                   </style>
                   <ul class="txtbu05">
-                  
-               <%foreach (Plant plant in Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().plants)
-                 { %>
+                  <%foreach (Plant plant in Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().ownPlants)
+                  { %>
                   <li>
                     <input type="checkbox" name="plants"  value="<%=plant.id %>"/><span><%=plant.name %></span> 
                   </li>
-                <%} %>
+                  <%} %>
                   </ul>
-
-
-
-</td>
+                  </td>
                 </tr>
 
                 <tr>
@@ -215,14 +205,14 @@
             <div class="sb_down"></div>
           </div>
           <table align="center" border="0" cellpadding="0" cellspacing="0" width="244" height="60">
-            <tbody><tr>
-
+            <tbody>
+            <tr>
               <td width="111"><input name="addUser" class="txtbu03" value="<%=Resources.SunResource.USER_EDIT_SAVE%>" type="submit" /></td>
-              <td width="108"><input name="Submit32" class="txtbu03" value="<%=Resources.SunResource.ADMIN_COLLECTOR_EDIT_CANCEL%>" type="button" onclick="window.location.href='/user/plantUser'"></td>
+              <td width="108"><input name="Submit32" class="txtbu03" value="<%=Resources.SunResource.ADMIN_COLLECTOR_EDIT_CANCEL%>" type="button" onclick="window.location.href='/user/plantUser'"/></td>
             </tr>
-          </tbody></table>
+          </tbody>
+          </table>
          </form>
-          
           </td>
   		</tr>
 </table>

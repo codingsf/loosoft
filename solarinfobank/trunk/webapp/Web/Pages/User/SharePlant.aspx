@@ -97,7 +97,7 @@
                                             <img src="/images/kj/kjiico01.gif" />
                                         </td>
                                         <td class="pv0216">
-                                            分配电站
+                                            给门户用户分配电站
                                         </td>
                                         <td align="right" class="help_r">
                                             <a href="/help/<%=(Session["Culture"] as CultureInfo).Name%>/SolarInfo Bank User Manual.pdf"
@@ -129,7 +129,7 @@
                                     <img src="/images/sub/subico010.gif" width="18" height="19" />
                                 </td>
                                 <td width="97%" align="left">
-                                    分配电站
+                                    给门户用户分配电站
                                 </td>
                             </tr>
                         </table>

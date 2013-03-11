@@ -10,8 +10,6 @@
       <result property="id"	column="id"/>
       <result property="plantID"	column="plantID"/>
       <result property="userID"		column="userID"/>
-      <result property="roleId"		column="roleId"/>
-      <result property="shared"		column="shared"/>
       <result property="plant" lazyLoad="false"	column="plantID" select="plant_get" />
     </resultMap>
   </resultMaps>
@@ -50,26 +48,26 @@
     </select>
     <!--根据userID获取当前用户的创建的可以管理的而不是分配的电站，区别在于shared=0cacheModel="plantportaluser_info_cache"-->
     <select id="ownplantportaluser_get_by_userid" resultMap="plantportaluser_info_result" >
-      select *  from  plant_portaluser where userID=#value# and shared=0
+      select *  from  plant_portaluser where userID=#value#
     </select>
     <!--根据id获取所有-->
     <select id="plantportaluser_get"  resultMap="plantportaluser_info_result" parameterClass="PlantPortalUser" cacheModel="plantportaluser_info_cache">
-      select *  from  plant_portaluser where id=#id#
+      select *  from plant_portaluser where id=#id#
     </select>
     <!--获取所有的用户电站-->
     <select id="plantportaluser_get_list"  resultMap="plantportaluser_info_result" cacheModel="plantportaluser_info_cache">
-      select *  from  plant_portaluser
+      select *  from plant_portaluser
     </select>
     <!--添加电站用户的对应-->
     <insert id="plantportaluser_insert" parameterClass="PlantPortalUser">
-      INSERT INTO  plant_portaluser(plantID,userID,roleId,shared) VALUES( #plantID#,#userID#,#roleId#,#shared#)
+      INSERT INTO  plant_portaluser(plantID,userID) VALUES( #plantID#,#userID#)
       <selectKey resultClass="int" property="id" type="post">
         SELECT LAST_INSERT_ID() AS id
       </selectKey>
     </insert>
     <!--修改电站用户的对应-->
     <update id="plantportaluser_update" paramentClass="PlantPortalUser">
-      UPDATE  plant_portaluser SET id=#id#,plantID=#plantID#,userID=#userID#,roleId=#roleId#,shared=#shared# WHERE id=#id#
+      UPDATE  plant_portaluser SET id=#id#,plantID=#plantID#,userID=#userID# WHERE id=#id#
     </update>
     <!-- 删除电站用户的对应-->
     <delete id="plantportaluser_delete" paramentClass="PlantPortalUser">
@@ -86,7 +84,7 @@
     </delete>
     
     <select id="getportalusers_byplantid" resultClass="User">
-      select * from userinfo where id in ( select userid from plant_portaluser where plantid in($value$) and shared=1)
+      select * from userinfo where id in ( select userid from plant_portaluser where plantid in ($value$))
     </select>
   </statements>
 </sqlMap>

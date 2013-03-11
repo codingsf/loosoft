@@ -17,8 +17,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 {
     public class PortalController : BaseController
     {
-        CollectorYearDataService collectorYearDataService = CollectorYearDataService.GetInstance();
-
+        /// <summary>
+        /// 门户用户从独立登录界面登录，而不是从bank登录，虽然站点index也支持门户用户登录
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="validatecode"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult login(string username, string password, string validatecode)
         {
@@ -28,16 +33,28 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 return Redirect("/p/" + username);
             }
             User loginUser = UserService.GetInstance().GetUserByName(username);
+            //用户不存在
+            if (loginUser == null) {
+                return Redirect("/p/" + username);
+            }
+            //是否门户用户
+            if (!loginUser.isBigCustomer) {
+                return Redirect("/p/" + username);
+            }
             if (loginUser.depassword.Equals(password))
             {
-                Session[Common.ComConst.portalautoLogin] = true;
+                Session[Common.ComConst.portalautoLogin] = null;
                 UserUtil.login(loginUser);
                 return RedirectToAction("index", "portal");
             }
             return Redirect("/p/" + username);
         }
 
-
+        /// <summary>
+        /// 加载门户管理页面
+        /// </summary>
+        /// <returns></returns>
+        [IsLoginAttribute]
         public ActionResult Manage()
         {
             User user = UserUtil.getCurUser();
@@ -46,7 +63,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return View(protal);
         }
 
+        /// <summary>
+        /// 保存门户对象
+        /// </summary>
+        /// <param name="markpic"></param>
+        /// <param name="logo"></param>
+        /// <returns></returns>
         [HttpPost]
+        [IsLoginAttribute]
         public ActionResult Save(HttpPostedFileBase markpic, HttpPostedFileBase logo)
         {
             string id = Request.Form["id"];
@@ -97,9 +121,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+                ViewData["errorMessage"] = "保存失败："+e.Message;
             }
             ProtalService.GetInstance().Save(protal);
-            return Redirect("/portal/manage");
+            ViewData["actionMessage"] = "保存成功！";
+            return View("manage",protal);
+
         }
 
         /// <summary>
@@ -219,21 +246,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
 
         /// <summary>
-        /// 门户首页
+        /// 门户真正首页
         /// </summary>
         /// <returns></returns>
         public ActionResult Index()
         {
-            //如果是要求登录，那么取消自动登录标识
-            string isLogin = Request.Params["isLogin"];
-            if (!string.IsNullOrEmpty(isLogin) && isLogin.Equals("1"))
-            {
-                Session[Common.ComConst.portalautoLogin] = null;
-            }
-            else
-            {
-                Session[Common.ComConst.portalautoLogin] = true;
-            }
             User user = UserUtil.getCurUser();
             ViewData["currency"] = string.IsNullOrEmpty(user.currencies) ? "￥" : user.currencies;
             ViewData["plants"] = user.assignedPlants;
@@ -451,8 +468,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         /// <returns></returns>
         public ActionResult Plant(string id)
         {
-
-
             User user = UserUtil.getCurUser();
             User parentUser = UserService.GetInstance().Get(user.ParentUserId);
             int pid = 0;
@@ -553,13 +568,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 ViewData["points"] = points;
             }
 
-
             return View(plant);
-
-
-
-
-
         }
 
         /// <summary>

@@ -28,9 +28,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         PlantService plantService = PlantService.GetInstance();          //电站信息服务
         PlantUnitService plantUnitService = PlantUnitService.GetInstance();  //电站单元服务
         ItemConfigService itemConfigService = ItemConfigService.GetInstance();
-        PlantPortalUserService plantUserService = PlantPortalUserService.GetInstance();
+        PlantUserService plantUserService = PlantUserService.GetInstance();//以便用户和电站关系
+        PlantPortalUserService plantPortalUserService = PlantPortalUserService.GetInstance();//门户用户和电站关系
         UserService userService = UserService.GetInstance();
-        CollectorYearDataService collectorYearDataService = CollectorYearDataService.GetInstance();
 
         [IsLoginAttribute]
         public ActionResult Index()
@@ -414,7 +414,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             plant.userID = UserUtil.getCurUser().id;
             if (plant.energyRate == null || plant.energyRate.Value == 0) plant.energyRate = 1;
             int plantid = plantService.AddPlantInfo(plant);
-            plantUserService.AddPlantPortalUser(new PlantPortalUser { plantID = plantid, userID = int.Parse(plant.userID.ToString()) });//添加电站时，向电站用户关系表中加记录
+            //添加电站时，向电站用户关系表中加记录
+            plantUserService.AddPlantUser(new PlantUser { plantID = plantid, userID = plant.userID,shared=false,roleId=Role.ROLE_SYSMANAGER});
             UserUtil.ResetLogin(UserUtil.getCurUser());
             return RedirectToAction("profile", "plant", new { @id = plant.id });
         }
@@ -2021,7 +2022,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
         }
 
         /// <summary>
-        /// 分配单个电站给用户
+        /// 分配单个电站给门户用户
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -2030,12 +2031,12 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             Plant plant = plantService.GetPlantInfoById(id);
             User user = UserUtil.getCurUser();
             ViewData["roles"] = user.Roles;
-            IList<User> users = plantUserService.GetusersByplantid(id);
+            IList<User> users = plantPortalUserService.GetusersByplantid(id);
             ViewData["users"] = users;
             Hashtable roleTable = new Hashtable();
             foreach (User u in users)
             {
-                PlantPortalUser ppu = plantUserService.GetPlantUserByPlantIDUserID(new PlantPortalUser { plantID = id, userID = u.id });
+                PlantUser ppu = plantUserService.GetPlantUserByPlantIDUserID(new PlantUser { plantID = id, userID = u.id });
                 if(ppu==null)continue;
                 int roleId = ppu.roleId;
                 if (roleId == 0)

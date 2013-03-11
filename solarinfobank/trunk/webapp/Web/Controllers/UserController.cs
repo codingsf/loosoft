@@ -456,8 +456,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             CountryCity area = CountryCityService.GetInstance().GetCity(plant.country);
             plant.area = area == null ? string.Empty : area.weather_code;
             int plantid = plantService.AddPlantInfo(plant);
-            plantPortalUserService.AddPlantPortalUser(new PlantPortalUser { plantID = plantid, userID = int.Parse(plant.userID.ToString()) });//添加电站时，向电站用户关系表中加记录
-            PlantUserService.GetInstance().AddPlantUser(new PlantUser { plantID = plantid, userID = int.Parse(plant.userID.ToString()) });
+            //将自己创建的电站和自己的关系加入关系表shared默认为false
+            PlantUserService.GetInstance().AddPlantUser(new PlantUser { plantID = plantid, userID = plant.userID, roleId = Role.ROLE_SYSMANAGER});
             string start = Request.Form["fstart"];
             string end = Request.Form["fend"];
             string price = Request.Form["fprice"];
@@ -1031,6 +1031,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             UserUtil.ResetLogin(UserUtil.getCurUser());
             return RedirectToAction("Includeallplants", "user");
         }
+
         /// <summary>
         /// 功能：把电站开放给其他用户
         /// 作者：张月
@@ -1146,7 +1147,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             return View();
         }
-
+        /// <summary>
+        /// 保存添加的门户用户
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="mail"></param>
+        /// <param name="role"></param>
+        /// <returns></returns>
         [HttpPost]
         [IsLoginAttribute]
         public ActionResult AddPortalUser(User user, bool mail, string role)
@@ -1167,7 +1174,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     if (string.IsNullOrEmpty(p))
                         continue;
                     bool shared = user.ParentUserId > 0 ? true : false;
-                    plantPortalUserService.AddPlantPortalUser(new PlantPortalUser() { userID = id, plantID = int.Parse(p), shared = shared });
+                    plantPortalUserService.AddPlantPortalUser(new PlantPortalUser() { userID = id, plantID = int.Parse(p)});
                 }
             }
             UserRoleService.GetInstance().Insert(new UserRole() { userId = id, roleId = int.Parse(role) });
@@ -1187,7 +1194,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             return Redirect("/user/portaluser");
         }
-
+        /// <summary>
+        /// 引导门户用户添加页面，并可以分配电站
+        /// </summary>
+        /// <returns></returns>
         [IsLoginAttribute]
         public ActionResult PortalUserAdd()
         {
@@ -1199,8 +1209,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 ViewData["cando"] = "false";
             return View();
         }
+
         /// <summary>
-        /// 编辑被创建的用户
+        /// 编辑被创建的门户用户
         /// </summary>
         /// <returns></returns>
         [IsLoginAttribute]
@@ -1214,8 +1225,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             ViewData["roleId"] = Request.QueryString["role"].Trim();
             return View(user);
         }
+
         /// <summary>
-        /// 保存被传教的用户
+        /// 保存被修改的门户用户
         /// </summary>
         /// <param name="user"></param>
         /// <param name="role"></param>
@@ -1277,7 +1289,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         }
 
         /// <summary>
-        /// 用户分配的电站
+        /// 给门户用户分配当前用户自己创建的电站
         /// </summary>
         /// <returns></returns>
         public ActionResult PortalUserPlants()
@@ -1285,19 +1297,23 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             User user = UserUtil.getCurUser();
             //当前用户创建的电站
             ViewData["plants"] = user.createToplevelPlants;
+            //要分配的人
             string uid = Request.QueryString["uid"];
-            int id = 0;
-            int.TryParse(uid, out id);
-            //该用户已分配电站
-            IList<PlantPortalUser> userPlants = plantPortalUserService.GetAllPlantUserByUserID(new PlantPortalUser() { userID = id });
-            userPlants = userPlants.Where(m => m.shared).ToList<PlantPortalUser>();
+            int userID = 0;
+            int.TryParse(uid, out userID);
+            //该用户已分配的电站
+            IList<PlantPortalUser> userPlants = plantPortalUserService.GetAllPlantUserByUserID(new PlantPortalUser() { userID = userID });
+            //userPlants = userPlants.Where(m => m.shared).ToList<PlantPortalUser>();
             ViewData["roles"] = user.Roles;
-            user = userservice.Get(id);
+            user = userservice.Get(userID);
             ViewData["uname"] = user.username;
             ViewData["pwd"] = user.depassword;
             return View(userPlants);
         }
-
+        /// <summary>
+        /// 修改门户用户
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [IsLoginAttribute]
         public ActionResult PortalUserPlantEdit()
@@ -1317,7 +1333,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             return Redirect("/user/portaluser");
         }
-
+        /// <summary>
+        /// 删除门户用户
+        /// </summary>
+        /// <returns></returns>
         [IsLoginAttribute]
         public ActionResult DeletePortalUser()
         {
@@ -1328,6 +1347,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return Redirect("/user/portaluser");
         }
 
+        /// <summary>
+        /// 检测电站是否已经被分配给门户用户
+        /// </summary>
+        /// <param name="pname"></param>
+        /// <returns></returns>
         [HttpPost]
         [IsLoginAttribute]
         public ActionResult Check(string pname)
@@ -1341,7 +1365,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             return Content("true");
         }
-
+        /// <summary>
+        /// 检测用户名是否存在
+        /// </summary>
+        /// <param name="uname"></param>
+        /// <param name="oldname"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult CheckUser(string uname, string oldname)
         {
@@ -1352,6 +1381,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             return Content("true");
         }
+
         /// <summary>
         /// 浏览创建的用户信息
         /// </summary>
@@ -1397,7 +1427,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 user.todayApplyCollectorCount = 0;
                 userservice.UpdateApplyCollectorCount(user);
             }
-
 
             ViewData["applyed"] = user.todayApplyCollectorCount;
             ViewData["available"] = count - user.todayApplyCollectorCount < 0 ? 0 : count - user.todayApplyCollectorCount;
@@ -1447,8 +1476,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             return View(collectors);
         }
-
-
+        
         public ActionResult PRchart()
         {
             User user = UserUtil.getCurUser();
@@ -1625,7 +1653,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             dbpage.RecordCount = dbArray.Count;
             ViewData["dbpage"] = dbpage;
             #endregion
-
 
         }
 
@@ -1847,7 +1874,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         }
 
         /// <summary>
-        /// 分配电站给用户
+        /// 分配当前登录用户创建的电站给门户用户
         /// </summary>
         /// <returns></returns>
         public ActionResult SharePlant()
@@ -1862,7 +1889,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         }
 
         /// <summary>
-        /// 保存分配给用户分配的电站
+        /// 保存分配给门户用户分配的电站
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -1918,7 +1945,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     break;
             }
             string singlemark = Request.Form["singlemark"];
-            //如果不是报仇分配单个电站，那么要先清空改用户的已分配电站
+            //如果不是分配单个电站，那么要先清空改用户的已分配电站
             if (singlemark_false.Equals(singlemark))
             {
                 plantPortalUserService.DelPlantUserByUserId(uid);
@@ -1933,7 +1960,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 //如果关系已经存在即不在建立关系
                 PlantPortalUser pu = plantPortalUserService.GetPlantUserByPlantIDUserID(new PlantPortalUser() { plantID = pid, userID = uid });
                 if (pu == null)
-                    plantPortalUserService.AddPlantPortalUser(new PlantPortalUser { roleId = roleId, userID = uid, plantID = pid, shared = true });
+                    plantPortalUserService.AddPlantPortalUser(new PlantPortalUser {userID = uid, plantID = pid });
             }
             return Content("ok");
         }
@@ -2170,7 +2197,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             userservice.save(user);
             return View();
         }
-
+        /// <summary>
+        /// 加载其他电站一般用户列表页面
+        /// </summary>
+        /// <returns></returns>
 
         [IsLoginAttribute]
         public ActionResult PlantUsers()
@@ -2179,14 +2209,23 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return View(user);
         }
 
-
+        /// <summary>
+        /// 引导加载新增电站其他一般用户页面
+        /// </summary>
+        /// <returns></returns>
         [IsLoginAttribute]
         public ActionResult AddUser()
         {
             return View();
         }
 
-
+        /// <summary>
+        /// 保存添加的其他电站一般用户
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="mail"></param>
+        /// <param name="role"></param>
+        /// <returns></returns>
         [HttpPost]
         [IsLoginAttribute]
         public ActionResult AddUser(User user, bool mail, string role)
@@ -2201,12 +2240,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             user.password = EncryptUtil.EncryptDES(user.password, EncryptUtil.defaultKey);
             int id = userservice.save(user);
             if (string.IsNullOrEmpty(plants) == false)
+            {
                 foreach (string p in plants.Split(','))
                 {
                     if (string.IsNullOrEmpty(p))
                         continue;
-                  PlantUserService.GetInstance().AddPlantUser(new PlantUser() { userID = id, plantID = int.Parse(p) });
+                    PlantUserService.GetInstance().AddPlantUser(new PlantUser() { userID = id, plantID = int.Parse(p), roleId = int.Parse(role) });
                 }
+            }
+
             UserRoleService.GetInstance().Insert(new UserRole() { userId = id, roleId = int.Parse(role) });
 
             if (mail)
@@ -2225,12 +2267,19 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return Redirect("/user/plantuser");
         }
 
-
+        /// <summary>
+        /// 给一般用户分配自己创建的电站页面
+        /// </summary>
+        /// <returns></returns>
         [IsLoginAttribute]
         public ActionResult PlantUserAdd()
         {
             return View();
         }
+        /// <summary>
+        /// 删除电站分配的其他一般用户
+        /// </summary>
+        /// <returns></returns>
         [IsLoginAttribute]
         public ActionResult DeleteUser()
         {
@@ -2240,7 +2289,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             userservice.Delete(id);
             return Redirect("/user/plantuser");
         }
-
+        /// <summary>
+        /// 修改电站其他一般用户的分配情况
+        /// </summary>
+        /// <returns></returns>
         [IsLoginAttribute]
         public ActionResult UserEdit()
         {
@@ -2251,7 +2303,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             ViewData["roleId"] = Request.QueryString["role"].Trim();
             return View(user);
         }
-
+        /// <summary>
+        /// 查看其他一般用户信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult ViewInfo(string id)
         {
             int uid = 0;
@@ -2259,13 +2315,22 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             User user = userservice.Get(uid);
             return View(user);
         }
-
+        /// <summary>
+        /// 加载其他一般电站用户列表页面，调整到plantusers
+        /// </summary>
+        /// <returns></returns>
         [IsLoginAttribute]
         public ActionResult PlantUser()
         {
             return View();
         }
-
+        /// <summary>
+        /// 保存修改电站其他一般用户的分配情况
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="role"></param>
+        /// <param name="mail"></param>
+        /// <returns></returns>
         [HttpPost]
         [IsLoginAttribute]
         public ActionResult UserEdit(User user, string role, bool mail)
@@ -2296,37 +2361,45 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return Redirect("/user/plantuser");
 
         }
-
+        /// <summary>
+        /// 将当前登录用户创建的电站分配给一般用户
+        /// </summary>
+        /// <returns></returns>
         public ActionResult UserPlants()
         {
             string uid = Request.QueryString["uid"];
-            int id = 0;
-            int.TryParse(uid, out id);
-            IList<PlantUser> userPlants = PlantUserService.GetInstance().GetAllPlantUserByUserID(new PlantUser() { userID = id });
+            int userId = 0;
+            int.TryParse(uid, out userId);
+            //取得待分配用户已经分配的电站
+            IList<PlantUser> userPlants = PlantUserService.GetInstance().GetAllPlantUserByUserID(new PlantUser() { userID = userId });
             return View(userPlants);
         }
 
-
+        /// <summary>
+        /// 保存给一般用户分配的电站
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [IsLoginAttribute]
         public ActionResult UserPlantEdit()
         {
             string str = Request.Form["plants"];
             string uid = Request.Form["uid"];
-            int id = 0;
-            int.TryParse(uid, out id);
-            PlantUserService.GetInstance().
-            DelPlantUserByUserId(id);
+            int userId = 0;
+            int.TryParse(uid, out userId);
+            //先删除已有关系
+            PlantUserService.GetInstance().DelPlantUserByUserId(userId);
+            //再创建新关系
             if (string.IsNullOrEmpty(str) == false)
+            {
                 foreach (string p in str.Split(','))
                 {
                     if (string.IsNullOrEmpty(p))
                         break;
-                    PlantUserService.GetInstance().AddPlantUser(new PlantUser() { plantID = int.Parse(p), userID = id });
+                    PlantUserService.GetInstance().AddPlantUser(new PlantUser() { plantID = int.Parse(p), userID = userId, shared = true });
                 }
-
+            }
             return Redirect("/user/plantuser");
         }
-
     }
 }

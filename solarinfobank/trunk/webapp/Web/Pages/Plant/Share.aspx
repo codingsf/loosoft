@@ -5,8 +5,7 @@
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
 <%@ Import Namespace="System.Globalization" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>
-    分配电站
+    <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>给门户用户分配电站
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <table cellpadding="0" cellspacing="0" border="0">

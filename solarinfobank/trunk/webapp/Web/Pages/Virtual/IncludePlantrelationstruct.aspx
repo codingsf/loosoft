@@ -209,11 +209,11 @@
                                                     <%if (plant.userID.Equals(UserUtil.getCurUser().id) && ProtalUtil.isBigCustomer())
                                                       { %>
                                                     <a href="/plant/share/<%=plant.id%>?t=<%=plant.isVirtualPlant?1:0 %>&fromurl=/user/includeallplants">
-                                                        <img src="/images/sub/xs.gif" alt="分配电站" title="分配电站" /></a>
+                                                        <img src="/images/sub/xs.gif" alt="给门户用户分配电站" title="给门户用户分配电站" /></a>
                                                     <%}
                                                       else if (ProtalUtil.isBigCustomer())
                                                       {%>
-                                                    <img src="/images/sub/yc.gif" alt="分配电站" title="分配电站" />
+                                                    <img src="/images/sub/yc.gif" alt="给门户用户分配电站" title="给门户用户分配电站" />
                                                     <%} %>
                                                     <a href="/plant/structpic/<%=plant.id%>?fromurl=/user/includeallplants">
                                                         <img src="/images/sub/fbt.gif" alt=" <%=plant.isVirtualPlant?"电站分布图":"单元分布图" %>"

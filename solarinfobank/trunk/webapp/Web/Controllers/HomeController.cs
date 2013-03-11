@@ -411,13 +411,13 @@ namespace Web.Controllers
                             ModelState.AddModelError("Error", "您的账户中无电站,暂时不能登录");
                             return View(user);
                         }
-
+                        Session[ComConst.portalautoLogin] = null;
                         if (protalPlants.Count == 1)
                         {
-                            return RedirectToAction(protalPlants[0].isVirtualPlant ? "virtual" : "plant", "portal", new { @id = protalPlants[0].id, @isLogin = 1 });
+                            return RedirectToAction(protalPlants[0].isVirtualPlant ? "virtual" : "plant", "portal", new { @id = protalPlants[0].id });
                         }
                         else
-                            return RedirectToAction("index", "portal", new {@isLogin=1});
+                            return RedirectToAction("index", "portal");
                     }
                 }
             }
@@ -446,7 +446,6 @@ namespace Web.Controllers
             LoginRecordService.GetInstance().Save(userinfo.id, userinfo.username, WebUtil.getClientIp(Request), fzone);
             return RedirectToAction("allplants", "user");
         }
-
 
         public void SetCookie(string userName, string pwd)
         {

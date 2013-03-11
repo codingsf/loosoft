@@ -247,7 +247,7 @@
                                             }
                                         </style>
                                         <ul class="txtbu05">
-                                            <%foreach (Plant plant in Model.plants)
+                                            <%foreach (Plant plant in Model.relatedPlants)
                                               { %>
                                             <li><span>
                                                 <%=plant.name %></span> </li>

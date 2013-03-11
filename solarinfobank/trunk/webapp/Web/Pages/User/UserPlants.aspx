@@ -41,7 +41,7 @@
                 <tbody><tr>
                   <td style="padding-top: 10px;" valign="top" width="25%"><span class="pr_10"><%=Resources.SunResource.USER_ADDUSER_SELECTPLANTS%>：</span></td>
                   <td style="padding-top: 10px;" width="75%">
-                          <style>
+                  <style type="text/css">
                   .txtbu55{ padding:5px; width:500px; margin:5px; border:none; clear:both;  }
                   .txtbu55,.txtbu05 li{  list-style:none; margin:0; padding:0; }
                   .txtbu55 li{ height:25px; line-height:25px; width:100%;}
@@ -49,14 +49,12 @@
                   .txtbu55 li span{ margin-right:5px; margin-left:5px; line-height:23px; height:23px;}
                   
                   </style>
-                        <ul class="txtbu55">
-                  
-               <%foreach (Plant plant in Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().plants)
-                 { %>
-                  
-                  <%
-                     var select=false;
-                     foreach(var item in Model)
+                  <ul class="txtbu55">
+                  <!--从用户创建的电站中分配给一般用户-->
+                  <%foreach (Plant plant in Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().ownPlants)
+                  {
+                    var select=false;
+                    foreach(var item in Model)
                     {
                         if (item.plantID.Equals(plant.id))
                         {
@@ -68,22 +66,18 @@
                      if (select)
                      { %>
                        <li> <input type="checkbox" name="plants" checked="checked" value="<%=plant.id %>" /><span><%=plant.name%></span>  </li>
-                 
-                <%}
+                     <%}
                      else
                      {%>
                       <li>  <input type="checkbox" name="plants" value="<%=plant.id %>" /><span><%=plant.name%></span>  </li>
-                  <%   }
-                 
-                     
+                 <%  
+                     }
                  }%>
                   </ul>
-                  
-                  
                   </td>
                 </tr>
-
-              </tbody></table>
+              </tbody>
+              s</table>
             </div>
             <div class="sb_down"></div>
           </div>
@@ -94,8 +88,7 @@
             </tr>
 
           </tbody></table>
-        </form>  
-          
+          </form>  
           </td>
        </tr>
 </table>

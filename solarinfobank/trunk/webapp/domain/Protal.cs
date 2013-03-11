@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Cn.Loosoft.Zhisou.SunPower.Domain
 {
+    /// <summary>
+    /// 门户对象，每个一般用户只能创建一个门户
+    /// </summary>
     public class Protal
     {
         public int uid { get; set; }
@@ -15,7 +18,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public string items { get; set; }
         public string rate { get; set; }
         public string markPic { get; set; }
-
+        /// <summary>
+        /// 获取门户的地图图标图片
+        /// </summary>
         public string MapPic
         {
             get

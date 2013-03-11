@@ -94,6 +94,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
         /// <summary>
         /// 是否是被别人分配过来的电站,true:是别人分配的，false是自己创建并管理的
+        /// 和电站的userid字段意思是一致的
+        /// 
+        /// </summary>
         /// </summary>
         public bool shared { get; set; }
     }

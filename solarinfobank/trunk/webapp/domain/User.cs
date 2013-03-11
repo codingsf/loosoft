@@ -377,7 +377,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
                 foreach (PlantPortalUser plantUser in this.plantPortalUsers)
                 {
-                    if (plantUser.plant != null && plantUser.shared)
+                    if (plantUser.plant != null)
                         _plantList.Add(plantUser.plant);
                 }
                 return _plantList;
@@ -848,18 +848,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             get
             {
                 return refreshStartDate.ToString("yyyy-MM-dd");
-            }
-        }
-
-        /// <summary>
-        /// 一般用户管理的电站，包括自己创建的和别人分配的
-        /// 废弃用relatedPlants代替，语义更清晰
-        /// </summary>
-        public IList<Plant> plants
-        {
-            get
-            {
-                return relatedPlants;
             }
         }
 

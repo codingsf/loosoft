@@ -40,6 +40,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         private string _module_type;
         private string _pic;
         private double _longitude;
+        /// <summary>
+        /// 电站的创建者，用于取得用户创建的电站，因为给门户用户和其他一般用户分批电站都只能分配自己创建的
+        /// 和plant_user、plant_portaluser标的shared标识为false一致
+        /// </summary>
         private int _userid;
         private double _latitude;
         private string _description;

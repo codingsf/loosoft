@@ -8,6 +8,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 {
     /// <summary>
     /// 用户角色,用用户角色实体代替用户和角色的关联关系表
+    /// 系统中暂时无用，因为判断对电站的操作权限有plantUser的roleid来判断了
     /// </summary>
     [Serializable]
     public class UserRole

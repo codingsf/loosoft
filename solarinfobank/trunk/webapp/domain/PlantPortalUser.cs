@@ -8,6 +8,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
     /// <summary>
     /// 功能：电站和门户用户的关系
     /// 只能关联顶层电站
+    /// 门户用户电站只能是被分配过来的
     /// 作者：张月
     /// 时间：2011年4月24日
     /// </summary>
@@ -89,17 +90,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 _plant = value;
             }
         }
-        /// <summary>
-        /// 门户电站用户对该电站具有的角色
-        /// 门户用户暂无角色，保留
-        /// </summary>
-        public int roleId { get; set; }
-
-        /// <summary>
-        /// 是否是被别人分配过来的电站,true:是别人分配的，false是自己创建并管理的
-        /// 用于方便的区分查找那些是用户自己创建的电站，那些是共享过了的电站
-        /// </summary>
-        public bool shared { get; set; }
 
     }
 }

@@ -36,11 +36,22 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.Interfaces
         /// <param name="plantUser">电站用户关系对应实体</param>
         /// <returns></returns>
         PlantUser GetPlantUserByPlantIDUserID(PlantUser plantUser);
-
+        /// <summary>
+        /// 取得某个共享电站开放的用户电站
+        /// </summary>
+        /// <param name="plantId"></param>
+        /// <returns></returns>
         IList<PlantUser> GetOpenPlant(int plantId);
 
         int ClosePlant(int pid, int uid);
 
         int DelPlantUserByUserId(int uid);
+
+        /// <summary>
+        /// 取得某个共享电站取得对应的用户
+        /// </summary>
+        /// <param name="pid"></param>
+        /// <returns></returns>
+        IList<User> GetusersByplantid(int pid);
     }
 }

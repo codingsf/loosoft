@@ -54,7 +54,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
 
         #region IPlantUserDao 成员
 
-
+        /// <summary>
+        /// 取得电站分配的关系
+        /// </summary>
+        /// <param name="plantId"></param>
+        /// <returns></returns>
         public IList<PlantUser> GetOpenPlant(int plantId)
         {
             return  ExecuteQueryForList<PlantUser>("openplant_get_by_plantid", plantId);
@@ -83,5 +87,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
         }
 
         #endregion
+
+        /// <summary>
+        /// 取得某个共享电站取得对应的用户
+        /// </summary>
+        /// <param name="pid"></param>
+        /// <returns></returns>
+        public IList<User> GetusersByplantid(int pid)
+        {
+            return ExecuteQueryForList<User>("getusers_byplantid", pid);
+        }
     }
 }

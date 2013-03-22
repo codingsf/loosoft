@@ -271,6 +271,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
+        /// 是否允许大屏幕展示
+        /// </summary>
+        public bool bigscreenEnable { get; set; }
+
+        /// <summary>
         /// 系统管理员用户创建的其他一般用户集合
         /// isBigCustomer=false
         /// </summary>
@@ -891,6 +896,25 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 return revenue.ToString("N0");
             }
 
+        }
+
+
+
+        /// <summary>
+        /// 全屏幕LOGO
+        /// </summary>
+        public string BigScreenLogoPath { get; set; }
+
+        /// <summary>
+        /// 获取全屏LOGO
+        /// </summary>
+        public string BigScreenLogoFomartPath {
+            get
+            {
+                if (string.IsNullOrEmpty(BigScreenLogoPath))
+                    return "/bigscreen/images/logo.png";
+                return BigScreenLogoPath;
+            }
         }
     }
 }

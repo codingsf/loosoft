@@ -41,11 +41,11 @@
     </Reference>
     <Reference Include="Dimac.JMail, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\Dimac.JMail.dll</HintPath>
+      <HintPath>E:\Project\trunk\dll\Dimac.JMail.dll</HintPath>
     </Reference>
     <Reference Include="Dimac.JMail.Smtp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\Dimac.JMail.Smtp.dll</HintPath>
+      <HintPath>E:\Project\trunk\dll\Dimac.JMail.Smtp.dll</HintPath>
     </Reference>
     <Reference Include="Memcached.ClientLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>

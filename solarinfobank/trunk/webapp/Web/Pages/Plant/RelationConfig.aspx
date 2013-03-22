@@ -126,7 +126,7 @@
                             <td width="33%" valign="top">
                                 <div id='dtree' class='dtree'>
                                 </div>
-                                <iframe src="/plant/leftrelation/497" scrolling="no" frameborder="0" id="mainFrame1">
+                                <iframe src="/plant/leftrelation/<%=ViewData["plantId"] %>" scrolling="no" frameborder="0" id="mainFrame1">
                                 </iframe>
                             </td>
                             <td width="33%" valign="top" align="center">
@@ -157,7 +157,7 @@
                                 </table>
                             </td>
                             <td width="30%" valign="top">
-                                <iframe src="/plant/rightrelation/497" scrolling="no" frameborder="0" id="mainFrame">
+                                <iframe src="/plant/rightrelation/<%=ViewData["plantId"] %>" scrolling="no" frameborder="0" id="mainFrame">
                                 </iframe>
                             </td>
                         </tr>

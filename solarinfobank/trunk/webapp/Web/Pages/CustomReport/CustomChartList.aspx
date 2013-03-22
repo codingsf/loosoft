@@ -188,7 +188,7 @@
                                                 title="<%=Resources.SunResource.RUN_REPORT_VIEW%>">
                                                 <img src="../../Images/sub/ck.gif" width="16" height="16" border="0" alt="<%=Resources.SunResource.RUN_REPORT_VIEW%>" /></a>
                                             &nbsp;
-                                            <%if (Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().UserRole.roleId.Equals(4))
+                                            <%if (Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().userRole.roleId.Equals(4))
                                               { %>
                                             <img src="../../Images/sub/pencil0.gif" width="16" height="16" border="0" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>" />
                                             <%}
@@ -198,7 +198,7 @@
                                             <a href="/plant/customchart/<%= item.plantId%>?cid=<%=item.id%>" title="<%=Resources.SunResource.MONITORITEM_EDIT%>">
                                                 <img src="../../Images/sub/pencil.gif" width="16" height="16" border="0" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>" /></a>
                                             <%} %>
-                                            <%if (Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().UserRole.roleId.Equals(4))
+                                            <%if (Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().userRole.roleId.Equals(4))
                                               { %>
                                             <img src="../../Images/sub/cross00.gif" width="16" height="16" border="0" alt="<%=Resources.SunResource.MONITORITEM_DELETE %>" />
                                             <%}

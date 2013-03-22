@@ -49,5 +49,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.Interfaces
 
         int UpdateBigCustomer(Hashtable table);
 
+        int UpdateBigScreen(Hashtable table);
+
+        int UpdateBigScreenLogo(Hashtable table);
+
     }
 }

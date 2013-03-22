@@ -297,6 +297,7 @@
 
     <script src="/Script/jquery.colorbox.js" type="text/javascript"></script>
 
+    <script src="../../script/jquery.fullscreen.js" type="text/javascript"></script>
     <%--<style type="text/css">
         #menuShow a.lefttabclick
         {
@@ -720,6 +721,14 @@
                                                 href="/plant/portaluser/<%=Model.id%>">
                                                 <%=Resources.SunResource.SHARED_INSIDE_PORTAL_USER%></a></li>
                                             <%} %>
+                                            
+                                               <%if (UserUtil.BigScreenEnable)
+                                                  { %>
+                                                <li><a href="javascript:void(0);" id="linkfullscreen" rel="/bigscreen/execute/<%=Model.id%>">全屏浏览</a></li>
+                                                   <li><a onclick="loadContent('content_ajax','/user/bigscreenlogo','iframe','GET');setcurrent(this);return false;"
+                                                href="/user/bigscreenlogo">全屏Logo设置</a></li>
+                                                <%} %>
+                                                
                                         </ul>
                                     </div>
                                 </div>
@@ -740,5 +749,6 @@
         </div>
         <% Html.RenderPartial("Footer"); %>
     </div>
+    <div id ="bigscreen"></div>
 </body>
 </html>

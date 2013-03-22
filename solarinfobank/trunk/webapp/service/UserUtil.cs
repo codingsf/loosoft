@@ -93,6 +93,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             }
         }
 
+        /// <summary>
+        /// 是否开启大屏幕功能
+        /// </summary>
+        public static bool BigScreenEnable
+        {
+            get
+            {
+                return getCurUser().bigscreenEnable;
+            }
+        }
+
 
         public static string UserLogo
         {

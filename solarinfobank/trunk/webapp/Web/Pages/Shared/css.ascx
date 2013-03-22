@@ -21,3 +21,11 @@
     type="text/css" />
     <link href="<%= UserUtil.curTemplete.cssFolder %>/style/lc.css" rel="stylesheet"
     type="text/css" />
+<style type="text/css">
+/*适用于全屏的样式*/ 
+#bigscreen:-webkit-full-screen { width: 100% ; background-color:White;} 
+#bigscreen:-moz-full-screen { width: 100% ; background-color:White;} 
+#bigscreen:-ms-full-screen { width: 100% ; background-color:White;}  
+#bigscreen:-o-full-screen { width: 100% ; background-color:White;}  
+#bigscreen:full-screen { width: 100% ; background-color:White;} 
+</style>

@@ -2779,6 +2779,19 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             userService.UpdateBigCustomer(uid, !user.isBigCustomer);
             return Redirect("/admin/users");
         }
+        /// <summary>
+        /// 大屏幕启用设置
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Bigscreen(string id)
+        {
+            int uid = 0;
+            int.TryParse(id, out uid);
+            User user = userService.Get(uid);
+            userService.UpdateBigScreen(uid, !user.bigscreenEnable);
+            return Redirect("/admin/users");
+        }
 
         /// <summary>
         /// 故障码语言拼接

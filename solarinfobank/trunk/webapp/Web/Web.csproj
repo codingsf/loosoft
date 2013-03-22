@@ -184,6 +184,7 @@
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\BaseAppController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BigScreenController.cs" />
     <Compile Include="Controllers\Chart\CustomReportController.cs" />
     <Compile Include="Controllers\Chart\PlantChartController.cs" />
     <Compile Include="Controllers\Chart\DeviceChartController.cs" />
@@ -660,6 +661,17 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>SunResource.zh-cn.designer.cs</LastGenOutput>
     </Content>
+    <Content Include="bigscreen\css\css.css" />
+    <Content Include="bigscreen\images\body_bg01.jpg" />
+    <Content Include="bigscreen\images\img.png" />
+    <Content Include="bigscreen\images\logo.png" />
+    <Content Include="bigscreen\images\midbg.png" />
+    <Content Include="bigscreen\images\plant_img.jpg" />
+    <Content Include="bigscreen\images\tab01.png" />
+    <Content Include="bigscreen\images\tab02.png" />
+    <Content Include="bigscreen\images\table_image.png" />
+    <Content Include="bigscreen\index.html" />
+    <Content Include="bigscreen\table.html" />
     <Content Include="Content\bin\zh-cn\Web.resources.dll" />
     <Content Include="Content\code.xml" />
     <Content Include="Content\images\amp.gif" />
@@ -2107,6 +2119,12 @@
     <Content Include="Pages\Admin\User\Edit.aspx" />
     <Content Include="Pages\Admin\User\List.aspx" />
     <Content Include="Pages\Auth\Deny.aspx" />
+    <Content Include="Pages\BigScreen\Execute.aspx" />
+    <Content Include="Pages\BigScreen\PowerChart.aspx" />
+    <Content Include="Pages\BigScreen\Profile.aspx" />
+    <Content Include="Pages\BigScreen\YearEnergyChart.aspx" />
+    <Content Include="Pages\BigScreen\MonthEnergyChart.aspx" />
+    <Content Include="Pages\BigScreen\RenderPage.aspx" />
     <Content Include="Pages\Country\City.aspx" />
     <Content Include="Pages\CustomReport\CustomChartPage.aspx" />
     <Content Include="Pages\CustomReport\CustomChartList.aspx" />
@@ -2272,7 +2290,6 @@
     <Content Include="Pages\User\PRChart.aspx" />
     <Content Include="Pages\User\UserEdit.aspx" />
     <Content Include="Pages\User\UserPlants.aspx" />
-    <Content Include="Pages\User\Users.aspx" />
     <Content Include="Pages\User\ViewCustomChart.aspx" />
     <Content Include="Pages\User\PortalUser.aspx" />
     <Content Include="Pages\User\PortalUsers.aspx" />
@@ -2300,6 +2317,7 @@
     <Content Include="Pages\User\portalStructChart.aspx" />
     <Content Include="Pages\User\Template.aspx" />
     <Content Include="Pages\User\IncludeOverviewHtml.aspx" />
+    <Content Include="Pages\User\BigScreenLogo.aspx" />
     <Content Include="Pages\Virtual\IncludeOverview.aspx" />
     <Content Include="Pages\Virtual\Plantrelationstruct.aspx" />
     <Content Include="Pages\Virtual\Overview.aspx" />
@@ -2359,7 +2377,6 @@
     <Content Include="script\DatePicker\skin\whyGreen\datepicker.css" />
     <Content Include="script\DatePicker\skin\whyGreen\img.gif" />
     <Content Include="script\DatePicker\WdatePicker.js" />
-    <Content Include="script\dtree.css" />
     <Content Include="script\dtree.js" />
     <Content Include="script\ECOTree.js" />
     <Content Include="script\ECOTree1.js" />
@@ -2367,6 +2384,7 @@
     <Content Include="script\jquery.bgiframe.min.js" />
     <Content Include="script\jquery.bt.min.js" />
     <Content Include="script\jquery.easing.1.3.js" />
+    <Content Include="script\jquery.fullscreen.js" />
     <Content Include="script\jquery.hoverIntent.minified.js" />
     <Content Include="script\jquery.media.js" />
     <Content Include="script\jwplayer.js" />

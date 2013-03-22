@@ -300,7 +300,7 @@
                                 <%=Resources.SunResource.SUMMARY%></a></li>
                             <li><a id="Detailtab1" href="javascript: void(0);">
                                 <%=Resources.SunResource.DETAIL%></a></li>
-                            <%if (!Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().UserRole.roleId.Equals(4))
+                            <%if (!Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().userRole.roleId.Equals(4))
                               {%>
                             <li style="float: right; padding-right: 5px; padding-top: 3px;">
                                 <input type="button" name="Submit2" value="<%=Resources.SunResource.PLANT_DEVICEMONITOR_VIEW_ALL%>"
@@ -718,7 +718,7 @@
                                 <%=Resources.SunResource.SUMMARY%></a></li>
                             <li><a id="Detailtab2" href="javascript: void(0);">
                                 <%=Resources.SunResource.DETAIL%></a></li>
-                            <%if (!Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().UserRole.roleId.Equals(4))
+                            <%if (!Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().userRole.roleId.Equals(4))
                               {%>
                             <li style="float: right; padding-right: 5px; padding-top: 3px;">
                                 <input type="button" name="Submit2" value="<%=Resources.SunResource.PLANT_DEVICEMONITOR_VIEW_ALL%>"
@@ -1081,7 +1081,7 @@
                                 <%=Resources.SunResource.SUMMARY%></a></li>
                             <li><a id="Detailtab3" href="javascript: void(0);">
                                 <%=Resources.SunResource.DETAIL%></a></li>
-                            <%if (!Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().UserRole.roleId.Equals(4))
+                            <%if (!Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().userRole.roleId.Equals(4))
                               {%>
                             <li style="float: right; padding-right: 5px; padding-top: 3px;">
                                 <input type="button" name="Submit2" value="<%=Resources.SunResource.PLANT_DEVICEMONITOR_VIEW_ALL%>"
@@ -1442,7 +1442,7 @@
                                 <%=Resources.SunResource.SUMMARY%></a></li>
                             <li><a id="Detailtab4" href="javascript:void(0);">
                                 <%=Resources.SunResource.DETAIL%></a></li>
-                            <%if (!Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().UserRole.roleId.Equals(4))
+                            <%if (!Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().userRole.roleId.Equals(4))
                               {%>
                             <li style="float: right; padding-right: 5px; padding-top: 3px;">
                                 <input type="button" name="Submit2" value="<%=Resources.SunResource.PLANT_DEVICEMONITOR_VIEW_ALL%>"
@@ -1802,7 +1802,7 @@
                                 <%=Resources.SunResource.SUMMARY%></a></li>
                             <li><a id="Detailtab5" href="javascript:void(0);">
                                 <%=Resources.SunResource.DETAIL%></a></li>
-                            <%if (!Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().UserRole.roleId.Equals(4))
+                            <%if (!Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().userRole.roleId.Equals(4))
                               {%>
                             <li style="float: right; padding-right: 5px; padding-top: 3px;">
                                 <input type="button" name="Submit2" value="<%=Resources.SunResource.PLANT_DEVICEMONITOR_VIEW_ALL%>"

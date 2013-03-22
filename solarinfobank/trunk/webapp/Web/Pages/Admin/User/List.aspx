@@ -114,7 +114,8 @@
                                           <a href="/admin/useredit/<%=user.id %>" >
                                             <img src="/images/sub/pencil.gif" alt="刷新设置" title="刷新设置" /></a>
                                             
-                                            
+                                          <a href="/admin/bigscreen/<%=user.id %>" >
+                                            <img src="/images/sub/<%=user.bigscreenEnable?"qx01":"qx02" %>.gif" alt="<%=user.bigscreenEnable?"关闭大屏幕功能":"开启大屏幕功能" %>" title="<%=user.bigscreenEnable?"关闭大屏幕功能":"开启大屏幕功能" %>" /></a>
                                             
                                         <a target="_blank" href="/admin/infocenter/<%=user.id %>">
                                             <img src="/images/sub/iji.jpg" alt="用户中心" title="用户中心" /></a> 

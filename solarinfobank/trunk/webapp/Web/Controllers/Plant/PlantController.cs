@@ -2815,6 +2815,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
         //电站设备关系设置
         public ActionResult relationConfig(string id)
         {
+            ViewData["plantId"] = id;
             return View();
         }
 

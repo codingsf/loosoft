@@ -457,7 +457,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             plant.area = area == null ? string.Empty : area.weather_code;
             int plantid = plantService.AddPlantInfo(plant);
             //将自己创建的电站和自己的关系加入关系表shared默认为false
-            PlantUserService.GetInstance().AddPlantUser(new PlantUser { plantID = plantid, userID = plant.userID, roleId = Role.ROLE_SYSMANAGER});
+            PlantUserService.GetInstance().AddPlantUser(new PlantUser { plantID = plantid, userID = plant.userID, roleId = Role.ROLE_SYSMANAGER });
             string start = Request.Form["fstart"];
             string end = Request.Form["fend"];
             string price = Request.Form["fprice"];
@@ -1174,7 +1174,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     if (string.IsNullOrEmpty(p))
                         continue;
                     bool shared = user.ParentUserId > 0 ? true : false;
-                    plantPortalUserService.AddPlantPortalUser(new PlantPortalUser() { userID = id, plantID = int.Parse(p)});
+                    plantPortalUserService.AddPlantPortalUser(new PlantPortalUser() { userID = id, plantID = int.Parse(p) });
                 }
             }
             UserRoleService.GetInstance().Insert(new UserRole() { userId = id, roleId = int.Parse(role) });
@@ -1476,7 +1476,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             return View(collectors);
         }
-        
+
         public ActionResult PRchart()
         {
             User user = UserUtil.getCurUser();
@@ -1960,7 +1960,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 //如果关系已经存在即不在建立关系
                 PlantPortalUser pu = plantPortalUserService.GetPlantUserByPlantIDUserID(new PlantPortalUser() { plantID = pid, userID = uid });
                 if (pu == null)
-                    plantPortalUserService.AddPlantPortalUser(new PlantPortalUser {userID = uid, plantID = pid });
+                    plantPortalUserService.AddPlantPortalUser(new PlantPortalUser { userID = uid, plantID = pid });
             }
             return Content("ok");
         }
@@ -2400,6 +2400,45 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 }
             }
             return Redirect("/user/plantuser");
+        }
+
+        public ActionResult BigScreenLogo()
+        {
+            User user = UserUtil.getCurUser();
+            return View(user);
+        }
+        /// <summary>
+        ///  保存大屏的LOGO
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Bigscreenlogosave(HttpPostedFileBase bigscreenlogo)
+        {
+            User user = UserUtil.getCurUser();
+            try
+            {
+                string floder = "/ufile/bigscreen/logo/";
+                if (!Directory.Exists(Server.MapPath(floder)))
+                {
+                    System.IO.Directory.CreateDirectory(Server.MapPath(floder));
+                }
+
+                if (bigscreenlogo != null && bigscreenlogo.ContentLength > 0)
+                {
+                    string filename = string.Format("{0}_{1}", user.id, "logo.") + bigscreenlogo.FileName.Substring(bigscreenlogo.FileName.LastIndexOf('.') + 1);
+                    string filePath = Path.Combine(HttpContext.Server.MapPath(floder), filename);
+                    bigscreenlogo.SaveAs(filePath);
+                    userservice.UpdateBigScreenLogo(user.id, floder + filename);
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                ViewData["errorMessage"] = "保存失败：" + e.Message;
+            }
+
+            return View("bigscreenlogo", user);
         }
     }
 }

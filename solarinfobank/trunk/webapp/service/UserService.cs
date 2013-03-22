@@ -157,5 +157,24 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             table.Add("isBigCustomer", status);
             return _userDao.UpdateBigCustomer(table);
         }
+
+
+        public int UpdateBigScreen(int uid, bool status)
+        {
+            Hashtable table = new Hashtable();
+            table.Add("id", uid);
+            table.Add("bigscreenEnable", status);
+            return _userDao.UpdateBigScreen(table);
+        }
+
+
+        public int UpdateBigScreenLogo(int uid, string bigScreenLogoPath)
+        {
+            Hashtable table = new Hashtable();
+            table.Add("id", uid);
+            table.Add("BigScreenLogoPath", bigScreenLogoPath);
+            return _userDao.UpdateBigScreenLogo(table);
+        }
+
     }
 }

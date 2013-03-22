@@ -39,6 +39,8 @@
       <result property="autoRefresh"			column="autorefresh"/>
       <result property="refreshInterval"			column="refreshinterval"/>
       <result property="refreshStartDate"			column="refreshstartdate"/>
+      <result property="bigscreenEnable"			column="bigscreenenable"/>
+      <result property="BigScreenLogoPath"			column="bigscreenlogo"/>
       <!--级联对象-->
       <result property="Language"		lazyLoad="true"	column="languageId" select="language_get_lazy" />
       <result property="userRole"   lazyLoad="true"	column="id"         select="get_user_role" />      
@@ -73,6 +75,8 @@
       <flushOnExecute  statement="plant_delete"/>
       <flushOnExecute  statement="plant_update_pic"/>
       <flushOnExecute  statement="update_bigcustomer_enable"/>
+      <flushOnExecute  statement="update_bigscreen_enable"/>
+      <flushOnExecute  statement="update_fullscreen_logo"/>
       <flushOnExecute  statement="plant_update"/>
       <flushOnExecute  statement="virtualplant_insert"/>
       <flushOnExecute  statement="virtualplant_delete"/>
@@ -131,6 +135,16 @@
       update userinfo set isbigcustomer=#isBigCustomer# where id=#id#
     </update>
 
+    <!--设置是否为大屏幕-->
+    <update id="update_bigscreen_enable" parameterClass="Hashtable">
+      update userinfo set bigscreenenable=#bigscreenEnable# where id=#id#
+    </update>
+
+    <!--设置全屏logo-->
+    <update id="update_fullscreen_logo" parameterClass="Hashtable">
+      update userinfo set bigscreenlogo=#BigScreenLogoPath# where id=#id#
+    </update>
+    
     <select id="user_get_by_email"  resultClass="User"  paramterClass="Hashtable" >
       SELECT *  FROM  userinfo where email=#email# and username=#uname# LIMIT 0,1
     </select>

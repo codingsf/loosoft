@@ -123,6 +123,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
             return ExecuteUpdate("update_bigcustomer_enable", table);
         }
 
+        public int UpdateBigScreen(Hashtable table)
+        {
+            return ExecuteUpdate("update_bigscreen_enable", table);
+        }
+
+
+        public int UpdateBigScreenLogo(Hashtable table)
+        {
+            return ExecuteUpdate("update_fullscreen_logo", table);
+        }
+
         #endregion
     }
 }

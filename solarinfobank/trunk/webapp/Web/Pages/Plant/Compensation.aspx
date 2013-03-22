@@ -354,8 +354,8 @@
                                     </select>
                                 </td>
                                 <td width="10%" height="15">
-                                    <span style="padding-left: 5px;">
-                                        <%=Resources.SunResource.PLANT_DEVICE_NAME%>:</span>
+                                <label>   <span style="padding-left: 5px;">
+                                        <%=Resources.SunResource.PLANT_DEVICE_NAME%>:</span></label>
                                 </td>
                                 <td width="17%" height="15">
                                     <select name="sltdevice" id="searchdevice">

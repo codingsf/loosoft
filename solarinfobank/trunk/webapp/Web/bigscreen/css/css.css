@@ -1,0 +1,27 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{margin:0px;background:url(../images/body_bg01.jpg) no-repeat; font-size:12px; font-family:Arial, Helvetica, sans-serif;}
+.mainbox{ width:1003px; margin:0 auto; padding-top:46px;}
+.header{font-size:48px; font-weight:bold; line-height:60px; margin-bottom:40px;}
+.midbox{ background:url(../images/midbg.png) no-repeat; height:501px; margin-bottom:10px;}
+.leftbox{ width:369px; float:left; margin-left:11px;}
+.leftbox img{ margin-top:39px;}
+
+.about{border-collapse:collapse; margin-top:13px;}
+.pr10{background:#F6E773; font-size:15px; font-family:"微软雅黑"; line-height:31px; text-align:right; color:#E9690E; padding-right:5px; }
+.pl10{font-size:15px; font-family:"微软雅黑"; line-height:31px; text-align:left; padding-left:10px; }
+
+
+.rightbox{ width:565px; float:right; padding-top:100px;}
+.rightbox ul{ margin:0px; list-style:none; padding:0px; font-family:Arial, Helvetica, sans-serif; display:block; height:80px;}
+.rightbox ul li{ float:left; display:block; width:160px; margin:14px;}
+.f34{font-size:34px; font-weight:bold; color:#08B985;}
+.f18{font-size:17px;  color:#494949; margin-left:6px;font-family:Arial, Helvetica, sans-serif;}
+.em{ height:176px;}
+
+
+.table{ margin-bottom:20px; height:400px; width:1000px;}/*图表页*/
+.tab{ text-align:center;}/*图表页切换*/
+
+

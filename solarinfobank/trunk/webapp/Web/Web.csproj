@@ -662,8 +662,12 @@
       <LastGenOutput>SunResource.zh-cn.designer.cs</LastGenOutput>
     </Content>
     <Content Include="bigscreen\css\css.css" />
+    <Content Include="bigscreen\images\body_bg01 - 副本.jpg" />
     <Content Include="bigscreen\images\body_bg01.jpg" />
     <Content Include="bigscreen\images\img.png" />
+    <Content Include="bigscreen\images\img01.png" />
+    <Content Include="bigscreen\images\img02.PNG" />
+    <Content Include="bigscreen\images\img03.PNG" />
     <Content Include="bigscreen\images\logo.png" />
     <Content Include="bigscreen\images\midbg.png" />
     <Content Include="bigscreen\images\plant_img.jpg" />

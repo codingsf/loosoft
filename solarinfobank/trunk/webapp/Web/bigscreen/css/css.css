@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
-body{margin:0px;background:url(../images/body_bg01.jpg) no-repeat; font-size:12px; font-family:Arial, Helvetica, sans-serif;}
+body{margin:0px;background:#ECF9FF url(../images/body_bg01.jpg) no-repeat; font-size:12px; font-family:Arial, Helvetica, sans-serif;}
 .mainbox{ width:1003px; margin:0 auto; padding-top:46px;}
 .header{font-size:48px; font-weight:bold; line-height:60px; margin-bottom:40px;}
 .midbox{ background:url(../images/midbg.png) no-repeat; height:501px; margin-bottom:10px;}
@@ -21,7 +21,7 @@ body{margin:0px;background:url(../images/body_bg01.jpg) no-repeat; font-size:12p
 .em{ height:176px;}
 
 
-.table{ margin-bottom:20px; height:400px; width:1000px;}/*图表页*/
+.table{ margin-bottom:20px; width:1000px; height:400px;}/*图表页*/
 .tab{ text-align:center;}/*图表页切换*/
 
 

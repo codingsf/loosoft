@@ -11,5 +11,5 @@
 <div class="table" id="page_<%=ViewContext.RouteData.Values["plantid"] %>_<%=ViewContext.RouteData.Values["id"] %>_chart">
 
 </div>
-<div class="tab"><img src="/bigscreen/images/img.png" width="127" height="33" /></div>
+<div class="tab"><img src="/bigscreen/images/img02.png" width="127" height="33" /></div>
 </div>

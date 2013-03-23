@@ -8,21 +8,14 @@
     <script src="/script/jquery-1.3.2.min.js" type="text/javascript"></script>
 
     <link href="/bigscreen/css/css.css" rel="stylesheet" type="text/css" />
-    <style type="text/css">
-        .page
-        {
-            clear: both;
-            width: 100%;
-        }
-    </style>
-
+    <style type="text/css">.page{clear: both;width: 100%;}</style>
     <script language="javascript" type="text/javascript">
         var logo = '<%=ViewData["logo"] %>';
         var ajaxImgTop = 90;
         var pageCount = 4; //总的页面个数
         var cacheMinutes = '<%= ViewData["cacheminutes"] %>'; //数据缓存时间  分钟
         var interval = '<%= ViewData["pageinterval"] %>'; //每个页面显示时间  ms
-        var lazyApplyData = true;
+        var lazyApplyData = false;
         var tryAgain = true; //是否重试
         var bigscreen = new function() {
             this.plantids = '<%=ViewData["plantIds"]%>',

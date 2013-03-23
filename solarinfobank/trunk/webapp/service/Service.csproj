@@ -172,6 +172,7 @@
     <Compile Include="MonitorConfigService.cs" />
     <Compile Include="MonthCompensationService.cs" />
     <Compile Include="EnergywarnProcesser.cs" />
+    <Compile Include="MTinfounitService.cs" />
     <Compile Include="PlantUserService.cs" />
     <Compile Include="ProtalService.cs" />
     <Compile Include="ProtalUtil.cs" />

@@ -138,6 +138,7 @@
     <Compile Include="ManagerMonitorCode.cs" />
     <Compile Include="MonitorConfig.cs" />
     <Compile Include="MonthCompensation.cs" />
+    <Compile Include="MTinfounit.cs" />
     <Compile Include="PlantInfo.cs" />
     <Compile Include="PlantUser.cs">
       <SubType>Code</SubType>

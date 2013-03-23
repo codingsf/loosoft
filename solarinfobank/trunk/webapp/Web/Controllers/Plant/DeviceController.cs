@@ -465,7 +465,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             int yyyy = DateTime.Now.Year;
             int intValue = 0;
             int.TryParse(pageNo, out intValue);
-
             Pager page = new Pager() { PageSize = ComConst.PageSize, PageIndex = intValue };
             Hashtable table = new Hashtable();
             table.Add("page", page);
@@ -474,6 +473,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             ViewData["page"] = page;
             IList<Fault> faultsList = faultService.GetDeviceLogsPage(table);
             totalRecord += (table["page"] as Pager).RecordCount;
+
             int startIndex = (intValue - 1) * page.PageSize;//当前页码的开始索引
             IList<Fault> faults = new List<Fault>();
 

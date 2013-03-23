@@ -148,7 +148,8 @@
                                             <%} %>
                                             <%if (AuthService.isAllow("devicemodel", "list"))
                                               { %>
-                                            <li><a href="/devicemodel/list/">设备类型</a></li>
+                                            <li><a href="/devicemodel/list/">设备型号</a></li>
+                                            <li><a href="/mtinfounit/list/">信息单元地址定义</a></li>
                                             <%} %>
                                             <%if (AuthService.isAllow("admin", "mailconfig"))
                                               { %>

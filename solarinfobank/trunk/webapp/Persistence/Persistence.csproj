@@ -160,6 +160,7 @@
     <Compile Include="Interfaces\ICacheDao.cs" />
     <Compile Include="Interfaces\IYearCompensationDao.cs" />
     <Compile Include="Interfaces\IEnergywarnDao.cs" />
+    <Compile Include="Interfaces\IMTinfounitDao.cs" />
     <Compile Include="MapperDao\AdminControllerActionRoleSqlMapDao.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -287,6 +288,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MapperDao\MonthCompensationSqlMapDao.cs" />
+    <Compile Include="MapperDao\MTinfounitSqlMapDao.cs" />
     <Compile Include="MapperDao\PlantSqlMapDao.cs">
       <SubType>Code</SubType>
     </Compile>

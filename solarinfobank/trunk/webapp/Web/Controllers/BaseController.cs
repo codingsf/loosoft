@@ -570,6 +570,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
                 //先装机逆变器类型设备节点
                 IList<Device> devices = pu.logicalDevices;
+                devices = devices.OrderByDescending(m => m.deviceModelCode).ToList<Device>();
                 if (devices != null && devices.Count > 0)
                 {
                     deviceLevel = unitLevel + 10;

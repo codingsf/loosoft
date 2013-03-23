@@ -181,6 +181,7 @@
     </Compile>
     <Compile Include="Controllers\Admin\MonitorItemController.cs" />
     <Compile Include="Controllers\Admin\SysController.cs" />
+    <Compile Include="Controllers\Admin\MTinfounitController.cs" />
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\BaseAppController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -2033,6 +2034,7 @@
     <Content Include="Maps\Energywarn.xml" />
     <Content Include="Maps\Template.xml" />
     <Content Include="Maps\EnergyYearMonthForecast.xml" />
+    <Content Include="Maps\MTinfounit.xml" />
     <Content Include="m_img\bg004.jpg" />
     <Content Include="m_img\bg01.jpg" />
     <Content Include="m_img\bg010.jpg" />
@@ -2120,6 +2122,8 @@
     <Content Include="Pages\Admin\Sys\Logo.aspx" />
     <Content Include="Pages\Admin\Sys\Name.aspx" />
     <Content Include="Pages\Admin\Sys\Template.aspx" />
+    <Content Include="Pages\Admin\MTinfounit\Edit.aspx" />
+    <Content Include="Pages\Admin\MTinfounit\List.aspx" />
     <Content Include="Pages\Admin\User\Edit.aspx" />
     <Content Include="Pages\Admin\User\List.aspx" />
     <Content Include="Pages\Auth\Deny.aspx" />

@@ -1,0 +1,16 @@
+create view fault as
+ select * from fault_2010 
+union 
+select * from fault_2011
+
+union 
+select * from fault_2012 
+
+union 
+select * from fault_2013 
+
+union 
+select * from fault_2014 
+
+union 
+select * from fault_2015 

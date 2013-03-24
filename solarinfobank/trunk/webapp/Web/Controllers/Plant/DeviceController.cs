@@ -461,8 +461,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         public ActionResult DeviceFault(int userId, int dId, string pageNo)
         {
 
-            int totalRecord = 0;
-            int yyyy = DateTime.Now.Year;
+            //int totalRecord = 0;
+            //int yyyy = DateTime.Now.Year;
             int intValue = 0;
             int.TryParse(pageNo, out intValue);
             Pager page = new Pager() { PageSize = ComConst.PageSize, PageIndex = intValue };
@@ -472,6 +472,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             table.Add("fault", fault);
             ViewData["page"] = page;
             IList<Fault> faultsList = faultService.GetDeviceLogsPage(table);
+            /*
             totalRecord += (table["page"] as Pager).RecordCount;
 
             int startIndex = (intValue - 1) * page.PageSize;//当前页码的开始索引
@@ -512,9 +513,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
 
             page.RecordCount = totalRecord;//返回查询的所有年数的所有记录
-            page.PageIndex = intValue;
+            page.PageIndex = intValue; */
             ViewData["user"] = UserService.GetInstance().Get(userId);
-            return View("devicefault", faults);
+            
+            return View("devicefault", faultsList);
         }
 
 

@@ -42,7 +42,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             LoadingPageCount(page);
             return _faultDao.Getlist(page);
         }
-        public void LoadingPageCount(Pager page)
+        private void LoadingPageCount(Pager page)
         {
             _faultDao.LoadingPageCount(page);
         }
@@ -72,7 +72,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             if (table["user"] == null && table["plants"] == null)
                 return;
 
-            IList<Fault> faults = new List<Fault>();
+            //IList<Fault> faults = new List<Fault>();
 
             Hashtable htable = new Hashtable();
 
@@ -147,6 +147,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             htable.Add("page", page);
             htable.Add("fault", fault);
             htable.Add("endTime", endTime);
+            htable["fromview"] = table["fromview"];
+            IList<Fault> faultsList = GetPlantLoglist(htable);
+
+            /*
             int totalRecord = 0;
             //跨年
             if (endTime.Year > startTime.Year)
@@ -218,13 +222,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 faults = faultsList;
             }
             page.RecordCount = totalRecord;//返回查询的所有年数的所有记录
-            page.PageIndex = pageIndex;
-            faults = faults.OrderByDescending(m => m.sendTime).ToList<Fault>();
-            table.Add("source", faults);
+            page.PageIndex = pageIndex;*/
+            faultsList = faultsList.OrderByDescending(m => m.sendTime).ToList<Fault>();
+            table.Add("source", faultsList);
 
         }
 
-        public void LoadingPageCount(Hashtable page)
+        private void LoadingPageCount(Hashtable page)
         {
             _faultDao.LoadingPageCount(page);
         }

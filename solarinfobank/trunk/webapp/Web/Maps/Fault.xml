@@ -38,11 +38,29 @@
     </select>
     
     <select id="loading_hashtable_page_list" resultMap="FaultResult" parameterClass="Hashtable">
-      <![CDATA[SELECT fault.* FROM fault_$fault.year$ fault WHERE  fault.errorTypeCode IN ($fault.inforank$)  AND SENDTIME >= #fault.sendTime# and SENDTIME < #endTime# AND fault.collectorID in ($fault.collectorString$) AND fault.isConfirmed in ($fault.confirmed$) ORDER BY fault.sendTime DESC LIMIT $page.Start$,$page.End$　]]>
+      <dynamic prepend="">
+        <isParameterPresent>
+          <isEqual property="fromview" compareValue="false">
+            <![CDATA[SELECT fault.* FROM fault fault WHERE  fault.errorTypeCode IN ($fault.inforank$)  AND SENDTIME >= #fault.sendTime# and SENDTIME < #endTime# AND fault.collectorID in ($fault.collectorString$) AND fault.isConfirmed in ($fault.confirmed$) ORDER BY fault.sendTime DESC LIMIT $page.Start$,$page.End$　]]>
+          </isEqual>
+          <isEqual property="fromview" compareValue="true">
+            <![CDATA[SELECT fault.* FROM fault_$fault.year$ fault WHERE  fault.errorTypeCode IN ($fault.inforank$)  AND SENDTIME >= #fault.sendTime# and SENDTIME < #endTime# AND fault.collectorID in ($fault.collectorString$) AND fault.isConfirmed in ($fault.confirmed$) ORDER BY fault.sendTime DESC LIMIT $page.Start$,$page.End$　]]>
+          </isEqual>
+        </isParameterPresent>
+      </dynamic>
     </select>
 
     <select id="loading_hashtable_page_count" resultClass="int" parameterClass="Hashtable">
-      <![CDATA[SELECT COUNT(1) FROM fault_$fault.year$  WHERE errorTypeCode IN ($fault.inforank$) AND SENDTIME >= #fault.sendTime# and SENDTIME < #endTime# AND collectorID in ($fault.collectorString$)  AND isConfirmed in ($fault.confirmed$) 　]]>
+      <dynamic prepend="">
+        <isParameterPresent>
+          <isEqual property="fromview" compareValue="False">
+            <![CDATA[SELECT COUNT(1) FROM fault  WHERE errorTypeCode IN ($fault.inforank$) AND SENDTIME >= #fault.sendTime# and SENDTIME < #endTime# AND collectorID in ($fault.collectorString$)  AND isConfirmed in ($fault.confirmed$) 　]]>
+          </isEqual>
+          <isEqual property="fromview" compareValue="True">
+            <![CDATA[SELECT COUNT(1) FROM fault_$fault.year$  WHERE errorTypeCode IN ($fault.inforank$) AND SENDTIME >= #fault.sendTime# and SENDTIME < #endTime# AND collectorID in ($fault.collectorString$)  AND isConfirmed in ($fault.confirmed$) 　]]>
+          </isEqual>
+        </isParameterPresent>
+      </dynamic>
     </select>
 
     <update id="FAULT_UPDATE">
@@ -65,10 +83,10 @@
 
     <!--设备日志分页开始-->
     <select id="device_fault_list" resultMap="FaultResult" parameterClass="Hashtable">
-      <![CDATA[SELECT * FROM fault_$fault.year$ WHERE isConfirmed in ($fault.confirmed$) and deviceid=#fault.device.id# order by SENDTIME desc  limit $page.Start$,$page.End$]]>
+      <![CDATA[SELECT * FROM fault WHERE isConfirmed in ($fault.confirmed$) and deviceid=#fault.device.id# order by sendtime desc  limit $page.Start$,$page.End$]]>
     </select>
     <select id="device_fault_list_count" resultClass="int" parameterClass="Hashtable">
-      <![CDATA[SELECT count(1) FROM fault_$fault.year$ WHERE isConfirmed in ($fault.confirmed$) and deviceid=#fault.device.id# ]]>
+      <![CDATA[SELECT count(1) FROM fault WHERE isConfirmed in ($fault.confirmed$) and deviceid=#fault.device.id# ]]>
     </select>
     <update id="device_fault_confirm_selected" resultClass="int"  parameterClass="Hashtable" >
       <![CDATA[update fault_$year$ set isconfirmed=1 where id in($logIds$) ]]>

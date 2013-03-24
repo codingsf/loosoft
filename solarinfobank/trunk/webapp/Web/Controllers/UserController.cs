@@ -895,6 +895,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             table.Add("endTime", endDate);
             table.Add("items", errorType);
             table.Add("state", state);
+            table.Add("fromview",startTime.Year.Equals(endTime.Year));
             Pager page = new Pager() { PageIndex = pindex, PageSize = ComConst.PageSize };
             table.Add("page", page);
             ViewData["page"] = table["page"];

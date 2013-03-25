@@ -86,7 +86,7 @@
                     <div>
                         <table width="90%" height="30" border="0" cellpadding="0" cellspacing="0">
                             <tr>
-                                <%if (!AuthService.isAllow(AuthorizationCode.ADD_PLANT))
+                                <%if (!AuthService.isAllow(AuthorizationCode.ADD_PLANT) || UserUtil.isDemoUser)
                                   { %>
                                 <td width="6%" align="center">
                                     <img src="/images/sub/subico016.gif" width="15" height="16" />
@@ -106,7 +106,7 @@
                                     <a href="/user/addplant/" class="dbl"><%=Resources.SunResource.MONITORITEM_ADD%></a>
                                      | 
                                     <a href="/user/allplants_output/" class="dbl"><%=Resources.SunResource.DEVICE_MONITOR_EXPORT_CSV%></a>
-                                    <%if (ProtalUtil.isBigCustomer() && UserUtil.getCurUser().ParentUserId == 0)
+                                    <%if (ProtalUtil.isBigCustomer() && UserUtil.isIndependentUser)
                                       { %>
                                     | <a href="/user/shareplant">给门户用户分配电站</a>
                                     <%}%>
@@ -217,7 +217,7 @@
                                                     </div>
                                                 </td>
                                                 <td width="15%" align="center">
-                                                    <%if (AuthService.isAllow(AuthorizationCode.EDIT_PLANT))
+                                                    <%if (AuthService.isAllow(AuthorizationCode.EDIT_PLANT, plant.id) && !UserUtil.isDemoUser)
                                                       { %>
                                                     <a href="/plant/<%=plant.isVirtualPlant?"virtual":"" %>edit/<%=plant.id %>?fromurl=/user/includeallplants">
                                                         <img src="/images/sub/pencil.gif" width="16" height="16" border="0" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
@@ -229,7 +229,7 @@
                                                     <img src="/images/sub/pencil0.gif" width="16" height="16" border="0" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
                                                         title="<%=Resources.SunResource.MONITORITEM_EDIT%>" />
                                                     <%} %>
-                                                    <%if (AuthService.isAllow(AuthorizationCode.DELETE_PLANT))
+                                                    <%if (AuthService.isAllow(AuthorizationCode.DELETE_PLANT, plant.id) && !UserUtil.isDemoUser)
                                                       { %>
                                                     <a onclick="return confirm('<%=Resources.SunResource.MONITORITEM_SURE_DELETE%>')"
                                                         href="/user/detele/<%=plant.id%>?t=<%=plant.isVirtualPlant?1:0%>?&fromurl=/user/allplants"
@@ -243,7 +243,7 @@
                                                     <img src="/images/sub/cross00.gif" width="16" height="16" border="0" alt="<%=Resources.SunResource.MONITORITEM_DELETE%>"
                                                         title="<%=Resources.SunResource.MONITORITEM_DELETE%>" />
                                                     <%} %>
-                                                    <%if (AuthService.isAllow(AuthorizationCode.ADD_UNIT) && !plant.isVirtualPlant)
+                                                    <%if (AuthService.isAllow(AuthorizationCode.ADD_UNIT, plant.id) && !plant.isVirtualPlant && !UserUtil.isDemoUser)
                                                       { %>
                                                     <a href="/unit/bind/<%=plant.id%>?fromurl=/user/includeallplants">
                                                         <img src="/images/sub/subico016.gif" alt="<%=Resources.SunResource.PLANT_UNIT_BIND_BIND%>"
@@ -255,7 +255,7 @@
                                                     <img src="/images/sub/subico0160.gif" alt="<%=Resources.SunResource.PLANT_UNIT_BIND_BIND%>"
                                                         title="<%=Resources.SunResource.PLANT_UNIT_BIND_BIND%>" />
                                                     <%} %>
-                                                    <%if (ProtalUtil.isBigCustomer())
+                                                    <%if (ProtalUtil.isBigCustomer() && UserUtil.isIndependentUser)
                                                       {
                                                           if (plant.userID.Equals(UserUtil.getCurUser().id))
                                                           {%>
@@ -282,7 +282,7 @@
                     <div class="sb_down">
                     </div>
                 </div>
-                <%if (Cn.Loosoft.Zhisou.SunPower.Service.ProtalUtil.isBigCustomer())
+                <%if (Cn.Loosoft.Zhisou.SunPower.Service.ProtalUtil.isBigCustomer() && !UserUtil.isDemoUser)
                   { %>
                 <div style="margin-top: 10px; margin-left: 25px;">
                     <input type="button" value="电站结构图" class="jdbu" />
@@ -323,8 +323,7 @@
                     <div class="sb_top">
                     </div>
                     <div class="sb_mid">
-                        <iframe src="/user/plantrelationstruct/" width="100%" scrolling="auto" frameborder="0"
-                            height="500"></iframe>
+                        <iframe src="/user/plantrelationstruct/" width="100%" scrolling="auto" frameborder="0" height="500"></iframe>
                     </div>
                     <div class="sb_down">
                     </div>

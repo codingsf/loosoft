@@ -654,7 +654,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         }
 
         /// <summary>
-        /// 获取单元设备
+        /// 获取单元显示的设备
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>

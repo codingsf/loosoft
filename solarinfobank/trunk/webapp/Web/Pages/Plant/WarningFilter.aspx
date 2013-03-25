@@ -1,14 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" Inherits="System.Web.Mvc.ViewPage<Cn.Loosoft.Zhisou.SunPower.Domain.Plant>" %>
-
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+<!--电站告警设备列表-->
 <head>
     <title>
         <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser() == null ? string.Empty : Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize%>
-        <%=Resources.SunResource.PLANT_OVERVIEW_PR_WARNING%></title>
+         <%=Model.name%> <%=Resources.SunResource.PLANT_OVERVIEW_PR_WARNING%>
+    </title>
     <style type="text/css">
         .line_b
         {

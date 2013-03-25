@@ -187,6 +187,12 @@ function formatterFunc() {
             name = name.substring(0, name.indexOf('['));
         }
         return getOtherSeriesNamestr(this.point.name) + ":" + getOtherSeriesValuewithUnit(this.point.x) + "/" + formatBit(this.percentage) + ' %';
+    }
+    if (type == "scatter") {
+        if (name.indexOf('[') > -1) {
+            name = name.substring(0, name.indexOf('['));
+        }
+        return getOtherSeriesValuewithUnit(this.point.x) + "," + this.point.y + getUnitsByName(name);
     } else {
         return '' +
                this.x + ': ' + getOvalueByXName(this.x, name) + " " + getUnitsByName(name);
@@ -280,7 +286,7 @@ function setySeriesArr(series) {
         if (tmpSerie == 'null' || tmpSerie == null) continue;
 
         //如果是pie类型图表，那么一维序列之后的数据仅仅保存到全局数据不再呈现在图表中，用于组织数据的显示
-        if (tmpSerie.type != 'pie' || i == 0) {
+        if ((tmpSerie.type != 'pie' && tmpSerie.type != 'scatter') || i == 0) {
             var serie = createSerie();
             serie.color = tmpSerie.color;
             serie.name = tmpSerie.name;
@@ -305,17 +311,24 @@ function setySeriesArr(series) {
 //将通用坐标序列组成成符合pie图表类型的数据格式
 //pie图表类型数据格式：[['Firefox/收益', 45.0],['IE', 26.8],{name: 'Chrome', y: 12.8},['Safari', 8.5],['Opera', 6.2],['Others', 0.7]];
 function comDataByCharttype(tmpSerie, series) {
-    if (tmpSerie.type == 'pie') {
-        var datastr = "[";
-        for (var i = 0; i < tmpSerie.data.length-1; i++) {
-            datastr += "['" + globalCategories[i] + "'," + tmpSerie.data[i] + "]" + (i == tmpSerie.data.length-1?"":",");
-        }
-        datastr += "]";
-        //var datastr = "[['Firefox/收益', 45.0],['IE', 26.8],{name: 'Chrome', y: 12.8},['Safari', 8.5],['Opera', 6.2],['Others', 0.7]];";
-        return eval(datastr);
+    if (tmpSerie.type == 'pie' || tmpSerie.type == 'scatter') {
+        return comXyData(tmpSerie);
     } else {
         return handleMinData(tmpSerie.data, getMax(series, tmpSerie.yAxis), getMin(series, tmpSerie.yAxis), tmpSerie.name);
     }
+}
+
+//组织pie，cactter类型图片数据
+function comXyData(tmpSerie) {
+    var datastr = "[";
+    for (var i = 0; i < tmpSerie.data.length - 1; i++) {
+        if (globalCategories[i] == "0" || globalCategories[i] == null) continue;
+        datastr += "['" + globalCategories[i] + "'," + tmpSerie.data[i] + "]" + (i == tmpSerie.data.length - 1 ? "" : ",");
+    }
+    datastr += "]";
+    //var datastr = "[['Firefox/收益', 45.0],['IE', 26.8],{name: 'Chrome', y: 12.8},['Safari', 8.5],['Opera', 6.2],['Others', 0.7]];";
+    alert(datastr)
+    return eval(datastr);
 }
 
 //对y轴数据的极小值进行放大树立，但是不影响显示真正的值
@@ -509,7 +522,7 @@ var exportButtonDetail = {
             openDetailInfo();
         }
     }
-            ],
+    ],
     enabled: true
 }
 
@@ -618,15 +631,37 @@ function defineChartWithDetail(curContainer, isDetail) {
                 }
             },
             pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-					    enabled: true,
-					    color: '#000000',
-					    connectorColor: '#000000',
-					    formatter: formatterFunc
-				    },
-                    showInLegend: true
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    color: '#000000',
+                    connectorColor: '#000000',
+                    formatter: formatterFunc
+                },
+                showInLegend: true
+            },
+            scatter: {
+                marker: {
+                    radius: 5,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            lineColor: 'rgb(100,100,100)'
+                        }
+                    }
+                },
+                states: {
+                    hover: {
+                        marker: {
+                            enabled: false
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: '{point.x} cm, {point.y} kg'
+                }
             },
             series: {
                 shadow: false
@@ -648,6 +683,104 @@ function defineChartWithDetail(curContainer, isDetail) {
                 horizontalAlign: 'right',
                 y: 5,
                 x: -10
+            }
+        },
+        series: seriesArr
+    }, function(chart) {
+        if (!isLargeChart) {
+            for (n in extbuttons) {
+                chart.addButton(extbuttons[n]);
+            }
+        }
+        chart.setTitle({ text: chartTitle, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
+        // fix the position issue (#185 on github)
+        //if (!isLargeChart)//不是大图表要重置尺寸，否则显示不出来新增的按钮
+        //chart.setSize(chart.chartWidth, chart.chartHeight);
+    });
+}
+
+//scatter类型chat定义
+function defineChartWithScatter(curContainer, isDetail, data) {
+    var exportButton;
+    if (isDetail)
+        exportButton = exportButtonDetail;
+    else
+        exportButton = exportButtonNoDetail;
+
+    //准备数据
+    globalCategories = data.categories;
+    seriesArr = new Array();
+    for (var i = 0; i < data.series.length; i++) {
+        var tmpSerie = data.series[i];
+        if (tmpSerie == 'null' || tmpSerie == null) continue;
+
+        var serie = createSerie();
+        serie.color = tmpSerie.color;
+        serie.name = "";
+        serie.data = comXyData(tmpSerie);
+        serie.type = tmpSerie.type;
+        serie.yAxis = tmpSerie.yAxis;
+        seriesArr.push(serie);
+    }
+    
+    chart = new Highcharts.Chart({
+        chart: {
+            renderTo: curContainer,
+            type: 'scatter',
+            zoomType: 'xy'
+        },
+        title: {
+            text: 'Height Versus Weight of 507 Individuals by Gender'
+        },
+        subtitle: {
+            text: 'Source: Heinz  2003'
+        },
+        xAxis: {
+            title: {
+                enabled: true,
+                text: 'Height (cm)'
+            },
+            startOnTick: true,
+            endOnTick: true,
+            showLastLabel: true
+        },
+        yAxis: {
+            title: {
+                text: 'Weight (kg)'
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            verticalAlign: 'top',
+            x: 100,
+            y: 70,
+            floating: true,
+            backgroundColor: '#FFFFFF',
+            borderWidth: 1
+        },
+        plotOptions: {
+            scatter: {
+                marker: {
+                    radius: 2,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            lineColor: 'rgb(100,100,100)'
+                        }
+                    }
+                },
+                states: {
+                    hover: {
+                        marker: {
+                            enabled: false
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: '{point.x} cm, {point.y} kg'
+                }
             }
         },
         series: seriesArr

@@ -161,7 +161,7 @@
                         </select>
                     </td>
                     <td width="9%" align="right" style="padding-left:10px">
-                    <%if (Cn.Loosoft.Zhisou.SunPower.Service.AuthService.isAllow(AuthorizationCode.LOGS_SELECT))
+                    <%if (Cn.Loosoft.Zhisou.SunPower.Service.AuthService.isAllow(AuthorizationCode.LOGS_SELECT) && !UserUtil.isDemoUser)
                       { %>
                         <input name="load" class="subbu01" id="load" value="<%=Resources.SunResource.MONITORITEM_SEARCH %>"
                             type="button" />

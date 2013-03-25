@@ -601,7 +601,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 return Content("error:" + Resources.SunResource.NODATA);
             }
-            FillPlantYears(id);
+            //FillPlantYears(id);
             return Content(reportCode);
         }
 
@@ -626,7 +626,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 return Content("error:" + Resources.SunResource.NODATA);
             }
-            FillPlantYears(id);
             return Content(reportCode);
         }
 
@@ -656,7 +655,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 return Content("error:" + Resources.SunResource.NODATA);
             }
-            FillPlantYears(id);
             return Content(reportCode);
         }
 
@@ -788,7 +786,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 return Content("error:" + Resources.SunResource.NODATA);
             }
-            FillPlantYears(id);
             return Content(reportCode);
         }
 
@@ -861,7 +858,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 return Content("error:" + Resources.SunResource.NODATA);
             }
-            FillPlantYears(id);
             return Content(reportCode);
         }
 
@@ -890,7 +886,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 return Content("error:" + Resources.SunResource.NODATA);
             }
-            FillPlantYears(id);
             return Content(reportCode);
         }
 
@@ -944,19 +939,70 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             else {
                 return Content("error:" + Resources.SunResource.NODATA);
             }
-            FillPlantYears(pid);
             return Content(reportCode);
         }
 
-
         /// <summary>
-        /// 取得某个电站日数据
+        /// 日功率和日照散列图
+        /// 此类型图表和其他取数方式有点不一样，其他都是多位测点数据公用一个时间坐标
+        /// 这个是两个测点先按照同样的时间间隔取得数据后（同样的时间间隔取数是为了保证取得数据数组长度一致，能最终合并成对应的散列点）
+        /// 将日照作为x轴，功率作为y轴数据，生成散列图表数据
+        /// add by hbqian in 2013-03-23 for 生成电站功率和日照散列图
         /// </summary>
-        /// <param name="?"></param>
+        /// <param name="pid"></param>
         /// <param name="startYYYYMMDDHH"></param>
         /// <param name="endYYYYMMDDHH"></param>
-        /// <param name="chartType"></param>
-        /// <param name="intervalMins"></param>
+        /// <param name="chartType">只能有一个，其实是固定为scatter类型的</param>
+        /// <param name="intervalMins">只能有一个</param>
+        /// <returns></returns>
+        public ActionResult PlantDayPowerSunScatterCompare(int pid, string startYYYYMMDDHH, string endYYYYMMDDHH, string chartType, String intervalMins)
+        {
+            string reportCode = string.Empty;
+            Plant plant = PlantService.GetInstance().GetPlantInfoById(pid);
+
+            string[] intervals = intervalMins.Split(',');
+            if (plant != null && plant.allFactUnits.Count > 0)
+            {
+                //判断该测点是否有数据,有数据则增加关照对比
+                Hashtable powerDataHash = CollectorDayDataService.GetInstance().GetUnitDaydataList(plant.allFactUnits, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), MonitorType.PLANT_MONITORITEM_POWER_CODE);
+                string chartName = LanguageUtil.getDesc("PLANT_CHART_DAY_POWER_SUNLIGHT_COMPARE_CHART_POWER");
+                if (powerDataHash.Count > 0)
+                {
+                    Device device = plant.getFirstDetector();
+                    if (device != null)
+                    {
+                        //取得日照数据
+                        Hashtable sunDataHash = DeviceDayDataService.GetInstance().GetDaydataList(null, device, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), MonitorType.MIC_DETECTOR_SUNLINGHT);
+                        if (sunDataHash.Keys.Count > 0)//有日照数据,则合并数据，将日照作为x，功率作为y，形成新的x.y散列点
+                        {
+                            ChartData chartData = PlantChartService.GetInstance().genNewScatter(chartName, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), sunDataHash, powerDataHash, "unit", chartType);
+                            reportCode = JsonUtil.convertToJson(chartData, typeof(ChartData));
+                        }
+                        else { //没有日照无法生成散列点则，返回无数据提示
+                            return Content("error:" + Resources.SunResource.NODATA);
+                        }
+                    }
+                }
+                else
+                {
+                    return Content("error:" + Resources.SunResource.NODATA);
+                }
+            }
+            else
+            {
+                return Content("error:" + Resources.SunResource.NODATA);
+            }
+            return Content(reportCode);
+        }
+
+        /// <summary>
+        /// 取得某个电站日日照和功率对比数据
+        /// </summary>
+        /// <param name="pid">电站id</param>
+        /// <param name="startYYYYMMDDHH">开始年月日时</param>
+        /// <param name="endYYYYMMDDHH">截止年月日时</param>
+        /// <param name="chartType">图表类型</param>
+        /// <param name="intervalMins">间隔时间</param>
         /// <returns></returns>
         [HttpPost]
         public ActionResult PlantDayPowerSunCompare(int pid, string startYYYYMMDDHH, string endYYYYMMDDHH, string chartType, string intervalMins)
@@ -1004,7 +1050,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 return Content("error:" + Resources.SunResource.NODATA);
             }
-            FillPlantYears(pid);
             return Content(reportCode);
         }
 
@@ -1053,7 +1098,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 return Content("error:" + Resources.SunResource.NODATA);
             }
-            FillPlantYears(pid);
             return Content(reportCode);
         }
 

@@ -551,6 +551,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return jsstr;
         }
 
+        /// <summary>
+        /// 产生叶子电站的设备关系树数据
+        /// </summary>
+        /// <param name="plant">叶子实际电站</param>
+        /// <returns></returns>
         public string generateDeviceRelation(Plant plant)
         {
             string jsstr = string.Empty;
@@ -569,7 +574,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '');", unitLevel, topLevel, pu.displayname, string.Format("javascript:setPara({0},{1},{2});",pu.id,"true",pu.id));
 
                 //先装机逆变器类型设备节点
-                IList<Device> devices = pu.logicalDevices;
+                IList<Device> devices = pu.displayDevices;
                 devices = devices.OrderByDescending(m => m.deviceModelCode).ToList<Device>();
                 if (devices != null && devices.Count > 0)
                 {

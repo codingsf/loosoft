@@ -25,13 +25,13 @@
                   <td width="18%"></td>
                 </tr>
             </table></td>
-            <td align="right" width="6"><img src="/images/kj/kjico03.jpg" width="6" height="63"></td>
+            <td align="right" width="6"><img src="/images/kj/kjico03.jpg" width="6" height="63"/></td>
           </tr>
         </tbody></table>
         
         <form method="post" action="/user/userplantedit/">
         
-        <%=Html.Hidden("uid",Request.QueryString["uid"]) %>
+          <%=Html.Hidden("uid",Request.QueryString["uid"]) %>
           <div class="subrbox01">
 
             <div class="sb_top"></div>
@@ -77,7 +77,7 @@
                   </td>
                 </tr>
               </tbody>
-              s</table>
+              </table>
             </div>
             <div class="sb_down"></div>
           </div>

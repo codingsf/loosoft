@@ -110,7 +110,7 @@
                                                                 
                     </td>
                     <td >
-                        <%if (!AuthService.isAllow(AuthorizationCode.EDIT_PLANT_MAP))
+                        <%if (!AuthService.isAllow(AuthorizationCode.EDIT_PLANT_MAP) || UserUtil.isDemoUser)
                           { %><input name="Submit" type="button" class="subbu09" value="<%=Resources.SunResource.MONITORITEM_SAVE%>" />
                         <%}
                           else

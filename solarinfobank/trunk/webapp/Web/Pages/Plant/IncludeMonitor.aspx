@@ -124,7 +124,7 @@
                                 </select>
                             </td>
                             <td width="60%" style="color: #459001;">
-                                <%if (!AuthService.isAllow(AuthorizationCode.DELETE_MONITOR))
+                                <%if (!AuthService.isAllow(AuthorizationCode.DELETE_MONITOR) || UserUtil.isDemoUser)
                                   { %><%=Resources.SunResource.PLANT_MONITOR_DELETE%>
                                 |
                                 <%=Resources.SunResource.PLANT_MONITOR_ADD%>

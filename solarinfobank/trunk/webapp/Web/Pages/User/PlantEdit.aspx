@@ -632,10 +632,10 @@
                         </td>
                         <td style="width: 30%">
                             <%=Html.DropDownListFor(model => model.VideoMonitorEnable, new List<SelectListItem>(){
-new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_ENABLE, Value="0"},
-new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="0"}
+                            new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_ENABLE, Value="0"},
+                            new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="0"}
 
-}, new { @class = "txtbu01",style="width:181px;" })%>
+                            }, new { @class = "txtbu01",style="width:181px;" })%>
                         </td>
                         </tr>
                              <tr>
@@ -644,7 +644,6 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="0"}
                         </td>
                         <td valign="top" style="width: 30%">
                         </td>
-                        
                     </tr>
                     <tr>
                         <td height="20">
@@ -725,5 +724,4 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="0"}
         }
                                    
     </script>
-
 </asp:Content>

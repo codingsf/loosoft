@@ -6,7 +6,7 @@
 <table width="100%" height="30" border="0" cellpadding="0" cellspacing="0" style="border-bottom: 1px solid #E8E8E8">
     <tr>
         <td width="6%" align="center">
-            <%if (AuthService.isAllow(AuthorizationCode.ADD_REPORT))
+            <%if (AuthService.isAllow(AuthorizationCode.ADD_REPORT)&& !UserUtil.isDemoUser)
               {%>
             <a href="javascript:OpenCreateReport(<%=ViewData["id"] %>)" title="<%=Resources.SunResource.REPORT_BUTTON_ADD %>">
                 <img src="../../Images/sub/subico016.gif" width="15" height="16" /></a>
@@ -17,7 +17,7 @@
             <%} %>
         </td>
         <td width="94%">
-            <%if (AuthService.isAllow(AuthorizationCode.ADD_REPORT))
+            <%if (AuthService.isAllow(AuthorizationCode.ADD_REPORT) && !UserUtil.isDemoUser)
               { %>
             <a href="javascript:OpenCreateReport(<%=ViewData["id"] %>)" class="dbl" title="<%=Resources.SunResource.REPORT_BUTTON_ADD %>">
                 <%=Resources.SunResource.REPORT_ADD%>
@@ -131,7 +131,7 @@
                             <img src="../../Images/sub/ck.gif" width="16" height="16" border="0" /></a>
                         <%  if (!string.IsNullOrEmpty(ViewData["id"].ToString()))
                             {
-                                if (AuthService.isAllow(AuthorizationCode.REPORT_CONFIG))
+                                if (AuthService.isAllow(AuthorizationCode.REPORT_CONFIG) && !UserUtil.isDemoUser)
                                 {
                         %>
                         <a href="javascript:choisePlantByPlantId(<%=item.Id%>,<%=ViewData["id"]%>)" title="<%=Resources.SunResource.RUN_REPORT_EDIT%>">
@@ -144,7 +144,7 @@
                             }
                             else
                             {
-                                if (AuthService.isAllow(AuthorizationCode.REPORT_CONFIG))
+                                if (AuthService.isAllow(AuthorizationCode.REPORT_CONFIG) && !UserUtil.isDemoUser)
                                 {
                                     
                         %>
@@ -159,7 +159,7 @@
                             } %>
                         <% if (!string.IsNullOrEmpty(ViewData["id"].ToString()))
                            {
-                               if (AuthService.isAllow(AuthorizationCode.DELETE_REPORT))
+                               if (AuthService.isAllow(AuthorizationCode.DELETE_REPORT) && !UserUtil.isDemoUser)
                                {
                               
                               
@@ -175,7 +175,7 @@
                           }
                            else
                            {
-                               if (AuthService.isAllow(AuthorizationCode.DELETE_REPORT))
+                               if (AuthService.isAllow(AuthorizationCode.DELETE_REPORT) && !UserUtil.isDemoUser)
                                {
                               
                               
@@ -190,7 +190,7 @@
                         <% 
                             }
                           } %>
-                        <%if (AuthService.isAllow(AuthorizationCode.SHOW_REPORT))
+                        <%if (AuthService.isAllow(AuthorizationCode.SHOW_REPORT) && !UserUtil.isDemoUser)
                           { %>
                         <a href="javascript:downLoadReport(<%=item.Id%>,<%=item.ReportType%>)" title="<%=Resources.SunResource.RUN_REPORT_DOWNLOAD%>">
                             <img src="../../Images/sub/dw.gif" width="16" height="16" border="0" />

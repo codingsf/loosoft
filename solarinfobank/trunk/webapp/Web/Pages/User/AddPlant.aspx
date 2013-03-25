@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Shared/ContentInside.Master"
     Inherits="System.Web.Mvc.ViewPage<Cn.Loosoft.Zhisou.SunPower.Domain.Plant>" %>
-
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
 <%@ Import Namespace="System.Globalization" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>
-    <%=Resources.SunResource.PLANT_ADDPLANT_ADD_PLANT  %></asp:Content>
+    <%=Resources.SunResource.PLANT_ADDPLANT_ADD_PLANT  %>
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <script src="/country/city" type="text/javascript"></script>
@@ -53,7 +53,6 @@
     </style>
 
     <script type="text/javascript">
-
         function dst_init() {
             $.ajax({
                 type: "POST",
@@ -1318,7 +1317,6 @@ function initTimeZone() {
     }
 }
 
-
 function checkinput() {
     $("#error_container").text('');
     if ($("#dst_enable").val() == "true") {
@@ -1339,14 +1337,13 @@ function checkinput() {
         }
     }
 }
-    </script>
+</script>
 
     <table cellpadding="0" cellspacing="0" border="0">
         <tr>
             <td background="/images/kj/kjbg01.jpg" valign="top" width="793">
                 <%=Html.Hidden("s_t", DateTime.Now.AddSeconds(5).ToString("MM/dd/yyyy HH:mm:ss"))%>
-                <form id="plantform" action="/user/SavePlant" enctype="multipart/form-data" method="post"
-                target="_parent">
+                <form id="plantform" action="/user/SavePlant" enctype="multipart/form-data" method="post" target="_parent">
                 <table background="/images/kj/kjbg02.jpg" border="0" cellpadding="0" cellspacing="0"
                     height="63" width="793">
                     <tbody>
@@ -1405,21 +1402,24 @@ function checkinput() {
                                 </tr>
                             </tbody>
                         </table>
-                        <%if (Cn.Loosoft.Zhisou.SunPower.Service.ProtalUtil.isBigCustomer())
-                          { %>
+                        <%
+                          if (Cn.Loosoft.Zhisou.SunPower.Service.ProtalUtil.isBigCustomer())
+                          {
+                        %>
                         <div class="bitab03">
                             <ul id="bitab">
-                                <li><a href="#" onclick="changetab(this);" class="onclick">新电站 </a></li>
+                                <li><a href="#" onclick="changetab(this);" class="onclick">新电站</a></li>
                                 <li></li>
-                                <li><a href="/user/addvirtualplant" onclick="changetab(this);">组合电站 </a></li>
+                                <li><a href="/user/addvirtualplant" onclick="changetab(this);">组合电站</a></li>
                             </ul>
                         </div>
                         <%}
                           else
-                          { %>
+                          { 
+                        %>
                         <div class="sb_top">
                         </div>
-                        <%} %>
+                        <%}%>
                         <table border="0" cellpadding="0" cellspacing="0" width="100%">
                             <tbody>
                                 <tr>
@@ -1430,9 +1430,7 @@ function checkinput() {
                                                     <tbody>
                                                         <tr>
                                                             <td class="pl20" height="28" width="30%">
-                                                                <strong>
-                                                                    <%=Resources.SunResource.PLANT_PROFILE_NAME  %>
-                                                                    :</strong>
+                                                                <strong><%=Resources.SunResource.PLANT_PROFILE_NAME%>:</strong>
                                                             </td>
                                                             <td width="70%">
                                                                 <%=Html.HiddenFor(Model=>Model.id) %>
@@ -1451,8 +1449,7 @@ function checkinput() {
                                                         </tr>
                                                         <tr>
                                                             <td class="pl20" height="28">
-                                                                <strong>
-                                                                    <%=Resources.SunResource.PLANT_PROFILE_INSTALLDATE %>:</strong>
+                                                                <strong><%=Resources.SunResource.PLANT_PROFILE_INSTALLDATE %>:</strong>
                                                             </td>
                                                             <td width="55%">
                                                                 <input id="installdate" name="installdate" onclick="WdatePicker({isShowClear:false,lang:'<%=  (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})"
@@ -1486,8 +1483,7 @@ function checkinput() {
                                                 </td>
                                                 <td width="100px">
                                                     <%= Html.HiddenFor(model => model.pic) %>
-                                                    <div>
-                                                        <input type="text" id="uoloadFilePath" class="txtbu01" style="width: 150px" /></div>
+                                                    <div><input type="text" id="uoloadFilePath" class="txtbu01" style="width: 150px" /></div>
                                                 </td>
                                                 <td style="width: 100px;">
                                                     <div id="crosspic" style="display: none">
@@ -1612,10 +1608,9 @@ function checkinput() {
                                                             </td>
                                                             <td style="width: 30%">
                                                                 <%=Html.DropDownListFor(model => model.VideoMonitorEnable, new List<SelectListItem>(){
-new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_ENABLE, Value="true"},
-new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="false"}
-
-}, new { @class = "txtbu01",style="width:181px;" })%>
+                                                                        new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_ENABLE, Value="true"},
+                                                                        new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="false"}
+                                                                        }, new { @class = "txtbu01",style="width:181px;" })%>
                                                             </td>
                                                         </tr>
                                                         <%if (Cn.Loosoft.Zhisou.SunPower.Service.ProtalUtil.isBigCustomer())
@@ -1629,7 +1624,6 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                                                                 元
                                                             </td>
                                                         </tr>
-                                                      
                                                         <tr>
                                                             <td class="pl20" height="28">
                                                                 <strong>分布图:</strong>
@@ -1859,11 +1853,12 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                                         </td>
                                         <td>
                                             <%=Html.TextBoxFor(model=>model.startDate,new {
-                                    @readonly = "readonly",
-                                    @class = "txtbu01 ref",
-                                    onclick = "WdatePicker({dateFmt:'MM-dd HH:00:00',isShowClear:true,lang:'" + (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower() + "'})"
-                                })%><span class="red ref">*</span><input style="display: inline;" class="txtbu01 txt010 ref1"
-                                    disabled="disabled ">
+                                                @readonly = "readonly",
+                                                @class = "txtbu01 ref",
+                                                onclick = "WdatePicker({dateFmt:'MM-dd HH:00:00',isShowClear:true,lang:'" + (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower() + "'})"
+                                            })%>
+                                            <span class="red ref">*</span>
+                                            <input style="display: inline;" class="txtbu01 txt010 ref1" disabled="disabled ">
                                         </td>
                                     </tr>
                                     <tr>
@@ -1881,12 +1876,13 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                                         </td>
                                         <td width="34%">
                                             <%=Html.TextBoxFor(model => model.endDate, new
-                                    {
-                                        @readonly = "readonly",
-                                        @class = "txtbu01 ref",
-                                        onclick = "WdatePicker({dateFmt:'MM-dd HH:00:00',isShowClear:true,lang:'" + (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower() + "'})"
-                                    })%><span class="red ref">*</span><input style="display: inline;" class="txtbu01 txt010 ref1"
-                                        disabled="disabled ">
+                                                {
+                                                    @readonly = "readonly",
+                                                    @class = "txtbu01 ref",
+                                                    onclick = "WdatePicker({dateFmt:'MM-dd HH:00:00',isShowClear:true,lang:'" + (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower() + "'})"
+                                                })%>
+                                            <span class="red ref">*</span>
+                                            <input style="display: inline;" class="txtbu01 txt010 ref1" disabled="disabled ">
                                         </td>
                                     </tr>
                                     <tr>
@@ -1902,8 +1898,9 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                                                 <%=Resources.SunResource.SUMMER_LINGSHI_HOURS%>:</strong>
                                         </td>
                                         <td>
-                                            <%=Html.TextBoxFor(model=>model.hours,new {@class="txtbu01 ref" } )%><span class="red ref">*</span><input
-                                                style="display: inline;" class="txtbu01 txt010 ref1" disabled="disabled ">
+                                            <%=Html.TextBoxFor(model=>model.hours,new {@class="txtbu01 ref" } )%>
+                                            <span class="red ref">*</span>
+                                            <input style="display: inline;" class="txtbu01 txt010 ref1" disabled="disabled ">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -1918,12 +1915,11 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                         <div class="sb_mid">
                             <div class="ades">
                                 <strong style="float: left">
-                                    <%=Resources.SunResource.PLANT_PROFILE_DESCRIPTION %>:</strong>
+                                    <%=Resources.SunResource.PLANT_PROFILE_DESCRIPTION %>:
+                                </strong>
                                 <%=Html.TextAreaFor(model=>model.description,new { rows="15" ,cols="116" }) %>
-
                                 <script type="text/javascript">
-                                    createCkEditor("/editor/", "description", 600, 320, "MyToolbar", '', '', true, 80, 'replace', '<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'); ; ; ; ;</script>
-
+                                    createCkEditor("/editor/", "description", 600, 320, "MyToolbar", '', '', true, 80, 'replace', '<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'); ; ; ; ;                                </script>
                             </div>
                         </div>
                         <div class="sb_down">
@@ -1934,8 +1930,7 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                             <input name="button" class="subbu01" value="<%=Resources.SunResource.MONITORITEM_CANCEL %>"
                                 type="button" style="margin-left: 50PX" onclick="window.location.href='/user/includeallplants'" />
 
-                            <script>                                setup();</script>
-
+                            <script type="text/javascript">setup();</script>
                         </div>
                     </div>
                 </div>
@@ -1944,7 +1939,7 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
         </tr>
     </table>
 
-    <script>
+    <script type="text/javascript">
         $().ready(function() {
             var sel = false;
             $(".kjtt01 :a", window.parent.document).each(function() {
@@ -1958,5 +1953,4 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
             };
         });
     </script>
-
 </asp:Content>

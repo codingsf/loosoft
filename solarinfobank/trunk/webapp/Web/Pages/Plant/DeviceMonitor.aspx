@@ -439,7 +439,7 @@
                                                                 <%} %>
                                                             </td>
                                                             <td width="10%" align="center">
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="/plant/inverteredit/<%=Model.id%>?<%=device.id%>">
                                                                     <img src="/images/sub/pencil.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
@@ -451,7 +451,7 @@
                                                                 <img src="/images/sub/pencil0.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
                                                                     title="<%=Resources.SunResource.MONITORITEM_EDIT%>" width="16" border="0" height="16">
                                                                 <%} %>
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="javascript:void(0)" onclick="hiddenDevice(<%=device.id %>,'inv');">
                                                                     <img id="img<%=device.id %>" title="<%=device.isHidden?Resources.SunResource.PLANT_DEVICEMONITOR_SHOW: Resources.SunResource.PLANT_DEVICEMONITOR_HIDDEN%>"
@@ -553,7 +553,7 @@
                                                                 <%} %>
                                                             </td>
                                                             <td width="10%" align="center">
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="/plant/inverteredit/<%=Model.id%>?<%=device.id%>">
                                                                     <img src="/images/sub/pencil.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
@@ -565,7 +565,7 @@
                                                                 <img src="/images/sub/pencil0.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
                                                                     title="<%=Resources.SunResource.MONITORITEM_EDIT%>" width="16" border="0" height="16">
                                                                 <%} %>
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="javascript:void(0)" onclick="hiddenDevice(<%=device.id %>,'inv');">
                                                                     <img id="img<%=device.id %>" title="<%=device.isHidden?Resources.SunResource.PLANT_DEVICEMONITOR_SHOW: Resources.SunResource.PLANT_DEVICEMONITOR_HIDDEN%>"
@@ -666,7 +666,7 @@
                                                                 <%} %>
                                                             </td>
                                                             <td width="10%" align="center">
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="/plant/inverteredit/<%=Model.id%>?<%=device.id%>">
                                                                     <img src="/images/sub/pencil.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
@@ -678,7 +678,7 @@
                                                                 <img src="/images/sub/pencil0.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
                                                                     title="<%=Resources.SunResource.MONITORITEM_EDIT%>" width="16" border="0" height="16">
                                                                 <%} %>
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="javascript:void(0)" onclick="hiddenDevice(<%=device.id %>,'inv');">
                                                                     <img id="img<%=device.id %>" title="<%=device.isHidden?Resources.SunResource.PLANT_DEVICEMONITOR_SHOW: Resources.SunResource.PLANT_DEVICEMONITOR_HIDDEN%>"
@@ -836,7 +836,7 @@
                                                                 <%} %>
                                                             </td>
                                                             <td width="10%" align="center">
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="/plant/emedit/<%=Model.id%>?<%=device.id%>">
                                                                     <img src="/images/sub/pencil.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
@@ -848,7 +848,7 @@
                                                                 <img src="/images/sub/pencil0.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
                                                                     title="<%=Resources.SunResource.MONITORITEM_EDIT%>" width="16" border="0" height="16">
                                                                 <%} %>
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="javascript:void(0)" onclick="hiddenDevice(<%=device.id %>,'env');">
                                                                     <img id="img<%=device.id %>" title="<%=device.isHidden?Resources.SunResource.PLANT_DEVICEMONITOR_SHOW: Resources.SunResource.PLANT_DEVICEMONITOR_HIDDEN%>"
@@ -932,7 +932,7 @@
                                                                 <%} %>
                                                             </td>
                                                             <td width="10%" align="center">
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="/plant/emedit/<%=Model.id%>?<%=device.id%>">
                                                                     <img src="/images/sub/pencil.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
@@ -944,7 +944,7 @@
                                                                 <img src="/images/sub/pencil0.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
                                                                     title="<%=Resources.SunResource.MONITORITEM_EDIT%>" width="16" border="0" height="16">
                                                                 <%} %>
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="javascript:void(0)" onclick="hiddenDevice(<%=device.id %>,'env');">
                                                                     <img id="img<%=device.id %>" title="<%=device.isHidden?Resources.SunResource.PLANT_DEVICEMONITOR_SHOW: Resources.SunResource.PLANT_DEVICEMONITOR_HIDDEN%>"
@@ -1028,7 +1028,7 @@
                                                                 <%} %>
                                                             </td>
                                                             <td width="10%" align="center">
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="/plant/emedit/<%=Model.id%>?<%=device.id%>">
                                                                     <img src="/images/sub/pencil.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
@@ -1040,7 +1040,7 @@
                                                                 <img src="/images/sub/pencil0.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
                                                                     title="<%=Resources.SunResource.MONITORITEM_EDIT%>" width="16" border="0" height="16">
                                                                 <%} %>
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="javascript:void(0)" onclick="hiddenDevice(<%=device.id %>,'env');">
                                                                     <img id="img<%=device.id %>" title="<%=device.isHidden?Resources.SunResource.PLANT_DEVICEMONITOR_SHOW: Resources.SunResource.PLANT_DEVICEMONITOR_HIDDEN%>"
@@ -1199,7 +1199,7 @@
                                                                 <%} %>
                                                             </td>
                                                             <td width="15%" align="center">
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="/plant/hlxedit/<%=Model.id%>?<%=device.id%>">
                                                                     <img src="/images/sub/pencil.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
@@ -1211,7 +1211,7 @@
                                                                 <img src="/images/sub/pencil0.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
                                                                     title="<%=Resources.SunResource.MONITORITEM_EDIT%>" width="16" border="0" height="16">
                                                                 <%} %>
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="javascript:void(0)" onclick="hiddenDevice(<%=device.id %>,'hlx');">
                                                                     <img id="img<%=device.id %>" title="<%=device.isHidden?Resources.SunResource.PLANT_DEVICEMONITOR_SHOW: Resources.SunResource.PLANT_DEVICEMONITOR_HIDDEN%>"
@@ -1294,7 +1294,7 @@
                                                                 <%} %>
                                                             </td>
                                                             <td width="15%" align="center">
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="/plant/hlxedit/<%=Model.id%>?<%=device.id%>">
                                                                     <img src="/images/sub/pencil.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
@@ -1306,7 +1306,7 @@
                                                                 <img src="/images/sub/pencil0.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
                                                                     title="<%=Resources.SunResource.MONITORITEM_EDIT%>" width="16" border="0" height="16">
                                                                 <%} %>
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="javascript:void(0)" onclick="hiddenDevice(<%=device.id %>,'hlx');">
                                                                     <img id="img<%=device.id %>" title="<%=device.isHidden?Resources.SunResource.PLANT_DEVICEMONITOR_SHOW: Resources.SunResource.PLANT_DEVICEMONITOR_HIDDEN%>"
@@ -1389,7 +1389,7 @@
                                                                 <%} %>
                                                             </td>
                                                             <td width="15%" align="center">
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="/plant/hlxedit/<%=Model.id%>?<%=device.id%>">
                                                                     <img src="/images/sub/pencil.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
@@ -1401,7 +1401,7 @@
                                                                 <img src="/images/sub/pencil0.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
                                                                     title="<%=Resources.SunResource.MONITORITEM_EDIT%>" width="16" border="0" height="16">
                                                                 <%} %>
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="javascript:void(0)" onclick="hiddenDevice(<%=device.id %>,'hlx');">
                                                                     <img id="img<%=device.id %>" title="<%=device.isHidden?Resources.SunResource.PLANT_DEVICEMONITOR_SHOW: Resources.SunResource.PLANT_DEVICEMONITOR_HIDDEN%>"
@@ -1559,7 +1559,7 @@
                                                                 <%} %>
                                                             </td>
                                                             <td width="15%" align="center">
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="/plant/cabinetedit/<%=Model.id%>?<%=device.id%>">
                                                                     <img src="/images/sub/pencil.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
@@ -1571,7 +1571,7 @@
                                                                 <img src="/images/sub/pencil0.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
                                                                     title="<%=Resources.SunResource.MONITORITEM_EDIT%>" width="16" border="0" height="16">
                                                                 <%} %>
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="javascript:void(0)" onclick="hiddenDevice(<%=device.id %>,'cabinet');">
                                                                     <img id="img<%=device.id %>" title="<%=device.isHidden?Resources.SunResource.PLANT_DEVICEMONITOR_SHOW: Resources.SunResource.PLANT_DEVICEMONITOR_HIDDEN%>"
@@ -1654,7 +1654,7 @@
                                                                 <%} %>
                                                             </td>
                                                             <td width="15%" align="center">
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="/plant/cabinetedit/<%=Model.id%>?<%=device.id%>">
                                                                     <img src="/images/sub/pencil.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
@@ -1666,7 +1666,7 @@
                                                                 <img src="/images/sub/pencil0.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
                                                                     title="<%=Resources.SunResource.MONITORITEM_EDIT%>" width="16" border="0" height="16">
                                                                 <%} %>
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="javascript:void(0)" onclick="hiddenDevice(<%=device.id %>,'cabinet');">
                                                                     <img id="img<%=device.id %>" title="<%=device.isHidden?Resources.SunResource.PLANT_DEVICEMONITOR_SHOW: Resources.SunResource.PLANT_DEVICEMONITOR_HIDDEN%>"
@@ -1749,7 +1749,7 @@
                                                                 <%} %>
                                                             </td>
                                                             <td width="15%" align="center">
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="/plant/cabinetedit/<%=Model.id%>?<%=device.id%>">
                                                                     <img src="/images/sub/pencil.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
@@ -1761,7 +1761,7 @@
                                                                 <img src="/images/sub/pencil0.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
                                                                     title="<%=Resources.SunResource.MONITORITEM_EDIT%>" width="16" border="0" height="16">
                                                                 <%} %>
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="javascript:void(0)" onclick="hiddenDevice(<%=device.id %>,'cabinet');">
                                                                     <img id="img<%=device.id %>" title="<%=device.isHidden?Resources.SunResource.PLANT_DEVICEMONITOR_SHOW: Resources.SunResource.PLANT_DEVICEMONITOR_HIDDEN%>"
@@ -1912,7 +1912,7 @@
                                                                 <%} %>
                                                             </td>
                                                             <td width="20%" align="center">
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="/plant/ammeteredit/<%=Model.id%>?<%=device.id%>">
                                                                     <img src="/images/sub/pencil.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
@@ -1924,7 +1924,7 @@
                                                                 <img src="/images/sub/pencil0.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
                                                                     title="<%=Resources.SunResource.MONITORITEM_EDIT%>" width="16" border="0" height="16">
                                                                 <%} %>
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="javascript:void(0)" onclick="hiddenDevice(<%=device.id %>,'db');">
                                                                     <img id="img3" title="<%=device.isHidden?Resources.SunResource.PLANT_DEVICEMONITOR_SHOW: Resources.SunResource.PLANT_DEVICEMONITOR_HIDDEN%>"
@@ -2004,7 +2004,7 @@
                                                                 <%} %>
                                                             </td>
                                                             <td width="20%" align="center">
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="/plant/ammeteredit/<%=Model.id%>?<%=device.id%>">
                                                                     <img src="/images/sub/pencil.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
@@ -2016,7 +2016,7 @@
                                                                 <img src="/images/sub/pencil0.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
                                                                     title="<%=Resources.SunResource.MONITORITEM_EDIT%>" width="16" border="0" height="16">
                                                                 <%} %>
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="javascript:void(0)" onclick="hiddenDevice(<%=device.id %>,'db');">
                                                                     <img id="img<%=device.id %>" title="<%=device.isHidden?Resources.SunResource.PLANT_DEVICEMONITOR_SHOW: Resources.SunResource.PLANT_DEVICEMONITOR_HIDDEN%>"
@@ -2096,7 +2096,7 @@
                                                                 <%} %>
                                                             </td>
                                                             <td width="20%" align="center">
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="/plant/ammeteredit/<%=Model.id%>?<%=device.id%>">
                                                                     <img src="/images/sub/pencil.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
@@ -2108,7 +2108,7 @@
                                                                 <img src="/images/sub/pencil0.gif" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
                                                                     title="<%=Resources.SunResource.MONITORITEM_EDIT%>" width="16" border="0" height="16">
                                                                 <%} %>
-                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE))
+                                                                <%if (AuthService.isAllow(AuthorizationCode.EDIT_DEVICE) && !UserUtil.isDemoUser)
                                                                   { %>
                                                                 <a href="javascript:void(0)" onclick="hiddenDevice(<%=device.id %>,'db');">
                                                                     <img id="img<%=device.id %>" title="<%=device.isHidden?Resources.SunResource.PLANT_DEVICEMONITOR_SHOW: Resources.SunResource.PLANT_DEVICEMONITOR_HIDDEN%>"

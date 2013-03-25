@@ -406,18 +406,18 @@
                                                 <li><a onclick="loadContent('content_ajax','/user/record','iframe','GET');setcurrent(this);return false;"
                                                     href="/user/record">
                                                     <%=Resources.SunResource.PAGE_USER_LOGINRECORD%></a></li>
-                                                <%if (Cn.Loosoft.Zhisou.SunPower.Service.ProtalUtil.isBigCustomer() && UserUtil.getCurUser().ParentUserId == 0)
+                                                <%if (Cn.Loosoft.Zhisou.SunPower.Service.ProtalUtil.isBigCustomer() && !UserUtil.isDemoUser && UserUtil.isIndependentUser)
                                                   { %>
                                                 <li><a onclick="loadContent('content_ajax','/portal/manage','iframe','GET');setcurrent(this);return false;"
                                                     href="/portal/manage">门户管理</a></li>
                                                 <%} %>
-                                                <%if (AuthService.isAllow(AuthorizationCode.USER_LIST) && ProtalUtil.isBigCustomer() && UserUtil.getCurUser().ParentUserId == 0)
+                                                <%if (AuthService.isAllow(AuthorizationCode.USER_LIST) && !UserUtil.isDemoUser && ProtalUtil.isBigCustomer() && UserUtil.isIndependentUser)
                                                   { %>
                                                 <li><a onclick="loadContent('content_ajax','/user/portaluser','iframe','GET');setcurrent(this);return false;"
                                                     href="/user/portaluser">
                                                     <%=Resources.SunResource.SHARED_INSIDE_PORTAL_USER%></a></li>
                                                 <%} %>
-                                                <%if (AuthService.isAllow(AuthorizationCode.APPLY_DATASOURCE) && Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().username != UserUtil.demousername && UserUtil.getCurUser().ParentUserId == 0)
+                                                <%if (AuthService.isAllow(AuthorizationCode.APPLY_DATASOURCE) && Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().username != UserUtil.demousername && UserUtil.isIndependentUser)
                                                   { %>
                                                 <li><a onclick="loadContent('content_ajax','/user/regsource','iframe','GET');setcurrent(this);return false;"
                                                     href="/user/regsource">

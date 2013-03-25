@@ -255,7 +255,7 @@
                                                         <%=plantUnit.displayTotalEnergy%>
                                                     </td>
                                                     <td align="center" width="15%">
-                                                        <%if (AuthService.isAllow(AuthorizationCode.EDIT_UNIT))
+                                                        <%if (AuthService.isAllow(AuthorizationCode.EDIT_UNIT) && !UserUtil.isDemoUser)
                                                           { %>
                                                         <a href="/unit/edit/?unitId=<%=plantUnit.id %>&plantId=<%=ViewData["plantid"]%>">
                                                             <img src="/images/sub/pencil.gif" width="16" height="16" border="0" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
@@ -266,7 +266,7 @@
                                                         <img src="/images/sub/pencil0.gif" width="16" height="16" border="0" alt="<%=Resources.SunResource.MONITORITEM_EDIT%>"
                                                             title="<%=Resources.SunResource.MONITORITEM_EDIT%>" />
                                                         <%} %>
-                                                        <%if (AuthService.isAllow(AuthorizationCode.DELETE_UNIT))
+                                                        <%if (AuthService.isAllow(AuthorizationCode.DELETE_UNIT) && !UserUtil.isDemoUser)
                                                           { %>
                                                         <a href="/unit/deleteunit/?plantid=<%=Model.id %>&unitid=<%=plantUnit.collector.id%>">
                                                             <img src="/images/sub/cross.gif" onclick="return confirm('<%=Resources.SunResource.MONITORITEM_SURE_DELETE%>');"

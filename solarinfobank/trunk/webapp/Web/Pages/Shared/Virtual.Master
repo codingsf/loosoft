@@ -1,9 +1,8 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<Cn.Loosoft.Zhisou.SunPower.Domain.Plant>" %>
-
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
-<%@ Import Namespace="System.Globalization" %>
+<%@ Import Namespace="System.Globalization"%>
 <%@ Register Src="Header.ascx" TagName="Header" TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -11,7 +10,7 @@
     <title>
         <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
     </title>
-    <% Html.RenderPartial("css"); %>
+    <% Html.RenderPartial("css");%>
     <meta http-equiv="pragma" content="cache" />
     <asp:ContentPlaceHolder ID="CustomHead" runat="server" />
     <%--<style type="text/css">
@@ -55,12 +54,11 @@
         }
     </style>--%>
 
-    <script src="../../script/cookie.js" type="text/javascript"></script>
+    <script src="/script/cookie.js" type="text/javascript"></script>
 
     <link href="/style/colorbox.css" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript">
-    
         function logout()
         {
             if( confirm("<%=Resources.SunResource.USER_LOGOUT_CONFIRM  %>"))
@@ -300,7 +298,7 @@
                                                 {
                                                    // if (plant.id == Model.id)
                                                      //   continue;
-                                                    if (idx++ >= configCount - 1)
+                                                    if (idx++ >= configCount)
                                                         break;
                                             %>
                                             <li><a class="<%=plant.id==this.Model.id?"lefttabclick":"" %>" href="/<%=plant.isVirtualPlant?"virtual/plantrelationstruct":"plant/overview" %>/<%=plant.id %>"
@@ -380,7 +378,7 @@
                                 </div>
                             </div>
                             <%}%>
-                            <%if (Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().UserRole.roleId != 1)
+                            <%if (Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().userRole.roleId != 1)
                               { %>
                             <div class="kjlbox nav">
                                 <div class="kjlbox_ico">
@@ -401,10 +399,6 @@
                                             <li><a onclick="loadContent('content_ajax','/plant/plantreport/<%=Model.id %>','iframe','GET');setcurrent(this);return false;"
                                                 href="/plant/plantreport/<%=Model.id %>">
                                                 <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_REPORT_CONFIGURATION  %></a></li>
-                                            <%--<li><a onclick="loadContent('content_ajax','/user/auth','iframe','GET');setcurrent(this);return false;"
-                                                href="/user/auth">权限配置</a></li>--%>
-                                            <%--<li><a onclick="loadContent('content_ajax','/user/roles','iframe','GET');setcurrent(this);return false;"
-                                                href="/user/roles">角色列表</a></li>--%>
                                             <li><a onclick="loadContent('content_ajax','/user/edit','iframe','GET');setcurrent(this);return false;"
                                                 href="/user/edit">
                                                 <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_USER_INFORMATION  %></a></li>
@@ -417,7 +411,7 @@
                                             <li><a onclick="loadContent('content_ajax','/user/record','iframe','GET');setcurrent(this);return false;"
                                                 href="/user/record">
                                                 <%=Resources.SunResource.PAGE_USER_LOGINRECORD%></a></li>
-                                            <%if (AuthService.isAllow(AuthorizationCode.USER_LIST) && ProtalUtil.isBigCustomer())
+                                            <%if (UserUtil.isIndependentUser)
                                               { %>
                                             <li><a onclick="loadContent('content_ajax','/user/plantuser','iframe','GET');setcurrent(this);return false;"
                                                 href="/user/plantuser">

@@ -64,7 +64,7 @@
     </div> 
               </td>
               <td width="10%" class="f_14">
-              <%if (AuthService.isAllow(AuthorizationCode.EDIT_UNIT) && ((int)ViewData["rId"]) != 0)
+              <%if (AuthService.isAllow(AuthorizationCode.EDIT_UNIT) && ((int)ViewData["rId"]) != 0 && !UserUtil.isDemoUser)
                 { %>
               <input name="Submit" id="dload" type="button" onclick="downLoadReports()" class="subbu01"  value="<%=Resources.SunResource.RUN_REPORT_DOWNLOAD%>" />
               <%}

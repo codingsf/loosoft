@@ -1870,24 +1870,16 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             return Json(cy);
         }
         /// <summary>
-        /// 设备告警列表
+        /// 电站设备告警列表
         /// </summary>
-        /// <param name="pid"></param>
-        /// <param name="uid"></param>
+        /// <param name="pid">pid不为空 则取电站的告警设备</param>
+        /// <param name="uid">uid不为空则去用户的所有关联的电站的告警设备</param>
         /// <returns></returns>
-        public ActionResult WarningFilter(string pid, string uid)
+        public ActionResult WarningFilter(string pid)
         {
-            #region 自动登录
-            if (string.IsNullOrEmpty(uid) == false)
-            {
-                User loginUser = userService.Get(int.Parse(uid));
-                UserUtil.login(loginUser);
-            }
-            #endregion
-
-            int id = 0;
-            int.TryParse(pid, out id);
-            Plant plant = PlantService.GetInstance().GetPlantInfoById(id);
+            int plantId = 0;
+            int.TryParse(pid, out plantId);
+            Plant plant = PlantService.GetInstance().GetPlantInfoById(plantId);
             ArrayList invarray = new ArrayList();
             ArrayList cabArray = new ArrayList();
             ArrayList envArray = new ArrayList();
@@ -1915,7 +1907,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
                     table = new Hashtable();
                     table.Add("plantname", plantService.GetPlantInfoById(unit.plantID).name);
                     table.Add("Unit", unit.displayname);
-                    table.Add("device", string.IsNullOrEmpty(dce.name) ? dce.fullName : dce.name);
+                    table.Add("device", dce.fullName);
                     table.Add("status", dce.getStatus());
                     switch (dce.deviceTypeCode)
                     {
@@ -1925,17 +1917,13 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
                             DeviceMonthDayData deviceMonthDayData = DeviceMonthDayDataService.GetInstance().GetDeviceMonthDayData(DateTime.Now.Year, dce.id, DateTime.Now.Month);
                             beforeYesterdayEnergy = deviceMonthDayData.getDayData(DateTime.Now.AddDays(-2).Day);
 
-
                             deviceMonthDayData = DeviceMonthDayDataService.GetInstance().GetDeviceMonthDayData(DateTime.Now.Year, dce.id, DateTime.Now.Month);
                             yesterdayEnergy = deviceMonthDayData.getDayData(DateTime.Now.AddDays(-1).Day);
 
-
                             todayEnergy = dce.TodayEnergy(plant.timezone);
-
 
                             DeviceYearMonthData deviceYearMonthData = DeviceYearMonthDataService.GetInstance().GetDeviceYearMonthData(dce.id, DateTime.Now.Year);
                             thisMonthEnergy = deviceYearMonthData.getMonthData(DateTime.Now.Month);
-
 
                             DeviceYearData deviceYearData = DeviceYearDataService.GetInstance().GetDeviceYearData(dce.id, DateTime.Now.Year);
                             thisYearEnergy = deviceYearData.dataValue;
@@ -1954,7 +1942,6 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
                             break;
                         case DeviceData.ENVRIOMENTMONITOR_CODE:
                             envArray.Add(table);
-
                             break;
                         case DeviceData.HUILIUXIANG_CODE:
                             hlxArray.Add(table);
@@ -1967,7 +1954,6 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
                             break;
                     }
                     //PR性能
-
                 }
 
             }
@@ -1976,7 +1962,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             ViewData["env"] = envArray;
             ViewData["hlx"] = hlxArray;
             ViewData["db"] = dbArray;
-            return View();
+            return View(plant);
         }
 
         /// <summary>

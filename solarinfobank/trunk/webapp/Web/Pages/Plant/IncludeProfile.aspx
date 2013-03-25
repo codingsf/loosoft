@@ -217,7 +217,7 @@
             
           </div><div class="sb_down"></div>
           <div style="padding-right:20px; text-align:right; padding-top:15px; padding-bottom:15px;">
-            <%if (!AuthService.isAllow(AuthorizationCode.EDIT_PLANT))
+            <%if (!AuthService.isAllow(AuthorizationCode.EDIT_PLANT) || UserUtil.isDemoUser)
               { %><input name="Submit" type="button" class="subbu09" value="<%=Resources.SunResource.MONITORITEM_EDIT %>" />
             <%}
               else

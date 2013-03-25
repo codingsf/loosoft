@@ -45,7 +45,7 @@
 
     <script type="text/javascript" src="/editor/fckeditor.js"></script>
 
-    <link href="../../style/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/style/colorbox.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
         .hide_dst
         {
@@ -1850,10 +1850,9 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="fal
                                         </td>
                                         <td>
                                             <%=Html.DropDownListFor(model => model.dst_enable, new List<SelectListItem>(){
-new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="false"},
-new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_ENABLE, Value="true"}
-
-}, new { @class = "txtbu01",style="width:181px;" })%>
+                                            new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_DISABLE, Value="false"},
+                                            new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_ENABLE, Value="true"}
+                                            }, new { @class = "txtbu01",style="width:181px;" })%>
                                         </td>
                                     </tr>
                                     <tr>
@@ -1871,11 +1870,12 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_ENABLE, Value="true
                                         </td>
                                         <td>
                                             <%=Html.TextBoxFor(model=>model.startDate,new {
-    @readonly = "readonly",
-    @class = "txtbu01 ref",
-    onclick = "WdatePicker({dateFmt:'MM-dd HH:00:00',isShowClear:true,lang:'" + (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower() + "'})"
-})%><span class="red ref">*</span><input style="display: inline;" class="txtbu01 txt010 ref1"
-    disabled="disabled ">
+                                                @readonly = "readonly",
+                                                @class = "txtbu01 ref",
+                                                @style="width:120px;",
+                                                onclick = "WdatePicker({dateFmt:'MM-dd HH:00:00',isShowClear:true,lang:'" + (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower() + "'})"
+                                            })%><span class="red ref">*</span><input style="display: inline; width:120px;" class="txtbu01 txt010 ref1"
+                                                disabled="disabled ">06-01 03:00:00
                                         </td>
                                     </tr>
                                     <tr>
@@ -1893,12 +1893,13 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_ENABLE, Value="true
                                         </td>
                                         <td width="34%">
                                             <%=Html.TextBoxFor(model => model.endDate, new
-{
-    @readonly = "readonly",
-    @class = "txtbu01 ref",
-    onclick = "WdatePicker({dateFmt:'MM-dd HH:00:00',isShowClear:true,lang:'" + (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower() + "'})"
-})%><span class="red ref">*</span><input style="display: inline;" class="txtbu01 txt010 ref1"
-    disabled="disabled ">
+                                                {
+                                                    @readonly = "readonly",
+                                                    @class = "txtbu01 ref",
+                                                    @style = "width:120px;",
+                                                    onclick = "WdatePicker({dateFmt:'MM-dd HH:00:00',isShowClear:true,lang:'" + (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower() + "'})"
+                                                })%><span class="red ref">*</span><input style="display: inline; width:120px;" class="txtbu01 txt010 ref1"
+                                                    disabled="disabled ">08-01 03:00:00
                                         </td>
                                     </tr>
                                     <tr>
@@ -1919,6 +1920,7 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_ENABLE, Value="true
                                                 style="display: inline;" class="txtbu01 txt010 ref1" disabled="disabled ">
                                         </td>
                                     </tr>
+                                    <%-- 商议后电站自动刷新功能替换电站预测年发电量输
                                     <tr>
                                         <td class="pl20" height="28">
                                             <strong><%=Resources.SunResource.PLANT_ENERGY_FORECAST_VALUE%>:</strong>
@@ -2004,6 +2006,7 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_ENABLE, Value="true
                                             </table>
                                         </td>
                                     </tr>
+                                    --%>
                                 </tbody>
                             </table>
                         </div>
@@ -2016,11 +2019,11 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_ENABLE, Value="true
                         <div class="sb_mid">
                             <div class="ades">
                                 <strong style="float: left">
-                                    <%=Resources.SunResource.PLANT_PROFILE_DESCRIPTION %>:</strong>
+                                <%=Resources.SunResource.PLANT_PROFILE_DESCRIPTION %>:</strong>
                                 <%=Html.TextAreaFor(model=>model.description,new { rows="15" ,cols="116" }) %>
 
                                 <script type="text/javascript">
-                                    createCkEditor("/editor/", "description", 600, 320, "MyToolbar", '', '', true, 80, 'replace', '<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'); ; ; ;</script>
+                                    createCkEditor("/editor/", "description", 600, 320, "MyToolbar", '', '', true, 80, 'replace', '<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'); ; ; ;                                </script>
 
                             </div>
                         </div>
@@ -2040,7 +2043,7 @@ new SelectListItem(){ Text= Resources.SunResource.PLANT_EDIT_ENABLE, Value="true
                                 type="button" style="margin-left: 50PX" onclick="window.location.href='/plant/includeprofile/<%=this.Model.id %>'" />
                             <%} %>
 
-                            <script type="text/javascript">                                setup();</script>
+                            <script type="text/javascript">setup();</script>
 
                         </div>
                     </div>

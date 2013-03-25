@@ -59,7 +59,7 @@
               <tr>
               <td width="33%"> </td>
                 <td width="33%">
-                <%if (Cn.Loosoft.Zhisou.SunPower.Service.AuthService.isAllow(AuthorizationCode.EVENT_REPORT))
+                <%if (Cn.Loosoft.Zhisou.SunPower.Service.AuthService.isAllow(AuthorizationCode.EVENT_REPORT) && !UserUtil.isDemoUser)
                   { %>
                 
                 <input name="Submit3" type="submit" class="txtbu03" value="<%=Resources.SunResource.REPORT_BUTTON_SAVE%>" />

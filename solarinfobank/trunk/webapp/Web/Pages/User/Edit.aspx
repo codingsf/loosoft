@@ -561,7 +561,7 @@
                     <table width="350" height="60" border="0" align="center" cellpadding="0" cellspacing="0">
                         <tr>
                             <td>
-                                <%if (!AuthService.isAllow(AuthorizationCode.EDIT_USER))
+                                <%if (!AuthService.isAllow(AuthorizationCode.EDIT_USER) || UserUtil.isDemoUser)
                                   { %>
                                 <input name="Submit" type="button" class="txtbu06" value="<%=Resources.SunResource.MONITORITEM_SAVE %>" />
                                 <%}
@@ -581,7 +581,7 @@
         </tr>
     </table>
 
-    <script>        setup();</script>
+    <script>setup();</script>
 
     <script>
         var count = $("#s1 option").length;

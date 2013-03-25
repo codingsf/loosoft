@@ -403,6 +403,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             return RedirectToAction("addplant", "user");
         }
+
         /// <summary>
         /// 功能：添加电站信息
         /// 描述：根据电站信息编辑电站
@@ -484,19 +485,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
         /// <summary>
         /// 功能：删除电站
+        /// 删除电站只能删除顶层电站，即parentId = 0 || parentId is null
         /// 描述：根据电站id删除电站信息
         /// </summary>
         /// <returns>返回页面</returns>
         [IsLoginAttribute]
         public ActionResult Detele(int id)
         {
-
             Plant plant = FindPlant(id);//根据电站id获取电站
-            //如果是组合电站，批量更新原来被组合电站的父id
-            if (plant.isVirtualPlant)
-            {
-                plantService.UpdateParentId(id);
-            }
 
             if (!string.IsNullOrEmpty(plant.pic))
             {
@@ -506,26 +502,34 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     System.IO.File.Delete(HttpContext.Server.MapPath("/ufile/" + s[i]));
                 }
             }
-
-            foreach (PlantUnit unit in plant.plantUnits)
+            if (!plant.isVirtualPlant)
             {
-                unit.collector.isUsed = false;
-                CollectorInfoService.GetInstance().Save(unit.collector);
-            }
-            //reportConfigService.DeletePlantReports(plant.id.ToString());
-
-            //删除电站时，把用户和电站关系对应表中的删除
-            //plantUserService.ClosePlant(id, int.Parse(plant.userID.ToString()));
-
-
-            //将该电站下的子电站和当前操作人重新建立关联
-            foreach (Plant subplant in plant.childs)
-            {
-                plantPortalUserService.AddPlantPortalUser(new PlantPortalUser() { plantID = subplant.id, userID = (int)plant.userID });
+                foreach (PlantUnit unit in plant.plantUnits)
+                {
+                    
+                    unit.collector.isUsed = false;
+                    CollectorInfoService.GetInstance().Save(unit.collector);
+                }
+                //删除实际电站下面的单元
+                PlantUnitService.GetInstance().DeletePlantUnitByPlant(plant.id);
             }
 
-            //实际电站删除单元
+            //删除电站时，把该电站的所有电站用户关联关系删除，要同时接触和一般用户和门户用户的关系，因为顶层电站可能同时与两种用户建立关联
+            PlantUserService.GetInstance().DelPlantUserByPlantID(id);
+            plantPortalUserService.DelPlantUserByPlantID(id);
+            //如果是组合电站，批量更新原来被组合电站的父id,即下级电站释放为顶层电站
+            if (plant.isVirtualPlant)
+            {
+                plantService.UpdateParentId(id);
 
+                //将该电站下的子电站和当前操作人重新建立关联
+                foreach (Plant subplant in plant.childs)
+                {
+                    PlantUserService.GetInstance().AddPlantUser(new PlantUser() { plantID = subplant.id, userID = (int)plant.userID , roleId = Role.ROLE_SYSMANAGER });
+                }
+            }
+
+            //删除电站本身
             plantService.DeletePlantById(id);
 
             UserUtil.ResetLogin(UserUtil.getCurUser());
@@ -1485,6 +1489,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 用户所有关联电站的设备告警
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="dtype"></param>
         public void WarningList(string id, string dtype)
         {
             int pageSize = 10;
@@ -1514,8 +1523,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             Hashtable table = null;
             foreach (Plant pnt in user.displayPlants)
             {
-                if (pnt.plantUnits != null && pnt.allFactUnits.Count > 0)
-                    foreach (PlantUnit unit in pnt.allFactUnits)
+                IList<PlantUnit> allFactUnits = pnt.allFactUnits;
+                if (allFactUnits != null && allFactUnits.Count > 0)
+                    foreach (PlantUnit unit in allFactUnits)
                     {
                         if (unit.devices != null && unit.devices.Count > 0)
                         {
@@ -1811,11 +1821,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             #region 变量
             string id = Request["id"];
             string pids = Request.Form["pids"];
+            string[] pidArr = pids.Split(',');
             string country = Request.Form["s1"];
             string city = Request.Form["s2"];
             string name = Request.Form["vname"];
             string descr = Request.Form["descr"];
-            string[] pid = pids.Split(',');
+
             string guid = Request["guid"];
             string structPic = Request["structPic"];
             string file = Request["file"];
@@ -1827,49 +1838,51 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             int vid = 0;
             int.TryParse(id, out vid);
-            if (vid > 0)//更新虚拟电站
-            {
-                Plant vplant = plantService.GetPlantInfoById(vid);
-                foreach (Plant pnt in vplant.childs)
-                {
-                    if (pid.Contains(string.Format("{0},", pnt.id)) == false)
-                    {
-                        plantPortalUserService.AddPlantPortalUser(new PlantPortalUser() { plantID = pnt.id, userID = user.id });
-                    }
-                }
-            }
+
             city = (city == null || city.ToLower().Equals("null")) ? string.Empty : city;
             #endregion
+            bool isNew = vid == 0;
+            if (!isNew)
+            {
+                //修改时先批量清除下级电站的有父id为0
+                plantService.UpdateParentId(vid);
+            }
 
             //先取得当前电站
             vid = plantService.Save(new Plant { id = vid, name = name, plantIds = pids, description = descr, userID = user.id, parentId = 0, country = country, city = city, pic = guid, isVirtualPlant = true, structPic = structPic });
-            if (string.IsNullOrEmpty(id))
-                ReportService.GetInstance().batchCreateSysRunReport(0, vid);
-            //先批量清楚原有父id
-            plantService.UpdateParentId(vid);
-            //删除组合电站的用户和电站对应关系
-            plantPortalUserService.ClosePlant(vid, user.id);
-            //建立创建的
-            plantPortalUserService.AddPlantPortalUser(new PlantPortalUser() { plantID = vid, userID = user.id });
 
-            string[] array = pids.Split(',');
 
-            foreach (string item in array)
+            //将组合电站的下级电站和一般用户解除关系，因为以便用户只能关联顶层电站,d但是不用接触和门户用户的关系，因为非顶层电站也可以共享给门户用户
+            if (vid > 0)
             {
-                if (string.IsNullOrEmpty(item) == false)
+                //将新分配的下级电站的父电站设置下
+                foreach (string item in pidArr)
                 {
-                    int temp = 0;
-                    int.TryParse(item, out temp);
-                    Plant plant = plantService.GetPlantInfoById(temp);
-                    plant.parentId = vid;
-                    plantService.Save(plant);
+                    if (!string.IsNullOrEmpty(item))
+                    {
+                        int temp = 0;
+                        int.TryParse(item, out temp);
+                        Plant plant = plantService.GetPlantInfoById(temp);
+                        plant.parentId = vid;
+                        plantService.Save(plant);
 
-                    //删除被组合电站的用户和电站对应关系
-                    plantPortalUserService.DelPlantUserByPlantID(plant.id);
+                        //删除被组合电站的用户和电站对应关系,废弃，非顶层电站也可以被共享给门户用户
+                        //plantPortalUserService.DelPlantUserByPlantID(plant.id);
+                    }
                 }
 
+                Plant vplant = plantService.GetPlantInfoById(vid);
+                foreach (Plant pnt in vplant.childs)
+                {
+                    PlantUserService.GetInstance().DelPlantUserByPlantID(pnt.id);
+                }
             }
 
+            if (isNew)
+            {
+                //建立虚拟电站与建立者直接的创建的
+                PlantUserService.GetInstance().AddPlantUser(new PlantUser() { plantID = vid, userID = user.id, shared=false,roleId=Role.ROLE_SYSMANAGER });
+            }
 
             return Content("ok");
         }
@@ -2046,9 +2059,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         public ActionResult EnergyFilter(int id, int? pid, string yyyyMMdd)
         {
             User user = UserService.GetInstance().Get(id);
-
-            IList<Plant> plants = user.allOwnFactPlants;
-            ViewData["plants"] = plants;
+            IList<Plant> plants = user.allRelatedFactPlants;
             IList<Plant> handlePlants = null;
             int timezone = 0;
             if (pid != null && pid.Value != 0)
@@ -2061,8 +2072,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             else
             {
                 handlePlants = plants;
-                timezone = plants[0].timezone;
+                timezone = user.timezone;
+                //timezone = plants[0].timezone;
             }
+
+            ViewData["plants"] = plants;
 
             if (yyyyMMdd == null) yyyyMMdd = CalenderUtil.curDateWithTimeZone(timezone, "yyyy-MM-dd");
             int year = int.Parse(yyyyMMdd.Split('-')[0]);
@@ -2129,8 +2143,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return View();
         }
 
-
-
         public ActionResult template()
         {
             HttpContext.Application[ComConst.Templete] = null;
@@ -2138,7 +2150,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             ViewData["template"] = templates;
             return View();
         }
-
 
         [HttpPost]
         public ActionResult template(HttpPostedFileBase logopic, string sysName, string template)
@@ -2198,11 +2209,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             userservice.save(user);
             return View();
         }
+
         /// <summary>
         /// 加载其他电站一般用户列表页面
         /// </summary>
         /// <returns></returns>
-
         [IsLoginAttribute]
         public ActionResult PlantUsers()
         {
@@ -2246,7 +2257,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 {
                     if (string.IsNullOrEmpty(p))
                         continue;
-                    PlantUserService.GetInstance().AddPlantUser(new PlantUser() { userID = id, plantID = int.Parse(p), roleId = int.Parse(role) });
+                    PlantUserService.GetInstance().AddPlantUser(new PlantUser() { userID = id, plantID = int.Parse(p), roleId = int.Parse(role), shared=true });
                 }
             }
 
@@ -2388,16 +2399,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             string uid = Request.Form["uid"];
             int userId = 0;
             int.TryParse(uid, out userId);
+            //要分配的一般用户
+            User user = userservice.Get(userId);
             //先删除已有关系
             PlantUserService.GetInstance().DelPlantUserByUserId(userId);
             //再创建新关系
-            if (string.IsNullOrEmpty(str) == false)
+            if (!string.IsNullOrEmpty(str))
             {
                 foreach (string p in str.Split(','))
                 {
                     if (string.IsNullOrEmpty(p))
                         break;
-                    PlantUserService.GetInstance().AddPlantUser(new PlantUser() { plantID = int.Parse(p), userID = userId, shared = true });
+                    PlantUserService.GetInstance().AddPlantUser(new PlantUser() { plantID = int.Parse(p), userID = userId, shared = true, roleId = user.userRole.roleId});
                 }
             }
             return Redirect("/user/plantuser");

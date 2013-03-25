@@ -15,9 +15,9 @@
    
       <!--级联对象集合-->
       <result property="collector"	lazyLoad="false"	column="collectorID" select="collector_get" />
-      <result property="logicalDevices"	lazyLoad="true"	column="id" select="device_get_plantunitid_lazy" />
+      <!--单元关联的物理设备，和单元对应的采集器的数据设备区别-->
+      <result property="devices"	lazyLoad="true"	column="id" select="device_get_plantunitid_lazy" />
       <result property="plant" lazyLoad="true"	column="plantID" select="plant_get_lazy" />
-
     </resultMap>
 
     <resultMap id="plant_unit_result_lazy" class="PlantUnit">
@@ -27,7 +27,7 @@
           <result property="collectorID"	column="collectorID"/>
           <!--级联对象集合-->
           <result property="collector" lazyLoad="true"	column="collectorID" select="collector_get" />
-        </resultMap>
+    </resultMap>
   </resultMaps>
   
   <cacheModels>
@@ -46,7 +46,6 @@
       <property name="CacheSize" value="10000"/>
     </cacheModel>
   </cacheModels>
-  
   
   <statements>
     <!--根据电站id和单元id，删除该电站的单元 （张月）-->

@@ -225,10 +225,6 @@
     <Content Include="SqlMap.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="E:\working\SunInfoBank\trunk\email-sf\EmailService\EmailService.csproj">
-      <Project>{BEB75DC3-5D94-4C66-8CCF-72632F7C52BA}</Project>
-      <Name>EmailService</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{6AE1548A-E450-4197-8666-3D31D09527FD}</Project>
       <Name>Common</Name>
@@ -423,7 +419,7 @@
     <Content Include="Images\sub\sub02ico03.jpg" />
     <Content Include="Images\sub\sub02ico04.jpg" />
     <Content Include="Images\sub\sub02ico05.jpg" />
-    <Content Include="Images\sub\sub02icobg.png.png" />
+    <Content Include="Images\sub\sub02icobg.png" />
     <Content Include="Images\sub\sub02noclick.jpg" />
     <Content Include="Images\sub\sub02onclick.jpg" />
     <Content Include="Images\sub\sub02righ01.jpg" />
@@ -436,10 +432,10 @@
     <Content Include="Images\sub\sub03bg02.gif" />
     <Content Include="Images\sub\sub03bg02.jpg" />
     <Content Include="Images\sub\sub03icobg.gif" />
-    <Content Include="Images\sub\sub03icobg.png.png" />
-    <Content Include="Images\sub\sub03icobg01.png.png" />
-    <Content Include="Images\sub\sub03icobg02.png.png" />
-    <Content Include="Images\sub\sub03icobg03.png.png" />
+    <Content Include="Images\sub\sub03icobg.png" />
+    <Content Include="Images\sub\sub03icobg01.png" />
+    <Content Include="Images\sub\sub03icobg02.png" />
+    <Content Include="Images\sub\sub03icobg03.png" />
     <Content Include="Images\sub\subbiao01.jpg" />
     <Content Include="Images\sub\subbiao02.jpg" />
     <Content Include="Images\sub\subico_date.gif" />
@@ -1795,6 +1791,7 @@
     <Content Include="Images\lightbulb.gif" />
     <Content Include="Images\lightning.gif" />
     <Content Include="Images\line.gif" />
+    <Content Include="Images\logo.gif" />
     <Content Include="Images\map\db.gif" />
     <Content Include="Images\map\mapbg0.png" />
     <Content Include="Images\map\n.jpg" />
@@ -1829,6 +1826,14 @@
     <Content Include="Images\rlogo.jpg" />
     <Content Include="Images\search.gif" />
     <Content Include="Images\slico.gif" />
+    <Content Include="Images\style_01.jpg" />
+    <Content Include="Images\style_02.jpg" />
+    <Content Include="Images\style_03.jpg" />
+    <Content Include="Images\style_04.jpg" />
+    <Content Include="Images\style_05.jpg" />
+    <Content Include="Images\style_06.jpg" />
+    <Content Include="Images\style_07.jpg" />
+    <Content Include="Images\style_08.jpg" />
     <Content Include="Images\sub\agree.gif" />
     <Content Include="Images\sub\chart_curve.gif" />
     <Content Include="Images\sub\ck.gif" />
@@ -1849,13 +1854,13 @@
     <Content Include="Images\sub\lsel04.gif" />
     <Content Include="Images\sub\namebb.gif" />
     <Content Include="Images\sub\noagree.gif" />
-    <Content Include="Images\sub\noagree副本.gif" />
     <Content Include="Images\sub\node-design.gif" />
     <Content Include="Images\sub\pencil0.gif" />
     <Content Include="Images\sub\qx01.gif" />
     <Content Include="Images\sub\qx02.gif" />
     <Content Include="Images\sub\subbg010.gif" />
     <Content Include="Images\sub\subbg012.gif" />
+    <Content Include="Images\sub\subico006-01.jpg" />
     <Content Include="Images\sub\subico006.jpg" />
     <Content Include="Images\sub\subico0120.gif" />
     <Content Include="Images\sub\subico0160.gif" />
@@ -2012,7 +2017,7 @@
     <Content Include="Maps\PlantUser.xml" />
     <Content Include="Maps\ProductPicture.xml" />
     <Content Include="Maps\MailConfig.xml" />
-    <Content Include="Maps\report.xml" />
+    <Content Include="Maps\Report.xml" />
     <Content Include="Maps\ReportDataItem.xml" />
     <Content Include="Maps\LoginRecord.xml" />
     <Content Include="Maps\Role.xml" />
@@ -2187,7 +2192,6 @@
     <Content Include="Pages\Plant\inverterStructTree.aspx" />
     <Content Include="Pages\Plant\IncludeOverviewHtml.aspx" />
     <Content Include="Pages\Plant\DeviceDataOverview.aspx" />
-    <Content Include="Pages\Plant\副本 deviceData.aspx" />
     <Content Include="Pages\Plant\RelationConfig.aspx" />
     <Content Include="Pages\Plant\LeftRelation.aspx" />
     <Content Include="Pages\Plant\RightRelation.aspx" />
@@ -2775,7 +2779,6 @@
     <Content Include="template\azureblue\Images\map\touming.gif" />
     <Content Include="template\azureblue\Images\mb\azureblue.jpg" />
     <Content Include="template\azureblue\Images\mb\black_green.jpg" />
-    <Content Include="template\azureblue\Images\mb\bule.jpg" />
     <Content Include="template\azureblue\Images\mb\darkgreen.jpg" />
     <Content Include="template\azureblue\Images\mb\default.jpg" />
     <Content Include="template\azureblue\Images\mb\grey.jpg" />
@@ -2956,6 +2959,7 @@
     <Content Include="template\azureblue\Images\sub\subbg_ldown.jpg" />
     <Content Include="template\azureblue\Images\sub\subbubg001.gif" />
     <Content Include="template\azureblue\Images\sub\subbubg01.gif" />
+    <Content Include="template\azureblue\Images\sub\subico006-01.jpg" />
     <Content Include="template\azureblue\Images\sub\subico006.jpg" />
     <Content Include="template\azureblue\Images\sub\subico01.gif" />
     <Content Include="template\azureblue\Images\sub\subico010.gif" />
@@ -3122,6 +3126,7 @@
     <Content Include="template\azureblue\style\switch.css" />
     <Content Include="template\azureblue\style\video.css" />
     <Content Include="template\azureblue\style\xcy.css" />
+    <Content Include="template\black_green\black_green.jpg" />
     <Content Include="template\black_green\Images\201104121018141864img01.jpg" />
     <Content Include="template\black_green\Images\201104121018227785img01.jpg" />
     <Content Include="template\black_green\Images\42766101.jpg" />
@@ -3480,7 +3485,6 @@
     <Content Include="template\black_green\Images\map\touming.gif" />
     <Content Include="template\black_green\Images\mb\azureblue.jpg" />
     <Content Include="template\black_green\Images\mb\black_green.jpg" />
-    <Content Include="template\black_green\Images\mb\bule.jpg" />
     <Content Include="template\black_green\Images\mb\darkgreen.jpg" />
     <Content Include="template\black_green\Images\mb\default.jpg" />
     <Content Include="template\black_green\Images\mb\grey.jpg" />
@@ -3667,6 +3671,7 @@
     <Content Include="template\black_green\Images\sub\subbg_ldown.jpg" />
     <Content Include="template\black_green\Images\sub\subbubg001.gif" />
     <Content Include="template\black_green\Images\sub\subbubg01.gif" />
+    <Content Include="template\black_green\Images\sub\subico006-01.jpg" />
     <Content Include="template\black_green\Images\sub\subico006.jpg" />
     <Content Include="template\black_green\Images\sub\subico01.gif" />
     <Content Include="template\black_green\Images\sub\subico010.gif" />
@@ -4374,6 +4379,7 @@
     <Content Include="template\blue\Images\sub\subbg_ldown.jpg" />
     <Content Include="template\blue\Images\sub\subbubg001.gif" />
     <Content Include="template\blue\Images\sub\subbubg01.gif" />
+    <Content Include="template\blue\Images\sub\subico006-01.jpg" />
     <Content Include="template\blue\Images\sub\subico006.jpg" />
     <Content Include="template\blue\Images\sub\subico01.gif" />
     <Content Include="template\blue\Images\sub\subico010.gif" />
@@ -4544,6 +4550,7 @@
     <Content Include="template\blue\style\switch.css" />
     <Content Include="template\blue\style\video.css" />
     <Content Include="template\blue\style\xcy.css" />
+    <Content Include="template\darkgreen\darkgreen.jpg" />
     <Content Include="template\darkgreen\Images\201104121018141864img01.jpg" />
     <Content Include="template\darkgreen\Images\201104121018227785img01.jpg" />
     <Content Include="template\darkgreen\Images\42766101.jpg" />
@@ -5104,6 +5111,7 @@
     <Content Include="template\darkgreen\Images\sub\subbiao02.jpg" />
     <Content Include="template\darkgreen\Images\sub\subbubg001.gif" />
     <Content Include="template\darkgreen\Images\sub\subbubg01.gif" />
+    <Content Include="template\darkgreen\Images\sub\subico006-01.jpg" />
     <Content Include="template\darkgreen\Images\sub\subico006.jpg" />
     <Content Include="template\darkgreen\Images\sub\subico01.gif" />
     <Content Include="template\darkgreen\Images\sub\subico010.gif" />
@@ -5274,6 +5282,7 @@
     <Content Include="template\darkgreen\style\switch.css" />
     <Content Include="template\darkgreen\style\video.css" />
     <Content Include="template\darkgreen\style\xcy.css" />
+    <Content Include="template\default\default.jpg" />
     <Content Include="template\default\Images\201104121018141864img01.jpg" />
     <Content Include="template\default\Images\201104121018227785img01.jpg" />
     <Content Include="template\default\Images\42766101.jpg" />
@@ -5644,7 +5653,6 @@
     <Content Include="template\default\Images\map\touming.gif" />
     <Content Include="template\default\Images\mb\azureblue.jpg" />
     <Content Include="template\default\Images\mb\black_green.jpg" />
-    <Content Include="template\default\Images\mb\bule.jpg" />
     <Content Include="template\default\Images\mb\darkgreen.jpg" />
     <Content Include="template\default\Images\mb\default.jpg" />
     <Content Include="template\default\Images\mb\grey.jpg" />
@@ -5841,6 +5849,7 @@
     <Content Include="template\default\Images\sub\subbiao02.jpg" />
     <Content Include="template\default\Images\sub\subbubg001.gif" />
     <Content Include="template\default\Images\sub\subbubg01.gif" />
+    <Content Include="template\default\Images\sub\subico006-01.jpg" />
     <Content Include="template\default\Images\sub\subico006.jpg" />
     <Content Include="template\default\Images\sub\subico01.gif" />
     <Content Include="template\default\Images\sub\subico010.gif" />
@@ -6383,7 +6392,6 @@
     <Content Include="template\grey\Images\map\touming.gif" />
     <Content Include="template\grey\Images\mb\azureblue.jpg" />
     <Content Include="template\grey\Images\mb\black_green.jpg" />
-    <Content Include="template\grey\Images\mb\bule.jpg" />
     <Content Include="template\grey\Images\mb\darkgreen.jpg" />
     <Content Include="template\grey\Images\mb\default.jpg" />
     <Content Include="template\grey\Images\mb\grey.jpg" />
@@ -7102,7 +7110,7 @@
     <Content Include="template\light_green\Images\map\touming.gif" />
     <Content Include="template\light_green\Images\mb\azureblue.jpg" />
     <Content Include="template\light_green\Images\mb\black_green.jpg" />
-    <Content Include="template\light_green\Images\mb\bule.jpg" />
+    <Content Include="template\light_green\Images\mb\blue.jpg" />
     <Content Include="template\light_green\Images\mb\darkgreen.jpg" />
     <Content Include="template\light_green\Images\mb\default.jpg" />
     <Content Include="template\light_green\Images\mb\grey.jpg" />
@@ -7292,6 +7300,7 @@
     <Content Include="template\light_green\Images\sub\subbiao02.jpg" />
     <Content Include="template\light_green\Images\sub\subbubg001.gif" />
     <Content Include="template\light_green\Images\sub\subbubg01.gif" />
+    <Content Include="template\light_green\Images\sub\subico006-01.jpg" />
     <Content Include="template\light_green\Images\sub\subico006.jpg" />
     <Content Include="template\light_green\Images\sub\subico01.gif" />
     <Content Include="template\light_green\Images\sub\subico010.gif" />
@@ -7823,7 +7832,7 @@
     <Content Include="template\red\Images\map\touming.gif" />
     <Content Include="template\red\Images\mb\azureblue.jpg" />
     <Content Include="template\red\Images\mb\black_green.jpg" />
-    <Content Include="template\red\Images\mb\bule.jpg" />
+    <Content Include="template\red\Images\mb\blue.jpg" />
     <Content Include="template\red\Images\mb\darkgreen.jpg" />
     <Content Include="template\red\Images\mb\default.jpg" />
     <Content Include="template\red\Images\mb\grey.jpg" />
@@ -8006,6 +8015,7 @@
     <Content Include="template\red\Images\sub\subbg_ldown.jpg" />
     <Content Include="template\red\Images\sub\subbubg001.gif" />
     <Content Include="template\red\Images\sub\subbubg01.gif" />
+    <Content Include="template\red\Images\sub\subico006-01.jpg" />
     <Content Include="template\red\Images\sub\subico006.jpg" />
     <Content Include="template\red\Images\sub\subico01.gif" />
     <Content Include="template\red\Images\sub\subico010.gif" />
@@ -8195,11 +8205,13 @@
     <None Include="help\it-ch\SunInfo Bank User Manual.pdf" />
     <None Include="help\zh-cn\SolarInfo Bank User Manual.pdf" />
     <None Include="mfile\Logger-SN Ipmort Bank P111.xlsx" />
+    <Content Include="Pages\Shared\ContentInside.Master" />
+    <Content Include="Pages\Shared\EmptyInside.Master" />
+    <Content Include="Pages\Shared\Virtual.Master" />
     <None Include="Recource\STSONG.TTF" />
     <None Include="Recource\template.xlsx" />
     <None Include="template\blue\Images\sub\Thumbs.db" />
     <None Include="template\blue\Images\sub\复件 subico05.psd" />
-    <None Include="template\blue\Thumbs.db" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="config\" />

@@ -121,12 +121,29 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 for (int i = 0; i < s.Length; i++)
                 {
                     //根据电站id和电站单元Id查询该电站是否有该单元
-                    PlantUnit plantUnit = plantUnitService.GetPlantUnitByPlantIdPlantUnitId(int.Parse(plantId), Convert.ToInt32(s[i]));
+                    int plantUnitId = Convert.ToInt32(s[i]);
+                    PlantUnit plantUnit = plantUnitService.GetPlantUnitByPlantIdPlantUnitId(int.Parse(plantId), plantUnitId);
                     if (plantUnit == null)
                         return RedirectToAction("list", "unit", new { @id = plantId });
                     else
                     {
-                        plantUnitService.DeletePlantUnit(int.Parse(plantId), Convert.ToInt32(s[i]));//根据电站Id和电站单元Id删除电站单元
+                        Collector collector = plantUnit.collector;
+                        IList<Device> devices = plantUnit.devices;
+
+                        int res = plantUnitService.DeletePlantUnit(int.Parse(plantId), plantUnitId);//根据电站Id和电站单元Id删除电站单元
+                        if (res > 0)//删除成功后将采集器的使用标识为false
+                        {
+                            collector.isUsed = false;
+                            collectorInfoService.Save(collector);
+                            //删除单元要将单元的物理设备的planunitid属性值null，即接触物理关系
+                            foreach (Device device in devices)
+                            {
+                                if (device.plantUnitId != plantUnitId) continue;//已有属主则不纳入该单元
+                                device.parentId = 0;
+                                device.plantUnitId = null;
+                                DeviceService.GetInstance().Save(device);
+                            }
+                        }
                     }
                 }
             }
@@ -137,6 +154,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             return RedirectToAction("list", "unit", new { @id = plantId });
         }
+
         /// <summary>
         /// 功能：删除单元
         /// 描述：根据电站Id和单元Id
@@ -149,22 +167,30 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         {
             try
             {
+                int plantUnitId = Convert.ToInt32(unitId);
                 //根据电站id和电站单元Id查询该电站是否有该单元
-                PlantUnit plantUnit = plantUnitService.GetPlantUnitByPlantIdPlantUnitId(int.Parse(plantId), Convert.ToInt32(unitId));
+                PlantUnit plantUnit = plantUnitService.GetPlantUnitByPlantIdPlantUnitId(int.Parse(plantId), plantUnitId);
                 if (plantUnit == null)
                     return RedirectToAction("list", "unit", new { @id = plantId });
                 else
                 {
-                    plantUnitService.DeletePlantUnit(int.Parse(plantId), int.Parse(unitId));//根据电站Id和电站单元Id删除电站单元
-                    Collector collector = collectorInfoService.GetClollectorByCodePass(plantUnit.collector.code, plantUnit.collector.password);
-                    PlantUnit plantunit = plantUnitService.GetPlantUnitByCollectorId(collector.id);//查找在单元表里是否绑定了该采集器
-                    if (plantunit != null)
-                        collector.isUsed = true;//如果采集器已经和单元绑定了就为已用状态
-                    else
+                    Collector collector = plantUnit.collector;
+                    IList<Device> devices = plantUnit.devices;
+                    int res = plantUnitService.DeletePlantUnit(int.Parse(plantId), plantUnitId);//根据电站Id和电站单元Id删除电站单元
+                    if (res > 0)//删除成功后将采集器的使用标识为false
+                    {
                         collector.isUsed = false;
-                    collectorInfoService.Save(collector);
+                        collectorInfoService.Save(collector);
+                        //删除单元要将单元的物理设备的planunitid属性值null，即接触物理关系
+                        foreach (Device device in devices)
+                        {
+                            if (device.plantUnitId != plantUnitId) continue;//已有属主则不纳入该单元
+                            device.parentId = 0;
+                            device.plantUnitId = null;
+                            DeviceService.GetInstance().Save(device);
+                        }
+                    }
                 }
-
             }
             catch (Exception e)
             {
@@ -173,6 +199,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             return RedirectToAction("list", "unit", new { @id = plantId });
         }
+
         /// <summary>
         /// 功能：跳转到添加页面
         /// </summary>
@@ -205,12 +232,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         [IsLoginAttribute]
         public ActionResult Save(int plantid, PlantUnit plantunit)
         {
-            //foreach (PlantUnit plantunit in plantunits)
-            //{  //根据采集器名称和密码判断该采集器设否存在
+            //根据采集器名称和密码判断该采集器设否存在
             Collector collector = collectorInfoService.GetClollectorByCodePass(plantunit.collector.code, plantunit.collector.password);
             if (collector != null && (collector.userId == 0 || collector.userId == UserUtil.getCurUser().id))
             {
-
                 PlantUnit plantUnit = plantUnitService.GetPlantUnitByCollectorId(collector.id);//根据collectorID去查询，该采集器是否已经绑定了电站
                 if (plantUnit == null)
                 {
@@ -220,15 +245,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     int plantUnitId = plantUnitService.AddPlantUnit(plantunit);//添加电站单元
                     collector.isUsed = true;//如果采集器已经和单元绑定了就为已用状态
                     collectorInfoService.Save(collector);
-                    //绑定采集器 要更新设备的plantunitid parentId
+                    //绑定采集器要更新没有plantunitid的设备的plantunitid parenid
                     foreach (Device device in collector.devices)
                     {
+                        if (device.plantUnitId > 0) continue;//已有属主则不纳入该单元
                         device.parentId = 0;
                         device.plantUnitId = plantUnitId;
                         if (device.deviceModel == null) device.deviceModel = new DeviceModel();
                         DeviceService.GetInstance().Save(device);
                     }
-
 
                     if (Request["fromurl"] == null || Request["fromurl"].Equals(""))
                         return RedirectToAction("list", "unit", new { @id = plantid });
@@ -241,17 +266,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     collectorInfoService.Save(collector);
                     TempData["error"] = Resources.SunResource.PLANT_UNIT_BIND_COLLECTOR_BINDED;
                     return RedirectToAction("bind", "unit", new { @id = plantid, @name = plantunit.displayname, @code = plantunit.collector.code, @fromurl = Request["fromurl"] });
-
                 }
-
             }
             else
             {
                 TempData["error"] = Resources.SunResource.PLANT_UNIT_BIND_COLLECTOR_ERROR + "！";
                 return RedirectToAction("bind", "unit", new { @id = plantid, @name = plantunit.displayname, @code = plantunit.collector.code, @fromurl = Request["fromurl"] });
             }
-            //}
         }
+
         /// <summary>
         /// 功能：根据id跳转到编辑页面
         /// 作者：张月

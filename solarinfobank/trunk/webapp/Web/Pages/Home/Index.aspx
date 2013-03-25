@@ -497,11 +497,9 @@
         <div class="mainboxdown">
             <div class="mainboxdown_l">
                 <div class="indexicg">
-                    <span style="float: left;">
-                        <%= Resources.SunResource.HOME_INDEX_PLANT_DISTRIBUTION%></span>
+                    <span style="float: left;"><%= Resources.SunResource.HOME_INDEX_PLANT_DISTRIBUTION%></span>
                 </div>
-                <div style="clear: both;">
-                </div>
+               
                 <div class="mdl02">
                     <ul style="margin: 10px 0px 0px 0px; padding-left:120px;  overflow: hidden;">
                         <%
@@ -511,8 +509,6 @@
                         <li style="margin-top:5px;"><%=plant.name.Length>20?plant.name.Substring(0,20):plant.name%></li>
                         <%} %>
                     </ul>
-                </div>
-                <div>
                 </div>
             </div>
             <div class="mainboxdown_r">
@@ -530,10 +526,8 @@
                     </div>
                     <div style="padding-left: 15px;">
                         <label>
-  <input onclick="window.location.href='/app/index'" type="submit" name="Submit2" value="<%= Resources.SunResource.HOME_INDEX_MOBILE_BUTTON%> &gt;&gt;"  style="background:url(/images/dlown.jpg) no-repeat; width:85px; height:16px; color:#FFFFFF; text-align:center; border:none; font-family:Arial, Helvetica, sans-serif; padding-bottom:5px; cursor:pointer;"/>
-  </label>
-                    </div>
-                    <div>
+                        <input onclick="window.location.href='/app/index'" type="submit" name="Submit2" value="<%= Resources.SunResource.HOME_INDEX_MOBILE_BUTTON%> &gt;&gt;"  style="background:url(/images/dlown.jpg) no-repeat; width:85px; height:16px; color:#FFFFFF; text-align:center; border:none; font-family:Arial, Helvetica, sans-serif; padding-bottom:5px; cursor:pointer;"/>
+                        </label>
                     </div>
                 </div>
             </div>
@@ -543,9 +537,7 @@
     </div>
 
     <script src="/script/jquery.js" type="text/javascript"></script>
-
     <script src="/script/jquery.validate.js" type="text/javascript"></script>
-
     <script type="text/javascript">
         var action = '<%= Request.Url %>';
 

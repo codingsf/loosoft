@@ -27,11 +27,6 @@
 </script>
 
     <script type="text/javascript">
-        function loadRunData(deviceId) {
-        }
-    </script>
-    
-    <script type="text/javascript">
         var isFirst = true;
         function readyinit() {
             deviceChartInit();
@@ -94,7 +89,7 @@
                                         height="650">
                             </iframe>
                         </div>
-                        <!--右边边设备数据-->
+                        <!--右边设备图表数据-->
                         <div style=" float:right; width:570px; text-align:left;" id="content_container_control"></div>
                         </div>
                         <div style="clear: both; height: 60px;">

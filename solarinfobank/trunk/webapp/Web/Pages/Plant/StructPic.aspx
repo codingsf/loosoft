@@ -9,11 +9,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <script src="../../script/jquery-1.3.2.min.js" type="text/javascript"></script>
+    <script src="/script/jquery-1.3.2.min.js" type="text/javascript"></script>
 
-    <script src="../../script/jquery.colorbox.js" type="text/javascript"></script>
+    <script src="/script/jquery.colorbox.js" type="text/javascript"></script>
 
-    <link href="../../style/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="/style/colorbox.css" rel="stylesheet" type="text/css" />
 
     <script language="javascript" type="text/javascript">
         function getPageScroll() {
@@ -117,8 +117,7 @@
                                             <img src="/images/kj/kjiico01.gif" />
                                         </td>
                                         <td class="pv0216">
-                                        
-                                            <%=Model.isVirtualPlant?"电站":"单元" %>分布图设置
+                                         <%=Model.isVirtualPlant?"电站":"单元" %>分布图设置
                                         </td>
                                         <td align="right" class="help_r">
                                             <a href="/help/<%=(Session["Culture"] as CultureInfo).Name%>/SolarInfo Bank User Manual.pdf"
@@ -159,37 +158,40 @@
                     </div>
                     <div class="sb_mid" style="overflow: hidden; clear: both; height: 1000px;">
                         <div style="position:relative;" id="container">
-                            
+                            <center>
                             <% string path=Server.MapPath("~");
                                if (System.IO.File.Exists(string.Format("{0}/ufile/{1}", path, Model.structPic)) == false)
-                               { Response.Write("<center><font color='red'>未上传分布图</font></center>"); }
+                               { 
+                                   Response.Write("<center><font color='red'>未上传分布图</font></center>"); }
                                else
                                { %>
-                               <img src="/ufile/<%=Model.structPic %>" alt="" ondblclick="vControl('GETMOUSEPOSINPIC',this,event)" id="structimg" />
+                               <img src="/ufile/<%=Model.structPic %>" alt="" ondblclick="vControl('GETMOUSEPOSINPIC',this,event)" id="structimg"/>
                                 <%} %>
-                                  <%foreach (StructPoint point in ViewData["points"] as List<StructPoint>)
-                                  {%>
+                               <%
+                                   foreach (StructPoint point in ViewData["points"] as List<StructPoint>)
+                               {%>
                                     <div class="<%=Model.isVirtualPlant?StructPoint.typeCodePlant:StructPoint.typeCodeUnit %><%=point.id %>" style="position: absolute; top:<%=point.y %>px; left:<%=point.x %>px; color: Red;"><%=point.displayName %></div>
-                                <%} %>
+                                <%}%>
+                            </center>
                         </div>
                         <center>
                         <br />
-                            <input name="Submit23" class="subbu01" value="返回" style="margin-left: 50px;" onclick="history.go(-1);"
-                                type="button"></center>
+                        <input name="Submit23" class="subbu01" value="返回" style="margin-left: 50px;" onclick="history.go(-1);" type="button"/>
+                        </center>
                         <div id="items" style="display: none">
                             <%if (Model.isVirtualPlant)
                               {
                                   foreach (Plant plant in Model.childs)
                                   { %>
-                            <input type="radio" value="<%=plant.id %>" name="item" rel="<%=plant.name %>" /><%=plant.name %><br />
-                            <%}
+                                <input type="radio" value="<%=plant.id %>" name="item" rel="<%=plant.name %>" /><%=plant.name %><br />
+                                <%}
                               }
                               else
                               {
                                   foreach (PlantUnit unit in Model.plantUnits)
                                   {%>
-                            <input type="radio" value="<%=unit.id %>" name="item" rel="<%=unit.displayname %>" /><%=unit.displayname %><br />
-                            <%}
+                                <input type="radio" value="<%=unit.id %>" name="item" rel="<%=unit.displayname %>" /><%=unit.displayname %><br />
+                                <%}
                               } %>
                         </div>
                         <input type="hidden" id="cat" value="<%=Model.isVirtualPlant?StructPoint.typeCodePlant:StructPoint.typeCodeUnit %>" />

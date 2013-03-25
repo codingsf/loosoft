@@ -3,10 +3,11 @@
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
 <%@ Import Namespace="System.Globalization" %>
+<!--设备图表，实时数据，log等三者集成显示页面-->
 <!--
      <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %> <%=Model.name %>  <%=Resources.SunResource.CHART_DEVICE_DATA %> 
 -->
-<style type="text/css">
+<style type="text/css" >
     .ondbl
     {
         float: left;
@@ -24,7 +25,6 @@
         border-bottom: 1px solid #E6E6E6;
     }
 </style>
-
 
 <script type="text/javascript">
         var pageNo = 1;
@@ -83,12 +83,12 @@
                 loadPRChartData();  
         }
         
-        function loadRunData(deviceId)
+        function loadRunDataFrame(deviceId)
         {
             $("#deviceID").val(deviceId);
             var did=deviceId;
             var uid=$('#unitId').val();
-            var pid=<%=Model.id %>
+            var pid="<%=Model.id %>"
             loadContent('content_container_control','/plant/devicedataoverview/'+pid+'/'+did+'/'+uid,'ajax','GET');
         }
         
@@ -311,29 +311,26 @@
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy-MM-dd")%>"
     id="curYYYYMMDD2" />
 <div class="subrbox01" style="width: 560px">
-    <div class="bitab">
+    <div class="bitab" style="background:url(../../images/sub/subico006-01.jpg) no-repeat;">
         <ul id="bitab">
-            <li><a href="javascript:void(0);" id="chart">
-                <%=Resources.SunResource.CHART_CHART %></a></li>
-            <%if ((ViewData["device"] as Device).deviceTypeCode.Equals(DeviceData.INVERTER_CODE) && Model.getDetectorWithRenderSunshine() != null)
-              {  %>
-            <li><a href="javascript:void(0);" id="prchart">
-                <%=Resources.SunResource.DEVICE_PR_CHART%></a></li>
-            <%} %>
-            <li><a href="javascript:void(0);" id="rundata">
-                <%=Resources.SunResource.CHART_RUN_DATA %></a></li>
-            <li><a href="javascript:void(0);" id="fault">
-                <%=Resources.SunResource.CHART_FAULT %></a></li>
+            <li><a href="javascript:void(0);" id="chart"><%=Resources.SunResource.CHART_CHART %></a></li>
+            <%
+            if ((ViewData["device"] as Device).deviceTypeCode.Equals(DeviceData.INVERTER_CODE) && Model.getDetectorWithRenderSunshine() != null)
+            {%>
+            <li><a href="javascript:void(0);" id="prchart"><%=Resources.SunResource.DEVICE_PR_CHART%></a></li>
+            <%}%>
+            <li><a href="javascript:void(0);" id="rundata"><%=Resources.SunResource.CHART_RUN_DATA %></a></li>
+            <li><a href="javascript:void(0);" id="fault"><%=Resources.SunResource.CHART_FAULT %></a></li>
         </ul>
     </div>
-    <div class="sb_mid" style="width: 560px">
+    <!--class="sb_mid"-->
+    <div  style="width: 560px;">
         <div class="">
             <!-- This contains the hidden content for inline calls -->
             <div style='display: none'>
                 <div id='inline_example1' style='padding: 10px; background: #fff;'>
                     <center>
-                        <div id='monitor_container' style="width: 90%; height: 400px; margin-left: 40px;
-                            margin-right: 40px;">
+                        <div id='monitor_container' style="width: 90%; height: 400px; margin-left: 40px; margin-right: 40px;">
                         </div>
                         <div id="date_MonitorDayChart">
                             <div id="selectMonitorTable" style="margin-top: 10px;">
@@ -377,6 +374,8 @@
             </div>
         </div>
     </div>
+    <!--
     <div class="sb_down" style="width: 560px">
     </div>
+    -->
 </div>

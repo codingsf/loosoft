@@ -158,7 +158,7 @@
                         </select>
                         </td>
                         <td align="left">
-                        <%if (!AuthService.isAllow(AuthorizationCode.LOGS_CONFIRM))
+                        <%if (!AuthService.isAllow(AuthorizationCode.LOGS_CONFIRM) && !UserUtil.isDemoUser)
                           { %>
                             <input type="button" value="<%=Resources.SunResource.MONITORITEM_SUBMIT%>" class="subbu09" />
                             <%}

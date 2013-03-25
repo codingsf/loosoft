@@ -187,7 +187,7 @@
             <table width="244" height="60" border="0" align="center" cellpadding="0" cellspacing="0">
                 <tr>
                     <td width="111">
-                    <%if (AuthService.isAllow(AuthorizationCode.USER_CHANGE_PASSWORD))
+                    <%if (AuthService.isAllow(AuthorizationCode.USER_CHANGE_PASSWORD) && !UserUtil.isDemoUser)
                       { %>
                         <input name="Submit2" type="submit" class="txtbu03" value=" <%=Resources.SunResource.MONITORITEM_SAVE %> " />
                         <%}

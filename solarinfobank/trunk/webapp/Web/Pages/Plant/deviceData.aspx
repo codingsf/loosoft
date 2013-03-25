@@ -27,6 +27,8 @@
 </script>
 
     <script type="text/javascript">
+        function loadRunData(deviceId) {
+        }
         var isFirst = true;
         function readyinit() {
             deviceChartInit();

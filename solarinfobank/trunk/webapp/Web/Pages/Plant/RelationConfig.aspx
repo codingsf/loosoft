@@ -6,7 +6,7 @@
 <%@ Import Namespace="System.Globalization" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>
-    设备接线图
+    设备关系设置
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <table cellpadding="0" cellspacing="0" border="0">
@@ -89,6 +89,7 @@
                                         <img src="/images/kj/kjiico01.gif" />
                                     </td>
                                     <td class="pv0216">
+                                    设备关系设置
                                     </td>
                                     <td align="right" class="help_r">
                                     </td>

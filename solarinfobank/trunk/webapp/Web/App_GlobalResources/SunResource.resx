@@ -5756,4 +5756,19 @@ The average value of coefficient will trigger warning
   <data name="AUTO_REFRESH_NOTICE" xml:space="preserve">
     <value>该页面数据间隔{0}S自动刷新一次</value>
   </data>
+  <data name="BIG_SCREEN_INSTALL_DATE" xml:space="preserve">
+    <value>投入运行日期</value>
+  </data>
+  <data name="BIG_SCREEN_INTERVAL_COUNT" xml:space="preserve">
+    <value>逆变器数量</value>
+  </data>
+  <data name="BIG_SCREEN_INTERVAL_TYPE" xml:space="preserve">
+    <value>逆变器类型</value>
+  </data>
+  <data name="BIG_SCREEN_LOCATION" xml:space="preserve">
+    <value>地理位置</value>
+  </data>
+  <data name="BIG_SCREEN_OWNER_UNIT" xml:space="preserve">
+    <value>业主单位</value>
+  </data>
 </root>

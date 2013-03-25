@@ -83,7 +83,7 @@
                 loadPRChartData();  
         }
         
-        function loadRunDataFrame(deviceId)
+        function loadRunData(deviceId)
         {
             $("#deviceID").val(deviceId);
             var did=deviceId;

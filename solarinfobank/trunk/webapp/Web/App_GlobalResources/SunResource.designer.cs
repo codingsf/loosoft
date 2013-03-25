@@ -943,6 +943,51 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 投入运行日期 的本地化字符串。
+        /// </summary>
+        internal static string BIG_SCREEN_INSTALL_DATE {
+            get {
+                return ResourceManager.GetString("BIG_SCREEN_INSTALL_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 逆变器数量 的本地化字符串。
+        /// </summary>
+        internal static string BIG_SCREEN_INTERVAL_COUNT {
+            get {
+                return ResourceManager.GetString("BIG_SCREEN_INTERVAL_COUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 逆变器类型 的本地化字符串。
+        /// </summary>
+        internal static string BIG_SCREEN_INTERVAL_TYPE {
+            get {
+                return ResourceManager.GetString("BIG_SCREEN_INTERVAL_TYPE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 地理位置 的本地化字符串。
+        /// </summary>
+        internal static string BIG_SCREEN_LOCATION {
+            get {
+                return ResourceManager.GetString("BIG_SCREEN_LOCATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 业主单位 的本地化字符串。
+        /// </summary>
+        internal static string BIG_SCREEN_OWNER_UNIT {
+            get {
+                return ResourceManager.GetString("BIG_SCREEN_OWNER_UNIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Complete 的本地化字符串。
         /// </summary>
         internal static string BUTTON_FINISHED {

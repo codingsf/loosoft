@@ -10,6 +10,8 @@
 d = new dTree('d');
 <%=ViewData["jsstr"] %>
 document.write(d);
+d.openAll();
+
 parent.iFrameHeight();
 parent.iFrameHeight1();
 function autoIframeHeight()

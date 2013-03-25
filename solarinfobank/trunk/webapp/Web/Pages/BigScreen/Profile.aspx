@@ -13,27 +13,27 @@
 <div class="leftbox"><img id="imageurl" src="" width="369" height="232" />
   <table width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="ECAF0E" class="about">
     <tr>
-      <td width="36%" class="pr10">投入运行日期：</td>
+      <td width="36%" class="pr10"><%=Resources.SunResource.BIG_SCREEN_INSTALL_DATE%>：</td>
       <td width="64%" class="pl10"><label id="installdate"></label></td>
     </tr>
     <tr>
-      <td class="pr10">设计功率：</td>
+      <td class="pr10"><%=Resources.SunResource.PLANT_PROFILE_DESIGNPOWER%>：</td>
       <td class="pl10"><label id="designpower"></label></td>
     </tr>
     <tr>
-      <td class="pr10">地理位置：</td>
+      <td class="pr10"><%=Resources.SunResource.BIG_SCREEN_LOCATION%>：</td>
       <td class="pl10"><label id="location"></label></td>
     </tr>
     <tr>
-      <td class="pr10">业主单位：</td>
+      <td class="pr10"><%=Resources.SunResource.BIG_SCREEN_OWNER_UNIT%>：</td>
       <td class="pl10"><label id="organize"></label></td>
     </tr>
     <tr>
-      <td class="pr10">逆变器数量：</td>
+      <td class="pr10"><%=Resources.SunResource.BIG_SCREEN_INTERVAL_COUNT%>：</td>
       <td class="pl10"><label id="invertercount"></label></td>
     </tr>
     <tr>
-      <td class="pr10">逆变器类型：</td>
+      <td class="pr10"><%=Resources.SunResource.BIG_SCREEN_INTERVAL_TYPE%>：</td>
       <td class="pl10"><label id="invertertypestr"></label></td>
     </tr>
   </table>

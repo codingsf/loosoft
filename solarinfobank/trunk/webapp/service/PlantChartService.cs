@@ -717,6 +717,26 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         }
 
         /// <summary>
+        /// 将同数量的两组数据，组织成坐标
+        /// add by hbqian in 2013-03-23 for 生成电站功率和日照散列图
+        /// </summary>
+        /// <param name="chatName"></param>
+        /// <param name="xData"></param>
+        /// <param name="yData"></param>
+        /// <returns></returns>
+        public ChartData genNewScatter(string chartName,string startYearMMDDHH, string endYearMMDDHH,int interval, Hashtable xData ,Hashtable yData,string unit,string chartType) {
+            string[] ic = base.getXseriesFromYYYYMMDDHH(startYearMMDDHH, endYearMMDDHH, interval).ToArray();
+            KeyValuePair<string, float?[]> xMergedata = base.GenerateChartData("日照", ic, xData, 1.0f);
+            KeyValuePair<string, float?[]> yMergedata = base.GenerateChartData("功率", ic, yData, 1.0f);
+            for (int i = 0; i < xMergedata.Value.Length; i++)
+            {
+                ic[i] = xMergedata.Value[i] == null ? "" : xMergedata.Value[i].ToString();
+            }
+
+            return ReportBuilder.createJsonChartXY(chartName, ic, yMergedata, "", unit, chartType, false);
+        }
+
+        /// <summary>
         /// 统计某年某个测点各时段内值和
         /// </summary>
         /// <param name="plants"></param>

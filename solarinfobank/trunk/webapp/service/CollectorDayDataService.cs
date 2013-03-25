@@ -159,7 +159,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     if(isDB)
                         unitPowerDayDatas = _powerDayDataDao.GetCollectorDaydataList(unit.collector.id, year, month, i, i, monitorCode);
 
-                    joinPower(XAxis, hhpowerHash, unitPowerDayDatas, intervalMins, monitorCode);
+                    joinToPointData(XAxis, hhpowerHash, unitPowerDayDatas, intervalMins, monitorCode);
                 }
             }
             return hhpowerHash;

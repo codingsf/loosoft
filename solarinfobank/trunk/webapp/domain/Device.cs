@@ -187,6 +187,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
         /// <summary>
         /// 全名,设备显示名称，页面要用这个
+        /// 有自定义的显示自定义，没有的用组合规则显示
         /// </summary>
         public string fullName
         {
@@ -401,7 +402,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
-        /// 取得设备状态
+        /// 取得设备状态描述，页面显示
         /// </summary>
         /// <returns></returns>
         public string getStatus()
@@ -499,9 +500,27 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             return false;
         }
 
-        public int parentId { get; set; }//上级
-        public int plantUnitId { get; set; }//电站单元id
-        public IList<Device> child { get; set; }//通过设备关系虚拟的设备
+        /// <summary>
+        /// 上级设备
+        /// 0表示第一级别设备
+        /// </summary>
+        public int parentId { get; set; }
+
+        /// <summary>
+        /// 电站单元id
+        /// 表示所属电站单元，和设备级别无关，即所有级别设备都有一个属主
+        /// </summary>
+        public int? plantUnitId { get; set; }
+
+        /// <summary>
+        /// 下级设备
+        /// 通过设备关系设备而来的设备
+        /// </summary>
+        public IList<Device> child { get; set; }
+
+        /// <summary>
+        /// 设备所属单元
+        /// </summary>
         public PlantUnit plantUnit { get; set; }
     }
 }

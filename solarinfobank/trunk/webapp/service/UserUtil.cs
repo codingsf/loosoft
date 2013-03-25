@@ -104,6 +104,31 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             }
         }
 
+        /// <summary>
+        /// 当前用户是否实例用户，用于页面判断只显示只读功能
+        /// </summary>
+        public static bool isDemoUser
+        {
+            get
+            {
+                User curUser = getCurUser();
+                if (curUser == null) return true;
+                return curUser.username.Equals(demousername);
+            }
+        }
+
+        /// <summary>
+        /// 当前用户是否独立用户，即parentUserId is null
+        /// </summary>
+        public static bool isIndependentUser
+        {
+            get
+            {
+                User curUser = getCurUser();
+                if (curUser == null) return true;
+                return curUser.ParentUserId == null || curUser.ParentUserId == 0;
+            }
+        }
 
         public static string UserLogo
         {

@@ -16,11 +16,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         private static DeviceService _instance;
         private IDaoManager _daoManager = null;
         private IDeviceDao _deviceDao = null;
+        //add by qhb int 2013-03-23 for取得采集器所在单元
+        private IPlantUnitDao _plantUnitDao = null;
         public static Hashtable deviceCodeIdHash = new Hashtable();
         private DeviceService()
         {
             _daoManager = ServiceConfig.GetInstance().DaoManager;
             _deviceDao = _daoManager.GetDao(typeof(IDeviceDao)) as IDeviceDao;
+            _plantUnitDao = _daoManager.GetDao(typeof(IPlantUnitDao)) as IPlantUnitDao;
         }
 
         /// <summary>
@@ -64,7 +67,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 return _deviceDao.Update(device);
             }
             else
+            {
+                //add by qhb in 20130323 for 发现有设备新增有要将没有plantunitid字段值的设备，plantUnitId附上所属单元
+                if(device.plantUnitId==null || device.plantUnitId==0){
+                    PlantUnit plantUnit = _plantUnitDao.GetPlantUnitByCollectorId(device.collectorID);
+                    device.plantUnitId = plantUnit.id;
+                }
                 return _deviceDao.Insert(device);
+            }
         }
 
         /// <summary>

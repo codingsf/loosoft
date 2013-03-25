@@ -397,7 +397,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// </summary>
         public static readonly int MIC_BUSBAR_ZLVOILT = int.Parse(DeviceData.HUILIUXIANG_CODE + "18");
         /// <summary>
-        /// 数字输入
+        /// 数字输入,即输入路数
         /// </summary>
         public static readonly int MIC_BUSBAR_DIGITALINPUT = int.Parse(DeviceData.HUILIUXIANG_CODE + "19");
         /// <summary>

@@ -869,7 +869,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// <summary>
         /// 是否有警告，包括超过一天没有数据
         /// </summary>
-        public bool isDeviceFault
+        public bool isDeviceFaultWithTime
         {
             get
             {
@@ -1036,7 +1036,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public DateTime waringLastSendTime { get; set; }
 
         /// <summary>
-        /// 电站是否有告警的设备
+        /// 电站是否有运行告警的设备
         /// </summary>
         public bool hasFaultDevice
         {

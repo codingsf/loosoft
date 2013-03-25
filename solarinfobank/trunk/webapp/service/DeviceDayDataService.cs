@@ -319,7 +319,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 if (isDB)
                     unitPowerDayDatas = _DevicePowerDaydataDao.GetDaydataList(device.id, deviceTable, year, month, i, i, monitorCode);
 
-                joinPower(XAxis, hhpowerHash, unitPowerDayDatas, intervalMins, monitorCode);
+                joinToPointData(XAxis, hhpowerHash, unitPowerDayDatas, intervalMins, monitorCode);
             }
             return hhpowerHash;
         }

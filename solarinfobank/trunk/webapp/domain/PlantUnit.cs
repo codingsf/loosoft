@@ -24,6 +24,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public int plantID { get; set; }//电站
         public int collectorID { get; set; }//电站
         private Collector _collector;
+        /// <summary>
+        /// 采集器
+        /// </summary>
         public Collector collector
         {
             get
@@ -34,25 +37,63 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             {
                 _collector = value;
             }
-        }//采集器
-        public string displayname { get; set; }//单元名称
-        /// <summary>
-        /// 所有设备列表
-        /// </summary>
-        public IList<Device> devices { 
-            get {
-                return this.collector == null ? new List<Device>() : this.collector.devices;
-            }
         }
 
         /// <summary>
-        /// 未影藏的设备列表
+        /// 单元名称
+        /// </summary>
+        public string displayname { get; set; }
+
+        /// <summary>
+        /// modify by qhb in 20130323 for
+        /// 单元关联的物理设备，和单元对应的采集器的数据设备区别
+        /// 业务上以该物理设备为依据
+        /// 实际业务情况为：
+        /// 有的物理设备是属于一个单元，但是借用其他单元采集器发送数据，系统默认是将从某个采集器发送数据的设备认为就是绑定这个采集器
+        /// 的单元的设备，这是用户需要从单元设备关系设定功能中将物理关系纠正过来。
+        /// 业务处理：
+        /// 1.有设备新增时要将没有plantunitid关系的设备的plantunitid赋值
+        /// 2.在进行单元绑定将所绑定采集器没有plantunitid关系的设备赋值
+        /// 3.解除绑定时要将设备的plantunitid清空置null
+        /// </summary>
+        public IList<Device> devices { get; set; }
+
+        /// <summary>
+        /// 未隐藏的物理设备列表
         /// </summary>
         public IList<Device> displayDevices {
             get {
                 IList<Device> devicesList = new List<Device>();
                 if (_collector == null) return devicesList;
-                foreach (Device device in _collector.devices) {
+                foreach (Device device in devices) {
+                    if (!device.isHidden) devicesList.Add(device);
+                }
+                return devicesList;
+            }
+        }
+
+        /// <summary>
+        /// 所有数据关系设备列表，包括隐藏和未隐藏
+        /// </summary>
+        public IList<Device> dataDevices
+        {
+            get
+            {
+                return this.collector == null ? new List<Device>() : this.collector.devices;
+            }
+        }
+
+        /// <summary>
+        /// 未隐藏的数据关系设备列表
+        /// </summary>
+        public IList<Device> displayDataDevices
+        {
+            get
+            {
+                IList<Device> devicesList = new List<Device>();
+                if (_collector == null) return devicesList;
+                foreach (Device device in _collector.devices)
+                {
                     if (!device.isHidden) devicesList.Add(device);
                 }
                 return devicesList;
@@ -274,8 +315,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             }
             return typeDevices;
         }
-        //通过管理配置出来的虚拟设备
-        public IList<Device> logicalDevices { get; set; }
+
         public Plant plant { get; set; }
     }
 }

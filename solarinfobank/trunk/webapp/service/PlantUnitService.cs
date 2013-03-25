@@ -90,7 +90,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             string cacheKey = CacheKeyUtil.buildPlantUnitKey();
             MemcachedClientSatat.getInstance().Delete(cacheKey);
 
-            return _plantUnit.DeletePlantUnit(plantId, plantUnitId);
+            int res =  _plantUnit.DeletePlantUnit(plantId, plantUnitId);
+            return res;
         }
 
         /// <summary>

@@ -84,12 +84,19 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// <returns></returns>
         public bool isDeny(int code)
         {
-            foreach (RoleFunction function in roleFunctions)
+            if (roleFunctions == null)
             {
-                if (function.functionCode.Equals(code))
-                    return true;
+                return false;
             }
-            return false;
+            else
+            {
+                foreach (RoleFunction function in roleFunctions)
+                {
+                    if (function.functionCode.Equals(code))
+                        return true;
+                }
+                return false;
+            }
         }
 
     }

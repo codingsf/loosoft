@@ -117,13 +117,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             return avg;
         }
         /// <summary>
-        /// 将时间面数据进行统计
+        /// 将时间面数据按照固定间隔的坐标点整理合并数据
         /// </summary>
         /// <param name="hhpowerHash"></param>
         /// <param name="daydatas"></param>
-        /// <param name="intervalMins"></param>
+        /// <param name="intervalMins">时间间隔，有间隔必须传，如果不用按照固定间隔坐标点整理数据</param>
         /// <param name="monitorCode"></param>
-        protected void joinPower(IList<string> XAxis, Hashtable hhpowerHash, IList daydatas, int intervalMins, int monitorCode)
+        protected void joinToPointData(IList<string> XAxis, Hashtable hhpowerHash, IList daydatas, int intervalMins, int monitorCode)
         {
             //存放本次解析的结果，然后再将此结果追加到大hash
             Hashtable oncerHas = new Hashtable();

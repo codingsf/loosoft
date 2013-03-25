@@ -111,6 +111,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         public const int PAGE_CONFIG = 44;
         public const int LOGIN_RECORD = 45;
 
+        public const int DEVICE_RELATION = 46;//设备关系设置
+
 
         static AuthorizationCode()
         {
@@ -202,6 +204,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             controllerActionRoles.Add(PAGE_CONFIG, new ControllerAction() { displayName = "页面配置", controller = "user", action = "pageconfig", typeId = 13 });
             //登录日志
             controllerActionRoles.Add(LOGIN_RECORD, new ControllerAction() { displayName = "登录日志", controller = "user", action = "record", typeId = 13 });
+            //设备关系设置
+            controllerActionRoles.Add(DEVICE_RELATION, new ControllerAction() { displayName = "设备关系设置", controller = "plant", action = "relation", typeId = 13 });
         }
 
         public static ControllerAction GetRole(int code)

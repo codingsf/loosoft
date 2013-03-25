@@ -824,6 +824,26 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             }
         }
 
+
+        /// <summary>
+        /// 取得一般用户所关联的的电站中所有实际电站
+        /// </summary>
+        public IList<Plant> allRelatedFactPlants
+        {
+            get
+            {
+                IList<Plant> factPlants = new List<Plant>();
+                foreach (Plant plant in relatedPlants)
+                {
+                    foreach (Plant p in plant.allFactPlants)
+                    {
+                        factPlants.Add(p);
+                    }
+                }
+                return factPlants;
+            }
+        }
+
         /// <summary>
         /// 当前用户下任何一个电站有绑定采集器
         /// </summary>

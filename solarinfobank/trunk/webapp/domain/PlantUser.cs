@@ -7,7 +7,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 {
     /// <summary>
     /// 功能：电站和一般用户的关系
-    /// 只能关联顶层电站
+    /// 一般用户只能共享顶层电站
+    /// 组合电站也可以被
     /// 作者：张月
     /// 时间：2011年4月24日
     /// </summary>

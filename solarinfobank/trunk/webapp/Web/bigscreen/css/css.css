@@ -6,7 +6,8 @@ body{margin:0px;background:#ECF9FF url(../images/body_bg01.jpg) no-repeat; font-
 .header{font-size:48px; font-weight:bold; line-height:60px; margin-bottom:40px;}
 .midbox{ background:url(../images/midbg.png) no-repeat; height:501px; margin-bottom:10px;}
 .leftbox{ width:369px; float:left; margin-left:11px;}
-.leftbox img{ margin-top:39px;}
+.leftbox span{ font-family:"微软雅黑"; color:#FFFFFF; font-size:16px; display:block; height:28px; line-height:28px;}
+.leftbox img{ margin-top:10px;}
 
 .about{border-collapse:collapse; margin-top:13px;}
 .pr10{background:#F6E773; font-size:15px; font-family:"微软雅黑"; line-height:31px; text-align:right; color:#E9690E; padding-right:5px; }

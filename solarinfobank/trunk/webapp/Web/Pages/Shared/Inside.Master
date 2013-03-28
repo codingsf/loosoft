@@ -721,7 +721,7 @@
                                             <%if ( !UserUtil.isDemoUser)
                                               { %>
                                             <li><a onclick="loadContent('content_ajax','/plant/relationconfig/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
-                                                 href="/plant/relation/<%=Model.id%>">设备关系设置</a></li>
+                                                 href="/plant/relationconfig/<%=Model.id%>"><%=Resources.SunResource.DEVICE_RELATION_MENU%></a></li>
                                             <%}%>
                                             <%if (ProtalUtil.isBigCustomer() && !UserUtil.isDemoUser)
                                               { %>
@@ -737,8 +737,8 @@
                                             <%} %>
                                            <%if (UserUtil.BigScreenEnable)
                                               { %>
-                                            <li><a href="javascript:void(0);" id="linkfullscreen" rel="/bigscreen/execute/<%=Model.id%>">全屏浏览</a></li>
-                                            <li><a onclick="loadContent('content_ajax','/user/bigscreenlogo','iframe','GET');setcurrent(this);return false;" href="/user/bigscreenlogo">全屏Logo设置</a></li>
+                                            <li><a href="javascript:void(0);" id="linkfullscreen" rel="/bigscreen/execute/<%=Model.id%>"><%=Resources.SunResource.BIG_SCREEN_MENU%></a></li>
+                                            <li><a onclick="loadContent('content_ajax','/user/bigscreenlogo','iframe','GET');setcurrent(this);return false;" href="/user/bigscreenlogo"><%=Resources.SunResource.BIG_SCREEN_LOGO_SETTING%></a></li>
                                             <%}%>
                                         </ul>
                                     </div>

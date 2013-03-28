@@ -15,6 +15,7 @@
     </div>
     <div class="midbox">
         <div class="leftbox">
+        <span> <%=Resources.SunResource.HOME_INDEX_BANK_OVERVIEW%></span>
             <img id="imageurl" src="" width="369" height="232" />
             <table width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="ECAF0E"
                 class="about">

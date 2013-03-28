@@ -5512,4 +5512,34 @@ The average value of coefficient will trigger warning
   <data name="BIG_SCREEN_OWNER_UNIT" xml:space="preserve">
     <value>业主单位</value>
   </data>
+  <data name="BIG_SCREEN_LOGO_SETTING" xml:space="preserve">
+    <value>フルスクリーンロゴの設定</value>
+  </data>
+  <data name="BIG_SCREEN_LOGO_UPLOAD" xml:space="preserve">
+    <value>アップロードLOGO</value>
+  </data>
+  <data name="BIG_SCREEN_MENU" xml:space="preserve">
+    <value>フルスクリーンのブラウジング</value>
+  </data>
+  <data name="DEVICE_RELATION_MENU" xml:space="preserve">
+    <value>デバイス関係セット</value>
+  </data>
+  <data name="RELATION_MOVE_LEFT" xml:space="preserve">
+    <value>左</value>
+  </data>
+  <data name="RELATION_MOVE_RIGHT" xml:space="preserve">
+    <value>右にシフト</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE1" xml:space="preserve">
+    <value>左側のデバイスを選択してください</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE2" xml:space="preserve">
+    <value>右側のデバイスを選択してください</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE3" xml:space="preserve">
+    <value>関係は、機器の同じ種類を設定することはできません</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE4" xml:space="preserve">
+    <value>デバイスを選択してください</value>
+  </data>
 </root>

@@ -5518,4 +5518,37 @@ The average value of coefficient will trigger warning
   <data name="BIG_SCREEN_OWNER_UNIT" xml:space="preserve">
     <value>业主单位</value>
   </data>
+  <data name="BIG_SCREEN_LOGO_SETTING" xml:space="preserve">
+    <value>Les paramètres LOGO</value>
+  </data>
+  <data name="BIG_SCREEN_LOGO_UPLOAD" xml:space="preserve">
+    <value>Téléchargez LOGO</value>
+  </data>
+  <data name="BIG_SCREEN_MENU" xml:space="preserve">
+    <value>Navigation plein écran</value>
+  </data>
+  <data name="DEVICE_GRID_LINE" xml:space="preserve">
+    <value>设备接线图</value>
+  </data>
+  <data name="DEVICE_RELATION_MENU" xml:space="preserve">
+    <value>Relations de périphériques</value>
+  </data>
+  <data name="RELATION_MOVE_LEFT" xml:space="preserve">
+    <value>la gauche</value>
+  </data>
+  <data name="RELATION_MOVE_RIGHT" xml:space="preserve">
+    <value>décalée vers la droite</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE1" xml:space="preserve">
+    <value>S'il vous plaît sélectionner un périphérique sur la gauche</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE2" xml:space="preserve">
+    <value>S'il vous plaît sélectionner un périphérique sur le droit</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE3" xml:space="preserve">
+    <value>Les relations peuvent pas être le même genre de matériel</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE4" xml:space="preserve">
+    <value>S'il vous plaît sélectionner un périphérique</value>
+  </data>
 </root>

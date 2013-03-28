@@ -5771,4 +5771,34 @@ The average value of coefficient will trigger warning
   <data name="BIG_SCREEN_OWNER_UNIT" xml:space="preserve">
     <value>Owner</value>
   </data>
+  <data name="BIG_SCREEN_LOGO_SETTING" xml:space="preserve">
+    <value>Fullscreen LOGO settings</value>
+  </data>
+  <data name="BIG_SCREEN_LOGO_UPLOAD" xml:space="preserve">
+    <value>Upload LOGO</value>
+  </data>
+  <data name="BIG_SCREEN_MENU" xml:space="preserve">
+    <value>Full screen browsing</value>
+  </data>
+  <data name="DEVICE_RELATION_MENU" xml:space="preserve">
+    <value>Device relationships</value>
+  </data>
+  <data name="RELATION_MOVE_LEFT" xml:space="preserve">
+    <value>move left</value>
+  </data>
+  <data name="RELATION_MOVE_RIGHT" xml:space="preserve">
+    <value>move right</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE1" xml:space="preserve">
+    <value>Please select a device on the left</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE2" xml:space="preserve">
+    <value>Please select a device on the right</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE3" xml:space="preserve">
+    <value>Relations can not be set the same kind of equipment</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE4" xml:space="preserve">
+    <value>Please select a device not unit</value>
+  </data>
 </root>

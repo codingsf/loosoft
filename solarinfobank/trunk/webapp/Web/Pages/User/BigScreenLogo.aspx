@@ -7,7 +7,7 @@
 <%@ Import Namespace="System.Globalization" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%=this.Model.organize%>
-    上传Logo
+    <%=Resources.SunResource.BIG_SCREEN_LOGO_UPLOAD%>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <script src="../../script/jquery.js" type="text/javascript"></script>
@@ -56,7 +56,7 @@
                                         <img src="/images/kj/kjiico01.gif" />
                                     </td>
                                     <td class="pv0216">
-                                        上传Logo
+                                       <%=Resources.SunResource.BIG_SCREEN_LOGO_UPLOAD%>
                                     </td>
                                     <td align="right" class="help_r">
                                         <a href="/help/<%=(Session["Culture"] as CultureInfo).Name%>/SolarInfo Bank User Manual.pdf"
@@ -87,7 +87,7 @@
                                     <img src="/images/sub/subico010.gif" width="18" height="19" />
                                 </td>
                                 <td width="94%" class="f_14">
-                                    <strong>上传Logo</strong>
+                                    <strong> <%=Resources.SunResource.BIG_SCREEN_LOGO_UPLOAD%></strong>
                                 </td>
                             </tr>
                         </table>
@@ -101,7 +101,7 @@
                         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td width="29%" height="35" class="pr_10">
-                                    Logo上传：
+                                   <%=Resources.SunResource.TEMPLATE_UPLOAD_LOGO%>：
                                 </td>
                                 <td width="27%">
                                     <%=Html.TextBox("bigscreenlogo", string.Empty, new { type = "file" })%>

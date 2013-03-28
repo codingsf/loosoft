@@ -431,9 +431,9 @@
                                                 <%} %>
                                                 <%if (UserUtil.BigScreenEnable)
                                                   { %>
-                                                <li><a href="javascript:void(0);" id="linkfullscreen" rel="/bigscreen/execute">全屏浏览</a></li>
+                                                <li><a href="javascript:void(0);" id="linkfullscreen" rel="/bigscreen/execute"><%=Resources.SunResource.BIG_SCREEN_MENU%></a></li>
                                                     <li><a onclick="loadContent('content_ajax','/user/bigscreenlogo','iframe','GET');setcurrent(this);return false;"
-                                                href="/user/bigscreenlogo">全屏Logo设置</a></li>
+                                                href="/user/bigscreenlogo"><%=Resources.SunResource.BIG_SCREEN_LOGO_SETTING%></a></li>
                                                 <%} %>
                                             </ul>
                                         </div>

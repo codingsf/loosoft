@@ -5570,4 +5570,34 @@
   <data name="BIG_SCREEN_OWNER_UNIT" xml:space="preserve">
     <value>业主单位</value>
   </data>
+  <data name="BIG_SCREEN_LOGO_SETTING" xml:space="preserve">
+    <value>全屏LOGO设置</value>
+  </data>
+  <data name="BIG_SCREEN_LOGO_UPLOAD" xml:space="preserve">
+    <value>上传LOGO</value>
+  </data>
+  <data name="BIG_SCREEN_MENU" xml:space="preserve">
+    <value>全屏浏览</value>
+  </data>
+  <data name="DEVICE_RELATION_MENU" xml:space="preserve">
+    <value>设备关系设置</value>
+  </data>
+  <data name="RELATION_MOVE_LEFT" xml:space="preserve">
+    <value>左移</value>
+  </data>
+  <data name="RELATION_MOVE_RIGHT" xml:space="preserve">
+    <value>右移</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE1" xml:space="preserve">
+    <value>请在左边选择一个设备</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE2" xml:space="preserve">
+    <value>请在右边选择一个设备</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE3" xml:space="preserve">
+    <value>同一种设备不能设置关系</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE4" xml:space="preserve">
+    <value>请选择一种设备</value>
+  </data>
 </root>

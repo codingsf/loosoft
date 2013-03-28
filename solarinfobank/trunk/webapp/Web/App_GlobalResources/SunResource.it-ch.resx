@@ -6872,4 +6872,34 @@ The average value of coefficient will trigger warning
   <data name="BIG_SCREEN_OWNER_UNIT" xml:space="preserve">
     <value>业主单位</value>
   </data>
+  <data name="BIG_SCREEN_LOGO_SETTING" xml:space="preserve">
+    <value>Le impostazioni LOGO fullscreen</value>
+  </data>
+  <data name="BIG_SCREEN_LOGO_UPLOAD" xml:space="preserve">
+    <value>Carica LOGO</value>
+  </data>
+  <data name="BIG_SCREEN_MENU" xml:space="preserve">
+    <value>Navigazione a schermo intero</value>
+  </data>
+  <data name="DEVICE_RELATION_MENU" xml:space="preserve">
+    <value>Dispositivo rapporti</value>
+  </data>
+  <data name="RELATION_MOVE_LEFT" xml:space="preserve">
+    <value>La sinistra</value>
+  </data>
+  <data name="RELATION_MOVE_RIGHT" xml:space="preserve">
+    <value>spostata a destra</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE1" xml:space="preserve">
+    <value>Si prega di selezionare un dispositivo a sinistra</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE2" xml:space="preserve">
+    <value>Si prega di selezionare un dispositivo a destra</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE3" xml:space="preserve">
+    <value>Relazioni non può essere impostato lo stesso tipo di apparecchiatura</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE4" xml:space="preserve">
+    <value>Si prega di selezionare un dispositivo</value>
+  </data>
 </root>

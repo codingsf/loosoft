@@ -979,6 +979,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 Fullscreen LOGO settings 的本地化字符串。
+        /// </summary>
+        internal static string BIG_SCREEN_LOGO_SETTING {
+            get {
+                return ResourceManager.GetString("BIG_SCREEN_LOGO_SETTING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Upload LOGO 的本地化字符串。
+        /// </summary>
+        internal static string BIG_SCREEN_LOGO_UPLOAD {
+            get {
+                return ResourceManager.GetString("BIG_SCREEN_LOGO_UPLOAD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Full screen browsing 的本地化字符串。
+        /// </summary>
+        internal static string BIG_SCREEN_MENU {
+            get {
+                return ResourceManager.GetString("BIG_SCREEN_MENU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Owner 的本地化字符串。
         /// </summary>
         internal static string BIG_SCREEN_OWNER_UNIT {
@@ -5181,6 +5208,51 @@ namespace Resources {
         internal static string DEVICE_PR_CHART {
             get {
                 return ResourceManager.GetString("DEVICE_PR_CHART", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Device relationships 的本地化字符串。
+        /// </summary>
+        internal static string DEVICE_RELATION_MENU {
+            get {
+                return ResourceManager.GetString("DEVICE_RELATION_MENU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Please select a device on the left 的本地化字符串。
+        /// </summary>
+        internal static string DEVICE_RELATION_NOTICE1 {
+            get {
+                return ResourceManager.GetString("DEVICE_RELATION_NOTICE1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Please select a device on the right 的本地化字符串。
+        /// </summary>
+        internal static string DEVICE_RELATION_NOTICE2 {
+            get {
+                return ResourceManager.GetString("DEVICE_RELATION_NOTICE2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Relations can not be set the same kind of equipment 的本地化字符串。
+        /// </summary>
+        internal static string DEVICE_RELATION_NOTICE3 {
+            get {
+                return ResourceManager.GetString("DEVICE_RELATION_NOTICE3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Please select a device not unit 的本地化字符串。
+        /// </summary>
+        internal static string DEVICE_RELATION_NOTICE4 {
+            get {
+                return ResourceManager.GetString("DEVICE_RELATION_NOTICE4", resourceCulture);
             }
         }
         
@@ -9974,6 +10046,24 @@ namespace Resources {
         internal static string REG_USERNAME_ERROR_INFO {
             get {
                 return ResourceManager.GetString("REG_USERNAME_ERROR_INFO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 move left 的本地化字符串。
+        /// </summary>
+        internal static string RELATION_MOVE_LEFT {
+            get {
+                return ResourceManager.GetString("RELATION_MOVE_LEFT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 move right 的本地化字符串。
+        /// </summary>
+        internal static string RELATION_MOVE_RIGHT {
+            get {
+                return ResourceManager.GetString("RELATION_MOVE_RIGHT", resourceCulture);
             }
         }
         

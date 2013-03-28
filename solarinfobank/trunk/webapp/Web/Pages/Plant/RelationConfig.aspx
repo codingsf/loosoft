@@ -6,7 +6,7 @@
 <%@ Import Namespace="System.Globalization" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %>
-    设备关系设置
+    <%=Resources.SunResource.DEVICE_RELATION_MENU%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <table cellpadding="0" cellspacing="0" border="0">
@@ -61,11 +61,11 @@
                     }
 
                     function postdata() {
-                        if (leftId == undefined) {alert('请在左边选择一个设备');return false;};
-                        if (rightId == undefined) {alert('请在右边选择一个设备');return false;};
-                        if (leftId == rightId){ alert('同一种设备不能设置关系');return false;};
-                        if (leftisUnit && movetype == 1) { alert('当前选中为单元，单元不可移动'); return false; };
-                        if (rightisUnit && movetype == 2) { alert('当前选中为单元，单元不可移动'); return false; };
+                        if (leftId == undefined) { alert(" <%=Resources.SunResource.DEVICE_RELATION_NOTICE1%>"); return false; };
+                        if (rightId == undefined) { alert("<%=Resources.SunResource.DEVICE_RELATION_NOTICE2%>"); return false; };
+                        if (leftId == rightId) { alert("<%=Resources.SunResource.DEVICE_RELATION_NOTICE3%>"); return false; };
+                        if (leftisUnit && movetype == 1) { alert("<%=Resources.SunResource.DEVICE_RELATION_NOTICE4%>"); return false; };
+                        if (rightisUnit && movetype == 2) { alert("<%=Resources.SunResource.DEVICE_RELATION_NOTICE4%>"); return false; };
                         $.post("/plant/move", { leftid: leftId, leftunitId: leftunitId, rightid: rightId, rightunitId: rightunitId, leftisunit: leftisUnit, rightisunit: rightisUnit, movetype: movetype},
                         function(data) {
                         if (data == "ok")
@@ -89,7 +89,7 @@
                                         <img src="/images/kj/kjiico01.gif" />
                                     </td>
                                     <td class="pv0216">
-                                    设备关系设置
+                                    <%=Resources.SunResource.DEVICE_RELATION_MENU%>
                                     </td>
                                     <td align="right" class="help_r">
                                     </td>
@@ -141,7 +141,7 @@
                                             <br />
                                             <div id="divAddDevice">
                                                 <a href="javascript:void(0)" id="btnAddDevice" name="btnAddDevice" onclick="lefttoright()">
-                                                    右移</a></div>
+                                                    <%=Resources.SunResource.RELATION_MOVE_RIGHT%></a></div>
                                             <br />
                                         </td>
                                     </tr>
@@ -151,7 +151,7 @@
                                             <br />
                                             <div id="divDelDevice">
                                                 <a href="javascript:void(0)" id="btnDelDevice" name="btnDelDevice" onclick="righttoleft()">
-                                                   左移</a>
+                                                   <%=Resources.SunResource.RELATION_MOVE_LEFT%></a>
                                             </div>
                                         </td>
                                     </tr>

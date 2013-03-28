@@ -86,7 +86,8 @@
                     <div>
                         <table width="90%" height="30" border="0" cellpadding="0" cellspacing="0">
                             <tr>
-                                <%if (!AuthService.isAllow(AuthorizationCode.ADD_PLANT) || UserUtil.isDemoUser)
+                                <%
+                                    if (!AuthService.isAllow(AuthorizationCode.ADD_PLANT) || UserUtil.isDemoUser)
                                   { %>
                                 <td width="6%" align="center">
                                     <img src="/images/sub/subico016.gif" width="15" height="16" />

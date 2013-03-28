@@ -12,7 +12,7 @@
       <result property="uid"			column="uid"/>
       <result property="name"			column="name"/>
       <result property="descr"			column="descr"/>
-      <result property="roleFunctions" lazyLoad="true"	column="roleId" select="get_functions_by_roleid" />
+      <result property="roleFunctions" lazyLoad="true"	column="id" select="get_functions_by_roleid" />
     </resultMap>
   </resultMaps>
   <cacheModels>
@@ -27,7 +27,7 @@
     </cacheModel>
   </cacheModels>
   <statements>
-    <select id="get_role"  resultClass="Role"  paramterClass="int" cacheModel="role_cache">
+    <select id="get_role"  resultMap="role_result"  paramterClass="int" cacheModel="role_cache">
       select * from role where id=#value#
     </select>
     <select id="role_get"  resultClass="Role" cacheModel="role_cache">

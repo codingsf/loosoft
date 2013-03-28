@@ -943,7 +943,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 投入运行日期 的本地化字符串。
+        ///   查找类似 Installation Date 的本地化字符串。
         /// </summary>
         internal static string BIG_SCREEN_INSTALL_DATE {
             get {
@@ -952,7 +952,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 逆变器数量 的本地化字符串。
+        ///   查找类似 Interval Count 的本地化字符串。
         /// </summary>
         internal static string BIG_SCREEN_INTERVAL_COUNT {
             get {
@@ -961,7 +961,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 逆变器类型 的本地化字符串。
+        ///   查找类似 Interval Model 的本地化字符串。
         /// </summary>
         internal static string BIG_SCREEN_INTERVAL_TYPE {
             get {
@@ -970,7 +970,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 地理位置 的本地化字符串。
+        ///   查找类似 Location 的本地化字符串。
         /// </summary>
         internal static string BIG_SCREEN_LOCATION {
             get {
@@ -979,7 +979,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 业主单位 的本地化字符串。
+        ///   查找类似 Owner 的本地化字符串。
         /// </summary>
         internal static string BIG_SCREEN_OWNER_UNIT {
             get {

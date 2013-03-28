@@ -57,7 +57,7 @@
                 </tr>
                 <tr>
                     <td class="pr10">
-                        <%=Resources.SunResource.BIG_SCREEN_INTERVAL_COUNT%>：
+                        <%=Resources.SunResource.BIG_SCREEN_INVERTER_COUNT%>：
                     </td>
                     <td class="pl10">
                         <label id="invertercount">
@@ -66,7 +66,7 @@
                 </tr>
                 <tr>
                     <td class="pr10">
-                        <%=Resources.SunResource.BIG_SCREEN_INTERVAL_TYPE%>：
+                        <%=Resources.SunResource.BIG_SCREEN_INVERTER_TYPE%>：
                     </td>
                     <td class="pl10">
                         <label id="invertertypestr">

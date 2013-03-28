@@ -916,7 +916,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 该页面数据间隔{0}S自动刷新一次 的本地化字符串。
+        ///   查找类似 The page data interval{0}S automatic refresh 的本地化字符串。
         /// </summary>
         internal static string AUTO_REFRESH_NOTICE {
             get {
@@ -954,18 +954,18 @@ namespace Resources {
         /// <summary>
         ///   查找类似 Interval Count 的本地化字符串。
         /// </summary>
-        internal static string BIG_SCREEN_INTERVAL_COUNT {
+        internal static string BIG_SCREEN_INVERTER_COUNT {
             get {
-                return ResourceManager.GetString("BIG_SCREEN_INTERVAL_COUNT", resourceCulture);
+                return ResourceManager.GetString("BIG_SCREEN_INVERTER_COUNT", resourceCulture);
             }
         }
         
         /// <summary>
         ///   查找类似 Interval Model 的本地化字符串。
         /// </summary>
-        internal static string BIG_SCREEN_INTERVAL_TYPE {
+        internal static string BIG_SCREEN_INVERTER_TYPE {
             get {
-                return ResourceManager.GetString("BIG_SCREEN_INTERVAL_TYPE", resourceCulture);
+                return ResourceManager.GetString("BIG_SCREEN_INVERTER_TYPE", resourceCulture);
             }
         }
         
@@ -9995,7 +9995,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 您还可以输&lt;span id=&quot;wordLength&quot;&gt;500&lt;/span&gt;个字 的本地化字符串。
+        ///   查找类似 You can also lose&lt;span id=&quot;wordLength&quot;&gt;500&lt;/span&gt;words 的本地化字符串。
         /// </summary>
         internal static string QA_TEXTAREA_WORDS_COUNTER {
             get {

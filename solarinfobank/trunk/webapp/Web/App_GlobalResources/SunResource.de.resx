@@ -5926,19 +5926,19 @@ The average value of coefficient will trigger warning
     <value>该页面数据间隔{0}S自动刷新一次</value>
   </data>
   <data name="BIG_SCREEN_INSTALL_DATE" xml:space="preserve">
-    <value>投入运行日期</value>
+    <value>Installation Date</value>
   </data>
-  <data name="BIG_SCREEN_INTERVAL_COUNT" xml:space="preserve">
-    <value>逆变器数量</value>
+  <data name="BIG_SCREEN_INVERTER_COUNT" xml:space="preserve">
+    <value>Interval Count</value>
   </data>
-  <data name="BIG_SCREEN_INTERVAL_TYPE" xml:space="preserve">
-    <value>逆变器类型</value>
+  <data name="BIG_SCREEN_INVERTER_TYPE" xml:space="preserve">
+    <value>Interval Model</value>
   </data>
   <data name="BIG_SCREEN_LOCATION" xml:space="preserve">
-    <value>地理位置</value>
+    <value>Location</value>
   </data>
   <data name="BIG_SCREEN_OWNER_UNIT" xml:space="preserve">
-    <value>业主单位</value>
+    <value>Owner</value>
   </data>
   <data name="BIG_SCREEN_LOGO_SETTING" xml:space="preserve">
     <value>Die Vollbild LOGO-Einstellungen</value>

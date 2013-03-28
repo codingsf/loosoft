@@ -5558,10 +5558,10 @@
   <data name="BIG_SCREEN_INSTALL_DATE" xml:space="preserve">
     <value>投入运行日期</value>
   </data>
-  <data name="BIG_SCREEN_INTERVAL_COUNT" xml:space="preserve">
+  <data name="BIG_SCREEN_INVERTER_COUNT" xml:space="preserve">
     <value>逆变器数量</value>
   </data>
-  <data name="BIG_SCREEN_INTERVAL_TYPE" xml:space="preserve">
+  <data name="BIG_SCREEN_INVERTER_TYPE" xml:space="preserve">
     <value>逆变器类型</value>
   </data>
   <data name="BIG_SCREEN_LOCATION" xml:space="preserve">

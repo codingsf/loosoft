@@ -12,8 +12,7 @@
     <table cellpadding="0" cellspacing="0" border="0">
         <tr>
             <td width="793" valign="top" background="/images/kj/kjbg01.jpg">
-
-                <script>
+                <script type="text/javascript">
                     function iFrameHeight() {
                         var ifm = document.getElementById("mainFrame");
                         var subWeb = document.frames ? document.frames["mainFrame"].document : ifm.contentDocument;
@@ -74,7 +73,6 @@
                             alert(data);
                         });
                     }
-    
                 </script>
 
                 <table width="100%" height="63" border="0" cellpadding="0" cellspacing="0" background="/images/kj/kjbg02.jpg">
@@ -96,6 +94,7 @@
                                 </tr>
                                 <tr>
                                     <td width="75%">
+                                    &nbsp;
                                     </td>
                                     <td width="18%">
                                     </td>
@@ -124,40 +123,37 @@
                 <div class="subrbox01">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
-                            <td width="33%" valign="top">
+                            <td width="40%" valign="top">
                                 <div id='dtree' class='dtree'>
                                 </div>
                                 <iframe src="/plant/leftrelation/<%=ViewData["plantId"] %>" scrolling="no" frameborder="0" id="mainFrame1">
                                 </iframe>
                             </td>
-                            <td width="33%" valign="top" align="center">
+                            <td width="20%" valign="top" align="center">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
-                                        <td height="20" align="center">
-                                            <br />
-                                            <br />
-                                            <br />
-                                            <br />
-                                            <br />
+                                        <td height="160" align="center">
                                             <div id="divAddDevice">
-                                                <a href="javascript:void(0)" id="btnAddDevice" name="btnAddDevice" onclick="lefttoright()">
-                                                    <%=Resources.SunResource.RELATION_MOVE_RIGHT%></a></div>
-                                            <br />
+                                                <a href="javascript:void(0)" id="A1" name="btnAddDevice" onclick="lefttoright()">
+                                                <img src="/images/sub/add.gif" border="0" width="18" height="18" alt=""/><br>
+                                                <%=Resources.SunResource.RELATION_MOVE_RIGHT%>
+                                                </a>                                         
+                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td height="33" align="center" valign="top">
-                                            <br />
-                                            <br />
+                                        <td height="160" align="center" valign="top">
                                             <div id="divDelDevice">
                                                 <a href="javascript:void(0)" id="btnDelDevice" name="btnDelDevice" onclick="righttoleft()">
-                                                   <%=Resources.SunResource.RELATION_MOVE_LEFT%></a>
+                                                <img src="/images/sub/reduce.gif" border="0" width="18" height="18" alt=""/><br>
+                                                <%=Resources.SunResource.RELATION_MOVE_LEFT%>
+                                                </a>                                                    
                                             </div>
                                         </td>
                                     </tr>
                                 </table>
                             </td>
-                            <td width="30%" valign="top">
+                            <td width="40%" valign="top">
                                 <iframe src="/plant/rightrelation/<%=ViewData["plantId"] %>" scrolling="no" frameborder="0" id="mainFrame">
                                 </iframe>
                             </td>

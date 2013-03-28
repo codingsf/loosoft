@@ -27,19 +27,19 @@
     </cacheModel>
   </cacheModels>
   <statements>
-    <select id="get_role"  resultMap="role_result"  paramterClass="int" cacheModel="role_cache">
+    <select id="get_role"  resultMap="role_result" paramterClass="int" cacheModel="role_cache">
       select * from role where id=#value#
     </select>
-    <select id="role_get"  resultClass="Role" cacheModel="role_cache">
+    <select id="role_get" resultMap="role_result" cacheModel="role_cache">
       select * from role where id=#id#
     </select>
-    <insert id="role_insert"   paramterClass="Role">
+    <insert id="role_insert" paramterClass="Role">
       insert into role(uid,name,descr) values(#uid#,#name#,#descr#)
       <selectKey resultClass="int" property="id" type="post" >
         SELECT LAST_INSERT_ID() AS id
       </selectKey>
     </insert>
-    <select id="get_role_uid"  resultClass="Role"  paramterClass="int" cacheModel="role_cache">
+    <select id="get_role_uid" resultMap="role_result"  paramterClass="int" cacheModel="role_cache">
       select * from role where uid=#value#
     </select>
     <delete id="role_delete">

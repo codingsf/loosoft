@@ -17,7 +17,7 @@
     .help_r{ font-size:11px;}
 </style>
 
-    <script type="text/javascript">
+<script type="text/javascript">
     var plantpic="<%= ViewData["pic"]%>";
     if(plantpic!=""){
         var pic="";

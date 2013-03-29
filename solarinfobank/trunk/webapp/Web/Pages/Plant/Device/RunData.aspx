@@ -44,12 +44,12 @@
       <%if ((ViewData["device"] as Device).Over1Day((ViewData["plant"] as Plant).timezone))
         { %>
       <font style=" color:Red;">
-       <%=(ViewData["device"] as Device).runData.updateTime%>
+        <span id="lbl-1"><%=(ViewData["device"] as Device).runData.updateTime%></span>  
        </font>
       <%}
         else
         { %>
-         <%=(ViewData["device"] as Device).runData.updateTime%>
+         <span id="lbl-1"><%=(ViewData["device"] as Device).runData.updateTime%></span>  
       <%} %>
       </td>
     </tr>
@@ -72,23 +72,23 @@
               </td>
              <%if (MonitorType.MIC_BUSBAR_TOTALCURRENT == rundatas[i].Key.code)
                { %>
-              <td width="15%" valign="center" class="pl1501" align="right"><span class=""><%=Math.Round(double.Parse(rundatas[i].Value),2)%></span></td>
+              <td width="15%" valign="center" class="pl1501" align="right"><span class="" id="lbl<%=rundatas[i].Key.code%>"><%=Math.Round(double.Parse(rundatas[i].Value),2)%></span></td>
               <%}
                else
                { %>
                <td width="15%" valign="center" class="pl1501" align="right">
                <%if (MonitorType.MIC_INVERTER_DEVICESTATUS == rundatas[i].Key.code && (ViewData["device"] as Device).isFault())
                   { %>
-                <span style="color:Red"><%=rundatas[i].Value%></span>
+                <span style="color:Red" id="lbl<%=rundatas[i].Key.code%>"><%=rundatas[i].Value%></span>
                 <%}
                   else
                   { %>
-                  <span><%=rundatas[i].Value%></span>
+                  <span id="lbl<%=rundatas[i].Key.code%>"><%=rundatas[i].Value%></span>
                 <%} %>
                
                </td>
               <% }%>
-              <td width="5%" valign="center" class="pl1501" align="left"><span class="lbl"><%=rundatas[i].Key.unit%></span>&nbsp;
+              <td width="5%" valign="center" class="pl1501" align="left"><span class="lbl" id="unit<%=rundatas[i].Key.code%>"><%=rundatas[i].Key.unit%></span>&nbsp;
               </td>
               <td width="5%" height="26" valign="center" align="left" class="pl1502" style="border-right:1px solid #E6E6E6;">
               <%if (rundatas[i].Key.isHistory())
@@ -104,24 +104,24 @@
               </td>
               <%if (MonitorType.MIC_BUSBAR_TOTALCURRENT == rundatas[i+1].Key.code)
                 { %>
-              <td width="15%" valign="center" class="pl1501" align="right" ><span><%=Math.Round(double.Parse(rundatas[i+1].Value),2)%></span></td>
+              <td width="15%" valign="center" class="pl1501" align="right" ><span id="lbl<%=rundatas[i+1].Key.code%>"><%=Math.Round(double.Parse(rundatas[i+1].Value),2)%></span></td>
                <%}
                 else
                 { %>
                 <td width="15%" valign="center" class="pl1501" align="right" >
                 <%if (MonitorType.MIC_INVERTER_DEVICESTATUS == rundatas[i+1].Key.code && (ViewData["device"] as Device).isFault())
                   { %>
-                <span style="color:Red"><%=rundatas[i + 1].Value%></span>
+                <span style="color:Red" id="lbl<%=rundatas[i+1].Key.code%>"><%=rundatas[i + 1].Value%></span>
                 <%}
                   else
                   { %>
-                  <span><%=rundatas[i + 1].Value%></span>
+                  <span id="lbl<%=rundatas[i+1].Key.code%>"><%=rundatas[i + 1].Value%></span>
                 <%} %>
                 </td>
                <%} %>
                
               <td width="5%" valign="center" class="pl1501" align="left">
-              <span class="lbl"><%=rundatas[i + 1].Key.unit%>&nbsp;</span>
+              <span class="lbl" id="unit<%=rundatas[i+1].Key.code%>"><%=rundatas[i + 1].Key.unit%>&nbsp;</span>
               </td>
               <td width="5%" height="26" valign="center" align="left" class="pl1502">
               

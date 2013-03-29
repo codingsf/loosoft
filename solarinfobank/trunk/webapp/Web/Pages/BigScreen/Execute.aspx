@@ -188,9 +188,13 @@
                 return false;
             }
         }
-        
+
         $().ready(function() {
-            $(".logo").attr("src", logo);
+            if (checkimgexists(logo))
+                $(".logo").attr("src", logo);
+            else
+                $(".logo").attr("src", '/bigscreen/images/logo.png');
+                
             bigscreen.play();
         })
     </script>

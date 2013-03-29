@@ -21,6 +21,25 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
         FaultService faultService = FaultService.GetInstance();
 
+        public ActionResult RunDataJson(int id)
+        {
+            Device device = DeviceService.GetInstance().get(id);
+            IList<IList<KeyValuePair<MonitorType, string>>> rundatas = device.runData.convertRunstrToList(true, device.deviceTypeCode);
+            rundatas.Add(new List<KeyValuePair<MonitorType, string>> { new KeyValuePair<MonitorType, string>(new MonitorType { code = -1 }, device.runData.updateTime.ToString()) }); //将最后更新时间加到最后（ code 为-1标示）
+
+            /*测试数据 已屏蔽
+            MonitorType monitorType = null;
+            foreach (IList<KeyValuePair<MonitorType, string>> item in rundatas)
+                for (int i = 0; i < item.Count; i++)
+                {
+                    monitorType = item[i].Key;
+                    monitorType.unit = Guid.NewGuid().ToString().Substring(0, 2);
+                    item[i] = new KeyValuePair<MonitorType, string>(monitorType, Guid.NewGuid().ToString().Substring(0, 3));
+                }
+            */
+            return Content(JsonUtil.convertToJson(rundatas, typeof(IList<IList<KeyValuePair<MonitorType, string>>>)));
+        }
+
         [HttpGet]
         public ActionResult RunData(int id)
         {
@@ -38,7 +57,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             try
             {
                 displayHxlroute = int.Parse(device.getMonitorValue(MonitorType.MIC_BUSBAR_MAXLINE).ToString());
-            }catch(Exception  e){
+            }
+            catch (Exception e)
+            {
                 displayHxlroute = 0;
             }
             if (displayHxlroute == 0) displayHxlroute = 16;//如果未传路数则默认用16路
@@ -164,7 +185,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         /// <param name="deviceId"></param>/// 
         /// <param name="yyyyMMdd"></param>
         /// <returns></returns>
-        public ActionResult historyRundata(int deviceId, string yyyyMMdd) {
+        public ActionResult historyRundata(int deviceId, string yyyyMMdd)
+        {
             Device device = DeviceService.GetInstance().get(deviceId);
             IList<string> allmts = new List<string>();//所有测点
             IDictionary<string, IDictionary<string, string>> timemtMap = DeviceDayDataService.GetInstance().handleDayData(allmts, device, yyyyMMdd);
@@ -226,14 +248,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             ViewData["page"] = page;
             IList<Fault> faultsList = faultService.GetDeviceLogsPage(table);
             totalRecord += (table["page"] as Pager).RecordCount;
-            int startIndex = (intValue-1) * page.PageSize;//当前页码的开始索引
+            int startIndex = (intValue - 1) * page.PageSize;//当前页码的开始索引
             IList<Fault> faults = new List<Fault>();
 
             if (totalRecord > startIndex)
             {
                 foreach (Fault item in faultsList)
                 {
-                    if (faults.Count < page.PageSize )
+                    if (faults.Count < page.PageSize)
                         faults.Add(item);
                     else
                         break;
@@ -515,7 +537,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             page.RecordCount = totalRecord;//返回查询的所有年数的所有记录
             page.PageIndex = intValue; */
             ViewData["user"] = UserService.GetInstance().Get(userId);
-            
+
             return View("devicefault", faultsList);
         }
 

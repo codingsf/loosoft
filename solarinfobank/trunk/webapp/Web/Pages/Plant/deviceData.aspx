@@ -20,7 +20,7 @@
         if(chartId==3)displayyearMMChart();
         if(chartId==4)displayyearChart();
     }
-    if(curtab==2)displayRunData();
+    if(curtab==2)fillingRunData();
     if(curtab==3)displayFault();
     }
     

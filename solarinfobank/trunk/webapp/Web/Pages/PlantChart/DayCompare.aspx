@@ -272,7 +272,7 @@
         <div class="sb_mid">
             <div class="subico01">
                 <ul id="change">
-                    <li style="cursor: pointer;"><a id="pScatterDayChart" class="noclick"  href="javascript:void(0)">日照功率散点图</a></li>                    
+                    <li style="cursor: pointer;"><a id="pScatterDayChart" class="noclick"  href="javascript:void(0)">日照功率散列图</a></li>                    
                     <li style="cursor: pointer;"><a id="pDayChart" class="noclick" href="javascript:void(0)"><%=Resources.SunResource.CHART_POWER_COMPARE%></a></li>
                     <li style="cursor: pointer;"><a id="eDayChart" class="noclick" href="javascript:void(0)"><%=Resources.SunResource.CHART_ENERGY_COMPARE%></a></li>
                 </ul>

@@ -58,6 +58,31 @@
             loadData("rundata");
             changeTopStyle('rundata');
         }
+        //填充 rundata 数据
+        function fillingRunData()
+        {
+            curtab=2;
+            $.ajax({
+                type: "GET",
+                url: "/device/rundatajson",
+                data: { id: $("#deviceID").val(),rad: Math.random()},
+                success: function(data) {
+                    var result=eval('('+data+')');
+                    for(var i=0;i<result.length;i++)
+                    {
+                        for(var j=0;j<result[i].length;j++)
+                        {
+                            if($("#lbl"+result[i][j].key.code).length)
+                                $("#lbl"+result[i][j].key.code).html(result[i][j].value);
+                            if($("#unit"+result[i][j].key.code).length)
+                                $("#unit"+result[i][j].key.code).html(result[i][j].key.unit);
+                        }
+                    }
+                }, 
+                complete: function (XHR, TS) { XHR = null } 
+            });
+            changeTopStyle('rundata');
+        }
         
         function displayChart() {
             curtab=1;

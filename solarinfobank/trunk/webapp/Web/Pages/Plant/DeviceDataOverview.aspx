@@ -36,7 +36,7 @@
             $('#rundata').click(displayRunData);
             $('#chart').click(displayChart);
             $('#fault').click(displayFault);
-            displayChart();
+            displayRunData();
             deviceInint();
             if($('#prchart'))
             {
@@ -88,8 +88,10 @@
             $("#deviceID").val(deviceId);
             var did=deviceId;
             var uid=$('#unitId').val();
-            var pid="<%=Model.id %>"
-            loadContent('content_container_control','/plant/devicedataoverview/'+pid+'/'+did+'/'+uid,'ajax','GET');
+            var pid="<%=Model.id %>";
+            //loadData("rundata");
+            displayRunData();
+          //  loadContent('content_container_control','/plant/devicedataoverview/'+pid+'/'+did+'/'+uid,'ajax','GET');
         }
         
         function loadRunDataHtml() {

@@ -22,6 +22,7 @@
         <%=ViewData["jsstr"] %>
         
         document.write(d);
+        d.openTo(2,true);
 		//-->
     </script>
 

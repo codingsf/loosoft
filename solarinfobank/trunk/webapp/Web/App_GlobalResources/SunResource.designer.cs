@@ -997,7 +997,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Full screen browsing 的本地化字符串。
+        ///   查找类似 上传大屏展示LOGO 的本地化字符串。
+        /// </summary>
+        internal static string BIG_SCREEN_LOGO_UPLOAD_TITLE {
+            get {
+                return ResourceManager.GetString("BIG_SCREEN_LOGO_UPLOAD_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Fullscreen Browsing 的本地化字符串。
         /// </summary>
         internal static string BIG_SCREEN_MENU {
             get {
@@ -5212,7 +5221,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Device relationships 的本地化字符串。
+        ///   查找类似 Device Relationships 的本地化字符串。
         /// </summary>
         internal static string DEVICE_RELATION_MENU {
             get {

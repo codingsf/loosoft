@@ -8,7 +8,9 @@
     <script src="/script/jquery-1.3.2.min.js" type="text/javascript"></script>
 
     <link href="/bigscreen/css/css.css" rel="stylesheet" type="text/css" />
-    <style type="text/css">.page{clear: both;width: 100%;}</style>
+    <style type="text/css">
+    .page{clear: both;width: 100%;}
+    .table{clear: both;width: 1000px; height:400px;}</style>
     <script language="javascript" type="text/javascript">
         var logo = '<%=ViewData["logo"] %>';
         var ajaxImgTop = 90;
@@ -111,7 +113,11 @@
             $("#" + curContainer.replace("_0", "_1 label[id='name']")).html(obj.plantName);
             $("#" + curContainer.replace("_0", "_2 label[id='name']")).html(obj.plantName);
             $("#" + curContainer.replace("_0", "_3 label[id='name']")).html(obj.plantName);
-            $("#" + curContainer + " img[id='imageurl']").attr("src", obj.imageArray);
+            
+            if(checkimgexists(obj.imageArray))
+                $("#" + curContainer + " img[id='imageurl']").attr("src", obj.imageArray);
+            else
+                $("#" + curContainer + " img[id='imageurl']").attr("src", '/bigscreen/images/plant_img.jpg');
             $("#" + curContainer + " label[id='installdate']").html(obj.installDate);
             $("#" + curContainer + " label[id='designpower']").html(obj.DesignPower);
             $("#" + curContainer + " label[id='location']").html(obj.Country + " " + obj.City);
@@ -173,6 +179,16 @@
             chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
         }
 
+        function checkimgexists(imgurl) {
+            var ImgObj = new Image(); 
+            ImgObj.src = imgurl;
+            if (ImgObj.fileSize > 0 || (ImgObj.width > 0 && ImgObj.height > 0)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        
         $().ready(function() {
             $(".logo").attr("src", logo);
             bigscreen.play();

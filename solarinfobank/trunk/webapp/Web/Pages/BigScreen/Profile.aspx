@@ -4,7 +4,7 @@
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
             <tr>
                 <td width="34%">
-                    <img class="logo" src="" width="225" height="46" />
+                    <img class="logo" src="" />
                 </td>
                 <td width="66%" align="left">
                     <label id="name">
@@ -96,7 +96,7 @@
             <ul class="tj">
                 <li><font class="f34"><label id="cq2reduce"></label></font><font class="f18"><label id="cq2reduceunit"></label></font></li>
                 <li><font class="f34"><label id="solarintensity"></label></font><font class="f18"><label id="solarintensityunit"></label></font></li>
-                <li><font class="f34"><label id="temprature"></label></font><font class="f18"><label id="tempratureunit"></label></font></li>
+                <li><font class="f34"><label id="temprature"></label></font><font class="f18">°<label id="tempratureunit"></label></font></li>
             </ul>
         </div>
     </div>

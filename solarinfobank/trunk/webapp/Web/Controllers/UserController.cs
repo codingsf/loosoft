@@ -2442,7 +2442,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     string filename = string.Format("{0}_{1}", user.id, "logo.") + bigscreenlogo.FileName.Substring(bigscreenlogo.FileName.LastIndexOf('.') + 1);
                     string filePath = Path.Combine(HttpContext.Server.MapPath(floder), filename);
                     bigscreenlogo.SaveAs(filePath);
-                    userservice.UpdateBigScreenLogo(user.id, floder + filename);
+                    user.BigScreenLogoPath=floder + filename;
+                    userservice.UpdateBigScreenLogo(user.id, user.BigScreenLogoPath);
 
                 }
             }
@@ -2451,8 +2452,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 Console.WriteLine(e.Message);
                 ViewData["errorMessage"] = "保存失败：" + e.Message;
             }
-
-            return View("bigscreenlogo", user);
+            return Redirect("/user/bigscreenlogo");
         }
     }
 }

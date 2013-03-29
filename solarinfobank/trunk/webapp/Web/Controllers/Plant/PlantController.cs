@@ -2425,7 +2425,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             if (plant.plantUnits.Count > 0)
                 ViewData["unitID"] = plant.plantUnits[0].id;//第一个单元
             if (plant.plantUnits[0].displayDevices.Count > 0)
-                ViewData["deviceID"] = plant.plantUnits[0].displayDevices[0].id;//第一个设备
+                ViewData["deviceID"] = plant.plantUnits[0].displayDevices.OrderByDescending(m=>m.deviceModelCode).ToList<Device>()[0].id;//第一个设备
             string startYM = (DateTime.Now.Year - 1) + "" + DateTime.Now.Month.ToString("00");
             string endYM = DateTime.Now.Year + "" + DateTime.Now.Month.ToString("00");
 

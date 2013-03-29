@@ -7,7 +7,7 @@
 <%@ Import Namespace="System.Globalization" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%=this.Model.organize%>
-    <%=Resources.SunResource.BIG_SCREEN_LOGO_UPLOAD%>
+    <%=Resources.SunResource.BIG_SCREEN_LOGO_UPLOAD_TITLE%>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <script src="../../script/jquery.js" type="text/javascript"></script>
@@ -56,7 +56,7 @@
                                         <img src="/images/kj/kjiico01.gif" />
                                     </td>
                                     <td class="pv0216">
-                                       <%=Resources.SunResource.BIG_SCREEN_LOGO_UPLOAD%>
+                                       <%=Resources.SunResource.BIG_SCREEN_LOGO_UPLOAD_TITLE%>
                                     </td>
                                     <td align="right" class="help_r">
                                         <a href="/help/<%=(Session["Culture"] as CultureInfo).Name%>/SolarInfo Bank User Manual.pdf"

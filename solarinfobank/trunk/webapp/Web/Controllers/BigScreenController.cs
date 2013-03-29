@@ -136,31 +136,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             plantVO.totalEnergy = plant.DisplayTotalEnergy;
             plantVO.totalEnergyUnit = plant.TotalEnergyUnit;
             plantVO.imageArray = "http://" + Request.Url.Authority + "/ufile/" + (string.IsNullOrEmpty(plant.onePic) ? "Nopic/nopico02.gif" : plant.onePic);
-
-            string ts = "";
-            double t = plant.Temperature;
-            if (t == 0)
-            {
-                CityCodeService codeService = CityCodeService.GetInstance();
-                t = codeService.GetTemperature(plant.city);
-                if (!double.IsNaN(t))
-                {
-                    ts = t.ToString("0.0");
-                }
-            }
+            if (plant.getFirstDetector() != null)
+                plantVO.temprature = plant.getFirstDetector().getMonitorValue(MonitorType.MIC_DETECTOR_ENRIONMENTTEMPRATURE).ToString();
             else
-            {
-                ts = t.ToString("0.0");
-            }
-            if (user != null && !user.TemperatureType.ToLower().Equals("c"))
-            {
-                t = (32 + (t * 1.8));
-                ts = t.ToString("0.0");
-            }
-            plantVO.temprature = ts;
+                plantVO.temprature = plant.Temperature.ToString();
             plantVO.tempratureUnit = user.TemperatureType.ToUpper();
-
-
             return Json(plantVO, JsonRequestBehavior.AllowGet);
         }
 

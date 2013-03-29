@@ -6902,4 +6902,7 @@ The average value of coefficient will trigger warning
   <data name="DEVICE_RELATION_NOTICE4" xml:space="preserve">
     <value>Si prega di selezionare un dispositivo</value>
   </data>
+  <data name="BIG_SCREEN_LOGO_UPLOAD_TITLE" xml:space="preserve">
+    <value>上传大屏展示LOGO</value>
+  </data>
 </root>

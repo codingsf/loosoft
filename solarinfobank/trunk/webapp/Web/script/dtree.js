@@ -33,7 +33,7 @@ function dTree(objName) {
         target: null,
         folderLinks: true,
         useSelection: true,
-        useCookies: true,
+        useCookies: false,
         useLines: true,
         useIcons: true,
         useStatusText: false,

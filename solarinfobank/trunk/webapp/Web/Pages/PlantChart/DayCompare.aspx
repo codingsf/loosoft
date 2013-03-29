@@ -5,14 +5,14 @@
 <%@ Import Namespace="System.Globalization" %>
     <script type="text/javascript">
         function readyinit() {
-            //add by hbqian in 2013/03/18 forÔö¼ÓÏÔÊ¾µçÕ¾ÈÕÈÕÕÕºÍ¹¦ÂÊÉ¢µãÍ¼
+            //add by hbqian in 2013/03/18 forå¢åŠ æ˜¾ç¤ºç”µç«™æ—¥æ—¥ç…§å’ŒåŠŸç‡æ•£ç‚¹å›¾
             $('#pScatterDayChart').click(displayPScatterDayChart);
             $('#pDayChart').click(displayPDayChart);
             $('#eDayChart').click(displayEDayChart);
             displayPScatterDayChart();
         }
 
-        //add by hbqian in 2013/03/18 forÔö¼ÓÏÔÊ¾µçÕ¾ÈÕÈÕÕÕºÍ¹¦ÂÊÉ¢µãÍ¼
+        //add by hbqian in 2013/03/18 forå¢åŠ æ˜¾ç¤ºç”µç«™æ—¥æ—¥ç…§å’ŒåŠŸç‡æ•£ç‚¹å›¾
         function displayPScatterDayChart() {
             $("#chartType").val("scatter");
             $("#chartTypeSelect").attr("value", "scatter");
@@ -58,7 +58,7 @@
             }
         }
         
-        //add by hbqian in 2013/03/18 forÔö¼ÓÏÔÊ¾µçÕ¾ÈÕÈÕÕÕºÍ¹¦ÂÊÉ¢µãÍ¼
+        //add by hbqian in 2013/03/18 forå¢åŠ æ˜¾ç¤ºç”µç«™æ—¥æ—¥ç…§å’ŒåŠŸç‡æ•£ç‚¹å›¾
         function PlantDayPowerSunScatterCompare(curContainer, ajaxImgTop, isLarge) {
             changeStyle("pScatterDayChart");
             $.ajax({
@@ -75,10 +75,10 @@
                     //setySeriesArr(data.series);
                     //var interval = isLarge ? 60 / 5 : 120 / 5;
                     //setCategoriesWithInterval(data.categories, isLarge, interval);
-                    //É¢ÁĞÍ¼µ¥¶À´¦Àí
+                    //æ•£åˆ—å›¾å•ç‹¬å¤„ç†
                     defineChartWithScatter(curContainer,true,data);
                     showDetails(result, $("#pScatterStartYYYYMMDDHH").val());
-                    //ĞŞ¸Ä±êÌâs
+                    //ä¿®æ”¹æ ‡é¢˜s
                     chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
                 },
                 beforeSend: function() {
@@ -107,7 +107,7 @@
                     setCategoriesWithInterval(data.categories, isLarge, interval);
                     defineChart(curContainer);
                     showDetails(result, $("#pstartYYYYMMDDHH").val());
-                    //ĞŞ¸Ä±êÌâ
+                    //ä¿®æ”¹æ ‡é¢˜
                     chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
                 },
                 beforeSend: function() {
@@ -136,7 +136,7 @@
                     setCategoriesWithInterval(data.categories, isLarge, interval);
                     defineChart(curContainer);
                     showDetails(result, $("#estartYYYYMMDDHH").val());
-                    //ĞŞ¸Ä±êÌâ
+                    //ä¿®æ”¹æ ‡é¢˜
                     chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
                     
                 },
@@ -161,7 +161,7 @@
             $("#date_" + curId).show();
         }
 
-        //Ç°ÈÕÆÚ¿ò±ä»¯º¯Êı
+        //å‰æ—¥æœŸæ¡†å˜åŒ–å‡½æ•°
         function changePreDay(obj) {
             var id;
             if (curChart == "eDayChart") {
@@ -211,7 +211,7 @@
             aimDay = aimDay.substring(0, 4) + "-" + aimDay.substring(4, 6) + "-" + aimDay.substring(6, 8);
             $("."+obj.id).val(aimDay);
         }
-        //add by hbqian in 2013/03/18 forÔö¼ÓÏÔÊ¾µçÕ¾ÈÕÈÕÕÕºÍ¹¦ÂÊÉ¢µãÍ¼
+        //add by hbqian in 2013/03/18 forå¢åŠ æ˜¾ç¤ºç”µç«™æ—¥æ—¥ç…§å’ŒåŠŸç‡æ•£ç‚¹å›¾
         function changePScatterDay(obj) {
             var aimDay = obj.value;
             if (aimDay) {
@@ -272,7 +272,7 @@
         <div class="sb_mid">
             <div class="subico01">
                 <ul id="change">
-                    <li style="cursor: pointer;"><a id="pScatterDayChart" class="noclick"  href="javascript:void(0)">ÈÕÕÕ¹¦ÂÊÉ¢µãÍ¼</a></li>                    
+                    <li style="cursor: pointer;"><a id="pScatterDayChart" class="noclick"  href="javascript:void(0)">æ—¥ç…§åŠŸç‡æ•£ç‚¹å›¾</a></li>                    
                     <li style="cursor: pointer;"><a id="pDayChart" class="noclick" href="javascript:void(0)"><%=Resources.SunResource.CHART_POWER_COMPARE%></a></li>
                     <li style="cursor: pointer;"><a id="eDayChart" class="noclick" href="javascript:void(0)"><%=Resources.SunResource.CHART_ENERGY_COMPARE%></a></li>
                 </ul>

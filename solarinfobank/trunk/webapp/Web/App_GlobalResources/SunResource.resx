@@ -5778,10 +5778,10 @@ The average value of coefficient will trigger warning
     <value>Upload LOGO</value>
   </data>
   <data name="BIG_SCREEN_MENU" xml:space="preserve">
-    <value>Full screen browsing</value>
+    <value>Fullscreen Browsing</value>
   </data>
   <data name="DEVICE_RELATION_MENU" xml:space="preserve">
-    <value>Device relationships</value>
+    <value>Device Relationships</value>
   </data>
   <data name="RELATION_MOVE_LEFT" xml:space="preserve">
     <value>move left</value>
@@ -5800,5 +5800,8 @@ The average value of coefficient will trigger warning
   </data>
   <data name="DEVICE_RELATION_NOTICE4" xml:space="preserve">
     <value>Please select a device not unit</value>
+  </data>
+  <data name="BIG_SCREEN_LOGO_UPLOAD_TITLE" xml:space="preserve">
+    <value>上传大屏展示LOGO</value>
   </data>
 </root>

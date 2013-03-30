@@ -27,7 +27,7 @@
                 obj.value = content.substr(0, 500);
                 length = 0;
             }
-            document.getElementById("wordLength").innerHTML = length;
+           // document.getElementById("wordLength").innerHTML = length;
 
         }
         function checkform() {
@@ -117,8 +117,6 @@
                                     <td>
                                         <span class="changimg"></span>
                                         <textarea id="descr" name="descr" rows="6" class="faq_input02" onkeyup="checkwords(this);"><%=qa==null?"":qa.descr %></textarea>
-                                        <span class="tszs" style="display:none">
-                                            <%=Resources.SunResource.QA_TEXTAREA_WORDS_COUNTER%></span>
                                     </td>
                                 </tr>
                                 <tr>

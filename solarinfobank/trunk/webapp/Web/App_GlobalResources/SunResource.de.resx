@@ -5568,9 +5568,6 @@ communication products and
 software programs.
 </value>
   </data>
-  <data name="QA_TEXTAREA_WORDS_COUNTER" xml:space="preserve">
-    <value>您还可以输&lt;span id="wordLength"&gt;500&lt;/span&gt;个字</value>
-  </data>
   <data name="QA_TITLE" xml:space="preserve">
     <value>Titel</value>
   </data>
@@ -5923,7 +5920,7 @@ The average value of coefficient will trigger warning
     <value>门户用户</value>
   </data>
   <data name="AUTO_REFRESH_NOTICE" xml:space="preserve">
-    <value>该页面数据间隔{0}S自动刷新一次</value>
+    <value>Aktualisierungsintervall {0}S</value>
   </data>
   <data name="BIG_SCREEN_INSTALL_DATE" xml:space="preserve">
     <value>Installation Date</value>
@@ -5959,18 +5956,18 @@ The average value of coefficient will trigger warning
     <value>rechts</value>
   </data>
   <data name="DEVICE_RELATION_NOTICE1" xml:space="preserve">
-    <value>Bitte wählen Sie ein Gerät auf der linken Seite</value>
-  </data>
-  <data name="DEVICE_RELATION_NOTICE2" xml:space="preserve">
-    <value>Bitte wählen Sie ein Gerät auf der rechten Seite</value>
-  </data>
-  <data name="DEVICE_RELATION_NOTICE3" xml:space="preserve">
-    <value>Beziehungen können nicht die gleiche Art von Geräten eingestellt werden</value>
-  </data>
-  <data name="DEVICE_RELATION_NOTICE4" xml:space="preserve">
     <value>Bitte wählen Sie ein Gerät</value>
   </data>
-  <data name="BIG_SCREEN_LOGO_UPLOAD_TITLE" xml:space="preserve">
-    <value>上传大屏展示LOGO</value>
+  <data name="DEVICE_RELATION_NOTICE2" xml:space="preserve">
+    <value>Bitte wählen Sie ein Gerät</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE3" xml:space="preserve">
+    <value>kann nicht zugeordnet werden</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE4" xml:space="preserve">
+    <value>kann nicht zugeordnet werden</value>
+  </data>
+  <data name="CHART_POWER_SUNLIGHT" xml:space="preserve">
+    <value>Macht &amp; Insolation</value>
   </data>
 </root>

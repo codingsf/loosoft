@@ -5145,9 +5145,6 @@ communication products and
 software programs.
 </value>
   </data>
-  <data name="QA_TEXTAREA_WORDS_COUNTER" xml:space="preserve">
-    <value>您还可以输&lt;span id="wordLength"&gt;500&lt;/span&gt;个字</value>
-  </data>
   <data name="QA_TITLE" xml:space="preserve">
     <value>titre</value>
   </data>
@@ -5501,7 +5498,7 @@ The average value of coefficient will trigger warning
     <value>门户用户</value>
   </data>
   <data name="AUTO_REFRESH_NOTICE" xml:space="preserve">
-    <value>该页面数据间隔{0}S自动刷新一次</value>
+    <value>intervalle de rafraîchissement{0}S</value>
   </data>
   <data name="BIG_SCREEN_INSTALL_DATE" xml:space="preserve">
     <value>Install Date</value>
@@ -5540,18 +5537,18 @@ The average value of coefficient will trigger warning
     <value>décalée vers la droite</value>
   </data>
   <data name="DEVICE_RELATION_NOTICE1" xml:space="preserve">
-    <value>S'il vous plaît sélectionner un périphérique sur la gauche</value>
-  </data>
-  <data name="DEVICE_RELATION_NOTICE2" xml:space="preserve">
-    <value>S'il vous plaît sélectionner un périphérique sur le droit</value>
-  </data>
-  <data name="DEVICE_RELATION_NOTICE3" xml:space="preserve">
-    <value>Les relations peuvent pas être le même genre de matériel</value>
-  </data>
-  <data name="DEVICE_RELATION_NOTICE4" xml:space="preserve">
     <value>S'il vous plaît sélectionner un périphérique</value>
   </data>
-  <data name="BIG_SCREEN_LOGO_UPLOAD_TITLE" xml:space="preserve">
-    <value>上传大屏展示LOGO</value>
+  <data name="DEVICE_RELATION_NOTICE2" xml:space="preserve">
+    <value>S'il vous plaît sélectionner un périphérique</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE3" xml:space="preserve">
+    <value>ne peut pas être associé</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE4" xml:space="preserve">
+    <value>ne peut pas être associé</value>
+  </data>
+  <data name="CHART_POWER_SUNLIGHT" xml:space="preserve">
+    <value>Puissance &amp; Insolation</value>
   </data>
 </root>

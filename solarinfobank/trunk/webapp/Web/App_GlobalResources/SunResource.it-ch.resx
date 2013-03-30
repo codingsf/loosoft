@@ -6501,9 +6501,6 @@ valuable tips on our inverters,
 communication products and
 software programs.</value>
   </data>
-  <data name="QA_TEXTAREA_WORDS_COUNTER" xml:space="preserve">
-    <value>您还可以输&lt;span id="wordLength"&gt;500&lt;/span&gt;个字</value>
-  </data>
   <data name="QA_TITLE" xml:space="preserve">
     <value>titolo</value>
   </data>
@@ -6855,7 +6852,7 @@ The average value of coefficient will trigger warning
     <value>门户用户</value>
   </data>
   <data name="AUTO_REFRESH_NOTICE" xml:space="preserve">
-    <value>该页面数据间隔{0}S自动刷新一次</value>
+    <value>Intervallo di aggiornamento {0}S</value>
   </data>
   <data name="BIG_SCREEN_INSTALL_DATE" xml:space="preserve">
     <value>Install Date</value>
@@ -6891,18 +6888,18 @@ The average value of coefficient will trigger warning
     <value>spostata a destra</value>
   </data>
   <data name="DEVICE_RELATION_NOTICE1" xml:space="preserve">
-    <value>Si prega di selezionare un dispositivo a sinistra</value>
-  </data>
-  <data name="DEVICE_RELATION_NOTICE2" xml:space="preserve">
-    <value>Si prega di selezionare un dispositivo a destra</value>
-  </data>
-  <data name="DEVICE_RELATION_NOTICE3" xml:space="preserve">
-    <value>Relazioni non può essere impostato lo stesso tipo di apparecchiatura</value>
-  </data>
-  <data name="DEVICE_RELATION_NOTICE4" xml:space="preserve">
     <value>Si prega di selezionare un dispositivo</value>
   </data>
-  <data name="BIG_SCREEN_LOGO_UPLOAD_TITLE" xml:space="preserve">
-    <value>上传大屏展示LOGO</value>
+  <data name="DEVICE_RELATION_NOTICE2" xml:space="preserve">
+    <value>Si prega di selezionare un dispositivo</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE3" xml:space="preserve">
+    <value>non può essere associato</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE4" xml:space="preserve">
+    <value>non può essere associato</value>
+  </data>
+  <data name="CHART_POWER_SUNLIGHT" xml:space="preserve">
+    <value>Potenza &amp; Insolazione</value>
   </data>
 </root>

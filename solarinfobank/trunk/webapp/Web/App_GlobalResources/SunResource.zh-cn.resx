@@ -5217,9 +5217,6 @@
   <data name="QA_NOTICE_TITLE" xml:space="preserve">
     <value>请输入标题</value>
   </data>
-  <data name="QA_TEXTAREA_WORDS_COUNTER" xml:space="preserve">
-    <value>您还可以输&lt;span id="wordLength"&gt;500&lt;/span&gt;个字</value>
-  </data>
   <data name="QA_TITLE" xml:space="preserve">
     <value>标题</value>
   </data>
@@ -5550,7 +5547,7 @@
     <value>门户用户</value>
   </data>
   <data name="AUTO_REFRESH_NOTICE" xml:space="preserve">
-    <value>该页面数据间隔{0}S自动刷新一次</value>
+    <value>刷新间隔{0}S</value>
   </data>
   <data name="ENERGY_RATE_TITLE" xml:space="preserve">
     <value>设置发电量补偿量</value>
@@ -5589,18 +5586,18 @@
     <value>右移</value>
   </data>
   <data name="DEVICE_RELATION_NOTICE1" xml:space="preserve">
-    <value>请在左边选择一个设备</value>
+    <value>请选择一个设备</value>
   </data>
   <data name="DEVICE_RELATION_NOTICE2" xml:space="preserve">
-    <value>请在右边选择一个设备</value>
+    <value>请选择一个设备</value>
   </data>
   <data name="DEVICE_RELATION_NOTICE3" xml:space="preserve">
-    <value>同一种设备不能设置关系</value>
+    <value>无法关联</value>
   </data>
   <data name="DEVICE_RELATION_NOTICE4" xml:space="preserve">
-    <value>请选择一种设备</value>
+    <value>无法关联</value>
   </data>
-  <data name="BIG_SCREEN_LOGO_UPLOAD_TITLE" xml:space="preserve">
-    <value>上传大屏展示LOGO</value>
+  <data name="CHART_POWER_SUNLIGHT" xml:space="preserve">
+    <value>功率 &amp; 日照</value>
   </data>
 </root>

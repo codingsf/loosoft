@@ -132,7 +132,7 @@
                             <td width="20%" valign="top" align="center">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
-                                        <td height="160" align="center">
+                                        <td height="160" align="left">
                                             <div id="divAddDevice">
                                                 <a href="javascript:void(0)" id="A1" name="btnAddDevice" onclick="lefttoright()">
                                                 <img src="/images/sub/add.gif" border="0" width="18" height="18" alt=""/><br>
@@ -142,7 +142,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td height="160" align="center" valign="top">
+                                        <td height="160" align="left" valign="top">
                                             <div id="divDelDevice">
                                                 <a href="javascript:void(0)" id="btnDelDevice" name="btnDelDevice" onclick="righttoleft()">
                                                 <img src="/images/sub/reduce.gif" border="0" width="18" height="18" alt=""/><br>

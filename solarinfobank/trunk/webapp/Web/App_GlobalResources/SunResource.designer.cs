@@ -916,7 +916,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 The page data interval{0}S automatic refresh 的本地化字符串。
+        ///   查找类似 Refresh interval{0}S 的本地化字符串。
         /// </summary>
         internal static string AUTO_REFRESH_NOTICE {
             get {
@@ -993,15 +993,6 @@ namespace Resources {
         internal static string BIG_SCREEN_LOGO_UPLOAD {
             get {
                 return ResourceManager.GetString("BIG_SCREEN_LOGO_UPLOAD", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 上传大屏展示LOGO 的本地化字符串。
-        /// </summary>
-        internal static string BIG_SCREEN_LOGO_UPLOAD_TITLE {
-            get {
-                return ResourceManager.GetString("BIG_SCREEN_LOGO_UPLOAD_TITLE", resourceCulture);
             }
         }
         
@@ -1407,6 +1398,15 @@ namespace Resources {
         internal static string CHART_POWER_ENERGY_CHART_DETAIL {
             get {
                 return ResourceManager.GetString("CHART_POWER_ENERGY_CHART_DETAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Power &amp; Insolation 的本地化字符串。
+        /// </summary>
+        internal static string CHART_POWER_SUNLIGHT {
+            get {
+                return ResourceManager.GetString("CHART_POWER_SUNLIGHT", resourceCulture);
             }
         }
         
@@ -5230,7 +5230,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Please select a device on the left 的本地化字符串。
+        ///   查找类似 Please select a device 的本地化字符串。
         /// </summary>
         internal static string DEVICE_RELATION_NOTICE1 {
             get {
@@ -5239,7 +5239,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Please select a device on the right 的本地化字符串。
+        ///   查找类似 Please select a device 的本地化字符串。
         /// </summary>
         internal static string DEVICE_RELATION_NOTICE2 {
             get {
@@ -5248,7 +5248,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Relations can not be set the same kind of equipment 的本地化字符串。
+        ///   查找类似 Can not be associated 的本地化字符串。
         /// </summary>
         internal static string DEVICE_RELATION_NOTICE3 {
             get {
@@ -5257,7 +5257,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Please select a device not unit 的本地化字符串。
+        ///   查找类似 Can not be associated 的本地化字符串。
         /// </summary>
         internal static string DEVICE_RELATION_NOTICE4 {
             get {
@@ -10000,15 +10000,6 @@ namespace Resources {
         internal static string QA_SUBTITLE_DESCR {
             get {
                 return ResourceManager.GetString("QA_SUBTITLE_DESCR", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 You can also lose&lt;span id=&quot;wordLength&quot;&gt;500&lt;/span&gt;words 的本地化字符串。
-        /// </summary>
-        internal static string QA_TEXTAREA_WORDS_COUNTER {
-            get {
-                return ResourceManager.GetString("QA_TEXTAREA_WORDS_COUNTER", resourceCulture);
             }
         }
         

@@ -5137,9 +5137,6 @@ communication products and
 software programs.
 </value>
   </data>
-  <data name="QA_TEXTAREA_WORDS_COUNTER" xml:space="preserve">
-    <value>您还可以输&lt;span id="wordLength"&gt;500&lt;/span&gt;个字</value>
-  </data>
   <data name="QA_TITLE" xml:space="preserve">
     <value>タイトル</value>
   </data>
@@ -5495,7 +5492,7 @@ The average value of coefficient will trigger warning
     <value>门户用户</value>
   </data>
   <data name="AUTO_REFRESH_NOTICE" xml:space="preserve">
-    <value>该页面数据间隔{0}S自动刷新一次</value>
+    <value>リフレッシュ間隔{0}S</value>
   </data>
   <data name="BIG_SCREEN_INSTALL_DATE" xml:space="preserve">
     <value>投入运行日期</value>
@@ -5531,18 +5528,18 @@ The average value of coefficient will trigger warning
     <value>右にシフト</value>
   </data>
   <data name="DEVICE_RELATION_NOTICE1" xml:space="preserve">
-    <value>左側のデバイスを選択してください</value>
-  </data>
-  <data name="DEVICE_RELATION_NOTICE2" xml:space="preserve">
-    <value>右側のデバイスを選択してください</value>
-  </data>
-  <data name="DEVICE_RELATION_NOTICE3" xml:space="preserve">
-    <value>関係は、機器の同じ種類を設定することはできません</value>
-  </data>
-  <data name="DEVICE_RELATION_NOTICE4" xml:space="preserve">
     <value>デバイスを選択してください</value>
   </data>
-  <data name="BIG_SCREEN_LOGO_UPLOAD_TITLE" xml:space="preserve">
-    <value>上传大屏展示LOGO</value>
+  <data name="DEVICE_RELATION_NOTICE2" xml:space="preserve">
+    <value>デバイスを選択してください</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE3" xml:space="preserve">
+    <value>関連付けることができません</value>
+  </data>
+  <data name="DEVICE_RELATION_NOTICE4" xml:space="preserve">
+    <value>関連付けることができません</value>
+  </data>
+  <data name="CHART_POWER_SUNLIGHT" xml:space="preserve">
+    <value>電力 ＆ 日照</value>
   </data>
 </root>

@@ -5405,9 +5405,6 @@ communication products and
 software programs.
 </value>
   </data>
-  <data name="QA_TEXTAREA_WORDS_COUNTER" xml:space="preserve">
-    <value>You can also lose&lt;span id="wordLength"&gt;500&lt;/span&gt;words</value>
-  </data>
   <data name="QA_TITLE" xml:space="preserve">
     <value>Title
 </value>
@@ -5754,7 +5751,7 @@ The average value of coefficient will trigger warning
     <value>门户用户</value>
   </data>
   <data name="AUTO_REFRESH_NOTICE" xml:space="preserve">
-    <value>The page data interval{0}S automatic refresh</value>
+    <value>Refresh interval{0}S</value>
   </data>
   <data name="BIG_SCREEN_INSTALL_DATE" xml:space="preserve">
     <value>Installation Date</value>
@@ -5790,18 +5787,18 @@ The average value of coefficient will trigger warning
     <value>move right</value>
   </data>
   <data name="DEVICE_RELATION_NOTICE1" xml:space="preserve">
-    <value>Please select a device on the left</value>
+    <value>Please select a device</value>
   </data>
   <data name="DEVICE_RELATION_NOTICE2" xml:space="preserve">
-    <value>Please select a device on the right</value>
+    <value>Please select a device</value>
   </data>
   <data name="DEVICE_RELATION_NOTICE3" xml:space="preserve">
-    <value>Relations can not be set the same kind of equipment</value>
+    <value>Can not be associated</value>
   </data>
   <data name="DEVICE_RELATION_NOTICE4" xml:space="preserve">
-    <value>Please select a device not unit</value>
+    <value>Can not be associated</value>
   </data>
-  <data name="BIG_SCREEN_LOGO_UPLOAD_TITLE" xml:space="preserve">
-    <value>上传大屏展示LOGO</value>
+  <data name="CHART_POWER_SUNLIGHT" xml:space="preserve">
+    <value>Power &amp; Insolation</value>
   </data>
 </root>

@@ -1608,6 +1608,8 @@ function showBigPic(name, id) {
                                                                 <%=Html.Hidden("zone",this.Model.timezone)  %>
                                                                 <%=Html.HiddenFor(m=>m.plantIds)%>
                                                                 <%=Html.HiddenFor(m=>m.parentId)%>
+                                                                <%=Html.HiddenFor(m=>m.energyRate)%>
+                                                                <%=Html.HiddenFor(m=>m.maxEnergyRate)%>
                                                             </td>
                                                         </tr>
                                                         <tr>

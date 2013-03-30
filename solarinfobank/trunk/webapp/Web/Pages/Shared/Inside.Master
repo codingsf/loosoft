@@ -203,6 +203,10 @@
                 });
 
             } else {
+                 if(plantInterval!=undefined)
+                    clearInterval(plantInterval);
+                if(chartInterval!=undefined)
+                    clearInterval(chartInterval);
                 var ifurl = "<iframe src='" + url + "' id='mainFrame' name='mainFrame'onLoad='iFrameHeight()'  frameborder='0' width='793' scrolling=no style='text-align:right;'> </iframe>";
                 $('#' + curContainer).html(ifurl);
                 window.scrollTo(0,0);

@@ -168,7 +168,7 @@
         function loadContent(curContainer, url, type,method) {
        
            if(userInterval!=undefined)
-                        clearInterval(userInterval);
+                clearInterval(userInterval);
                         
          $("#loading_type").val(type);
             if(url.indexOf("?")>-1)

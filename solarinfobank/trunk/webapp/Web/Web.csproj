@@ -2258,7 +2258,7 @@
     <Content Include="Pages\Plant\ViewCustomChart.aspx" />
     <Content Include="Pages\Plant\WarningFilter.aspx" />
     <Content Include="Pages\Public\Agree.aspx" />
-    <Content Include="Pages\app\Index.aspx" />
+    <Content Include="Pages\App\Index.aspx" />
     <Content Include="Pages\Public\ContactUs.aspx" />
     <Content Include="Pages\Reports\CreateReport.aspx" />
     <Content Include="Pages\Reports\EditReport.aspx" />
@@ -8246,11 +8246,6 @@
     <Folder Include="Images\sub\.svn\tmp\prop-base\" />
     <Folder Include="Images\sub\.svn\tmp\props\" />
     <Folder Include="Images\sub\.svn\tmp\text-base\" />
-    <Folder Include="Pages\Admin\Errorcode\.svn\prop-base\" />
-    <Folder Include="Pages\Admin\Errorcode\.svn\props\" />
-    <Folder Include="Pages\Admin\Errorcode\.svn\tmp\prop-base\" />
-    <Folder Include="Pages\Admin\Errorcode\.svn\tmp\props\" />
-    <Folder Include="Pages\Admin\Errorcode\.svn\tmp\text-base\" />
     <Folder Include="Properties\DataSources\" />
     <Folder Include="tempexportfile\" />
     <Folder Include="template\darkgreen\Images\am\.svn\props\" />

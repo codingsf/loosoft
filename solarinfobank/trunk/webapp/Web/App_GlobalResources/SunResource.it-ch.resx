@@ -6301,7 +6301,7 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>codice di verifica</value>
   </data>
   <data name="INVERTER_EDIT_POWER_RATIO" xml:space="preserve">
-    <value>rapporto energetico</value>
+    <value>Rapporto Energetico</value>
   </data>
   <data name="DEVICEMONITORITEM_141" xml:space="preserve">
     <value>stato di guasto</value>
@@ -6468,7 +6468,7 @@ affected. &lt;/span&gt;&lt;/p&gt;</value>
     <value>Accetto "Accordo per gli utenti"</value>
   </data>
   <data name="DEVICE_DEVICE_HISTORYRUN_DATA" xml:space="preserve">
-    <value>dati della cronologia</value>
+    <value>Dati Della Cronologia</value>
     <comment>dati della cronologia</comment>
   </data>
   <data name="PAGE_QA_TITLE" xml:space="preserve">
@@ -6511,7 +6511,7 @@ software programs.</value>
     <value>l'impostazione di compensazione</value>
   </data>
   <data name="INSIDE_ENERGY_RATE" xml:space="preserve">
-    <value>Energia coefficiente</value>
+    <value>Energia Coefficiente</value>
   </data>
   <data name="PLANT_ENERGY_FORECAST_VALUE" xml:space="preserve">
     <value>valore predittivo</value>
@@ -6870,7 +6870,7 @@ The average value of coefficient will trigger warning
     <value>Owner</value>
   </data>
   <data name="BIG_SCREEN_LOGO_SETTING" xml:space="preserve">
-    <value>Le impostazioni LOGO fullscreen</value>
+    <value>Le Impostazioni LOGO Fullscreen</value>
   </data>
   <data name="BIG_SCREEN_LOGO_UPLOAD" xml:space="preserve">
     <value>Carica LOGO</value>

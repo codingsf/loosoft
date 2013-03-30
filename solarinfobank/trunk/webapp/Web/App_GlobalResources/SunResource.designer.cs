@@ -979,7 +979,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Fullscreen LOGO settings 的本地化字符串。
+        ///   查找类似 Fullscreen LOGO Settings 的本地化字符串。
         /// </summary>
         internal static string BIG_SCREEN_LOGO_SETTING {
             get {
@@ -1899,7 +1899,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Custom chart 的本地化字符串。
+        ///   查找类似 Custom Chart 的本地化字符串。
         /// </summary>
         internal static string CUSTOMREPORT_CUSTOM_CHART {
             get {
@@ -5031,7 +5031,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 History data
+        ///   查找类似 History Data
         /// 的本地化字符串。
         /// </summary>
         internal static string DEVICE_DEVICE_HISTORYRUN_DATA {
@@ -5374,7 +5374,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Energy compensation
+        ///   查找类似 Energy Compensation
         /// 的本地化字符串。
         /// </summary>
         internal static string ENERGY_RATE {
@@ -6173,7 +6173,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Energy coefficient 的本地化字符串。
+        ///   查找类似 Energy Coefficient 的本地化字符串。
         /// </summary>
         internal static string INSIDE_ENERGY_RATE {
             get {
@@ -11175,7 +11175,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Energy warning 的本地化字符串。
+        ///   查找类似 Energy Warning 的本地化字符串。
         /// </summary>
         internal static string SHARED_INSIDEMASTERPAGE_ENERGYWARN {
             get {

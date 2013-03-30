@@ -2604,7 +2604,7 @@
     <value>Time comparison</value>
   </data>
   <data name="CUSTOMREPORT_CUSTOM_CHART" xml:space="preserve">
-    <value>Custom chart</value>
+    <value>Custom Chart</value>
   </data>
   <data name="CUSTOMREPORT_CUSTOM_TYPES" xml:space="preserve">
     <value>Custom Types</value>
@@ -5366,7 +5366,7 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <value>Agree《User Agreement》</value>
   </data>
   <data name="DEVICE_DEVICE_HISTORYRUN_DATA" xml:space="preserve">
-    <value>History data
+    <value>History Data
 </value>
     <comment>history data
 </comment>
@@ -5416,7 +5416,7 @@ software programs.
     <value>compensation setting</value>
   </data>
   <data name="INSIDE_ENERGY_RATE" xml:space="preserve">
-    <value>Energy coefficient</value>
+    <value>Energy Coefficient</value>
   </data>
   <data name="PLANT_ENERGY_FORECAST_VALUE" xml:space="preserve">
     <value>Predictive value</value>
@@ -5471,11 +5471,11 @@ software programs.
     <comment>实际比率</comment>
   </data>
   <data name="SHARED_INSIDEMASTERPAGE_ENERGYWARN" xml:space="preserve">
-    <value>Energy warning</value>
+    <value>Energy Warning</value>
     <comment>设备发电量告警</comment>
   </data>
   <data name="ENERGY_RATE" xml:space="preserve">
-    <value>Energy compensation
+    <value>Energy Compensation
 </value>
     <comment>Generating capacity compensation</comment>
   </data>
@@ -5769,7 +5769,7 @@ The average value of coefficient will trigger warning
     <value>Owner</value>
   </data>
   <data name="BIG_SCREEN_LOGO_SETTING" xml:space="preserve">
-    <value>Fullscreen LOGO settings</value>
+    <value>Fullscreen LOGO Settings</value>
   </data>
   <data name="BIG_SCREEN_LOGO_UPLOAD" xml:space="preserve">
     <value>Upload LOGO</value>

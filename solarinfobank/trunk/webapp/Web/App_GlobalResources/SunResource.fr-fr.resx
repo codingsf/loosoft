@@ -2625,7 +2625,7 @@
     <value>Comparaison de temps</value>
   </data>
   <data name="CUSTOMREPORT_CUSTOM_CHART" xml:space="preserve">
-    <value>Graphique coutume</value>
+    <value>Graphique Coutume</value>
   </data>
   <data name="CUSTOMREPORT_CUSTOM_TYPES" xml:space="preserve">
     <value>Types personnalisés</value>
@@ -5111,7 +5111,7 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
     <value>D'accord »Accord Utilisateur"</value>
   </data>
   <data name="DEVICE_DEVICE_HISTORYRUN_DATA" xml:space="preserve">
-    <value>les données d'historique</value>
+    <value>Les données d'historique</value>
     <comment>les données d'historique</comment>
   </data>
   <data name="PAGE_QA_TITLE" xml:space="preserve">
@@ -5152,10 +5152,10 @@ software programs.
     <value>Génération de compensation capacité</value>
   </data>
   <data name="ENERGY_RATE_ADD_SUCCESS" xml:space="preserve">
-    <value>réglage de la compensation</value>
+    <value>Réglage de la compensation</value>
   </data>
   <data name="INSIDE_ENERGY_RATE" xml:space="preserve">
-    <value>coefficient de l'énergie</value>
+    <value>Coefficient de l'énergie</value>
   </data>
   <data name="PLANT_ENERGY_FORECAST_VALUE" xml:space="preserve">
     <value>La valeur prédictive</value>
@@ -5206,11 +5206,11 @@ software programs.
     <comment>实际比率</comment>
   </data>
   <data name="SHARED_INSIDEMASTERPAGE_ENERGYWARN" xml:space="preserve">
-    <value>avertissement énergie</value>
+    <value>Avertissement énergie</value>
     <comment>设备发电量告警</comment>
   </data>
   <data name="ENERGY_RATE" xml:space="preserve">
-    <value>compensation de l'énergie</value>
+    <value>Compensation de l'énergie</value>
     <comment>Génération de compensation capacité</comment>
   </data>
   <data name="HOME_INDEX_VIEWMORE" xml:space="preserve">
@@ -5516,7 +5516,7 @@ The average value of coefficient will trigger warning
     <value>Owner</value>
   </data>
   <data name="BIG_SCREEN_LOGO_SETTING" xml:space="preserve">
-    <value>Les paramètres LOGO</value>
+    <value>Les Paramètres LOGO</value>
   </data>
   <data name="BIG_SCREEN_LOGO_UPLOAD" xml:space="preserve">
     <value>Téléchargez LOGO</value>

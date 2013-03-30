@@ -8204,7 +8204,6 @@
     <None Include="help\it-ch\SunInfo Bank User Manual.pdf" />
     <None Include="help\zh-cn\SolarInfo Bank User Manual.pdf" />
     <None Include="mfile\Logger-SN Ipmort Bank P111.xlsx" />
-    <Content Include="JScript1.js" />
     <Content Include="Pages\Shared\ContentInside.Master" />
     <Content Include="Pages\Shared\EmptyInside.Master" />
     <Content Include="Pages\Shared\Virtual.Master" />

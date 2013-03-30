@@ -107,12 +107,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         public const int DEVICE_MENU_LIST = 40;//设备列表菜单
         public const int USER_CHANGE_PASSWORD = 41;//设备列表菜单
         public const int LOGS_SELECT = 42;//日志列表菜单
-        public const int APPLY_DATASOURCE = 43;
-        public const int PAGE_CONFIG = 44;
-        public const int LOGIN_RECORD = 45;
-
+        public const int APPLY_DATASOURCE = 43;//申请数据源
+        public const int PAGE_CONFIG = 44;//页面设置
+        public const int LOGIN_RECORD = 45;//日志记录
         public const int DEVICE_RELATION = 46;//设备关系设置
-
 
         static AuthorizationCode()
         {

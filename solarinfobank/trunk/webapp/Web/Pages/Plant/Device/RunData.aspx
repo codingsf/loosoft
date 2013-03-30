@@ -156,7 +156,7 @@
     <!--详细数据 add by qhb in 20120825--> 
     <%if ((ViewData["digitalinputdetail"] as IList).Count > 0)
       { %>    
-    <table width="500" border="1" cellpadding="0" cellspacing="0" bordercolor="#D8D8D8" class="xtable">
+    <table width="560" border="1" cellpadding="0" cellspacing="0" bordercolor="#D8D8D8" class="xtable">
   <tr>
     <td colspan="3" background="images/sub/xbg00.jpg" bgcolor="#F5F5F5"><strong style=" float:left; padding-left:10px;"><%=Resources.SunResource.DEVICEMONITORITEM_319%></strong></td>
   </tr>
@@ -187,7 +187,7 @@
 
     <%if ((ViewData["workstatusdetail"] as IList).Count > 0)
       { %>  
-<table width="500" border="1" cellpadding="0" cellspacing="0" bordercolor="#D8D8D8" class="xtable">
+<table width="560" border="1" cellpadding="0" cellspacing="0" bordercolor="#D8D8D8" class="xtable">
   <tr>
     <td colspan="3" align="left" background="images/sub/xbg00.jpg" bgcolor="#F5F5F5" ><strong  style=" float:left; padding-left:10px;"><%=Resources.SunResource.PLANT_DEVICEMONITOR_DEVICE_STATUS%></strong>
     <%if (int.Parse(ViewData["displayHxlroute"].ToString()) > 8)

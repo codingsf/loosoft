@@ -5754,7 +5754,7 @@ The average value of coefficient will trigger warning
     <value>Refresh interval{0}S</value>
   </data>
   <data name="BIG_SCREEN_INSTALL_DATE" xml:space="preserve">
-    <value>Installation Date</value>
+    <value>Install Date</value>
   </data>
   <data name="BIG_SCREEN_INVERTER_COUNT" xml:space="preserve">
     <value>Interval Count</value>

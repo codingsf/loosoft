@@ -340,7 +340,6 @@ function comScatterXyData(tmpSerie) {
     }
     datastr += "]";
     //var datastr = "[[34, 45.0],[34, 26.8]];";
-    alert(datastr)
     return eval(datastr);
 }
 

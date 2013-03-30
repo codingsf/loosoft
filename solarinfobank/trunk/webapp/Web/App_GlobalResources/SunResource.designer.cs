@@ -943,7 +943,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Installation Date 的本地化字符串。
+        ///   查找类似 Install Date 的本地化字符串。
         /// </summary>
         internal static string BIG_SCREEN_INSTALL_DATE {
             get {

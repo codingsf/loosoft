@@ -541,7 +541,8 @@
                                                 href="/plant/energyFilter/<%=Model.id%>" title="">
                                                 <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_ENERGYWARN%>
                                             </a></li>
-                                            <%if (AuthService.isAllow(AuthorizationCode.LOGS_LIST))
+                                            <%
+                                                if (AuthService.isAllow(AuthorizationCode.LOGS_LIST))
                                               { %>
                                             <li><a onclick="loadContent('content_ajax','/plant/log/<%=Model.id %>','iframe','GET');setcurrent(this);return false;"
                                                 href="/plant/log/<%=Model.id%>">

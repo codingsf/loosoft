@@ -907,7 +907,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             Language lang = languageService.Get(id);
             string filePath = Path.Combine(HttpContext.Server.MapPath("/App_GlobalResources"), string.Format("SunResource.{0}.resx", lang.codename));
             uploadFile.SaveAs(filePath);
-            lang.packagename = lang.codename;
+            //lang.packagename = lang.codename;
             languageService.Save(lang);
             System.IO.Directory.CreateDirectory(Server.MapPath("/DepartmentPic/" + language));//在DepartmentPic下创建这个语言的文件夹存放宣传图片
             return View(@"language/index", languageService.GetList());
@@ -923,7 +923,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             string filePath = Path.Combine(HttpContext.Server.MapPath("/App_GlobalResources"), string.Format("SunResource.{0}.resx", lang.codename));
             if (System.IO.File.Exists(filePath))
                 System.IO.File.Delete(filePath);
-            lang.packagename = string.Empty;
+            //lang.packagename = string.Empty;
             languageService.Save(lang);
             System.IO.Directory.Delete(HttpContext.Server.MapPath("../DepartmentPic/" + language), true);//删除DepartmentPic文件加下的这个语言的文件夹
             return View(@"language/index", languageService.GetList());

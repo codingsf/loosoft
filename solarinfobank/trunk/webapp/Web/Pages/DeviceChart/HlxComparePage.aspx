@@ -269,7 +269,7 @@
         function appendMonthData(data){
             if(data.series.length<1) return;
             var selectDate = $("#startYYYYMMDD").val().substring(0,6);
-            var curDate = $("#month").val();
+            var curDate = $("#year").val()+$("#month").val();
             //取得平均值数组
             var averageArr = data.series[data.series.length-1].data;
 

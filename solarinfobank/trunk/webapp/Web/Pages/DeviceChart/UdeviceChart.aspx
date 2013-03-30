@@ -46,7 +46,8 @@
             $("#"+id+"_link").addClass("current");
             $("#unit<%=(ViewData["plantUnit"] as PlantUnit).id%>").show();
             $('#unit').change(unitDeviceInit);
-            unitDeviceInit();
+            //单元下面不在线时设备列表进行选择查看设备的信息了，不在需要18升级修改
+            //unitDeviceInit();
             loadInvertCompare(1);
            
         }
@@ -91,6 +92,7 @@
                 }
             });
         }
+        
         //更加单元和类型加载相应的比较图表
         function loadInvertCompare(type){
             var uid=$('#uid').val();

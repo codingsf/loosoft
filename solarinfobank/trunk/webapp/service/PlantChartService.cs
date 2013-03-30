@@ -732,8 +732,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             {
                 ic[i] = xMergedata.Value[i] == null ? "" : xMergedata.Value[i].ToString();
             }
-
-            return ReportBuilder.createJsonChartXY(chartName, ic, yMergedata, "", unit, chartType, false);
+            IList<KeyValuePair<string, float?[]>> yDataList = new List<KeyValuePair<string, float?[]>>(){yMergedata};
+            string[] ynames = new string[]{"日照","功率"};
+            string[] units = new string[] {"W/㎡", "kW" };
+            string[] chartTypes = new string[]{"scatter","scatter"};
+            return ReportBuilder.createMultiJsonChartXY(chartName, ic, yDataList, ynames,chartTypes,units,false);
         }
 
         /// <summary>

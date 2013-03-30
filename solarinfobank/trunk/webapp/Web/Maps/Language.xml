@@ -10,7 +10,9 @@
       <result property="id"			column="id"/>
       <result property="name"			column="name"/>
       <result property="codename"			column="codename"/>
+      <!--
       <result property="packagename"			column="package_name"/>
+      -->
       <result property="isenabled"			column="isenabled"/>
       <result property="displayName"			column="displayName"/>
       <result property="currencies"   column="currencies"/>
@@ -46,10 +48,10 @@
     </select>
       
     <update id="language_update" resultClass="int">
-      update language set name=#name#,codename=#codename#,isenabled=#isenabled#,package_name=#packagename#,currencies=#currencies# where id=#id#
+      update language set name=#name#,codename=#codename#,isenabled=#isenabled#,currencies=#currencies# where id=#id#
     </update>
     <insert id="language_insert">
-      insert into  language (name ,codename, package_name,isenabled) values(#name#,#codename#,#packagename#,#isenabled#,#currencies#)
+      insert into  language (name ,codename,isenabled,currencies) values(#name#,#codename#,#isenabled#,#currencies#)
     </insert>
 
     <select id="language_get_by_id" resultClass="Language" paramterClass="int" cacheModel="language_cache">

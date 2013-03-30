@@ -6,10 +6,11 @@
     <script type="text/javascript">
         function readyinit() {
             //add by hbqian in 2013/03/18 for增加显示电站日日照和功率散点图
-            $('#pScatterDayChart').click(displayPScatterDayChart);
+            //$('#pScatterDayChart').click(displayPScatterDayChart);
+            $('#pScatterMonthChart').click(displayPScatterMonthChart);
             $('#pDayChart').click(displayPDayChart);
             $('#eDayChart').click(displayEDayChart);
-            displayPScatterDayChart();
+            displayPScatterMonthChart();
         }
 
         //add by hbqian in 2013/03/18 for增加显示电站日日照和功率散点图
@@ -22,6 +23,14 @@
             changeALT();
         }
         
+        function displayPScatterMonthChart() {
+            $("#chartType").val("scatter");
+            $("#chartTypeSelect").attr("value", "scatter");
+            $("#selectTable").show();
+            curChart = "pScatterMonthChart";
+            PlantMonthPowerSunScatterCompare("container", 90, false);
+            changeALT();
+        }
         function displayPDayChart() {
             $("#chartType").val("area");
             $("#chartTypeSelect").attr("value", "area");
@@ -54,7 +63,7 @@
             else if (curChart == "pDayChart") {
                 PlantDayPowerSunCompare("large_containerdc", 130, true);
             } else {
-                PlantDayPowerSunScatterCompare("large_containerdc", 130, true);
+                PlantMonthPowerSunScatterCompare("large_containerdc", 130, true);
             }
         }
         
@@ -76,10 +85,39 @@
                     //var interval = isLarge ? 60 / 5 : 120 / 5;
                     //setCategoriesWithInterval(data.categories, isLarge, interval);
                     //散列图单独处理
-                    defineChartWithScatter(curContainer,true,data);
+                    defineChartWithScatter(curContainer,false,data);
                     showDetails(result, $("#pScatterStartYYYYMMDDHH").val());
                     //修改标题s
-                    chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
+                    chart.setTitle({ text: data.name, x: 0, align: 'center', floating: true });
+                },
+                beforeSend: function() {
+                    $('#' + curContainer).empty();
+                    $('#' + curContainer).append("<center><img src=\"../../Images/ajax_loading.gif\" style=\"margin-top: " + ajaxImgTop + "px;\" /></center>");
+                }
+            });
+        }
+
+        function PlantMonthPowerSunScatterCompare(curContainer, ajaxImgTop, isLarge) {
+            changeStyle("pScatterMonthChart");
+            $.ajax({
+                type: "POST",
+                url: "/plantChart/PlantDayPowerSunScatterCompare",
+                data: { pid: $("#pid").val(), startYYYYMMDDHH: $("#pScatterStartYYYYMMDDHH").val(), endYYYYMMDDHH: $("#pScatterEndYYYYMMDDHH").val(), chartType: "scatter", intervalMins: '5' },
+                success: function(result) {
+                    if (appendChartError(curContainer, result, ajaxImgTop)) {
+                        return;
+                    }
+                    var data = eval('(' + result + ')')
+                    setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#pstartYYYYMMDDHH").val().substring(0, 8) + "<%=Model.name%>", data.name);
+                    //setyAxis(data);
+                    //setySeriesArr(data.series);
+                    //var interval = isLarge ? 60 / 5 : 120 / 5;
+                    //setCategoriesWithInterval(data.categories, isLarge, interval);
+                    //散列图单独处理
+                    defineChartWithScatter(curContainer, false, data);
+                    showDetails(result, $("#pScatterStartYYYYMMDDHH").val());
+                    //修改标题s
+                    chart.setTitle({ text: data.name, x: 0, align: 'center', floating: true });
                 },
                 beforeSend: function() {
                     $('#' + curContainer).empty();
@@ -149,13 +187,14 @@
         
         function changeStyle(curId) {
             clearDetails();
-            
-            $("#pScatterDayChart").attr("class", "noclick");            
+
+            //$("#pScatterDayChart").attr("class", "noclick");
+            $("#pScatterMonthChart").attr("class", "noclick");    
             $("#eDayChart").attr("class", "noclick");
             $("#pDayChart").attr("class", "noclick");
             $("#" + curId).attr("class", "onclick");
 
-            $("#date_pScatterDayChart").hide();     
+            $("#date_pScatterMonthChart").hide();     
             $("#date_eDayChart").hide();
             $("#date_pDayChart").hide();       
             $("#date_" + curId).show();
@@ -233,21 +272,34 @@
             }else if (curChart == "pDayChart") {
                 changeDate(oper, "t2");
                 changePDay(document.getElementById("t2"));
-            } else if (curChart == "pScatterDayChart") {
+            }else if (curChart == "pScatterDayChart") {
                 changeDate(oper, "t3");
                 changePScatterDay(document.getElementById("t3"));
+            } else if (curChart == "pScatterMonthChart") {
+                changeShowMonth(oper, "selectmonth", "selectyear");
+                changeMonth();
             }
         }
 
+        function changeMonth() {
+            var selectyear = $("#selectyear").val();
+            var selectmonth = $("#selectmonth").val();
+            //$("#startYYYYMMDD").val(selectyear + selectmonth + "01")
+           // $("#endYYYYMMDD").val(selectyear + selectmonth + getMaxDate(selectyear, selectmonth))
+            //displayMonthDDChart();
+            $("#pScatterStartYYYYMMDDHH").val(selectyear + selectmonth + "0100")
+            $("#pScatterEndYYYYMMDDHH").val(selectyear + selectmonth + getMaxDate(selectyear, selectmonth) + "23")
+            displayPScatterMonthChart();
+        }
     </script>
     <input type="hidden" value="5,5" id="intervalMins" />
-    <input type="hidden" value="<%=Model.id%>" id="pid" />
+    <input type="hidden" value="<%=Model.id%>" id="pid"/>
     <input type="hidden" value="<%=CalenderUtil.getBeforeDay(CalenderUtil.curDateWithTimeZone(Model.timezone),"yyyyMMdd")%>00" id="estartYYYYMMDDHH" />
     <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>23" id="eendYYYYMMDDHH" />
     <input type="hidden" value="<%=CalenderUtil.getBeforeDay(CalenderUtil.curDateWithTimeZone(Model.timezone),"yyyyMMdd")%>00" id="pstartYYYYMMDDHH" />
     <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>23" id="pendYYYYMMDDHH" />
-    <input type="hidden" value="<%=CalenderUtil.getBeforeDay(CalenderUtil.curDateWithTimeZone(Model.timezone),"yyyyMMdd")%>00" id="pScatterStartYYYYMMDDHH" />
-    <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>23" id="pScatterEndYYYYMMDDHH" />    
+    <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")%>0100" id="pScatterStartYYYYMMDDHH" />
+    <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")+CalenderUtil.getCurMonthDays()%>23" id="pScatterEndYYYYMMDDHH" />    
     <input type="hidden" value="column" id="chartType" />
     
     <table width="100%" height="63" border="0" cellpadding="0" cellspacing="0" background="/images/kj/kjbg02.jpg">
@@ -272,7 +324,10 @@
         <div class="sb_mid">
             <div class="subico01">
                 <ul id="change">
-                    <li style="cursor: pointer;"><a id="pScatterDayChart" class="noclick"  href="javascript:void(0)"><%=Resources.SunResource.CHART_POWER_SUNLIGHT%> (<%=Resources.SunResource.CUSTOM_CHART_MONTH%>)</a></li>                    
+                    <!--
+                    <li style="cursor: pointer;"><a id="pScatterDayChart" class="noclick"  href="javascript:void(0)">日照功率散列图</a></li>    
+                    -->    
+                    <li style="cursor: pointer;"><a id="pScatterMonthChart" class="noclick"  href="javascript:void(0)"><%=Resources.SunResource.CHART_POWER_SUNLIGHT%> (<%=Resources.SunResource.CUSTOM_CHART_MONTH%>)</a></li>
                     <li style="cursor: pointer;"><a id="pDayChart" class="noclick" href="javascript:void(0)"><%=Resources.SunResource.CHART_POWER_COMPARE%></a></li>
                     <li style="cursor: pointer;"><a id="eDayChart" class="noclick" href="javascript:void(0)"><%=Resources.SunResource.CHART_ENERGY_COMPARE%></a></li>
                 </ul>
@@ -322,7 +377,32 @@
                                                 readonly="readonly"  value="<%=DateTime.Parse(CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy-MM-dd")).AddDays(-1).ToString("yyyy-MM-dd")%>" style="text-align:center;" />-
                                              <input name="t" type="text" id="t2" size="12" class="indate" onclick="WdatePicker({onpicked:function(){changePDay(this);},skin:'whyGreen',lang:'<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>',isShowClear:false,minDate:'<%=((IList<SelectListItem>)ViewData["plantYear"])[0].Value+"-01-01" %>',maxDate: '<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy-MM-dd")%>'})"
                                                 readonly="readonly" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy-MM-dd")%>" style="text-align:center;" />
-                                       </div>                                      
+                                       </div>
+                                       <div id="date_pScatterMonthChart" style="display: none;">
+                                            <div style="float: left;">
+                                                <%=Html.DropDownList("selectyear", (IList<SelectListItem>)ViewData["plantYear"], new { style="width:60px;", id = "selectyear", onchange = "changeMonth(this)" })%>
+                                            </div>
+                                            <div style="float: right;">
+                                                <select style="width: 50px;" onchange="changeMonth(this)" id="selectmonth">
+                                                    <%
+                                                        for (int i = 1; i <= 12; i++)
+                                                        {
+
+                                                            if (i == int.Parse(CalenderUtil.curDateWithTimeZone(Model.timezone, "MM")))
+                                                            {
+                                                    %>
+                                                    <option value="<%=i.ToString("00")%>" selected="selected">
+                                                        <%=i.ToString("00")%></option>
+                                                    <%}
+                                                            else
+                                                            { %>
+                                                    <option value="<%=i.ToString("00")%>">
+                                                        <%=i.ToString("00")%></option>
+                                                    <%}
+                                                        }%>
+                                                </select>
+                                            </div>
+                                       </div>                                                                        
                                     </td>
                                     <td width="24">
                                         <img src="/images/chartRight.gif" alt="" width="24" height="21" id="right" onclick="PreviouNextChange('right')" style="cursor:pointer;"/>

@@ -51,14 +51,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// <param name="id">语言编号</param>
         /// <param name="name">语言名称</param>
         /// <param name="codename">语言代码</param>
-        /// <param name="pckagename">语言包名</param>
+        /// <param name="pckagename">语言包名</param>string pckagename,
         /// <param name="isenabled">是否启用</param>
-        public Language(int id, string name, string codename, string pckagename, bool isenabled, string currencies)
+        public Language(int id, string name, string codename, bool isenabled, string currencies)
         {
             this.id = id;
             this.name = name;
             this.codename = codename;
-            this.packagename = packagename;
+            //this.packagename = packagename;
             this.isenabled = isenabled;
             this.currencies = currencies;
         }
@@ -70,7 +70,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         //语言代码
         public string codename { get; set; }
         //语言包名
-        public string packagename { get; set; }
+        //public string packagename { get; set; }
         //是否启用 默认为启用
         public bool isenabled { get; set; }
 

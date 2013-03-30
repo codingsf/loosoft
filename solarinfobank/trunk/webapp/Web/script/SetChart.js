@@ -189,11 +189,9 @@ function formatterFunc() {
         return getOtherSeriesNamestr(this.point.name) + ":" + getOtherSeriesValuewithUnit(this.point.x) + "/" + formatBit(this.percentage) + ' %';
     }
     if (type == "scatter") {
-        if (name.indexOf('[') > -1) {
-            name = name.substring(0, name.indexOf('['));
-        }
-        return getOtherSeriesValuewithUnit(this.point.x) + "," + this.point.y + getUnitsByName(name);
-    } else {
+        return this.x + ' W/㎡: ' + this.y +' kW';
+    }
+    else {
         return '' +
                this.x + ': ' + getOvalueByXName(this.x, name) + " " + getUnitsByName(name);
     }
@@ -286,7 +284,7 @@ function setySeriesArr(series) {
         if (tmpSerie == 'null' || tmpSerie == null) continue;
 
         //如果是pie类型图表，那么一维序列之后的数据仅仅保存到全局数据不再呈现在图表中，用于组织数据的显示
-        if ((tmpSerie.type != 'pie' && tmpSerie.type != 'scatter') || i == 0) {
+        if (tmpSerie.type != 'pie' || i == 0) {
             var serie = createSerie();
             serie.color = tmpSerie.color;
             serie.name = tmpSerie.name;
@@ -311,15 +309,15 @@ function setySeriesArr(series) {
 //将通用坐标序列组成成符合pie图表类型的数据格式
 //pie图表类型数据格式：[['Firefox/收益', 45.0],['IE', 26.8],{name: 'Chrome', y: 12.8},['Safari', 8.5],['Opera', 6.2],['Others', 0.7]];
 function comDataByCharttype(tmpSerie, series) {
-    if (tmpSerie.type == 'pie' || tmpSerie.type == 'scatter') {
-        return comXyData(tmpSerie);
+    if (tmpSerie.type == 'pie') {
+        return comPieXyData(tmpSerie);
     } else {
         return handleMinData(tmpSerie.data, getMax(series, tmpSerie.yAxis), getMin(series, tmpSerie.yAxis), tmpSerie.name);
     }
 }
 
 //组织pie，cactter类型图片数据
-function comXyData(tmpSerie) {
+function comPieXyData(tmpSerie) {
     var datastr = "[";
     for (var i = 0; i < tmpSerie.data.length - 1; i++) {
         if (globalCategories[i] == "0" || globalCategories[i] == null) continue;
@@ -327,6 +325,21 @@ function comXyData(tmpSerie) {
     }
     datastr += "]";
     //var datastr = "[['Firefox/收益', 45.0],['IE', 26.8],{name: 'Chrome', y: 12.8},['Safari', 8.5],['Opera', 6.2],['Others', 0.7]];";
+    return eval(datastr);
+}
+
+//组织pie，cactter类型图片数据
+function comScatterXyData(tmpSerie) {
+    var datastr = "[";
+    var tmpx = 0;
+    for (var i = 0; i < tmpSerie.data.length - 1; i++) {
+        tmpx = globalCategories[i];
+        if (tmpx == null || tmpx == "") tmpx = 0;
+        if (tmpx == 0) continue;
+        datastr += "[" + tmpx + "," + tmpSerie.data[i] + "]" + (i == tmpSerie.data.length - 1 ? "" : ",");
+    }
+    datastr += "]";
+    //var datastr = "[[34, 45.0],[34, 26.8]];";
     alert(datastr)
     return eval(datastr);
 }
@@ -717,12 +730,15 @@ function defineChartWithScatter(curContainer, isDetail, data) {
         var serie = createSerie();
         serie.color = tmpSerie.color;
         serie.name = "";
-        serie.data = comXyData(tmpSerie);
+        serie.data = comScatterXyData(tmpSerie);
         serie.type = tmpSerie.type;
         serie.yAxis = tmpSerie.yAxis;
         seriesArr.push(serie);
     }
-    
+    var names = data.names;
+    var units = data.units;
+    var xAxisName = names[0] + "[" + units[0] + "]";
+    var yAxisName = names[1] + "[" + units[1] + "]";
     chart = new Highcharts.Chart({
         chart: {
             renderTo: curContainer,
@@ -730,15 +746,25 @@ function defineChartWithScatter(curContainer, isDetail, data) {
             zoomType: 'xy'
         },
         title: {
-            text: 'Height Versus Weight of 507 Individuals by Gender'
+            text: '',
+            align: 'center',
+            x: 0,
+            floating: true
         },
         subtitle: {
-            text: 'Source: Heinz  2003'
+            text: '  '
+        },
+        tooltip: {
+            formatter: formatterFunc
         },
         xAxis: {
             title: {
                 enabled: true,
-                text: 'Height (cm)'
+                text: xAxisName,
+                style: {
+                    font: 'normal 10px Verdana, sans-serif',
+                    color: ''
+                }
             },
             startOnTick: true,
             endOnTick: true,
@@ -746,18 +772,22 @@ function defineChartWithScatter(curContainer, isDetail, data) {
         },
         yAxis: {
             title: {
-                text: 'Weight (kg)'
+                text: yAxisName,
+                style: {
+                    font: 'normal 10px Verdana, sans-serif',
+                    color: ''
+                }
             }
         },
         legend: {
-            layout: 'vertical',
-            align: 'left',
-            verticalAlign: 'top',
-            x: 100,
-            y: 70,
-            floating: true,
-            backgroundColor: '#FFFFFF',
-            borderWidth: 1
+            enabled: false,
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'bottom',
+            x: 0,
+            y: -10,
+            borderWidth: 1,
+            margin: 20
         },
         plotOptions: {
             scatter: {
@@ -778,9 +808,27 @@ function defineChartWithScatter(curContainer, isDetail, data) {
                     }
                 },
                 tooltip: {
-                    headerFormat: '<b>{series.name}</b><br>',
+                    headerFormat: '<b>{series.name}dfd</b><br>',
                     pointFormat: '{point.x} cm, {point.y} kg'
                 }
+            }
+        },
+        exporting: {
+            filename: curFilename,
+            url: curUrl,
+            buttons: {
+                //exportButton: exportButton,
+                printButton: {
+                    enabled: false
+                }
+            }
+        },
+        navigation: {
+            buttonOptions: {
+                verticalAlign: 'top',
+                horizontalAlign: 'right',
+                y: 5,
+                x: -10
             }
         },
         series: seriesArr
@@ -790,7 +838,7 @@ function defineChartWithScatter(curContainer, isDetail, data) {
                 chart.addButton(extbuttons[n]);
             }
         }
-        chart.setTitle({ text: chartTitle, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
+        //chart.setTitle({ text: chartTitle, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
         // fix the position issue (#185 on github)
         //if (!isLargeChart)//不是大图表要重置尺寸，否则显示不出来新增的按钮
         //chart.setSize(chart.chartWidth, chart.chartHeight);

@@ -609,9 +609,9 @@
                                 </div>
                             </div>
                            
-                            <%if (AuthService.isAllow(AuthorizationCode.UNIT_LIST, Model.id))
+                            <%--if (AuthService.isAllow(AuthorizationCode.UNIT_LIST))
                             {
-                            %>                                
+                            --%>                                
                             <div class="kjlbox">
                                 <div class="kjlbox_ico">
                                     <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -627,8 +627,8 @@
                                 </div>
                                 <div class="kjmid" ref="5" style="overflow: hidden; display: block;">
                                     <%
-                                        foreach (PlantUnit unit in Model.plantUnits)
-                                        { %>
+                                    foreach (PlantUnit unit in Model.plantUnits)
+                                    { %>
                                     <div class="kjb2">
                                         <a rel="unitmenu" onclick="loadContent('content_ajax','/devicechart/udevicechart/<%=unit.id  %>','ajax','GET');setcurrent(this);return false;"
                                             href="/devicechart/udevicechart/<%=unit.id  %>" title="<%=unit.displayname %>">
@@ -661,7 +661,7 @@
                                     <%} %>
                                 </div>
                             </div>
-                            <%} %>
+                            <%--} --%>
  
                             <div class="kjlbox">
                                 <div class="kjlbox_ico">

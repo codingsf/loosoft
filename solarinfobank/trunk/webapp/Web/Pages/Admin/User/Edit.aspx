@@ -131,7 +131,7 @@
                     </tr>
                        <tr>
                         <td height="36" class="pr_10">
-                            刷新间隔：
+                            功能启用时间：
                         </td>
                         <td>
                             <%=Html.TextBox("refreshStartDate",Model.refreshStartDateFormat, new { @class = "txtbu01 Wdate", onclick = "WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false})" })%>

@@ -348,9 +348,7 @@
             changeYear(document.getElementById("selectYear1"));
         }
     }
-</script>
-
-<script>
+    
     var curchart=1;
     function autoreload() {
         if(<%=ViewData["autoRefresh"] %>)

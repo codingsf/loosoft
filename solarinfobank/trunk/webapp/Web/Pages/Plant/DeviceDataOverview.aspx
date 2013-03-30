@@ -121,7 +121,7 @@
         
         function loadRunDataHtml() {
             $("#container").empty();
-            $("#container").html('<img src="/Images/ajax_loading.gif" style="margin-left:210px;" />');
+            //$("#container").html('<img src="/Images/ajax_loading.gif" style="margin-left:210px;" />');
             $.ajax({
                 type: "GET",
                 url: "/device/RunData",

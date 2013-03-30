@@ -955,7 +955,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         /// <param name="chartType">只能有一个，其实是固定为scatter类型的</param>
         /// <param name="intervalMins">只能有一个</param>
         /// <returns></returns>
-        public ActionResult PlantDayPowerSunScatterCompare(int pid, string startYYYYMMDDHH, string endYYYYMMDDHH, string chartType, String intervalMins)
+        public ActionResult PlantDayPowerSunScatterCompare(int pid, string startYYYYMMDDHH, string endYYYYMMDDHH, string chartType, string intervalMins)
         {
             string reportCode = string.Empty;
             Plant plant = PlantService.GetInstance().GetPlantInfoById(pid);
@@ -965,7 +965,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 //判断该测点是否有数据,有数据则增加关照对比
                 Hashtable powerDataHash = CollectorDayDataService.GetInstance().GetUnitDaydataList(plant.allFactUnits, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), MonitorType.PLANT_MONITORITEM_POWER_CODE);
-                string chartName = LanguageUtil.getDesc("PLANT_CHART_DAY_POWER_SUNLIGHT_COMPARE_CHART_POWER");
+                string chartName = LanguageUtil.getDesc("PLANT_CHART_DAY_POWER_SUNLIGHT_COMPARE_CHART") + "(" + LanguageUtil.getDesc("CUSTOM_CHART_MONTH")+")";
                 if (powerDataHash.Count > 0)
                 {
                     Device device = plant.getFirstDetector();
@@ -975,12 +975,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                         Hashtable sunDataHash = DeviceDayDataService.GetInstance().GetDaydataList(null, device, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), MonitorType.MIC_DETECTOR_SUNLINGHT);
                         if (sunDataHash.Keys.Count > 0)//有日照数据,则合并数据，将日照作为x，功率作为y，形成新的x.y散列点
                         {
-                            ChartData chartData = PlantChartService.GetInstance().genNewScatter(chartName, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), sunDataHash, powerDataHash, "unit", chartType);
+                            ChartData chartData = PlantChartService.GetInstance().genNewScatter(chartName, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), sunDataHash, powerDataHash, "kW", chartType);
                             reportCode = JsonUtil.convertToJson(chartData, typeof(ChartData));
                         }
-                        else { //没有日照无法生成散列点则，返回无数据提示
+                        else
+                        { //没有日照无法生成散列点则，返回无数据提示
                             return Content("error:" + Resources.SunResource.NODATA);
                         }
+                    }
+                    else
+                    {
+                        return Content("error:" + Resources.SunResource.NODATA);
                     }
                 }
                 else

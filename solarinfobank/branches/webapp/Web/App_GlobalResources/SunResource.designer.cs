@@ -6106,7 +6106,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Please enter \&quot;Device name\&quot; 的本地化字符串。
+        ///   查找类似 Please enter \&quot;name\&quot; 的本地化字符串。
         /// </summary>
         internal static string NOTICE_DEVICE_NAME {
             get {
@@ -6115,7 +6115,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Please enter \&quot;Device password\&quot; 的本地化字符串。
+        ///   查找类似 Please enter \&quot;password\&quot; 的本地化字符串。
         /// </summary>
         internal static string NOTICE_DEVICE_PASSWORD {
             get {
@@ -6124,7 +6124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Please enter \&quot;Device serial number\&quot; 的本地化字符串。
+        ///   查找类似 Please enter \&quot;serial number\&quot; 的本地化字符串。
         /// </summary>
         internal static string NOTICE_DEVICE_SN {
             get {

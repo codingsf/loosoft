@@ -134,7 +134,7 @@
         $().ready(function() {
             $("#addplant").click(function() {
                 controlid++;
-                $('#plant_container').append('<iframe scrolling="no"  id="ifrm' + controlid + '" frameborder="0" width="100%" src="/newregister/addplantcontrol/?menu=' + controlid + '"></iframe>');
+                $('#plant_container').append('<iframe height="180" scrolling="no"  id="ifrm' + controlid + '" frameborder="0" width="100%" src="/newregister/addplantcontrol/?menu=' + controlid + '"></iframe>');
                 hideunessentialall();
                 iframeauto();
             });

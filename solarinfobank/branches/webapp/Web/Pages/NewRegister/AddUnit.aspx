@@ -34,7 +34,7 @@
 
         function checkunitadded() {
             if ($(".haveunit").length <= 0) {
-                alert('<%=Resources.SunResource.NOTICE_ADDED_DEVICE%>');
+                alert("<%=Resources.SunResource.NOTICE_ADDED_DEVICE%>");
                 return false;
             }
             window.location.href = '/user/overview'

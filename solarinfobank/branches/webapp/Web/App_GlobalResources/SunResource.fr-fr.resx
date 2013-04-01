@@ -1576,13 +1576,13 @@
     <value>Conseils</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_CODE_REQUIRED" xml:space="preserve">
-    <value>S'il vous plaît entrez "numéro de série"</value>
+    <value>S'il vous plaît entrez \"numéro de série\"</value>
   </data>
   <data name="PLANT_UNIT_BIND_COLLECTOR_PASSWORD_REQUIRED" xml:space="preserve">
-    <value>S'il vous plaît entrez «mot de passe de périphériques"</value>
+    <value>S'il vous plaît entrez «mot de passe de périphériques</value>
   </data>
   <data name="PLANT_UNIT_BIND_DISPLAYNAME_REQUIRED" xml:space="preserve">
-    <value>S'il vous plaît entrez "Device name"</value>
+    <value>S'il vous plaît entrez \"Device name\"</value>
   </data>
   <data name="AUTH_REG_USER_REGISTRATION_DETAIL" xml:space="preserve">
     <value />
@@ -4987,7 +4987,7 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
     <value>S'il vous plaît entrez \"Device name\"</value>
   </data>
   <data name="NOTICE_DEVICE_PASSWORD" xml:space="preserve">
-    <value>S'il vous plaît entrez «mot de passe de périphériques\"</value>
+    <value>S'il vous plaît entrez \"mot de passe de périphériques\"</value>
   </data>
   <data name="NOTICE_DEVICE_SN" xml:space="preserve">
     <value>S'il vous plaît entrez \"numéro de série\"</value>
@@ -5029,7 +5029,7 @@ N'importe quel système vous avez, vous pouvez utiliser Banque SolarInfo via vot
     <value>Précédent</value>
   </data>
   <data name="DEVICE_PASSWORD" xml:space="preserve">
-    <value>mot de passe de périphérique</value>
+    <value>Mot de passe de périphérique</value>
   </data>
   <data name="DEVICE_SN" xml:space="preserve">
     <value>Numéro de périphérique série</value>

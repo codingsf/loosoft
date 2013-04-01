@@ -289,7 +289,7 @@
                 <div class="chart">
                     <div class="chart_box">
                         <div id="chartDiv">
-                            <div id='container' style='width: 100%; height: 350px; margin-left: 2px; margin-right: 2px;'>
+                            <div id='container' style='width: 100%; height: 450px; margin-left: 2px; margin-right: 2px;'>
                             </div>
                         </div>
 

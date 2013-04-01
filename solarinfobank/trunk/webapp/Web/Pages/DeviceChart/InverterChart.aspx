@@ -403,7 +403,7 @@
                     <option value="60" style="text-align: left;">1<%=Resources.SunResource.PLANT_OVERVIEW_HOUR %></option>
                 </select>
             </div>
-            <div id='chartContainer' style='width: 100%; height: 550px; margin-left: 2px; margin-right: 2px; text-align:center;'>
+            <div id='chartContainer' style='width: 100%; height: 450px; margin-left: 2px; margin-right: 2px; text-align:center;'>
             </div>
         </div>
         <div class="date_sel">

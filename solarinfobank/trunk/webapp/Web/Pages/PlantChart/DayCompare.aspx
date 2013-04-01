@@ -327,8 +327,8 @@
                     <!--
                     <li style="cursor: pointer;"><a id="pScatterDayChart" class="noclick"  href="javascript:void(0)">日照功率散列图</a></li>    
                     -->    
-                    <li style="cursor: pointer;"><a id="pScatterMonthChart" class="noclick"  href="javascript:void(0)"><%=Resources.SunResource.CHART_POWER_SUNLIGHT%> (<%=Resources.SunResource.CUSTOM_CHART_MONTH%>)</a></li>
                     <li style="cursor: pointer;"><a id="pDayChart" class="noclick" href="javascript:void(0)"><%=Resources.SunResource.CHART_POWER_COMPARE%></a></li>
+                    <li style="cursor: pointer;"><a id="pScatterMonthChart" class="noclick"  href="javascript:void(0)"><%=Resources.SunResource.CHART_POWER_SUNLIGHT%> (<%=Resources.SunResource.CUSTOM_CHART_MONTH%>)</a></li>
                     <li style="cursor: pointer;"><a id="eDayChart" class="noclick" href="javascript:void(0)"><%=Resources.SunResource.CHART_ENERGY_COMPARE%></a></li>
                 </ul>
             </div>
@@ -338,7 +338,7 @@
             <div class="chart">
                 <div class="chart_box">
                     <div id="chartDiv">
-                        <div id='container' style='width: 100%; height: 300px; margin-left: 2px; margin-right: 2px;'>
+                        <div id='container' style='width: 100%; height: 450px; margin-left: 2px; margin-right: 2px;'>
                         </div>
                     </div>
 

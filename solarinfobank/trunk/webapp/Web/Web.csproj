@@ -659,7 +659,6 @@
       <LastGenOutput>SunResource.zh-cn.designer.cs</LastGenOutput>
     </Content>
     <Content Include="bigscreen\css\css.css" />
-    <Content Include="bigscreen\images\body_bg01 - 副本.jpg" />
     <Content Include="bigscreen\images\body_bg01.jpg" />
     <Content Include="bigscreen\images\img.png" />
     <Content Include="bigscreen\images\img01.png" />
@@ -8203,7 +8202,8 @@
     <None Include="help\it-ch\SunInfo Bank User Manual.pdf" />
     <None Include="help\zh-cn\SolarInfo Bank User Manual.pdf" />
     <None Include="mfile\Logger-SN Ipmort Bank P111.xlsx" />
-    <Content Include="Images\am\ad_bu16.GIF" />
+    <Content Include="Images\sub\reduce.gif" />
+    <Content Include="Images\am\ad_bu16.gif" />
     <Content Include="Pages\Shared\ContentInside.Master" />
     <Content Include="Pages\Shared\EmptyInside.Master" />
     <Content Include="Pages\Shared\Virtual.Master" />

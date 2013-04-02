@@ -431,7 +431,7 @@
                                                 <%} %>
                                                 <%if (UserUtil.BigScreenEnable)
                                                   { %>
-                                                <li><a href="javascript:void(0);" id="linkfullscreen" rel="/bigscreen/execute"><%=Resources.SunResource.BIG_SCREEN_MENU%></a></li>
+                                                <%--<li><a href="javascript:void(0);" id="linkfullscreen" rel="/bigscreen/execute"><%=Resources.SunResource.BIG_SCREEN_MENU%></a></li>--%>
                                                     <li><a onclick="loadContent('content_ajax','/user/bigscreenlogo','iframe','GET');setcurrent(this);return false;"
                                                 href="/user/bigscreenlogo"><%=Resources.SunResource.BIG_SCREEN_LOGO_SETTING%></a></li>
                                                 <%} %>
@@ -441,10 +441,15 @@
                                 </div>
                                 <%--//} --%>
                                 <div class="kjlbu00">
-                                    <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_ANY_QUESTIONS  %>?<br />
+                                  <%--  <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_ANY_QUESTIONS  %>?<br />
                                     <a href="/help/<%=(Session["Culture"] as CultureInfo).Name%>/SolarInfo Bank User Manual.pdf"
                                         target="_blank" style="text-decoration: underline;">
-                                        <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_CLICK_HERE_FOR_HELP  %>!</a>
+                                        <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_CLICK_HERE_FOR_HELP  %>!</a>--%>
+                                    <%if (UserUtil.BigScreenEnable)
+                                      {%>
+                                        <br />
+                                        <a style="text-decoration: underline;" href="javascript:void(0);" id="linkfullscreen" rel="/bigscreen/execute"><%=Resources.SunResource.BIG_SCREEN_MENU%></a>
+                                    <%} %>   
                                 </div>
                             </td>
                             <asp:ContentPlaceHolder ID="MainContent" runat="server">

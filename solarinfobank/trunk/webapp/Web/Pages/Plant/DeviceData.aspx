@@ -14,14 +14,14 @@
     //显示图表 这里比较麻烦
     if(curtab==1)
     {
-        if(chartId==0)displayDayChart();
-        if(chartId==1)displayDaykWpChart();
-        if(chartId==2)displayMonthDDChart();
-        if(chartId==3)displayyearMMChart();
-        if(chartId==4)displayyearChart();
+       // if(chartId==0)displayDayChart();
+        //if(chartId==1)displayDaykWpChart();
+      //  if(chartId==2)displayMonthDDChart();
+       // if(chartId==3)displayyearMMChart();
+       // if(chartId==4)displayyearChart();
     }
     if(curtab==2)fillingRunData();
-    if(curtab==3)displayFault();
+    //if(curtab==3)displayFault();
     }
     
 </script>

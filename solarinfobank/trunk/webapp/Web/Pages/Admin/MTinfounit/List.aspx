@@ -133,7 +133,7 @@
                                 <tr>
                                     <td width="30%">
                                         <a href="/mtinfounit/edit">
-                                            <img src="/images/am/ad_bu15.gif" width="131" height="28" /></a>
+                                            <img src="/images/am/ad_bu16.gif" width="131" height="28" /></a>
                                     </td>
                                     <td width="70%">
                                         <%Html.RenderPartial("mpage"); %>

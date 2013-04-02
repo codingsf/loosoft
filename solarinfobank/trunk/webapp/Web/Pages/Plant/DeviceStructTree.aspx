@@ -2,10 +2,14 @@
 
 <html>
 <head>
+    <style>
+        .firstNode{ background-color:#ccc; height:35px; line-height:35px; border-bottom:solid 1px #666666;}
+        .topNode{ text-align:center;height:35px; line-height:35px; margin-bottom:10px; background-color:#ccc; font-weight:bold;}
+        .otherNode{ margin-top:2px;}
+    </style>
+    <script src="../../script/dtree1.js" type="text/javascript"></script>
 
-    <script src="../../script/dtree.js" type="text/javascript"></script>
-
-    <link href="../../style/dtree.css" rel="stylesheet" type="text/css" />
+    <link href="../../style/dtree1.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <script>

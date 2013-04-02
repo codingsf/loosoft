@@ -2189,7 +2189,6 @@
     <Content Include="Pages\Plant\EnergyForecast.aspx" />
     <Content Include="Pages\Plant\SearchForecast.aspx" />
     <Content Include="Pages\Plant\InverterStructTree.aspx" />
-    <Content Include="Pages\Plant\IncludeOverviewHtml.aspx" />
     <Content Include="Pages\Plant\DeviceDataOverview.aspx" />
     <Content Include="Pages\Plant\RelationConfig.aspx" />
     <Content Include="Pages\Plant\LeftRelation.aspx" />
@@ -8204,9 +8203,12 @@
     <None Include="help\it-ch\SunInfo Bank User Manual.pdf" />
     <None Include="help\zh-cn\SolarInfo Bank User Manual.pdf" />
     <None Include="mfile\Logger-SN Ipmort Bank P111.xlsx" />
+    <Content Include="Images\am\ad_bu16.GIF" />
     <Content Include="Pages\Shared\ContentInside.Master" />
     <Content Include="Pages\Shared\EmptyInside.Master" />
     <Content Include="Pages\Shared\Virtual.Master" />
+    <Content Include="script\dtree1.js" />
+    <Content Include="style\dtree1.css" />
     <None Include="Recource\STSONG.TTF" />
     <None Include="Recource\template.xlsx" />
     <None Include="template\blue\Images\sub\Thumbs.db" />

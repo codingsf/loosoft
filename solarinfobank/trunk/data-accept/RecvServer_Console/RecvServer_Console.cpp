@@ -29,7 +29,7 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 {	
 	int nRetCode = 0;
 	//modify by qhb for 升级版本号 in 20120330
-	SetConsoleTitle("RecvServer V1.1.0");
+	SetConsoleTitle("RecvServer V2.1.0");
 	cout << "===========================================================" << endl;
 
 	// 初始化 MFC 并在失败时显示错误

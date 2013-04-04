@@ -290,6 +290,8 @@ DWORD WINAPI SaveToMemThread(LPVOID param)
 		if (dwRet < 0)
 		{
 			cout << "KEY:[" << (LPTSTR)(LPCTSTR)strID<< "],Error Code:" << dwRet << ",conent:" << (LPTSTR)(LPCTSTR)strContent << ",check Memcached Server!" << endl;
+			//Ð´´íÎóÊý¾ÝµÄlog
+			SENDMEMFAILEDLOG(strID, strContent, true);
 		}
 		else
 		{

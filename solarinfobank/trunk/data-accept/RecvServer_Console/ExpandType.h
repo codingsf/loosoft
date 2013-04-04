@@ -53,6 +53,24 @@ using namespace std;
 	lohHelper.WriteLog(content, 1);\
 }
 
+// BEGIN: Add by penguin_ku, 2013/4/4, PN:插入失败，内容写日志
+//写memcache的交互日志
+#define SENDMEMFAILEDLOG(strkey, strcontent, isSend)\
+{\
+	LogHelper lohHelper;\
+	CString content;\
+	if(isSend)\
+	{\
+	content.Format("[DateTime: %s] [KEY: %s] [length: %d] [Send Value: %s]",CTime::GetCurrentTime().Format("%Y-%m-%d %H:%M:%S"),strID, strContent.GetLength(), strContent);\
+	}\
+	else\
+	{\
+	content.Format("[DateTime: %s] [KEY: %s] [length: %d] [Recv Value: %s]",CTime::GetCurrentTime().Format("%Y-%m-%d %H:%M:%S"),strID, strContent.GetLength(), strContent);\
+	}\
+	lohHelper.WriteFailedLog(content, 1);\
+}
+// END: Add by penguin_ku, 2013/4/4, PN:插入失败，内容写日志
+
 //会话状态
 enum New_SessionState
 {

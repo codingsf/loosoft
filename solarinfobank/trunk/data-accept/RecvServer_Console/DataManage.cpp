@@ -16,7 +16,6 @@ DataManage::DataManage(void)
 {
 	dwSeqPackets=0;
 	CreateThread(NULL,0,SaveToMemThread,this,NULL,NULL);
-	CreateThread(NULL,0,SaveToMemThread,this,NULL,NULL);
 }
 
 DataManage::~DataManage(void)
@@ -291,15 +290,6 @@ DWORD WINAPI SaveToMemThread(LPVOID param)
 		if (dwRet < 0)
 		{
 			cout << "KEY:[" << (LPTSTR)(LPCTSTR)strID<< "],Error Code:" << dwRet << ",conent:" << (LPTSTR)(LPCTSTR)strContent << ",check Memcached Server!" << endl;
-			cout << "10ms后再次尝试插入KEY:" << (LPTSTR)(LPCTSTR)strID << endl;
-			Sleep(10);
-			int dwRet=dllLoader.pSend2MC((LPTSTR)(LPCTSTR)strID, (LPTSTR)(LPCTSTR)strContent);
-			if (dwRet < 0)
-			{
-				cout << "10ms后再次尝试插入KEY:" << (LPTSTR)(LPCTSTR)strID << "失败"<<endl;
-			}else{
-				cout << "10ms后再次尝试插入KEY:" << (LPTSTR)(LPCTSTR)strID << "成功" << endl;
-			}
 		}
 		else
 		{
@@ -352,7 +342,7 @@ DWORD WINAPI SaveToMemThread(LPVOID param)
 		// BEGIN:Delete by bloodhunter at 2012/10/21 for 代码整改
 		// [修改说明]:从代码结尾处转移，以减少锁冲突的概率，从而提高程序的性能
 		//pDlg->m_csMap.Leave();
-		// END:Delete by bloodhunter at 2012/10/21
+		// END:Delete by bloodhunter at 2012/10/21 for 代码整改
 		//Sleep(50);
 		pDlg->dwSeqPackets++;
 	}

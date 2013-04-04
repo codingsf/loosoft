@@ -105,7 +105,7 @@ public:
 			strFile="logs\\SOCKET_"+CTime::GetCurrentTime().Format("%Y%m%d_%H")+".txt";
 		}
 		else if(iComm == 1 &&  dwLogLevel==1)
-		{
+		{   
 			strFile="logs\\MEMCACHE_"+CTime::GetCurrentTime().Format("%Y%m%d")+".txt"; 
 		}
 		else if(iComm == 1 &&  dwLogLevel==2)
@@ -123,4 +123,41 @@ public:
 			fclose(fp);
 		}
 	}
+
+	// BEGIN: Add by penguin_ku, 2013/4/4, PN:插入失败，内容写日志
+	void WriteFailedLog(CString content, int iComm)
+	{
+		//无需记日志
+		if (dwLogLevel == 0)
+			return;
+
+		CString strFile;
+		if(iComm == 0 &&  dwLogLevel==1)
+		{
+			strFile="logs\\SOCKET_FAILED_"+CTime::GetCurrentTime().Format("%Y%m%d")+".txt"; 
+		}
+		else if(iComm == 0 &&  dwLogLevel==2)
+		{
+			strFile="logs\\SOCKET_FAILED_"+CTime::GetCurrentTime().Format("%Y%m%d_%H")+".txt";
+		}
+		else if(iComm == 1 &&  dwLogLevel==1)
+		{
+			strFile="logs\\MEMCACHE_FAILED_"+CTime::GetCurrentTime().Format("%Y%m%d")+".txt"; 
+		}
+		else if(iComm == 1 &&  dwLogLevel==2)
+		{
+			strFile="logs\\MEMCACHE_FAILED_"+CTime::GetCurrentTime().Format("%Y%m%d_%H")+".txt";
+		}
+		else
+			return;
+
+		FILE * fp=fopen(strFile,"a");
+		if (fp!=NULL)
+		{
+			fputs(content,fp);
+			fputs("\n\n",fp);
+			fclose(fp);
+		}
+	}
+	// END: Add by penguin_ku, 2013/4/4, PN:插入失败，内容写日志
 };

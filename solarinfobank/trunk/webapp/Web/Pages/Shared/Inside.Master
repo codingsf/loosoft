@@ -751,10 +751,15 @@
                             </div>
 
                             <div class="kjlbu00">
-                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_ANY_QUESTIONS  %>?<br />
+                              <%--  <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_ANY_QUESTIONS  %>?<br />
                                 <a href="/help/<%=(Session["Culture"] as CultureInfo).Name%>/SolarInfo Bank User Manual.pdf"
                                     class="green" target="_blank" style="text-decoration: underline;">
-                                    <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_CLICK_HERE_FOR_HELP  %>!</a>
+                                    <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_CLICK_HERE_FOR_HELP  %>!</a>--%>
+                                    <%if (UserUtil.BigScreenEnable)
+                                      {%>
+                                        <br />
+                                        <a style="text-decoration: underline;" href="javascript:void(0);" id="linkfullscreen" rel="/bigscreen/execute"><%=Resources.SunResource.BIG_SCREEN_MENU%></a>
+                                    <%} %> 
                             </div>
                         </td>
                         <asp:ContentPlaceHolder ID="MainContent" runat="server">

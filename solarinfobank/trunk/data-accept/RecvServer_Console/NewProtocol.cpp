@@ -788,7 +788,7 @@ int Protocol69Dealer::DealRunInfo(DataInfoStructor& dataInfo, CUserSession * pSe
 	//随机码
 	string randstr = GetOnlyone();//GetRand();
 	key += randstr;
-	//实时数据信息存memcache
+	//实时数据信息存memcached
 	TCP_DATA * pTCPData=new TCP_DATA;
 	Add2Mem(pTCPData, key, dataInfo.data, dataInfo.iLen, true);
 	tcp_svr.dataManage.AddToMemBuf(pTCPData);

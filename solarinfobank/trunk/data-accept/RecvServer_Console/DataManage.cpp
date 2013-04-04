@@ -16,6 +16,7 @@ DataManage::DataManage(void)
 {
 	dwSeqPackets=0;
 	CreateThread(NULL,0,SaveToMemThread,this,NULL,NULL);
+	CreateThread(NULL,0,SaveToMemThread,this,NULL,NULL);
 }
 
 DataManage::~DataManage(void)
@@ -36,7 +37,7 @@ BOOL DataManage::OpenDB()
 	GetPrivateProfileString("MySQL","User","",mysqlConnectParam.strUser,50,"./config.ini");
 	GetPrivateProfileString("MySQL","Pass","",mysqlConnectParam.strPass,50,"./config.ini");
 	GetPrivateProfileString("MySQL","DBName","",mysqlConnectParam.strDB,50,"./config.ini");
-
+	cout << "*** dbname...\n" << mysqlConnectParam.strDB << endl;
 	try
 	{
 		m_conn.SetDBServer(mysqlConnectParam.strIp);
@@ -49,7 +50,6 @@ BOOL DataManage::OpenDB()
 		m_conn.ExecSQL("set names 'gb2312'");
 
 		cout << "*** Connect to MYSQL Success..." << endl;
-
 		CreateThread(NULL,0,SaveToDBThread,this,NULL,NULL);
 	}
 
@@ -124,7 +124,14 @@ DWORD WINAPI SaveToDBThread(LPVOID param)
 		if (dwRet<0)
 		{
 			cout << "KEY:[" << strID.GetBuffer(0) << "],Error Code:" << dwRet << ",check Memcached Server!" << endl;
+		}else{//add by hbqian for 设置最后一次成功处理数据的时间到memached，以便检测程序能判断接收程序的运行状态
+			CString strID1="accept_run_lasttime"; //最后正确接收数据的时间
+			CString strContent1=CTime::GetCurrentTime().Format("%Y-%m-%d %H:%M:%S");
+			int dwRet=dllLoader.pSend2MC(strID1.GetBuffer(0),strContent1.GetBuffer(0));
+			strID1.ReleaseBuffer();
+			strContent1.ReleaseBuffer();
 		}
+
 
 		strID.ReleaseBuffer();
 		strContent.ReleaseBuffer();
@@ -163,6 +170,7 @@ DWORD WINAPI SaveToDBThread(LPVOID param)
 
 	return 0L;
 }
+
 
 /// <summary>
 /// 供外部调用，将需要存入memcached的数据存入内存缓冲区，等待专职线程进行对应处理。新协议使用
@@ -282,7 +290,16 @@ DWORD WINAPI SaveToMemThread(LPVOID param)
 		int dwRet=dllLoader.pSend2MC((LPTSTR)(LPCTSTR)strID, (LPTSTR)(LPCTSTR)strContent);
 		if (dwRet < 0)
 		{
-			cout << "KEY:[" << (LPTSTR)(LPCTSTR)strID<< "],Error Code:" << dwRet << ",check Memcached Server!" << endl;
+			cout << "KEY:[" << (LPTSTR)(LPCTSTR)strID<< "],Error Code:" << dwRet << ",conent:" << (LPTSTR)(LPCTSTR)strContent << ",check Memcached Server!" << endl;
+			cout << "10ms后再次尝试插入KEY:" << (LPTSTR)(LPCTSTR)strID << endl;
+			Sleep(10);
+			int dwRet=dllLoader.pSend2MC((LPTSTR)(LPCTSTR)strID, (LPTSTR)(LPCTSTR)strContent);
+			if (dwRet < 0)
+			{
+				cout << "10ms后再次尝试插入KEY:" << (LPTSTR)(LPCTSTR)strID << "失败"<<endl;
+			}else{
+				cout << "10ms后再次尝试插入KEY:" << (LPTSTR)(LPCTSTR)strID << "成功" << endl;
+			}
 		}
 		else
 		{
@@ -337,6 +354,7 @@ DWORD WINAPI SaveToMemThread(LPVOID param)
 		//pDlg->m_csMap.Leave();
 		// END:Delete by bloodhunter at 2012/10/21
 		//Sleep(50);
+		pDlg->dwSeqPackets++;
 	}
 	return 0L;
 }

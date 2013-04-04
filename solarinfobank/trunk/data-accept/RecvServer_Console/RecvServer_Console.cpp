@@ -25,10 +25,8 @@ using namespace std;
 DLLLoader dllLoader;	
 Protocol69Dealer protocol69Dealer;
 TCPServer tcp_svr;
-
-
 int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
-{
+{	
 	int nRetCode = 0;
 	//modify by qhb for 升级版本号 in 20120330
 	SetConsoleTitle("RecvServer V1.1.0");
@@ -44,7 +42,14 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 	else
 	{
 		InitDB();
-
+		//设置运行标识
+		//add by hbqian for 设置最后一次成功处理数据的时间到memached，以便检测程序能判断接收程序的运行状态
+		CString strID1="accept_run_lasttime"; //最后正确接收数据的时间
+		CString strContent1=CTime::GetCurrentTime().Format("%Y-%m-%d %H:%M:%S");
+		int dwRet=dllLoader.pSend2MC(strID1.GetBuffer(0),strContent1.GetBuffer(0));
+		strID1.ReleaseBuffer();
+		strContent1.ReleaseBuffer();
+		
 		for (;;)
 		{
 			Sleep(8888);

@@ -7,6 +7,9 @@
 
 extern DLLLoader dllLoader;
 
+
+MYSQL_CONNECT_PARAM extMysqlConnectParam; //MYSQL连接的配置信息
+
 //随机字符源，此处为简单起见，均使用ascall编码
 char AUTH_TEXT_SOURCE[]={
 	0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
@@ -86,21 +89,19 @@ bool NewRegisterInfo::CheckPwd()
 //		char xx[10];
 //		dllLoader.pReadFromMC("123", xx);
 //#endif
-
 		UserIfo ui;
 		MyConnection conn;
-		MYSQL_CONNECT_PARAM mysqlConnectParam;
-		mysqlConnectParam.dwPort = GetPrivateProfileInt("MySQL","Port",3306,"./config.ini");
-		GetPrivateProfileString("MySQL","IP","",mysqlConnectParam.strIp,50,"./config.ini");
-		GetPrivateProfileString("MySQL","User","",mysqlConnectParam.strUser,50,"./config.ini");
-		GetPrivateProfileString("MySQL","Pass","",mysqlConnectParam.strPass,50,"./config.ini");
-		GetPrivateProfileString("MySQL","DBName","",mysqlConnectParam.strDB,50,"./config.ini");
+		extMysqlConnectParam.dwPort = GetPrivateProfileInt("MySQL","Port",3306,"./config.ini");
+		GetPrivateProfileString("MySQL","IP","",extMysqlConnectParam.strIp,50,"./config.ini");
+		GetPrivateProfileString("MySQL","User","",extMysqlConnectParam.strUser,50,"./config.ini");
+		GetPrivateProfileString("MySQL","Pass","",extMysqlConnectParam.strPass,50,"./config.ini");
+		GetPrivateProfileString("MySQL","DBName","",extMysqlConnectParam.strDB,50,"./config.ini");
 
-		conn.SetDBServer(mysqlConnectParam.strIp);
-		conn.SetDBName(mysqlConnectParam.strDB);
-		conn.SetDBUser(mysqlConnectParam.strUser);
-		conn.SetDBPassword(mysqlConnectParam.strPass);
-		conn.SetDBPort(mysqlConnectParam.dwPort);
+		conn.SetDBServer(extMysqlConnectParam.strIp);
+		conn.SetDBName(extMysqlConnectParam.strDB);
+		conn.SetDBUser(extMysqlConnectParam.strUser);
+		conn.SetDBPassword(extMysqlConnectParam.strPass);
+		conn.SetDBPort(extMysqlConnectParam.dwPort);
 		conn.Open();
 		conn.ExecSQL("set names 'gb2312'");//此处设置编码结构为2312，也就意味着后面要在代码中实现gb2312与UTF8之间的转换
 
@@ -111,6 +112,7 @@ bool NewRegisterInfo::CheckPwd()
 		strQuery.append("\'");
 		conn.ExecSQL(strQuery,&res);
 		char **row = NULL;
+		bool isOk = false;
 		if (res.GetRow(row))
 		{
 			string pwd = "";
@@ -134,9 +136,11 @@ bool NewRegisterInfo::CheckPwd()
 			ui.s_strKey = this->m_strKey;
 			ui.s_strPwd = this->m_strPwd;
 			ui.s_strSerialNum = this->m_strSerialNum;
-			return m_strPwd == pwd;
+			isOk =  m_strPwd == pwd;
 		}
-		return false;
+		//关闭记录集和连接
+		conn.~MyConnection();
+		return isOk;
 	}
 	catch(...)
 	{

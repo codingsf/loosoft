@@ -32,6 +32,7 @@
 #include "map"
 #include "queue"
 #include <string>
+
 using namespace std;
 
 //声明Send2DLL里的函数原型
@@ -39,7 +40,6 @@ typedef  BOOL (*PFUN_INIT)(char *);
 typedef  void (*PFUN_UNINIT)();
 typedef  int (*PFUN_SEND2MC)(char *,char *);
 typedef  void (*PFUN_SEND2Dll)(int,char *,char *);
-
 
 // TODO: reference additional headers your program requires here
 

@@ -52,6 +52,7 @@ public:
 	/// </summary>
 	/// <param name="pTcpData">需要处理的数据</param>
 	void AddToMemBuf(TCP_DATA * pTcpData);
+
 	/// <summary>
 	/// 专职将内存缓存中的新版本协议的数据写入memcached
 	/// </summary>

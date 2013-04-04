@@ -17,8 +17,7 @@ extern DLLLoader dllLoader;
 extern Protocol69Dealer protocol69Dealer;
 
 using namespace std;
-
-int TCPServer::iSendConn=GetPrivateProfileInt("Server","SendConn",0,"./config.ini");
+int TCPServer::iSendConn=GetPrivateProfileInt("Server","SendConn",1,"./config.ini");
 int TCPServer::m_iRestartInterval=GetPrivateProfileInt("Server","RestartInterval",0,"./config.ini");
 bool TCPServer::m_bIsExit = true;
 
@@ -409,10 +408,25 @@ DWORD WINAPI ScanDataBaseThread(LPVOID param)
 	{
 		try
 		{
+			MyConnection conn;
+			MYSQL_CONNECT_PARAM mysqlConnectParam;
+			mysqlConnectParam.dwPort = GetPrivateProfileInt("MySQL","Port",3306,"./config.ini");
+			GetPrivateProfileString("MySQL","IP","",mysqlConnectParam.strIp,50,"./config.ini");
+			GetPrivateProfileString("MySQL","User","",mysqlConnectParam.strUser,50,"./config.ini");
+			GetPrivateProfileString("MySQL","Pass","",mysqlConnectParam.strPass,50,"./config.ini");
+			GetPrivateProfileString("MySQL","DBName","",mysqlConnectParam.strDB,50,"./config.ini");
+			cout << "*** dbname...\n" << mysqlConnectParam.strDB << endl;
+			conn.SetDBServer(mysqlConnectParam.strIp);
+			conn.SetDBName(mysqlConnectParam.strDB);
+			conn.SetDBUser(mysqlConnectParam.strUser);
+			conn.SetDBPassword(mysqlConnectParam.strPass);
+			conn.SetDBPort(mysqlConnectParam.dwPort);
+			conn.Open();
+			conn.ExecSQL("set names 'gb2312'");//此处设置编码结构为2312，也就意味着后面要在代码中实现gb2312与UTF8之间的转换
 			//每次读取状态不为0的数据，然后将其所在的SOCKET转移给DLL
 			MyResult res;
 			char **row = NULL;
-			pDlg->dataManage.m_conn.ExecSQL("select b.code,a.deviceAddress,a.Status from device as a,collector_info as b where a.collectorID=b.id and a.Status!='0'",&res);
+			conn.ExecSQL("select b.code,a.deviceAddress,a.Status from device as a,collector_info as b where a.collectorID=b.id and a.Status!='0'",&res);
 
 			while (res.GetRow(row))
 			{
@@ -431,12 +445,19 @@ DWORD WINAPI ScanDataBaseThread(LPVOID param)
 					pDlg->m_csmapDebugDevice.Leave();
 				}
 			}
+			cout << "***关闭记录集和连接...\n" << mysqlConnectParam.strDB << endl;
+			//关闭记录集和连接
+			conn.~MyConnection();
 		}
-		catch (...)
+		//catch (...)
+		//{
+		//	cout << "读取表格device、collector_info发生异常..." << endl;
+		catch (Exception &e)
 		{
-			cout << "读取表格device、collector_info发生异常..." << endl;
-		}
+			cout << "*** 读取表格device、collector_info发生异常...\n" << e.Message() << endl;
 
+			//return FALSE;
+		}
 		Sleep(60000);
 	}
 
@@ -680,7 +701,6 @@ TCPServer::TCPServer()
 	}
 
 	dwRecvPackets=0;
-
 	dwServerPort=GetPrivateProfileInt("Server","TCPPort",9000,"./config.ini");
 	dwTimeOut=GetPrivateProfileInt("Server","TimeOut",120,"./config.ini");
 	dwLogLevel=GetPrivateProfileInt("Server","LogLevel",0,"./config.ini");
@@ -703,7 +723,8 @@ TCPServer::TCPServer()
 	}
 	// BEGIN:Add by bloodhunter at 2012/10/21 for 代码整改
 	// [修改说明]:防止程序未处理到的异常导致程序假死或memcached客户端出现问题导致无法正确插入数据
-	CreateThread(NULL, 0, RestartThread, this, NULL, NULL);
+	// modify by hbqian at 2013/02/21 for 注释代码，不在重启自己，可能有重启时端口复用问题，导致无法正常重启，改为从外网解决
+	// CreateThread(NULL, 0, RestartThread, this, NULL, NULL);
 	// END:Add by bloodhunter at 2012/10/21 for 代码整改
 }
 
@@ -853,6 +874,7 @@ void TCPServer::DealNewProtocol(TCP_DATA * pTCPData, CUserSession * pSession)
 		return;
 	}
 }
+
 //END:add by bloodhunter for new protocol at 2012-3-23
 
 /// <summary>

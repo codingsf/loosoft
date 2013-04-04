@@ -73,7 +73,20 @@ private:
 public:
 	LogHelper()
 	{
-		dwLogLevel=GetPrivateProfileInt("Server","LogLevel",0,"./config.ini");
+		CString	strAppPath;  // 保存结果
+		TCHAR szModuleFileName[MAX_PATH]; // 全路径名
+		TCHAR drive[_MAX_DRIVE];  // 盘符名称，比如说C盘啊，D盘啊
+		TCHAR dir[_MAX_DIR]; // 目录
+		TCHAR fname[_MAX_FNAME];  // 进程名字
+		TCHAR ext[_MAX_EXT]; //后缀，一般为exe或者是dll
+		if (NULL == GetModuleFileName(NULL, szModuleFileName, MAX_PATH)) //获得当前进程的文件路径
+			strAppPath="";
+		else{
+			_tsplitpath_s( szModuleFileName, drive, dir, fname, ext );  //分割该路径，得到盘符，目录，文件名，后缀名
+			strAppPath = drive;
+			strAppPath += dir;
+		}	
+		dwLogLevel=GetPrivateProfileInt("Server","LogLevel",0,strAppPath+"./config.ini");
 	}
 public:
 	void WriteLog(CString content, int iComm)

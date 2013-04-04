@@ -13,7 +13,6 @@
 #include "MyDef.h"
 using namespace std;
 
-
 #define SENDLOG(content, iLen, isSend, socket) \
 {\
 	LogHelper lohHelper;\

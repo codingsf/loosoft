@@ -290,7 +290,7 @@ DWORD WINAPI SaveToMemThread(LPVOID param)
 		if (dwRet < 0)
 		{
 			cout << "KEY:[" << (LPTSTR)(LPCTSTR)strID<< "],Error Code:" << dwRet << ",conent:" << (LPTSTR)(LPCTSTR)strContent << ",check Memcached Server!" << endl;
-			//写错误数据的log
+			//写插入memcached错误的数据log
 			SENDMEMFAILEDLOG(strID, strContent, true);
 		}
 		else

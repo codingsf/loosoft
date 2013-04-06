@@ -46,11 +46,32 @@ extern "C" __declspec(dllexport) BOOL MC_Init(char * strServer)
 
 		pClient->SetTimeout(5000);
 
-		bool bAdd=pClient->AddServer(strServer);
-		if (!bAdd)
+		char szSrvTmp[1024] = {0};
+		const char * ptmp = strServer;
+		const char * pitr = NULL;
+		while((pitr = strstr(ptmp, ",")) != NULL)
 		{
-			return FALSE;
-		}	
+			memset(szSrvTmp, 0 ,sizeof(szSrvTmp));
+			memcpy(szSrvTmp, ptmp, pitr - ptmp);
+			ptmp = pitr + 1;
+
+			bool bAdd=pClient->AddServer(strServer);
+			if (!bAdd)
+			{
+				return FALSE;
+			}	
+		}
+
+		if (strlen(ptmp) != 0)
+		{
+			memset(szSrvTmp, 0 ,sizeof(szSrvTmp));
+			memcpy(szSrvTmp, ptmp, pitr - ptmp);
+			bool bAdd=pClient->AddServer(strServer);
+			if (!bAdd)
+			{
+				return FALSE;
+			}	
+		}
 	}
 
 	return TRUE;

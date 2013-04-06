@@ -233,6 +233,7 @@ DWORD WINAPI SaveToMemThread(LPVOID param)
 			Sleep(200);
 			continue;
 		}
+		bool issucess = false;
 
 		TCP_DATA * pTCPData=pDlg->m_bufMem.front();
 		pDlg->m_bufMem.pop();
@@ -292,12 +293,14 @@ DWORD WINAPI SaveToMemThread(LPVOID param)
 			cout << "KEY:[" << (LPTSTR)(LPCTSTR)strID<< "],Error Code:" << dwRet << ",conent:" << (LPTSTR)(LPCTSTR)strContent << ",check Memcached Server!" << endl;
 			//写插入memcached错误的数据log
 			SENDMEMFAILEDLOG(strID, strContent, true);
+			issucess = false;
 		}
 		else
 		{
 			//此处记载日志，写入memcache的内容
 			SENDMEMLOG(strID, strContent, true);
 			cout << "KEY:[" << (LPTSTR)(LPCTSTR)strID<< "]:" << dwRet << ",input to Memcached Server success!" << endl;
+			issucess = true;
 #if 0//此处不再需要，保留
 			CString memkeyList_key;
 			//此处更改为每秒一个key，以保证不会出现value过大的问题
@@ -325,22 +328,30 @@ DWORD WINAPI SaveToMemThread(LPVOID param)
 #endif
 		}
 
-		//释放资源
-        if(pTCPData != NULL)
-        {
-            if(pTCPData->pDataContent != NULL)
-            {
-		        delete []pTCPData->pDataContent;
-                pTCPData->pDataContent = NULL;
-            }
-            if(pTCPData->key != NULL)
-            {
-		        delete[]pTCPData->key;
-                pTCPData->key = NULL;
-            }
-		    delete pTCPData;
-		    pTCPData = NULL;
-        }
+		if (issucess)
+		{
+			//释放资源
+			if(pTCPData != NULL)
+			{
+				if(pTCPData->pDataContent != NULL)
+				{
+					delete []pTCPData->pDataContent;
+					pTCPData->pDataContent = NULL;
+				}
+				if(pTCPData->key != NULL)
+				{
+					delete[]pTCPData->key;
+					pTCPData->key = NULL;
+				}
+				delete pTCPData;
+	 			pTCPData = NULL;
+			}
+		}
+		else
+		{
+			//插入失败，追加到队列尾部
+			pDlg->AddToMemBuf(pTCPData);
+		}
 		// BEGIN:Delete by bloodhunter at 2012/10/21 for 代码整改
 		// [修改说明]:从代码结尾处转移，以减少锁冲突的概率，从而提高程序的性能
 		//pDlg->m_csMap.Leave();

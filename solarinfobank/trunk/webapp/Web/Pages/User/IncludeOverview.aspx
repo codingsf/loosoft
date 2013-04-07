@@ -349,7 +349,7 @@
             }, 
        complete: function (XHR, TS) { XHR = null } 
         }); 
-        refreshChartData();
+       // refreshChartData();
     }
     
 </script>

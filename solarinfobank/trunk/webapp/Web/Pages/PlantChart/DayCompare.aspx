@@ -10,7 +10,7 @@
             $('#pScatterMonthChart').click(displayPScatterMonthChart);
             $('#pDayChart').click(displayPDayChart);
             $('#eDayChart').click(displayEDayChart);
-            displayPScatterMonthChart();
+            displayPDayChart();
         }
 
         //add by hbqian in 2013/03/18 for增加显示电站日日照和功率散点图

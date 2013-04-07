@@ -444,7 +444,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 pu = plant.plantUnits[i];
                 unitLevel = unitLevel * 100 + i;
-                jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '/images/tree/unit.gif');", unitLevel, topLevel, pu.displayname, "javascript:void(0);");
+                jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '');", unitLevel, topLevel, pu.displayname, "javascript:void(0);");
 
                 //先装机逆变器类型设备节点
                 IList<Device> devices = pu.typeDevices(DeviceData.INVERTER_CODE, false);
@@ -484,7 +484,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     device = devices[i];
                     int tmpLevel = deviceLevel * 100 + i;
                     //jsstr += "myTree.add(" + tmpLevel + "," + deviceLevel + ",'" + device.fullName + "',80,20,'#FFDFAE','#F18216','javascript:parent.loadRunData(" + device.id + ")');";
-                    jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '/images/tree/inverter.png');", tmpLevel, topLevel, device.fullName, "javascript:parent.loadRunData(" + string.Format("{0}", device.id) + ")");
+                    jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '');", tmpLevel, topLevel, device.fullName, "javascript:parent.loadRunData(" + string.Format("{0}", device.id) + ")");
 
                 }
             }

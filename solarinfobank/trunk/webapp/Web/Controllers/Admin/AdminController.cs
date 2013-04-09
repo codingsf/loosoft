@@ -2504,7 +2504,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                             break;
 
                         case "40"://今日发电量
-                            rowData.Add(d.TodayEnergy(d.plant.timezone).ToString("0.00"));
+                            if (d.runData == null)
+                                rowData.Add("0");
+                            else
+                                rowData.Add(d.TodayEnergy(d.plant.timezone).ToString("0.00"));
                             break;
 
                         case "41"://本月发电量                      

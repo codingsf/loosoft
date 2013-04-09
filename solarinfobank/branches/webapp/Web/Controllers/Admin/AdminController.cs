@@ -2484,8 +2484,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                             if (d.runData == null)
                                 rowData.Add("0");
                             else
-                                rowData.Add(d.runData.todayEnergy.ToString("0.0"));
-
+                                rowData.Add(d.TodayEnergy(d.plant.timezone).ToString("0.00"));
                             break;
 
                         case "41"://本月发电量                      

@@ -16,16 +16,15 @@ body{margin:0px;background:#ECF9FF url(../images/body_bg01.jpg) no-repeat; font-
 
 .rightbox{ width:568px; float:right; padding-top:70px;}
 .bt{margin:0px; list-style:none; padding:0px; display:block;}
-.bt li{ font-size:14px; float:left; display:block; width:160px; margin:6px 14px; font-family:"微软雅黑";white-space:nowrap;text-overflow:ellipsis;overflow: hidden;text-shadow: 1px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff, 1px 0 1px #8B4513, 0 1px 1px #fff, 0 -1px 1px #fff, -1px 0 1px #fff;
-filter: Dropshadow(offx = 1, offy = 0, color = #fff) Dropshadow(offx = 0, offy = 1, color = #fff) Dropshadow(offx = 0, offy = -1, color = #fff) Dropshadow(offx = -1, offy = 0, color = #fff);}
+.bt li{ font-size:14px; float:left; display:block; width:160px; margin:6px 14px; font-family:"微软雅黑";white-space:nowrap;text-overflow:ellipsis;overflow: hidden;}
 .tj{margin:0px; list-style:none; padding:0px; font-family:Arial, Helvetica, sans-serif; display:block; height:80px;}
 .tj li{ float:left; display:block; width:160px; margin:14px;}
 .f34{font-size:34px; font-weight:bold; color:#08B985;}
 .f18{font-size:17px;  color:#494949; margin-left:6px;font-family:Arial, Helvetica, sans-serif;}
-.em{ height:182px;}
+.em{ height:138px;}
 
 
-.table{ margin-bottom:20px;}/*图表页*/
+.table{ margin-bottom:20px; height:400px; margin-top:80px;}/*图表页*/
 .tab{ text-align:center;}/*图表页切换*/
 
 

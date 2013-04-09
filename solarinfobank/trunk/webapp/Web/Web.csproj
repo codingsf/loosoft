@@ -8204,6 +8204,7 @@
     <None Include="mfile\Logger-SN Ipmort Bank P111.xlsx" />
     <Content Include="Images\sub\reduce.gif" />
     <Content Include="Images\am\ad_bu16.gif" />
+    <Content Include="Images\tree\plus1.gif" />
     <Content Include="Pages\Shared\ContentInside.Master" />
     <Content Include="Pages\Shared\EmptyInside.Master" />
     <Content Include="Pages\Shared\Virtual.Master" />

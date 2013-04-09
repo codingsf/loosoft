@@ -45,14 +45,14 @@ function dTree(objName) {
         folder: '/images/tree/folder.gif',
         folderOpen: '/images/tree/folderopen.gif',
         node: '/images/tree/page.gif',
-        empty: '/images/tree/empty.gif',
+        empty: '/images/tree/empty1.gif',
         join: '/images/tree/join1.gif',
         line: '/images/tree/line1.gif',
         joinBottom: '/images/tree/joinbottom1.gif',
-        plus: '/images/tree/plus.gif',
-        plusBottom: '/images/tree/plusbottom.gif',
+        plus: '/images/tree/plus1.gif',
+        plusBottom: '/images/tree/plusbottom1.gif',
         minus: '/images/tree/minus1.gif',
-        minusBottom: '/images/tree/minusbottom.gif',
+        minusBottom: '/images/tree/minusbottom1.gif',
         nlPlus: '/images/tree/nolines_plus.gif',
         nlMinus: '/images/tree/nolines_minus.gif'
     };

@@ -742,7 +742,6 @@
                                             <%} %>
                                            <%if (UserUtil.BigScreenEnable)
                                               { %>
-                                            <li><a href="javascript:void(0);" id="linkfullscreen" rel="/bigscreen/execute/<%=Model.id%>"><%=Resources.SunResource.BIG_SCREEN_MENU%></a></li>
                                             <li><a onclick="loadContent('content_ajax','/user/bigscreenlogo','iframe','GET');setcurrent(this);return false;" href="/user/bigscreenlogo"><%=Resources.SunResource.BIG_SCREEN_LOGO_SETTING%></a></li>
                                             <%}%>
                                         </ul>

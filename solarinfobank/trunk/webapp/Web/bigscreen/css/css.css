@@ -4,7 +4,7 @@
 body{margin:0px;background:#ECF9FF url(../images/body_bg01.jpg) no-repeat; font-size:12px; font-family:Arial, Helvetica, sans-serif;}
 .mainbox{ width:1003px; margin:0 auto; padding-top:46px;}
 .header{font-size:48px; font-weight:bold; line-height:60px; margin-bottom:40px;}
-.midbox{ background:url(../images/midbg.png) no-repeat; height:501px; margin-bottom:10px;}
+.midbox{ background:url(../images/midbg.png) no-repeat; height:501px; margin-bottom:10px; margin-top:80px;}
 .leftbox{ width:369px; float:left; margin-left:11px;}
 .leftbox span{ font-family:"微软雅黑"; color:#FFFFFF; font-size:16px; display:block; height:28px; line-height:28px;}
 .leftbox img{ margin-top:10px;}

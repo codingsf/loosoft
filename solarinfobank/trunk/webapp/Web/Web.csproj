@@ -8202,7 +8202,6 @@
     <None Include="help\it-ch\SunInfo Bank User Manual.pdf" />
     <None Include="help\zh-cn\SolarInfo Bank User Manual.pdf" />
     <None Include="mfile\Logger-SN Ipmort Bank P111.xlsx" />
-    <Content Include="bigscreen\images\body_bg01 - 副本.jpg" />
     <Content Include="Images\fullscreen.png" />
     <Content Include="Images\sub\reduce.gif" />
     <Content Include="Images\am\ad_bu16.gif" />

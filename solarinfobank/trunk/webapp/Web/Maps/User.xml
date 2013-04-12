@@ -81,7 +81,7 @@
       <flushOnExecute  statement="virtualplant_insert"/>
       <flushOnExecute  statement="virtualplant_delete"/>
       <flushOnExecute  statement="relationconfig_insert"/>
-      <property name="CacheSize" value="1000"/>
+      <property name="CacheSize" value="10000"/>
     </cacheModel>
   </cacheModels>
 

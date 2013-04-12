@@ -15,6 +15,8 @@
             $('#YearChart').click(displayyearMMChart);
             $('#TotalChart').click(displayyearChart);
             $('#DayChart').click(displayDayChart);
+            $("#startYYYYMMDDHH").val("<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>00")
+            $("#endYYYYMMDDHH").val("<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>23")            
             displayDayChart();
         });
         function changeALT() {
@@ -230,13 +232,14 @@
             if (aimDay) {
                 aimDay = aimDay.replace("-", "").replace("-", "");
             }
-            $("#startYYYYMMDDHH").val(getBeforDay(aimDay) + "05");
-            $("#endYYYYMMDDHH").val(aimDay + "21")
+            //$("#startYYYYMMDDHH").val(getBeforDay(aimDay) + "05");
+            $("#startYYYYMMDDHH").val(aimDay + "00");
+            $("#endYYYYMMDDHH").val(aimDay + "23")
             displayDayChart();
 
-            aimDay = getBeforDay(aimDay);
-            aimDay = aimDay.substring(0, 4) + "-" + aimDay.substring(4, 6) + "-" + aimDay.substring(6, 8);
-            $("." + obj.id).val(aimDay);
+            //aimDay = getBeforDay(aimDay);
+            //aimDay = aimDay.substring(0, 4) + "-" + aimDay.substring(4, 6) + "-" + aimDay.substring(6, 8);
+            //$("." + obj.id).val(aimDay);
 
         }
         function changeYear(obj) {
@@ -303,8 +306,10 @@
                         </td>
                         <td>
                            <div id="date_DayChart">
+                                <!--
                                 <input name="t" type="text" class="t1" size="12" class="indate" onclick="WdatePicker({onpicked:function(){changePreDay(this);},skin:'whyGreen',lang:'<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>',isShowClear:false,minDate:'<%=((IList<SelectListItem>)ViewData["plantYear"])[0].Value+"-01-01" %>',maxDate: '<%=DateTime.Parse( CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy-MM-dd")).AddDays(-1).ToString("yyyy-MM-dd")%>'})"
                                                     readonly="readonly"  value="<%=DateTime.Parse(CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy-MM-dd")).AddDays(-1).ToString("yyyy-MM-dd")%>" style="text-align:center;" /> -
+                                -->
                                 <input name="t1" type="text" id="t1" size="12" class="indate" onclick="WdatePicker({onpicked:function(){changeDay(this);},skin:'whyGreen',lang:'<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>',isShowClear:false,minDate:'<%=((IList<SelectListItem>)ViewData["plantYear"])[0].Value+"-01-01" %>',maxDate: '<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy-MM-dd")%>',lang:'<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})"
                                                     readonly="readonly"  value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy-MM-dd")%>" style="text-align:center;" />
                                 <input type="hidden" id="minDate" value="<%=((IList<SelectListItem>)ViewData["plantYear"])[0].Value%>-01-01" />

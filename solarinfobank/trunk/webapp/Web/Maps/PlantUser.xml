@@ -18,7 +18,7 @@
 
   <cacheModels>
     <cacheModel id="plantuser_info_cache" implementation="LRU" readOnly="true" serialize="false">
-      <flushInterval minutes="30"/>
+      <flushInterval minutes="300"/>
       <flushOnExecute  statement="closeplant"/>
       <flushOnExecute  statement="plantuser_insert"/>
       <flushOnExecute  statement="plantuser_update"/>
@@ -29,7 +29,7 @@
       <flushOnExecute  statement="plant_delete"/>
       <flushOnExecute  statement="plant_update_pic"/>
       <flushOnExecute  statement="plant_update"/>
-      <property name="CacheSize" value="1000"/>
+      <property name="CacheSize" value="10000"/>
     </cacheModel>
   </cacheModels>
 

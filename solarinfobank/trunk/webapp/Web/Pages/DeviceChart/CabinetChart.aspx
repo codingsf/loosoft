@@ -15,6 +15,8 @@
             $('#YearChart').click(displayyearMMChart);
             $('#TotalChart').click(displayyearChart);
             $('#DayChart').click(displayDayChart);
+            $("#startYYYYMMDDHH").val("<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>00")
+            $("#endYYYYMMDDHH").val("<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>23")
             displayDayChart();
         });
         function changeALT() {
@@ -207,8 +209,8 @@
             if (aimDay) {
                 aimDay = aimDay.replace("-", "").replace("-", "");
             }
-            $("#startYYYYMMDDHH").val(aimDay + "06")
-            $("#endYYYYMMDDHH").val(aimDay + "22")
+            $("#startYYYYMMDDHH").val(aimDay + "00")
+            $("#endYYYYMMDDHH").val(aimDay + "23")
             displayDayChart();
         }
         function changeYear(obj) {

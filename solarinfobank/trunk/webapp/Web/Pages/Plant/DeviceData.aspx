@@ -45,10 +45,14 @@
 <input type="hidden" value="5,5" id="intervalMins" />
 <input type="hidden" value="" id="monitorCode" />
 <input type="hidden" value="area" id="chartType" />
-<input type="hidden" value="<%=CalenderUtil.getBeforeDay(DateTime.Now,"yyyyMMdd")%>00"
+<input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>00"
     id="startYYYYMMDDHH" />
 <input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>23"
     id="endYYYYMMDDHH" />
+<input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>00"
+    id="kwpStartYYYYMMDDHH" />
+<input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>23"
+    id="kwpEndYYYYMMDDHH" />    
 <input type="hidden" value="<%=CalenderUtil.getBeforeDay(DateTime.Now,"yyyyMMdd")%>00"
     id="mtStartYYYYMMDDHH" />
 <input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>23"

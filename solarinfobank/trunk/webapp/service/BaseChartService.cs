@@ -596,5 +596,30 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
  
             return newdatas;
         }
+
+        /// <summary>
+        /// 将同数量的两组数据，组织成坐标
+        /// add by hbqian in 2013-03-23 for 生成电站功率和日照散列图
+        /// </summary>
+        /// <param name="chatName"></param>
+        /// <param name="xData"></param>
+        /// <param name="yData"></param>
+        /// <returns></returns>
+        public ChartData genNewScatter(MonitorType smt,MonitorType pmt,string chartName, string startYearMMDDHH, string endYearMMDDHH, int interval, Hashtable xData, Hashtable yData, string unit, string chartType)
+        {
+            string[] ic = this.getXseriesFromYYYYMMDDHH(startYearMMDDHH, endYearMMDDHH, interval).ToArray();
+            KeyValuePair<string, float?[]> xMergedata = this.GenerateChartData(smt.name, ic, xData, 1.0f);
+            KeyValuePair<string, float?[]> yMergedata = this.GenerateChartData(pmt.name, ic, yData, 1.0f);
+            for (int i = 0; i < xMergedata.Value.Length; i++)
+            {
+                ic[i] = xMergedata.Value[i] == null ? "" : xMergedata.Value[i].ToString();
+            }
+            IList<KeyValuePair<string, float?[]>> yDataList = new List<KeyValuePair<string, float?[]>>() { yMergedata };
+
+            string[] ynames = new string[] { smt.name, pmt.name };
+            string[] units = new string[] { "W/㎡", "kW" };
+            string[] chartTypes = new string[] { "scatter", "scatter" };
+            return ReportBuilder.createMultiJsonChartXY(chartName, ic, yDataList, ynames, chartTypes, units, false);
+        }
     }
 }

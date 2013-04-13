@@ -975,7 +975,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                         Hashtable sunDataHash = DeviceDayDataService.GetInstance().GetDaydataList(null, device, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), MonitorType.MIC_DETECTOR_SUNLINGHT);
                         if (sunDataHash.Keys.Count > 0)//有日照数据,则合并数据，将日照作为x，功率作为y，形成新的x.y散列点
                         {
-                            ChartData chartData = PlantChartService.GetInstance().genNewScatter(chartName, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), sunDataHash, powerDataHash, "kW", chartType);
+                            MonitorType smt = MonitorType.getMonitorTypeByCode(MonitorType.MIC_DETECTOR_SUNLINGHT);
+                            MonitorType pmt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_POWER_CODE);
+                            ChartData chartData = PlantChartService.GetInstance().genNewScatter(smt,pmt,chartName, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), sunDataHash, powerDataHash, "kW", chartType);
                             reportCode = JsonUtil.convertToJson(chartData, typeof(ChartData));
                         }
                         else

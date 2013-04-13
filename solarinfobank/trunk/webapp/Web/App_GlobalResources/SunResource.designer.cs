@@ -1006,6 +1006,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 No Fullscreen Function 的本地化字符串。
+        /// </summary>
+        internal static string BIG_SCREEN_NOFUNCTION {
+            get {
+                return ResourceManager.GetString("BIG_SCREEN_NOFUNCTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Owner 的本地化字符串。
         /// </summary>
         internal static string BIG_SCREEN_OWNER_UNIT {

@@ -15,10 +15,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
     /// </summary>  
     public class DeviceChartController : BaseController
     {
-        //
-        // GET: /ReportTest/
-        CollectorYearDataService collectorYearDataService = CollectorYearDataService.GetInstance();
-
         public ActionResult Index(int id)
         {
             return View();
@@ -202,6 +198,69 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 //取得用户年度发电量图表数据
                 ChartData chartData = CompareChartService.GetInstance().compareDayHHMultiDeviceMultiMonitor(chartName, devices, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]));
                 reportCode = JsonUtil.convertToJson(chartData, typeof(ChartData));
+            }
+            return Content(reportCode);
+        }
+
+        /// <summary>
+        /// 日功率和日照散列图
+        /// 此类型图表和其他取数方式有点不一样，其他都是多位测点数据公用一个时间坐标
+        /// 这个是两个测点先按照同样的时间间隔取得数据后（同样的时间间隔取数是为了保证取得数据数组长度一致，能最终合并成对应的散列点）
+        /// 将日照作为x轴，功率作为y轴数据，生成散列图表数据
+        /// add by hbqian in 2013-03-23 for 生成设备功率和日照散列图
+        /// </summary>
+        /// <param name="pid"></param>
+        /// <param name="startYYYYMMDDHH"></param>
+        /// <param name="endYYYYMMDDHH"></param>
+        /// <param name="chartType">只能有一个，其实是固定为scatter类型的</param>
+        /// <param name="intervalMins">只能有一个</param>
+        /// <returns></returns>
+        public ActionResult PowerSunScatterCompare(int dId, string startYYYYMMDDHH, string endYYYYMMDDHH, string chartType, string intervalMins)
+        {
+            string reportCode = string.Empty;
+            Device device = DeviceService.GetInstance().get(dId);
+
+            string[] intervals = intervalMins.Split(',');
+            if (device != null)
+            {
+                //判断该测点是否有数据,有数据则增加关照对比
+                Hashtable powerDataHash = DeviceDayDataService.GetInstance().GetDaydataList(device, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), MonitorType.MIC_INVERTER_TOTALYGPOWER);
+                if (powerDataHash.Count > 0 && device.plantUnit!=null)
+                {
+                    string chartName = LanguageUtil.getDesc("PLANT_CHART_DAY_POWER_SUNLIGHT_COMPARE_CHART") + "(" + LanguageUtil.getDesc("CUSTOM_CHART_MONTH") + ")";
+
+                    Plant plant = PlantService.GetInstance().GetPlantInfoById(device.plantUnit.plantID);
+                    Device sundevice = plant.getFirstDetector();
+                    //设备所属电站是否有环境检测仪
+                    if (sundevice != null)
+                    {
+                        //取得日照数据
+                        Hashtable sunDataHash = DeviceDayDataService.GetInstance().GetDaydataList(null, sundevice, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), MonitorType.MIC_DETECTOR_SUNLINGHT);
+                        if (sunDataHash.Keys.Count > 0)//有日照数据,则合并数据，将日照作为x，功率作为y，形成新的x.y散列点
+                        {
+                            MonitorType smt = MonitorType.getMonitorTypeByCode(MonitorType.MIC_DETECTOR_SUNLINGHT);
+                            MonitorType pmt = MonitorType.getMonitorTypeByCode(MonitorType.MIC_INVERTER_TOTALYGPOWER);
+                            ChartData chartData = DeviceChartService.GetInstance().genNewScatter(smt, pmt,chartName, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]), sunDataHash, powerDataHash, "kW", chartType);
+                            reportCode = JsonUtil.convertToJson(chartData, typeof(ChartData));
+                        }
+                        else
+                        { //没有日照无法生成散列点则，返回无数据提示
+                            return Content("error:" + Resources.SunResource.NODATA);
+                        }
+                    }
+                    else
+                    {
+                        return Content("error:" + Resources.SunResource.NODATA);
+                    }
+                }
+                else
+                {
+                    return Content("error:" + Resources.SunResource.NODATA);
+                }
+            }
+            else
+            {
+                return Content("error:" + Resources.SunResource.NODATA);
             }
             return Content(reportCode);
         }

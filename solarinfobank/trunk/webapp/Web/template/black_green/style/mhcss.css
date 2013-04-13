@@ -28,8 +28,9 @@ a:active { color:#000; text-decoration:none;}
 .subico01 ul li .onclick{ float:left; background:url(/images/gf/subtb1.gif); height:27px; line-height:27px; border:1px solid #727171; padding:0px 15px; text-align:center; color:#FFFFFF; font-weight:bold; display:block;}
 .subico01 ul li a .noclick{ float:left; background:url(/images/gf/subtb2.gif); height:27px; line-height:27px; border:1px solid #727171; padding:0px 15px; text-align:center; color:#FFFFFF; font-weight:bold; display:block;}
 .subico01 ul li a .onclick{ float:left; background:url(/images/gf/subtb1.gif); height:27px; line-height:27px; border:1px solid #727171; padding:0px 15px; text-align:center; color:#FFFFFF; font-weight:bold; display:block;}
-#change .noclick{ float:left; background:url(/images/gf/subtb2.gif); height:27px; line-height:27px; border:1px solid #727171; padding:0px 15px; text-align:center; color:#FFFFFF; font-weight:bold; display:block;}
-#change .onclick{ float:left; background:url(/images/gf/subtb1.gif); height:27px; line-height:27px; border:1px solid #727171; padding:0px 15px; text-align:center; color:#FFFFFF; font-weight:bold; display:block;}
+/* modify by hbqian  padding:0px 15px; to  padding:0px 10px; */
+#change .noclick{ float:left; background:url(/images/gf/subtb2.gif); height:27px; line-height:27px; border:1px solid #727171; padding:0px 10px; text-align:center; color:#FFFFFF; font-weight:bold; display:block;}
+#change .onclick{ float:left; background:url(/images/gf/subtb1.gif); height:27px; line-height:27px; border:1px solid #727171; padding:0px 10px; text-align:center; color:#FFFFFF; font-weight:bold; display:block;}
 
 
 /* 头部与导航部分 */

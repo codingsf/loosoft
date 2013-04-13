@@ -5600,4 +5600,8 @@
   <data name="CHART_POWER_SUNLIGHT" xml:space="preserve">
     <value>功率 &amp; 日照</value>
   </data>
+  <data name="BIG_SCREEN_NOFUNCTION" xml:space="preserve">
+    <value>未开通全屏功能</value>
+    <comment>未开通全屏功能</comment>
+  </data>
 </root>

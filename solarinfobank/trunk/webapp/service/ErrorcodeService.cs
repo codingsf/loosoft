@@ -85,11 +85,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             {
                 if (ErrorItem.errorItemMap.ContainsKey(int.Parse(errorcode.code)))
                 {
-                    ErrorItem.errorItemMap[int.Parse(errorcode.code)] = new ErrorItem() { code = int.Parse(errorcode.code), errorType = errorcode.errorType, name = (errorcode.name == null ? errorcode.defaultName : errorcode.name) };
+                    ErrorItem.errorItemMap[int.Parse(errorcode.code)] = new ErrorItem() { code = int.Parse(errorcode.code), errorType = errorcode.errorType, name = errorcode.name, defaultName = errorcode.defaultName };
                 }
                 else
                 {
-                    ErrorItem.errorItemMap.Add(int.Parse(errorcode.code), new ErrorItem() { code = int.Parse(errorcode.code), errorType = errorcode.errorType, name = (errorcode.name == null ? errorcode.defaultName : errorcode.name) });
+                    ErrorItem.errorItemMap.Add(int.Parse(errorcode.code), new ErrorItem() { code = int.Parse(errorcode.code), errorType = errorcode.errorType, name = errorcode.name, defaultName = errorcode.defaultName });
                 }
                 if (ErrorType.errorTypeMap.ContainsKey(errorcode.errorType))
                 {

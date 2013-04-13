@@ -79,7 +79,7 @@
                         return;
                     }
                     var data = eval('(' + result + ')')
-                    setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#pstartYYYYMMDDHH").val().substring(0, 8) + "<%=Model.name%>", data.name);
+                    setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#pScatterStartYYYYMMDDHH").val().substring(0, 8) + "<%=Model.name%>", data.name);
                     //setyAxis(data);
                     //setySeriesArr(data.series);
                     //var interval = isLarge ? 60 / 5 : 120 / 5;
@@ -250,6 +250,7 @@
             aimDay = aimDay.substring(0, 4) + "-" + aimDay.substring(4, 6) + "-" + aimDay.substring(6, 8);
             $("."+obj.id).val(aimDay);
         }
+        
         //add by hbqian in 2013/03/18 for增加显示电站日日照和功率散点图
         function changePScatterDay(obj) {
             var aimDay = obj.value;

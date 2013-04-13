@@ -5542,4 +5542,8 @@ The average value of coefficient will trigger warning
   <data name="CHART_POWER_SUNLIGHT" xml:space="preserve">
     <value>電力 ＆ 日照</value>
   </data>
+  <data name="BIG_SCREEN_NOFUNCTION" xml:space="preserve">
+    <value>いいえフルスクリーン機能なし</value>
+    <comment>未开通全屏功能</comment>
+  </data>
 </root>

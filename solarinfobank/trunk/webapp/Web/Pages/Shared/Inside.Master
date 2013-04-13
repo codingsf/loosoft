@@ -123,6 +123,7 @@
             window.setTimeout(hiddenPlantPanel, 500);
         }
         function deviceHidden(li) {
+        alert(li)
             if (li == currentSel) {
                 $(li).toggle();
                 $(li + "_link").addClass("current");
@@ -754,7 +755,7 @@
                                 <a href="/help/<%=(Session["Culture"] as CultureInfo).Name%>/SolarInfo Bank User Manual.pdf"
                                     class="green" target="_blank" style="text-decoration: underline;">
                                     <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_CLICK_HERE_FOR_HELP  %>!</a>--%>
-                                <a style="text-decoration: underline;" href="javascript:<%=!UserUtil.BigScreenEnable?"alert('未开通全屏');":"void(0);"%>" id="<%=!UserUtil.BigScreenEnable?"":"linkfullscreen"%>" rel="/bigscreen/execute"><img alt="" src="/images/fullscreen.png" /><br /><%=Resources.SunResource.BIG_SCREEN_MENU%></a>
+                                <a style="text-decoration: underline;" href="javascript:<%=!UserUtil.BigScreenEnable?"alert('"+Resources.SunResource.BIG_SCREEN_NOFUNCTION+"');":"void(0);"%>" id="<%=!UserUtil.BigScreenEnable?"":"linkfullscreen"%>" rel="/bigscreen/execute"><img alt="" src="/images/fullscreen.png" /><br /><%=Resources.SunResource.BIG_SCREEN_MENU%></a>
                             </div>
                         </td>
                         <asp:ContentPlaceHolder ID="MainContent" runat="server">

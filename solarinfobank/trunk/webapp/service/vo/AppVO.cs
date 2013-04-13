@@ -288,7 +288,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service.vo
         [DataMember(Order = 16)]
         public double todayEnergy { get; set; }  //今日发电量
         [DataMember(Order = 17)]
-        public float designPower { get; set; }  //电站设计功率
+        public double designPower { get; set; }  //电站设计功率
         [DataMember(Order = 18)]
         public string manufacturer { get; set; }  //制造商
         [DataMember(Order = 19)]

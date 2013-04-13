@@ -8205,11 +8205,14 @@
     <Content Include="Images\fullscreen.png" />
     <Content Include="Images\sub\reduce.gif" />
     <Content Include="Images\am\ad_bu16.gif" />
+    <Content Include="Images\tree\empty1.gif" />
     <Content Include="Images\tree\join1.gif" />
     <Content Include="Images\tree\joinbottom1.gif" />
     <Content Include="Images\tree\line1.gif" />
     <Content Include="Images\tree\minus1.gif" />
+    <Content Include="Images\tree\minusbottom1.gif" />
     <Content Include="Images\tree\plus1.gif" />
+    <Content Include="Images\tree\plusbottom1.gif" />
     <Content Include="Pages\Shared\ContentInside.Master" />
     <Content Include="Pages\Shared\EmptyInside.Master" />
     <Content Include="Pages\Shared\Virtual.Master" />

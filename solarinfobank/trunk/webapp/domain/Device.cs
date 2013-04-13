@@ -78,7 +78,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 _rundata = value;
             }
         }//实时数据
-        public Plant plant { get; set; }
+
+
+
         public bool Over1Day(float tz)
         {
             if (runData == null)
@@ -522,5 +524,19 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// 设备所属单元
         /// </summary>
         public PlantUnit plantUnit { get; set; }
+
+        /// <summary>
+        /// 设备所属逻辑电站,冗余属性
+        /// </summary>
+        public Plant plant
+        {
+            get
+            {
+                if (plantUnit != null)
+                    return plantUnit.plant;
+                return null;
+            }
+        }
+
     }
 }

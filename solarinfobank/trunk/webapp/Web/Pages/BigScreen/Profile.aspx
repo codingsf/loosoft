@@ -3,16 +3,22 @@
     <div class="header">
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
             <tr>
-                <td width="34%">
-                    <img class="logo" src="" />
+                <td width="50%">
+                    <img class="logo" src=""/>
                 </td>
-                <td width="66%" align="left">
-                     <label id="name">
+                <td width="50%" align="left">
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td width="34%" colspan="2" align=center>
+                    <label id="name">
                     </label>
                 </td>
             </tr>
-        </table>
+        </table>        
     </div>
+    
     <div class="midbox">
         <div class="leftbox">
             <span><%=Resources.SunResource.HOME_INDEX_BANK_OVERVIEW%></span>

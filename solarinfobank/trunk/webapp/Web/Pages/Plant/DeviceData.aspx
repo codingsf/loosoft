@@ -53,6 +53,8 @@
     id="kwpStartYYYYMMDDHH" />
 <input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>23"
     id="kwpEndYYYYMMDDHH" />    
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")%>0100" id="pScatterStartYYYYMMDDHH" />
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")+CalenderUtil.getCurMonthDays()%>23" id="pScatterEndYYYYMMDDHH" />      
 <input type="hidden" value="<%=CalenderUtil.getBeforeDay(DateTime.Now,"yyyyMMdd")%>00"
     id="mtStartYYYYMMDDHH" />
 <input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>23"

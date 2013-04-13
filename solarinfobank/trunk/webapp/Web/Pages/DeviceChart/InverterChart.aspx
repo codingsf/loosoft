@@ -17,10 +17,13 @@
             $('#TotalChart').click(displayyearChart);
             $('#DayChart').click(displayDayChart);
             $('#DaykWpChart').click(displayDaykWpChart);
+            $('#pScatterMonthChart').click(displayPScatterMonthChart);            
             $("#startYYYYMMDDHH").val("<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>00")
             $("#endYYYYMMDDHH").val("<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>23")
             $("#kwpStartYYYYMMDDHH").val("<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>00")
             $("#kwpEndYYYYMMDDHH").val("<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>23")
+            $("#pScatterStartYYYYMMDDHH").val("<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")%>0100")
+            $("#pScatterEndYYYYMMDDHH").val("<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")+CalenderUtil.getCurMonthDays()%>23")            
             displayDayChart();
         });
         function changeALT() {
@@ -29,6 +32,18 @@
             ImageButtonLeft.title = "<%=Resources.SunResource.IMAGE_BUTTON_PREVIOUS%>";
             ImageButtonRight.title = "<%=Resources.SunResource.IMAGE_BUTTON_NEXT%>";
         }
+        
+        //add by hbqian in 2013/04/10 for增加显示电站月日照和功率散点图
+        function displayPScatterMonthChart() {
+            $("#chartType").val("scatter");
+            //$("#chartTypeSelect").attr("value", "scatter");
+            $("#selectTable").show();
+            $("#countDataDiv").empty();            
+            curChart = "pScatterMonthChart";
+            MonthPowerSunScatterCompare("chartContainer", 90, false);
+            changeALT();
+        }
+        
         function displayDayChart() {
             chartId = 0;
             $("#chartType").val("line,line");
@@ -108,9 +123,41 @@
                 dayChart("large_container", 130, true);
             } else if (curChart == "DaykWpChart") {
                 daykWpChart("large_container", 130, true);
+            } else if(curChart == "pScatterMonthChart") {
+                MonthPowerSunScatterCompare("large_container", 130, true);
             } else
                 totalChart("large_container", 130, true);
         }     
+        
+        
+        function MonthPowerSunScatterCompare(curContainer, ajaxImgTop, isLarge) {
+            changeStyle("pScatterMonthChart");
+            $.ajax({
+                type: "POST",
+                url: "/DeviceChart/PowerSunScatterCompare",
+                data: { dId: $("#deviceID").val(), startYYYYMMDDHH: $("#pScatterStartYYYYMMDDHH").val(), endYYYYMMDDHH: $("#pScatterEndYYYYMMDDHH").val(), chartType: "scatter", intervalMins: '5' },
+                success: function(result) {
+                    if (appendChartError(curContainer, result, ajaxImgTop)) {
+                        return;
+                    }
+                    var data = eval('(' + result + ')')
+                    setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#pScatterStartYYYYMMDDHH").val().substring(0, 8) + "<%=Model.name%>", data.name);
+                    //setyAxis(data);
+                    //setySeriesArr(data.series);
+                    //var interval = isLarge ? 60 / 5 : 120 / 5;
+                    //setCategoriesWithInterval(data.categories, isLarge, interval);
+                    //散列图单独处理
+                    defineChartWithScatter(curContainer, false, data);
+                    showDetails(result, $("#pScatterStartYYYYMMDDHH").val());
+                    //修改标题s
+                    chart.setTitle({ text: data.name, x: 0, align: 'center', floating: true });
+                },
+                beforeSend: function() {
+                    $('#' + curContainer).empty();
+                    $('#' + curContainer).append("<center><img src=\"../../Images/ajax_loading.gif\" style=\"margin-top: " + ajaxImgTop + "px;\" /></center>");
+                }
+            });
+        }   
         
         function monthChart(curContainer, ajaxImgTop, isLarge) {
             changeStyle("MonthChart");
@@ -264,12 +311,14 @@
             $("#TotalChart").attr("class", "noclick");
             $("#DayChart").attr("class", "noclick");
             $("#DaykWpChart").attr("class", "noclick");
+            $("#pScatterMonthChart").attr("class", "noclick");    
             $("#" + curId).attr("class", "onclick");
             
             $("#date_MonthChart").hide();
             $("#date_YearChart").hide();
             $("#date_DayChart").hide();
             $("#date_DaykWpChart").hide();
+            $("#date_pScatterMonthChart").hide();     
             $("#date_" + curId).show();
         }
         
@@ -331,6 +380,14 @@
             displayMonthDDChart();
         }
 
+        function changeScatterMonth() {
+            var selectyear = $("#selectscatteryear").val();
+            var selectmonth = $("#selectscattermonth").val();
+            $("#pScatterStartYYYYMMDDHH").val(selectyear + selectmonth + "0100")
+            $("#pScatterEndYYYYMMDDHH").val(selectyear + selectmonth + getMaxDate(selectyear, selectmonth) + "23")
+            displayPScatterMonthChart();
+        }
+        
         function changeChartType(obj) {
             var chartype = obj.value;
             $("#chartType").val(chartype)
@@ -347,10 +404,12 @@
         }
 
         function selectYear2Month() {
+            alert("无用")
             $("#selectYear1").attr("value", $("#year").val());
             $("#selectYear").attr("value", $("#year").val());
             $("#selectMonth").attr("value", $("#month").val());
         }
+        
         function changeInterval() {
             if (curChart=="DayChart")
                 displayDayChart();
@@ -358,24 +417,22 @@
                 displayDaykWpChart();
         }
  
-
         function PreviouNextChange(oper) {
-
             if (curChart == "DayChart") {
                 changeDate(oper,"t1");          
                 changeDay(document.getElementById("t1"));
-            }
-            if (curChart == "DaykWpChart") {
+            }else if (curChart == "DaykWpChart") {
                 changeDate(oper, "t2");
                 changekWpDay(document.getElementById("t2"));
-            }
-            if (curChart == "MonthChart") {
+            }else if (curChart == "MonthChart") {
                 changeShowMonth(oper, "selectmonth", "selectyear");
                 changeMonth();
-            }
-            if (curChart == "YearChart") {
+            }else if (curChart == "YearChart") {
                 changeShowYear(oper, "selectYear1")
                 changeYear(document.getElementById("selectYear1"));
+            }else if (curChart == "pScatterMonthChart") {
+                changeShowMonth(oper, "selectscattermonth", "selectscatteryear");
+                changeScatterMonth();
             }
         }
     </script>
@@ -383,6 +440,7 @@
     <ul id="change">
         <li style="cursor: pointer;"><a id="DayChart" class="onclick" href="javascript:void(0)"><%=Resources.SunResource.CHART_DAILY%></a></li>
         <li style="cursor: pointer;"><a id="DaykWpChart" class="onclick" href="javascript:void(0)"><%=Resources.SunResource.CHART_DAILY%>/kWp</a></li>
+        <li style="cursor: pointer;"><a id="pScatterMonthChart" class="onclick"  href="javascript:void(0)"><%=Resources.SunResource.CHART_POWER_SUNLIGHT%></a></li>        
         <li style="cursor: pointer;"><a id="MonthChart" class="noclick" href="javascript:void(0)"><%=Resources.SunResource.PLANT_OVERVIEW_MONTH %></a></li>
         <li style="cursor: pointer;"><a id="YearChart" class="noclick" href="javascript:void(0)"><%=Resources.SunResource.PLANT_OVERVIEW_YEAR %></a></li>
         <li style="cursor: pointer;"><a id="TotalChart"  class="noclick" href="javascript:void(0)"><%=Resources.SunResource.PLANT_OVERVIEW_TOTAL %></a></li>
@@ -459,6 +517,31 @@
                                     </select>
                                 </div>
                             </div>
+                            <div id="date_pScatterMonthChart" style="display: none;">
+                                <div style="float: left;">
+                                    <%=Html.DropDownList("selectscatteryear", (IList<SelectListItem>)ViewData["plantYear"], new { style = "width:60px;", id = "selectscatteryear", onchange = "changeScatterMonth(this)" })%>
+                                </div>
+                                <div style="float: right;">
+                                    <select style="width: 50px;" onchange="changeScatterMonth(this)" id="selectscattermonth">
+                                        <%
+                                            for (int i = 1; i <= 12; i++)
+                                            {
+
+                                                if (i == int.Parse(CalenderUtil.curDateWithTimeZone(Model.timezone, "MM")))
+                                                {
+                                        %>
+                                        <option value="<%=i.ToString("00")%>" selected="selected">
+                                            <%=i.ToString("00")%></option>
+                                        <%}
+                                                else
+                                                { %>
+                                        <option value="<%=i.ToString("00")%>">
+                                            <%=i.ToString("00")%></option>
+                                        <%}
+                                            }%>
+                                    </select>
+                                </div>
+                            </div>                              
                         </td>
              
                         <td width="24">

@@ -1842,15 +1842,16 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             table.Add("page", new Pager() { PageSize = ComConst.PageSize, PageIndex = page });
             ViewData["page"] = table["page"];
             IList<Device> devices = deviceService.GetDevicesListPage(table);
-            foreach (Device de in devices)
-            {
-                if (de.collectorID > 0)
-                {
-                    Collector collector = CollectorInfoService.GetInstance().Get(de.collectorID);
-                    if (collector != null && collector.plantID > 0)
-                        de.plant = plantService.GetPlantInfoById(collector.plantID);
-                }
-            }
+            //从18版本调整设备和电站的逻辑关系为已经plantunitid后，无需这样处理了
+            //foreach (Device de in devices)
+            //{
+            //    if (de.collectorID > 0)
+            //    {
+            //        Collector collector = CollectorInfoService.GetInstance().Get(de.collectorID);
+            //        if (collector != null && collector.plantID > 0)
+            //            de.plant = plantService.GetPlantInfoById(collector.plantID);
+            //    }
+            //}
             return devices;
         }
 
@@ -2053,17 +2054,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             int.TryParse(mtcode, out mCode);
             IList<Device> devices = new List<Device>();
             IList<Plant> plants = plantService.Getplantlikepname(pname);
-            foreach (Plant plant in plants)
-            {
-                foreach (Device d in plant.deviceList())
-                {
-                    if (d.deviceTypeCode.Equals(tpcode) && (d.deviceModelCode.Equals(mCode) || mCode.Equals(-1)))
-                    {
-                        d.plant = plant;
-                        devices.Add(d);
-                    }
-                }
-            }
+            //从18版本调整设备和电站的逻辑关系为已经plantunitid后，无需这样处理了
+            //foreach (Plant plant in plants)
+            //{
+            //    foreach (Device d in plant.deviceList())
+            //    {
+            //        if (d.deviceTypeCode.Equals(tpcode) && (d.deviceModelCode.Equals(mCode) || mCode.Equals(-1)))
+            //        {
+            //            d.plant = plant;
+            //            devices.Add(d);
+            //        }
+            //    }
+            //}
 
             int.TryParse(pindex, out mCode);
             Pager page = new Pager();

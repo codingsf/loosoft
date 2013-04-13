@@ -10,7 +10,8 @@
     <link href="/bigscreen/css/css.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
     .page{clear: both;width: 100%;}
-    .table{clear: both;width: 1000px; height:400px;}</style>
+    .table{clear: both;width: 1000px; height:480px;}
+    </style>
     <script language="javascript" type="text/javascript">
         var logo = '<%=ViewData["logo"] %>';
         var ajaxImgTop = 90;

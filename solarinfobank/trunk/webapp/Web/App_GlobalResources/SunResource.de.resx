@@ -5970,4 +5970,8 @@ The average value of coefficient will trigger warning
   <data name="CHART_POWER_SUNLIGHT" xml:space="preserve">
     <value>Macht &amp; Insolation</value>
   </data>
+  <data name="BIG_SCREEN_NOFUNCTION" xml:space="preserve">
+    <value>Keine Vollbildmodus verwenden</value>
+    <comment>未开通全屏功能</comment>
+  </data>
 </root>

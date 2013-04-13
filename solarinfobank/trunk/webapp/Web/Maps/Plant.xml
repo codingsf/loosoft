@@ -53,8 +53,8 @@
       <result property="lastHandleDate"			column="lastHandleDate"/>
       <result property="rateEnable"			column="rate_enable"/>
       <!-- 级联部分-->
-      <result property="plantUnits"	lazyLoad="false"	column="id" select="plantunit_get_list_by_plantid" />
-      <result property="monitores"	lazyLoad="false"	column="id" select="videomonitor_get_list_lazy" />
+      <result property="plantUnits"	lazyLoad="true"	column="id" select="plantunit_get_list_by_plantid" />
+      <result property="monitores"	lazyLoad="true"	column="id" select="videomonitor_get_list_lazy" />
       <!--下级部分，不区分组合和实际电站-->
       <result property="childs" lazyLoad="true" column="id" select="plant_child_lazy" />
       <!--上一级电站-->

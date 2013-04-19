@@ -1006,7 +1006,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 No Fullscreen Function 的本地化字符串。
+        ///   查找类似 Not open fullscreen function 的本地化字符串。
         /// </summary>
         internal static string BIG_SCREEN_NOFUNCTION {
             get {

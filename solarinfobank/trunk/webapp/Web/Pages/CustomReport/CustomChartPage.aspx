@@ -43,8 +43,9 @@
             dispalyChart("container",60,false);
             
         }
-        
+
         function displayMonthDDChart() {
+            
             curChart = "MonthChart";
             changeStyle(curChart)
             $('#startTime').val($("#startYYYYMMDD").val())

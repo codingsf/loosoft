@@ -5802,7 +5802,7 @@ The average value of coefficient will trigger warning
     <value>Power &amp; Insolation</value>
   </data>
   <data name="BIG_SCREEN_NOFUNCTION" xml:space="preserve">
-    <value>No Fullscreen Function</value>
+    <value>Not open fullscreen function</value>
     <comment>未开通全屏功能</comment>
   </data>
 </root>

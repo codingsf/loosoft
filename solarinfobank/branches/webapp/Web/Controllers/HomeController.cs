@@ -20,7 +20,6 @@ using System.Threading;
 using System.Net;
 using System.Web.Script.Serialization;
 
-
 namespace Web.Controllers
 {
     /// <summary>
@@ -106,47 +105,34 @@ namespace Web.Controllers
 
 
         /// <summary>
+        /// 加载首页，以及判断是否自动登录
+        /// modify by hbqian in 2013/02/21 for 调用首页数据加载方法
         /// 修改  陈波
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
         public ActionResult Index()
         {
-            //ExcelUtil.createChart();
+            //先从cookie里面判断是否记住我即需要自动登录
             if (System.Web.HttpContext.Current.Request.Cookies["a_login"] != null)
             {
                 HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies["a_login"];
                 User user = new User() { username = cookie.Values["un"], password = cookie.Values["pwd"] };
+                System.Web.HttpContext.Current.Session[ComConst.validatecode] = "1111";
                 Index(user, true, "0", "1111");
             }
 
             if (UserUtil.isLogined())
-                return RedirectToAction("overview", "user");
-
-            float co2Rate = ItemConfigService.GetInstance().getCO2Config();
-
-            User userinfo = UserService.GetInstance().GetUserByName(UserUtil.demousername);
-            if (userinfo != null)
             {
-                IList<PlantUser> plant = PlantUserService.GetInstance().GetAllPlantUserByUserID(new PlantUser { userID = userinfo.id });
-                ViewData["examplePlant"] = plant;
+                User loginUser = UserUtil.getCurUser();
+                if(loginUser.username.Equals("admin"))
+                    return RedirectToAction(@"users", "admin");
+                else
+                    //判断是否完成注册的三个步骤
+                    return adjustUserPosition(loginUser);
             }
-            double alltotalenergy = DeviceRunDataService.GetInstance().GetAllTotalEnergy();
-            double dayEnergy = CollectorRunDataService.GetInstance().GetAllDayEnergy();
-            double co2Value = alltotalenergy * co2Rate;
-            ViewData["co2Unit"] = Util.upCo2Unit(co2Value);
-            ViewData["energyUnit"] = Util.upEnergyUnit(alltotalenergy);
-            ViewData["dayenergyUnit"] = Util.upEnergyUnit(dayEnergy);
-            ViewData["AllTotalEnergy"] = StringUtil.formatDouble(Util.upDigtal(alltotalenergy));
-            ViewData["AlldayTotalEnergy"] = StringUtil.formatDouble(Util.upDigtal(dayEnergy));
-            ViewData["AllCO2"] = StringUtil.formatDouble(Util.upDigtal(co2Value));
 
-            //取得产品图片
-            getPPics();
-            getAdPics();
-
-            //取得最新加入的电站
-            IList<Plant> newPlants = PlantService.GetInstance().GetNewPlantInfoList(4);
-            ViewData["newPlants"] = newPlants;
+            loadIndexData();
             return View();
         }
 
@@ -194,42 +180,47 @@ namespace Web.Controllers
         {
 
             float lzone = 0;
-            float.TryParse(localZone, out lzone);
-            //取得最新加入的电站
-            IList<Plant> newPlants = PlantService.GetInstance().GetNewPlantInfoList(4);
-            User userinfo = UserService.GetInstance().GetUserByName(UserUtil.demousername);
-            if (userinfo != null)
+            try
             {
-                IList<PlantUser> plant = PlantUserService.GetInstance().GetAllPlantUserByUserID(new PlantUser { userID = userinfo.id });
-                ViewData["examplePlant"] = plant;
+                float.TryParse(localZone, out lzone);
+            }catch (Exception ee){
+                Console.WriteLine("转换时区异常："+ee.Message);
+                try
+                {
+                    LogUtil.error("登录转换时区异常： " + user==null?"":user.username + ee.Message);
+                }
+                catch (Exception ee2)
+                {
+                    Console.WriteLine("写日志文件异常：" + ee2.Message);
+                }
             }
-            ViewData["newPlants"] = newPlants;
-            float co2Rate = ItemConfigService.GetInstance().getCO2Config();
-            ViewData["AllPlant"] = PlantService.GetInstance().GetPlantNum();
-
-            double alltotalenergy = DeviceRunDataService.GetInstance().GetAllTotalEnergy();
-            double dayEnergy = CollectorRunDataService.GetInstance().GetAllDayEnergy();
-            double co2Value = alltotalenergy * co2Rate;
-            ViewData["co2Unit"] = Util.upCo2Unit(co2Value);
-            ViewData["energyUnit"] = Util.upEnergyUnit(alltotalenergy);
-            ViewData["dayenergyUnit"] = Util.upEnergyUnit(dayEnergy);
-            ViewData["AllTotalEnergy"] = StringUtil.formatDouble(Util.upDigtal(alltotalenergy));
-            ViewData["AlldayTotalEnergy"] = StringUtil.formatDouble(Util.upDigtal(dayEnergy));
-            ViewData["AllCO2"] = StringUtil.formatDouble(Util.upDigtal(co2Value));
-
-            getPPics();
-
-            getAdPics();
-
 
             //验证码验证提示
-            if (ValidateCodeUtil.Validated(validatecode) == false)
+            try{
+                if (validatecode!=null && ValidateCodeUtil.Validated(validatecode) == false)
+                {
+                    ModelState.AddModelError("Error", "验证码输入错误!");
+                    System.Web.HttpContext.Current.Response.Cookies["a_login"].Expires = DateTime.Now.AddDays(-1);
+                    loadIndexData();
+                    return View(user);
+                }
+            }
+            catch (Exception ee)
             {
-                ModelState.AddModelError("Error", "验证码输入错误!");
+                Console.WriteLine("验证码验证异常：" + ee.Message);
+                ModelState.AddModelError("Error", "验证码验证错误!");
                 System.Web.HttpContext.Current.Response.Cookies["a_login"].Expires = DateTime.Now.AddDays(-1);
+                loadIndexData();
                 return View(user);
             }
-
+                        
+            //验证用户名输入项
+            if (user == null || user.username == null) {
+                ModelState.AddModelError("Error", "请输入用户名!");
+                System.Web.HttpContext.Current.Response.Cookies["a_login"].Expires = DateTime.Now.AddDays(-1);
+                loadIndexData();
+                return View(user);
+            }
 
             //首先认为是电站用户登录
             User loginUser = userService.GetUserByName(user.username);
@@ -254,37 +245,39 @@ namespace Web.Controllers
                                 return RedirectToAction(@"users", "admin");
                             if (manager.roles == null || manager.roles.Count == 0)
                                 return Content("access denied");
-
-                            foreach (AdminUserRole auserRole in manager.roles)
+                            try
                             {
-                                if (auserRole.role != null)
+                                foreach (AdminUserRole auserRole in manager.roles)
                                 {
-
-                                    IList<AdminControllerAction> acas = AdminControllerActionServices.GetInstance().GetList();
-                                    IList<AdminControllerAction> allow = AdminRole.AllowActionsList(acas, auserRole.role.actions);
-                                    foreach (AdminControllerAction aca in allow)
+                                    if (auserRole.role != null)
                                     {
-                                        if (aca.isAutoRedirect)
-                                            return RedirectToAction(@aca.actionName, aca.controllerName);
+
+                                        IList<AdminControllerAction> acas = AdminControllerActionServices.GetInstance().GetList();
+                                        IList<AdminControllerAction> allow = AdminRole.AllowActionsList(acas, auserRole.role.actions);
+                                        foreach (AdminControllerAction aca in allow)
+                                        {
+                                            if (aca.isAutoRedirect)
+                                                return RedirectToAction(@aca.actionName, aca.controllerName);
+                                        }
                                     }
                                 }
                             }
-                            //return RedirectToAction(@"collectors", "admin");
-
+                            catch (Exception ee3) { }
                         }
                         else
                         {
                             System.Web.HttpContext.Current.Response.Cookies["a_login"].Expires = DateTime.Now.AddDays(-1);
                             ModelState.AddModelError("Error", Resources.SunResource.MANAGER_LOGIN_LOCKED);
+                            loadIndexData();
                             return View(user);
                         }
-
                     }
                 }
                 else
                 {
                     System.Web.HttpContext.Current.Response.Cookies["a_login"].Expires = DateTime.Now.AddDays(-1);
                     ModelState.AddModelError("Error", Resources.SunResource.HOME_INDEX_VALIDATED);
+                    loadIndexData();
                     return View(user);
                 }
             }
@@ -306,35 +299,21 @@ namespace Web.Controllers
                     UserUtil.login(loginUser);
 
                     //记录登录记录
-                    string ip = WebUtil.getClientIp(Request);
-                    LoginRecordService.GetInstance().Save(loginUser.id, loginUser.username, ip, lzone);
+                    try
+                    {
+                        string ip = WebUtil.getClientIp(Request);
+                        LoginRecordService.GetInstance().Save(loginUser.id, loginUser.username, ip, lzone);
+                    }
+                    catch (Exception ee) {
+                        Console.WriteLine("记录ip错误：" + ee.Message);
+                    }
 
                     //判断是否完成注册的三个步骤
-                    //第二步没有完成依据  用户下没有电站
-                    //第三步完成依据 任何电站下没有设备 
-
-                    if (loginUser.plants.Count.Equals(0))
-                        return Redirect("/newregister/addplant");
-                    if (!loginUser.isBindUnit)
-                        return Redirect("/newregister/addunit");
-                    if (loginUser.plantUsers.Count == 1)
-                        return RedirectToAction("overview", "plant", new { @id = base.FirstPlant.id });
-                    else
-                    {
-                        if (loginUser.plantUsers.Count > 0)
-                        {
-                            //用户登陆默认显示选中左边导航栏中的"所有电站"，右边窗口打开"电站列表"页面。 
-                            //Session["firstLogin"] = true;
-                            return RedirectToAction("allplants", "user");
-                        }
-                        else
-                        {
-                            return RedirectToAction("addoneplant", "user");
-                        }
-                    }
+                    return adjustUserPosition(loginUser);
                 }
             }
-            if (user.username.Equals("admin") && user.depassword.Equals("sungrow2011"))
+            //采集器管理员界面
+            if (user.username.Equals("manuser") && user.depassword.Equals("sungrow2011"))
             {
                 Session["collectorAddedEnable"] = true;
                 return RedirectToAction("admin", "admin");
@@ -342,8 +321,81 @@ namespace Web.Controllers
             //登录失败
             ModelState.AddModelError("Error", "username or password is not validated");
             System.Web.HttpContext.Current.Response.Cookies["a_login"].Expires = DateTime.Now.AddDays(-1);
+
+            loadIndexData();
             return View(user);
         }
+
+        /// <summary>
+        /// 判断非管理员用户登录重定向位置
+        /// </summary>
+        /// <param name="loginUser"></param>
+        /// <returns></returns>
+        private ActionResult adjustUserPosition(User loginUser)
+        {
+            //判断是否完成注册的三个步骤
+            //第二步没有完成依据  用户下没有电站
+            //第三步完成依据 任何电站下没有设备 
+            try
+            {
+                if (loginUser.plants.Count.Equals(0))
+                    return Redirect("/newregister/addplant");
+                if (!loginUser.isBindUnit)
+                    return Redirect("/newregister/addunit");
+                if (loginUser.plantUsers.Count == 1)
+                    return RedirectToAction("overview", "plant", new { @id = base.FirstPlant.id });
+                else
+                {
+                    if (loginUser.plantUsers.Count > 0)
+                    {
+                        //用户登陆默认显示选中左边导航栏中的"所有电站"，右边窗口打开"电站列表"页面。 
+                        return RedirectToAction("allplants", "user");
+                        // return RedirectToAction("overview", "user");
+                    }
+                    else
+                    {
+                        return RedirectToAction("addoneplant", "user");
+                    }
+                }
+            }
+            catch (Exception ee)
+            {
+                Console.WriteLine("重定向具体页面判断异常：" + ee.Message);
+                //用户登陆默认显示选中左边导航栏中的"所有电站"，右边窗口打开"电站列表"页面。 
+                return RedirectToAction("allplants", "user");
+            }
+        }
+
+        /// <summary>
+        /// 加载首页数据，抽取出来供首页加载方法和首页登录方法调用
+        /// author:hbqian in 2013/02/21 
+        /// </summary>
+        private void loadIndexData() {
+            //取得最新加入的电站
+            IList<Plant> newPlants = PlantService.GetInstance().GetNewPlantInfoList(4);
+            User userinfo = UserService.GetInstance().GetUserByName(UserUtil.demousername);
+            if (userinfo != null)
+            {
+                IList<PlantUser> plant = PlantUserService.GetInstance().GetAllPlantUserByUserID(new PlantUser { userID = userinfo.id });
+                ViewData["examplePlant"] = plant;
+            }
+            ViewData["newPlants"] = newPlants;
+            float co2Rate = ItemConfigService.GetInstance().getCO2Config();
+            ViewData["AllPlant"] = PlantService.GetInstance().GetPlantNum();
+
+            double alltotalenergy = DeviceRunDataService.GetInstance().GetAllTotalEnergy();
+            double dayEnergy = CollectorRunDataService.GetInstance().GetAllDayEnergy();
+            double co2Value = alltotalenergy * co2Rate;
+            ViewData["co2Unit"] = Util.upCo2Unit(co2Value);
+            ViewData["energyUnit"] = Util.upEnergyUnit(alltotalenergy);
+            ViewData["dayenergyUnit"] = Util.upEnergyUnit(dayEnergy);
+            ViewData["AllTotalEnergy"] = StringUtil.formatDouble(Util.upDigtal(alltotalenergy));
+            ViewData["AlldayTotalEnergy"] = StringUtil.formatDouble(Util.upDigtal(dayEnergy));
+            ViewData["AllCO2"] = StringUtil.formatDouble(Util.upDigtal(co2Value));
+            getPPics();
+            getAdPics();
+        }
+
         /// <summary>
         /// 功能：示例电站
         /// </summary>

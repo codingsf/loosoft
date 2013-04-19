@@ -1113,6 +1113,7 @@
     <Content Include="Content\swfupload.js" />
     <Content Include="Content\Swf\swfupload.swf" />
     <Content Include="Content\Swf\swfuploadbutton.swf" />
+    <Content Include="css\wap.css" />
     <Content Include="demoimg\2x-1.png" />
     <Content Include="demoimg\2x-o.png" />
     <Content Include="demoimg\2x.png" />

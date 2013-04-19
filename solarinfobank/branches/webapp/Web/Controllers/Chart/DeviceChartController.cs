@@ -269,6 +269,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
                 //取得用户年度发电量图表数据
                 ChartData chartData = CompareChartService.GetInstance().compareDayHHMultiDeviceMultiMonitor(chartName, devices, startYYYYMMDDHH, endYYYYMMDDHH, int.Parse(intervals[0]));
+                //add by hbqian in 20130418 for过滤大于1的值
+                //又出现大于1的没有过滤 
+                foreach (YData ydata in chartData.series)
+                {
+                    for (int i = 0; i < ydata.data.Length; i++)
+                    {
+                        if (ydata.data[i] >= 1)
+                        {
+                            ydata.data[i] = null;
+                        }
+                    }
+                }
                 reportCode = JsonUtil.convertToJson(chartData, typeof(ChartData));
             }
             return Content(reportCode);
@@ -376,6 +388,16 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 string chartName = LanguageUtil.getDesc("MONTHLY_INVEST_INCOME_COMPARE_CHART_NAME");
                 //取得用户年度发电量图表数据
                 ChartData chartData = CompareChartService.GetInstance().compareDayHHMultiDeviceMultiMonitor(chartName, devices, startYYYYMMDDHH, endYYYYMMDDHH, intervalMins, ComputeType.Avg);
+                //add by hbqian in 20130418 for过滤大于1的值
+                //又出现大于1的没有过滤 
+                foreach(YData ydata in chartData.series){
+                    for (int i = 0; i < ydata.data.Length; i++) {
+                        if (ydata.data[i] >= 1) {
+                            ydata.data[i] = null;
+                        }
+                    }
+                }
+
                 reportCode = JsonUtil.convertToJson(chartData, typeof(ChartData));
             }
             else

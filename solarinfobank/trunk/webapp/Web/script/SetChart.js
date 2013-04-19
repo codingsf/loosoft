@@ -507,7 +507,7 @@ var exportButtonDetail = {
                 chartname: curChartname
             });
         }
-    }, {
+      }, {
         textKey: 'downloadJPEG',
         onclick: function() {
             this.exportChart({
@@ -517,7 +517,7 @@ var exportButtonDetail = {
                 chartname: curChartname
             });
         }
-    }, {
+      }, {
         textKey: 'downloadPDF',
         onclick: function() {
             /* this.exportChart({
@@ -528,12 +528,12 @@ var exportButtonDetail = {
             });*/
             exportpdfchart();
         }
-    }, {
+      }, {
         textKey: 'downloadSVG',
         onclick: function() {
             openDetailInfo();
         }
-    }
+     }
     ],
     enabled: true
 }
@@ -816,7 +816,7 @@ function defineChartWithScatter(curContainer, isDetail, data) {
             filename: curFilename,
             url: curUrl,
             buttons: {
-                //exportButton: exportButton,
+                exportButton: exportButton,
                 printButton: {
                     enabled: false
                 }

@@ -1096,7 +1096,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Daily Comparison 的本地化字符串。
+        ///   查找类似 Power &amp; Insolation 的本地化字符串。
         /// </summary>
         internal static string CHART_DAY_COMPARE {
             get {

@@ -2865,7 +2865,8 @@
     <value>Graphique</value>
   </data>
   <data name="CHART_DAY_COMPARE" xml:space="preserve">
-    <value>Comparaison quotidienne</value>
+    <value>Puissance &amp; Insolation</value>
+    <comment>Comparaison quotidienne日比较</comment>
   </data>
   <data name="CHART_DAY_COMPARE_DETAIL" xml:space="preserve">
     <value />

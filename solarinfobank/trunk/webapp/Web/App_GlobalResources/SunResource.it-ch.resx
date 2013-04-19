@@ -3528,8 +3528,8 @@
     <comment>图表</comment>
   </data>
   <data name="CHART_DAY_COMPARE" xml:space="preserve">
-    <value>Comparazione quotidiano</value>
-    <comment>日比较</comment>
+    <value>Potenza &amp; Insolazione</value>
+    <comment>日比较Comparazione quotidiano</comment>
   </data>
   <data name="CHART_DAY_COMPARE_DETAIL" xml:space="preserve">
     <value />

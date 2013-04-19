@@ -96,8 +96,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             MemcachedClientSatat mcs = instances.ContainsKey(servers)? instances[servers]  :null;
             if (mcs == null)
             {
+                Console.WriteLine("servers" + servers);
                 string[] serverList = servers.Split(',');
                 mcs = new MemcachedClientSatat(serverList, "selfpool" + servers);
+                Console.WriteLine("mcs" + mcs);
                 instances[servers] = mcs;
             }
             return mcs;

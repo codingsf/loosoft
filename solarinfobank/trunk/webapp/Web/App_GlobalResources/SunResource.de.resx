@@ -2895,7 +2895,8 @@
     <value>Diagramm</value>
   </data>
   <data name="CHART_DAY_COMPARE" xml:space="preserve">
-    <value>Vergleich auf Tagesbasis</value>
+    <value>Macht &amp; Insolation</value>
+    <comment>Vergleich auf Tagesbasis 日比较</comment>
   </data>
   <data name="CHART_DAY_COMPARE_DETAIL" xml:space="preserve">
     <value />

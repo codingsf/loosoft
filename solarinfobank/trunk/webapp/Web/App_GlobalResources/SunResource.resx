@@ -2844,7 +2844,8 @@
     <value>Chart</value>
   </data>
   <data name="CHART_DAY_COMPARE" xml:space="preserve">
-    <value>Daily Comparison</value>
+    <value>Power &amp; Insolation</value>
+    <comment>日比较</comment>
   </data>
   <data name="CHART_DAY_COMPARE_DETAIL" xml:space="preserve">
     <value>  </value>

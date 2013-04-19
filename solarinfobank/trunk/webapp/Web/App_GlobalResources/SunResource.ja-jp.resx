@@ -2862,7 +2862,8 @@
     <value>グラフ</value>
   </data>
   <data name="CHART_DAY_COMPARE" xml:space="preserve">
-    <value>日間比較</value>
+    <value>電力＆日照強度比較</value>
+    <comment>日間比較</comment>
   </data>
   <data name="CHART_DAY_COMPARE_DETAIL" xml:space="preserve">
     <value />

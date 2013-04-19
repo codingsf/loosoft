@@ -198,18 +198,27 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 9, iTextSharp.text.Font.NORMAL);
 
                 PdfWriter.GetInstance(doc, new FileStream(fullPdfPath, FileMode.Create));
-
+                
                 doc.Open();
-                //生成图表图片
-                if (DrawChartImage(chartData, fullImgPath))
+                //散列图暂不生成
+                if (chartData.series.Length > 0 && !"scatter".Equals(chartData.series[0].type))
                 {
-                    iTextSharp.text.Image JPG = iTextSharp.text.Image.GetInstance(fullImgPath);
-                    JPG.ScalePercent(50f);
-                    doc.Add(JPG);
-                }
+                    //生成图表图片
+                    if (DrawChartImage(chartData, fullImgPath))
+                    {
+                        iTextSharp.text.Image JPG = iTextSharp.text.Image.GetInstance(fullImgPath);
+                        JPG.ScalePercent(50f);
+                        doc.Add(JPG);
+                    }
 
+                }
                 PdfPTable table = new PdfPTable(chartData.series.Count() + 1);
-                table.AddCell(new PdfPCell(new Phrase(Resources.SunResource.CUSTOMREPORT_CHART_TIME, font)));
+                string xname = Resources.SunResource.CUSTOMREPORT_CHART_TIME;
+                if(chartData.names.Length>0 && !string.IsNullOrEmpty(chartData.names[0])){
+                    xname = chartData.names[0] + "[" + chartData.units[0] + "]";
+                }
+                
+                table.AddCell(new PdfPCell(new Phrase(xname, font)));
                 string unit = string.Empty;
                 bool isprocessUnit = true;
                 int firsIndex = chartData.series[0].name.IndexOf('[');
@@ -267,6 +276,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 for (; y < chartData.categories.Count(); y++)
                 {
                     string dStr = chartData.categories[y];
+                    if (string.IsNullOrEmpty(dStr)) continue;
                     if (Regex.IsMatch(dStr, "^\\d{2}:\\d{2}/\\d{2}$"))//日请求数据
                     {
                         dd = int.Parse(dStr.Substring(6, 2));
@@ -302,7 +312,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                             dd = dd > 30 ? 30 : dd;
                             break;
                     }
-                    DateTime dNow = new DateTime(yy, mm, dd, hh, MM, ss);
+
+                    DateTime dNow = DateTime.Now;
+                    try{
+                        dNow= new DateTime(yy, mm, dd, hh, MM, ss);
+                    }catch(Exception ee){
+
+                    }
                     table.AddCell(new PdfPCell(new Phrase(dStr, font)));
 
                     int index = 0;
@@ -340,6 +356,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 reportname = (filename.Equals("chart") ? "" : filename) + chartData.name.Replace("/", "").Replace(" ", "");
                 IList<string> dataList = new List<string>();
+                string xname = Resources.SunResource.CUSTOMREPORT_CHART_TIME;
+                if (chartData.names.Length > 0 && !string.IsNullOrEmpty(chartData.names[0]))
+                {
+                    xname = chartData.names[0] + "[" + chartData.units[0] + "]";
+                }
+                dataList.Add(xname);
                 dataList.Add(convertArrtoStr(chartData.categories));
                 foreach (YData ydata in chartData.series)
                 {
@@ -412,10 +434,16 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 reportname = (filename.Equals("chart") ? "" : filename) + chartData.name.Replace("/", "").Replace(" ", "");
 
                 IList<string> xList = new List<string>();
-                xList.Add("  ");
+                string xname = Resources.SunResource.CUSTOMREPORT_CHART_TIME;
+                if (chartData.names.Length > 0 && !string.IsNullOrEmpty(chartData.names[0]))
+                {
+                    xname = chartData.names[0] + "[" + chartData.units[0] + "]";
+                }
+                xList.Add(xname);
                 int n = 1;// chartData.categories.Length > 100 ? 12 : 1;
                 for (int k = 0; k < chartData.categories.Length; k = k + n)
                 {
+
                     string x = chartData.categories[k];
                     xList.Add(x);
                 }
@@ -479,7 +507,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
 
             ExcelStreamWriter xlsWriter = new ExcelStreamWriter(reportname, datas, chartData.units, reportname, "", isMulti);
-            xlsWriter.Save(true);
+            //散列图暂不生成
+            if (chartData.series.Length > 0 && "scatter".Equals(chartData.series[0].type))
+            {
+                xlsWriter.Save(false);
+            }
+            else {
+                xlsWriter.Save(true);
+            }
             return File(xlsWriter.FullName, "text/xls; charset=UTF-8", urlcode(xlsWriter.FileName));
         }
 

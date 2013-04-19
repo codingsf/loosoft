@@ -1,7 +1,7 @@
 .lcbox{ width:753px; margin:40px  auto 30px; auto;}
 .lctab{ background: url(../images/lc/lcbg01.jpg); height:45px;}
 .lctab ul{ list-style:none; margin:0px; padding:0px;}
-.lctab ul li{ float:left; text-align:center; display:block; width:220px; height:45px; margin:0 15px; font-size:14px; font-weight: bold; line-height:40px;}
+.lctab ul li{ float:left; text-align:center; display:block; width:210px; height:45px; margin:0 15px; font-size:14px; font-weight: bold; line-height:40px;}
 .lc_yellowbg{ background:url(../images/lc/lcover.jpg) no-repeat; float:left; text-align:center; display:block; width:220px; height:45px; margin:0 15px; font-size:14px; font-weight: bold; line-height:40px; color:#FFFFFF;}
 
 .lcabout{ margin-top:10px;}
@@ -80,7 +80,7 @@
 .lcbox{ width:753px; margin:40px  auto 30px; auto;}
 .lctab{ background: url(../images/lc/lcbg01.jpg); height:45px;}
 .lctab ul{ list-style:none; margin:0px; padding:0px;}
-.lctab ul li{ float:left; text-align:center; display:block; width:220px; height:45px; margin:0 15px; font-size:14px; font-weight: bold; line-height:40px;}
+.lctab ul li{ float:left; text-align:center; display:block; width:200px; height:45px; margin:0 15px; font-size:14px; font-weight: bold; line-height:40px;}
 .lc_yellowbg{ background:url(../images/lc/lcover.jpg) no-repeat; float:left; text-align:center; display:block; width:220px; height:45px; margin:0 15px; font-size:14px; font-weight: bold; line-height:40px; color:#FFFFFF;}
 
 .lcabout{ margin-top:10px;}

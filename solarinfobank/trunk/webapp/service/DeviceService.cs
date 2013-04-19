@@ -71,7 +71,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 //add by qhb in 20130323 for 发现有设备新增有要将没有plantunitid字段值的设备，plantUnitId附上所属单元
                 if(device.plantUnitId==null || device.plantUnitId==0){
                     PlantUnit plantUnit = _plantUnitDao.GetPlantUnitByCollectorId(device.collectorID);
-                    device.plantUnitId = plantUnit.id;
+                    if(plantUnit!=null)
+                        device.plantUnitId = plantUnit.id;
                 }
                 return _deviceDao.Insert(device);
             }

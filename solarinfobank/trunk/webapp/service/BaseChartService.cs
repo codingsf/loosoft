@@ -608,18 +608,30 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         public ChartData genNewScatter(MonitorType smt,MonitorType pmt,string chartName, string startYearMMDDHH, string endYearMMDDHH, int interval, Hashtable xData, Hashtable yData, string unit, string chartType)
         {
             string[] ic = this.getXseriesFromYYYYMMDDHH(startYearMMDDHH, endYearMMDDHH, interval).ToArray();
+            IList<string> newIcList = new List<String>();
+            IList<float?> newYList = new List<float?>();
             KeyValuePair<string, float?[]> xMergedata = this.GenerateChartData(smt.name, ic, xData, 1.0f);
             KeyValuePair<string, float?[]> yMergedata = this.GenerateChartData(pmt.name, ic, yData, 1.0f);
+            //整理数据，去掉x轴为0或者空的点
             for (int i = 0; i < xMergedata.Value.Length; i++)
             {
-                ic[i] = xMergedata.Value[i] == null ? "" : xMergedata.Value[i].ToString();
+                if(xMergedata.Value[i] != null && xMergedata.Value[i]>0){
+                    newIcList.Add(xMergedata.Value[i].ToString());
+                    newYList.Add(yMergedata.Value[i]);
+                }
             }
-            IList<KeyValuePair<string, float?[]>> yDataList = new List<KeyValuePair<string, float?[]>>() { yMergedata };
+            KeyValuePair<string, float?[]> newyMergedata = new KeyValuePair<string,float?[]>(yMergedata.Key, newYList.ToArray());
+            IList<KeyValuePair<string, float?[]>> yDataList = new List<KeyValuePair<string, float?[]>>() { newyMergedata };
 
-            string[] ynames = new string[] { smt.name, pmt.name };
-            string[] units = new string[] { "W/㎡", "kW" };
-            string[] chartTypes = new string[] { "scatter", "scatter" };
-            return ReportBuilder.createMultiJsonChartXY(chartName, ic, yDataList, ynames, chartTypes, units, false);
+            string[] ynames = new string[] {smt.name, pmt.name};
+            string[] units = new string[] {smt.unit, pmt.unit};
+            string[] chartTypes = new string[] { "scatter", "scatter"};
+
+            ChartData td = ReportBuilder.createMultiJsonChartXY(chartName, newIcList.ToArray(), yDataList, ynames, chartTypes, new string[] { pmt.unit, pmt.unit }, false);
+            td.units = units;
+            td.names = ynames;
+            TempDataUtil.putChartData(td.serieNo, td);
+            return td;
         }
     }
 }

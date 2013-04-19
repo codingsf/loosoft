@@ -413,11 +413,11 @@
             <div style="float: right; height: 100px; width: 510px; margin-top: 40px; color: #A2A2A2;
                 font-size: 11px;">
                 <div style="float: left; width: 90px; padding-top: 20px; height: 90px;">
-                    <a onclick="gotoexampleplant();" href="javascript:void(0);">
+                    <a onclick="gotoexampleplant(this);" href="javascript:void(0);">
                         <img src="/images/ico01.gif" border="0" /></a></div>
                 <div style="float: left; height: 100px; width: 380px;">
                     <div class="mrb">
-                        <a  onclick="gotoexampleplant();" href="javascript:void(0);">
+                        <a  onclick="gotoexampleplant(this);" href="javascript:void(0);">
                             <%=Resources.SunResource.HOME_INDEX_EXAMPLE_PLANT %></a></div>
                     <div style="clear: both;">
                     </div>
@@ -614,6 +614,13 @@
             var zone=new Date();
             zone = zone.getTimezoneOffset() / 60;
             window.location.href = "/home/exampleplant?"+zone;
+        }
+
+        function gotoexampleplant(thisa) {
+            var zone = new Date();
+            zone = zone.getTimezoneOffset() / 60;
+            window.location.href = "/home/exampleplant?" + zone;
+            thisa.href = "/home/exampleplant?" + zone;
         }
         
         function clearerrormsg() {

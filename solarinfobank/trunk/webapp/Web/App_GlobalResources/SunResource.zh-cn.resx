@@ -2862,13 +2862,15 @@
     <value>图表</value>
   </data>
   <data name="CHART_DAY_COMPARE" xml:space="preserve">
-    <value>日比较</value>
+    <value>功率 &amp; 日照</value>
+    <comment>日比较</comment>
   </data>
   <data name="CHART_DAY_COMPARE_DETAIL" xml:space="preserve">
     <value />
   </data>
   <data name="CHART_DAY_SUNLIGHT" xml:space="preserve">
     <value>功率 &amp; 日照强度</value>
+    <comment>功率 &amp; 日照强度</comment>
   </data>
   <data name="CHART_DEVICE_DATA" xml:space="preserve">
     <value>设备数据</value>

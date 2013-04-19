@@ -85,7 +85,7 @@
                     //var interval = isLarge ? 60 / 5 : 120 / 5;
                     //setCategoriesWithInterval(data.categories, isLarge, interval);
                     //散列图单独处理
-                    defineChartWithScatter(curContainer,false,data);
+                    defineChartWithScatter(curContainer,true,data);
                     showDetails(result, $("#pScatterStartYYYYMMDDHH").val());
                     //修改标题s
                     chart.setTitle({ text: data.name, x: 0, align: 'center', floating: true });
@@ -114,7 +114,7 @@
                     //var interval = isLarge ? 60 / 5 : 120 / 5;
                     //setCategoriesWithInterval(data.categories, isLarge, interval);
                     //散列图单独处理
-                    defineChartWithScatter(curContainer, false, data);
+                    defineChartWithScatter(curContainer, true, data);
                     showDetails(result, $("#pScatterStartYYYYMMDDHH").val());
                     //修改标题s
                     chart.setTitle({ text: data.name, x: 0, align: 'center', floating: true });

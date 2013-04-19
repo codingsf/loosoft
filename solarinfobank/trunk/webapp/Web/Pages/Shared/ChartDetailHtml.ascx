@@ -77,12 +77,12 @@
                         
                             <table width="100%" cellpadding="0" cellspacing="0" style="line-height: 24px; text-align: center">
                                 <tr>
-                                    <td width="120" background="images/flrg.jpg" bgcolor="#F3F3F3" class="lbtt">
+                                    <td width="200" background="images/flrg.jpg" bgcolor="#F3F3F3" class="lbtt">
                                         <table width="100%" border="0" cellpadding="0" cellspacing="0" background="images/flrg.jpg">
                                             <tr>
                                                 <td align="left">
                                                     <strong style="padding-left: 20px;">
-                                                        <%=Resources.SunResource.CUSTOMREPORT_CHART_TIME%>
+                                                        <%=(Model.names.Length>0 && !string.IsNullOrEmpty(Model.names[0])) ? Model.names[0] + "[" + Model.units[0] + "]" : Resources.SunResource.CUSTOMREPORT_CHART_TIME%>
                                                     </strong>
                                                 </td>
                                             </tr>
@@ -141,6 +141,8 @@
                                     for (; y < Model.categories.Count(); y++)
                                     {
                                         string dStr = Model.categories[y];
+                                        //空值继续
+                                        if (string.IsNullOrEmpty(dStr) || "0".Equals(dStr)) continue;
                                         if (Regex.IsMatch(dStr, "^\\d{2}:\\d{2}/\\d{2}$"))//日请求数据
                                         {
                                             dd = int.Parse(dStr.Substring(6, 2));
@@ -176,7 +178,13 @@
                                                 dd = dd > 30 ? 30 : dd;
                                                 break;
                                         }
-                                        DateTime dNow = new DateTime(yy, mm, dd, hh, MM, ss);
+                                        DateTime dNow = DateTime.Now;
+                                        try
+                                        {
+                                            dNow = new DateTime(yy, mm, dd, hh, MM, ss);
+                                        }
+                                        catch (Exception ee) {
+                                        }
                                         
                                 %>
                                 <tr>

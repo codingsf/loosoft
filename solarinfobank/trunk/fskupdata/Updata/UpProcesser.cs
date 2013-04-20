@@ -40,13 +40,16 @@ namespace Updata
         public static IDictionary<string, DateTime> presendtime = new Dictionary<string, DateTime>();
 
 
-
         //服务器url
         static string server_url = ConfigurationSettings.AppSettings["server_url"] == null ? "" : ConfigurationSettings.AppSettings["server_url"];
         //线程间隔时间ms
         static int thread_interval = ConfigurationSettings.AppSettings["thread_interval"] == null ? 60000 : int.Parse(ConfigurationSettings.AppSettings["thread_interval"]);
-
+        //厂别
         static string plantId = ConfigurationSettings.AppSettings["plantId"] == null ? "ZZ1" : ConfigurationSettings.AppSettings["plantId"];
+        //是否发送重复时间的数据
+        static string send_repeattime = ConfigurationSettings.AppSettings["send_repeattime"] == null ? "false" : ConfigurationSettings.AppSettings["send_repeattime"];
+        static string send_hide = ConfigurationSettings.AppSettings["send_hide"] == null ? "false" : ConfigurationSettings.AppSettings["send_hide"];
+
         public bool runmark = true;//继续现场运行标识
 
         static UpProcesser()
@@ -115,9 +118,9 @@ namespace Updata
             //初始化环境监测仪map
             detector_no_mcodemap.Add(new KeyValuePair<int, int>(MonitorType.MIC_DETECTOR_WINDSPEED, 1));
             detector_no_mcodemap.Add(new KeyValuePair<int, int>(MonitorType.MIC_DETECTOR_WINDDIRECTION, 2));
-            detector_no_mcodemap.Add(new KeyValuePair<int, int>(MonitorType.MIC_DETECTOR_ENRIONMENTTEMPRATUREHIGH, 3));
-            detector_no_mcodemap.Add(new KeyValuePair<int, int>(MonitorType.MIC_DETECTOR_PANELTEMPRATUREHIGH, 4));
-            detector_no_mcodemap.Add(new KeyValuePair<int, int>(MonitorType.MIC_DETECTOR_XMRZQD, 5));
+            detector_no_mcodemap.Add(new KeyValuePair<int, int>(MonitorType.MIC_DETECTOR_ENRIONMENTTEMPRATURE, 3));
+            detector_no_mcodemap.Add(new KeyValuePair<int, int>(MonitorType.MIC_DETECTOR_PANELTEMPRATURE, 4));
+            detector_no_mcodemap.Add(new KeyValuePair<int, int>(MonitorType.MIC_DETECTOR_SUNLINGHT, 5));
 
 
             //初始化电表map
@@ -183,7 +186,14 @@ namespace Updata
             Console.WriteLine("unitname" + pu.displayname);
             //if (!pu.displayname.ToLower().Equals("e01")) return;
             //包括隐藏的
-            foreach (Device device in pu.devices)
+
+            IList<Device> devices = null;
+            if(send_hide.Equals("false")){
+                devices = pu.displayDevices;
+            }else{
+                devices = pu.devices;
+            }
+            foreach (Device device in devices)
             {
                 plantName = plantId;//接口约定好的
                 //Plant plant = PlantService.GetInstance().GetPlantInfoById(pu.plantID);
@@ -199,8 +209,12 @@ namespace Updata
 
                     try
                     {
+                        bool isSended = false;
                         //发送过的不再发送了
-                        bool isSended = compareSendTime(deviceId, device.runData.updateTime);
+                        if (send_repeattime.Equals("false")) {
+                            isSended = compareSendTime(deviceId, device.runData.updateTime);
+                        }
+
                         if (!isSended)
                             handleDevice(device, pu, plantName);
                         else
@@ -317,7 +331,7 @@ namespace Updata
         {
 
             //1	逆变器运行状态	　	　	0：待机（waiting）1：正常（normal）3：故障（fault）	1
-            string[] dataarr = new string[35];
+            string[] dataarr = new string[37];
             if (device.runData != null && device.runData.rundatastr != null)
                 analyzeArr(device.runData.rundatastr, dataarr, invert_no_mcodemap);
 
@@ -331,12 +345,18 @@ namespace Updata
             double.TryParse(dataarr[5], out dc);
             dataarr[7] = (dv * dc).ToString();//直流电压2 *直流电流2 第二路电池板输出功率
 
-            dataarr[33] = collector.PNO;
+            dataarr[33] = collector.code;
             dataarr[34] = "000";//逆变器地址
             //将浮点状态值转成整形
             if (!string.IsNullOrEmpty(dataarr[23]))
                 dataarr[23] = int.Parse(dataarr[23]).ToString();
 
+            //12 + 15 +18
+            //处理37	逆变器交流输出总功率	W	0.1W	第一、二、三相交流输出功率之和	4893.9
+            if (dataarr[12] == null) dataarr[12] = "0";
+            if (dataarr[15] == null) dataarr[15] = "0";
+            if (dataarr[18] == null) dataarr[18] = "0";
+            dataarr[36] = Math.Round(double.Parse(dataarr[12]) + double.Parse(dataarr[15]) + double.Parse(dataarr[18]),2).ToString();
             return buildRunDataStr(dataarr);
             //sb.Append(device.getStatusDefinedValue()).Append(",");
             ////2	逆变器输入总功率	W	0.1W
@@ -546,6 +566,9 @@ namespace Updata
             if (device.runData != null && device.runData.rundatastr != null)
                 analyzeArr(device.runData.rundatastr, dataarr, ammeter_no_mcodemap);
             dataarr[0] = device.getStatusDefinedValue().ToString();
+            //foxconn3.28反馈除分相功率因數和系統功率因數系統讀書較現場設備數據擴大10000倍，其餘數據都OK
+            if(string.IsNullOrEmpty(dataarr[6]))
+                dataarr[6] = (double.Parse(dataarr[6])/10000).ToString();
             dataarr[16] = "1";
             dataarr[17] = "1";
             //将浮点状态值转成整形

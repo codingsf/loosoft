@@ -384,6 +384,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             return this.compareDayHHMultiDeviceMultiMonitor(chartName, devices, startYearMMDDHH, endYearMMDDHH, intervalMins, ComputeType.None);
         }
 
+        public ChartData compareDayHHMultiDeviceMultiMonitor(string chartName, IList<DeviceStuct> devices, string startYearMMDDHH, string endYearMMDDHH, int minIntervalMins, int computeType)
+        {
+            return this.compareDayHHMultiDeviceMultiMonitor(chartName, devices, startYearMMDDHH, endYearMMDDHH, minIntervalMins, computeType, true);
+        }
+
         /// <summary>
         /// 比较多个设备多测点的天时数据
         /// </summary>
@@ -395,7 +400,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <param name="rate">值的换算率</param>
         /// <param name="computeType">计算类型</param>
         /// <returns></returns>
-        public ChartData compareDayHHMultiDeviceMultiMonitor(string chartName, IList<DeviceStuct> devices, string startYearMMDDHH, string endYearMMDDHH, int minIntervalMins, int computeType)
+        public ChartData compareDayHHMultiDeviceMultiMonitor(string chartName, IList<DeviceStuct> devices, string startYearMMDDHH, string endYearMMDDHH, int minIntervalMins, int computeType,bool isDisplayNoData)
         {
             string reportData = string.Empty;
             //chartName = chartName + " from " + startYearMMDDHH + " to " + endYearMMDDHH;
@@ -483,7 +488,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                             datas.Add(data);
                         //}
                         //如果有数据则将有数据标识为true
-                        if (dataHash.Count > 0) {
+                        if (dataHash.Count > 0)
+                        {
                             hasData = true;
                         }
                     }
@@ -512,7 +518,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     }
                 }
             }
-            if (!hasData) {//如果所有设备都没数据才清空数据，即图表中显示无数据提示
+            if (!hasData && isDisplayNoData)
+            {//如果所有设备都没数据才清空数据，即图表中显示无数据提示
                 datas.Clear();
             }
             //如果有计算类型，就要追究相应计算维度,时间间隔不同的是不能有计算类型处理的

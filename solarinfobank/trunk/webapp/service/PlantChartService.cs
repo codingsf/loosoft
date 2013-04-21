@@ -225,7 +225,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             //if (startYearMM.Substring(0, 4).Equals(endYearMM.Substring(0, 4)) && startYearMM.Substring(4, 2).Equals("01") && endYearMM.Substring(4, 2).Equals("12")) {
             //chartName = startYearMM.Substring(0, 4) + chartName;
             //}
-            return this.YearMMChartBypList(plantList, 1.0F, LanguageUtil.getDesc("CHART_TITLE_YEARLYENERGYCHART"), null,startYearMM, endYearMM, chartType, unit);
+            return this.YearMMChartBypList(plantList, 1.0F, LanguageUtil.getDesc("CHART_TITLE_YEARLYENERGYCHART"), null,startYearMM, endYearMM, chartType, unit,true);
         }
 
         /// <summary>
@@ -237,7 +237,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <param name="plantList">电站列表</param>
         /// <param name="rate">数据换算系数</param>
         /// <returns></returns>
-        public ChartData YearMMChartBypList(IList<Plant> plantList, float rate, string chartname, string newserieKey, string startYearMM, string endYearMM, string chartType, string unit)
+        public ChartData YearMMChartBypList(IList<Plant> plantList, float rate, string chartname, string newserieKey, string startYearMM, string endYearMM, string chartType, string unit,bool isDisplayNoData)
         {
             if (plantList == null)
             {
@@ -258,7 +258,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             KeyValuePair<string, float?[]> data = new KeyValuePair<string, float?[]>();
             //add by qhb in 20120928 for 补偿发电量
             base.addPlantMonthEnergy(yearMonthEnergy, plantList, startYearMM, endYearMM.ToString());
-            if (yearMonthEnergy.Count > 0)
+            if (yearMonthEnergy.Count > 0 || !isDisplayNoData)
             {
                 if (newserieKey == null)
                 {
@@ -328,7 +328,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         public ChartData MMDDChartBypList(IList<Plant> plantList, string startYearMMDD, string endYearMMDD, string chartType, string unit)
         {
 
-            return this.MonthDDChartBypList(plantList, 1.0F, LanguageUtil.getDesc("CHART_TITLE_MONTH_ENERGY"),null, startYearMMDD, endYearMMDD, chartType, unit);
+            return this.MonthDDChartBypList(plantList, 1.0F, LanguageUtil.getDesc("CHART_TITLE_MONTH_ENERGY"),null, startYearMMDD, endYearMMDD, chartType, unit,true);
         }
 
         /// <summary>
@@ -361,7 +361,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <param name="startYearMM"></param>
         /// <param name="endYearMM"></param>
         /// <returns></returns>
-        public ChartData MonthDDChartBypList(IList<Plant> plantList, float rate, string chartname, string newseriekey, string startYearMMDD, string endYearMMDD, string chartType, string unit)
+        public ChartData MonthDDChartBypList(IList<Plant> plantList, float rate, string chartname, string newseriekey, string startYearMMDD, string endYearMMDD, string chartType, string unit,bool isDisplayNoData)
         {
             if (plantList == null)
             {
@@ -393,7 +393,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
 
             MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_ENERGY_CODE);
             KeyValuePair<string, float?[]> data = new KeyValuePair<string, float?[]>();
-            if (monthDDEnergy.Count > 0)
+            if (monthDDEnergy.Count > 0 || !isDisplayNoData)
             {
                 if (newseriekey == null)
                     data = GenerateChartData(mt.name, ic, monthDDEnergy, rate);

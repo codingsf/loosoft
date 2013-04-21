@@ -648,7 +648,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 string endYearMM = year + "12";
                 string chartName = LanguageUtil.getDesc("CHART_TITLE_YEARLYKWPENERGYCHART");
 
-                ChartData chartData = PlantChartService.GetInstance().YearMMChartBypList(new List<Plant>() { plant }, rate, chartName, LanguageUtil.getDesc("CHART_TITLE_INVEST_INCOME"), startYearMM, endYearMM, chartType, unit);
+                ChartData chartData = PlantChartService.GetInstance().YearMMChartBypList(new List<Plant>() { plant }, rate, chartName, LanguageUtil.getDesc("CHART_TITLE_INVEST_INCOME"), startYearMM, endYearMM, chartType, unit,true);
                 reportCode = JsonUtil.convertToJson(chartData, typeof(ChartData));
             }
             else
@@ -879,7 +879,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 string unit = "kWh/kWp";
                 float rate = 1 / plant.chartPower;
-                ChartData chartData = PlantChartService.GetInstance().MonthDDChartBypList(new List<Plant>() { plant }, rate, LanguageUtil.getDesc("CHART_TITLE_MONTHKWPENERGYCHART"), LanguageUtil.getDesc("CHART_TITLE_INVEST_INCOME"), startYYYYMMDD, endYYYYMMDD, chartType, unit);
+                ChartData chartData = PlantChartService.GetInstance().MonthDDChartBypList(new List<Plant>() { plant }, rate, LanguageUtil.getDesc("CHART_TITLE_MONTHKWPENERGYCHART"), LanguageUtil.getDesc("CHART_TITLE_INVEST_INCOME"), startYYYYMMDD, endYYYYMMDD, chartType, unit,true);
                 reportCode = JsonUtil.convertToJson(chartData, typeof(ChartData));
             }
             else

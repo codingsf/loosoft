@@ -158,31 +158,37 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 string[] chartTypes = chartType.Split(',');
                 devices.Add(new DeviceStuct() { deviceId = deviceId, rate = 1.0F, comareObj = plant.name, chartType = ChartType.area, monitorType = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_POWER_CODE), cVal = ComputeType.Avg, deviceType = ChartDeviceType.PLANT, intervalMins = intervalMins });
                 //判断该测点是否有数据,有数据则增加关照对比
-                Hashtable dataHash = CollectorDayDataService.GetInstance().GetUnitDaydataList(plant.allFactUnits, startYYYYMMDDHH, endYYYYMMDDHH, intervalMins, MonitorType.PLANT_MONITORITEM_POWER_CODE);
+                //Hashtable dataHash = CollectorDayDataService.GetInstance().GetUnitDaydataList(plant.allFactUnits, startYYYYMMDDHH, endYYYYMMDDHH, intervalMins, MonitorType.PLANT_MONITORITEM_POWER_CODE);
                 string chartName = LanguageUtil.getDesc("PLANT_CHART_DAY_CHART_POWER");
-                if (dataHash.Count > 0)
-                {
+                //if (dataHash.Count > 0)
+                //{
                     Device device = plant.getFirstDetector();
                     if (device != null)
                     {
-                        dataHash = DeviceDayDataService.GetInstance().GetDaydataList(null, device, startYYYYMMDDHH, endYYYYMMDDHH, intervalMins, MonitorType.MIC_DETECTOR_SUNLINGHT);
-                        if (dataHash.Keys.Count > 0)//有日照数据
-                        {
+                        //dataHash = DeviceDayDataService.GetInstance().GetDaydataList(null, device, startYYYYMMDDHH, endYYYYMMDDHH, intervalMins, MonitorType.MIC_DETECTOR_SUNLINGHT);
+                        //if (dataHash.Keys.Count > 0)//有日照数据
+                        //{
                             chartName = LanguageUtil.getDesc("PLANT_CHART_DAY_CHART");
                             float rate = 1F;
                             MonitorType mt = MonitorType.getMonitorTypeByCode(MonitorType.MIC_DETECTOR_SUNLINGHT);
                             devices.Add(new DeviceStuct() { deviceId = device.id.ToString(), rate = rate, comareObj = plant.name, name = mt.name, unit = "", chartType = ChartType.line, monitorType = mt, cVal = ComputeType.Avg, deviceType = ChartDeviceType.DEVICE, intervalMins = intervalMins });
-                        }
+                        //}
                     }
-                }
-                else
-                {
-                    return Content("error:" + Resources.SunResource.NODATA);
-                }
+                //}
+                //else
+                //{
+                    //return Content("error:" + Resources.SunResource.NODATA);
+                //}
                 //取得用户年度发电量图表数据
-                ChartData chartData = CompareChartService.GetInstance().compareDayHHMultiDeviceMultiMonitor(chartName, devices, startYYYYMMDDHH, endYYYYMMDDHH, intervalMins);
+                ChartData chartData = CompareChartService.GetInstance().compareDayHHMultiDeviceMultiMonitor(chartName, devices, startYYYYMMDDHH, endYYYYMMDDHH, intervalMins, ComputeType.None, false);
+                // ChartData chartData = CompareChartService.GetInstance().compareDayHHMultiDeviceMultiMonitor(chartName, devices, startYYYYMMDDHH, endYYYYMMDDHH, intervalMins);
                 //ChartData chartData_large = CompareChartService.GetInstance().compareDayHHMultiDeviceMultiMonitor(chartName, devices, startYYYYMMDDHH, endYYYYMMDDHH, 60);
 
+                foreach (YData yd in chartData.series)
+                {
+                    if(yd.max==0)
+                        yd.max = 10;
+                }
                 reportCode = JsonUtil.convertToJson(chartData, typeof(ChartData));
             }
             else
@@ -201,7 +207,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 string unit = "kWh";
                 string startYYYYMMDD = DateTime.Now.ToString("yyyyMM01");
                 string endYYYYMMDD = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, 1).AddDays(-1).ToString("yyyyMMdd");
-                ChartData chartData = PlantChartService.GetInstance().MMDDChartBypList(new List<Plant> { plant }, startYYYYMMDD, endYYYYMMDD, "column", unit);
+                //ChartData chartData = PlantChartService.GetInstance().MMDDChartBypList(new List<Plant> { plant }, startYYYYMMDD, endYYYYMMDD, "column", unit);
+                ChartData chartData = PlantChartService.GetInstance().MonthDDChartBypList(new List<Plant> { plant }, 1.0F, LanguageUtil.getDesc("CHART_TITLE_MONTH_ENERGY"), null, startYYYYMMDD, endYYYYMMDD, ChartType.column, unit,false);
+                foreach (YData yd in chartData.series)
+                {
+                    if (yd.max == 0)
+                        yd.max = 10;
+                }
                 reportCode = JsonUtil.convertToJson(chartData, typeof(ChartData));
             }
             else
@@ -218,7 +230,19 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 string unit = "kWh";
                 Plant plant = PlantService.GetInstance().GetPlantInfoById(plantId);
-                ChartData chartData = PlantChartService.GetInstance().YearMMChartByPlant(plant, DateTime.Now.Year, "column", unit);
+                //ChartData chartData = PlantChartService.GetInstance().YearMMChartByPlant(plant, DateTime.Now.Year, ChartType.column, unit);
+                string chartName = LanguageUtil.getDesc("CHART_TITLE_YEARLYENERGYCHART");
+                //if (startYearMM.Substring(0, 4).Equals(endYearMM.Substring(0, 4)) && startYearMM.Substring(4, 2).Equals("01") && endYearMM.Substring(4, 2).Equals("12")) {
+                //chartName = startYearMM.Substring(0, 4) + chartName;
+                //}
+                string startYearMM = DateTime.Now.Year + "01";
+                string endYearMM = DateTime.Now.Year + "12";
+                ChartData chartData = PlantChartService.GetInstance().YearMMChartBypList(new List<Plant> { plant }, 1.0F, chartName, null, startYearMM, endYearMM, ChartType.column, unit, true);
+                foreach (YData yd in chartData.series)
+                {
+                    if (yd.max == 0)
+                        yd.max = 10;
+                }
                 reportCode = JsonUtil.convertToJson(chartData, typeof(ChartData));
             }
             else

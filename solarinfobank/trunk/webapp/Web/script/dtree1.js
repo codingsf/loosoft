@@ -119,7 +119,7 @@ dTree.prototype.addNode = function(pNode) {
 
 // Creates the node icon, url and text
 dTree.prototype.node = function(node, nodeId) {
-//added by chenbo new style
+    //added by chenbo new style
     if (node.pid == 1)
         var str = '<div class="dTreeNode firstNode">' + this.indent(node, nodeId);
     else if (node.pid == -1)
@@ -146,7 +146,6 @@ dTree.prototype.node = function(node, nodeId) {
 
         }
         node.iconOpen = folderOpen;
-
         if (node.icon != "") {//modify by qhb for 支持空图片就不在显示img元素了
             str += '<img id="i' + this.obj + nodeId + '" src="' + ((node._io) ? node.iconOpen : node.icon) + '" alt="" />';
         }

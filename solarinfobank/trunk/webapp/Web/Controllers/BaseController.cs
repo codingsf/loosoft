@@ -570,22 +570,23 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             for (int i = 0; i < plant.plantUnits.Count; i++)
             {
                 pu = plant.plantUnits[i];
-                unitLevel = unitLevel * 100 + i;
-                jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '');", unitLevel, topLevel, pu.displayname, string.Format("javascript:setPara({0},{1},{2});",pu.id,"true",pu.id));
-
                 //先装机逆变器类型设备节点
                 IList<Device> devices = pu.displayDevices;
+                unitLevel = unitLevel * 100 + i;
+                string warnimg = pu.isDeviceFault(plant.timezone) ? "/images/warning_16_small.gif" : "";
+                jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '{4}');", unitLevel, topLevel, pu.displayname + "(" + devices.Count + ")", string.Format("javascript:setPara({0},{1},{2});", pu.id, "true", pu.id), warnimg);
+
                 devices = devices.OrderByDescending(m => m.deviceModelCode).ToList<Device>();
                 if (devices != null && devices.Count > 0)
                 {
                     deviceLevel = unitLevel + 10;
-                    jsstr += generateDeviceRelation(devices, deviceLevel, unitLevel, pu.id);
+                    jsstr += generateDeviceRelation(devices, deviceLevel, unitLevel, pu.id, plant.timezone);
                 }
             }
             return jsstr;
         }
 
-        public string generateDeviceRelation(IList<Device> devices, int deviceLevel, int uplevel,int unitId)
+        public string generateDeviceRelation(IList<Device> devices, int deviceLevel, int uplevel,int unitId,int timezone)
         {
             string jsstr = string.Empty;
             //有下级那么就递归调用下级生成脚本。进行累计
@@ -597,11 +598,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 {
                     device = devices[i];
                     curLevel = ((uplevel + 1) * 100 + i);
-                    jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '');", curLevel, uplevel, device.fullName, string.Format("javascript:setPara({0},{1},{2});", device.id, "false", unitId));
+                    string warnimg = device.Over1Day(timezone) || device.isFault() ? "/images/warning_16_small.gif" : "";
+                    jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '{4}');", curLevel, uplevel, device.fullName, string.Format("javascript:setPara({0},{1},{2});", device.id, "false", unitId),warnimg);
                     if (device.child != null && device.child.Count > 0)
                     {
                         int tmpLevel =((uplevel + 1) * 100 + i);
-                        jsstr += generateDeviceRelation(device.child, tmpLevel, curLevel, unitId);
+                        jsstr += generateDeviceRelation(device.child, tmpLevel, curLevel, unitId, timezone);
                     }
                 }
             }

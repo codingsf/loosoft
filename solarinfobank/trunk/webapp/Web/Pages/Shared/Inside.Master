@@ -532,6 +532,12 @@
                                             <li><a rel="treemenu" onclick="loadContent('content_ajax','/plant/devicedata/<%=Model.id%>','ajax','GET');setcurrent(this);return false;"
                                                 href="/plant/devicedata/<%=Model.id%>" title="<%=Resources.SunResource.DEVICE_DEVICE_RUN_DATA %>">
                                                 <%=Resources.SunResource.DEVICE_DEVICE_RUN_DATA%>
+                                                 <%
+                                                if (Model.isDeviceFaultWithTime)
+                                                {
+                                                %>
+                                                <img src="/images/warning_16.gif" alt="" />
+                                                <%} %>
                                             </a></li>
                                             <li><a rel="treemenu" onclick="loadContent('content_ajax','/plant/devicehistorydata/<%=Model.id%>','ajax','GET');setcurrent(this);return false;"
                                                 href="/plant/devicehistorydata/<%=Model.id%>" title="<%=Resources.SunResource.DEVICE_DEVICE_HISTORYRUN_DATA %>">
@@ -637,11 +643,8 @@
                                     <div class="kjb2">
                                         <a rel="unitmenu" onclick="loadContent('content_ajax','/devicechart/udevicechart/<%=unit.id  %>','ajax','GET');setcurrent(this);return false;"
                                             href="/devicechart/udevicechart/<%=unit.id  %>" title="<%=unit.displayname %>">
-                                            <%=StringUtil.cutStr(unit.displayname, 14, "...")%>(<%= unit.devices.Where(m => m.isHidden == false).Count()%>)
-                                            <%if (unit.isDeviceFault(Model.timezone))
-                                              { %>
-                                            <img src="/images/warning_16.gif" alt="" />
-                                            <%} %>
+                                            <%=StringUtil.cutStr(unit.displayname, 24, "...")%>
+      
                                         </a>
                                     </div>
                                     <%--<div class="kjb3" rel="de" style="display: none;" id="unit<%=unit.id  %>">

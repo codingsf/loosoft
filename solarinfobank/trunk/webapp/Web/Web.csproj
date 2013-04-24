@@ -8213,6 +8213,7 @@
     <Content Include="Images\tree\minusbottom1.gif" />
     <Content Include="Images\tree\plus1.gif" />
     <Content Include="Images\tree\plusbottom1.gif" />
+    <Content Include="Images\warning_16_small.gif" />
     <Content Include="Pages\Shared\ContentInside.Master" />
     <Content Include="Pages\Shared\EmptyInside.Master" />
     <Content Include="Pages\Shared\Virtual.Master" />

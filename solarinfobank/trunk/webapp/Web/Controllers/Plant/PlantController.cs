@@ -114,8 +114,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             ViewData[ComConst.PlantName] = plant.name;
             plant.currencies = curUser.currencies;
-            ViewData["temp"] = plant.Temperature;
-            if (double.IsNaN(plant.Temperature))
+            double temp = plant.Temperature;
+            ViewData["temp"] = temp;
+            if (double.IsNaN(temp))
             {
                 CityCodeService codeService = CityCodeService.GetInstance();
                 ViewData["temp"] = codeService.GetTemperature(plant.city);
@@ -127,6 +128,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 if (user != null && !user.TemperatureType.ToLower().Equals("c"))
                 {
                     ViewData["temp"] = Math.Round(32 + ((double)ViewData["temp"] * 1.8), 1);
+                }
+                else {
+                    ViewData["temp"] = Math.Round((double)ViewData["temp"], 1);
                 }
             }
             else
@@ -150,12 +154,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
         public ActionResult IncludeOverviewDataJson(int id)
         {
-            object temperature;
+            
             User curUser = UserUtil.getCurUser();
             Plant plant = PlantService.GetInstance().GetPlantInfoById(id);
             plant.currencies = curUser.currencies;
-            temperature = plant.Temperature;
-            if (double.IsNaN(plant.Temperature))
+            object temperature = plant.Temperature;
+            if (double.IsNaN((double)temperature))
             {
                 CityCodeService codeService = CityCodeService.GetInstance();
                 temperature = codeService.GetTemperature(plant.city);
@@ -168,6 +172,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 {
                     temperature = Math.Round(32 + ((double)temperature * 1.8), 1);
                 }
+                else
+                {
+                    temperature = Math.Round((double)temperature, 1);
+                }
             }
             else
                 temperature = "";
@@ -178,7 +186,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             if (plant.getFirstDetector() != null)
                 overviewDataVO.Temperature = plant.getFirstDetector().getMonitorValue(MonitorType.MIC_DETECTOR_ENRIONMENTTEMPRATURE).ToString();
             else
-                overviewDataVO.Temperature = temperature != null ? ((temperature as float?).Equals(double.NaN) ? "" : temperature.ToString()) : string.Empty;
+                overviewDataVO.Temperature = temperature.ToString();
             overviewDataVO.TemperatureType = string.Format("°{0}", curUser.TemperatureType.ToUpper());
             overviewDataVO.Sunstrength = (plant.Sunstrength != null) ? plant.Sunstrength.ToString() : "";
             overviewDataVO.SunstrengthUnit = "W/m2";
@@ -846,7 +854,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             User user = UserUtil.getCurUser();
             plant.currencies = user.currencies;
             ViewData["temp"] = plant.Temperature;
-            if (plant.Temperature == 0.0)
+            if (double.IsNaN((double)ViewData["temp"]))
             {
                 CityCodeService codeService = CityCodeService.GetInstance();
                 ViewData["temp"] = codeService.GetTemperature(plant.city);

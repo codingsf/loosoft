@@ -56,7 +56,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 vo.logCount = FaultService.GetInstance().getNewLogNums(new List<Plant>() { plant }, workYears);
                 vo.plantId = pid;
                 vo.plantName = plant.name;
-                vo.solarIntensity = plant.Sunstrength.ToString();
+                vo.solarIntensity = plant.Sunstrength==null?"":plant.Sunstrength.ToString();
                 vo.solarIntensityUnit = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE).unit;
                 //add by qhb in 20120106 for 增加逆变器数量
                 IList<Device> inverterDevices = plant.typeDevices(DeviceData.INVERTER_CODE);

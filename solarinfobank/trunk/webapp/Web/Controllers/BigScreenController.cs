@@ -122,7 +122,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             plantVO.curPowerUnit = "kW";
             plantVO.dayEnergy = plant.DisplayTotalDayEnergy;
             plantVO.dayEnergyUnit = plant.TotalDayEnergyUnit;
-            plantVO.solarIntensity = plant.Sunstrength.ToString();
+            plantVO.solarIntensity = plant.Sunstrength == null ? "" : plant.Sunstrength.ToString();
             plantVO.solarIntensityUnit = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE).unit;
             //add by qhb in 20120106 for 增加逆变器数量
             IList<Device> inverterDevices = plant.typeDevices(DeviceData.INVERTER_CODE);
@@ -136,10 +136,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             plantVO.totalEnergy = plant.DisplayTotalEnergy;
             plantVO.totalEnergyUnit = plant.TotalEnergyUnit;
             plantVO.imageArray = "http://" + Request.Url.Authority + "/ufile/" + (string.IsNullOrEmpty(plant.onePic) ? "Nopic/nopico02.gif" : plant.onePic);
-            if (plant.getFirstDetector() != null)
-                plantVO.temprature = plant.getFirstDetector().getMonitorValue(MonitorType.MIC_DETECTOR_ENRIONMENTTEMPRATURE).ToString();
-            else
-                plantVO.temprature = plant.Temperature.ToString();
+            plantVO.temprature = double.IsNaN(plant.Temperature) ? "" : plant.Temperature.ToString(); 
             plantVO.tempratureUnit = user.TemperatureType.ToUpper();
             return Json(plantVO, JsonRequestBehavior.AllowGet);
         }

@@ -638,7 +638,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 plantvo.location = plant.location;
                 plantvo.longitude = plant.longitudeString;
                 plantvo.street = plant.street;
-                plantvo.sunlight = plant.Sunstrength.ToString();
+                plantvo.sunlight = plant.Sunstrength==null?"":plant.Sunstrength.ToString();
                 plantvo.temperature = plant.Temperature.ToString();
                 plantvo.weather = "Sundy";
                 plantvo.moduleType = plant.module_type;

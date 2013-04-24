@@ -56,7 +56,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             ViewData[ComConst.PlantName] = plant.name;
             plant.currencies = curUser.currencies;
             ViewData["temp"] = Math.Round(plant.Temperature, 1);
-            if (plant.Temperature == 0.0)
+            if (double.IsNaN((double)ViewData["temp"]))
             {
                 CityCodeService codeService = CityCodeService.GetInstance();
                 ViewData["temp"] = codeService.GetTemperature(plant.city);

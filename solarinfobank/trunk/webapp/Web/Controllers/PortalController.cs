@@ -195,13 +195,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                             ico.Add("displayName", ProtalItems.incomeDisplayName);
                             break;
                         case ProtalItems.sunshine://日照
-                            ico.Add(string.Format("data"), plant == null ? "" : plant.Sunstrength.ToString());
+                            ico.Add(string.Format("data"), plant == null ? "" : plant.Sunstrength==null?"":plant.Sunstrength.ToString());
                             ico.Add(string.Format("unit"), plant == null ? "" : MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE).unit);
                             ico.Add("displayName", ProtalItems.sunshineDisplayName);
                             break;
                         case ProtalItems.temperature://温度
                             double temper = plant.Temperature;
-                            if (plant.Temperature == 0.0)
+                            if (double.IsNaN(temper))
                             {
                                 CityCodeService codeService = CityCodeService.GetInstance();
                                 temper = codeService.GetTemperature(plant.city);
@@ -474,7 +474,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             int.TryParse(id, out pid);
             Plant plant = PlantService.GetInstance().GetPlantInfoById(pid);
             ViewData["temp"] = plant.Temperature;
-            if (plant.Temperature == 0.0)
+            if (double.IsNaN((double) ViewData["temp"]))
             {
                 CityCodeService codeService = CityCodeService.GetInstance();
                 ViewData["temp"] = codeService.GetTemperature(plant.city);
@@ -1303,7 +1303,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             int.TryParse(id, out pid);
             Plant plant = PlantService.GetInstance().GetPlantInfoById(pid);
             ViewData["temp"] = plant.Temperature;
-            if (plant.Temperature == 0.0)
+            if (double.IsNaN((double)ViewData["temp"]))
             {
                 CityCodeService codeService = CityCodeService.GetInstance();
                 ViewData["temp"] = codeService.GetTemperature(plant.city);

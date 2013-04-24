@@ -95,25 +95,22 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 vo.logCount = FaultService.GetInstance().getNewLogNums(new List<Plant>() { plant }, workYears);
                 vo.plantId = plant.id;
                 vo.plantName = plant.name;
-                vo.solarIntensity = plant.Sunstrength.ToString();
+                vo.solarIntensity = plant.Sunstrength==null?"":plant.Sunstrength.ToString();
                 vo.solarIntensityUnit = MonitorType.getMonitorTypeByCode(MonitorType.PLANT_MONITORITEM_LINGT_CODE).unit;
 
                 double t = plant.Temperature;
                 User user = UserService.GetInstance().Get((int)plant.userID);
-                if (t == 0)
+                if (double.IsNaN(t))
                 {
                     CityCodeService codeService = CityCodeService.GetInstance();
                     t = codeService.GetTemperature(plant.city);
-                    if (double.IsNaN(t))
-                    {
-                        t = 0;
-                    }
+                    
                 }
-                if (user != null && user.TemperatureType!=null && !user.TemperatureType.ToLower().Equals("c"))
+                if (user != null && user.TemperatureType!=null && !user.TemperatureType.ToLower().Equals("c") && !double.IsNaN(t))
                 {
                     t = (32 + (t * 1.8));
                 }
-                vo.temprature = t.ToString();
+                vo.temprature = double.IsNaN(t)?"":t.ToString();
                 vo.tempratureUnit = user.TemperatureType==null?"c".ToUpper():user.TemperatureType.ToUpper();
                 vo.totalEnergy = plant.DisplayTotalEnergy;
                 vo.totalEnergyUnit = plant.TotalEnergyUnit;

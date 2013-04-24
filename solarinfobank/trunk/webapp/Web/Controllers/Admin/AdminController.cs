@@ -1703,12 +1703,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                             break;
 
                         case "9"://温度
-                            rowData.Add(plant.Temperature.ToString("0"));
+                            rowData.Add(double.IsNaN(plant.Temperature)?"":plant.Temperature.ToString("0"));
 
                             break;
 
                         case "10"://日照强度
-                            rowData.Add(plant.Sunstrength == null ? "0" : ((double)plant.Sunstrength).ToString("0.00"));
+                            rowData.Add(plant.Sunstrength == null ? "" : ((double)plant.Sunstrength).ToString("0.00"));
                             break;
                         case "44"://每KWP发电量
                             if (plant.design_power.Equals(0))

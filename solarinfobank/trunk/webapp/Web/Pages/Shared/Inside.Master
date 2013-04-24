@@ -577,7 +577,7 @@
                                         <ul>
                                             <li><a onclick="loadContent('content_ajax','/plantchart/daycompare/<%=Model.id %>','ajax','GET');setcurrent(this);return false;"
                                                 href="/plantchart/daycompare/<%=Model.id%>">
-                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_DAY_COMPARED_CHART%></a></li>
+                                                <%=Resources.SunResource.CHART_DAY_COMPARE%></a></li>
                                             <%if (AuthService.isAllow(AuthorizationCode.MULTI_ENERGY_COMPARE, Model.id))
                                             {
                                             %>                                                

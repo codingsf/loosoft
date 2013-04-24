@@ -615,7 +615,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             get
             {
-                double? _temperature = 0;
+                double? _temperature = double.NaN;
                 if (allFactUnits == null) return _temperature.Value;
                 //先取得电站数据
                 foreach (PlantUnit unit in allFactUnits)
@@ -678,7 +678,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                         tmp = detector.getMonitorValue(MonitorType.MIC_DETECTOR_SUNLINGHT);
                     }
                 }
-                return tmp == null || float.IsNaN(tmp.Value) ? 0 : tmp; ;
+                return tmp == null || float.IsNaN(tmp.Value) ? null : tmp; ;
             }
         }
 

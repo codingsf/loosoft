@@ -534,15 +534,7 @@
                             <td width="79%" class="kjli">
                                 <%=Resources.SunResource.PLANT_OVERVIEW_TEMPERATURE%><br />
                                 <span class="sz_fb" id="temperature">
-                                <%if (Model.getFirstDetector() != null)
-                                  {%>
-                                <%=Model.getFirstDetector().getMonitorValue(MonitorType.MIC_DETECTOR_ENRIONMENTTEMPRATURE)%>
-                                <%}
-                                else
-                              { %>
-                                    <%=ViewData["temp"] != null ? ((ViewData["temp"] as float?).Equals(double.NaN) ? "" : ViewData["temp"].ToString()) : string.Empty%></span>
-                               <%}%><label id="temperaturetype">
-                                °<%=(Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser()).TemperatureType.ToUpper()%>
+                                <%=ViewData["temp"]%><label id="temperaturetype">°<%=(Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser()).TemperatureType.ToUpper()%>
                                </label>
                             </td>
                         </tr>

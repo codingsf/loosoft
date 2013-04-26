@@ -11310,6 +11310,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 Unit Data 的本地化字符串。
+        /// </summary>
+        internal static string SHARED_INSIDEMASTERPAGE_UNITDATA {
+            get {
+                return ResourceManager.GetString("SHARED_INSIDEMASTERPAGE_UNITDATA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Units Comparison 的本地化字符串。
         /// </summary>
         internal static string SHARED_INSIDEMASTERPAGE_UNIT_COMPARED_CHART {

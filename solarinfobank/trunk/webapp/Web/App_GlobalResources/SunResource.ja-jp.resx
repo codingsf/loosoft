@@ -5547,4 +5547,7 @@ The average value of coefficient will trigger warning
     <value>いいえフルスクリーン機能なし</value>
     <comment>未开通全屏功能</comment>
   </data>
+  <data name="SHARED_INSIDEMASTERPAGE_UNITDATA" xml:space="preserve">
+    <value>セルデータ</value>
+  </data>
 </root>

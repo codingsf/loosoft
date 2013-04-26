@@ -3,7 +3,7 @@
 <html>
 <head>
     <style>
-        .firstNode{ background-color:#eeeeee; height:30px; line-height:30px; border-bottom:solid 1px #ccc;}
+        .firstNode{ background-color:#eeeeee; height:30px; line-height:30px; border-bottom:solid 1px #ccc; margin-bottom:4px;}
         .topNode{ text-align:center;height:30px; line-height:30px; margin-bottom:10px; background-color:#eeeeee; font-weight:bold;}
         .otherNode{ margin-top:2px;}
        

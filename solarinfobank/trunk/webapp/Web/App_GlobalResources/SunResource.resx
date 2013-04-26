@@ -5806,4 +5806,7 @@ The average value of coefficient will trigger warning
     <value>Not open fullscreen function</value>
     <comment>未开通全屏功能</comment>
   </data>
+  <data name="SHARED_INSIDEMASTERPAGE_UNITDATA" xml:space="preserve">
+    <value>Unit Data</value>
+  </data>
 </root>

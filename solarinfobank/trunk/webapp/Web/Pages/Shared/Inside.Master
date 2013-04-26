@@ -631,7 +631,7 @@
                                                 <img src="/images/kj/fico06.png" />
                                             </td>
                                             <td width="140" class="kjtt01">
-                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_DEVICE_LIST%>
+                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_UNITDATA%>
                                             </td>
                                         </tr>
                                     </table>

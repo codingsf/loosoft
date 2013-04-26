@@ -5556,4 +5556,7 @@ The average value of coefficient will trigger warning
     <value>Aucune fonction plein écran</value>
     <comment>未开通全屏功能</comment>
   </data>
+  <data name="SHARED_INSIDEMASTERPAGE_UNITDATA" xml:space="preserve">
+    <value>Données cellulaires</value>
+  </data>
 </root>

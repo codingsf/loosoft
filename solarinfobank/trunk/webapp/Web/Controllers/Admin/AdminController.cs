@@ -389,6 +389,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             UserService userInfoService = UserService.GetInstance();
             IList<User> users = userInfoService.GetUsersByPage(page);
             ViewData["page"] = page;
+            ViewData["pageNo"] = page.PageIndex;
             return View(@"user/list", users);
         }
 
@@ -410,6 +411,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
 
         public ActionResult Userdel(int id)
         {
+            string pageNo = Request.QueryString["page"];
             User user = userService.Get(id);
             IList<PlantPortalUser> childuser = user.plantPortalUsers;
             foreach (PlantPortalUser pu in childuser)
@@ -426,7 +428,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             if (user.userRole != null && user.userRole.id > 0)
                 UserRoleService.GetInstance().Remove(user.userRole.id);
 
-            return Redirect("/admin/users");
+            return Redirect("/admin/users/"+pageNo);
         }
 
 

@@ -174,7 +174,7 @@
           </isNotEqual>
         </isParameterPresent>
       </dynamic>
-      limit  $page.Start$,$page.End$
+    order by id desc limit  $page.Start$,$page.End$
     </select>
 
     <select id="admin_plant_query_list_count" parameterClass="Hashtable" resultClass="int">

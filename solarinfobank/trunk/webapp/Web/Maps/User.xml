@@ -159,7 +159,7 @@
     </select>
     
     <select id="loading_users_page_list" resultMap="user_info_result" cacheModel="user_cache">
-      <![CDATA[  SELECT * from userinfo limit $Start$,$End$]]>
+      <![CDATA[  SELECT * from userinfo  order by id desc limit $Start$,$End$]]>
     </select>
 
     <select id="loading_users_page_count" resultClass="int" >

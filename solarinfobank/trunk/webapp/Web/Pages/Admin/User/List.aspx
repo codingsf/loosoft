@@ -103,7 +103,7 @@
                                     <td width="15%" align="center" class="am_line0<%=i%2 %>">
                                         <%if (AuthService.isAllow("admin", "userdel"))
                                           { %>
-                                        <a href="/admin/userdel/<%=user.id %>" onclick="return confirm('您确定要删除吗')">
+                                        <a href="/admin/userdel/<%=user.id %>?page=<%=ViewData["pageNo"] %>" onclick="return confirm('您确定要删除吗')">
                                             <img src="/images/sub/cross.gif" alt="删除" title="删除" /></a>
                                         <%}
                                           else

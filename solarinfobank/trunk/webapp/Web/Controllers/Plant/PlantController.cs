@@ -154,9 +154,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
         public ActionResult IncludeOverviewDataJson(int id)
         {
-            
-            User curUser = UserUtil.getCurUser();
+           
             Plant plant = PlantService.GetInstance().GetPlantInfoById(id);
+            User curUser = UserService.GetInstance().Get(plant.userID);
             plant.currencies = curUser.currencies;
             object temperature = plant.Temperature;
             if (double.IsNaN((double)temperature))

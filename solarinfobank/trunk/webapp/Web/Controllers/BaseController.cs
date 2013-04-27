@@ -551,12 +551,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return jsstr;
         }
 
+        public string generateDeviceRelation(Plant plant)
+        {
+          return   generateDeviceRelation(plant, true);
+        }
+
         /// <summary>
         /// 产生叶子电站的设备关系树数据
         /// </summary>
         /// <param name="plant">叶子实际电站</param>
         /// <returns></returns>
-        public string generateDeviceRelation(Plant plant)
+        public string generateDeviceRelation(Plant plant,bool warn)
         {
             string jsstr = string.Empty;
             int curLevel = 1;
@@ -573,20 +578,20 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 //先装机逆变器类型设备节点
                 IList<Device> devices = pu.displayDevices;
                 unitLevel = unitLevel * 100 + i;
-                string warnimg = pu.isDeviceFault(plant.timezone) ? "/images/warning_16_small.gif" : "";
+                string warnimg = pu.isDeviceFault(plant.timezone)&&warn ? "/images/warning_16_small.gif" : "";
                 jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '{4}');", unitLevel, topLevel, pu.displayname + "(" + devices.Count + ")", string.Format("javascript:setPara({0},{1},{2});", pu.id, "true", pu.id), warnimg);
 
                 devices = devices.OrderByDescending(m => m.deviceModelCode).ToList<Device>();
                 if (devices != null && devices.Count > 0)
                 {
                     deviceLevel = unitLevel + 10;
-                    jsstr += generateDeviceRelation(devices, deviceLevel, unitLevel, pu.id, plant.timezone);
+                    jsstr += generateDeviceRelation(devices, deviceLevel, unitLevel, pu.id, plant.timezone,warn);
                 }
             }
             return jsstr;
         }
 
-        public string generateDeviceRelation(IList<Device> devices, int deviceLevel, int uplevel,int unitId,int timezone)
+        public string generateDeviceRelation(IList<Device> devices, int deviceLevel, int uplevel,int unitId,int timezone,bool warn)
         {
             string jsstr = string.Empty;
             //有下级那么就递归调用下级生成脚本。进行累计
@@ -598,12 +603,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 {
                     device = devices[i];
                     curLevel = ((uplevel + 1) * 100 + i);
-                    string warnimg = device.Over1Day(timezone) || device.isFault() ? "/images/warning_16_small.gif" : "";
+                    string warnimg = (device.Over1Day(timezone) || device.isFault())&&warn ? "/images/warning_16_small.gif" : "";
                     jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '{4}');", curLevel, uplevel, device.fullName, string.Format("javascript:setPara({0},{1},{2});", device.id, "false", unitId),warnimg);
                     if (device.child != null && device.child.Count > 0)
                     {
                         int tmpLevel =((uplevel + 1) * 100 + i);
-                        jsstr += generateDeviceRelation(device.child, tmpLevel, curLevel, unitId, timezone);
+                        jsstr += generateDeviceRelation(device.child, tmpLevel, curLevel, unitId, timezone,warn);
                     }
                 }
             }

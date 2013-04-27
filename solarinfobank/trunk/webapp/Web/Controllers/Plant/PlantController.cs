@@ -2560,7 +2560,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             int.TryParse(id, out pid);
             Plant plant = PlantService.GetInstance().GetPlantInfoById(pid);
            // string jsstr = base.createDeviceContructTree(plant, 1);
-           string jsstr = base.generateDeviceRelation(plant);
+           string jsstr = base.generateDeviceRelation(plant,false);
             ViewData["jsstr"] = jsstr;
             return View();
         }

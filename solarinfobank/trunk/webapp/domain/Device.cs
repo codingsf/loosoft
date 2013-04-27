@@ -216,6 +216,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                     }
                     return tmp;
                 }
+
                 return 0;
             }
         }

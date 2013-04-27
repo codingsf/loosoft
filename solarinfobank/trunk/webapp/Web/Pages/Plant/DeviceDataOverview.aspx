@@ -120,6 +120,9 @@
         }
         
         function loadRunDataHtml() {
+            var did = $("#deviceID").val();
+            //没有设备不做处理
+            if(did==null || did=="" || did=="null" || did=="undefined") return;
             $("#container").empty();
             //$("#container").html('<img src="/Images/ajax_loading.gif" style="margin-left:210px;" />');
             $.ajax({

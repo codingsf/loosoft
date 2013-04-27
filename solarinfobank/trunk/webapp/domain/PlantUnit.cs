@@ -220,22 +220,23 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// </summary>
         public float TodayEnergy(int timezone)
         {
-            float? total = null;
-            //先取得采集的实时数据中今日发电量
-            if (this.collector != null && this.collector.runData != null && CalenderUtil.formatDate(collector.runData.sendTime, "yyyyMMdd").Equals(CalenderUtil.curDateWithTimeZone(timezone, "yyyyMMdd")))
-                    total = collector.runData.dayEnergy;
-            
-            //没有实时数据则去设备累计
-            if (total == null || float.IsNaN(total.Value))
+            float total = 0;
+            if (devices == null) return total;
+            //if (this.collector.runData != null && CalenderUtil.formatDate(collector.runData.sendTime, "yyyyMMdd").Equals(CalenderUtil.curDateWithTimeZone(timezone, "yyyyMMdd")))
+            //    total = collector.runData.dayEnergy;
+            foreach (Device device in devices)
             {
-                if (devices != null){
-                    foreach (Device device in devices) {
-                        total+=device.TodayEnergy(timezone);
-                    }
-                }
+                total += device.TodayEnergy(timezone);
             }
+
             //如果设备没有今日发电量则取下采集的实时数据中的今日发电量
-            return total==null ||float.IsNaN(total.Value) ? 0 : total.Value;
+            if (total == 0)
+            {
+                if (this.collector != null && this.collector.runData != null && CalenderUtil.formatDate(collector.runData.sendTime, "yyyyMMdd").Equals(CalenderUtil.curDateWithTimeZone(timezone, "yyyyMMdd")))
+                    total = collector.runData.dayEnergy;
+            }
+
+            return StringUtil.stringtoFloat(Math.Round(total, 2).ToString());
         }
 
         /// <summary>
@@ -246,21 +247,24 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             get
             {
                 float? total = null;
-                //先取得采集的实时数据中总发电量
-                if (this.collector != null && this.collector.runData != null)
-                    total = collector.runData.totalEnergy;
 
-                //没有实时数据则去设备累计
-                if (total == null || float.IsNaN(total.Value))
+                //先累计实时数据则去设备累计
+                if (devices != null && devices.Count>0)
                 {
-                    if (devices != null)
+                    total = 0;
+                    foreach (Device device in devices)
                     {
-                        foreach (Device device in devices)
-                        {
-                            total += device.TotalEnergy;
-                        }
+                        total += device.TotalEnergy;
                     }
                 }
+
+                if (total == null)
+                {
+                    //先取得采集的实时数据中总发电量
+                    if (this.collector != null && this.collector.runData != null)
+                        total = collector.runData.totalEnergy;
+                }
+
                 //如果设备没有今日发电量则取下采集的实时数据中的今日发电量
                 return total==null || float.IsNaN(total.Value) ? 0 : total.Value;
                 //float totalEnergy = 0;

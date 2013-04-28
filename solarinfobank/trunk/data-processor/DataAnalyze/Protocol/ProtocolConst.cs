@@ -39,6 +39,11 @@ namespace Protocol
         public const int LENGTH_MODBUS15_BUSBAR = 5 + 118;
 
         /// <summary>
+        ///0x17  光伏汇流箱通信协议（Modbus）V1.7设置定稿.doc
+        /// </summary>
+        public const int LENGTH_MODBUS17_BUSBAR = 5 + 214;
+
+        /// <summary>
         /// 0x13 配电柜（SUNGROW协议）
         ///</summary>
         public const int LENGTH_SUNGROW_CABINET = 5 + 27;

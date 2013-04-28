@@ -33,15 +33,44 @@ namespace Protocol
             //测点数据串去掉设备数据的头部
             string monitorstr = deviceData.Substring(deviceDataHeadLength * hexbytecharnum);
 
-            //数字输入
+            //数字输入即输入路数
+            //原来就有
+            //输入路数 add by hbqian in 2013-03-16 for
+            //2013-03-13	
+            //周辉 13:32:29 
+            //注意： 这个协议里面地址7001的上面写了保留，其实不是保留，是输入路数，跟汇流箱一样，你看好不好处理
+            //老钱 13:33:38 
+            //那为何不更新下协议 就写上是输入路数呢
+            //周辉 13:34:11 
+            //协议没有更新，但是他们做下位机的没有按协议做
+            //周辉 13:34:21 
+            //把这个当输入路数用了 
+            //老钱 13:36:21 
+            //类型？
+            //老钱 13:36:24 
+            //u16？
+            //老钱 13:36:35 
+            //7001
             int ATAINPUT = (int)SystemCode.HexNumberToDenary(monitorstr.Substring(20 * hexbytecharnum, 2 * hexbytecharnum), false, 16, 'u');
             realMonitorMap[MonitorType.MIC_BUSBAR_DIGITALINPUT] = ATAINPUT;
             if (MonitorType.historyMonitorList.Contains(MonitorType.MIC_BUSBAR_DIGITALINPUT))
                 historyMonitorMap[MonitorType.MIC_BUSBAR_DIGITALINPUT] = ATAINPUT;
 
-            //最大电流0.01A
+            //最大电流0.1A
+            //modify by hbqian in 2013-03-16 for
+            //2012-03-13
+            //周辉 13:22:03 
+            //光伏直流配电柜通信协议（Modbus）V1.0-柴达木-2011.8.30.pdf
+            //老钱 13:22:14 
+            //？
+            //周辉 13:22:28 
+            //里面的第9个 最大电流 你看看是不是解析错了
+            //周辉 13:22:45 
+            //系数是0。1 ，你是不是当0。01处理了？
+            //周辉 13:23:03 
+            //直流配电柜的 0X14
             double maxcurrent = (int)SystemCode.HexNumberToDenary(monitorstr.Substring(22 * hexbytecharnum, 2 * hexbytecharnum), false, 16, 'u');
-            maxcurrent = Math.Round(maxcurrent * 0.01, 2);
+            maxcurrent = Math.Round(maxcurrent * 0.1, 2);
             realMonitorMap[MonitorType.MIC_BUSBAR_MAXCURRENT] = maxcurrent;
             if (MonitorType.historyMonitorList.Contains(MonitorType.MIC_BUSBAR_MAXCURRENT))
                 historyMonitorMap[MonitorType.MIC_BUSBAR_MAXCURRENT] = maxcurrent;

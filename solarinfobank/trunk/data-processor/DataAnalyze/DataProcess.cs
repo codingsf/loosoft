@@ -64,6 +64,10 @@ namespace DataAnalyze
                         try
                         {
                             tcpmessage = new TCPMessage(messageVO.key,messageVO.message);
+                            //add by hbqian int 20130418 for其实0。1分的发电量是昨天，按道理不应该发的，但是现在LOG有个换存，导致0：到15分的这个时间发的发电量可能还是上一天的
+                            if (tcpmessage.messageHeader.TimeNow.Hour == 0 && tcpmessage.messageHeader.TimeNow.Minute < 15) {
+                                continue;
+                            }
                         }
                         catch (Exception ee)
                         {
@@ -78,6 +82,8 @@ namespace DataAnalyze
                             }
                             continue;
                         }
+                         
+
                         
                         //持久化将数据保存到缓存
                         DateTime curdt = DateTime.Now;
@@ -151,6 +157,8 @@ namespace DataAnalyze
                         //
                         LogUtil.writeline("成功处理：" + "sn:" + TcpHeader.getSn(messageVO.message) +",key:" + messageVO.key);
                         //FileLogUtil.info("成功处理：" + "sn:" + TcpHeader.getSn(messageVO.message) + ",key:" + messageVO.key);
+                        //设置最后成功处理时间到memcached，以便检测监控程序能判断是否正常运行
+                        MemcachedClientSatat.getInstance().Set("monitor_analyze_run_lasttime", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                     }
                     catch (Exception ee)
                     {

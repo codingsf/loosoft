@@ -151,6 +151,11 @@ namespace DataAnalyze
                             int ss = (int)SystemCode.HexNumberToDenary(ssss.Substring(0, 2), false, 8, 'u');
                             if (ss > 60) ss = 59;
                             this.messageHeader.TimeNow = new DateTime(year, moth, day, hh, mm, ss);
+                            //add by hbqian int 20130418 for其实0。1分的发电量是昨天，按道理不应该发的，但是现在LOG有个换存，导致0：到15分的这个时间发的发电量可能还是上一天的
+                            if (hh == 0 && mm < 15)
+                            {
+                                return;
+                            }
                             this.messageHeader.issub = true;
                             this.messageHeader.hasData = false;
                             //设备实时数据
@@ -199,6 +204,12 @@ namespace DataAnalyze
             {
                 messageHeader = new TcpHeader();
                 messageHeader.analyze(this.messageContent.Substring(istart, icount));
+                //add by hbqian int 20130418 for其实0。1分的发电量是昨天，按道理不应该发的，但是现在LOG有个换存，导致0：到15分的这个时间发的发电量可能还是上一天的
+                if (messageHeader.TimeNow.Hour == 0 && messageHeader.TimeNow.Minute < 15)
+                {
+                    return;
+                }
+
                 istart = istart + icount;
 
                 //循环解析多个设备
@@ -234,6 +245,19 @@ namespace DataAnalyze
                             else
                             {
                                 ddb = new Modbus15Busbar(this.messageContent.Substring(istart, icount), this);
+                                istart = istart + icount;
+                                break;
+                            }
+                        case DeviceData.TYPE_MODBUS17_BUSBAR://光伏汇流箱通信协议（Modbus）V1.7设置定稿.doc add by ZHOUHUI in 20121118
+                            icount = ProtocolConst.LENGTH_MODBUS17_BUSBAR * 2;
+                            if (istart + icount > this.messageContent.Length)
+                            {
+                                istart = istart + icount;
+                                break;
+                            }
+                            else
+                            {
+                                ddb = new Modbus17Busbar(this.messageContent.Substring(istart, icount), this);
                                 istart = istart + icount;
                                 break;
                             }

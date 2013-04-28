@@ -166,13 +166,14 @@ namespace DataAnalyze
         public int GetCollectorId()
         {
             string collectorCode = this.messageHeader.CollectorCode;
-            int id = CollectorInfoService.GetInstance().getCollectorIdbyCode(collectorCode);
-            if (id == 0)
+            Collector collector = CollectorInfoService.GetInstance().getCollectorbyCode(collectorCode);
+            int id = 0;
+            if (collector == null)
             {
                 //如果没有则创建一个
-                Collector collector = new Collector();
+                collector = new Collector();
                 collector.code = collectorCode;
-                collector.password = "123456";//按照规则生成
+                //collector.password = "123456";//按照规则生成
                 collector.isUsed = true;
                 try
                 {
@@ -181,8 +182,10 @@ namespace DataAnalyze
                 catch (Exception e)
                 {
                     LogUtil.info("save collector " + collectorCode + " error:" + e.Message);
+                    id = 0;
                 }
-            }
+            }else
+                id = collector.id;
 
             return id;
         }
@@ -581,21 +584,49 @@ namespace DataAnalyze
             foreach (DeviceInfo dinfo in this.deviceInfos)
             {
                 deviceId = this.GetDeviceId(collectorId, dinfo.address.ToString());
+                //新设备地址
+                String newAddress = dinfo.address.ToString();
+                int newModelCode = dinfo.typemodel;
+                String newName = dinfo.name;
                 //add by qhb in 20120827 for 发送设备信息也添加设备
-                if (deviceId == 0){
+                if (deviceId == 0)
+                {
                     //构造设备
                     Device device = new Device();
                     device.collectorID = collectorId;
-                    device.deviceAddress = dinfo.address.ToString();
-                    if (DataType.deviceTypeNoMap.ContainsKey(dinfo.typemodel))
-                        device.deviceTypeCode = DataType.deviceTypeNoMap[dinfo.typemodel];
-
-                    //device.deviceModel = new DeviceModel() { code = dinfo.typemodel };
-                    //device.status = ddb.deviceState.ToString();
+                    device.deviceAddress = newAddress;
+                    if (DataType.deviceTypeNoMap.ContainsKey(newModelCode))
+                        device.deviceTypeCode = DataType.deviceTypeNoMap[newModelCode];
+                    device.name = newName;
+                    device.deviceModel = new DeviceModel() { code = newModelCode};
+                    device.status = "0";
+                    try
+                    {
+                        PlantUnit pu = PlantUnitService.GetInstance().GetPlantUnitByCollectorId(collectorId);
+                        if (pu != null)
+                            device.plantUnitId = pu.id;
+                    }
+                    catch (Exception ee) { }
                     deviceId = DeviceService.GetInstance().Save(device);
                     LogUtil.info("has new device,collectorID is " + collectorId + ",deviceAddress is " + device.deviceAddress);
                     //有新设备要更新bank缓存
                     HttpClientUtil.requestUrl(bank_url);
+                }
+                else { //判断是否更新设备型号，地址和名称等
+                    Device device = DeviceService.GetInstance().get(deviceId);
+                    //if (!(device.name!=null && device.name.Equals(newName)) || !device.deviceAddress.Equals(newAddress) || device.deviceModelCode != newModelCode)
+                    //{
+                        device.deviceAddress = newAddress;
+                        if (DataType.deviceTypeNoMap.ContainsKey(newModelCode))
+                            device.deviceTypeCode = DataType.deviceTypeNoMap[newModelCode];
+                        device.name = newName;
+                        device.deviceModel = new DeviceModel() { code = newModelCode };
+
+                        deviceId = DeviceService.GetInstance().Save(device);
+                        LogUtil.info("update device,collectorID is " + collectorId + ",deviceAddress is " + device.deviceAddress);
+                        //有新设备要更新bank缓存
+                        HttpClientUtil.requestUrl(bank_url);
+                    //}
                 }
                 //add end
                 dinfo.deviceid = deviceId;

@@ -15,6 +15,7 @@ using Cn.Loosoft.Zhisou.SunPower.Service;
 using System.Configuration;
 using System.Diagnostics;
 using SolarInfoBase;
+using System.IO;
 //using SolarInfoBase;
 
 namespace DataAnalyze
@@ -26,8 +27,13 @@ namespace DataAnalyze
     {
         static void Main(string[] args)
         {
+            //先设置当前工作目录为进程目录
+            Console.WriteLine("原工作目录："+Directory.GetCurrentDirectory());
+            Directory.SetCurrentDirectory(System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName));
+            Console.WriteLine("现在工作目录：" + Directory.GetCurrentDirectory());
+
             //从后台维护数据表中设置错误码静态数据
-            ErrorcodeService.GetInstance().setErrorStaticData();
+            //ErrorcodeService.GetInstance().setErrorStaticData();
 
             string validdog = ConfigurationSettings.AppSettings["validdog"];//是否验证狗
             //启动解析线程
@@ -51,22 +57,14 @@ namespace DataAnalyze
                 m_thread4.Start();
             }
 
+            //设置最后成功处理时间到memcached，以便检测监控程序能判断是否正常运行
+            MemcachedClientSatat.getInstance().Set("monitor_analyze_run_lasttime", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
             LogUtil.info("服务启动成功！");
 
-            //解析程序自启动部分
-            string restart_interval = ConfigurationSettings.AppSettings["restart_interval"];
-            int interval = string.IsNullOrEmpty(restart_interval) ? 60 : int.Parse(restart_interval);//默认60分钟
-            int tmpinterval = 0;
+            //循环检测狗
             while (1==1)
             {
-                tmpinterval++;
-                if (tmpinterval >= interval)
-                {
-                    Process process = System.Diagnostics.Process.GetCurrentProcess();
-                    System.Diagnostics.Process.Start(System.Reflection.Assembly.GetExecutingAssembly().Location);  //重新开启当前程序
-                    process.Kill();
-                }
-
                 //循环狗检测程序，这个就要求必须将狗一直插入才能正常运行软件
                 if (validdog == null || validdog.Equals("true"))
                 {

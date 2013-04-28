@@ -62,18 +62,20 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
 
         public int Save(Device device)
         {
+            //add by qhb in 20130323 for 发现有设备新增有要将没有plantunitid字段值的设备，plantUnitId附上所属单元
+            //add by qhb in 20130428 for 放在前面处理，这样不管是新增和修改都能保证没有设备单元关系的设备都可以有保证有正确关系，这个是为了解决
+            //出现解析程序的关系有了的情况下，后面又被冲掉了，可能是被设备修改冲掉了
+            if (device.plantUnitId == null || device.plantUnitId == 0)
+            {
+                PlantUnit plantUnit = _plantUnitDao.GetPlantUnitByCollectorId(device.collectorID);
+                if (plantUnit != null)
+                    device.plantUnitId = plantUnit.id;
+            }
             if (device.id > 0)
             {
                 return _deviceDao.Update(device);
             }
-            else
-            {
-                //add by qhb in 20130323 for 发现有设备新增有要将没有plantunitid字段值的设备，plantUnitId附上所属单元
-                if(device.plantUnitId==null || device.plantUnitId==0){
-                    PlantUnit plantUnit = _plantUnitDao.GetPlantUnitByCollectorId(device.collectorID);
-                    if(plantUnit!=null)
-                        device.plantUnitId = plantUnit.id;
-                }
+            else{
                 return _deviceDao.Insert(device);
             }
         }
@@ -130,6 +132,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         }
         public int UpdateDeviceById(Device device)
         {
+            //add by qhb in 20130428 for 放在前面处理，这样不管是新增和修改都能保证没有设备单元关系的设备都可以有保证有正确关系，这个是为了解决
+            //出现解析程序的关系有了的情况下，后面又被冲掉了，可能是被设备修改冲掉了
+            if (device.plantUnitId == null || device.plantUnitId == 0)
+            {
+                PlantUnit plantUnit = _plantUnitDao.GetPlantUnitByCollectorId(device.collectorID);
+                if (plantUnit != null)
+                    device.plantUnitId = plantUnit.id;
+            }
             return _deviceDao.UpdateDeviceById(device);
         }
 

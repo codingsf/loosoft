@@ -1595,6 +1595,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
         {
             return View(DeviceService.GetInstance().get(id));
         }
+
         [HttpPost]
         public ActionResult UpdateDeviceMonitor(Device device, string pid)
         {

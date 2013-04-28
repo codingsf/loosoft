@@ -87,18 +87,20 @@
             <td width="6" align="right"><img src="/images/kj/kjico03.jpg" width="6" height="63" /></td>
           </tr>
         </table>
-        <div class="subrbox01">
+        <!--div class="subrbox01"-->
+        <div>
             <div class="gf_midbody" style="padding-left:0px; padding-top:0px; padding-right:0px;">
-                    <div class="gf_boxb">
+                    <div>
                         <div>
                         <!--左边设备导航-->
-                        <div style="float:left;">                   
-                            <iframe src="/plant/devicestructtree/<%=Model.id %>" width="150" scrolling="auto" frameborder="0"
+                        <div style="float:left;">            
+                            <iframe src="/plant/devicestructtree/<%=Model.id %>" width="200" scrolling="auto" frameborder="0"
                                         height="650">
                             </iframe>
                         </div>
+                        
                         <!--右边设备图表数据-->
-                        <div style=" float:right; width:570px; text-align:left;" id="content_container_control"></div>
+                        <div style=" float:left; width:585px; text-align:left;" id="content_container_control"></div>
                         </div>
                         <div style="clear: both; height: 60px;">
                         </div>

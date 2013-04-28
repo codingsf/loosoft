@@ -36,7 +36,7 @@
     </style>
 </head>
 <body>
-   <table width="100%" border="0" cellspacing="0" bordercolor="#E6E6E6"  style=" border-collapse:collapse;">
+   <table width="100%" border="1" cellspacing="0" bordercolor="#E6E6E6"  style=" border-collapse:collapse;">
        <tr> 
       <td height="36" colspan="9" valign="center" style="padding-left:5px; background-color:#EEEEEE;"><strong><%=Resources.SunResource.CHART_TYPE%>:<%=(ViewData["device"] as Device).typeName%>&nbsp;&nbsp;<%=Resources.SunResource.CHART_MODEL%>:<%=(ViewData["device"] as Device).xinhaoName%>&nbsp;&nbsp;<%=Resources.SunResource.CHART_ADDRESS%>:<%=(ViewData["device"] as Device).deviceAddress%></strong></td>
       <td align="right" style=" background-color:#EEEEEE; padding-right:5px;">

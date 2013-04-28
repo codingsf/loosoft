@@ -35,12 +35,21 @@
       <flushOnExecute  statement="device_insert"/>
       <property name="CacheSize" value="100000"/>
     </cacheModel>
+    <cacheModel id="device_cache_lazy" implementation="LRU" readOnly="true" serialize="false">
+      <flushInterval minutes="10"/>
+      <flushOnExecute  statement="device_delete"/>
+      <flushOnExecute  statement="device_update"/>
+      <flushOnExecute  statement="device_update_currentpower"/>
+      <flushOnExecute  statement="device_update_status"/>
+      <flushOnExecute  statement="updateDevice"/>
+      <flushOnExecute  statement="device_insert"/>
+      <property name="CacheSize" value="100000"/>
+    </cacheModel>
   </cacheModels>
-  
+
   
   <statements>
-
-    <select id="device_get_plantunitid_lazy"  resultMap="DeviceResult" parameterClass="int" cacheModel="device_cache">
+    <select id="device_get_plantunitid_lazy"  resultMap="DeviceResult" parameterClass="int" cacheModel="device_cache_lazy">
       SELECT *  FROM  device WHERE plantunitId=#value# and (parentId is null or parentId=0)
     </select>
     
@@ -102,7 +111,7 @@
     </select>
     <!--插入设备-->
     <insert id="device_insert">
-      INSERT INTO device (deviceTypeCode,deviceModelCode,deviceAddress,collectorID,status,isHidden) VALUES(#deviceTypeCode#,#deviceModel.code#,#deviceAddress#,#collectorID#,#status#,#isHidden#)
+      INSERT INTO device (deviceTypeCode,deviceModelCode,deviceAddress,collectorID,status,isHidden,plantUnitId) VALUES(#deviceTypeCode#,#deviceModel.code#,#deviceAddress#,#collectorID#,#status#,#isHidden#,#plantUnitId#)
       <selectKey resultClass="int" property="id" type="post" >
         SELECT LAST_INSERT_ID() AS id
       </selectKey>

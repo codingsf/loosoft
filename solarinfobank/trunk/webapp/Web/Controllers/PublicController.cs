@@ -119,8 +119,8 @@ namespace Web.Controllers
 
         public ActionResult Solarinfobank_Android()
         {
-            string path = Server.MapPath("/app/SolarInfo bank_v1.0.apk");
-            return File(path, "apk File; charset=UTF-8", urlcode("SolarInfo bank_v1.0.apk"));
+            string path = Server.MapPath("/app/SolarInfo bank_v1.2.apk");
+            return File(path, "apk File; charset=UTF-8", urlcode("SolarInfo bank_v1.2.apk"));
         }
     }
 }

@@ -340,7 +340,7 @@
     id="curYYYYMMDD" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy-MM-dd")%>"
     id="curYYYYMMDD2" />
-<div class="subrbox01" style="width: 560px">
+<div class="subrbox01" style="width: 580px">
     <div class="bitab" style="background:url(../../images/sub/subico006-01.jpg) no-repeat;">
         <ul id="bitab">
             <li><a href="javascript:void(0);" id="chart"><%=Resources.SunResource.CHART_CHART %></a></li>
@@ -354,7 +354,7 @@
         </ul>
     </div>
     <!--class="sb_mid"-->
-    <div  style="width: 560px;">
+    <div  style="width: 580px;">
         <div class="">
             <!-- This contains the hidden content for inline calls -->
             <div style='display: none'>

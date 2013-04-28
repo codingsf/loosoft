@@ -8,13 +8,13 @@
         .otherNode{ margin-top:2px;}
        
     </style>
-    <script src="../../script/dtree1.js" type="text/javascript"></script>
+    <script src="../../script/dtree1.js?v=0427" type="text/javascript"></script>
 <script>
     function setPara(did,isunit,uid) {
         parent.loadRunData(did);
     }
 </script>
-    <link href="../../style/dtree1.css" rel="stylesheet" type="text/css" />
+    <link href="../../style/dtree1.css?v=0427" rel="stylesheet" type="text/css" />
 </head>
 <body>
 

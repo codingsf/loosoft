@@ -41,6 +41,7 @@
       <result property="refreshStartDate"			column="refreshstartdate"/>
       <result property="bigscreenEnable"			column="bigscreenenable"/>
       <result property="BigScreenLogoPath"			column="bigscreenlogo"/>
+      <result property="createDate"			column="createdate"/>
       <!--级联对象-->
       <result property="Language"		lazyLoad="true"	column="languageId" select="language_get_lazy" />
       <result property="userRole"   lazyLoad="true"	column="id"         select="get_user_role" />      
@@ -111,7 +112,7 @@
 
     <!-- 插入用户-->
     <insert id="user_insert" parameterClass="User">
-      insert into  userinfo(UserName,PassWord,Organize,Sex,FullName,Address,Postalcode,Email,City,Country,Tel,LanguageId,revenueRate,currencies,mobilePhone,faxPhone,temperatureType,firstname,lastname,ParentUserId,menuDisplayCount,overviewDisplayCount,sysname) VALUES(#username#,#password#,#organize#,#sex#,#fullname#,#address#,#postalcode#,#email#,#city#,#country#,#tel#,#languageId#,#revenueRate#,#currencies#,#mobilePhone#,#faxPhone#,#TemperatureType#,#FirstName#,#LastName#,#ParentUserId#,4,10,#sysName#)
+      insert into  userinfo(UserName,PassWord,Organize,Sex,FullName,Address,Postalcode,Email,City,Country,Tel,LanguageId,revenueRate,currencies,mobilePhone,faxPhone,temperatureType,firstname,lastname,ParentUserId,menuDisplayCount,overviewDisplayCount,sysname,createdate) VALUES(#username#,#password#,#organize#,#sex#,#fullname#,#address#,#postalcode#,#email#,#city#,#country#,#tel#,#languageId#,#revenueRate#,#currencies#,#mobilePhone#,#faxPhone#,#TemperatureType#,#FirstName#,#LastName#,#ParentUserId#,4,10,#sysName#,now())
       <selectKey resultClass="int" property="id" type="post" >
         SELECT LAST_INSERT_ID() AS id
       </selectKey>

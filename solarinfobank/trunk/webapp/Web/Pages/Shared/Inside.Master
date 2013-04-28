@@ -531,7 +531,7 @@
                                             <%} %>
                                             <li><a rel="treemenu" onclick="loadContent('content_ajax','/plant/devicedata/<%=Model.id%>','ajax','GET');setcurrent(this);return false;"
                                                 href="/plant/devicedata/<%=Model.id%>" title="<%=Resources.SunResource.DEVICE_DEVICE_RUN_DATA %>">
-                                                <%=Resources.SunResource.DEVICE_DEVICE_RUN_DATA%>
+                                                <%=Resources.SunResource.DEVICE_DEVICE_RUN_DATA%>(<%=this.Model.DeviceCount %>)
                                                  <%
                                                 if (Model.isDeviceFaultWithTime)
                                                 {

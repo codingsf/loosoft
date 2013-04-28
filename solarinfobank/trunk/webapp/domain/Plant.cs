@@ -1343,5 +1343,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
         public bool rateEnable { get; set; }        //是否启用比例系数
 
+        public DateTime createDate { get; set; }//电站创建时间
+
+        public int DeviceCount
+        {
+            get
+            {
+                return this.displayDevices().Count;
+            }
+        }
+
     }
 }

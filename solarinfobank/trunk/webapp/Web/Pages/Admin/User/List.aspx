@@ -60,10 +60,10 @@
                             <table width="100%" height="29" border="0" cellpadding="0" cellspacing="0" background="/images/am/am_bg03.jpg"
                                 style="border: 1px solid #DADADA; text-align: center; font-weight: bold;">
                                 <tr>
-                                    <td width="15%" align="center" class="lir">
+                                    <td width="5%" align="center" class="lir">
                                         编号
                                     </td>
-                                    <td width="40%" align="center" class="lir">
+                                    <td width="30%" align="center" class="lir">
                                         用户名
                                     </td>
                                     <td width="15%" align="center" class="lir">
@@ -71,6 +71,9 @@
                                     </td>
                                     <td width="15%" align="center" class="lir">
                                         性别
+                                    </td>
+                                      <td width="15%" align="center" class="lir">
+                                        创建时间
                                     </td>
                                     <td width="15%" align="center" class="lir">
                                         操作
@@ -88,10 +91,10 @@
                         <td>
                             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                                 <tr>
-                                    <td width="15%" align="center" class="am_line0<%=i%2 %>">
+                                    <td width="5%" align="center" class="am_line0<%=i%2 %>">
                                         <%=i %>
                                     </td>
-                                    <td width="40%" align="center" class="am_line0<%=i%2 %>">
+                                    <td width="30%" align="center" class="am_line0<%=i%2 %>">
                                         <%= user.username %>
                                     </td>
                                     <td width="15%" align="center" class="am_line0<%=i%2 %>">
@@ -100,6 +103,12 @@
                                     <td width="15%" align="center" class="am_line0<%=i%2 %>">
                                         <%=Html.Encode(user.sex == "1" ? "女" : "男")%>
                                     </td>
+                                    
+                                     <td width="15%" align="center" class="am_line0<%=i%2 %>">
+                                        <%=Html.Encode(user.createDate.ToString("yyyy/MM/dd"))%>
+                                    </td>
+                                    
+                                    
                                     <td width="15%" align="center" class="am_line0<%=i%2 %>">
                                         <%if (AuthService.isAllow("admin", "userdel"))
                                           { %>

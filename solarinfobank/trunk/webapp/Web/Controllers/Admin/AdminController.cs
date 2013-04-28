@@ -1596,6 +1596,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             rowData.Add("名称");
             rowData.Add("国家");
             rowData.Add("城市");
+            rowData.Add("创建时间");
 
             #region Excel列名
             foreach (string s in strArray)
@@ -1662,7 +1663,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                 rowData.Add(plant.name);
                 rowData.Add(plant.country);
                 rowData.Add(plant.city);
-
+                rowData.Add(plant.createDate.ToString("yyyy/MM/dd"));
                 foreach (string s in strArray)
                 {
                     switch (s)

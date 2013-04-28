@@ -48,7 +48,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         private string _firstName;
         private string _lastName;
         private int _parentUserId;  //创建者id
-
         /// <summary>
         /// auto_increment
         /// 编号  非空  主键自增
@@ -936,5 +935,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 return BigScreenLogoPath;
             }
         }
+
+
+        public DateTime createDate { get; set; }//创建时间
+
     }
 }

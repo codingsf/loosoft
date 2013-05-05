@@ -125,7 +125,7 @@
                                <%=data.factRate%>
                               </td>
                               <td width="100" align="center">
-                               <%=data.warndate.ToString("yyyy-MM-dd")%>
+                               <%=data.warndate%>
                               </td>                              
                               </tr>
                           </table>

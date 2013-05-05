@@ -35,6 +35,9 @@
             //autoreload();
         }
         function deviceChartInit() {
+            //没有设备不做处理
+            var did = ViewData["deviceID"];
+            if (did == null || did == "" || did == "null" || did == "undefined") return;
             loadContent('content_container_control', '/plant/devicedataoverview/<%=ViewData["plantID"] %>/<%=ViewData["deviceID"] %>/<%=ViewData["unitID"] %>', 'ajax', 'GET');
         }
 </script>

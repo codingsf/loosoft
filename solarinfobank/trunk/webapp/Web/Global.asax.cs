@@ -146,6 +146,11 @@ namespace Web
 
             //从后台维护数据表中设置错误码静态数据
             ErrorcodeService.GetInstance().setErrorStaticData();
+
+            //add by hbqian in 20130504 for 启动生成电站发电量告警表数据线程
+            EnergywarnProcesser dataProcess = new EnergywarnProcesser();
+            Thread m_thread = new Thread(new ThreadStart(dataProcess.Processing));
+            m_thread.Start();
         }
 
         protected void Application_Error(object sender, EventArgs e)

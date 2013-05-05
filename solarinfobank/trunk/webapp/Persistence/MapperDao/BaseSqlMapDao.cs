@@ -34,7 +34,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
         protected void ExecuteInsert<T>(string statementName, T parameterObject)
         {
             ISqlMapper sqlMap = GetLocalSqlMap();
-
             try
             {
                 sqlMap.Insert(statementName, parameterObject);

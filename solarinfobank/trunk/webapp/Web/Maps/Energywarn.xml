@@ -7,7 +7,6 @@
     <resultMap id="EnergywarnResult" class="Energywarn">
       <result property="id"			column="id"/>
       <result property="deviceId"			column="deviceId"/>
-      <result property="collectorId"			column="collectorId"/>
       <result property="averageValue"			column="averageValue"/>
       <result property="factValue"			column="factValue"/>
       <result property="upRate"			column="upRate"/>
@@ -28,16 +27,15 @@
 
   <statements>
     <insert id="energywarn_insert" parameterClass="Energywarn">
-      insert into energywarn(deviceId,collectorId,averageValue,factValue,upRate,downRate,factRate,warndate) values(#deviceId#,#collectorId#,#averageValue#,#factValue#,#upRate#,#downRate#,#factRate#,#warndate#)
+      insert into energywarn(deviceId,averageValue,factValue,upRate,downRate,factRate,warndate) values(#deviceId#,#averageValue#,#factValue#,#upRate#,#downRate#,#factRate#,#warndate#)
       <selectKey resultClass="int" property="id" type="post">
         select last_insert_id() as id
       </selectKey>
     </insert>
 
     <update id="energywarn_update" parameterClass="Energywarn">
-      update energywarn set collectorId=#collectorId# where id=#id#
+      update energywarn set averageValue=#averageValue#,factValue=#factValue#,upRate=#upRate#,downRate=#downRate#,factRate=#factRate# where id=#id#
     </update>
-    
     
     <delete id="energywarn_delete" parameterClass="Energywarn">
       delete from energywarn where id=#id#
@@ -48,7 +46,7 @@
     </select>
     
     <select id="energywarn_get_search" resultMap="EnergywarnResult" parameterClass="Hashtable">
-      <![CDATA[select * from energywarn where collectorId in (#collectorIds#) ]]>
+      <![CDATA[select * from energywarn where deviceId in (#deviceIds#) ]]>
       <dynamic prepend="">
         <isParameterPresent>
           <isNotEmpty prepend="and" property="startDate">
@@ -63,7 +61,7 @@
     </select>
     
     <select id="energywarn_get_search_count" resultClass="int" parameterClass="Hashtable">
-      <![CDATA[SELECT COUNT(1) FROM energywarn where collectorId in (#collectorIds#)]]>
+      <![CDATA[SELECT COUNT(1) FROM energywarn where deviceId in (#deviceIds#)]]>
       <dynamic prepend="">
         <isParameterPresent>
           <isNotEmpty prepend="and" property="startDate">
@@ -79,7 +77,10 @@
     <select id="energywarn_get" resultMap="EnergywarnResult">
       select * from energywarn where id=#id#
     </select>
-    
-    
+
+    <!--根据设备，天 取得设发电量告警-->
+    <select id="getbydeviceIdandwarndate" resultClass="Energywarn" parameterClass="Hashtable" >
+      <![CDATA[select *  from energywarn where deviceId=#deviceId# and warndate=#warndate#]]>
+    </select>
   </statements>
 </sqlMap>

@@ -696,8 +696,11 @@
                                             <li><a onclick="loadContent('content_ajax','/plant/compensation/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
                                                 href="/plant/compensation/<%=Model.id%>">
                                                 <%=Resources.SunResource.ENERGY_RATE%></a></li>
-                                            <%if (!AuthService.isAllow(AuthorizationCode.CREATE_CHART) && !UserUtil.isDemoUser)
-                                              { %>
+                                            <%
+                                            if (AuthService.isAllow(AuthorizationCode.CREATE_CHART) && !UserUtil.isDemoUser)
+                                              { 
+                                                
+                                                %>
                                             <li><a onclick="loadContent('content_ajax','/plant/includecustomcharts/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
                                                 href="/plant/includecustomcharts/<%=Model.id%>">
                                                 <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_DEFINED_CHART%></a></li>

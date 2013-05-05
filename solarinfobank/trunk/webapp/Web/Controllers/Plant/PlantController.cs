@@ -1994,15 +1994,15 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             table.Add("page", page);
             table.Add("startDate", startDate);
             table.Add("endDate", endDate);
-            string collectorIds = "";
-            foreach (PlantUnit pu in plant.plantUnits)
+            string deviceIds = "";
+            foreach (Device device in plant.displayDevices())
             {
-                collectorIds += "," + pu.collectorID;
+                deviceIds += "," + device.id;
             }
-            if (collectorIds.Length > 0) collectorIds = collectorIds.Substring(1);
-            table.Add("collectorIds", collectorIds);
+            if (deviceIds.Length > 0) deviceIds = deviceIds.Substring(1);
+            table.Add("deviceIds", deviceIds);
             IList<Energywarn> lists = new List<Energywarn>();
-            if (!collectorIds.Equals(""))
+            if (!deviceIds.Equals(""))
             {
                 lists = EnergywarnService.GetInstance().GetEnergywarnPage(table);
             }
@@ -2721,7 +2721,9 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
         {
             Plant plant = plantService.GetPlantInfoById(id);
             if (plant.energyRate.Equals(0.0))
-                plant.energyRate = 1;
+                plant.energyRate = 0.7;
+            if (plant.maxEnergyRate.Equals(0.0))
+                plant.maxEnergyRate = 1.3;
             return View(plant);
         }
 

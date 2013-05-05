@@ -21,15 +21,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
     /// </summary>
     public class EnergywarnProcesser
     {
+        protected static string bank_url = ConfigurationSettings.AppSettings["domain"];
         /// <summary>
         /// 生成设备发电量告警线程
         /// </summary>
         public void Processing()
         {
             while (1 == 1) {
-                EnergywarnService.GetInstance().GenerateEnergywarn();
-                Thread.Sleep(6 * 1000);//间隔一分钟
+                //有新设备要更新bank缓存
+                HttpClientUtil.requestUrl(bank_url + "/energywarn/gen");
+                Thread.Sleep(3 * 1000);//间隔一分钟
             }
         }
+
     }
 }

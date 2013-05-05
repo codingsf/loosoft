@@ -88,6 +88,24 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         {
             return this.GetWorkYears(new List<Plant>{plant});
         }
+       
+        /// <summary>
+        /// 取得电站其实有数据工作年度
+        /// </summary>
+        /// <param name="plant"></param>
+        /// <returns></returns>
+        public int GetSmalledtWorkYear(Plant plant)
+        {
+            IList<int> years = this.GetWorkYears(new List<Plant> { plant });
+            int smallestYear = DateTime.Now.Year;
+            if (years != null && years.Count() > 0) {
+                foreach (int year in years)
+                {
+                    if (year < smallestYear) smallestYear = year;
+                }
+            }
+            return smallestYear;
+        }
 
 
         /// <summary>

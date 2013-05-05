@@ -19,6 +19,7 @@ namespace Web
     public class MvcApplication : System.Web.HttpApplication
     {
         static string isDebug = ConfigurationSettings.AppSettings["isDebug"];
+        static string energywarn = ConfigurationSettings.AppSettings["energywarn"];
         static string wap = ConfigurationSettings.AppSettings["isWap"];
         string syndata = ConfigurationSettings.AppSettings["syndata"];//是否同步数据
         public static void RegisterRoutes(RouteCollection routes)
@@ -148,9 +149,12 @@ namespace Web
             ErrorcodeService.GetInstance().setErrorStaticData();
 
             //add by hbqian in 20130504 for 启动生成电站发电量告警表数据线程
-            EnergywarnProcesser dataProcess = new EnergywarnProcesser();
-            Thread m_thread = new Thread(new ThreadStart(dataProcess.Processing));
-            m_thread.Start();
+            if (energywarn != null && energywarn.Equals("true"))
+            {
+                EnergywarnProcesser dataProcess = new EnergywarnProcesser();
+                Thread m_thread = new Thread(new ThreadStart(dataProcess.Processing));
+                m_thread.Start();
+            }
         }
 
         protected void Application_Error(object sender, EventArgs e)

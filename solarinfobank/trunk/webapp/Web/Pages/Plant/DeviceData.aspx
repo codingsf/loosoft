@@ -9,6 +9,13 @@
     if(<%=ViewData["autoRefresh"] %>)
      chartInterval= setInterval("loaddeviceData()",<%=ViewData["refreshInterval"] %>);
     }
+    function iFrameHeight() {
+		var ifm= document.getElementById("mainFrame");   
+		var subWeb = document.frames ? document.frames["mainFrame"].document : ifm.contentDocument;  
+		if(ifm != null && subWeb != null) {
+		   ifm.height = subWeb.body.scrollHeight;
+		}   
+	}  
     //
     function loaddeviceData(){
     //显示图表 这里比较麻烦
@@ -36,7 +43,7 @@
         }
         function deviceChartInit() {
             //没有设备不做处理
-            var did = ViewData["deviceID"];
+            var did = <%=ViewData["deviceID"] %>;
             if (did == null || did == "" || did == "null" || did == "undefined") return;
             loadContent('content_container_control', '/plant/devicedataoverview/<%=ViewData["plantID"] %>/<%=ViewData["deviceID"] %>/<%=ViewData["unitID"] %>', 'ajax', 'GET');
         }
@@ -97,8 +104,7 @@
                         <div>
                         <!--左边设备导航-->
                         <div style="float:left;">            
-                            <iframe src="/plant/devicestructtree/<%=Model.id %>" width="200" scrolling="auto" frameborder="0"
-                                        height="650">
+                            <iframe src="/plant/devicestructtree/<%=Model.id %>" id="mainFrame" name="mainFrame" width="200" scrolling="auto" frameborder="0" height="650" onLoad="iFrameHeight()">
                             </iframe>
                         </div>
                         

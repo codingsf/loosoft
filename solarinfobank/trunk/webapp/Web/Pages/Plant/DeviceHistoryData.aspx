@@ -119,6 +119,14 @@
         var yyyyMMdd = $("#curYYYYMMDD").val();
         window.open("/DataDownLoad/DownLoadRundata?deviceId=" + curDeviceId + "&yyyyMMdd=" + yyyyMMdd + "&type=" + $("#type").val());
     }
+
+    function iFrameHeight() {
+        var ifm = document.getElementById("mainFrame");
+        var subWeb = document.frames ? document.frames["mainFrame"].document : ifm.contentDocument;
+        if (ifm != null && subWeb != null) {
+            ifm.height = subWeb.body.scrollHeight;
+        }
+    }  
      
 </script>
 
@@ -176,8 +184,8 @@
                                     <input type="hidden" id="dces" />
                                     <input type="text" style="width: 200px" id="devicename" value="<%=Resources.SunResource.UDEVICE_PAGE_SELECT_DEVICE%>" onfocus="javascript:if(this.value=='<%=Resources.SunResource.UDEVICE_PAGE_SELECT_DEVICE%>') this.value=''" />
                                     <div id="device_div" style="display: none; position: absolute; z-index: 999; border:solid 1px #ccc; background-color:#fff;  min-height:400px;">
-                                        <iframe id="iframe1" name="iframe1" src="/plant/inverterstructtree/<%=Model.id %>"
-                                            width="202" scrolling="auto" frameborder="0" style="min-height:400px"></iframe>
+                                        <iframe  id="mainFrame" name="mainFrame" src="/plant/inverterstructtree/<%=Model.id %>"
+                                            width="202" scrolling="auto" frameborder="0" style="min-height:400px" onLoad="iFrameHeight()"></iframe>
                                     </div>
                                 </td>
                                 <td width="30%" class="f_14">

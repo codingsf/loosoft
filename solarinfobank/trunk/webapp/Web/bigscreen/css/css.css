@@ -13,7 +13,6 @@ body{margin:0px;background:#ECF9FF url(../images/body_bg01.jpg) no-repeat; font-
 .pr10{background:#F6E773; font-size:15px; font-family:"微软雅黑"; line-height:31px; text-align:right; color:#E9690E; padding-right:5px; }
 .pl10{font-size:15px; font-family:"微软雅黑"; line-height:31px; text-align:left; padding-left:10px; }
 
-
 .rightbox{ width:568px; float:right; padding-top:70px;}
 .bt{margin:0px; list-style:none; padding:0px; display:block;}
 .bt li{ font-size:14px; float:left; display:block; width:160px; margin:6px 14px; font-family:"微软雅黑";white-space:nowrap;text-overflow:ellipsis;overflow: hidden;}

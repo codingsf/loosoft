@@ -230,6 +230,7 @@ dTree.prototype.o = function(id) {
     cn._io = !cn._io;
     if (this.config.closeSameLevel) this.closeLevel(cn);
     if (this.config.useCookies) this.updateCookie();
+    parent.iFrameHeight();
 };
 
 // Open or close all nodes

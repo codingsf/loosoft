@@ -7,12 +7,13 @@
 -->
     <script type="text/javascript">
         function readyinit() {
-            $('#DayChart').click(displayDayChart);
+            //$('#DayChart').click(displayDayChart);
             $('#MonthChart').click(displayMonthDDChart);
             $('#YearChart').click(displayyearMMChart);
             $('#TotalChart').click(displayyearChart);
             changeDay(document.getElementById("t"));
-            displayDayChart();
+            //displayDayChart();
+            displayMonthDDChart();
         }
         
         function displayDayChart() {
@@ -282,7 +283,9 @@
             <div class="sb_mid">
                 <div class="subico01">
                     <ul id="change">
+                        <!--
                         <li style="cursor: pointer;"><a id="DayChart" class="onclick"  href="javascript: void(0);"><%=Resources.SunResource.PLANT_OVERVIEW_DAY %></a></li>
+                        -->
                         <li style="cursor: pointer;"><a  id="MonthChart"  class="onclick" href="javascript:void(0);"><%=Resources.SunResource.PLANT_OVERVIEW_MONTH %></a></li>
                         <li style="cursor: pointer;"><a  id="YearChart" class="noclick" href="javascript:void(0);"><%=Resources.SunResource.PLANT_OVERVIEW_YEAR %></a></li>
                         <li style="cursor: pointer;"><a  id="TotalChart"  class="noclick" href="javascript:void(0);"><%=Resources.SunResource.PLANT_OVERVIEW_TOTAL %></a></li>

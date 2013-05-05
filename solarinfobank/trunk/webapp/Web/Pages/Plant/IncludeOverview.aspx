@@ -534,7 +534,9 @@
                             <td width="79%" class="kjli">
                                 <%=Resources.SunResource.PLANT_OVERVIEW_TEMPERATURE%><br />
                                 <span class="sz_fb" id="temperature">
-                                <%=ViewData["temp"]%><label id="temperaturetype">°<%=(Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser()).TemperatureType.ToUpper()%>
+                                <%=ViewData["temp"]%>
+                                </span>
+                                <label id="temperaturetype">°<%=(Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser()).TemperatureType.ToUpper()%>
                                </label>
                             </td>
                         </tr>

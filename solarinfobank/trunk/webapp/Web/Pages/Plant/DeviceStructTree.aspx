@@ -8,14 +8,14 @@
         .otherNode{ margin-top:2px;}
        
     </style>
-    <script src="../../script/dtree1.js" type="text/javascript"></script>
+    <script src="../../script/dtree1.js?v=130506" type="text/javascript"></script>
     <link href="../../style/dtree1.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <script>
     function setPara(_did, _isunit, _unitid) {
-    if(!_isunit)
-        parent.loadRunData(_did)
+        if (!_isunit)
+            parent.loadRunData(_did);
     }
 </script>
     <script type="text/javascript">

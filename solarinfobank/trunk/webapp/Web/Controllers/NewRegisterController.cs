@@ -210,7 +210,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             try
             {
                 //根据电站id和电站单元Id查询该电站是否有该单元
-                PlantUnit plantUnit = PlantUnitService.GetInstance().GetPlantUnitByPlantIdPlantUnitId(int.Parse(plantId), Convert.ToInt32(unitId));
+                PlantUnit plantUnit = PlantUnitService.GetInstance().GetPlantUnitByPlantIdCollectorId(int.Parse(plantId), Convert.ToInt32(unitId));
                 if (plantUnit == null)
                     return Content(false.ToString());
                 else
@@ -223,6 +223,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     else
                         collector.isUsed = false;
                     CollectorInfoService.GetInstance().Save(collector);
+                    //删除单元要将单元的物理设备的planunitid属性值null，即接触物理关系
+                    foreach (Device device in collector.devices)
+                    {
+                        if (device.plantUnitId != plantUnit.id) continue;//已有属主则不纳入该单元
+                        device.parentId = 0;
+                        device.plantUnitId = null;
+                        DeviceService.GetInstance().Save(device);
+                    }
                 }
             }
             catch (Exception e)
@@ -250,6 +258,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             ViewData["plantUnits"] = plantUnits;
             return View(plant);
         }
+
         /// <summary>
         /// 保存设备
         /// </summary>
@@ -281,9 +290,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     unit.collector.id = collector.id;
                     unit.collectorID = collector.id;
                     unit.collector = collector;
-                    PlantUnitService.GetInstance().AddPlantUnit(unit);//添加电站单元
+                    int plantUnitId = PlantUnitService.GetInstance().AddPlantUnit(unit);//添加电站单元
                     collector.isUsed = true;//如果采集器已经和单元绑定了就为已用状态
                     CollectorInfoService.GetInstance().Save(collector);
+                    //绑定采集器要更新没有plantunitid的设备的plantunitid parenid
+                    foreach (Device device in collector.devices)
+                    {
+                        if (device.plantUnitId > 0) continue;//已有属主则不纳入该单元
+                        device.parentId = 0;
+                        device.plantUnitId = plantUnitId;
+                        if (device.deviceModel == null) device.deviceModel = new DeviceModel();
+                        DeviceService.GetInstance().Save(device);
+                    }
                     return Content(true.ToString());
                 }
                 else

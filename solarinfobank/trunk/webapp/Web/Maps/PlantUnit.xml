@@ -50,7 +50,7 @@
   <statements>
     <!--根据电站id和单元id，删除该电站的单元 （张月）-->
     <delete id="plantunit_delete" parameterClass="Hashtable">
-      DELETE FROM plant_unit WHERE plantID=#plantID# and collectorID=#unitId#
+      DELETE FROM plant_unit WHERE plantID=#plantID# and collectorID=#collectorId#
     </delete>
     <!--根据电站id和单元id，删除该电站的单元 （张月）-->
     <delete id="plantunit_delete_by_plantid" parameterClass="int">
@@ -70,8 +70,8 @@
     </select>
       
     <!--根据电站Id和单元ID获取当前电站单元 （张月）-->
-    <select id="plantunit_get_list_by_plantid_plantunitid"  resultMap="plant_unit_result" parameterClass="Hashtable"  cacheModel="plantunit_cache">
-      select *  from  plant_unit where plantID=#plantID# and collectorID=#unitId#
+    <select id="plantunit_get_list_by_plantid_collectorid"  resultMap="plant_unit_result" parameterClass="Hashtable"  cacheModel="plantunit_cache">
+      select *  from  plant_unit where plantID=#plantID# and collectorID=#collectorId#
     </select>
     <!--根据单元ID获取当前电站单元 （张月）-->
     <select id="plantunit_get_by_collectorID"  resultMap="plant_unit_result" parameterClass="int" >

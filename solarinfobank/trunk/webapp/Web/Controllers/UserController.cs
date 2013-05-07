@@ -2112,45 +2112,50 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                         deviceNum++;
                     //}
                 }
-                double aveageEnergy = 0;
+                //double aveageEnergy = 0;
                 //有设备才计算平均值
                 //if (deviceNum > 0)
                 //{
                     //aveageEnergy = totalEnergy / deviceNum;
-               // }
+                //}
 
                 //电站平均kwp发电量
                 double avgRate = plant.design_power==0?1:totalEnergy / plant.design_power;
-                if (avgRate == 0) continue;
-                //获取每个设备的发电量比率
-                double rate = 0;
-                double bizhi = 1;
-                foreach (Device device in devices)
+                if (avgRate > 0)
                 {
-                    //if (device.isWork(plant.timezone))
-                    //{
+                    //获取每个设备的发电量比率
+                    double rate = 0;
+                    double bizhi = 1;
+                    foreach (Device device in devices)
+                    {
+                        //if (device.isWork(plant.timezone))
+                        //{
                         data = new Hashtable();
                         dmdd = DeviceMonthDayDataService.GetInstance().GetDeviceMonthDayData(year, device.id, month);
                         //rate = (dmdd.getDayData(day) - aveageEnergy) / aveageEnergy;
-                        rate = device.designPower==0?1:dmdd.getDayData(day) / device.designPower;
+                        rate = device.designPower == 0 ? 1 : dmdd.getDayData(day) / device.designPower;
 
-                        bizhi = avgRate==0?0:rate / avgRate;
-                        if (bizhi < plant.maxEnergyRate && bizhi>plant.energyRate) continue;
+                        bizhi = avgRate == 0 ? 0 : rate / avgRate;
+                        if (bizhi < plant.maxEnergyRate && bizhi > plant.energyRate) continue;
 
                         bizhi = Math.Round(bizhi, 2);
                         data["plantName"] = plant.name;
                         data["deviceName"] = device.fullName;
-                        data["energy"] = Math.Round(rate,2);//Math.Round(dmdd.getDayData(day), 2);
-                        data["average"] = Math.Round(avgRate,2);// Math.Round(aveageEnergy, 2);
-                        if (bizhi <plant.energyRate){
+                        data["energy"] = Math.Round(rate, 2);//Math.Round(dmdd.getDayData(day), 2);
+                        data["average"] = Math.Round(avgRate, 2);// Math.Round(aveageEnergy, 2);
+                        if (bizhi < plant.energyRate)
+                        {
                             data["rate"] = plant.energyRate;
                             data["prate"] = bizhi + "/" + plant.energyRate;
-                        }else{
+                        }
+                        else
+                        {
                             data["rate"] = plant.maxEnergyRate;
                             data["prate"] = bizhi + "/" + plant.maxEnergyRate;
                         }
                         datas.Add(data);
-                    //}
+                        //}
+                    }
                 }
             }
             ViewData["datas"] = datas;

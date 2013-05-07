@@ -54,7 +54,7 @@
       <dynamic prepend="">
         <isParameterPresent>
           <isEqual property="fromview" compareValue="False">
-            <![CDATA[SELECT COUNT(1) FROM fault  WHERE errorTypeCode IN ($fault.inforank$) AND SENDTIME >= #fault.sendTime# and SENDTIME < #endTime# AND collectorID in ($fault.collectorString$)  AND isConfirmed in ($fault.confirmed$) 　]]>
+            <![CDATA[SELECT COUNT(1) FROM fault WHERE errorTypeCode IN ($fault.inforank$) AND SENDTIME >= #fault.sendTime# and SENDTIME < #endTime# AND collectorID in ($fault.collectorString$)  AND isConfirmed in ($fault.confirmed$) 　]]>
           </isEqual>
           <isEqual property="fromview" compareValue="True">
             <![CDATA[SELECT COUNT(1) FROM fault_$fault.year$  WHERE errorTypeCode IN ($fault.inforank$) AND SENDTIME >= #fault.sendTime# and SENDTIME < #endTime# AND collectorID in ($fault.collectorString$)  AND isConfirmed in ($fault.confirmed$) 　]]>

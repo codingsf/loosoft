@@ -1160,6 +1160,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                         continue;
                     collector.isUsed = false;
                     collectorInfoservice.Update(collector);
+                    //删除单元要将单元的物理设备的planunitid属性值null，即接触物理关系
+                    foreach (Device device in collector.devices)
+                    {
+                        if (device.plantUnitId != item.id) continue;//已有属主则不纳入该单元
+                        device.parentId = 0;
+                        device.plantUnitId = null;
+                        DeviceService.GetInstance().Save(device);
+                    }
                 }
             plantService.Remove(id);
             return Content("删除成功");

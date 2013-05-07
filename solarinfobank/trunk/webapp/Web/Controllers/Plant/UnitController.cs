@@ -121,8 +121,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 for (int i = 0; i < s.Length; i++)
                 {
                     //根据电站id和电站单元Id查询该电站是否有该单元
-                    int plantUnitId = Convert.ToInt32(s[i]);
-                    PlantUnit plantUnit = plantUnitService.GetPlantUnitByPlantIdPlantUnitId(int.Parse(plantId), plantUnitId);
+                    int collectorId = Convert.ToInt32(s[i]);
+                    PlantUnit plantUnit = plantUnitService.GetPlantUnitByPlantIdCollectorId(int.Parse(plantId), collectorId);
                     if (plantUnit == null)
                         return RedirectToAction("list", "unit", new { @id = plantId });
                     else
@@ -130,7 +130,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                         Collector collector = plantUnit.collector;
                         IList<Device> devices = plantUnit.devices;
 
-                        int res = plantUnitService.DeletePlantUnit(int.Parse(plantId), plantUnitId);//根据电站Id和电站单元Id删除电站单元
+                        int res = plantUnitService.DeletePlantUnit(int.Parse(plantId), collectorId);//根据电站Id和电站单元Id删除电站单元
                         if (res > 0)//删除成功后将采集器的使用标识为false
                         {
                             collector.isUsed = false;
@@ -138,7 +138,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                             //删除单元要将单元的物理设备的planunitid属性值null，即接触物理关系
                             foreach (Device device in devices)
                             {
-                                if (device.plantUnitId != plantUnitId) continue;//已有属主则不纳入该单元
+                                if (device.plantUnitId != plantUnit.id) continue;//已有属主则不纳入该单元
                                 device.parentId = 0;
                                 device.plantUnitId = null;
                                 DeviceService.GetInstance().Save(device);
@@ -167,16 +167,16 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         {
             try
             {
-                int plantUnitId = Convert.ToInt32(unitId);
+                int collectorId = Convert.ToInt32(unitId);
                 //根据电站id和电站单元Id查询该电站是否有该单元
-                PlantUnit plantUnit = plantUnitService.GetPlantUnitByPlantIdPlantUnitId(int.Parse(plantId), plantUnitId);
+                PlantUnit plantUnit = plantUnitService.GetPlantUnitByPlantIdCollectorId(int.Parse(plantId), collectorId);
                 if (plantUnit == null)
                     return RedirectToAction("list", "unit", new { @id = plantId });
                 else
                 {
                     Collector collector = plantUnit.collector;
                     IList<Device> devices = plantUnit.devices;
-                    int res = plantUnitService.DeletePlantUnit(int.Parse(plantId), plantUnitId);//根据电站Id和电站单元Id删除电站单元
+                    int res = plantUnitService.DeletePlantUnit(int.Parse(plantId), collectorId);//根据电站Id和电站单元Id删除电站单元
                     if (res > 0)//删除成功后将采集器的使用标识为false
                     {
                         collector.isUsed = false;
@@ -184,7 +184,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                         //删除单元要将单元的物理设备的planunitid属性值null，即接触物理关系
                         foreach (Device device in devices)
                         {
-                            if (device.plantUnitId != plantUnitId) continue;//已有属主则不纳入该单元
+                            if (device.plantUnitId != plantUnit.id) continue;//已有属主则不纳入该单元
                             device.parentId = 0;
                             device.plantUnitId = null;
                             DeviceService.GetInstance().Save(device);

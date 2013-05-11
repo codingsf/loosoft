@@ -58,9 +58,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 else
                 {
                     string[] arr = mapValue.Split(':');
-                    if (arr[0].Equals(DateTime.Now.ToString("yyyyMMdd")))
+                    if (arr[0].Equals(DateTime.Now.ToString("yyyyMMddHH")))
                     {
-                        double t = 0;
+                        double t = double.NaN;
                         double.TryParse(arr[1], out t);
                         temperature = t;
                     }
@@ -102,7 +102,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 {
                     temperature = double.NaN;
                 }
-                plantTemp[city] = DateTime.Now.ToString("yyyyMMdd") + ":" + temperature;
+                plantTemp[city] = DateTime.Now.ToString("yyyyMMddHH") + ":" + temperature;
             }
             return temperature;
         }

@@ -47,10 +47,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             _faultDao.LoadingPageCount(page);
         }
 
-        public IList<Fault> GetPlantLoglist(Hashtable page)
+        public IList<Fault> GetPlantLoglist(Hashtable table)
         {
-            LoadingPageCount(page);
-            return _faultDao.Getlist(page);
+            if (!table.ContainsKey("fromview"))
+                table.Add("fromview", true);
+            else if (table["fromview"] == null)
+            {
+                table["fromview"] = true;
+            }
+
+            LoadingPageCount(table);
+            return _faultDao.Getlist(table);
         }
 
         /// <summary>
@@ -228,9 +235,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
 
         }
 
-        private void LoadingPageCount(Hashtable page)
+        private void LoadingPageCount(Hashtable table)
         {
-            _faultDao.LoadingPageCount(page);
+            if (!table.ContainsKey("fromview"))
+                table.Add("fromview", true);
+            else if (table["fromview"] == null)
+            {
+                table["fromview"] = true;
+            }
+            _faultDao.LoadingPageCount(table);
         }
 
         public void ConfirmRecord(string year, string collectors)
@@ -333,6 +346,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
 
         public IList<Fault> GetDeviceLogsPage(Hashtable table)
         {
+            if (!table.ContainsKey("fromview"))
+                table.Add("fromview", true);
+            else if (table["fromview"] == null)
+            {
+                table["fromview"] = true;
+            }
             return _faultDao.GetDeviceLogsPage(table);
         }
 

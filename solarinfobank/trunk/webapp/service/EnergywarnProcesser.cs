@@ -28,9 +28,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         public void Processing()
         {
             while (1 == 1) {
+                Thread.Sleep(10 * 60 * 1000);//间隔10分钟
                 //有新设备要更新bank缓存
                 HttpClientUtil.requestUrl(bank_url + "/energywarn/gen");
-                Thread.Sleep(3 * 1000);//间隔一分钟
+
             }
         }
 

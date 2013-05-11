@@ -25,13 +25,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
         /// 作者：张月
         /// </summary>
         /// <param name="plantId">电站Id</param>
-        /// <param name="plantUnitId">电站单元Id</param>
+        /// <param name="plantUnitId">采集器Id</param>
         /// <returns>成功与否</returns>
-        public int DeletePlantUnit(int plantId, int plantUnitId)
+        public int DeletePlantUnit(int plantId, int collectorId)
         {
             Hashtable table = new Hashtable();
             table.Add("plantID", plantId);
-            table.Add("unitId", plantUnitId);
+            table.Add("collectorId", collectorId);
             return ExecuteDelete("plantunit_delete", table);
         }
         /// <summary>
@@ -47,18 +47,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
             return ExecuteQueryForList<PlantUnit>("plantunit_get_list_by_plantid", plantID);
         }
         /// <summary>
-        /// 功能：根据电站Id和单元Id获取所有的电站单元
+        /// 功能：根据电站Id和采集器Id获取所有的电站单元
         /// 作者：张月
         /// </summary>
         /// <param name="plantID">电站Id</param>
-        /// <param name="plantUnitId">电站单元Id</param>
+        /// <param name="plantUnitId">采集器Id</param>
         /// <returns>集合</returns>
-        public PlantUnit GetPlantUnitByPlantIdPlantUnitId(int plantID, int plantUnitId)
+        public PlantUnit GetPlantUnitByPlantIdCollectorId(int plantID, int collectorId)
         {
             Hashtable table = new Hashtable();
             table.Add("plantID", plantID);
-            table.Add("unitId", plantUnitId);
-            return ExecuteQueryForObject<PlantUnit>("plantunit_get_list_by_plantid_plantunitid", table);
+            table.Add("collectorId", collectorId);
+            return ExecuteQueryForObject<PlantUnit>("plantunit_get_list_by_plantid_collectorid", table);
         }
         /// <summary>
         /// 功能：删除电站单元

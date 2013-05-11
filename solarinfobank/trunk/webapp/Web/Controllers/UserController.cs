@@ -2120,7 +2120,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 //}
 
                 //电站平均kwp发电量
-                double avgRate = plant.design_power==0?1:totalEnergy / plant.design_power;
+                double avgRate = plant.design_power==0?0:totalEnergy / plant.design_power;
                 if (avgRate > 0)
                 {
                     //获取每个设备的发电量比率
@@ -2133,7 +2133,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                         data = new Hashtable();
                         dmdd = DeviceMonthDayDataService.GetInstance().GetDeviceMonthDayData(year, device.id, month);
                         //rate = (dmdd.getDayData(day) - aveageEnergy) / aveageEnergy;
-                        rate = device.designPower == 0 ? 1 : dmdd.getDayData(day) / device.designPower;
+                        rate = device.designPower == 0 ? 0 : dmdd.getDayData(day) / device.designPower;
 
                         bizhi = avgRate == 0 ? 0 : rate / avgRate;
                         if (bizhi < plant.maxEnergyRate && bizhi > plant.energyRate) continue;

@@ -98,6 +98,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         {
             return _plantInfo.Update(plantInfo);
         }
+
         /// <summary>
         /// 功能：根据id删除电站
         /// 描述：把该电站下的电站单元删除，在删除该电站

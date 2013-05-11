@@ -21,13 +21,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.Interfaces
         /// <returns>集合</returns>
         IList<PlantUnit> GetAllPlantUnitsByPlantId(int plantID);
         /// <summary>
-        /// 功能：根据电站Id和单元Id获取所有的电站单元
+        /// 功能：根据电站Id和采集器Id获取所有的电站单元
         /// 作者：张月
         /// </summary>
         /// <param name="plantID">电站Id</param>
-        /// <param name="plantUnitId">电站单元Id</param>
+        /// <param name="plantUnitId">采集器Id</param>
         /// <returns>集合</returns>
-        PlantUnit GetPlantUnitByPlantIdPlantUnitId(int plantID, int plantUnitId);
+        PlantUnit GetPlantUnitByPlantIdCollectorId(int plantID, int collectorId);
         /// <summary>
         /// 功能：删除电站单元
         /// 描述：根据电站id和电站单元id删除电站单元

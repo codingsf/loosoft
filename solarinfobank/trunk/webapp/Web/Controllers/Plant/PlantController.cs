@@ -2432,9 +2432,17 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             Plant plant = PlantService.GetInstance().GetPlantInfoById(id);
             ViewData["plantID"] = plant.id;
             if (plant.plantUnits.Count > 0)
-                ViewData["unitID"] = plant.plantUnits[0].id;//第一个单元
-            if (plant.plantUnits[0].displayDevices.Count > 0)
-                ViewData["deviceID"] = plant.plantUnits[0].displayDevices.OrderByDescending(m=>m.deviceModelCode).ToList<Device>()[0].id;//第一个设备
+            {
+                foreach (PlantUnit pu in plant.plantUnits)
+                {
+                    if (pu.displayDevices.Count > 0)
+                    {
+                        ViewData["unitID"] = pu.id;//第一个单元
+                        ViewData["deviceID"] = pu.displayDevices.OrderByDescending(m => m.deviceModelCode).ToList<Device>()[0].id;//第一个设备
+                        break;
+                    }
+                }
+            }
             string startYM = (DateTime.Now.Year - 1) + "" + DateTime.Now.Month.ToString("00");
             string endYM = DateTime.Now.Year + "" + DateTime.Now.Month.ToString("00");
 
@@ -2737,6 +2745,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             plant.energyRate = rate;
             plant.maxEnergyRate = maxRate;
             plant.rateEnable = rateEnable;
+            plant.lastHandleDate = new DateTime(0002,1,1,0,0,1);
             plantService.UpdatePlantInfo(plant);
             return View("energyrate", plant);
         }

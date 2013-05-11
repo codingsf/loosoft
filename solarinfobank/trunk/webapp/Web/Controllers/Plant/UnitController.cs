@@ -182,6 +182,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                         collector.isUsed = false;
                         collectorInfoService.Save(collector);
                         //删除单元要将单元的物理设备的planunitid属性值null，即接触物理关系
+
                         foreach (Device device in devices)
                         {
                             if (device.plantUnitId != plantUnit.id) continue;//已有属主则不纳入该单元
@@ -246,9 +247,16 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     collector.isUsed = true;//如果采集器已经和单元绑定了就为已用状态
                     collectorInfoService.Save(collector);
                     //绑定采集器要更新没有plantunitid的设备的plantunitid parenid
+                    PlantUnit tmpPU = null;
                     foreach (Device device in collector.devices)
                     {
-                        if (device.plantUnitId > 0) continue;//已有属主则不纳入该单元
+                        //判断原有属主是否存在，如果不存在，并且不是自己
+                        if (device.plantUnitId != null && device.plantUnitId.Value > 0 && device.plantUnitId.Value != plantUnitId)
+                        {
+                            tmpPU = plantUnitService.GetPlantUnitById(device.plantUnitId.Value);//根据unitid去查询，判断是否存在
+                            if (tmpPU != null)//已有属主并且属主不是当前单元则不纳入该单元
+                                continue;
+                        }
                         device.parentId = 0;
                         device.plantUnitId = plantUnitId;
                         if (device.deviceModel == null) device.deviceModel = new DeviceModel();

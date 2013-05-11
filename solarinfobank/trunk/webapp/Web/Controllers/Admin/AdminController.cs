@@ -27,7 +27,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
         ManagerService managerService = ManagerService.GetInstance();
         ProductPictureService productPictureService = ProductPictureService.GetInstance();
         AdpicService adpicService = AdpicService.GetInstance();
-        PlantPortalUserService plantUserService = PlantPortalUserService.GetInstance();
+        PlantUserService plantUserService = PlantUserService.GetInstance();
         UserService userService = UserService.GetInstance();
         PlantService plantService = PlantService.GetInstance();
         [IsLoginAttributeAdmin]
@@ -941,15 +941,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
         {
             Plant plantInfo = plantService.GetPlantInfoById(id);
             User user = userService.GetUserByName(UserUtil.demousername);
-            PlantPortalUser plantPortalUser = new PlantPortalUser();
-            plantPortalUser.userID = user.id;
-            plantPortalUser.plantID = id;
-            PlantPortalUser plant = plantUserService.GetPlantUserByPlantIDUserID(plantPortalUser);//判断电站是否是示例电站
-            if (plant == null)
+            PlantUser plantUser = new PlantUser();
+            plantUser.userID = user.id;
+            plantUser.plantID = id;
+            plantUser.roleId = Cn.Loosoft.Zhisou.SunPower.Domain.Role.ROLE_LOOKER;
+            plantUser.shared = true;
+            PlantUser tmpPlantUser = plantUserService.GetPlantUserByPlantIDUserID(plantUser);
+            plantInfo.example_plant = true;//将电站标记为示例电站
+            plantService.UpdatePlantInfo(plantInfo);
+            //关系不存在，则建立关系
+            if (tmpPlantUser == null)
             {
-                plantInfo.example_plant = true;//将电站标记为示例电站
-                plantService.UpdatePlantInfo(plantInfo);
-                plantUserService.AddPlantPortalUser(plantPortalUser);
+                plantUserService.AddPlantUser(plantUser);
             }
             else
                 ViewData["error"] = "This plant is exampleplant!";
@@ -965,9 +968,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
         {
             Plant plantInfo = plantService.GetPlantInfoById(id);
             User user = userService.GetUserByName(UserUtil.demousername);
-            PlantPortalUser plantUser = new PlantPortalUser();
-            plantUser.userID = user.id;
-            plantUser.plantID = id;
             plantInfo.example_plant = false;
             plantService.UpdatePlantInfo(plantInfo);
             plantUserService.ClosePlant(id, user.id);

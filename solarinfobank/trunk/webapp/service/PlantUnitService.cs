@@ -84,13 +84,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <param name="plantId">电站Id</param>
         /// <param name="plantUnitId">电站单元Id</param>
         /// <returns>成功与否</returns>
-        public int DeletePlantUnit(int plantId, int plantUnitId)
+        public int DeletePlantUnit(int plantId, int collectorId)
         {
             //先清理缓存,以便解析器能获取新的对应关系
             string cacheKey = CacheKeyUtil.buildPlantUnitKey();
             MemcachedClientSatat.getInstance().Delete(cacheKey);
 
-            int res =  _plantUnit.DeletePlantUnit(plantId, plantUnitId);
+            int res = _plantUnit.DeletePlantUnit(plantId, collectorId);
             return res;
         }
 
@@ -99,11 +99,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// 作者：张月
         /// </summary>
         /// <param name="plantID">电站Id</param>
-        /// <param name="plantUnitId">电站单元Id</param>
+        /// <param name="plantUnitId">采集器Id</param>
         /// <returns>集合</returns>
-        public PlantUnit GetPlantUnitByPlantIdPlantUnitId(int plantID, int plantUnitId)
+        public PlantUnit GetPlantUnitByPlantIdCollectorId(int plantID, int collectorId)
         {
-            return _plantUnit.GetPlantUnitByPlantIdPlantUnitId(plantID, plantUnitId);
+            return _plantUnit.GetPlantUnitByPlantIdCollectorId(plantID, collectorId);
         }
 
         /// <summary>

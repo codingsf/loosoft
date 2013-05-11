@@ -46,33 +46,37 @@
         }
 
         function dayChart(curContainer, ajaxImgTop, isLarge) {
-           
-            changeStyle("DayChart");
-            $.ajax({
-                type: "POST",
-                url: "/plantchart/UserPEnergyChart",
-                data: {userId: <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().id%>, startYYYYMMDDHH: $("#startYYYYMMDDHH").val(), endYYYYMMDDHH: $("#endYYYYMMDDHH").val(), chartType: $("#chartType").val(), intervalMins: $("#intervalMins").val() },
-                success: function(result) {
-                    if (appendChartError(curContainer, result, ajaxImgTop)) {
-                        return;
+            if(1>1){
+                changeStyle("DayChart");
+                $.ajax({
+                    type: "POST",
+                    url: "/plantchart/UserPEnergyChart",
+                    data: {userId: <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().id%>, startYYYYMMDDHH: $("#startYYYYMMDDHH").val(), endYYYYMMDDHH: $("#endYYYYMMDDHH").val(), chartType: $("#chartType").val(), intervalMins: $("#intervalMins").val() },
+                    success: function(result) {
+                        if (appendChartError(curContainer, result, ajaxImgTop)) {
+                            return;
+                        }
+                        var data = eval('(' + result + ')')
+                        setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#startYYYYMMDDHH").val().substring(0,8),data.name);
+                        setyAxis(data);
+                        setySeriesArr(data.series);
+                        var intervalMins = $("#intervalMins").val();
+                        var interval = isLarge ? 60 / 60 : 120 / 60;
+                        setCategoriesWithInterval(data.categories, isLarge, interval);
+                        defineChart(curContainer);
+                        //修改标题
+                        showDetails(result,$("#startYYYYMMDDHH").val());
+                        chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
+                    },
+                    beforeSend: function() {
+                        $('#' + curContainer).empty();
+                        $('#' + curContainer).append("<center><img src=\"../../Images/ajax_loading.gif\" style=\"margin-top: " + ajaxImgTop + "px;\" /></center>");
                     }
-                    var data = eval('(' + result + ')')
-                    setExportChart('<%=Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port %>/DataExport/ExportChart', data.serieNo, $("#startYYYYMMDDHH").val().substring(0,8),data.name);
-                    setyAxis(data);
-                    setySeriesArr(data.series);
-                    var intervalMins = $("#intervalMins").val();
-                    var interval = isLarge ? 60 / 60 : 120 / 60;
-                    setCategoriesWithInterval(data.categories, isLarge, interval);
-                    defineChart(curContainer);
-                    //修改标题
-                    showDetails(result,$("#startYYYYMMDDHH").val());
-                    chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
-                },
-                beforeSend: function() {
-                    $('#' + curContainer).empty();
-                    $('#' + curContainer).append("<center><img src=\"../../Images/ajax_loading.gif\" style=\"margin-top: " + ajaxImgTop + "px;\" /></center>");
-                }
-            });
+                });
+            }else{
+                return;
+            }
+            
         }
 
         var curChart;

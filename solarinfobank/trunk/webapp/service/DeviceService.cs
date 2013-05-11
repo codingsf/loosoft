@@ -73,6 +73,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             }
             if (device.id > 0)
             {
+                //确保设备类型不会被冲掉
+                if (device.deviceModelCode > 0 && device.deviceModel.code == 0) {
+                    device.deviceModel.code = device.deviceModelCode;
+                }
                 return _deviceDao.Update(device);
             }
             else{

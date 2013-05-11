@@ -46,7 +46,7 @@
     </select>
     
     <select id="energywarn_get_search" resultMap="EnergywarnResult" parameterClass="Hashtable">
-      <![CDATA[select * from energywarn where deviceId in (#deviceIds#) ]]>
+      <![CDATA[select * from energywarn where deviceId in ($deviceIds$) ]]>
       <dynamic prepend="">
         <isParameterPresent>
           <isNotEmpty prepend="and" property="startDate">
@@ -57,11 +57,11 @@
            </isNotEmpty>
         </isParameterPresent>
       </dynamic>
-      <![CDATA[ limit $page.Start$,$page.End$ ]]>
+      <![CDATA[ order by warndate asc limit $page.Start$,$page.End$ ]]>
     </select>
     
     <select id="energywarn_get_search_count" resultClass="int" parameterClass="Hashtable">
-      <![CDATA[SELECT COUNT(1) FROM energywarn where deviceId in (#deviceIds#)]]>
+      <![CDATA[SELECT COUNT(1) FROM energywarn where deviceId in ($deviceIds$)]]>
       <dynamic prepend="">
         <isParameterPresent>
           <isNotEmpty prepend="and" property="startDate">

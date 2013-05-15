@@ -20,7 +20,6 @@ using namespace std;
 int TCPServer::iSendConn=GetPrivateProfileInt("Server","SendConn",1,"./config.ini");
 int TCPServer::m_iRestartInterval=GetPrivateProfileInt("Server","RestartInterval",0,"./config.ini");
 bool TCPServer::m_bIsExit = true;
-
 /// <summary>
 /// 检测心跳数据
 /// </summary>
@@ -90,7 +89,7 @@ DWORD WINAPI TCPServer_KeepLiveThread(LPVOID param)
 		}
 
 		char strTemp[MAX_PATH];
-		sprintf(strTemp,"RecvServer V2.0.1  --- Online:[%d/%d],Recv:[%d],Process:[%d]",m_count,pSvr->G_OnlineClient.size(),pSvr->dwRecvPackets,pSvr->dataManage.dwSeqPackets);
+		sprintf(strTemp,"RecvServer V2.1.0  --- Online:[%d/%d],Recv:[%d],Process:[%d]",m_count,pSvr->G_OnlineClient.size(),pSvr->dwRecvPackets,pSvr->dataManage.dwSeqPackets);
 		SetConsoleTitle(strTemp);
 
 		pSvr->m_csOnlineClient.Leave();
@@ -415,7 +414,7 @@ DWORD WINAPI ScanDataBaseThread(LPVOID param)
 			GetPrivateProfileString("MySQL","User","",mysqlConnectParam.strUser,50,"./config.ini");
 			GetPrivateProfileString("MySQL","Pass","",mysqlConnectParam.strPass,50,"./config.ini");
 			GetPrivateProfileString("MySQL","DBName","",mysqlConnectParam.strDB,50,"./config.ini");
-			cout << "*** dbname...\n" << mysqlConnectParam.strDB << endl;
+			//cout << "*** dbname...\n" << mysqlConnectParam.strDB << endl;
 			conn.SetDBServer(mysqlConnectParam.strIp);
 			conn.SetDBName(mysqlConnectParam.strDB);
 			conn.SetDBUser(mysqlConnectParam.strUser);
@@ -445,7 +444,7 @@ DWORD WINAPI ScanDataBaseThread(LPVOID param)
 					pDlg->m_csmapDebugDevice.Leave();
 				}
 			}
-			cout << "***关闭记录集和连接...\n" << mysqlConnectParam.strDB << endl;
+			//cout << "***关闭记录集和连接...\n" << mysqlConnectParam.strDB << endl;
 			//关闭记录集和连接
 			conn.~MyConnection();
 		}

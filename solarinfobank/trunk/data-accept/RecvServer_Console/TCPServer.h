@@ -65,6 +65,7 @@ public:
 	void DealNewProtocol(TCP_DATA * pTCPData, CUserSession * pSession);		//处理新协议的数据
 public:	
 	static int iSendConn;	//是否在接收请求时发送握手响应。以兼容老版本协议
+	static char memcachedStr[50];//memcached address
 	//END:add by bloodhunter for new protocol at 2012-3-23
 
 	// BEGIN:Add by bloodhunter at 2012/10/21 for 代码整改

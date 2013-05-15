@@ -10,12 +10,16 @@ FileName:CriticalSection.h
 #include "DataManage.h"
 #include "DLLLoader.h"
 #include "TCPServer.h"
+#using "MemcachedClient.dll"
+using namespace CSLib;
 extern DLLLoader dllLoader;
-
+char memcachedStr2[50];
 DataManage::DataManage(void)
 {
+	GetPrivateProfileString("Memcached","Host","127.0.0.1:11211",memcachedStr2,50,"./config.ini");
 	dwSeqPackets=0;
 	CreateThread(NULL,0,SaveToMemThread,this,NULL,NULL);
+
 }
 
 DataManage::~DataManage(void)
@@ -119,18 +123,28 @@ DWORD WINAPI SaveToDBThread(LPVOID param)
 
 		//cout << "KEY:" << strID.GetBuffer(0) << ",Content:" << strContent.GetBuffer(0) << endl;
 
-		int dwRet=dllLoader.pSend2MC(strID.GetBuffer(0),strContent.GetBuffer(0));
-		if (dwRet<0)
+		//废弃by hbqian in 20130408 for 改调用c#的memcached客户端dll实现放入memcached
+		//int dwRet=dllLoader.pSend2MC(strID.GetBuffer(0),strContent.GetBuffer(0));
+		System::String ^memcached = gcnew System::String(memcachedStr2);
+		MemcachedCSClient ^c = gcnew MemcachedCSClient(memcached);
+		System::String ^csstrID = gcnew System::String(strID);
+		System::String ^csstrContent = gcnew System::String(strContent);
+		bool isSuccess = c->Set(csstrID,csstrContent);
+		//if (dwRet<0)
+		if(!isSuccess)
 		{
-			cout << "KEY:[" << strID.GetBuffer(0) << "],Error Code:" << dwRet << ",check Memcached Server!" << endl;
+			cout << "KEY:[" << strID.GetBuffer(0) << "],Error Code:" << isSuccess << ",check Memcached Server!" << endl;
 		}else{//add by hbqian for 设置最后一次成功处理数据的时间到memached，以便检测程序能判断接收程序的运行状态
+			cout << "KEY:[" << strID.GetBuffer(0) << "]:" << isSuccess << ",input to Memcached Server success!" << endl;
 			CString strID1="accept_run_lasttime"; //最后正确接收数据的时间
 			CString strContent1=CTime::GetCurrentTime().Format("%Y-%m-%d %H:%M:%S");
-			int dwRet=dllLoader.pSend2MC(strID1.GetBuffer(0),strContent1.GetBuffer(0));
+			//int dwRet=dllLoader.pSend2MC(strID1.GetBuffer(0),strContent1.GetBuffer(0));
+			System::String ^csstrID = gcnew System::String(strID1);
+			System::String ^csstrContent = gcnew System::String(strContent1);
+			bool isSuccess = c->Set(csstrID,csstrContent);
 			strID1.ReleaseBuffer();
 			strContent1.ReleaseBuffer();
 		}
-
 
 		strID.ReleaseBuffer();
 		strContent.ReleaseBuffer();
@@ -264,6 +278,7 @@ DWORD WINAPI SaveToMemThread(LPVOID param)
 			// END:Add by bloodhunter at 2012/10/21
 			continue;
 		}
+
 		//放入MemCached Server 作为缓存
 		CString strContent("");
 		if(pTCPData->isHex)
@@ -283,14 +298,28 @@ DWORD WINAPI SaveToMemThread(LPVOID param)
 
 		CString strID("");
 		strID.Format("%s", pTCPData->key);
-
+		//modify by hbqian in 20130421 for用c#memcached client dll代替c++ memcached 客户端
 		//int dwRet=dllLoader.pSend2MC(strID.GetBuffer(0),strContent.GetBuffer(0));
 		//strID.ReleaseBuffer();
 		//strContent.ReleaseBuffer();
-		int dwRet=dllLoader.pSend2MC((LPTSTR)(LPCTSTR)strID, (LPTSTR)(LPCTSTR)strContent);
-		if (dwRet < 0)
+		//int dwRet=dllLoader.pSend2MC((LPTSTR)(LPCTSTR)strID, (LPTSTR)(LPCTSTR)strContent);
+		//cout << "memached SaveToMemThread Error Code:1" << endl;
+		System::String ^memcached = gcnew System::String(memcachedStr2);
+		MemcachedCSClient ^c = gcnew MemcachedCSClient(memcached);
+		System::String ^csstrID = gcnew System::String(strID);
+		System::String ^csstrContent = gcnew System::String(strContent);
+		//cout << "memached SaveToMemThread Error Code:2" << endl;
+		bool isSuccess = false;
+		try{
+			isSuccess = c->Set(csstrID,csstrContent);
+		}catch(Exception& e){
+			cout << "*** memached SaveToMemThread Error Failed...\n" << e.Message() << endl;
+		}
+		//cout << "memached SaveToMemThread Error Code:3" << endl;
+		//if (dwRet < 0)
+		if(!isSuccess)
 		{
-			cout << "KEY:[" << (LPTSTR)(LPCTSTR)strID<< "],Error Code:" << dwRet << ",conent:" << (LPTSTR)(LPCTSTR)strContent << ",check Memcached Server!" << endl;
+			cout << "KEY:[" << (LPTSTR)(LPCTSTR)strID<< "],Error Code:" << isSuccess << ",conent:" << (LPTSTR)(LPCTSTR)strContent << ",check Memcached Server!" << endl;
 			//写插入memcached错误的数据log
 			SENDMEMFAILEDLOG(strID, strContent, true);
 			issucess = false;
@@ -299,7 +328,7 @@ DWORD WINAPI SaveToMemThread(LPVOID param)
 		{
 			//此处记载日志，写入memcache的内容
 			SENDMEMLOG(strID, strContent, true);
-			cout << "KEY:[" << (LPTSTR)(LPCTSTR)strID<< "]:" << dwRet << ",input to Memcached Server success!" << endl;
+			cout << "KEY:[" << (LPTSTR)(LPCTSTR)strID<< "]:" << isSuccess << ",input to Memcached Server success!" << endl;
 			issucess = true;
 #if 0//此处不再需要，保留
 			CString memkeyList_key;
@@ -327,7 +356,7 @@ DWORD WINAPI SaveToMemThread(LPVOID param)
 			}
 #endif
 		}
-
+		//add by bloodhunter at 2013/04/06 for 插入memcached失败后，重新放入队列里面以便后面能继续插入memcached
 		if (issucess)
 		{
 			//释放资源
@@ -346,18 +375,21 @@ DWORD WINAPI SaveToMemThread(LPVOID param)
 				delete pTCPData;
 	 			pTCPData = NULL;
 			}
+
+			pDlg->dwSeqPackets++;
 		}
 		else
 		{
 			//插入失败，追加到队列尾部
 			pDlg->AddToMemBuf(pTCPData);
 		}
+
 		// BEGIN:Delete by bloodhunter at 2012/10/21 for 代码整改
 		// [修改说明]:从代码结尾处转移，以减少锁冲突的概率，从而提高程序的性能
 		//pDlg->m_csMap.Leave();
 		// END:Delete by bloodhunter at 2012/10/21 for 代码整改
 		//Sleep(50);
-		pDlg->dwSeqPackets++;
+
 	}
 	return 0L;
 }

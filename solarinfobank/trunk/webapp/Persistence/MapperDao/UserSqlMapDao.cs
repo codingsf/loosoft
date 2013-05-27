@@ -135,5 +135,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
         }
 
         #endregion
+
+        #region IUserDao 成员
+
+
+        public IList<User> GetUsersByPage(Hashtable para)
+        {
+            Pager page = para["page"] as Pager;
+            page.RecordCount = (int)ExecuteQueryForObject("loading_users_page_count", para);
+            return ExecuteQueryForList<User>("loading_users_page_list", para);
+        }
+
+        #endregion
     }
 }

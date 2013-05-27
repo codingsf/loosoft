@@ -1345,6 +1345,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
         public DateTime createDate { get; set; }//电站创建时间
 
+        public double TodayEnergy { get; set; }//当日发电量 持久化
+
+        public double TtlEnergy { get; set; }//总发电量  持久化
+
+        public bool BindCollector { get; set; }//是否已接入数据采集器 持久化
+
         public int DeviceCount
         {
             get

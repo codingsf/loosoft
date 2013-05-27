@@ -38,6 +38,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.Interfaces
         User GerUserbyUserName(string username, string uname);
 
         IList<User> GetUsersByPage(Pager page);
+        
+        IList<User> GetUsersByPage(Hashtable para);
 
         int UpdatePassword(long uid, string password);
 

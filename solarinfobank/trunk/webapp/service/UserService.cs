@@ -126,6 +126,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             return _userDao.GerUserbyUserName(username, uname);
         }
 
+        public IList<User> GetUsersByPage(Hashtable para)
+        {
+            return _userDao.GetUsersByPage(para);
+        } 
+
         public IList<User> GetUsersByPage(Pager page)
         {
             return _userDao.GetUsersByPage(page);

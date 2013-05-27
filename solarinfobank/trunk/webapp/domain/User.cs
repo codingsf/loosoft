@@ -939,5 +939,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
 
         public DateTime createDate { get; set; }//创建时间
 
+        public string HasPlantsStr
+        {
+            get
+            {
+                return this.HasPlants ? "是" : "否";
+            }
+        }
+
+        public bool HasPlants { get; set; }//是否注册电站  持久化
+
+
+        public int FullscreenChartDays { get; set; }//全屏图表显示天数
     }
 }

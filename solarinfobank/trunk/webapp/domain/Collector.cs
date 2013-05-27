@@ -137,6 +137,19 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         public string Key { get; set; }
+
+        public int DeviceCount
+        {
+            get
+            {
+                return this.devices.Count;
+            }
+            
+        }
+
+        public DateTime BindDate { get; set; }//绑定时间
+
+        public bool Binded { get; set; }//是否绑定
     }
 }
 

@@ -210,15 +210,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
 
         public IList<Collector> GetCollectorsByPage(Hashtable hashPara)
         {
-            if (hashPara["sd"] == null)
-            {
-                hashPara["sd"] = DateTime.Now.AddYears(-5).ToString("yyyy-MM-dd");
-            }
-            if (hashPara["ed"] == null)
-            {
-                hashPara["ed"] = DateTime.Now.ToString("yyyy-MM-dd");
-            }
-            hashPara["ed"] = DateTime.Parse(hashPara["ed"].ToString()).AddDays(1).ToString("yyyy-MM-dd");
+            //if (hashPara["sd"] == null)
+            //{
+            //    hashPara["sd"] = DateTime.Now.AddYears(-5).ToString("yyyy-MM-dd");
+            //}
+            //if (hashPara["ed"] == null)
+            //{
+            //    hashPara["ed"] = DateTime.Now.ToString("yyyy-MM-dd");
+            //}
+            //hashPara["ed"] = DateTime.Parse(hashPara["ed"].ToString()).AddDays(1).ToString("yyyy-MM-dd");
             return _stationInfoDao.GetCollectorsByPage(hashPara);
         }
 

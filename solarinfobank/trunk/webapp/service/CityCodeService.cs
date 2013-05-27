@@ -15,8 +15,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         private const string URL = "http://weather.yahooapis.com/forecastrss?w={0}&u=c";
 
         private static CityCodeService _instance;
-        private static IList<CountryCity> codes = new List<CountryCity>();
-        private static IDictionary<string, string> plantTemp = new Dictionary<string, string>();
+        public static IList<CountryCity> codes = new List<CountryCity>();
+        public static IDictionary<string, string> plantTemp = new Dictionary<string, string>();
 
         static CityCodeService()
         {
@@ -61,7 +61,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     if (arr[0].Equals(DateTime.Now.ToString("yyyyMMddHH")))
                     {
                         double t = double.NaN;
-                        double.TryParse(arr[1], out t);
+                        if(!"NaN".Equals(arr[1]))
+                            double.TryParse(arr[1], out t);
                         temperature = t;
                     }
                     else
@@ -83,8 +84,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     {
                         if (code.name.Equals(city))
                         {
-                            string temp = LoadingHtml(string.Format(URL, code.weather_code));
-                            temp = Regex.Match(temp, "<yweather:condition  text=\".*?\"  code=\".*?\"  temp=\"(\\d+)\"  date=\".*?\" />").Groups[1].Value;
+                            string temp = "";
+                            if (!string.IsNullOrEmpty(code.weather_code))
+                            {
+                                temp = LoadingHtml(string.Format(URL, code.weather_code));
+                                temp = Regex.Match(temp, "<yweather:condition  text=\".*?\"  code=\".*?\"  temp=\"(\\d+)\"  date=\".*?\" />").Groups[1].Value;
+                            }
                             if (string.IsNullOrEmpty(temp))
                             {
                                 temperature = double.NaN;
@@ -102,7 +107,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 {
                     temperature = double.NaN;
                 }
-                plantTemp[city] = DateTime.Now.ToString("yyyyMMddHH") + ":" + temperature;
+                if (double.IsNaN(temperature))
+                {
+                    plantTemp[city] = DateTime.Now.ToString("yyyyMMddHH") + ":NaN";
+                }
+                else {
+                    plantTemp[city] = DateTime.Now.ToString("yyyyMMddHH") + ":" + temperature;
+                }
             }
             return temperature;
         }

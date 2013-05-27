@@ -398,6 +398,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
 
             plantService.UpdatePlantInfo(plant);
+
+            //add by hbqian in 201305012 for修改城市后天气服务的静态城市列表能重新生效
+            CityCodeService.codes = CountryCityService.GetInstance().GetCities();
+            //重新取天气
+            if (!string.IsNullOrEmpty(plant.city))
+            {
+                if (CityCodeService.plantTemp.ContainsKey(plant.city))
+                {
+                    CityCodeService.plantTemp.Remove(plant.city);
+                }
+            }
             UserUtil.ResetLogin(UserUtil.getCurUser());
             return RedirectToAction("profile", "plant", new { @id = plant.id });
         }

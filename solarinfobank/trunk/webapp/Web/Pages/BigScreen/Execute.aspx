@@ -2,7 +2,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
     <title><%=Resources.SunResource.BIG_SCREEN_MENU%></title>
 
     <script src="/script/jquery-1.3.2.min.js" type="text/javascript"></script>
@@ -114,11 +114,15 @@
             $("#" + curContainer.replace("_0", "_1 label[id='name']")).html(obj.plantName);
             $("#" + curContainer.replace("_0", "_2 label[id='name']")).html(obj.plantName);
             $("#" + curContainer.replace("_0", "_3 label[id='name']")).html(obj.plantName);
-            
-            if(checkimgexists(obj.imageArray))
-                $("#" + curContainer + " img[id='imageurl']").attr("src", obj.imageArray);
-            else
-                $("#" + curContainer + " img[id='imageurl']").attr("src", '/bigscreen/images/plant_img.jpg');
+            var imgObj = new Image();
+            imgObj.src = obj.imageArray;
+            imgObj.onload = function() {
+                if (imgObj.width > 0 && obj.imageArray.indexOf("nopic/nopico02")<1)
+                    $("#" + curContainer + " img[id='imageurl']").attr("src", obj.imageArray);
+                else
+                    $("#" + curContainer + " img[id='imageurl']").attr("src", '/bigscreen/images/plant_img.jpg');
+            }
+
             $("#" + curContainer + " label[id='installdate']").html(obj.installDate);
             $("#" + curContainer + " label[id='designpower']").html(obj.DesignPower);
             $("#" + curContainer + " label[id='location']").html(obj.Country + " " + obj.City);
@@ -138,6 +142,8 @@
             $("#" + curContainer + " label[id='temprature']").html(obj.temprature);
             $("#" + curContainer + " label[id='tempratureunit']").html(obj.tempratureUnit);
         }
+
+
 
         //月日图表
         function monthChart(curContainer, ajaxImgTop, isLarge, result) {
@@ -179,9 +185,10 @@
             //修改标题
             chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
         }
-
+        
+        //此函数存在图片加载不完全就无法争取取得其宽和高属性，所以判断不稳定
         function checkimgexists(imgurl) {
-            var ImgObj = new Image(); 
+            var ImgObj = new Image();
             ImgObj.src = imgurl;
             if (ImgObj.fileSize > 0 || (ImgObj.width > 0 && ImgObj.height > 0)) {
                 return true;
@@ -191,11 +198,15 @@
         }
 
         $().ready(function() {
-            if (checkimgexists(logo))
-                $(".logo").attr("src", logo);
-            else
-                $(".logo").attr("src", '/bigscreen/images/logo.png');
-                
+            var imgObj = new Image();
+            imgObj.src = logo;
+            imgObj.onload = function() {
+                if (imgObj.width > 0)
+                    $(".logo").attr("src", logo);
+                else
+                    $(".logo").attr("src", '/bigscreen/images/logo.png');
+            }
+
             bigscreen.play();
         })
     </script>

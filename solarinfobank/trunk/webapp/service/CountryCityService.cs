@@ -26,9 +26,23 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
 
         public int Save(CountryCity city)
         {
+            int res=0;
             if (city.id > 0)
-                return _countryCityDao.Update(city);
-            return _countryCityDao.Insert(city);
+                res =  _countryCityDao.Update(city);
+            else
+                res =  _countryCityDao.Insert(city);
+
+            //add by hbqian in 201305012 for修改城市后天气服务的静态城市列表能重新生效
+            CityCodeService.codes = this.GetCities();
+            //重新取天气
+            if (!string.IsNullOrEmpty(city.name))
+            {
+                if (CityCodeService.plantTemp.ContainsKey(city.name))
+                {
+                    CityCodeService.plantTemp.Remove(city.name);
+                }
+            }
+            return res;
         }
 
         public IList<CountryCity> GetList()

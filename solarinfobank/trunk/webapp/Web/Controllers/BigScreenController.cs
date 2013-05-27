@@ -118,8 +118,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             plantVO.plantName = plant.name;
             plantVO.CQ2reduce = plant.Reductiong.ToString();
             plantVO.CQ2reduceUnit = plant.ReductiongUnit;
-            plantVO.curPower = plant.TodayTotalPower.ToString();
-            plantVO.curPowerUnit = "kW";
+            plantVO.curPower = plant.DisplayTodayTotalPower;
+            plantVO.curPowerUnit = plant.TodayTotalPowerUnit;
             plantVO.dayEnergy = plant.DisplayTotalDayEnergy;
             plantVO.dayEnergyUnit = plant.TotalDayEnergyUnit;
             plantVO.solarIntensity = plant.Sunstrength == null ? "" : plant.Sunstrength.ToString();
@@ -135,12 +135,45 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             plantVO.organize = user.organize;
             plantVO.totalEnergy = plant.DisplayTotalEnergy;
             plantVO.totalEnergyUnit = plant.TotalEnergyUnit;
-            plantVO.imageArray = "http://" + Request.Url.Authority + "/ufile/" + (string.IsNullOrEmpty(plant.onePic) ? "Nopic/nopico02.gif" : plant.onePic);
-            plantVO.temprature = double.IsNaN(plant.Temperature) ? "" : plant.Temperature.ToString(); 
+            plantVO.imageArray = "http://" + Request.Url.Authority + (string.IsNullOrEmpty(plant.onePic) ? "/bigscreen/images/plant_img.jpg":"/ufile/"+plant.onePic);
+            plantVO.temprature = getPlantTemp(plant).ToString();
             plantVO.tempratureUnit = user.TemperatureType.ToUpper();
             return Json(plantVO, JsonRequestBehavior.AllowGet);
         }
 
+        private object getPlantTemp(Plant plant)
+        {
+
+            if (plant.getFirstDetector() != null)
+            {
+                return plant.getFirstDetector().getMonitorValue(MonitorType.MIC_DETECTOR_ENRIONMENTTEMPRATURE).ToString();
+            }
+            else {
+                object temperature = plant.Temperature;
+                if (double.IsNaN((double)temperature))
+                {
+                    CityCodeService codeService = CityCodeService.GetInstance();
+                    temperature = codeService.GetTemperature(plant.city);
+                }
+                //修正了温度不存在显示0的问题
+                if (!double.IsNaN(((double)temperature)) && temperature != null)
+                {
+                    User user = UserUtil.getCurUser();
+                    if (user != null && !user.TemperatureType.ToLower().Equals("c"))
+                    {
+                        temperature = Math.Round(32 + ((double)temperature * 1.8), 1);
+                    }
+                    else
+                    {
+                        temperature = Math.Round((double)temperature, 1);
+                    }
+                }
+                else
+                    temperature = "";
+                return temperature;
+            }
+
+        }
         public ActionResult PlantDayChart(int pid, int intervalMins)
         {
             string startYYYYMMDDHH = DateTime.Now.AddDays(-1).ToString("yyyyMMdd00");

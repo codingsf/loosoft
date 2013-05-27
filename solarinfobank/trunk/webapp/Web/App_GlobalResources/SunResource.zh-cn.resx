@@ -5570,7 +5570,7 @@
     <value>业主单位</value>
   </data>
   <data name="BIG_SCREEN_LOGO_SETTING" xml:space="preserve">
-    <value>全屏LOGO设置</value>
+    <value>全屏设置</value>
   </data>
   <data name="BIG_SCREEN_LOGO_UPLOAD" xml:space="preserve">
     <value>上传LOGO</value>

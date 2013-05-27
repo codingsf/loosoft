@@ -85,7 +85,7 @@
                                             <%} %>
                                             <%if (AuthService.isAllow("admin", "collectors"))
                                               { %>
-                                            <li><a href="/admin/collectors/1?sd=<%=DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd") %>&ed=<%=DateTime.Now.ToString("yyyy-MM-dd") %>">
+                                            <li><a href="/admin/collectors">
                                                 采集器列表</a></li>
                                             <%} %>
                                             <%if (AuthService.isAllow("admin", "devices"))

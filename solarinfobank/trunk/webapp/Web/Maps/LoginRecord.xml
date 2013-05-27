@@ -35,6 +35,12 @@
         <isNotEmpty prepend="AND"  property="uname">
           <![CDATA[  username like '%$uname$%'  ]]>
         </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="endDate">
+          <![CDATA[  loginTime <= #endDate# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="startDate">
+          <![CDATA[  loginTime >= #startDate#  ]]>
+        </isNotEmpty>
       </dynamic>
     <![CDATA[ order by date_add(logintime ,INTERVAL localzone hour) desc limit $page.Start$,$page.End$]]>
     </select>
@@ -45,6 +51,12 @@
       <dynamic prepend="WHERE">
         <isNotEmpty prepend="AND"  property="uname">
           <![CDATA[ username like '%$uname$%' ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="endDate">
+          <![CDATA[  loginTime <= #endDate# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="startDate">
+          <![CDATA[  loginTime >= #startDate#  ]]>
         </isNotEmpty>
       </dynamic>
     </select>

@@ -15,6 +15,8 @@
 -->
 </style>
 <div style="overflow: auto; width:720px;height:400px;">
+<div style="height:30px">
+<input type="button" onclick="batchdelete()" value="删除选中" class="subbu01" ></div>
     <table width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="#DDDDDD"
         style="border-collapse: collapse; line-height: 24px; text-align: center;overflow-x: auto;   width: <%=Model.Rows.Count>0? (Model.Rows[0].Count*100).ToString()+"px":"100%" %>"">
         <%
@@ -30,13 +32,19 @@
 
                 if (x.Equals(Model.Rows.Count))//最后一行统计信息不显示
                     continue;
+                  if (x.Equals(1) )
+                      Response.Write(string.Format("<td  height=\"35\" width=\"50px\" bgcolor=\"#F3F3F3\"><input typ=\"checkbox\" id=\"chkall\" onclick=\"chkall(this)\" name=\"pids\" value=\"{0}\" type=\"checkbox\"/></td>\r\n", ""));
+                  else
+                  Response.Write(string.Format("<td  height=\"35\" width=\"50px\"><input typ=\"checkbox\" name=\"pids\" value=\"{0}\" type=\"checkbox\"/></td>", arr[0]));
 
                 for (int t = 0; t < strArray.Count - 1; t++)
                 {
+
+                                        
                     if (x.Equals(1) || x.Equals(Model.Rows.Count))
                         Response.Write(string.Format("<td  height=\"35\" bgcolor=\"#F3F3F3\" width=\"100px\">{0}</td>", strArray[t]));
                     else
-                        Response.Write(string.Format("<td height=\"35\" >{0}</td>", strArray[t]));
+                        Response.Write(string.Format("<td height=\"35\" >{0}</td>\r\n", strArray[t]));
                 }
 
                 if (x.Equals(1))

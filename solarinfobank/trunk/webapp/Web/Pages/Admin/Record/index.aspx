@@ -52,12 +52,13 @@
 
             function changePage(pageIndex) {
                 pindex = pageIndex;
-                $.post("/admin/recordlist", { "localZone": $("#localZone").val(), "pageIndex": pindex, "uname": $("#uname").val() }, function(data) {
+                $.post("/admin/recordlist", { "localZone": $("#localZone").val(), "pageIndex": pindex, "uname": $("#uname").val(), "sd": $("#startdate").val(), "ed": $("#enddate").val() }, function(data) {
                     $("#result_container").html(data);
                 });
             }
             
         </script>
+        <script src="../../script/DatePicker/WdatePicker.js" type="text/javascript"></script>
 
         <%=Html.Hidden("pageNo", ViewData["pageNo"]) %>
         <table width="100%" height="63" border="0" cellpadding="0" cellspacing="0" background="/images/kj/kjbg02.jpg">
@@ -88,6 +89,30 @@
             </tr>
         </table>
         <div class="subrbox01">
+        
+        <table width="100%" height="40" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td width="10%" height="40">
+                            登录时间
+                        </td>
+                        <td width="20%">
+                           从: <input id="startdate" name="startdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'zh-cn'})"
+                                readonly="readonly" size="13" type="text" value='<%=Request.QueryString["sd"]==null? DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd"):Request.QueryString["sd"] %>'
+                                class="txtbu04 Wdate" />
+                        </td>
+                        <td width="20%" id="country_ctl">
+                            到:  <input id="enddate" name="enddate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'zh-cn'})"
+                                readonly="readonly" size="13" type="text" value='<%=Request.QueryString["ed"]==null?DateTime.Now.ToString("yyyy-MM-dd"):Request.QueryString["ed"] %>'
+                                class="txtbu04 Wdate" />
+                        </td>
+                        <td width="50%" rowspan="2" align="left" valign="bottom" style="padding-bottom: 5px;">
+                            用户名: <input type="text" style="width: 100px;" class="txtbu01" id="uname" />
+                        <input type="button" onclick="changePage(1);" value="查询" class="subbu01" id="checking"
+                            name="Submit" />
+                            
+                        </td>
+                    </tr>
+                </table>
             <table width="100%">
                 <tr>
                     <td width="50%">
@@ -97,13 +122,12 @@
                                 <%=ViewData["RecordCount"] %></font> 次 ,现统计如下</span>
                     </td>
                     <td align="right" width="50%">
-                        用户名:
-                        <input type="text" style="width: 100px;" class="txtbu01" id="uname" />
-                        <input type="button" onclick="changePage(1);" value="查询" class="subbu01" id="checking"
-                            name="Submit" />
                     </td>
                 </tr>
             </table>
+            
+            
+                
             <div class="sb_top">
             </div>
             <div class="sb_mid">

@@ -5939,7 +5939,7 @@ The average value of coefficient will trigger warning
     <value>Owner</value>
   </data>
   <data name="BIG_SCREEN_LOGO_SETTING" xml:space="preserve">
-    <value>Die Vollbild LOGO-Einstellungen</value>
+    <value>Die Vollbild Einstellungen</value>
   </data>
   <data name="BIG_SCREEN_LOGO_UPLOAD" xml:space="preserve">
     <value>Hochladen LOGO</value>

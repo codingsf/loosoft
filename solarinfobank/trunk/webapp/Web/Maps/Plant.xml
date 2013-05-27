@@ -53,6 +53,9 @@
       <result property="lastHandleDate"			column="lastHandleDate"/>
       <result property="rateEnable"			column="rate_enable"/>
       <result property="createDate"			column="createdate"/>
+      <result property="TodayEnergy"			column="todayenergy"/>
+      <result property="TtlEnergy"			column="ttlenergy"/>
+      <result property="BindCollector"			column="bindcollector"/>
       <!-- 级联部分-->
       <result property="plantUnits"	lazyLoad="true"	column="id" select="plantunit_get_list_by_plantid" />
       <result property="monitores"	lazyLoad="true"	column="id" select="videomonitor_get_list_lazy" />
@@ -138,7 +141,7 @@
     </update>
     <!--修改电站信息（张月）-->
     <update id="plant_update" paramentClass="Plant">
-      UPDATE  PLANT_INFO SET id=#id#,name=#name#,revenueRate=#revenueRate#,videoMonitorEnable=#VideoMonitorEnable#,postcode=#postcode#,location=#location#,country=#country#,city=#city#,timezone=#timezone#,street=#street#,installdate=#installdate#,operater=#operater#,email=#email#,phone=#phone#,direction=#direction#,angle=#angle#,manufacturer=#manufacturer#,module_type=#module_type#,pic=#pic#,longitude=#longitude#,userID=#userID#,latitude=#latitude#,description=#description#,design_power=#design_power#,example_plant=#example_plant#,isNewPlant=#isNewPlant#,startdate=#startDate#,enddate=#endDate#,hours=#hours#,dst_enable=#dst_enable#,area=#area#,longitudeString=#longitudeString#,latitudeString=#latitudeString#, parentId=#parentId#,isVirtualPlant=#isVirtualPlant# ,basePrice=#basePrice#,structPic=#structPic#,predictivedata=#predictivedata#,energy_rate=#energyRate#,max_energy_rate=#maxEnergyRate#,lastHandleDate=#lastHandleDate#,rate_enable=#rateEnable# WHERE id=#id#
+      UPDATE  PLANT_INFO SET id=#id#,name=#name#,revenueRate=#revenueRate#,videoMonitorEnable=#VideoMonitorEnable#,postcode=#postcode#,location=#location#,country=#country#,city=#city#,timezone=#timezone#,street=#street#,installdate=#installdate#,operater=#operater#,email=#email#,phone=#phone#,direction=#direction#,angle=#angle#,manufacturer=#manufacturer#,module_type=#module_type#,pic=#pic#,longitude=#longitude#,userID=#userID#,latitude=#latitude#,description=#description#,design_power=#design_power#,example_plant=#example_plant#,isNewPlant=#isNewPlant#,startdate=#startDate#,enddate=#endDate#,hours=#hours#,dst_enable=#dst_enable#,area=#area#,longitudeString=#longitudeString#,latitudeString=#latitudeString#, parentId=#parentId#,isVirtualPlant=#isVirtualPlant# ,basePrice=#basePrice#,structPic=#structPic#,predictivedata=#predictivedata#,energy_rate=#energyRate#,max_energy_rate=#maxEnergyRate#,lastHandleDate=#lastHandleDate#,rate_enable=#rateEnable# ,bindcollector=#BindCollector# WHERE id=#id#
     </update>
 
     <!--获取所有的电站(张月改)-->
@@ -164,8 +167,23 @@
           <isNotEmpty prepend="and" property="plant.city">
             city = #plant.city#
           </isNotEmpty>
-          <isNotEmpty prepend="and" property="design_power_start" >
-            <![CDATA[ design_power >= #design_power_start#]]>
+          <isNotEmpty prepend="and" property="sdayenergy" >
+            <![CDATA[ todayenergy >= #sdayenergy#]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="edayenergy">
+            <![CDATA[ todayenergy <= #edayenergy#]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="sttlenergy">
+            <![CDATA[ ttlenergy >= #sttlenergy#]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="ettlenergy">
+            <![CDATA[ ttlenergy <= #ettlenergy#]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="bindcollector">
+            <![CDATA[ bindcollector = #bindcollector#]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="design_power_start">
+            <![CDATA[ design_power <= #design_power_start#]]>
           </isNotEmpty>
           <isNotEmpty prepend="and" property="design_power_end">
             <![CDATA[ design_power <= #design_power_end#]]>
@@ -190,6 +208,21 @@
           </isNotEmpty>
           <isNotEmpty prepend="and" property="plant.city">
             city = #plant.city#
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="sdayenergy" >
+            <![CDATA[ todayenergy >= #sdayenergy#]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="edayenergy">
+            <![CDATA[ todayenergy <= #edayenergy#]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="sttlenergy">
+            <![CDATA[ ttlenergy >= #sttlenergy#]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="ettlenergy">
+            <![CDATA[ ttlenergy <= #ettlenergy#]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="bindcollector">
+            <![CDATA[ bindcollector = #bindcollector#]]>
           </isNotEmpty>
           <isNotEmpty prepend="and" property="design_power_start" >
             <![CDATA[ design_power >= #design_power_start#]]>

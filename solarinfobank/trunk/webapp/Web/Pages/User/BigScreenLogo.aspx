@@ -7,7 +7,7 @@
 <%@ Import Namespace="System.Globalization" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%=this.Model.organize%>
-    <%=Resources.SunResource.BIG_SCREEN_LOGO_UPLOAD%>
+    <%=Resources.SunResource.BIG_SCREEN_LOGO_SETTING%>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <script src="../../script/jquery.js" type="text/javascript"></script>
@@ -19,7 +19,9 @@
                 errorElement: "em",
                 rules: {
                     bigscreenlogo: {
+                    <%if(String.IsNullOrEmpty(Model.BigScreenLogoPath)){ %>
                         required: true
+                    <%} %>
                     }
                 },
                 errorPlacement: function(error, element) {
@@ -30,7 +32,9 @@
                 },
                 messages: {
                 bigscreenlogo: {
+                        
                         required: "<span class='error'>&nbsp;请选择一张图片上传</span>"
+                      
                     }
                 },
                 success: function(em) {
@@ -56,7 +60,7 @@
                                         <img src="/images/kj/kjiico01.gif" />
                                     </td>
                                     <td class="pv0216">
-                                       <%=Resources.SunResource.BIG_SCREEN_LOGO_UPLOAD%>
+                                       <%=Resources.SunResource.BIG_SCREEN_LOGO_SETTING%>
                                     </td>
                                     <td align="right" class="help_r">
                                         <a href="/help/<%=(Session["Culture"] as CultureInfo).Name%>/SolarInfo Bank User Manual.pdf"
@@ -87,7 +91,7 @@
                                     <img src="/images/sub/subico010.gif" width="18" height="19" />
                                 </td>
                                 <td width="94%" class="f_14">
-                                    <strong> <%=Resources.SunResource.BIG_SCREEN_LOGO_UPLOAD%></strong>
+                                    <strong> <%=Resources.SunResource.BIG_SCREEN_LOGO_SETTING%></strong>
                                 </td>
                             </tr>
                         </table>
@@ -99,6 +103,21 @@
                             <%=Resources.SunResource.MONITORITEM_NOTE %>:*
                             <%=Resources.SunResource.MONITORITEM_FOR_MUST_FILL_IN_THE_ITEM %></div>
                         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tr>
+                                <td width="29%" height="35" class="pr_10">
+                                   全屏日图表间隔：
+                                </td>
+                                <td width="27%">
+                                   <select class="txtbu01" name="fullscreenChartDays" id="fullscreenChartDays">
+                                   <option value="2">2日</option>
+                                   <option value="1">1日</option>
+                                   </select>
+                                </td>
+                                <td width="44%">
+                                    &nbsp;<span id="Span1"></span>
+                                </td>
+                            </tr>
+                            
                             <tr>
                                 <td width="29%" height="35" class="pr_10">
                                    <%=Resources.SunResource.TEMPLATE_UPLOAD_LOGO%>：
@@ -126,6 +145,13 @@
                                     <img src="<%=this.Model.BigScreenLogoFomartPath%>" alt="logo" />
                                 </td>
                             </tr>
+                            <tr>
+                            <td></td>
+                            <td colspan="2">
+                <font color="red"> <%=TempData["errorMessage"] %></font>
+                            
+                            </td>
+                            </tr>
                         </table>
                     </div>
                     <div class="sb_down">
@@ -146,7 +172,8 @@
                                 <%} %>
                             </td>
                             <td width="108">
-                                <input id="cancel" type="button" onclick="reset();" class="txtbu03" value=" <%=Resources.SunResource.MONITORITEM_RESET %> " />
+                           
+                                <input id="cancel" type="button" onclick="reset();" class="txtbu03" value=" <%=Resources.SunResource.MONITORITEM_RESET %> " /> 
                             </td>
                         </tr>
                         <tr>
@@ -159,4 +186,5 @@
             </td>
         </tr>
     </table>
+    <script>        $("#fullscreenChartDays").val('<%=Model.FullscreenChartDays %>');</script>
 </asp:Content>

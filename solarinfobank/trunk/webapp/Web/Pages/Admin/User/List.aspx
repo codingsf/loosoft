@@ -7,6 +7,7 @@
     用户列表 - SolarInfoBank
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
     <td width="793" valign="top" background="/images/kj/kjbg01.jpg">
 <style type="text/css">
 <!--
@@ -15,14 +16,18 @@
 .lir{ background:url(//images/am/ad_line.gif) right no-repeat;}
 -->
 </style>
+        <script src="../../script/DatePicker/WdatePicker.js" type="text/javascript"></script>
 
         <script>
             function changePage(page) {
-                window.location.href = '/admin/users/' + page;
+              //  window.location.href = '/admin/users/' + page;
+                window.location.href = '/admin/users/' + page + "?sd=" + $("#estartdate").val() + "&ed=" + $("#eenddate").val() + "&hasplants=" + $("#hasplants").val();
+                
             }
         </script>
 
         <%=Html.Hidden("pageNo", ViewData["pageNo"]) %>
+        
         <table width="100%" height="63" border="0" cellpadding="0" cellspacing="0" background="/images/kj/kjbg02.jpg">
             <tr>
                 <td width="8">
@@ -51,6 +56,36 @@
             </tr>
         </table>
         <div class="subrbox01">
+        <table width="100%" height="40" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td width="10%" height="40">
+                            导入时间
+                        </td>
+                        <td width="20%">
+                           从: <input id="estartdate" name="estartdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'zh-cn'})"
+                                readonly="readonly" size="13" type="text" value='<%=Request.QueryString["sd"]==null? DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd"):Request.QueryString["sd"] %>'
+                                class="txtbu04 Wdate" />
+                        </td>
+                        <td width="20%" id="country_ctl">
+                            到:  <input id="eenddate" name="eenddate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'zh-cn'})"
+                                readonly="readonly" size="13" type="text" value='<%=Request.QueryString["ed"]==null?DateTime.Now.ToString("yyyy-MM-dd"):Request.QueryString["ed"] %>'
+                                class="txtbu04 Wdate" />
+                        </td>
+                        
+                          <td width="20%">
+                            是否注册电站: <select id="hasplants" class="txtbu04">
+                            <option value="">选择</option>
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                            </select>
+                        </td>
+                        
+                        <td width="20%" rowspan="2" align="center" valign="bottom" style="padding-bottom: 5px;">
+                            <input name="Submit" id="checking" type="button" class="subbu01" value="查询" onclick="changePage(1);" />
+                        </td>
+                    </tr>
+                </table>
+                
             <div class="sb_top">
             </div>
             <div class="sb_mid">
@@ -63,10 +98,13 @@
                                     <td width="5%" align="center" class="lir">
                                         编号
                                     </td>
-                                    <td width="30%" align="center" class="lir">
+                                    <td width="15%" align="center" class="lir">
                                         用户名
                                     </td>
-                                    <td width="15%" align="center" class="lir">
+                                     <td width="15%" align="center" class="lir">
+                                        注册电站
+                                    </td>
+                                    <td width="10%" align="center" class="lir">
                                         国家
                                     </td>
                                     <td width="15%" align="center" class="lir">
@@ -94,10 +132,14 @@
                                     <td width="5%" align="center" class="am_line0<%=i%2 %>">
                                         <%=i %>
                                     </td>
-                                    <td width="30%" align="center" class="am_line0<%=i%2 %>">
+                                    <td width="15%" align="center" class="am_line0<%=i%2 %>">
                                         <%= user.username %>
                                     </td>
-                                    <td width="15%" align="center" class="am_line0<%=i%2 %>">
+                                     <td width="15%" align="center" class="am_line0<%=i%2 %>">
+                                        <%= user.HasPlantsStr%>
+                                    </td>
+                                    
+                                    <td width="10%" align="center" class="am_line0<%=i%2 %>">
                                         <%= user.country %>
                                     </td>
                                     <td width="15%" align="center" class="am_line0<%=i%2 %>">
@@ -160,4 +202,5 @@
             </div>
         </div>
     </td>
+    <script>$("#hasplants").val('<%=Request["hasplants"]%>');</script>
 </asp:Content>

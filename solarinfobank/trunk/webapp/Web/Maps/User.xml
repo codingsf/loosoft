@@ -42,6 +42,8 @@
       <result property="bigscreenEnable"			column="bigscreenenable"/>
       <result property="BigScreenLogoPath"			column="bigscreenlogo"/>
       <result property="createDate"			column="createdate"/>
+      <result property="HasPlants"			column="hasplants"/>
+      <result property="FullscreenChartDays"			column="fullscreenchartdays"/>
       <!--级联对象-->
       <result property="Language"		lazyLoad="true"	column="languageId" select="language_get_lazy" />
       <result property="userRole"   lazyLoad="true"	column="id"         select="get_user_role" />      
@@ -112,7 +114,7 @@
 
     <!-- 插入用户-->
     <insert id="user_insert" parameterClass="User">
-      insert into  userinfo(UserName,PassWord,Organize,Sex,FullName,Address,Postalcode,Email,City,Country,Tel,LanguageId,revenueRate,currencies,mobilePhone,faxPhone,temperatureType,firstname,lastname,ParentUserId,menuDisplayCount,overviewDisplayCount,sysname,createdate) VALUES(#username#,#password#,#organize#,#sex#,#fullname#,#address#,#postalcode#,#email#,#city#,#country#,#tel#,#languageId#,#revenueRate#,#currencies#,#mobilePhone#,#faxPhone#,#TemperatureType#,#FirstName#,#LastName#,#ParentUserId#,4,10,#sysName#,now())
+      insert into  userinfo(UserName,PassWord,Organize,Sex,FullName,Address,Postalcode,Email,City,Country,Tel,LanguageId,revenueRate,currencies,mobilePhone,faxPhone,temperatureType,firstname,lastname,ParentUserId,menuDisplayCount,overviewDisplayCount,sysname,createdate,fullscreenchartdays) VALUES(#username#,#password#,#organize#,#sex#,#fullname#,#address#,#postalcode#,#email#,#city#,#country#,#tel#,#languageId#,#revenueRate#,#currencies#,#mobilePhone#,#faxPhone#,#TemperatureType#,#FirstName#,#LastName#,#ParentUserId#,4,10,#sysName#,now(),2)
       <selectKey resultClass="int" property="id" type="post" >
         SELECT LAST_INSERT_ID() AS id
       </selectKey>
@@ -120,7 +122,7 @@
 
     <!-- 更新用户所有信息-->
     <update id="user_update" parameterClass="User">
-      UPDATE USERINFO SET USERNAME=#username#,firstname=#FirstName#,lastname=#LastName#,TemperatureType=#TemperatureType#,ORGANIZE=#organize#,SEX=#sex#,Fullname=#fullname#,Address=#address#,Postalcode=#postalcode#,Email=#email#,Country=#country#,City=#city#,Tel=#tel#,LanguageId=#languageId#,revenueRate=#revenueRate#,currencies=#currencies#,mobilePhone=#mobilePhone#,faxPhone=#faxPhone#,TemperatureType=#TemperatureType# ,menuDisplayCount=#menuDisplayCount#,overviewDisplayCount=#overviewDisplayCount# ,templateid=#template.id# ,logo=#logo# ,sysname=#sysName#,autorefresh=#autoRefresh#,refreshinterval=#refreshInterval# ,refreshstartdate=#refreshStartDate# WHERE ID=#id#
+      UPDATE USERINFO SET USERNAME=#username#,firstname=#FirstName#,lastname=#LastName#,TemperatureType=#TemperatureType#,ORGANIZE=#organize#,SEX=#sex#,Fullname=#fullname#,Address=#address#,Postalcode=#postalcode#,Email=#email#,Country=#country#,City=#city#,Tel=#tel#,LanguageId=#languageId#,revenueRate=#revenueRate#,currencies=#currencies#,mobilePhone=#mobilePhone#,faxPhone=#faxPhone#,TemperatureType=#TemperatureType# ,menuDisplayCount=#menuDisplayCount#,overviewDisplayCount=#overviewDisplayCount# ,templateid=#template.id# ,logo=#logo# ,sysname=#sysName#,autorefresh=#autoRefresh#,refreshinterval=#refreshInterval# ,refreshstartdate=#refreshStartDate#,hasplants=#HasPlants# ,fullscreenchartdays=#FullscreenChartDays# WHERE ID=#id#
     </update>
 
     <!-- 更新用户除密码外的其他信息-->
@@ -160,11 +162,35 @@
     </select>
     
     <select id="loading_users_page_list" resultMap="user_info_result" cacheModel="user_cache">
-      <![CDATA[  SELECT * from userinfo  order by id desc limit $Start$,$End$]]>
+      <![CDATA[  SELECT * from userinfo]]>
+      <dynamic prepend="WHERE">
+        <isNotEmpty prepend="AND"  property="endDate">
+          <![CDATA[ createdate <= #endDate# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="startDate">
+          <![CDATA[ createdate >= #startDate# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="hasplants">
+          <![CDATA[ hasplants = #hasplants# ]]>
+        </isNotEmpty>
+      </dynamic>
+      <![CDATA[ order by id desc limit $page.Start$,$page.End$]]>
     </select>
 
     <select id="loading_users_page_count" resultClass="int" >
-      <![CDATA[SELECT COUNT(1) from userinfo 　]]>
+      <![CDATA[SELECT COUNT(1) from userinfo]]>
+      <dynamic prepend="WHERE">
+        <isNotEmpty prepend="AND"  property="endDate">
+          <![CDATA[ createdate <= #endDate# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="startDate">
+          <![CDATA[ createdate >= #startDate# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="hasplants">
+          <![CDATA[ hasplants = #hasplants# ]]>
+        </isNotEmpty>
+      </dynamic>
+      
     </select>
 
     <select id="user_get_languageId_by_id" resultClass="int" >

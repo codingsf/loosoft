@@ -5770,7 +5770,7 @@ The average value of coefficient will trigger warning
     <value>Owner</value>
   </data>
   <data name="BIG_SCREEN_LOGO_SETTING" xml:space="preserve">
-    <value>Fullscreen LOGO Settings</value>
+    <value>Fullscreen Settings</value>
   </data>
   <data name="BIG_SCREEN_LOGO_UPLOAD" xml:space="preserve">
     <value>Upload LOGO</value>

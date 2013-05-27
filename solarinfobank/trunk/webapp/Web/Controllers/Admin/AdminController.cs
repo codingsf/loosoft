@@ -324,6 +324,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                                     Date = string.IsNullOrEmpty(dtStr) ? string.Empty : dtStr,
                                     Key = ds.Tables[0].Rows[i][7].ToString()
                                 };
+                                if (string.IsNullOrEmpty(temp.code)) continue;
                                 string r = CheckDataValidate(temp);
                                 if (string.IsNullOrEmpty(r) == false)
                                 {
@@ -387,7 +388,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             int.TryParse(id, out no);
             Pager page = new Pager() { PageSize = ComConst.PageSize, PageIndex = no };
             UserService userInfoService = UserService.GetInstance();
-            IList<User> users = userInfoService.GetUsersByPage(page);
+            Hashtable para = new Hashtable();
+            para["page"] = page;
+            para["startDate"] = Request.QueryString["sd"];
+            para["endDate"] = Request.QueryString["ed"];
+            para["hasplants"] = Request.QueryString["hasplants"];
+            IList<User> users = userInfoService.GetUsersByPage(para);
             ViewData["page"] = page;
             ViewData["pageNo"] = page.PageIndex;
             return View(@"user/list", users);
@@ -640,13 +646,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
         /// <returns></returns>
         [IsLoginAttributeAdmin]
 
-        public ActionResult Collectors(string id, string sd, string ed)
+        public ActionResult Collectors(string id, string isd, string ied,string bsd,string bed,string code,string bt)
         {
             int no = 0;
             int.TryParse(id, out no);
             Hashtable hashpara = new Hashtable();
-            hashpara["sd"] = sd;
-            hashpara["ed"] = ed;
+            hashpara["isd"] = isd;
+            hashpara["ied"] = ied;
+            hashpara["bsd"] = bsd;
+            hashpara["bed"] = bed;
+            hashpara["code"] = code;
+            hashpara["bt"] = bt;
             Pager page = new Pager() { PageSize = ComConst.PageSize, PageIndex = no };
             hashpara["page"] = page;
 
@@ -1173,6 +1183,32 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             return Content("删除成功");
         }
 
+        public ActionResult BatchDeletePlant()
+        {
+            string pidsStr = Request.Form["pids"];
+            string[] pidArray = pidsStr.Split(',');
+            foreach (string pid in pidArray)
+            {
+                if (string.IsNullOrEmpty(pid))
+                    continue;
+                int id = 0;
+                int.TryParse(pid, out id);
+                Plant plant = plantService.GetPlantInfoById(id);
+                if (plant == null) continue;
+                if (plant.allFactUnits != null)
+                    foreach (var item in plant.allFactUnits)
+                    {
+                        PlantUnitService.GetInstance().DeletePlantUnit(item.plantID, item.collectorID);
+                        var collector = item.collector;
+                        if (collector == null)
+                            continue;
+                        collector.isUsed = false;
+                        collectorInfoservice.Update(collector);
+                    }
+                plantService.Remove(id);
+            }
+            return Content("删除成功");
+        }
 
         public ActionResult Countries(string pid)
         {
@@ -1474,7 +1510,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
         }
 
         [HttpPost]
-        public ActionResult AllPlants(string country, string city, string items, string design_power_start, string design_power_end, int? index, string area, string estartdate, string eenddate, string uname)
+        public ActionResult AllPlants(string country, string city, string items, string design_power_start, string design_power_end, int? index, string area, string estartdate, string eenddate, string uname, string sdayenergy, string edayenergy, string bindcollector, string sttlenergy, string ettlenergy)
         {
             string uids = "0,";
             if (string.IsNullOrEmpty(uname) == false)
@@ -1499,6 +1535,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             table.Add("plant", plant);
             table.Add("design_power_start", design_power_start);
             table.Add("design_power_end", design_power_end);
+            table.Add("sdayenergy", sdayenergy);
+            table.Add("edayenergy", edayenergy);
+            table.Add("sttlenergy", sttlenergy);
+            table.Add("ettlenergy", ettlenergy);
+            table.Add("bindcollector", bindcollector);
             table.Add("uids", uids);
             table.Add("page", page);
             IList<Plant> plants = plantService.QueryPagePlants(table);
@@ -2733,6 +2774,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             Hashtable table = new Hashtable();
             table.Add("page", page);
             table.Add("uname", uname);
+            table.Add("startDate", Request.Form["sd"]);
+            table.Add("endDate", Request.Form["ed"]);
             IList<LoginRecord> records = LoginRecordService.GetInstance().GetRecordsByPage(table);
             float.TryParse(localZone, out index);
 

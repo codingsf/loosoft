@@ -85,11 +85,53 @@
     </insert>
 
     <select id="loading_collector_page_list" resultMap="collector_result">
-      <![CDATA[  SELECT * from collector_info where import_date >=#sd# and  import_date <=#ed#  order by id desc limit $page.Start$,$page.End$]]>
+      <![CDATA[  SELECT * from collector_info ]]>
+
+      <dynamic prepend="WHERE">
+        <isNotEmpty prepend="AND"  property="isd">
+          <![CDATA[ import_date >= #isd# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="ied">
+          <![CDATA[ import_date <= #ied# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="code">
+          <![CDATA[ code = #code# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="bsd">
+          <![CDATA[ binddate >= #bsd# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="bed">
+          <![CDATA[ binddate <= #bed# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="bt">
+          <![CDATA[ binded = #bt# ]]>
+        </isNotEmpty>
+      </dynamic>
+      <![CDATA[order by id desc limit $page.Start$,$page.End$]]>
     </select>
 
     <select id="loading_collector_page_count" resultClass="int">
-      <![CDATA[SELECT COUNT(1) FROM collector_info  where import_date >=#sd# and  import_date <#ed# 　]]>
+      <![CDATA[SELECT COUNT(1) FROM collector_info ]]>
+      <dynamic prepend="WHERE">
+        <isNotEmpty prepend="AND"  property="isd">
+          <![CDATA[ import_date >= #isd# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="ied">
+          <![CDATA[ import_date <= #ied# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="code">
+          <![CDATA[ code = #code# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="bsd">
+          <![CDATA[ binddate >= #bsd# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="bed">
+          <![CDATA[ binddate <= #bed# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="bt">
+          <![CDATA[ binded = #bt# ]]>
+        </isNotEmpty>
+      </dynamic>
     </select>
 
     <select id="check_collector_exists_bycode" resultClass="int">

@@ -20,7 +20,7 @@
                     <table width="100%" height="45" border="0" cellpadding="0" cellspacing="0">
                         <tr>
                             <td width="7%" rowspan="2" align="center">
-                                <img src="/images/kj/kjiico01.gif"  />
+                                <img src="/images/kj/kjiico01.gif" />
                             </td>
                             <td width="93%" class="pv0216">
                                 所有电站列表
@@ -51,6 +51,17 @@
                 });
                 return values == "" ? '-1,' : values;
             }
+
+
+            function getselectedplants() {
+                var values = "";
+                $("input[name='pids']:checked").each(function() {
+                    values += $(this).val() + ",";
+                });
+                return values;
+            }
+
+
 
             function down_excel() {
                 var url = "/admin/allplants_excel?country=" + $("#country").val() + "&city=" +
@@ -143,6 +154,25 @@
                 });
             }
 
+            function batchdelete() {
+                var pids = getselectedplants();
+                if (pids == "") { alert('请选择电站'); return false; }
+                if (confirm('是否确定要删除电站吗,删除将不可恢复!')) {
+                    $.ajax({
+                        type: "post",
+                        url: "/admin/BatchDeletePlant/",
+                        data: { pids: pids },
+                        success: function(result) {
+                            loading_data();
+                        },
+                        beforeSend: function() {
+
+                        }
+                    });
+                }
+            }
+
+
             function delplant(id) {
                 if (confirm('是否确定要删除电站吗,删除将不可恢复!')) {
                     $.ajax({
@@ -158,6 +188,7 @@
                     });
                 }
             }
+
 
             function anonymous(pid) {
                 window.open("/admin/anonymous/" + pid)
@@ -177,6 +208,13 @@
                 });
             }
 
+            function chkall(obj) {
+                if (obj.checked)
+                    $("input[name='pids']").attr('checked', 'checked');
+                else
+                    $("input[name='pids']").removeAttr("checked"); //取消全选
+
+            }
 
             $(document).ready(function() {
                 $("input[ref='1']").attr('checked', 'checked');
@@ -186,7 +224,7 @@
                         url: "/admin/areacountries",
                         data: { area: $("#area").val() },
                         success: function(result) {
-                            $("#country_ctl").html(result);
+                           $("#country_ctl").html(result);
                         },
                         beforeSend: function() {
 
@@ -213,7 +251,12 @@
                         index: pageIndex,
                         estartdate: $("#estartdate").val(),
                         uname: $("#uname").val(),
-                        eenddate: $("#eenddate").val()
+                        eenddate: $("#eenddate").val(),
+                        sdayenergy: $("#sdayenergy").val(),
+                        edayenergy: $("#edayenergy").val(),
+                        sttlenergy: $("#sttlenergy").val(),
+                        ettlenergy: $("#ettlenergy").val(),
+                        bindcollector: $("#bindcollector").val()
                     },
                     success: function(result) {
                         $("#plant_content1").html(result);
@@ -251,11 +294,9 @@
             <%} %>
             <table width="100%" height="40" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td width="5%" height="40">
-                        区域
-                    </td>
-                    <td width="10%">
-                        <%=Html.DropDownList("area", new List<SelectListItem> {
+                    <td width="33%" height="40">
+                        <span style="white-space: nowrap">区域
+                            <%=Html.DropDownList("area", new List<SelectListItem> {
                                                 new SelectListItem { Text = "全部", Value = ""},
                                                 new SelectListItem { Text = "亚洲", Value = "亚洲"},
                                                 new SelectListItem { Text = "欧洲", Value = "欧洲"},
@@ -264,54 +305,74 @@
                                                 new SelectListItem { Text = "非洲", Value = "非洲"},
                                                 new SelectListItem { Text = "大洋洲", Value = "大洋洲"},
                                                 new SelectListItem { Text = "南极洲", Value = "南极洲"}
-                                                }, new { onchange = "getcountries()" })%>
+                                                }, new { onchange = "getcountries()", @class="txtbu01" })%></span>
                     </td>
-                    <td width="5%" height="40">
-                        国家
+                    <td width="33%" height="40">
+                        <span style="white-space: nowrap">国家 <span id="country_ctl">
+                            <%=Html.DropDownList("country", ViewData["countries"] as IList<SelectListItem>, new { @class = "txtbu01" })%>
+                        </span></span>
                     </td>
-                    <td width="10%" id="country_ctl">
-                        <%=Html.DropDownList("country",ViewData["countries"] as IList<SelectListItem>) %>
-                    </td>
-                    <td width="5%" align="center">
-                        城市
-                    </td>
-                    <td width="10%" id="city_ctl">
-                        <select id="city" name="city">
-                            <option value="">全部</option>
-                        </select>
-                    </td>
-                    <td width="7%" align="center">
-                        用户名
-                    </td>
-                    <td width="10%" align="center">
-                        <input id="uname" type="text" class="txtbu01" style="width: 100px;" />
-                    </td>
-                    <td width="11%" align="center">
-                        &nbsp;安装功率
-                    </td>
-                    <td width="10%">
-                        <input id="design_power_start" type="text" class="txtbu01" style="width: 60px;" />
-                    </td>
-                    <td width="3%" align="center">
-                        到
-                    </td>
-                    <td width="25%">
-                        <input id="design_power_end" type="text" class="txtbu01" style="width: 60px;" />
-                    </td>
-                    <td width="14%" rowspan="2" align="center" valign="bottom" style="padding-bottom: 5px;">
-                        <input name="Submit" id="checking" type="button" class="subbu01" value="查询" onclick="changePage(1);" />
+                    <td width="" align="center">
+                        <span style="white-space: nowrap">城市 <span id="city_ctl">
+                            <select id="city" name="city" class="txtbu01">
+                                <option value="">全部</option>
+                            </select>
+                        </span></span>
                     </td>
                 </tr>
                 <tr>
-                    <td valign="top" style="padding-top: 10px;">
-                        <p>
+                    <td>
+                        <span style="white-space: nowrap">安装功率<input id="design_power_start" type="text"
+                            class="txtbu01" style="width: 60px;" />
+                            到
+                            <input id="design_power_end" type="text" class="txtbu01" style="width: 60px;" /></span>
+                    </td>
+                    <td align="left">
+                        <span style="white-space: nowrap">当日发电量<input id="sdayenergy" type="text" class="txtbu01"
+                            style="width: 60px;" />
+                            到
+                            <input id="edayenergy" type="text" class="txtbu01" style="width: 60px;" /></span>
+                    </td>
+                    <td align="left">
+                        <span style="white-space: nowrap">总发电量<input id="sttlenergy" type="text" class="txtbu01"
+                            style="width: 60px;" />
+                            到
+                            <input id="ettlenergy" type="text" class="txtbu01" style="width: 60px;" /></span>
+                    </td>
+                    <td>
+                       
+                    </td>
+                </tr>
+                <tr>
+                    <td width="33%" height="50">
+                     <span style="white-space: nowrap">接入数据采集器
+                            <select class="txtbu01" id="bindcollector">
+                                <option value="">选择</option>
+                                <option value="1">是</option>
+                                <option value="0">否</option>
+                            </select></span>
+                    </td>
+                      <td>
+                        <span style="white-space: nowrap">用户名
+                            <input id="uname" type="text" class="txtbu01" style="width: 100px;" />
+                        </span>
+                    </td>
+                    <td width="25%"  align="left" valign="bottom" style="padding-bottom: 5px;">
+                        <input name="Submit" id="checking" type="button" class="subbu01" value="查询" onclick="changePage(1);" />
+                    </td>
+                  
+                </tr>
+                <tr>
+                    
+                    <td colspan="4">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                            <td rowspan="4">
+                             <p>
                             数<br />
                             据<br />
                             项</p>
-                    </td>
-                    <td colspan="8">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
+                            </td>
                                 <%
                                     int index = 0;
                                     foreach (ManagerMonitorCode mmc in ViewData["mmcs"] as IList<ManagerMonitorCode>)

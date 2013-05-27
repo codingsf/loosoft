@@ -8,18 +8,33 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <td width="793" valign="top" background="/images/kj/kjbg01.jpg">
-<style type="text/css">
-<!--
-.am_line01{ border-bottom:1px solid #E9E9E9; line-height:25px; background:#F7F7F7; text-align: center;}
-.am_line00{ border-bottom:1px solid #DFDFDF; line-height:25px; background:#fff; text-align: center}
-.lir{ background:url(//images/am/ad_line.gif) right no-repeat;}
--->
-</style>
+        <style type="text/css">
+            <!
+            -- .am_line01
+            {
+                border-bottom: 1px solid #E9E9E9;
+                line-height: 25px;
+                background: #F7F7F7;
+                text-align: center;
+            }
+            .am_line00
+            {
+                border-bottom: 1px solid #DFDFDF;
+                line-height: 25px;
+                background: #fff;
+                text-align: center;
+            }
+            .lir
+            {
+                background: url(//images/am/ad_line.gif) right no-repeat;
+            }
+            -- ></style>
+
         <script src="../../script/DatePicker/WdatePicker.js" type="text/javascript"></script>
 
         <script>
             function changePage(page) {
-                window.location.href = '/admin/collectors/' + page + "?sd=" + $("#estartdate").val() + "&ed=" + $("#eenddate").val();
+                window.location.href = '/admin/collectors/' + page + "?isd=" + $("#isd").val() + "&ied=" + $("#ied").val() + "&bsd=" + $("#bsd").val() + "&bed=" + $("#bed").val() + "&code=" + $("#code").val() + "&bt=" + $("#bt").val();
             }
         </script>
 
@@ -32,7 +47,7 @@
                     <table width="98%" height="45" border="0" cellpadding="0" cellspacing="0">
                         <tr>
                             <td width="7%" rowspan="2" align="center">
-                                <img src="/images/kj/kjiico01.gif"/>
+                                <img src="/images/kj/kjiico01.gif" />
                             </td>
                             <td width="93%" class="pv0216">
                                 采集器列表
@@ -88,16 +103,47 @@
                             导入时间
                         </td>
                         <td width="20%">
-                           从: <input id="estartdate" name="estartdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'zh-cn'})"
-                                readonly="readonly" size="13" type="text" value='<%=Request.QueryString["sd"]==null? DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd"):Request.QueryString["sd"] %>'
+                            从:
+                            <input id="isd" name="isd" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'zh-cn'})"
+                                readonly="readonly" size="13" type="text" value='<%=Request.QueryString["isd"]%>'
                                 class="txtbu04 Wdate" />
                         </td>
                         <td width="20%" id="country_ctl">
-                            到:  <input id="eenddate" name="eenddate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'zh-cn'})"
-                                readonly="readonly" size="13" type="text" value='<%=Request.QueryString["ed"]==null?DateTime.Now.ToString("yyyy-MM-dd"):Request.QueryString["ed"] %>'
+                            到:
+                            <input id="ied" name="ied" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'zh-cn'})"
+                                readonly="readonly" size="13" type="text" value='<%=Request.QueryString["ied"] %>'
                                 class="txtbu04 Wdate" />
                         </td>
-                        <td width="20%" rowspan="2" align="center" valign="bottom" style="padding-bottom: 5px;">
+                        <td width="30%" align="left" valign="bottom" style="padding-bottom: 5px;">
+                            序列号:<input id="code" name="code" type="input" class="txtbu04 "  value='<%=Request.QueryString["code"] %>'/>
+                        </td>
+                        <td width="20%" align="center" valign="bottom" style="padding-bottom: 5px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="10%" height="40">
+                            绑定时间
+                        </td>
+                        <td width="20%">
+                            从:
+                            <input id="bsd" name="bsd" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'zh-cn'})"
+                                readonly="readonly" size="13" type="text" value='<%=Request.QueryString["bsd"]%>'
+                                class="txtbu04 Wdate" />
+                        </td>
+                        <td width="20%" id="Td1">
+                            到:
+                            <input id="bed" name="bed" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'zh-cn'})"
+                                readonly="readonly" size="13" type="text" value='<%=Request.QueryString["bed"] %>'
+                                class="txtbu04 Wdate" />
+                        </td>
+                        <td width="30%" align="left" valign="bottom" style="padding-bottom: 5px;">
+                            已绑定:<select class="txtbu04" style="width: 150px" id="bt">
+                                <option value="">请选择</option>
+                                <option value="1">是</option>
+                                <option value="0">否</option>
+                            </select>
+                        </td>
+                        <td width="20%" align="center" valign="bottom" style="padding-bottom: 5px;">
                             <input name="Submit" id="checking" type="button" class="subbu01" value="查询" onclick="changePage(1);" />
                         </td>
                     </tr>
@@ -105,7 +151,8 @@
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
                         <td>
-                            <table width="100%" height="29" border="0" cellpadding="0" cellspacing="0"  background="/images/am/am_bg03.jpg" style="border:1px solid #DADADA; text-align:center; font-weight:bold;">
+                            <table width="100%" height="29" border="0" cellpadding="0" cellspacing="0" background="/images/am/am_bg03.jpg"
+                                style="border: 1px solid #DADADA; text-align: center; font-weight: bold;">
                                 <tr>
                                     <td width="20%" align="center">
                                         <strong>采集器编号</strong>
@@ -116,10 +163,13 @@
                                     <td width="10%" align="center">
                                         <strong>分配电站</strong>
                                     </td>
-                                    <td width="15%" align="center">
+                                    <td width="10%" align="center">
+                                        <strong>设备数</strong>
+                                    </td>
+                                    <td width="10%" align="center">
                                         <strong>电站时间</strong>
                                     </td>
-                                    <td width="15%" align="center">
+                                    <td width="10%" align="center">
                                         <strong>导入时间</strong>
                                     </td>
                                     <td width="10%" align="center">
@@ -148,18 +198,24 @@
                                     <td width="20%" align="center" class="am_line0<%=i%2 %>">
                                         <%= Html.Encode(item.code)%>
                                     </td>
-                                    <td class="am_line0<%=i%2 %>" width="10%" align="center" style=" word-wrap:break-word; overflow: hidden;" valign="middle">
-                                       <div style="width:80px; word-break:break-all; "><%= Html.Encode(item.password)%></div> 
+                                    <td class="am_line0<%=i%2 %>" width="10%" align="center" style="word-wrap: break-word;
+                                        overflow: hidden;" valign="middle">
+                                        <div style="width: 80px; word-break: break-all;">
+                                            <%= Html.Encode(item.password)%></div>
                                     </td>
                                     <td class="am_line0<%=i%2 %>" width="10%" align="center">
                                         <%=(item.plant == null ? "<font color='green'>未分配电站</font>" : item.plant.name)%>
                                     </td>
-                                    <td class="am_line0<%=i%2 %>" width="15%" align="center">
+                                     <td class="am_line0<%=i%2 %>" width="10%" align="center">
+                                        <% =Html.Encode(item.DeviceCount) %>
+                                    </td>
+                                    <td class="am_line0<%=i%2 %>" width="10%" align="center">
                                         <% =(item.plant == null ? "<font color='green'>未分配电站</font>" : DateTime.Now.AddHours(item.plant.timezone).ToString("yy/MM/dd HH:mm"))%>
                                     </td>
-                                    <td class="am_line0<%=i%2 %>" width="15%" align="center">
+                                    <td class="am_line0<%=i%2 %>" width="10%" align="center">
                                         <% =Html.Encode(item.importDate.ToString("yyyy-MM-dd HH:mm")) %>
                                     </td>
+                                   
                                     <td class="am_line0<%=i%2 %>" width="10%" align="center">
                                         <% =Html.Encode(item.isUsed==true?"Yes":"No") %>
                                     </td>
@@ -196,19 +252,21 @@
                     </tr>
                     <%}%>
                     <tr>
-                <td height="36" colspan="5" background="/images/am/am_bg02.jpg"><table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
-                  <tr>
-                    </td>
-                    <td width="70%">
-                    <%Html.RenderPartial("mpage"); %>
-                    </td>
-                  </tr>
-                </table></td>
-              </tr>
+                        <td height="36" colspan="5" background="/images/am/am_bg02.jpg">
+                            <table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
+                                <tr>
+                        </td>
+                        <td width="70%">
+                            <%Html.RenderPartial("mpage"); %>
+                        </td>
+                    </tr>
                 </table>
-            </div>
-            <div class="sb_down">
-            </div>
-        </div>
     </td>
+    </tr> </table> </div>
+    <div class="sb_down">
+    </div>
+    </div> </td>
+    <script>
+        $("#bt").val(<%=Request.QueryString["bt"] %>);
+    </script>
 </asp:Content>

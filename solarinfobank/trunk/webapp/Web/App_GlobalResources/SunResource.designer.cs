@@ -979,7 +979,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Fullscreen LOGO Settings 的本地化字符串。
+        ///   查找类似 Fullscreen Settings 的本地化字符串。
         /// </summary>
         internal static string BIG_SCREEN_LOGO_SETTING {
             get {

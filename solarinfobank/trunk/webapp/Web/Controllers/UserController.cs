@@ -479,7 +479,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             price = Request.Form["jprice"];
             ElecPriceService.GetInstance().Insert(new ElecPrice { fromHm = start, toHm = end, ptype = ElecPrice.Jian, plantId = plantid, price = price });
 
-            UserUtil.ResetLogin(UserUtil.getCurUser());
+            User user = UserUtil.getCurUser();
+            if (!user.HasPlants)
+            {
+                user.HasPlants = true;
+                userservice.save(user);//添加电站后更新用户是否注册电站状态
+            }
+            UserUtil.ResetLogin(user);
             return RedirectToAction("allplants", "user");
         }
 
@@ -531,8 +537,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             //删除电站本身
             plantService.DeletePlantById(id);
-
-            UserUtil.ResetLogin(UserUtil.getCurUser());
+            User user=UserUtil.getCurUser();
+            if (user.ownPlants.Count == 0)
+            {
+                user.HasPlants = false;
+                userservice.save(user);//删除电站时如果用户全部删除 更新用户表是否注册电站字段
+            }
+            UserUtil.ResetLogin(user);
 
             string fromurl = Request["fromurl"];
             return Redirect(fromurl);
@@ -2445,9 +2456,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Bigscreenlogosave(HttpPostedFileBase bigscreenlogo)
+        public ActionResult Bigscreenlogosave(HttpPostedFileBase bigscreenlogo, int fullscreenChartDays)
         {
             User user = UserUtil.getCurUser();
+            user.FullscreenChartDays = fullscreenChartDays;
+            TempData["errorMessage"] = "保存全屏设置成功";
+            userservice.save(user);
             try
             {
                 string floder = "/ufile/bigscreen/logo/";
@@ -2463,13 +2477,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     bigscreenlogo.SaveAs(filePath);
                     user.BigScreenLogoPath=floder + filename;
                     userservice.UpdateBigScreenLogo(user.id, user.BigScreenLogoPath);
-
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                ViewData["errorMessage"] = "保存失败：" + e.Message;
+                TempData["errorMessage"] = "保存失败：" + e.Message;
             }
             return Redirect("/user/bigscreenlogo");
         }

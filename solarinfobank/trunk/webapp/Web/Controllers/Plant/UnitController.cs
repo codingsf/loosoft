@@ -192,6 +192,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                         }
                     }
                 }
+
+                Plant plant = PlantService.GetInstance().GetPlantInfoById(int.Parse(plantId));
+                if (plant.plantUnits.Count == 0)
+                {
+                    plant.BindCollector = false;
+                    PlantService.GetInstance().Save(plant);//删除单元时，如果全部删除则修改BindCollector
+                }
             }
             catch (Exception e)
             {
@@ -211,13 +218,21 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 ModelState.AddModelError("Error", TempData["error"] as string);
             }
+            //绑定采集器的时候 同时将电站BindCollector 标示更改
+            Plant plant = PlantService.GetInstance().GetPlantInfoById(id);
+            if (!plant.BindCollector)
+            {
+                plant.BindCollector = true;
+                PlantService.GetInstance().Save(plant);
+            }
+
             PlantUnit plantUnit = new PlantUnit();
             plantUnit.displayname = name;
             plantUnit.collector = new Collector();
             plantUnit.collector.code = code;
             ViewData["unit"] = plantUnit;
             UserUtil.ResetLogin(UserUtil.getCurUser());
-            return View(FindPlant(id));
+            return View(plant);
         }
 
         /// <summary>

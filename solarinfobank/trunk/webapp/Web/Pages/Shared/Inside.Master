@@ -708,27 +708,9 @@
                                             <li><a onclick="loadContent('content_ajax','/plant/PlantReport/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
                                                 href="/plant/PlantReport/<%=Model.id%>">
                                                 <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_REPORT_CONFIGURATION%></a></li>
-                                            <li><a onclick="loadContent('content_ajax','/user/edit/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
-                                                href="/user/edit">
-                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_USER_INFORMATION%></a></li>
-                                            <li><a onclick="loadContent('content_ajax','/plant/changepassword/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
-                                                href="/plant/changepassword/<%=Model.id%>">
-                                                <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_CHANGE_PASSWORD%></a></li>
-                                            <li><a onclick="loadContent('content_ajax','/user/pageconfig','iframe','GET');setcurrent(this);return false;"
-                                                href="/user/pageconfig">
-                                                <%=Resources.SunResource.PAGECONFIG_TITLE %></a></li>
                                             <li><a onclick="loadContent('content_ajax','/plant/energyrate/<%=Model.id %>','iframe','GET');setcurrent(this);return false;"
                                                 href="/plant/energyrate/<%=Model.id %>">
                                                 <%=Resources.SunResource.INSIDE_ENERGY_RATE %></a></li>
-                                            <li><a onclick="loadContent('content_ajax','/user/record','iframe','GET');setcurrent(this);return false;"
-                                                href="/user/record">
-                                                <%=Resources.SunResource.PAGE_USER_LOGINRECORD%></a></li>
-                                            <%if (AuthService.isAllow(AuthorizationCode.USER_LIST) && UserUtil.getCurUser().id == Model.userID && !UserUtil.isDemoUser)
-                                            { %>
-                                            <li><a onclick="loadContent('content_ajax','/plant/plantUser/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
-                                                href="/plant/plantUser/<%=Model.id%>">
-                                                <%=Resources.SunResource.SHARED_INSIDE_PLANT_USER%></a></li>
-                                            <%} %>
                                             <%if ( !UserUtil.isDemoUser)
                                               { %>
                                             <li><a onclick="loadContent('content_ajax','/plant/relationconfig/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"

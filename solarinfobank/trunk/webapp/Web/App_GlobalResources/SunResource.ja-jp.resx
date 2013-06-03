@@ -5260,7 +5260,7 @@ The average value of coefficient will trigger warning
     <value>ロゴをアップロードしたり、名前を変更するには</value>
   </data>
   <data name="TEMPLATE_UPLOAD_LOGO_NOTICE" xml:space="preserve">
-    <value>ご注意：1、画像サイズはピクセル72pxのビットマップは、（サポートJPG、PNG、GIF）そのページの効果は、好ましくは透明背景のGIFを保証することである（W200×H 50）を超えないように！&lt;br/&gt;
+    <value>ご注意：1、画像サイズはピクセル72pxのビットマップは、（サポートJPG、PNG、GIF）そのページの効果は、好ましくは透明背景のGIFを保証することである（W168×H 29）を超えないように！&lt;br/&gt;
 2、システムは、18文字までの名前を付ける</value>
   </data>
   <data name="TEMPLATE_NAME1" xml:space="preserve">

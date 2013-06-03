@@ -11931,7 +11931,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 1、Please note: the picture size does not exceed (W 200 * H 50) pixels 72px bitmap (support jpg, png, gif) is to ensure that the page effect, preferably transparent background gif!
+        ///   查找类似 1、Please note: the picture size does not exceed (W 169 * H 27) pixels 72px bitmap (support jpg, png, gif) is to ensure that the page effect, preferably transparent background gif!
         ///&lt;br/&gt;2、the system name up to 18 characters 的本地化字符串。
         /// </summary>
         internal static string TEMPLATE_UPLOAD_LOGO_NOTICE {

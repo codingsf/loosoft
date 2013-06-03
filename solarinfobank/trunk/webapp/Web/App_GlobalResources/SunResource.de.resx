@@ -5691,7 +5691,7 @@ The average value of coefficient will trigger warning
     <value>Um Logo hochladen und ändern Sie den Namen</value>
   </data>
   <data name="TEMPLATE_UPLOAD_LOGO_NOTICE" xml:space="preserve">
-    <value>1、Bitte beachten Sie: Das Bild Größe nicht überschreiten (W 200 * H 50) Pixel 72px Bitmap (Unterstützung jpg, png, gif) ist es, sicherzustellen, dass die Seite Wirkung, vorzugsweise transparenten Hintergrund gif!
+    <value>1、Bitte beachten Sie: Das Bild Größe nicht überschreiten (W 169 * H 27) Pixel 72px Bitmap (Unterstützung jpg, png, gif) ist es, sicherzustellen, dass die Seite Wirkung, vorzugsweise transparenten Hintergrund gif!
 &lt;br/&gt;2、 nennen das System bis zu 18 Zeichen </value>
   </data>
   <data name="TEMPLATE_NAME1" xml:space="preserve">

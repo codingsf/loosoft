@@ -5268,7 +5268,7 @@ The average value of coefficient will trigger warning
     <value>Pour télécharger logo et modifier le nom</value>
   </data>
   <data name="TEMPLATE_UPLOAD_LOGO_NOTICE" xml:space="preserve">
-    <value>1, S'il vous plaît noter: la taille de l'image ne ​​dépasse pas (W 200 * H 50)
+    <value>1, S'il vous plaît noter: la taille de l'image ne ​​dépasse pas (W 169 * H 27)
  pixels 72px bitmap (soutien jpg, png, gif) est de s'assurer que l'effet de page,
  fond de préférence transparent gif!</value>
   </data>

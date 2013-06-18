@@ -314,7 +314,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                                     dtStr = DateTime.Now.ToString("yyyy-MM-dd");
                                 temp = new Collector
                                 {
-                                    code = ds.Tables[0].Rows[i][0].ToString(),
+                                    code = ds.Tables[0].Rows[i][0].ToString().Trim(),
                                     Descr = ds.Tables[0].Rows[i][6].ToString(),
                                     MAC = ds.Tables[0].Rows[i][2].ToString(),
                                     password = ds.Tables[0].Rows[i][1].ToString(),
@@ -334,7 +334,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                                 }
 
                                 isExist = false;
-                                isExist = collectors.Where(m => m.code.ToLower().Equals(temp.code.ToLower())).Count() > 0;
+                                isExist = collectors.Where(m => m.code.Trim().ToLower().Equals(temp.code.Trim().ToLower())).Count() > 0;
                                 if (isExist)
                                 {
                                     temp.Descr = "此 SN 已存在数据库";

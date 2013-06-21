@@ -18,10 +18,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         private string _smtpServer = "mail.sohu.com";
         private int _smtpPort = 25;
 
-        private DateTime previousSendDate =new DateTime() ;//上次发送时间
+        private DateTime previousSendDate = new DateTime();//上次发送时间
         // private DateTime previousErrorSendDate = DateTime.Now;//上次错误发送时间
 
-        private static int difftimem = 2; 
+        private static int difftimem = 2;
 
         public MailServerPoolObject()
         { }
@@ -34,7 +34,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             this._smtpServer = smtpServer;
         }
 
-        public string accountName{ get{return _accountName;} }
+        public string accountName { get { return _accountName; } }
 
         ///
         /// 
@@ -66,11 +66,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// @return
         /// </summary>
         /// <returns></returns>
-        public bool isValid(){
-            if(this.used){
+        public bool isValid()
+        {
+            if (this.used)
+            {
                 return false;
             }
-            if(!this.isFullDate()){
+            if (!this.isFullDate())
+            {
                 return false;
             }
             return true;
@@ -81,7 +84,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
          * @since  2010-10-14
          * @author houbing.qian
          */
-        public void  close(){
+        public void close()
+        {
             this.used = false;
             this.previousSendDate = DateTime.Now;
 
@@ -129,21 +133,22 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// <returns>发送是否完成</returns>
         public bool SendMail(Message message)
         {
+            message.From.FullName = "SolarInfoBank";
             // add an attachment
             //message.Attachments.Add( "C:\\me_dancing.wmv" );
 
-            string domain = accountName.Split('@')[1];
+            string domain = accountName.Contains('@') ? accountName.Split('@')[1] : accountName;
             //send the message
             try
             {
                 message.Charset = Encoding.UTF8;
                 Smtp.Send(message, _smtpServer, (short)_smtpPort, domain, SmtpAuthentication.Login, accountName, _password);
-                Console.WriteLine("The message" + message .Subject+ " has been sent，发送时间："+DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                Console.WriteLine("The message" + message.Subject + " has been sent，发送时间：" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Failed to send message {0}: 错误：{1}", message.Subject,ex.Message);
+                Console.WriteLine("Failed to send message {0}: 错误：{1}", message.Subject, ex.Message);
                 return false;
             }
         }

@@ -25,7 +25,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// </summary>
         public static void initDefaultConfiguePool()
         {
-            initPool(emailServername, emailUsername, emailPassword, emailServerport);
+            initPool(emailUsername, emailPassword, emailServername, emailServerport);
         }
         public static void initPool(string emailNames, string emailPwds, string serverName, int port )
         {

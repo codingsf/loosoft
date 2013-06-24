@@ -133,7 +133,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// <returns>发送是否完成</returns>
         public bool SendMail(Message message)
         {
-            message.From.FullName = "SolarInfoBank";
+            message.From.FullName = "SolarInfo Bank";
             // add an attachment
             //message.Attachments.Add( "C:\\me_dancing.wmv" );
 

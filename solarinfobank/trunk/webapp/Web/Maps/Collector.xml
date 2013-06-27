@@ -104,7 +104,7 @@
           <![CDATA[ binddate <= #bed# ]]>
         </isNotEmpty>
         <isNotEmpty prepend="AND"  property="bt">
-          <![CDATA[ binded = #bt# ]]>
+          <![CDATA[ isused = #bt# ]]>
         </isNotEmpty>
       </dynamic>
       <![CDATA[order by id desc limit $page.Start$,$page.End$]]>
@@ -129,7 +129,7 @@
           <![CDATA[ binddate <= #bed# ]]>
         </isNotEmpty>
         <isNotEmpty prepend="AND"  property="bt">
-          <![CDATA[ binded = #bt# ]]>
+          <![CDATA[ isused = #bt# ]]>
         </isNotEmpty>
       </dynamic>
     </select>

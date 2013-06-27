@@ -115,10 +115,10 @@
                  <%=Html.Hidden("pid",Model.id) %>
                 </td>
                 <td align="left"><span id="error_name"></span></td>
-                  </tr>
+                </tr>
 
                 <tr>
-                  <td class="pr_10" height="35"><span>:</span></td>
+                  <td class="pr_10" height="35"><span><%=Resources.SunResource.PLANT_DEVICEMONITOR_INSTAL_POWER%>:</span></td>
                   <td>
            
                   <%=Html.TextBox("currentPower", device.designPower, new { @class = "txtbu01", style="width:160px" })%><span class="f11">kWp</span><span class="red">*</span>

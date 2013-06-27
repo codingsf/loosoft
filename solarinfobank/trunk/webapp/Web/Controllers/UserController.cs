@@ -150,8 +150,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         [HttpPost]
         public ActionResult edit(User user)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 //创建用户服务
 
                 if (string.IsNullOrEmpty(user.password))
@@ -168,7 +168,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 //CultureInfo cultureInfo = new CultureInfo(language.codename);
                 //Session["Culture"] = cultureInfo;
                 //Session["display"] = language.name;
-            }
+            //}
             return edit();
         }
 

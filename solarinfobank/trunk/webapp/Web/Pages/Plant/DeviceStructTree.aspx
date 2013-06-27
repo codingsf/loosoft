@@ -18,17 +18,16 @@
             parent.loadRunData(_did);
     }
 </script>
-    <script type="text/javascript">
+<script type="text/javascript">
+
+	<!--
+    d = new dTree('d');
+
+    <%=ViewData["jsstr"] %>
     
-		<!--
-        d = new dTree('d');
-
-        <%=ViewData["jsstr"] %>
-        
-        document.write(d);
-        d.openTo(2,true);
-		//-->
-    </script>
-
+    document.write(d);
+    d.openTo(2,true);
+	//-->
+</script>
 </body>
 </html>

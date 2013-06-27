@@ -711,7 +711,13 @@
                                             <li><a onclick="loadContent('content_ajax','/plant/energyrate/<%=Model.id %>','iframe','GET');setcurrent(this);return false;"
                                                 href="/plant/energyrate/<%=Model.id %>">
                                                 <%=Resources.SunResource.INSIDE_ENERGY_RATE %></a></li>
-                                            <%if ( !UserUtil.isDemoUser)
+                                            <%if (UserUtil.getCurUser().id==Model.userID && !UserUtil.isDemoUser)
+                                            { %>
+                                            <li><a onclick="loadContent('content_ajax','/plant/plantUser/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
+                                                href="/plant/plantUser/<%=Model.id%>">
+                                                <%=Resources.SunResource.SHARED_INSIDE_PLANT_USER%></a></li>
+                                            <%} %>
+                                            <%if (UserUtil.getCurUser().id==Model.userID && !UserUtil.isDemoUser)
                                               { %>
                                             <li><a onclick="loadContent('content_ajax','/plant/relationconfig/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
                                                  href="/plant/relationconfig/<%=Model.id%>"><%=Resources.SunResource.DEVICE_RELATION_MENU%></a></li>

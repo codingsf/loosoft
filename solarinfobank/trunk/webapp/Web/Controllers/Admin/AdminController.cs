@@ -314,7 +314,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                                     dtStr = DateTime.Now.ToString("yyyy-MM-dd");
                                 temp = new Collector
                                 {
-                                    code = ds.Tables[0].Rows[i][0].ToString().Trim(),
+                                    code = ds.Tables[0].Rows[i][0].ToString(),
                                     Descr = ds.Tables[0].Rows[i][6].ToString(),
                                     MAC = ds.Tables[0].Rows[i][2].ToString(),
                                     password = ds.Tables[0].Rows[i][1].ToString(),
@@ -334,7 +334,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                                 }
 
                                 isExist = false;
-                                isExist = collectors.Where(m => m.code.Trim().ToLower().Equals(temp.code.Trim().ToLower())).Count() > 0;
+                                isExist = collectors.Where(m => m.code.ToLower().Equals(temp.code.ToLower())).Count() > 0;
                                 if (isExist)
                                 {
                                     temp.Descr = "此 SN 已存在数据库";
@@ -2106,18 +2106,19 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             int.TryParse(mtcode, out mCode);
             IList<Device> devices = new List<Device>();
             IList<Plant> plants = plantService.Getplantlikepname(pname);
-            //从18版本调整设备和电站的逻辑关系为已经plantunitid后，无需这样处理了
-            //foreach (Plant plant in plants)
-            //{
-            //    foreach (Device d in plant.deviceList())
-            //    {
-            //        if (d.deviceTypeCode.Equals(tpcode) && (d.deviceModelCode.Equals(mCode) || mCode.Equals(-1)))
-            //        {
-            //            d.plant = plant;
-            //            devices.Add(d);
-            //        }
-            //    }
-            //}
+
+            foreach (Plant plant in plants)
+            {
+                foreach (Device d in plant.deviceList())
+                {
+                    if (d.deviceTypeCode.Equals(tpcode) && (d.deviceModelCode.Equals(mCode) || mCode.Equals(-1)))
+                    {
+                        //从18版本调整设备和电站的逻辑关系为已经plantunitid后，无需这样处理了
+                        //d.plant = plant;
+                        devices.Add(d);
+                    }
+                }
+            }
 
             int.TryParse(pindex, out mCode);
             Pager page = new Pager();

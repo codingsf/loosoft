@@ -142,9 +142,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             get
             {
-                return this.devices.Count;
+                return this.devices == null ? 0 : devices.Count;
             }
-            
         }
 
         public DateTime BindDate { get; set; }//绑定时间

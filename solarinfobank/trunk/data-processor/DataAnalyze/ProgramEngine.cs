@@ -50,7 +50,7 @@ namespace DataAnalyze
             //启动发电量告警线程
             string energywarn = ConfigurationSettings.AppSettings["energywarn"];//是否启动发电量告警生成
             Thread m_thread4 = null;
-            if (energywarn == null || energywarn.Equals("true"))
+            if (energywarn != null || energywarn.Equals("true"))
             {
                 EnergywarnProcesser energywarnProcesser = new EnergywarnProcesser();
                 m_thread4 = new Thread(new ThreadStart(energywarnProcesser.Processing));

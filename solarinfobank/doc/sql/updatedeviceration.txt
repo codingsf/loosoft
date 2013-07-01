@@ -1,0 +1,1 @@
+update device d set plantunitid=(select id from plant_unit where collectorid=d.collectorid) where plantunitid is null or plantunitid =0 or plantunitid not in (select id from plant_unit) order by plantunitid desc 

@@ -30,7 +30,183 @@ CREATE TABLE `compensation` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
 
-更行plant_user表的shared标识和plant_info表中电站的userid一致
+更新plant_user表的shared标识和plant_info表中电站的userid一致 roleid=3
+update plant_user set roleid=3
+
+user 表增加是否开启大屏展示功能
+bigscreenenable 和 bigscreenlogo
+
+修改demo用户的角色为1：电站参观者  因为将demo用户和角色概念区分开来了，更准确
 
 
+写个sql 更新设备的plantunitid对应关系
+update device as d set plantunitid = (select id from plant_unit where collectorId=d.collectorId)
+
+添加mtinfounit
+
+SET FOREIGN_KEY_CHECKS=0;
+-- ----------------------------
+-- Table structure for mtinfounit
+-- ----------------------------
+CREATE TABLE `mtinfounit` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `devicetypecode` int(11) DEFAULT NULL,
+  `addresscode` varchar(20) NOT NULL,
+  `name` varchar(500) DEFAULT NULL,
+  `valuedatatype` varchar(11) NOT NULL DEFAULT '1',
+  `unit` varchar(50) NOT NULL DEFAULT '""',
+  `monitortype` varchar(255) DEFAULT NULL,
+  `_precision` varchar(255) DEFAULT NULL,
+  `defaultname` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=114 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records 
+-- ----------------------------
+INSERT INTO `mtinfounit` VALUES ('112', '1', '信息地址', 'en-US:英语,zh-CN:汉语,ja-JP:日语,fr-FR:法语,de-DE:德语,it-ch:意大利', 'int', '8', 'ym', '精度', '默认名称');
+
+
+更新权限表
+
+
+/*
+MySQL Data Transfer
+Source Host: localhost
+Source Database: solarinfobank18_220
+Target Host: localhost
+Target Database: solarinfobank18_220
+Date: 2013/3/30 15:00:04
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+-- ----------------------------
+-- Table structure for role_function
+-- ----------------------------
+CREATE TABLE `role_function` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `roleId` int(11) NOT NULL,
+  `function_code` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `roleId_index` (`roleId`)
+) ENGINE=MyISAM AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records 
+-- ----------------------------
+INSERT INTO `role_function` VALUES ('84', '1', '4');
+INSERT INTO `role_function` VALUES ('85', '1', '5');
+INSERT INTO `role_function` VALUES ('86', '1', '6');
+INSERT INTO `role_function` VALUES ('87', '1', '7');
+INSERT INTO `role_function` VALUES ('88', '1', '8');
+INSERT INTO `role_function` VALUES ('89', '1', '12');
+INSERT INTO `role_function` VALUES ('90', '1', '14');
+INSERT INTO `role_function` VALUES ('91', '1', '17');
+INSERT INTO `role_function` VALUES ('92', '1', '19');
+INSERT INTO `role_function` VALUES ('93', '1', '21');
+INSERT INTO `role_function` VALUES ('94', '1', '22');
+INSERT INTO `role_function` VALUES ('95', '1', '23');
+INSERT INTO `role_function` VALUES ('96', '1', '24');
+INSERT INTO `role_function` VALUES ('97', '1', '25');
+INSERT INTO `role_function` VALUES ('98', '1', '28');
+INSERT INTO `role_function` VALUES ('99', '1', '33');
+INSERT INTO `role_function` VALUES ('100', '1', '34');
+INSERT INTO `role_function` VALUES ('101', '1', '37');
+INSERT INTO `role_function` VALUES ('102', '1', '40');
+INSERT INTO `role_function` VALUES ('103', '1', '42');
+INSERT INTO `role_function` VALUES ('104', '1', '45');
+INSERT INTO `role_function` VALUES ('105', '3', '1');
+INSERT INTO `role_function` VALUES ('106', '3', '2');
+INSERT INTO `role_function` VALUES ('107', '3', '3');
+INSERT INTO `role_function` VALUES ('108', '3', '4');
+INSERT INTO `role_function` VALUES ('109', '3', '5');
+INSERT INTO `role_function` VALUES ('110', '3', '6');
+INSERT INTO `role_function` VALUES ('111', '3', '7');
+INSERT INTO `role_function` VALUES ('112', '3', '8');
+INSERT INTO `role_function` VALUES ('113', '3', '9');
+INSERT INTO `role_function` VALUES ('114', '3', '10');
+INSERT INTO `role_function` VALUES ('115', '3', '11');
+INSERT INTO `role_function` VALUES ('116', '3', '12');
+INSERT INTO `role_function` VALUES ('117', '3', '13');
+INSERT INTO `role_function` VALUES ('118', '3', '14');
+INSERT INTO `role_function` VALUES ('119', '3', '15');
+INSERT INTO `role_function` VALUES ('120', '3', '16');
+INSERT INTO `role_function` VALUES ('121', '3', '17');
+INSERT INTO `role_function` VALUES ('122', '3', '18');
+INSERT INTO `role_function` VALUES ('123', '3', '18');
+INSERT INTO `role_function` VALUES ('124', '3', '19');
+INSERT INTO `role_function` VALUES ('125', '3', '20');
+INSERT INTO `role_function` VALUES ('126', '3', '21');
+INSERT INTO `role_function` VALUES ('127', '3', '22');
+INSERT INTO `role_function` VALUES ('128', '3', '23');
+INSERT INTO `role_function` VALUES ('129', '3', '24');
+INSERT INTO `role_function` VALUES ('130', '3', '25');
+INSERT INTO `role_function` VALUES ('131', '3', '26');
+INSERT INTO `role_function` VALUES ('132', '3', '27');
+INSERT INTO `role_function` VALUES ('133', '3', '28');
+INSERT INTO `role_function` VALUES ('134', '3', '29');
+INSERT INTO `role_function` VALUES ('135', '3', '30');
+INSERT INTO `role_function` VALUES ('136', '3', '31');
+INSERT INTO `role_function` VALUES ('137', '3', '32');
+INSERT INTO `role_function` VALUES ('138', '3', '33');
+INSERT INTO `role_function` VALUES ('139', '3', '34');
+INSERT INTO `role_function` VALUES ('140', '3', '35');
+INSERT INTO `role_function` VALUES ('141', '3', '36');
+INSERT INTO `role_function` VALUES ('142', '3', '37');
+INSERT INTO `role_function` VALUES ('143', '3', '38');
+INSERT INTO `role_function` VALUES ('144', '3', '38');
+INSERT INTO `role_function` VALUES ('145', '3', '39');
+INSERT INTO `role_function` VALUES ('146', '3', '40');
+INSERT INTO `role_function` VALUES ('147', '3', '41');
+INSERT INTO `role_function` VALUES ('148', '3', '42');
+INSERT INTO `role_function` VALUES ('149', '3', '43');
+INSERT INTO `role_function` VALUES ('150', '3', '44');
+INSERT INTO `role_function` VALUES ('151', '3', '45');
+INSERT INTO `role_function` VALUES ('152', '3', '46');
+INSERT INTO `role_function` VALUES ('153', '2', '1');
+INSERT INTO `role_function` VALUES ('154', '2', '2');
+INSERT INTO `role_function` VALUES ('156', '2', '4');
+INSERT INTO `role_function` VALUES ('157', '2', '5');
+INSERT INTO `role_function` VALUES ('158', '2', '6');
+INSERT INTO `role_function` VALUES ('159', '2', '7');
+INSERT INTO `role_function` VALUES ('160', '2', '8');
+INSERT INTO `role_function` VALUES ('161', '2', '9');
+INSERT INTO `role_function` VALUES ('162', '2', '10');
+INSERT INTO `role_function` VALUES ('163', '2', '11');
+INSERT INTO `role_function` VALUES ('164', '2', '12');
+INSERT INTO `role_function` VALUES ('165', '2', '13');
+INSERT INTO `role_function` VALUES ('166', '2', '14');
+INSERT INTO `role_function` VALUES ('167', '2', '15');
+INSERT INTO `role_function` VALUES ('168', '2', '16');
+INSERT INTO `role_function` VALUES ('169', '2', '17');
+INSERT INTO `role_function` VALUES ('170', '2', '18');
+INSERT INTO `role_function` VALUES ('171', '2', '18');
+INSERT INTO `role_function` VALUES ('172', '2', '19');
+INSERT INTO `role_function` VALUES ('173', '2', '20');
+INSERT INTO `role_function` VALUES ('174', '2', '21');
+INSERT INTO `role_function` VALUES ('175', '2', '22');
+INSERT INTO `role_function` VALUES ('176', '2', '23');
+INSERT INTO `role_function` VALUES ('177', '2', '24');
+INSERT INTO `role_function` VALUES ('178', '2', '25');
+INSERT INTO `role_function` VALUES ('179', '2', '26');
+INSERT INTO `role_function` VALUES ('180', '2', '27');
+INSERT INTO `role_function` VALUES ('181', '2', '28');
+INSERT INTO `role_function` VALUES ('182', '2', '29');
+INSERT INTO `role_function` VALUES ('183', '2', '30');
+INSERT INTO `role_function` VALUES ('184', '2', '31');
+INSERT INTO `role_function` VALUES ('185', '2', '32');
+INSERT INTO `role_function` VALUES ('186', '2', '33');
+INSERT INTO `role_function` VALUES ('187', '2', '34');
+INSERT INTO `role_function` VALUES ('188', '2', '35');
+INSERT INTO `role_function` VALUES ('190', '2', '37');
+INSERT INTO `role_function` VALUES ('191', '2', '38');
+INSERT INTO `role_function` VALUES ('192', '2', '38');
+INSERT INTO `role_function` VALUES ('193', '2', '39');
+INSERT INTO `role_function` VALUES ('194', '2', '40');
+INSERT INTO `role_function` VALUES ('195', '2', '41');
+INSERT INTO `role_function` VALUES ('196', '2', '42');
+INSERT INTO `role_function` VALUES ('197', '2', '43');
+INSERT INTO `role_function` VALUES ('198', '2', '44');
+INSERT INTO `role_function` VALUES ('199', '2', '45');
+INSERT INTO `role_function` VALUES ('200', '2', '46');
 

@@ -9,7 +9,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <table cellpadding=0 cellspacing=0 border=0>
 <tr>
- <td background="/images/kj/kjbg01.jpg" valign="top" width="793">
+ <td background="/images/kj/kjbg01.gif" valign="top" width="793">
  <script language="javascript" type="text/javascript">
                     function getradio(name) {
                         return $("input[name='" + name + "']:checked").val();

@@ -308,7 +308,7 @@
             height: 25px;
             line-height: 25px;
             padding-left: 15px;
-            background: url(/images/kj/listbg04.jpg) no-repeat;
+            background: url(/images/kj/listbg04.gif) no-repeat;
             margin-bottom: 1px;
             color: #4A8125;
             font-weight: bold;
@@ -321,7 +321,7 @@
             line-height: 30px;
             width: 190px;
             padding-left: 15px;
-            background: url(/images/kj/listbg03.jpg) no-repeat;
+            background: url(/images/kj/listbg03.gif) no-repeat;
             margin-bottom: 1px;
             color: #4A8125;
             font-weight: bold;
@@ -350,6 +350,7 @@
     --%>
 </head>
 <body>
+<%User curUser = UserUtil.getCurUser(); %>
     <%= Html.HiddenFor(model=>model.id) %>
     <div class="mainbody">
         <% Html.RenderPartial("header"); %>
@@ -360,9 +361,9 @@
                 </div>
                 <%=Html.Hidden("plant_time",DateTime.Parse( CalenderUtil.curDateWithTimeZone(Model.timezone,Model.startDate,Model.endDate,Model.hours, Model.dst_enable,"yyyy-MM-dd HH:mm:ss")).ToString("G", System.Globalization.DateTimeFormatInfo.InvariantInfo) ) %>
                 <div style="float: right; width: 400px; text-align: right;">
-                    <a href="/user/record/<%=UserUtil.getCurUser().id %>"
+                    <a href="/user/record/<%=curUser.id %>"
                         onclick="loadContent('content_ajax','/user/record','iframe','GET');setcurrent(this);return false;">
-                        <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().displayNick%>
+                        <%=curUser.displayNick%>
                     </a>
                     ,
                     <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_WELCOME_TO_COME  %>! | 
@@ -391,7 +392,7 @@
                                         <ul>
                                             <li><a href="/user/allplants"><%=Resources.SunResource.PAGESHARED_ALLPLANTS%></a></li>
                                             <li>
-                                            <a class="lefttabclick" href="/plant/overview/<%=Model.id %>" title="<%=Model.name %>" id="plantname">
+                                            <a class="lefttabclick" href='<%= (Model.Expired) ? "javascript:alert('请续费');" : "/plant/overview/"+Model.id%>' title="<%=Model.name %>" id="plantname">
                                                 <%= StringUtil.cutStr(Model.name, 16, "...")%>
                                                 <%if (Model.hasFaultDevice)
                                                 { 
@@ -410,7 +411,7 @@
                                             <a id="defaultlink" href="/user/allplants"><%=Resources.SunResource.PAGESHARED_ALLPLANTS%></a>
                                             </li>
                                             <%
-                                                User user = UserUtil.getCurUser();
+                                                User user = curUser;
                                                 int idx = 0;
                                                 int configCount = user.menuDisplayCount;
                                                 IList<Plant> plants = user.displayPlants;
@@ -421,7 +422,7 @@
                                                         break;
                                             %>
                                             <li>
-                                            <a href="/<%=plant.childs.Count>0?"virtual/plantrelationstruct":"plant/overview" %>/<%=plant.id %>" title="<%=plant.name %>" id="plantname">
+                                            <a href="<%=plant.childs.Count>0?"/virtual/plantrelationstruct/"+plant.id :( plant.Expired) ? "javascript:alert('请续费');" : "/plant/overview/"+plant.id%>" title="<%=plant.name %>" id="plantname">
                                                 <%= StringUtil.cutStr(plant.name, 16, "...")%>
                                                 <%if (plant.hasFaultDevice)
                                                   {%>
@@ -711,13 +712,13 @@
                                             <li><a onclick="loadContent('content_ajax','/plant/energyrate/<%=Model.id %>','iframe','GET');setcurrent(this);return false;"
                                                 href="/plant/energyrate/<%=Model.id %>">
                                                 <%=Resources.SunResource.INSIDE_ENERGY_RATE %></a></li>
-                                            <%if (UserUtil.getCurUser().id==Model.userID && !UserUtil.isDemoUser)
+                                            <%if (curUser.id == Model.userID && !UserUtil.isDemoUser)
                                             { %>
                                             <li><a onclick="loadContent('content_ajax','/plant/plantUser/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
                                                 href="/plant/plantUser/<%=Model.id%>">
                                                 <%=Resources.SunResource.SHARED_INSIDE_PLANT_USER%></a></li>
                                             <%} %>
-                                            <%if (UserUtil.getCurUser().id==Model.userID && !UserUtil.isDemoUser)
+                                            <%if (curUser.id == Model.userID && !UserUtil.isDemoUser)
                                               { %>
                                             <li><a onclick="loadContent('content_ajax','/plant/relationconfig/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
                                                  href="/plant/relationconfig/<%=Model.id%>"><%=Resources.SunResource.DEVICE_RELATION_MENU%></a></li>
@@ -727,7 +728,7 @@
                                             <li><a onclick="loadContent('content_ajax','/plant/devicerelation/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
                                                 href="/plant/devicerelation/<%=Model.id %>">设备接线图</a></li>
 
-                                            <%if (UserUtil.getCurUser().id==Model.userID && !UserUtil.isDemoUser)
+                                            <%if (curUser.id == Model.userID && !UserUtil.isDemoUser)
                                               { %>
                                             <li><a onclick="loadContent('content_ajax','/plant/portaluser/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
                                                 href="/plant/portaluser/<%=Model.id%>">

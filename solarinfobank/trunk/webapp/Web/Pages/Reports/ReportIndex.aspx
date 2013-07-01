@@ -164,7 +164,7 @@
     <script src="/script/DatePicker/WdatePicker.js" type="text/javascript"></script>
 <table cellpadding=0 cellspacing=0 border=0>
 <tr>
- <td width="793" valign="top" background="../../images/kj/kjbg01.jpg">
+ <td width="793" valign="top" background="../../images/kj/kjbg01.gif">
   <%=Html.Hidden("plantId",ViewData["id"]) %> 
   <%=Html.Hidden("time","") %>
   <%=Html.Hidden("typeId",Request.QueryString["tId"]) %>

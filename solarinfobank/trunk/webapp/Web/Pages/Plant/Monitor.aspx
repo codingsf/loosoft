@@ -7,7 +7,7 @@
     <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %> <%=Model.name %> <%=Resources.SunResource.PLANT_MONITOR_VIDEO_MONITOR  %> 
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <td width="793" valign="top" background="/images/kj/kjbg01.jpg" id="content_ajax">
+    <td width="793" valign="top" background="/images/kj/kjbg01.gif" id="content_ajax">
     <!--空页面，只为了加载模板，实际页面是IncludeMonitor页面-->      
     </td>
 </asp:Content>

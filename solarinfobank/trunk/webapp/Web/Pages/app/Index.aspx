@@ -18,7 +18,7 @@ the power plant anywhere at any time !</div>
 <div class="xcy_pr">
 <div class="xcy_ico01">SolarInfo Bank for iPhone App</div>
 <div class="xcy_ab">
-<div class="xcy_l"><img src="/images/xcy/xcy_img01.jpg" width="225" height="175" /></div>
+<div class="xcy_l"><img src="/images/xcy/xcy_img01.gif" width="225" height="175" /></div>
 <div class="xcy_r">
 
 <div class="xcy_r01">  
@@ -36,7 +36,7 @@ the power plant anywhere at any time !</div>
 <div class="xcy_pr">
   <div class="xcy_ico01">SolarInfo Bank for iPad App</div>
   <div class="xcy_ab">
-    <div class="xcy_l"><img src="/images/xcy/xcy_img02.jpg" width="225" height="175" /></div>
+    <div class="xcy_l"><img src="/images/xcy/xcy_img02.gif" width="225" height="175" /></div>
     <div class="xcy_r">
       <div class="xcy_r01">
        <%=Resources.SunResource.PUBLIC_APP_CONTENT11%></div>
@@ -50,13 +50,13 @@ the power plant anywhere at any time !</div>
 <div class="xcy_pr">
   <div class="xcy_ico01">SolarInfo Bank for Android App</div>
   <div class="xcy_ab">
-    <div class="xcy_l"><img src="/images/xcy/xcy_img03.jpg" width="225" height="175"
+    <div class="xcy_l"><img src="/images/xcy/xcy_img03.gif" width="225" height="175"
      /></div>
     <div class="xcy_r">
       <div class="xcy_r01">
        <%=Resources.SunResource.PUBLIC_APP_CONTENT111%>
        <a target='_blank' href='https://play.google.com/store/apps/details?id=com.zhisou.loosoft.sungrow.bankapp&feature=search_result#?t=W10'><img src="/images/ipadstore.jpg"/></a>
-       <a target='_blank' href='/public/solarinfobank_android'><img src="/images/xcy/bu03.jpg"/></a>
+       <a target='_blank' href='/public/solarinfobank_android'><img src="/images/xcy/bu03.gif"/></a>
       </div>
       <div  style="padding-left:10px;">
         <!--<input name="Submit2" type="submit" class="xcy_bu01" value="Download" />-->

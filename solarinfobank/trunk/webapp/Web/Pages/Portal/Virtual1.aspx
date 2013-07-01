@@ -163,7 +163,7 @@
                                                 int pgIndex = 1;
                                                 foreach (Plant item in ViewData["childPlants"] as IList<Plant>)
                                                 {
-                                                    string pic = item.isVirtualPlant ? "/protalimg/" + (string.IsNullOrEmpty(item.pic) ? "npr.jpg" : item.pic) : "/ufile/" + (string.IsNullOrEmpty(item.firstPic) ? "nopic/nopico02.jpg" : item.firstPic);
+                                                    string pic = item.isVirtualPlant ? "/protalimg/" + (string.IsNullOrEmpty(item.pic) ? "npr.jpg" : item.pic) : "/ufile/" + (string.IsNullOrEmpty(item.firstPic) ? "nopic/nopico02.gif" : item.firstPic);
                                                     string urlaffix = item.isVirtualPlant ? "virtual" : "plant";
                                                     i++;
                                                     if (i > 2)

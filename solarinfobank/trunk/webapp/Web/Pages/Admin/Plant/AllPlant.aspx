@@ -7,7 +7,7 @@
     电站列表 - SolarInfoBank
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <td width="793" valign="top" background="/images/kj/kjbg01.jpg">
+    <td width="793" valign="top" background="/images/kj/kjbg01.gif">
 
         <script src="../../script/DatePicker/WdatePicker.js" type="text/javascript"></script>
 

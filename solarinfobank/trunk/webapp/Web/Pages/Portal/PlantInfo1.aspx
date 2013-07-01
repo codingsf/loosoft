@@ -155,7 +155,7 @@
                             </table>
                         </td>
                         <td width="320" rowspan="2" align="right" valign="top">
-                            <img src="<%=string.IsNullOrEmpty(Model.firstPic)?"/images/gf/nopico02.jpg":"/ufile/"+Model.firstPic %>"
+                            <img src="<%=string.IsNullOrEmpty(Model.firstPic)?"/images/gf/nopico02.gif":"/ufile/"+Model.firstPic %>"
                                 width="310" height="315" />
                         </td>
                     </tr>

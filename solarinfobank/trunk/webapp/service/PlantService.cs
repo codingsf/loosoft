@@ -24,13 +24,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         PlantUnitService plantUnitService = PlantUnitService.GetInstance();  //电站单元服务 
         private static PlantService _instance = new PlantService();
         private IDaoManager _daoManager = null;
-        private IPlantDao _plantInfo = null;
+        private IPlantDao _plantInfoDao = null;
 
         private PlantService()
         {
             _daoManager = ServiceConfig.GetInstance().DaoManager;
-            
-            _plantInfo = _daoManager.GetDao(typeof(IPlantDao)) as IPlantDao;
+
+            _plantInfoDao = _daoManager.GetDao(typeof(IPlantDao)) as IPlantDao;
         }
 
         public static PlantService GetInstance()
@@ -44,7 +44,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <returns>返回：电站信息集合</returns>
         public IList<Plant> GetPlantInfoList()
         {
-            return _plantInfo.GetPlantInfoList();
+            return _plantInfoDao.GetPlantInfoList();
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <returns></returns>
         public IList<Plant> GetNewPlantInfoList(int top)
         {
-            return _plantInfo.GetPlantInfoList(top, "id desc");
+            return _plantInfoDao.GetPlantInfoList(top, "id desc");
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         {
             Plant p = new Plant();
             p.id = pid;
-            return _plantInfo.Get(p);
+            return _plantInfoDao.Get(p);
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <returns>返回添加id</returns>
         public int AddPlantInfo(Plant plantInfo)
         {
-            int res = _plantInfo.Insert(plantInfo);
+            int res = _plantInfoDao.Insert(plantInfo);
             if (res > 0)
             {
                 //新增电站需要同步一次
@@ -96,7 +96,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <returns>1成功0没成功</returns>
         public int UpdatePlantInfo(Plant plantInfo)
         {
-            return _plantInfo.Update(plantInfo);
+            return _plantInfoDao.Update(plantInfo);
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         {
             plantUnitService.DeletePlantUnitByPlant(id);//根据电站id删除电站单元
             PlantPortalUserService.GetInstance().DelPlantUserByPlantID(id);// 删除电站对应用户
-            return _plantInfo.Remove(new Plant { id = id });
+            return _plantInfoDao.Remove(new Plant { id = id });
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <returns></returns>
         public int GetPlantNum()
         {
-            return _plantInfo.GetPlantNum();
+            return _plantInfoDao.GetPlantNum();
         }
         /// <summary>
         /// 功能：修改电站图片
@@ -129,20 +129,20 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <returns></returns>
         public int ModifyPlantPic(Plant plant)
         {
-            return _plantInfo.ModifyPlantPic(plant);
+            return _plantInfoDao.ModifyPlantPic(plant);
         }
 
         public IList<Plant> GetPlantByPage(Pager page)
         {
-            return _plantInfo.GetPlantsByPage(page);
+            return _plantInfoDao.GetPlantsByPage(page);
         }
         public IList<Plant> QueryPagePlants(Hashtable table)
         {
-            return _plantInfo.QueryPagePlants(table);
+            return _plantInfoDao.QueryPagePlants(table);
         }
         public IList<Plant> Getplantlikepname(string name)
         {
-            return _plantInfo.Getplantlikepname(name);
+            return _plantInfoDao.Getplantlikepname(name);
         }
 
         /// <summary>
@@ -153,14 +153,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <returns></returns>
         public Plant GetplantByName(string name)
         {
-            return _plantInfo.Getplantbyname(name);
+            return _plantInfoDao.Getplantbyname(name);
         }
 
 
         public int Remove(int id)
         {
             Plant p = new Plant();
-            return _plantInfo.Remove(new Plant() { id = id });
+            return _plantInfoDao.Remove(new Plant() { id = id });
         }
 
         public double GetEnergy(Plant plant, string startyyyyMMdd, string endyyyyMMdd)
@@ -180,7 +180,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
 
         public int UpdataWarningLastSendTime(int pid, DateTime updateTime)
         {
-            return _plantInfo.UpdataWarningLastSendTime(pid, updateTime);
+            return _plantInfoDao.UpdataWarningLastSendTime(pid, updateTime);
         }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <returns></returns>
         public double getTotalPower()
         {
-            IList<Plant> plants = _plantInfo.GetPlantInfoList();
+            IList<Plant> plants = _plantInfoDao.GetPlantInfoList();
             double totalPower = 0;
             foreach (Plant plant in plants)
             {
@@ -213,10 +213,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         {
             if (plant.id > 0)
             {
-                _plantInfo.Update(plant);
+                _plantInfoDao.Update(plant);
                 return plant.id;
-            }else
-                return _plantInfo.Insert(plant);
+            }
+            else
+                return _plantInfoDao.Insert(plant);
         }
 
         /// <summary>
@@ -227,7 +228,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <returns></returns>
         public int UpdateParentId(int parentId)
         {
-            return _plantInfo.UpdateParentId(parentId);
+            return _plantInfoDao.UpdateParentId(parentId);
         }
 
         /// <summary>
@@ -235,7 +236,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// add by qhb in 20120415 for
         /// </summary>
         /// <param name="plantInfos"></param>
-        public void batchSave(IDictionary<int,PlantInfo> plantInfoMap)
+        public void batchSave(IDictionary<int, PlantInfo> plantInfoMap)
         {
             Plant plant = null;
             PlantUnit plantUnit = null;
@@ -339,6 +340,24 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             if (monthsunlingt == 0) return 0;
             float dp = plant.design_power == 0 ? 1 : plant.design_power;
             return yearEnergy / monthsunlingt * 1000 * dp;
+        }
+
+        public int UpdatePaymentLimitDate(Plant plant)
+        {
+            return _plantInfoDao.UpdatePaymentLimitDate(plant);
+        }
+
+        public int UpdateLastEmailRemindDate(Plant plant)
+        {
+            return _plantInfoDao.UpdateLastEmailRemindDate(plant);
+        }
+
+        public IList<Plant> GetPaymentExpiredList()
+        {
+            int limitDays = 30;
+            ItemConfig config = ItemConfigService.GetInstance().GetItemConfigByName(ItemConfig.Payment);
+            if (config != null && config.value > 0) limitDays = (int)config.value;
+            return _plantInfoDao.GetPaymentExpiredList(limitDays);
         }
     }
 }

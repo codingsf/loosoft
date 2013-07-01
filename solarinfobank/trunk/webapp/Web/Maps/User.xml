@@ -94,6 +94,10 @@
       select *  from  userinfo where id=#id#
     </select>
 
+    <select id="user_get_lazy_class"  resultClass="User"   cacheModel="user_cache">
+      SELECT *  FROM  userinfo where id=#value#
+    </select>
+    
     <select id="user_get_lazy"  resultMap="user_info_result" cacheModel="user_cache">
       SELECT *  FROM  userinfo where id=#value#
     </select>

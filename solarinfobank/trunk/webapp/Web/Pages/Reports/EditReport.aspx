@@ -329,7 +329,7 @@
 <%=Html.Hidden("time","") %>
 <table cellpadding=0 cellspacing=0 border=0>
 <tr>
-<td width="793" valign="top" background="../../images/kj/kjbg01.jpg">
+<td width="793" valign="top" background="../../images/kj/kjbg01.gif">
  <%using (Html.BeginForm("UpdateReport", "Reports", FormMethod.Post, new {name="form1" }))
                { %>
                <%=Html.Hidden("curTime", DateTime.Now.ToString("yyyy-MM-dd"))%>

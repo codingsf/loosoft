@@ -25,7 +25,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         public const string defaultSysName = "SolarInfo Bank";
         public const string ReportGroupList = "ReportGroupList";
         public const string Templete = "Templete";
-
+        public const string Session_CurPlantId = "session_curplantid";
+        public const string Session_PaymentLimitTime = "session_paymentlimittime";
         /// <summary>
         /// 图表div名称
         /// </summary>

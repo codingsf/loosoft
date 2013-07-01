@@ -4,7 +4,7 @@
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
 <table cellpadding=0 cellspacing=0 border=0>
 <tr>
-<td background="/images/kj/kjbg01.jpg" valign="top" width="793">
+<td background="/images/kj/kjbg01.gif" valign="top" width="793">
 <script src="/script/jquery.js" type="text/javascript"></script>
     <script src="/script/jquery.validate.js" type="text/javascript"></script>
   <script type="text/javascript" language="javascript">

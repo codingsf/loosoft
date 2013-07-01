@@ -40,18 +40,18 @@ a:active { color:#000; text-decoration:none;}
 .mainboxup{height:212px; background:url(../Images/bg06.jpg);}
 
 .mainboxmid{height:202px; background:url(../Images/bg07.jpg) repeat-x; padding:5px 6px 5px  6px;}
-.mainboxmid_l{ float:left; width:441px; height:204px;  background:url(../Images/bg010.jpg) no-repeat;}
+.mainboxmid_l{ float:left; width:441px; height:204px;  background:url(../Images/bg010.gif) no-repeat;}
 .mml01{ text-align:right; padding-top:28px; padding-right:30px; font-size:11px;}
 
 .mainboxmid_r{ float:right; width:540px; height:202px;}
 
 .mainboxdown{height:205px;}
-.mainboxdown_l{ float:left; width:447px; height:205px; background:url(../Images/bg011.jpg) no-repeat; }
+.mainboxdown_l{ float:left; width:447px; height:205px; background:url(../Images/bg011.gif) no-repeat; }
 .mdl01{ text-align:right; padding-top:20px; padding-right:10px;}
 .mdl02{padding-top:0px;padding-left:100px; padding-right:20px;}
 .mdl02 ul{ list-style:none;}
 .mdl02 ul li{ height:30px; padding-left:25px; border-bottom:1px dotted #CCCCCC; line-height:30px; background:url(../Images/ico05.jpg) no-repeat left;}
-.mainboxdown_r{ float:right; width:546px; height:205px; background:url(../Images/bg012.jpg) no-repeat;}
+.mainboxdown_r{ float:right; width:546px; height:205px; background:url(../Images/bg012.gif) no-repeat;}
 .mdl03{ width:482px; height:85px; margin:70px auto 0px auto;}
 .mdl03_l{ float:left;padding-top:20px;}
 .mdl03_m{ float:left; }
@@ -78,7 +78,7 @@ img{ border:none;}
 
 /*02登录部分*/
 .dgr{ color:#3A4E2B;}/*文字样式*/
-.mainboxup_l{ float:left; width:442px; height:207px; background:url(../Images/bg09.jpg) no-repeat;}
+.mainboxup_l{ float:left; width:442px; height:207px; background:url(../Images/bg09.gif) no-repeat;}
 .mainboxup_r{ float:right; background:url(../Images/ico01.gif) no-repeat left; height:79px; padding-left:100px; padding-right:45px; width:365px; margin-top:60px; color:#A2A2A2; font-size:11px;}
 .mrb{ font-size:28px; line-height:40px; font-family:"黑体";}
 .loginbu{background:url(../Images/ico01.jpg) no-repeat; width:60px; height:51px; border:none; cursor:pointer; color:#FFFFFF; font-weight:bold; margin-left:10px; font-family:Arial, Helvetica, sans-serif;}

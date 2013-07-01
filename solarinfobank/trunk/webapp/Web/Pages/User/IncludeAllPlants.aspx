@@ -43,10 +43,10 @@
             });
         });
     </script>
-
+<%ItemConfig config = ItemConfigService.GetInstance().GetItemConfigByName(ItemConfig.Payment); %>
     <table cellpadding="0" cellspacing="0" border="0">
         <tr>
-            <td width="793" valign="top" background="/images/kj/kjbg01.jpg">
+            <td width="793" valign="top" background="/images/kj/kjbg01.gif">
                 <table width="100%" height="63" border="0" cellpadding="0" cellspacing="0" background="/images/kj/kjbg02.jpg">
                     <tr>
                         <td width="8">
@@ -177,6 +177,7 @@
                                                       { %>
                                                     <img src="/images/lightning.gif" alt="" style="float: left">
                                                     <%} %>
+                                                 <%=plant.PaymentNoticeImg((int)config.value) %>
                                                 </td>
                                                 <td width="18%" height="35" align="left">
                                                     <div style="text-align: center; padding-bottom: 5px; overflow: hidden;"
@@ -186,10 +187,15 @@
                                                         <a target="_blank" href="/virtual/plantrelationstruct/<%=plant.id%>" class="dbl">
                                                             <%}
                                                           else
-                                                          { %>
-                                                            <a target="_blank" href="/plant/overview/<%=plant.id%>" class="dbl">
-                                                                <%} %>
-                                                                <%=plant.name%>
+                                                          {
+                                                              if (plant.Expired)
+                                                              {%>
+                                                                 <a href="javascript:alert('请续费');" class="dbl">
+                                                              <%}else
+                                                              { %>
+                                                            <a target="_blank" href="/plant/overview/<%=plant.id %>" class="dbl">
+                                                         <%}}%>
+                                                               <%=plant.name%>
                                                             </a>
                                                     </div>
                                                 </td>

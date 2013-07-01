@@ -46,7 +46,7 @@
 
     <table cellpadding="0" cellspacing="0" border="0">
         <tr>
-            <td width="793" valign="top" background="/images/kj/kjbg01.jpg">
+            <td width="793" valign="top" background="/images/kj/kjbg01.gif">
                 <form id="mainform" name="mainform" method="post" action="/user/bigscreenlogosave" enctype="multipart/form-data">
                 <table width="100%" height="63" border="0" cellpadding="0" cellspacing="0" background="/images/kj/kjbg02.jpg">
                     <tr>

@@ -550,7 +550,7 @@
                                     <tr>
                                         <td align="center">
                                             <div class="cimg">
-                                                <%string pic = Model.isVirtualPlant ? "/protalimg/" + (string.IsNullOrEmpty(Model.pic) ? "npr.jpg" : Model.pic) : "/ufile/" + (string.IsNullOrEmpty(Model.firstPic) ? "nopic/nopico02.jpg" : Model.firstPic); %>
+                                                <%string pic = Model.isVirtualPlant ? "/protalimg/" + (string.IsNullOrEmpty(Model.pic) ? "npr.jpg" : Model.pic) : "/ufile/" + (string.IsNullOrEmpty(Model.firstPic) ? "nopic/nopico02.gif" : Model.firstPic); %>
                                                 <img src="<%=pic %>" width="268" height="170" />
                                             </div>
                                         </td>

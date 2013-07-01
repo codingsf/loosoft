@@ -4,7 +4,7 @@
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <td width="793" valign="top" background="/images/kj/kjbg01.jpg">
+    <td width="793" valign="top" background="/images/kj/kjbg01.gif">
 <style type="text/css">
 <!--
 .am_line01{ border-bottom:1px solid #E9E9E9; line-height:25px; background:#F7F7F7; text-align: center;}

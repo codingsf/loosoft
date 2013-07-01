@@ -407,7 +407,7 @@
 </table>
 
 <div class="subrbox01">
-    <%--<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background: url(/images/kj/rbg01.jpg) no-repeat right center;">
+    <%--<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background: url(/images/kj/rbg01.gif) no-repeat right center;">
                 <tr>
                     <td width="30%" style="padding-top: 5px">
                         <div class="kjrb">
@@ -490,7 +490,7 @@
                 </tr>
             </table>--%>
      <div id="overviewhtml">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background: url(<%=UserUtil.curTemplete.cssFolder %>/images/kj/rbg01.jpg) no-repeat right center;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background: url(<%=UserUtil.curTemplete.cssFolder %>/images/kj/rbg01.gif) no-repeat right center;">
         
         <%if (Model.hasFaultDevice)
           { %>

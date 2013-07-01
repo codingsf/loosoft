@@ -31,7 +31,7 @@
             height: 30px;
             line-height: 30px;
             padding-left: 15px;
-            background: url(/images/kj/listbg04.jpg) no-repeat;
+            background: url(/images/kj/listbg04.gif) no-repeat;
             margin-bottom: 1px;
             color: #4A8125;
             font-weight: bold;
@@ -71,6 +71,11 @@
                                 <div class="kjmid">
                                     <div class="kjb">
                                         <ul>
+                                             <%if (AuthService.isAllow("saler", "plants"))
+                                              { %>
+                                         <li><a href="/saler/plants">电站列表</a></li>
+                                         <%} %>
+                                         
                                          <%if (AuthService.isAllow("admin", "userrecords"))
                                               { %>
                                          <li><a href="/admin/userrecords">用户登录日志</a></li>
@@ -123,6 +128,11 @@
                                 <div class="kjmid">
                                     <div class="kjb">
                                         <ul>
+                                           <%if (AuthService.isAllow("saler", "paymentconfig"))
+                                              { %>
+                                            <li><a href="/saler/paymentconfig/">到期时间</a></li>
+                                            <%} %>
+                                            
                                               <li><a href="/admin/errorcode/">故障码管理</a></li>
                                             <%if (AuthService.isAllow("admin", "managers"))
                                               { %>

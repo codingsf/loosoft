@@ -122,5 +122,21 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
         }
 
         #endregion
+
+
+        public int UpdatePaymentLimitDate(Plant plant)
+        {
+            return ExecuteUpdate("plant_update_paymentlimitdate", plant);
+        }
+
+        public int UpdateLastEmailRemindDate(Plant plant)
+        {
+            return ExecuteUpdate("plant_update_last_email_remind_date", plant);
+        }
+
+        public IList<Plant> GetPaymentExpiredList(int limitDays)
+        {
+            return ExecuteQueryForList<Plant>("plant_payment_expired", limitDays);
+        }
     }
 }

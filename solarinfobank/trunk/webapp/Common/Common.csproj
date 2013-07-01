@@ -132,6 +132,7 @@
     <Compile Include="ValidateCodeUtil.cs" />
     <Compile Include="vo\OpenApiVO.cs" />
     <Compile Include="vo\OverviewDataVO.cs" />
+    <Compile Include="vo\PlantPaymentVO.cs" />
     <Compile Include="XmlHelper.cs" />
     <Compile Include="CacheKeyUtil.cs" />
     <Compile Include="ReflectionUtil.cs" />

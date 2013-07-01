@@ -7,12 +7,14 @@
   <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().organize %> <%=Resources.SunResource.PAGE_NO_AUTHORIZATION%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<%User curUser = Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser();%>
+
  <div class="mainbox">
             <div class="main_wz" style=" width:790px; text-align:right; padding-left:210px;">
              
              <div style=" float:right;">
-                <a href="/user/edit/<%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().id %>">
-                    <%=Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().displayNick%></a> , <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_WELCOME_TO_COME  %>! | <a href="/auth/loginout">
+                <a href="/user/edit/<%=curUser.id %>">
+                    <%=curUser.displayNick%></a> , <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_WELCOME_TO_COME  %>! | <a href="/auth/loginout">
                         <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_LOGOUT  %></a>
              </div>
             </div>

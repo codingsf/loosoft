@@ -7,7 +7,7 @@
     登录日志列表 - SolarInfoBank
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <td width="793" valign="top" background="/images/kj/kjbg01.jpg">
+    <td width="793" valign="top" background="/images/kj/kjbg01.gif">
         <style type="text/css">
             .am_line01
             {

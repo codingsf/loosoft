@@ -8,7 +8,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <link media="screen" rel="stylesheet" href="http://colorpowered.com/colorbox/core/example1/colorbox.css" />
-    <td width="793" valign="top" background="/images/kj/kjbg01.jpg">
+    <td width="793" valign="top" background="/images/kj/kjbg01.gif">
 <style type="text/css">
 <!--
 .am_line01{ border-bottom:1px solid #E9E9E9; line-height:25px; background:#F7F7F7; text-align: center;}

@@ -62,7 +62,7 @@
 </style>
 <table cellpadding=0 cellspacing=0 border=0>
 <tr>
-<td width="793" valign="top" background="/images/kj/kjbg01.jpg">
+<td width="793" valign="top" background="/images/kj/kjbg01.gif">
     <input type="hidden" value="" id="startTime" />
     <input type="hidden" value="" id="endTime" />
     <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone((Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser()).timezone,"yyyy") %>"

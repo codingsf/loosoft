@@ -360,7 +360,7 @@
     <div class="gf_midbody">
         <div class="gf_boxb">
             <div>
-                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background: url(images/kj/rbg01.jpg) no-repeat right center;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background: url(images/kj/rbg01.gif) no-repeat right center;">
                     <%--           <tr>
                         <td height="50">
                             <table width="100%" height="34" border="0" cellpadding="0" cellspacing="0" background="/images/gf/tlbg.gif">

@@ -11,7 +11,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <table cellpadding="0" cellspacing="0" border="0">
         <tr>
-            <td width="793" valign="top" background="/images/kj/kjbg01.jpg">
+            <td width="793" valign="top" background="/images/kj/kjbg01.gif">
                 <script type="text/javascript">
                     function iFrameHeight() {
                         var ifm = document.getElementById("mainFrame");

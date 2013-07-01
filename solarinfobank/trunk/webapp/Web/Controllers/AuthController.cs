@@ -240,6 +240,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return Content("true");
         }
 
-
+        public ActionResult Expired()
+        {
+            return View();
+        }
     }
 }

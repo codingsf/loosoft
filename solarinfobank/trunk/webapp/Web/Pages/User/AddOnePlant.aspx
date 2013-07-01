@@ -9,7 +9,7 @@
     <%=Resources.SunResource.PLANT_ADDPLANT_ADD_PLANT  %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">  
-    <td width="793" valign="top" background="/images/kj/kjbg01.jpg" id="content_ajax">
+    <td width="793" valign="top" background="/images/kj/kjbg01.gif" id="content_ajax">
     <!--空页面，只为了加载模板，实际页面是addPlant页面-->    
     </td>
 </asp:Content>

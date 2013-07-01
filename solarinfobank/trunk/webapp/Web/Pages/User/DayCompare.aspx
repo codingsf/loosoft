@@ -245,7 +245,7 @@
     <script src="/Script/SetChart.js" type="text/javascript"></script> 
     <script src="/script/DatePicker/WdatePicker.js" type="text/javascript"></script>
     
-    <td width="793" valign="top" background="/images/kj/kjbg01.jpg">
+    <td width="793" valign="top" background="/images/kj/kjbg01.gif">
         <input type="hidden" value="<%=DateTime.Now.Year%>" id="year" />
         <input type="hidden" value="60" id="intervalMins" />
         <input type="hidden" value="<%=MonitorType.PLANT_MONITORITEM_POWER_CODE%>,<%=MonitorType.PLANT_MONITORITEM_ENERGY_CODE%>" id="mts" />

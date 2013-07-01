@@ -16,6 +16,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
     {
         public const string CO2 = "二氧化碳减排";
         public const string Tree = "等效树木";
+        public const string Payment = "提前时间";
         public const int maxCollectorCountId = 48;//每天生成采集器数量 ID
         public const int maxexpiredDaysId = 49;//生成采集器过期天数 ID
         public const float defaultreductionRate = 0.6F;//默认减排率

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Cn.Loosoft.Zhisou.SunPower.Common;
 using System.Collections;
+using Cn.Loosoft.Zhisou.SunPower.Common.vo;
 namespace Cn.Loosoft.Zhisou.SunPower.Domain
 {
     /// <summary>
@@ -260,8 +261,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// </summary>
         public UserRole userRole
         {
-            get {
-                return _userRole; 
+            get
+            {
+                return _userRole;
             }
             set
             {
@@ -300,6 +302,23 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             {
                 _childPortalUsers = value;
             }
+        }
+
+        /// <summary>
+        /// 获取自己付款已经到期的电站
+        /// </summary>
+        public IList<PlantPaymentVO> UnPaymentPlants(int days)
+        {
+            IList<PlantPaymentVO> _plantList = new List<PlantPaymentVO>();
+            foreach (Plant plant in this.allRelatedFactPlants)
+            {
+                if (plant.Expired)
+                    _plantList.Add(new PlantPaymentVO { Id = plant.id, LimitDate = plant.PaymentLimitDate, Name = plant.name, Type = PlantPaymentVO.Expired });
+                else
+                    if (plant.ExpireSoon(days))
+                        _plantList.Add(new PlantPaymentVO { Id = plant.id, LimitDate = plant.PaymentLimitDate, Name = plant.name, Type = PlantPaymentVO.Expire_Soon });
+            }
+            return _plantList;
         }
 
         /// <summary>
@@ -387,7 +406,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 return _plantList;
             }
         }
-        
+
         /// <summary>
         /// 今日申请的采集器数量
         /// </summary>
@@ -773,7 +792,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             get
             {
                 //门户用户取得分配的门户电站
-                if(this.isBigCustomer)
+                if (this.isBigCustomer)
                     return assignedPortalPlants;
                 else
                     return relatedPlants;
@@ -790,7 +809,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             get
             {
-                
+
                 IList<Plant> factPlants = new List<Plant>();
                 IList<Plant> plants = this.isBigCustomer ? this.assignedPortalPlants : assignedPlants;
                 foreach (Plant plant in plants)
@@ -927,7 +946,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// <summary>
         /// 获取全屏LOGO
         /// </summary>
-        public string BigScreenLogoFomartPath {
+        public string BigScreenLogoFomartPath
+        {
             get
             {
                 if (string.IsNullOrEmpty(BigScreenLogoPath))

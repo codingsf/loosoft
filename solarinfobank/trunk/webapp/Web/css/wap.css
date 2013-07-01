@@ -1,4 +1,4 @@
-body {font-family: Arial, Helvetica, sans-serif; margin:0px; font-size:14px; background:#EFEEEC url(/m_img/bg01.jpg) top repeat-x; font-size:14px; color:#000000;}
+body {font-family: Arial, Helvetica, sans-serif; margin:0px; font-size:14px; background:#EFEEEC url(/m_img/bg01.gif) top repeat-x; font-size:14px; color:#000000;}
 td {font-family: Arial, Helvetica, sans-serif;}
 th {font-family: Arial, Helvetica, sans-serif;}
 ul,li{ margin:0px; padding:0px;}
@@ -7,8 +7,8 @@ ul,li{ margin:0px; padding:0px;}
 .mainbox01{ margin:0px auto;}
 .top{ height:41px;width:320px; margin:0px auto;}
 
-.pfbg01{ height:142px;background:url(/m_img/bg02.jpg) repeat-x;}
-.pfbg02{ height:122px;background:url(/m_img/bg010.jpg) repeat-x;}
+.pfbg01{ height:142px;background:url(/m_img/bg02.gif) repeat-x;}
+.pfbg02{ height:122px;background:url(/m_img/bg010.gif) repeat-x;}
 .pf02{ width:284px; margin:0px auto; padding:0px 18px;}
 .fl01{ float:left; text-align:center; width:75%;  line-height:40px;  color:#FFFFFF; font-size:20px;}
 
@@ -39,7 +39,7 @@ ul,li{ margin:0px; padding:0px;}
 
 .lbgtop{ background:url(/m_img/bg08.jpg) repeat-x top; padding-top:10px;}
 .chart{ width:301px; margin:20px auto 15px auto;}
-.chart01{ background:url(/m_img/bg04.gif) no-repeat bottom; height:6px;}
+.chart01{ background:url(/m_img/bg04.jpg) no-repeat bottom; height:6px;}
 .chart02{ background:url(/m_img/bg05.gif); padding:15px 0px;}
 .chart02_u{}
 .charttab{ width:250px; margin:0px auto; height:30px;}
@@ -60,7 +60,7 @@ ul,li{ margin:0px; padding:0px;}
 .chart02_m{ padding:20px 0px 10px 0px; text-align:center;}
 .chart02_img{ text-align:center;}
 .chart03{ background:url(/m_img/bg06.gif) no-repeat top; height:7px;}
-.logslbg{ background:url(/m_img/bg09.jpg); height:52px; margin-top:4px;}
+.logslbg{ background:url(/m_img/bg09.gif); height:52px; margin-top:4px;}
 .logslist{ width:301px; margin:0px auto;height:52px;} 
 .logslist_l{ font-size:16px; font-weight:bold; float:left; line-height:30px; padding-top:10px; width:75%;}
 .logslist_r{ float:right; width:10%; padding-top:18px; text-align:center;}
@@ -73,7 +73,7 @@ ul,li{ margin:0px; padding:0px;}
 .sonp02{ width:200px; height:100px; float:right;}
 .sonbu{ width:290px; margin:0px auto; padding:25px 0px;}
 
-.loglist{ background:url(/m_img/bg011.jpg); height:69px;}
+.loglist{ background:url(/m_img/bg011.gif); height:69px;}
 .loglist01{ width:300px; margin:0px auto;}
 .loglist01_l{ float:left; width:45px; padding-top:25px;}
 .loglist01_r{ width:220px; float:left; padding-top:8px;} 

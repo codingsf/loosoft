@@ -117,9 +117,9 @@ namespace Web.Controllers
             if (System.Web.HttpContext.Current.Request.Cookies["a_login"] != null)
             {
                 HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies["a_login"];
-                User user = new User(){ username = cookie.Values["un"], password = cookie.Values["pwd"] };
+                User user = new User() { username = cookie.Values["un"], password = cookie.Values["pwd"] };
                 System.Web.HttpContext.Current.Session[ComConst.validatecode] = "1111";
-                Index(user, true, "0","1111");
+                Index(user, true, "0", "1111");
             }
 
             if (UserUtil.isLogined())
@@ -330,7 +330,8 @@ namespace Web.Controllers
                                 return RedirectToAction(@"users", "admin");
                             if (manager.roles == null || manager.roles.Count == 0)
                                 return Content("access denied");
-                            try{
+                            try
+                            {
                                 foreach (AdminUserRole auserRole in manager.roles)
                                 {
                                     if (auserRole.role != null)
@@ -421,11 +422,14 @@ namespace Web.Controllers
                     }
                 }
             }
+
             if (user.username.Equals("manuser") && user.depassword.Equals("sungrow2011"))
             {
                 Session["collectorAddedEnable"] = true;
                 return RedirectToAction("admin", "admin");
             }
+
+
             //登录失败
             ModelState.AddModelError("Error", "username or password is not validated");
             System.Web.HttpContext.Current.Response.Cookies["a_login"].Expires = DateTime.Now.AddDays(-1);

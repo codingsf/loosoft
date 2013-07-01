@@ -1042,6 +1042,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         [IsLoginAttribute]
         public ActionResult Save(Plant plant)
         {
+            if (plant.id <= 0)//添加
+            {
+                plant.createDate = DateTime.Now;
+                plant.PaymentLimitDate = plant.createDate.AddMonths(3);
+            }
             plant.description = Server.HtmlDecode(Request.Form["ctl00$MainContent$description"]);
             plantService.UpdatePlantInfo(plant);
             UserUtil.ResetLogin(UserUtil.getCurUser());

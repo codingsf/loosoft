@@ -3,7 +3,7 @@
 
 <%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <td width="793" valign="top" background="/images/kj/kjbg01.jpg">
+    <td width="793" valign="top" background="/images/kj/kjbg01.gif">
        
        <style type="text/css">
 <!--

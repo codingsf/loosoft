@@ -52,6 +52,8 @@
       <result property="maxEnergyRate"			column="max_energy_rate"/>
       <result property="lastHandleDate"			column="lastHandleDate"/>
       <result property="rateEnable"			column="rate_enable"/>
+      <result property="PaymentLimitDate"			column="paymentLimitDate"/>
+      <result property="LastEmailRemindDate"			column="last_email_remind_date"/>
       <result property="createDate"			column="createdate"/>
       <result property="TodayEnergy"			column="todayenergy"/>
       <result property="TtlEnergy"			column="ttlenergy"/>
@@ -65,6 +67,8 @@
       <result property="parentPlant" lazyLoad="true" column="parentId" select="plant_parent_lazy" />
 
       <result property="ElecPriceList" lazyLoad="true" column="id" select="elecprice_list_lazy" />
+
+      <result property="User" lazyLoad="true" column="userID" select="user_get_lazy_class" />
       <!--
       <result property="yearCompensation" lazyLoad="false" column="id" select="plant_yearcompensation_lazy_getlist" />-->
     </resultMap>
@@ -87,8 +91,10 @@
       <flushOnExecute  statement="device_update_status"/>
       <flushOnExecute  statement="updateDevice"/>
       <flushOnExecute  statement="device_insert"/>
+      <flushOnExecute  statement="plant_update_paymentlimitdate"/>
       <flushOnExecute  statement="videomonitor_delete"/>
       <flushOnExecute  statement="videomonitor_insert"/>
+      <flushOnExecute  statement="plant_payment_expired"/>
       <property name="CacheSize" value="10000"/>
     </cacheModel>
   </cacheModels>
@@ -126,7 +132,7 @@
     </select>
     <!--添加电站 返回新增列的id （张月）-->
     <insert id="plant_insert" parameterClass="Plant">
-      INSERT INTO  PLANT_INFO(createdate, name,postcode,location,country,city,timezone,street,revenueRate,installdate,operater,email,phone,direction,angle,manufacturer,module_type,pic,longitude,userID,latitude,description,design_power,example_plant,videoMonitorEnable,startdate,enddate,hours,dst_enable,area,longitudeString,latitudeString,parentId,isVirtualPlant,basePrice,structPic,energy_rate,max_energy_rate) VALUES( now(),#name#,#postcode#,#location#,#country#,#city#,#timezone#,#street#,#revenueRate#,#installdate#,#operater#,#email#,#phone#,#direction#,#angle#,#manufacturer#,#module_type#,#pic#,#longitude#,#userID#,#latitude#,#description#,#design_power#,#example_plant#,#VideoMonitorEnable#,#startDate#,#endDate#,#hours#,#dst_enable#,#area#,#longitudeString#,#latitudeString#,#parentId#,#isVirtualPlant#,#basePrice#,#structPic#,1,1)
+      INSERT INTO  PLANT_INFO(createdate, name,postcode,location,country,city,timezone,street,revenueRate,installdate,operater,email,phone,direction,angle,manufacturer,module_type,pic,longitude,userID,latitude,description,design_power,example_plant,videoMonitorEnable,startdate,enddate,hours,dst_enable,area,longitudeString,latitudeString,parentId,isVirtualPlant,basePrice,structPic,energy_rate,max_energy_rate,paymentLimitDate) VALUES( now(),#name#,#postcode#,#location#,#country#,#city#,#timezone#,#street#,#revenueRate#,#installdate#,#operater#,#email#,#phone#,#direction#,#angle#,#manufacturer#,#module_type#,#pic#,#longitude#,#userID#,#latitude#,#description#,#design_power#,#example_plant#,#VideoMonitorEnable#,#startDate#,#endDate#,#hours#,#dst_enable#,#area#,#longitudeString#,#latitudeString#,#parentId#,#isVirtualPlant#,#basePrice#,#structPic#,1,1,#PaymentLimitDate#)
       <selectKey resultClass="int" property="id" type="post">
         SELECT LAST_INSERT_ID() AS id
       </selectKey>
@@ -167,6 +173,15 @@
           <isNotEmpty prepend="and" property="plant.city">
             city = #plant.city#
           </isNotEmpty>
+          <isNotEmpty prepend="and" property="plant.name" >
+            <![CDATA[ name like '%$plant.name$%']]>
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="install_start" >
+            <![CDATA[ installdate >= #install_start#]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="install_end">
+            <![CDATA[ installdate <= #install_end#]]>
+          </isNotEmpty>
           <isNotEmpty prepend="and" property="sdayenergy" >
             <![CDATA[ todayenergy >= #sdayenergy#]]>
           </isNotEmpty>
@@ -191,9 +206,13 @@
           <isNotEqual prepend="and" property="uids" compareValue="0,0">
             <![CDATA[ userid in ($uids$)]]>
           </isNotEqual>
+          <isNotEmpty property="orderby">
+            <![CDATA[ order by $orderby$]]>
+          </isNotEmpty>
+
         </isParameterPresent>
       </dynamic>
-    order by id desc limit  $page.Start$,$page.End$
+      order by id desc limit  $page.Start$,$page.End$
     </select>
 
     <select id="admin_plant_query_list_count" parameterClass="Hashtable" resultClass="int">
@@ -214,6 +233,15 @@
           </isNotEmpty>
           <isNotEmpty prepend="and" property="edayenergy">
             <![CDATA[ todayenergy <= #edayenergy#]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="plant.name" >
+            <![CDATA[ name like #%plant.name%#]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="install_start" >
+            <![CDATA[ installdate >= #install_start#]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="install_end">
+            <![CDATA[ installdate <= #install_end#]]>
           </isNotEmpty>
           <isNotEmpty prepend="and" property="sttlenergy">
             <![CDATA[ ttlenergy >= #sttlenergy#]]>
@@ -270,9 +298,27 @@
       update plant_info set parentid=0 where parentid=#value#
     </update>
 
+
+    <update id="plant_update_paymentlimitdate" paramentClass="Plant">
+      update plant_info set PaymentLimitDate=#PaymentLimitDate# where id=#id#
+    </update>
+
+    <update id="plant_update_last_email_remind_date" paramentClass="Plant">
+      update plant_info set last_email_remind_date=#LastEmailRemindDate# where id=#id#
+    </update>
+
+
     <!--取得用户创建的所有电站一级电站-->
     <select id="toplevelplant_get_uid" resultMap="plant_info_result">
       select * from plant_info where userId=#value# and (parentId is null or parentId=0)
     </select>
+
+    <!--条件 电站过期时间-当前时间<=x天 上次邮件提醒时间超过一天 并且为实际电站-->
+    <!--SELECT * FROM PLANT_INFO WHERE TO_DAYS(paymentLimitDate)-TO_DAYS(NOW())<=#value# AND (NOW()>=DATE_ADD(last_email_remind_date,INTERVAL 1 DAY) OR last_email_remind_date IS NULL)  AND isVirtualPlant=0 order by paymentLimitDate ASC-->
+    <!--SELECT * FROM PLANT_INFO WHERE paymentLimitDate<=DATE_ADD(NOW(),INTERVAL $value$ DAY) AND (NOW()>=DATE_ADD(last_email_remind_date,INTERVAL 1 DAY) OR last_email_remind_date IS NULL)  AND isVirtualPlant=0 order by paymentLimitDate ASC-->
+    <!--SELECT * FROM PLANT_INFO WHERE TO_DAYS(paymentLimitDate)-TO_DAYS(NOW())<=30 AND (NOW()>=DATE_ADD(last_email_remind_date,INTERVAL 1 DAY) OR last_email_remind_date IS NULL)  AND isVirtualPlant=0 order by paymentLimitDate ASC-->
+    <select id="plant_payment_expired" resultClass="Plant">
+      <![CDATA[SELECT * FROM PLANT_INFO WHERE paymentLimitDate<=DATE_ADD(NOW(),INTERVAL $value$ DAY) AND (NOW()>=DATE_ADD(last_email_remind_date,INTERVAL 1 DAY) OR last_email_remind_date IS NULL)  AND isVirtualPlant=0 order by paymentLimitDate ASC limit 0,20]]>
+   </select>
   </statements>
 </sqlMap>

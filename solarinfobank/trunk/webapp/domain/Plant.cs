@@ -1317,7 +1317,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             {
                 IList<PlantUnit> factPlantUnits = new List<PlantUnit>();
                 IList<Plant> factPlants = this.allFactPlants;
-                if (factPlants!= null && factPlants.Count > 0)
+                if (factPlants != null && factPlants.Count > 0)
                 {
                     foreach (Plant plant in factPlants)
                     {
@@ -1358,6 +1358,49 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 return this.displayDevices().Count;
             }
         }
+
+        /// <summary>
+        /// 付款到期日期
+        /// </summary>
+        public DateTime PaymentLimitDate { get; set; }
+        /// <summary>
+        /// 付费邮件上次提醒时间
+        /// </summary>
+        public DateTime LastEmailRemindDate { get; set; }
+
+        public User User { get; set; }
+
+        /// <summary>
+        /// 续费是否到期
+        /// </summary>
+        public bool Expired
+        {
+            get
+            {
+                return (!this.isVirtualPlant) && DateTime.Now.AddHours(this.timezone) > PaymentLimitDate;
+            }
+        }
+        /// <summary>
+        /// 续费提醒 指定天数内
+        /// </summary>
+        /// <param name="days"></param>
+        /// <returns></returns>
+        public bool ExpireSoon(int days)
+        {
+            return ((!this.isVirtualPlant) && (PaymentLimitDate - DateTime.Now.AddHours(this.timezone)).TotalDays <= days);
+        }
+
+
+        public string PaymentNoticeImg(int days)
+        {
+            if (this.Expired)
+                return "<img src='' alt='Expire'/>";
+            else
+                if (this.ExpireSoon(days))
+                    return "<img src='' alt='ExpireSoon'/>";
+            return string.Empty;
+        }
+
 
     }
 }

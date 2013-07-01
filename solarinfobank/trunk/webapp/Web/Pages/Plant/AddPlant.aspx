@@ -1229,7 +1229,7 @@ SWFUpload.Console.writeLine = function (message) {
              }
         </script>
    
-    <td background="/images/kj/kjbg01.jpg" valign="top" width="793">
+    <td background="/images/kj/kjbg01.gif" valign="top" width="793">
     <%=Html.Hidden("s_t", DateTime.Now.AddSeconds(5).ToString("MM/dd/yyyy HH:mm:ss"))%>
         <form id="plantform" action="/user/SavePlant" enctype="multipart/form-data" method="post">
     

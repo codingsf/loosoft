@@ -60,5 +60,19 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.Interfaces
         /// <param name="parentId"></param>
         /// <returns></returns>
         int UpdateParentId(int parentId);
+        /// <summary>
+        /// 更新电站付费过期时间
+        /// </summary>
+        /// <param name="plantId"></param>
+        /// <returns></returns>
+        int UpdatePaymentLimitDate(Plant plant);
+        /// <summary>
+        /// 更新付费邮件发送时间
+        /// </summary>
+        /// <param name="plant"></param>
+        /// <returns></returns>
+        int UpdateLastEmailRemindDate(Plant plant);
+
+        IList<Plant> GetPaymentExpiredList(int limitDays);
     }
 }

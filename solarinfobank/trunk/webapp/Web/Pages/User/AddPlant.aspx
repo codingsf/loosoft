@@ -1341,7 +1341,7 @@ function checkinput() {
 
     <table cellpadding="0" cellspacing="0" border="0">
         <tr>
-            <td background="/images/kj/kjbg01.jpg" valign="top" width="793">
+            <td background="/images/kj/kjbg01.gif" valign="top" width="793">
                 <%=Html.Hidden("s_t", DateTime.Now.AddSeconds(5).ToString("MM/dd/yyyy HH:mm:ss"))%>
                 <form id="plantform" action="/user/SavePlant" enctype="multipart/form-data" method="post" target="_parent">
                 <table background="/images/kj/kjbg02.jpg" border="0" cellpadding="0" cellspacing="0"

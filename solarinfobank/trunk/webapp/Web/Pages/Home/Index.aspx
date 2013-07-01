@@ -516,7 +516,7 @@
                     <span style="float: left;"><%= Resources.SunResource.HOMT_INDEX_MOBILE_TITLE%></span>
                     <a href="#" style="float: right; padding-right: 10px;"></a>
                 </div>
-                <div style="width: 528px; height: 144px; margin: 12px auto auto 8px; background: url(/images/gg01.jpg) no-repeat;
+                <div style="width: 528px; height: 144px; margin: 12px auto auto 8px; background: url(/images/gg01.gif) no-repeat;
                     font-family: Arial, Helvetica, sans-serif;">
                     <div style="padding-top: 30px; width: 280px; padding-left: 15px;">
                         <span style="font-size: 18px; font-weight: bold;"><%= Resources.SunResource.HOMT_INDEX_MOBILE_SUB_TITLE%></span>

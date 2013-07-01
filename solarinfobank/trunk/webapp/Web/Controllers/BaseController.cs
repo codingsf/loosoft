@@ -13,6 +13,33 @@ using System.Text;
 namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 {
 
+    public class PaymentIsExpiredAttribute : ActionFilterAttribute
+    {
+
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (filterContext.HttpContext.Session[ComConst.Session_PaymentLimitTime] != null)
+            {
+                var controller = filterContext.RouteData.Values["controller"].ToString().ToLower();
+                var action = filterContext.RouteData.Values["action"].ToString().ToLower();
+                if (controller.Equals("plant"))
+                {
+                    if (DateTime.Parse(filterContext.HttpContext.Session[ComConst.Session_PaymentLimitTime].ToString()) < DateTime.Now)
+                    {
+                        filterContext.HttpContext.Response.Write("<script>if(parent!=null) parent.window.location.href='/auth/expired'; else window.location.href='/auth/expired';</script>");
+                        filterContext.HttpContext.Response.End();
+                        return;
+                    }
+                }
+            }
+            else
+            {
+
+                base.OnActionExecuting(filterContext);
+            }
+        }
+    }
+
 
     public class IsLoginAttribute : ActionFilterAttribute
     {
@@ -42,6 +69,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             else
             {
+               
                 base.OnActionExecuting(filterContext);
             }
         }
@@ -156,8 +184,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
     [SetLanAttribute]
     public abstract class BaseController : Controller
     {
+       
         protected CollectorYearDataService collectorYearDataService = CollectorYearDataService.GetInstance();
-        public BaseController() { }
+        public BaseController()
+        {
+
+        }
 
         /// <summary>
         /// 编码字符串，火狐不处理
@@ -209,6 +241,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         protected void mlogin(Manager manager)
         {
             Session[ComConst.Manager] = manager;
+        }
+
+        protected void SetPaymentLimitDate(DateTime date)
+        {
+            Session[ComConst.Session_PaymentLimitTime] = date;
         }
 
         /// <summary>
@@ -553,7 +590,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
         public string generateDeviceRelation(Plant plant)
         {
-          return   generateDeviceRelation(plant, true);
+            return generateDeviceRelation(plant, true);
         }
 
         /// <summary>
@@ -561,7 +598,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         /// </summary>
         /// <param name="plant">叶子实际电站</param>
         /// <returns></returns>
-        public string generateDeviceRelation(Plant plant,bool warn)
+        public string generateDeviceRelation(Plant plant, bool warn)
         {
             string jsstr = string.Empty;
             int curLevel = 1;
@@ -578,20 +615,20 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 //先装机逆变器类型设备节点
                 IList<Device> devices = pu.displayDevices;
                 unitLevel = unitLevel * 100 + i;
-                string warnimg = pu.isDeviceFault(plant.timezone)&&warn ? "/images/warning_16_small.gif" : "";
+                string warnimg = pu.isDeviceFault(plant.timezone) && warn ? "/images/warning_16_small.gif" : "";
                 jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '{4}');", unitLevel, topLevel, pu.displayname + "(" + devices.Count + ")", string.Format("javascript:setPara({0},{1},{2});", pu.id, "true", pu.id), warnimg);
 
                 devices = devices.OrderByDescending(m => m.deviceModelCode).ToList<Device>();
                 if (devices != null && devices.Count > 0)
                 {
                     deviceLevel = unitLevel + 10;
-                    jsstr += generateDeviceRelation(devices, deviceLevel, unitLevel, pu.id, plant.timezone,warn);
+                    jsstr += generateDeviceRelation(devices, deviceLevel, unitLevel, pu.id, plant.timezone, warn);
                 }
             }
             return jsstr;
         }
 
-        public string generateDeviceRelation(IList<Device> devices, int deviceLevel, int uplevel,int unitId,int timezone,bool warn)
+        public string generateDeviceRelation(IList<Device> devices, int deviceLevel, int uplevel, int unitId, int timezone, bool warn)
         {
             string jsstr = string.Empty;
             //有下级那么就递归调用下级生成脚本。进行累计
@@ -603,12 +640,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 {
                     device = devices[i];
                     curLevel = ((uplevel + 1) * 100 + i);
-                    string warnimg = (device.Over1Day(timezone) || device.isFault())&&warn ? "/images/warning_16_small.gif" : "";
-                    jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '{4}');", curLevel, uplevel, device.fullName, string.Format("javascript:setPara({0},{1},{2});", device.id, "false", unitId),warnimg);
+                    string warnimg = (device.Over1Day(timezone) || device.isFault()) && warn ? "/images/warning_16_small.gif" : "";
+                    jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '{4}');", curLevel, uplevel, device.fullName, string.Format("javascript:setPara({0},{1},{2});", device.id, "false", unitId), warnimg);
                     if (device.child != null && device.child.Count > 0)
                     {
-                        int tmpLevel =((uplevel + 1) * 100 + i);
-                        jsstr += generateDeviceRelation(device.child, tmpLevel, curLevel, unitId, timezone,warn);
+                        int tmpLevel = ((uplevel + 1) * 100 + i);
+                        jsstr += generateDeviceRelation(device.child, tmpLevel, curLevel, unitId, timezone, warn);
                     }
                 }
             }

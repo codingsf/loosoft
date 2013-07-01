@@ -77,8 +77,8 @@
                         
                             <table width="100%" cellpadding="0" cellspacing="0" style="line-height: 24px; text-align: center">
                                 <tr>
-                                    <td width="200" background="images/flrg.jpg" bgcolor="#F3F3F3" class="lbtt">
-                                        <table width="100%" border="0" cellpadding="0" cellspacing="0" background="images/flrg.jpg">
+                                    <td width="200" background="images/flrg.gif" bgcolor="#F3F3F3" class="lbtt">
+                                        <table width="100%" border="0" cellpadding="0" cellspacing="0" background="images/flrg.gif">
                                             <tr>
                                                 <td align="left">
                                                     <strong style="padding-left: 20px;">

@@ -111,6 +111,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         public const int PAGE_CONFIG = 44;//页面设置
         public const int LOGIN_RECORD = 45;//日志记录
         public const int DEVICE_RELATION = 46;//设备关系设置
+        //public const int SALES_PLANTS = 47;//销售用户的电站列表
+       // public const int SALES_PAYMENT_CONFIG = 48;//销售用户提前时间配置
 
         static AuthorizationCode()
         {
@@ -204,6 +206,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             controllerActionRoles.Add(LOGIN_RECORD, new ControllerAction() { displayName = "登录日志", controller = "user", action = "record", typeId = 13 });
             //设备关系设置
             controllerActionRoles.Add(DEVICE_RELATION, new ControllerAction() { displayName = "设备关系设置", controller = "plant", action = "relation", typeId = 13 });
+            //销售用户电站列表
+          // controllerActionRoles.Add(SALES_PLANTS, new ControllerAction() { displayName = "电站列表(销售)", controller = "sales", action = "plants", typeId = 1 });
+            //销售用户提前时间配置
+           // controllerActionRoles.Add(SALES_PAYMENT_CONFIG, new ControllerAction() { displayName = "时间配置(销售)", controller = "sales", action = "paymentconfig", typeId = 11 });
         }
 
         public static ControllerAction GetRole(int code)

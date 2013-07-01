@@ -31,7 +31,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 Thread.Sleep(10 * 60 * 1000);//间隔10分钟
                 //有新设备要更新bank缓存
                 HttpClientUtil.requestUrl(bank_url + "/energywarn/gen");
-
+                HttpClientUtil.requestUrl(bank_url + "/saler/warningpayment");
             }
         }
 

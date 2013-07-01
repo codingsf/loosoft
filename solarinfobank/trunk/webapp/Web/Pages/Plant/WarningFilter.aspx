@@ -33,9 +33,9 @@
         <!--header开始-->
         <div style="background: url(/images/tc_topbg.jpg); height: 57px;">
             <div style="float: left; height: 57px; padding: 0px 0px 0px 20px; width: 300px;">
-                <img src="/images/tc_logo.jpg" width="206" height="57" /></div>
+                <img src="/images/tc_logo.gif" width="206" height="57" /></div>
             <div style="float: right; padding-right: 10px;">
-                <img src="/images/rlogo.jpg" width="137" height="57" /></div>
+                <img src="/images/rlogo.gif" width="137" height="57" /></div>
         </div>
         <!--结束-->
         <!--main开始-->

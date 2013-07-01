@@ -52,12 +52,12 @@
 .pr_10{ padding-right:10px; text-align:right; font-weight:bold; color:#444444;}
 .tb_g{ color:#59903E;}
 .f_14{ font-size:12px;}
-.txtbu01{ background: url(../images/sub/subbg015.jpg); height:21px; line-height:21px; border:1px solid #BFBFBF; width:180px;}
+.txtbu01{ background: url(../images/sub/subbg015.gif); height:21px; line-height:21px; border:1px solid #BFBFBF; width:180px;}
 .txtbu02{ background: url(../images/sub/subbg016.jpg); height:101px; border:1px solid #BFBFBF; width:236px;}
 .txtbu03{ background:url(../images/sub/subbg017.jpg); width:100px; height:35px; font-weight:bold; color:#FFFFFF; font-size:14px; border:none; padding-bottom:5px;cursor:pointer;}
 .txtbu003{ background:url(../images/sub/subbg0017.jpg); width:100px; height:35px; font-weight:bold; color:#FFFFFF; font-size:14px; border:none; padding-bottom:5px;cursor:pointer;}
 
-.txtbu04{ background: url(../images/sub/subbg015.jpg); height:21px; line-height:21px;  border:1px solid #BFBFBF;}
+.txtbu04{ background: url(../images/sub/subbg015.gif); height:21px; line-height:21px;  border:1px solid #BFBFBF;}
 .txtbu05{  height:101px; border:1px solid #BFBFBF;}
 .subselect02{ width:150px;}
 .txtbu06{ background:url(../images/sub/subbg0017.jpg); width:100px; height:35px; font-weight:bold; color:#FFFFFF; font-size:14px; border:none; padding-bottom:5px;cursor:pointer;}
@@ -67,7 +67,7 @@
 
 .subline01{ border-bottom:1px solid #E1E1E1; line-height:20px; margin-bottom:10px;}.subline02{ border-bottom:1px solid #E1E1E1; line-height:20px;}
 
-.upload_pic{ background:url(../images/sub/subbg018.jpg); width:120px; height:141px; margin:10px; float:left;}
+.upload_pic{ background:url(../images/sub/subbg018.gif); width:120px; height:141px; margin:10px; float:left;}
 .upload_picimg{ text-align:center; padding-top:8px;}
 .upload_piczi{ text-align:center; padding-top:8px; color:#848484;}
 .mapbg{ background:#FFFFFF; text-align:center; padding:10px 0px;}

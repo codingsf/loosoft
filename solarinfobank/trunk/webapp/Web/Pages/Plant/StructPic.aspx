@@ -102,7 +102,7 @@
 
     <table cellpadding="0" cellspacing="0" border="0">
         <tr>
-            <td background="/images/kj/kjbg01.jpg" valign="top" width="793">
+            <td background="/images/kj/kjbg01.gif" valign="top" width="793">
                 <table background="/images/kj/kjbg02.jpg" border="0" cellpadding="0" cellspacing="0"
                     width="793" height="63">
                     <tbody>

@@ -19,7 +19,7 @@
             height: 25px;
             line-height: 25px;
             padding-left: 15px;
-            background: url(/images/kj/listbg04.jpg) no-repeat;
+            background: url(/images/kj/listbg04.gif) no-repeat;
             margin-bottom: 1px;
             color: #4A8125;
             font-weight: bold;
@@ -32,7 +32,7 @@
             line-height: 30px;
             width: 190px;
             padding-left: 15px;
-            background: url(/images/kj/listbg03.jpg) no-repeat;
+            background: url(/images/kj/listbg03.gif) no-repeat;
             margin-bottom: 1px;
             color: #4A8125;
             font-weight: bold;

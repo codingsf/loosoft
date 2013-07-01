@@ -5,7 +5,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<td width="793" valign="top" background="/images/kj/kjbg01.jpg">
+<td width="793" valign="top" background="/images/kj/kjbg01.gif">
 <script>
     function changePage(page) {
         window.location.href = '/admin/plants/'+page;

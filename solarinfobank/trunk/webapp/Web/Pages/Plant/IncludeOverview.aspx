@@ -444,7 +444,7 @@
 </table>
 <div class="subrbox01">
 <div id="overviewhtml">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background: url(<%=UserUtil.curTemplete.cssFolder %>/images/kj/rbg01.jpg) no-repeat right center;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background: url(<%=UserUtil.curTemplete.cssFolder %>/images/kj/rbg01.gif) no-repeat right center;">
         <%if (Model.getDetectorWithRenderSunshine() != null || Model.hasFaultDevice)
           {%>
         <tr>

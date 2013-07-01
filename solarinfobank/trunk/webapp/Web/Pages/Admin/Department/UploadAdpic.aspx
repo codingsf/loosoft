@@ -22,7 +22,7 @@
          return true;
      }
     </script>
-<td width="793" valign="top" background="/images/kj/kjbg01.jpg">
+<td width="793" valign="top" background="/images/kj/kjbg01.gif">
         <form id="bindForm" action="/admin/UploadDepartmentPic" enctype="multipart/form-data"
         method="post">
         <table width="100%" height="63" border="0" cellpadding="0" cellspacing="0" background="/images/kj/kjbg02.jpg">

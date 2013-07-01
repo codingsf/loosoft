@@ -85,7 +85,7 @@
 
     <table cellpadding="0" cellspacing="0" border="0">
         <tr>
-            <td width="793" valign="top" background="/images/kj/kjbg01.jpg">
+            <td width="793" valign="top" background="/images/kj/kjbg01.gif">
                 <%=Html.HiddenFor(m => m.id, new { @id="h_id"}) %>
                 <form id="bindForm" action="/unit/Save?plantid=<%=Model.id%>" enctype="multipart/form-data"
                 method="post">

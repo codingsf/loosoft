@@ -85,6 +85,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         {
             User curUser = UserUtil.getCurUser();
             Plant plant = PlantService.GetInstance().GetPlantInfoById(id);
+            SetPaymentLimitDate(plant.PaymentLimitDate);
             return View(plant);
         }
 
@@ -97,6 +98,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         /// <param name="id">电站id</param>
         /// <returns>电站概览页面</returns>
         [IsLoginAttribute]
+        [PaymentIsExpiredAttribute]
         public ActionResult IncludeOverview(int id)
         {
             User curUser = UserUtil.getCurUser();

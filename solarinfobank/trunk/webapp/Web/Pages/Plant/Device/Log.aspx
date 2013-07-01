@@ -38,7 +38,7 @@
      }
      
     </script>
-  <td width="793" valign="top" background="/images/kj/kjbg01.jpg">
+  <td width="793" valign="top" background="/images/kj/kjbg01.gif">
     <%=Html.Hidden("dId",Request.QueryString["dId"]) %>
     		<table width="100%" height="63" border="0" cellpadding="0" cellspacing="0" background="/images/kj/kjbg02.jpg">
           <tr>

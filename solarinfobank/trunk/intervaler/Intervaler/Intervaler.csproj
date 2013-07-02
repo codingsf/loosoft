@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{37673E40-1FCB-40DD-B481-D8B55DB47DCB}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Intervaler</RootNamespace>
+    <AssemblyName>Intervaler</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ManifestCertificateThumbprint>08C5803814F08B62416DA5A0724E945FF15289CA</ManifestCertificateThumbprint>
+    <ManifestKeyFile>Intervaler_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>true</SignManifests>
+    <PublishUrl>D:\Users\bochins\Desktop\WebSite\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.DynamicProxy, Version=1.1.5.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\working\SunInfoBank\trunk\dll\Castle.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>G:\suninfobank\Web\bin\Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Domain, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>G:\suninfobank\Web\bin\Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="IBatisNet.Common, Version=1.4.1.0, Culture=neutral, PublicKeyToken=ed781d9fc396c6ca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\working\SunInfoBank\trunk\dll\IBatisNet.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="IBatisNet.Common.Logging.Log4Net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\working\SunInfoBank\trunk\dll\IBatisNet.Common.Logging.Log4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="IBatisNet.DataAccess, Version=1.8.1.0, Culture=neutral, PublicKeyToken=ed781d9fc396c6ca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\working\SunInfoBank\trunk\dll\IBatisNet.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="IBatisNet.DataMapper, Version=1.5.1.0, Culture=neutral, PublicKeyToken=ed781d9fc396c6ca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\working\SunInfoBank\trunk\dll\IBatisNet.DataMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\working\SunInfoBank\trunk\dll\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Memcached.ClientLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=42c0400964dcc297, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\Memcached.ClientLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.3.2.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\working\SunInfoBank\trunk\dll\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Persistence, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>G:\suninfobank\Web\bin\Persistence.dll</HintPath>
+    </Reference>
+    <Reference Include="Service, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>G:\suninfobank\Web\bin\Service.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DeviceWarningSender.cs" />
+    <Compile Include="EventReport.cs" />
+    <Compile Include="RunReport.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tool.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="bin\App.config" />
+    <None Include="bin\dao.config" />
+    <None Include="bin\Maps\.svn\entries" />
+    <None Include="bin\Maps\.svn\text-base\AdminControllerAction.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\AdminControllerActionRole.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\AdminRole.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\AdminUserRole.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\Adpic.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\Collector.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\CollectorDayData.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\CollectorMonthDayData.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\CollectorRunData.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\CollectorYearData.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\CollectorYearMonthData.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\CommonInfo.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\Countrycity.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\CustomChart.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\Dbconfig.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\Device.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\DeviceDataCount.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\DeviceDayData.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\DeviceModel.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\DeviceMonthDayData.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\DeviceRunData.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\DeviceYearData.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\DeviceYearMonthData.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\EmailQueue.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\Fault.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\ItemConfig.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\Language.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\LoginLog.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\LoginRecord.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\MailConfig.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\Manager.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\ManagerMonitorCode.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\MonitorConfig.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\MonitorItem.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\Plant.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\PlantUnit.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\PlantUser.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\ProductPicture.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\report.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\ReportConfig.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\ReportDataItem.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\Role.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\RoleFunction.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\User.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\UserRole.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\VideoMonitor.xml.svn-base" />
+    <None Include="bin\Maps\.svn\text-base\VirtualPlant.xml.svn-base" />
+    <None Include="bin\providers.config" />
+    <None Include="bin\SqlMap.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Maps\AdminControllerAction.xml" />
+    <Content Include="bin\Maps\AdminControllerActionRole.xml" />
+    <Content Include="bin\Maps\AdminRole.xml" />
+    <Content Include="bin\Maps\AdminUserRole.xml" />
+    <Content Include="bin\Maps\Adpic.xml" />
+    <Content Include="bin\Maps\Collector.xml" />
+    <Content Include="bin\Maps\CollectorDayData.xml" />
+    <Content Include="bin\Maps\CollectorMonthDayData.xml" />
+    <Content Include="bin\Maps\CollectorRunData.xml" />
+    <Content Include="bin\Maps\CollectorYearData.xml" />
+    <Content Include="bin\Maps\CollectorYearMonthData.xml" />
+    <Content Include="bin\Maps\CommonInfo.xml" />
+    <Content Include="bin\Maps\Countrycity.xml" />
+    <Content Include="bin\Maps\CustomChart.xml" />
+    <Content Include="bin\Maps\Dbconfig.xml" />
+    <Content Include="bin\Maps\Device.xml" />
+    <Content Include="bin\Maps\DeviceDataCount.xml" />
+    <Content Include="bin\Maps\DeviceDayData.xml" />
+    <Content Include="bin\Maps\DeviceModel.xml" />
+    <Content Include="bin\Maps\DeviceMonthDayData.xml" />
+    <Content Include="bin\Maps\DeviceRunData.xml" />
+    <Content Include="bin\Maps\DeviceYearData.xml" />
+    <Content Include="bin\Maps\DeviceYearMonthData.xml" />
+    <Content Include="bin\Maps\EmailQueue.xml" />
+    <Content Include="bin\Maps\Fault.xml" />
+    <Content Include="bin\Maps\ItemConfig.xml" />
+    <Content Include="bin\Maps\Language.xml" />
+    <Content Include="bin\Maps\LoginRecord.xml" />
+    <Content Include="bin\Maps\MailConfig.xml" />
+    <Content Include="bin\Maps\Manager.xml" />
+    <Content Include="bin\Maps\ManagerMonitorCode.xml" />
+    <Content Include="bin\Maps\MonitorConfig.xml" />
+    <Content Include="bin\Maps\MonitorItem.xml" />
+    <Content Include="bin\Maps\Plant.xml" />
+    <Content Include="bin\Maps\PlantUnit.xml" />
+    <Content Include="bin\Maps\PlantUser.xml" />
+    <Content Include="bin\Maps\ProductPicture.xml" />
+    <Content Include="bin\Maps\report.xml" />
+    <Content Include="bin\Maps\ReportConfig.xml" />
+    <Content Include="bin\Maps\ReportDataItem.xml" />
+    <Content Include="bin\Maps\Role.xml" />
+    <Content Include="bin\Maps\RoleFunction.xml" />
+    <Content Include="bin\Maps\User.xml" />
+    <Content Include="bin\Maps\UserRole.xml" />
+    <Content Include="bin\Maps\VideoMonitor.xml" />
+    <Content Include="bin\Maps\VirtualPlant.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Maps\.svn\prop-base\" />
+    <Folder Include="bin\Maps\.svn\props\" />
+    <Folder Include="bin\Maps\.svn\tmp\prop-base\" />
+    <Folder Include="bin\Maps\.svn\tmp\props\" />
+    <Folder Include="bin\Maps\.svn\tmp\text-base\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

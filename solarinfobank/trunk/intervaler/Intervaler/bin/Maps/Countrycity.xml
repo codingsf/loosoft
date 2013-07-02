@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="CountryCity" type="Cn.Loosoft.Zhisou.SunPower.Domain.CountryCity, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="countrycity_result" class="CountryCity">
+      <result property="id"			column="id"/>
+      <result property="name"			column="name"/>
+      <result property="sort_order"			column="sort_order"/>
+      <result property="Cities"   column="id" lazyLoad="true" select="cities_get_lazy" />
+      <result property="Country"   column="pid" lazyLoad="true" select="country_get_lazy" />
+    </resultMap>
+  </resultMaps>
+
+  <cacheModels>
+    <cacheModel id="countrycity_cache" implementation="LRU" readOnly="true" serialize="true">
+      <flushInterval hours="2"/>
+      <flushOnExecute  statement="countrycity_insert"/>
+      <flushOnExecute  statement="countrycity_delete"/>      
+      <property name="CacheSize" value="100"/>
+    </cacheModel>
+  </cacheModels>
+
+  <statements>
+    <select id="cities_get_lazy" resultClass="CountryCity" cacheModel="collector_cache">
+      select * from countrycity where pid=#value#
+    </select>
+ 
+    <select id="country_get_lazy" resultClass="CountryCity" cacheModel="collector_cache">
+      select * from countrycity where id=#value#
+    </select>
+    
+    <select id="countrycity_get_list" resultMap="countrycity_result" cacheModel="collector_cache">
+      select * from countrycity where pid=0
+    </select>
+
+    <insert id="countrycity_insert">
+      insert into countrycity (pid,name,sort_order) values (#pid#,#name#,#sort_order#)
+    </insert>
+
+    <select id="cities_get_list" resultMap="countrycity_result" cacheModel="collector_cache">
+      select * from countrycity where pid>0
+    </select>
+
+    <delete id="countrycity_delete">
+      delete  from countrycity where id=#id#
+    </delete>
+    
+    
+  </statements>
+</sqlMap>

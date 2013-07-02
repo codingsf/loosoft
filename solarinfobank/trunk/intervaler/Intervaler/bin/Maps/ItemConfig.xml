@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="ItemConfig" type="Cn.Loosoft.Zhisou.SunPower.Domain.ItemConfig, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="ItemConfigResult" class="ItemConfig">
+      <result property="id"			column="id"/>
+      <result property="name"			column="name"/>
+      <result property="value"			column="value"/>
+      <result property="type" column="type"/>
+    </resultMap>
+  </resultMaps>
+  
+  <cacheModels>
+    <cacheModel id="item_config_cache"  implementation="LRU" readOnly="true" serialize="true">
+      <flushInterval hours="2"/>
+      <flushOnExecute  statement="itemconfig_insert"/>
+      <flushOnExecute  statement="itemconfig_update"/>
+    </cacheModel>
+  </cacheModels>
+  
+  <statements>
+    
+    <!--取得所有配置项目-->
+    <select id="all_itemconfig_list" resultMap="ItemConfigResult" cacheModel="item_config_cache">
+      SELECT * FROM ITEM_CONFIG
+    </select>
+
+    <!--取得项目名称取得配置-->
+    <select id="itemconfig_get_by_name" resultClass="ItemConfig" paramterClass="string" cacheModel="item_config_cache">
+      SELECT * FROM ITEM_CONFIG where name=#value#
+    </select>
+    
+    <!--插入一条系统配置记录-->
+    <insert id="itemconfig_insert" parameterClass="ItemConfig">
+      INSERT INTO ITEM_CONFIG(name,value,type) VALUES(#name#,#value#,#type#)
+      <selectKey resultClass="int" property="id" type="post">
+        SELECT LAST_INSERT_ID() AS Id
+      </selectKey>
+    </insert>
+    
+    <!--更新配置记录-->
+    <update id="itemconfig_update" parameterClass="ItemConfig">
+      UPDATE ITEM_CONFIG SET name=#name#,value=#value#,type=#type# WHERE id=#id#
+    </update>
+    
+  </statements>
+</sqlMap>

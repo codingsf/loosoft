@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="Manager" type="Cn.Loosoft.Zhisou.SunPower.Domain.Manager, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="ManagerResult" class="Manager">
+      <result property="id"			column="id"/>
+      <result property="username"			column="username"/>
+      <result property="password"			column="password"/>
+      <result property="fullname"	column="fullname"/>
+      <result property="department"			column="department"/>
+      <result property="email"			column="email"/>
+      <result property="locked"			column="isLocked"/>
+      <result property="Type"			column="Type"/>
+    </resultMap>
+  </resultMaps>
+  <cacheModels>
+    <cacheModel id="manager_cache" implementation="LRU" readOnly="true" serialize="true">
+      <flushInterval hours="2"/>
+      <flushOnExecute  statement="manager_insert"/>
+      <flushOnExecute  statement="manager_update"/>
+      <flushOnExecute  statement="manager_delete"/>
+      <property name="CacheSize" value="1000"/>
+    </cacheModel>
+  </cacheModels>
+  <statements>
+
+    <!-- 根据用户名取得管理员-->
+    <select id="manager_get_byusername"  resultMap="ManagerResult" parameterClass="string" cacheModel="manager_cache">
+      SELECT * FROM MANAGER WHERE USERNAME=#value#
+    </select>
+
+    <!-- 判断管理员是否锁定 -->
+    <select id="manager_get_bylocked" resultMap="ManagerResult" parameterClass="string" cacheModel="manager_cache">
+      SELECT * FROM MANAGER WHERE USERNAME=#value# and ISLOCKED=0
+    </select>
+
+    <!--请修改为翻页sql-->
+    <select id="manager_get_list" resultMap="ManagerResult" cacheModel="manager_cache">
+      SELECT * FROM MANAGER
+    </select>
+
+    <!-- 根据id取得一条管理员记录-->
+    <select id="manager_get"  resultMap="ManagerResult" parameterClass="int" cacheModel="manager_cache">
+      SELECT * FROM MANAGER WHERE ID=#value#
+    </select>
+
+    <!--插入一条管理员记录，并返回id-->
+    <insert id="manager_insert">
+      INSERT INTO MANAGER (USERNAME,PASSWORD,DEPARTMENT,FULLNAME,ISLOCKED,EMAIL,type)VALUES(#username#,#password#,#department#,#fullname#,#locked#,#email#,#Type#);
+    </insert>
+
+    <!--更新一条管理员记录-->
+    <update id="manager_update" parameterClass="Manager">
+      UPDATE MANAGER SET USERNAME=#username#,PASSWORD=#password#,Fullname=#fullname#,Department=#department#,Email=#email#,isLocked=#locked#,type=#Type# WHERE ID=#id#
+    </update>
+
+    <!-- 删除一条管理员记录-->
+    <delete id="manager_delete" parameterClass="Manager">
+      DELETE FROM MANAGER WHERE ID=#id#
+    </delete>
+  </statements>
+</sqlMap>

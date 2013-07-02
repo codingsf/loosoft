@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="MonitorItem" type="Cn.Loosoft.Zhisou.SunPower.Domain.MonitorItem, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="monitoritem_result" class="MonitorItem">
+      <result property="code"			column="code"/>
+      <result property="protocolTypeCode"			column="protocolType"/>
+      <result property="noteName"			column="noteName"/>
+      <result property="unit"			column="unit"/>
+      <result property="isCount"			column="isCount"/>
+      <result property="isDisplay"			column="isDisplay"/>
+    </resultMap>
+  </resultMaps>
+  
+  <cacheModels>
+    <cacheModel id="monitoritem_cache" implementation="LRU" readOnly="true" serialize="true">
+      <flushInterval hours="2"/>
+      <flushOnExecute  statement="monitoritem_delete"/>
+      <flushOnExecute  statement="monitoritem_update"/>
+      <flushOnExecute  statement="monitoritem_insert"/>
+      <property name="CacheSize" value="1000"/>
+    </cacheModel>
+  </cacheModels>
+  
+  <statements>
+    <select id="monitoritem_get_list" resultMap="monitoritem_result" cacheModel="monitoritem_cache">
+      select * from monitor_item
+    </select>
+    <select id="GetMonitorItemsByHas" resultMap="monitoritem_result" cacheModel="monitoritem_cache">
+      select * from monitor_item where protocolType=#protocolType#
+    </select>
+    
+    <!--搬家-->
+    <select id="GetMonitorItemsStats" resultClass="int"  >
+      select code from monitor_item where isCount='1'
+    </select>
+    
+
+    <select id="monitoritem_get"  resultMap="monitoritem_result" parameterClass="int" cacheModel="monitoritem_cache">
+      select *  from  monitor_item where code=#value#
+    </select>
+    <!--陈波添加-->
+    <delete id="monitoritem_delete" parameterClass="string">
+      delete from monitor_item where code=#code#
+    </delete>
+    <update id="monitoritem_update">
+      UPDATE monitor_item SET protocolType=#protocolTypeCode#,isCount=#isCount#,isDisplay=#isDisplay#, unit=#unit#, noteName=#noteName# where code=#code#
+    </update>
+    <!--陈波 插入采集器信息-->
+    <insert id="monitoritem_insert">
+      INSERT INTO monitor_item (code,protocolType,isCount,isDisplay,notename,unit) VALUES(#code#,#protocolTypeCode#,#isCount#,#isDisplay#,#noteName#,#unit#)
+    </insert>
+
+    <select id="loading_monitoritem_page_list" resultMap="monitoritem_result" cacheModel="monitoritem_cache">
+        <![CDATA[  SELECT * from monitor_item limit $Start$,$End$]]>
+    </select>
+
+    <select id="loading_monitoritem_page_count" resultClass="int">
+        <![CDATA[SELECT COUNT(1) from monitor_item]]>
+    </select>
+
+  </statements>
+</sqlMap>

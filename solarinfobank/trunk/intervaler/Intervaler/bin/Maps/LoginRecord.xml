@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="LoginRecord" type="Cn.Loosoft.Zhisou.SunPower.Domain.LoginRecord, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="LoginRecordResult" class="LoginRecord">
+      <result property="id"			column="Id"/>
+      <result property="userId"			column="userId"/>
+      <result property="username"			column="username"/>
+      <result property="ip"			column="ip"/>
+      <result property="loginTime"			column="loginTime"/>
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+    <select id="loginrecord_get" resultClass="LoginRecord">
+      select * from LoginRecord where id=#id#
+    </select>
+    <insert id="loginrecord_insert">
+      <![CDATA[insert into loginrecord (userId,username,ip,loginTime) 
+      values(#userId#,#username#,#ip#,#loginTime#)]]>
+    </insert>
+  </statements>
+</sqlMap>

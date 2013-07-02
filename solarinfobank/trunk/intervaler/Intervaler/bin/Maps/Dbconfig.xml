@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="Dbconfig" type="Cn.Loosoft.Zhisou.SunPower.Domain.Dbconfig, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="DbconfigResult" class="Dbconfig">
+      <result property="id"			column="id"/>
+      <result property="year"			column="year"/>
+      <result property="url"			column="url"/>
+      <result property="isEnabled"			column="isEnabled"/>
+    </resultMap>
+  </resultMaps>
+  
+  <cacheModels>
+    <cacheModel id="dbconfig_cache" implementation="MEMORY">
+      <flushInterval hours="2"/>
+      <flushOnExecute  statement="dbconfig_insert"/>
+      <flushOnExecute  statement="dbconfig_delete"/>
+      <flushOnExecute  statement="dbconfig_update"/>
+      <property name="CacheSize" value="1000"/>
+    </cacheModel>
+  </cacheModels>
+  
+  <statements>
+    <!--取得所有配置记录-->
+    <select id="GET_DBCONFIG"  resultMap="DbconfigResult" cacheModel="dbconfig_cache">
+      SELECT *  FROM  DBCONFIG
+    </select>
+
+    <!--根据id取得数据配置记录-->
+    <select id="dbconfig_get" parameterClass="int" resultMap="DbconfigResult">
+      SELECT *  FROM  DBCONFIG WHERE ID=#value#
+    </select>
+    
+    <!-- 插入一条配置记录 -->
+    <insert id="dbconfig_insert">
+      INSERT INTO  DBCONFIG (year,url,isEnabled) VALUES(#year#,#url#,#isEnabled#)
+      <selectKey resultClass="int" property="id" type="post" >
+        SELECT LAST_INSERT_ID() AS ID
+      </selectKey>
+    </insert>
+
+    <!-- 删除一条配置记录 -->
+    <delete id="dbconfig_delete" parameterClass="Dbconfig">
+      DELETE FROM DBCONFIG WHERE ID=#id#
+    </delete>
+
+    <!-- 修改一条配置记录 -->
+    <update id="dbconfig_update">
+      UPDATE DBCONFIG SET year=#year#,url=#url#,isEnabled=#isEnabled# WHERE id=#id#
+    </update>
+    
+  </statements>
+</sqlMap>

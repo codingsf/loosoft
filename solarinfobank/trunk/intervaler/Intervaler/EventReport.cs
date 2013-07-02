@@ -34,13 +34,19 @@ namespace Intervaler
         }
 
 
+      
+        private void UpdataLastModified(ReportConfig config)
+        {
+            ReportConfigService.GetInstance().UpdateReportConfig(config);
+        }
+
         /// <summary>
         /// 更新事件报告最后一次发送时间
         /// </summary>
         /// <param name="config"></param>
-        private void UpdataLastModified(ReportConfig config)
+        private void UPdateReportLastSendTime(ReportConfig config)
         {
-            ReportConfigService.GetInstance().UpdateReportConfig(config);
+            ReportConfigService.GetInstance().UPdateReportLastSendTime(config);
         }
 
         private IList<Fault> LoadEventLogs(int pid, DateTime lastModified)
@@ -174,7 +180,7 @@ namespace Intervaler
                     Thread.Sleep(1000);
                     if(faults.Last().id.Equals(temp.Last().id))
                     {
-                        UpdataLastModified(config);
+                        UPdateReportLastSendTime (config);
                         break;
                     }
                 }

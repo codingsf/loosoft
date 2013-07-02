@@ -52,7 +52,7 @@ namespace Intervaler
                 table.Add("page", page);
                 table.Add("fault", fault);
                 table.Add("endTime", endTime);
-
+                table.Add("fromview", true);
                 if (allPlants != null && allPlants.Count > 0)
 
                     foreach (Plant plant in allPlants)

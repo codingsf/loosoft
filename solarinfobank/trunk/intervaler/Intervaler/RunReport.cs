@@ -45,15 +45,15 @@ namespace Intervaler
             InitData();
             foreach (DefineReport report in normalReport)
             {
-                if (string.IsNullOrEmpty(report.config.email)) 
+                if (string.IsNullOrEmpty(report.config.email))
                     continue;
-                if (string.IsNullOrEmpty(report.config.sendMode)) 
+                if (string.IsNullOrEmpty(report.config.sendMode))
                     continue;
                 bool isSuccess = false;
                 switch (report.config.sendMode.ToLower())//报告发送模式 1循环 2定时
                 {
                     case "1":
-                        Console.WriteLine("处理模式1运行时报告"+report.config.id);
+                        Console.WriteLine("处理模式1运行时报告" + report.config.id);
                         if ((DateTime.Now - report.config.lastSendTime).TotalHours > Convert.ToDouble(report.config.tinterval))
                         {
                             report.config.lastSendTime = DateTime.Now.AddSeconds(0 - DateTime.Now.Second);
@@ -92,7 +92,7 @@ namespace Intervaler
                             para = new string[6];
                         DateTime update = DateTime.Now;
                         Console.WriteLine("处理模式2运行时报告" + report.config.id);
-                        if (Tool.DateEquals(para[0], para[1], para[2], para[3], para[4], para[5], report.config.lastSendTime, report.ReportType,ref update))
+                        if (Tool.DateEquals(para[0], para[1], para[2], para[3], para[4], para[5], report.config.lastSendTime, report.ReportType, ref update))
                         {
                             report.config.lastSendTime = update;
                             isSuccess = true;
@@ -106,7 +106,9 @@ namespace Intervaler
                     string culture = "en-us";
                     if (report.user == null)
                     {
-                        report.user = UserService.GetInstance().Get(Convert.ToInt32(PlantService.GetInstance().GetPlantInfoById(report.PlantId).userID));
+                        Plant plant = PlantService.GetInstance().GetPlantInfoById(report.PlantId);
+                        if (plant != null)
+                            report.user = UserService.GetInstance().Get(Convert.ToInt32(plant.userID));
                     }
                     if (report.user != null && report.user.Language != null && (string.IsNullOrEmpty(report.user.Language.codename) == false))
                         culture = report.user.Language.codename;
@@ -121,7 +123,7 @@ namespace Intervaler
                     queue.state = 0;
                     queue.sender = "admin@suninfobank.com";
                     EmailQueueService.GetInstance().Save(queue);
-                    ReportConfigService.GetInstance().UpdateReportConfig(report.config);//更新最后发送时间
+                    ReportConfigService.GetInstance().UPdateReportLastSendTime(report.config);//更新最后发送时间
                     Console.WriteLine(string.Format("{0}-({1})-{2}", url, report.ReportName, DateTime.Now));
                 }
             }

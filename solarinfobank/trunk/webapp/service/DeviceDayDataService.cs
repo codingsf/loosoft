@@ -419,8 +419,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                         catch (Exception e)
                         {
                             //这里有些问题，稍后要调试下有插入索引约束异常
-                            LogUtil.error("update" + collectorDayData.deviceType + " device day data fail:" + e.Message);
-                        }
+                            LogUtil.error("update " + collectorDayData.deviceType + " id is +" + collectorDayData.id + " device day data fail：" + e.Message);
+                            //有outofmemoryException 异常，稍后要整理清理重复数据，
+                        }   
                     }
                     try
                     {

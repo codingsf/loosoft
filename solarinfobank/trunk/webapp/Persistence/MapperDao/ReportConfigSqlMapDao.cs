@@ -31,6 +31,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
              ExecuteUpdate("reportconfig_update",config);
         }
 
+        public void UPdateReportLastSendTime(ReportConfig config)
+        {
+            ExecuteUpdate("reportconfig_update_lastSendTime", config);
+        }
+
+
         #endregion
 
         #region IReportConfigDao 成员

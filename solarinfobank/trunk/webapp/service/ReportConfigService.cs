@@ -30,7 +30,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             return _instance;
         }
 
-      
+
         public void SendEventReport(ReportConfig config)
         {
             _reportConfigDao.SendEventReport(config);
@@ -42,7 +42,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         }
         public void UpdateReportConfig(ReportConfig config)
         {
-             _reportConfigDao.UPdateReportConfig(config);
+            _reportConfigDao.UPdateReportConfig(config);
+        }
+
+        public void UPdateReportLastSendTime(ReportConfig config)
+        {
+            _reportConfigDao.UPdateReportLastSendTime(config);
         }
 
         public IList<ReportConfig> GetEventReportConfigs()
@@ -55,7 +60,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         }
         public void UpdateEventReport(ReportConfig config)
         {
-          _reportConfigDao.UpdateEventReport(config);
+            _reportConfigDao.UpdateEventReport(config);
         }
         /// <summary>
         /// 根据报告配置报表Id和报表Id获取事件报表对象

@@ -12,10 +12,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.Interfaces
         void SendEventReport(ReportConfig report);
         ReportConfig GetReportConfigByReportId(int id);
         void UPdateReportConfig(ReportConfig config);
+        void UPdateReportLastSendTime(ReportConfig config);
         IList<ReportConfig> GetEventReportConfigs();
         void DeleteReportConfig(int id);
         void UpdateEventReport(ReportConfig config);
         ReportConfig GetEventReportByReportIdAndId(int id);
-       
+
     }
 }

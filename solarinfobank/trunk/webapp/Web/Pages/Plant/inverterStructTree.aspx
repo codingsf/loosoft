@@ -10,8 +10,9 @@
     </style>
     <script src="../../script/dtree1.js?v=130506" type="text/javascript"></script>
 <script>
-    function setPara(did,isunit,uid) {
-        parent.loadRunData(did);
+    function setPara(did, isunit, uid) {
+        if (!isunit)
+            parent.loadRunData(did);
     }
 </script>
     <link href="../../style/dtree1.css?v=0427" rel="stylesheet" type="text/css" />

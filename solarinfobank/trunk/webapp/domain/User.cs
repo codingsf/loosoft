@@ -841,6 +841,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 return factPlants;
             }
         }
+        /// <summary>
+        /// 查找当前用户下是否有此电站
+        /// </summary>
+        /// <param name="plantId"></param>
+        /// <returns></returns>
+        public bool Exists(int plantId)
+        {
+            return allRelatedFactPlants.Where(m => m.id.Equals(plantId)).Count() > 0; 
+        }
 
 
         /// <summary>

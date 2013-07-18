@@ -84,6 +84,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         public ActionResult Overview(int id)
         {
             User curUser = UserUtil.getCurUser();
+            if (curUser.Exists(id) == false)
+                return Redirect("/auth/deny");
             Plant plant = PlantService.GetInstance().GetPlantInfoById(id);
             SetPaymentLimitDate(plant.PaymentLimitDate);
             return View(plant);
@@ -131,7 +133,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 {
                     ViewData["temp"] = Math.Round(32 + ((double)ViewData["temp"] * 1.8), 1);
                 }
-                else {
+                else
+                {
                     ViewData["temp"] = Math.Round((double)ViewData["temp"], 1);
                 }
             }
@@ -156,7 +159,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
         public ActionResult IncludeOverviewDataJson(int id)
         {
-           
+
             Plant plant = PlantService.GetInstance().GetPlantInfoById(id);
             User curUser = UserService.GetInstance().Get(plant.userID);
             plant.currencies = curUser.currencies;
@@ -436,7 +439,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             if (plant.energyRate == null || plant.energyRate.Value == 0) plant.energyRate = 1;
             int plantid = plantService.AddPlantInfo(plant);
             //添加电站时，向电站用户关系表中加记录
-            plantUserService.AddPlantUser(new PlantUser { plantID = plantid, userID = plant.userID,shared=false,roleId=Role.ROLE_SYSMANAGER});
+            plantUserService.AddPlantUser(new PlantUser { plantID = plantid, userID = plant.userID, shared = false, roleId = Role.ROLE_SYSMANAGER });
             UserUtil.ResetLogin(UserUtil.getCurUser());
             return RedirectToAction("profile", "plant", new { @id = plant.id });
         }
@@ -2045,7 +2048,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             foreach (User u in users)
             {
                 PlantUser ppu = plantUserService.GetPlantUserByPlantIDUserID(new PlantUser { plantID = id, userID = u.id });
-                if(ppu==null)continue;
+                if (ppu == null) continue;
                 int roleId = ppu.roleId;
                 if (roleId == 0)
                     roleTable.Add(u.username, string.Empty);
@@ -2581,8 +2584,8 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             int pid = 0;
             int.TryParse(id, out pid);
             Plant plant = PlantService.GetInstance().GetPlantInfoById(pid);
-           // string jsstr = base.createDeviceContructTree(plant, 1);
-           string jsstr = base.generateDeviceRelation(plant,false);
+            // string jsstr = base.createDeviceContructTree(plant, 1);
+            string jsstr = base.generateDeviceRelation(plant, false);
             ViewData["jsstr"] = jsstr;
             return View();
         }
@@ -2758,7 +2761,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             plant.energyRate = rate;
             plant.maxEnergyRate = maxRate;
             plant.rateEnable = rateEnable;
-            plant.lastHandleDate = new DateTime(0002,1,1,0,0,1);
+            plant.lastHandleDate = new DateTime(0002, 1, 1, 0, 0, 1);
             plantService.UpdatePlantInfo(plant);
             return View("energyrate", plant);
         }

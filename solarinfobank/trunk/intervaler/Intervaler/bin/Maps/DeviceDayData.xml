@@ -14,6 +14,11 @@
       <![CDATA[select * from $deviceType$_day_data_$yearmonth$ where deviceID=#deviceID# and sendDay>=#startDay# and sendDay<=#endDay# and monitorCode=#monitorCode#]]>
     </select>
     
+    <!--取得跨天的多个测点数据 add by qhb in 20120915-->
+    <select id="multidevicedaydata_list_between_day" resultClass="DeviceDayData" parameterClass="Hashtable" >
+      <![CDATA[select * from $deviceType$_day_data_$yearmonth$ where deviceID=#deviceID# and sendDay>=#startDay# and sendDay<=#endDay#]]>
+    </select>
+    
     <!--根据设备，测点和天 取得设备数据-->
     <select id="devicedaydata_get_by_deviceid2monitor2sendday" resultClass="DeviceDayData" parameterClass="Hashtable" >
       <![CDATA[select * from $deviceType$_day_data_$yearmonth$ where deviceID=#deviceID# and sendDay=#sendDay# and monitorCode=#monitorCode#]]>
@@ -37,6 +42,11 @@
       update $deviceType$_day_data_$yearmonth$ set dataContent=#dataContent# where deviceID=#deviceID# and sendDay=#sendDay# and monitorCode=#monitorCode#
     </update>
 
+    <!-- 根据id删除设备天数据 add by qhb in 20120825 -->
+    <delete id="devicedaydata_delete" parameterClass="DeviceDayData">
+      DELETE FROM $deviceType$_day_data_$yearmonth$ WHERE  deviceID=#deviceID# and sendDay=#sendDay#
+    </delete>
+    
     <!--取得设备和某天的数据记录-->
     <select id="getDeviceDayDataNums" resultClass="int" parameterClass="Hashtable">
       <![CDATA[SELECT monitorCode FROM $deviceType$_day_data_$yearmonth$ WHERE deviceID=#deviceID# and sendDay=#sendDay#]]>

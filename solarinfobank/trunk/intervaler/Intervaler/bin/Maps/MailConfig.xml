@@ -17,7 +17,7 @@
   </resultMaps>
   <cacheModels>
     <cacheModel id="mailconfig_cache" implementation="LRU" >
-      <flushInterval hours="24"/>
+      <flushInterval minutes="30"/>
       <flushOnExecute  statement="mailconfig_insert"/>
       <flushOnExecute  statement="mailconfig_delete"/>
       <property name="CacheSize" value="1000"/>

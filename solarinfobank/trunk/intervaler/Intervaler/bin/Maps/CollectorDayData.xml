@@ -9,14 +9,14 @@
   <resultMaps>
 
   </resultMaps>
-  
+
   <cacheModels>
     <cacheModel id="collector_daydata_cache" implementation="LRU" >
-      <flushInterval hours="2"/>
+      <flushInterval minutes="30"/>
       <property name="CacheSize" value="1000"/>
     </cacheModel>
   </cacheModels>
-  
+
   <statements>
     <!--取得跨天的功率数据-->
     <select id="collectordaydata_list_between_day" resultClass="CollectorDayData"  parameterClass="Hashtable" >
@@ -32,7 +32,7 @@
     <select id="collectordaydata_get_by_id" resultClass="CollectorDayData" parameterClass="Hashtable" >
       <![CDATA[select * from collector_day_data_$yearmonth$ where id=#id#]]>
     </select>
-    
+
     <!-- 插入一条记录-->
     <insert id="collectordaydata_insert" paramsClass="CollectorDayData">
       INSERT INTO collector_day_data_$yearmonth$ (collectorID,sendDay,dataContent,monitorCode)
@@ -42,6 +42,11 @@
       </selectKey>
     </insert>
 
+    <!-- 根据id删除采集器天数据 add by qhb in 20120825 -->
+    <delete id="collectordaydata_delete" parameterClass="CollectorDayData">
+      DELETE FROM collector_day_data_$yearmonth$ WHERE collectorID=#collectorID# and sendDay=#sendDay#
+    </delete>
+    
     <!-- 更新一条记录-->
     <update id="collectordaydata_update" paramsClass="CollectorDayData">
       update collector_day_data_$yearmonth$ set dataContent=#dataContent# where collectorID=#collectorID# and sendDay=#sendDay# and monitorCode=#monitorCode#

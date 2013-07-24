@@ -25,7 +25,7 @@
   
   <cacheModels>
     <cacheModel id="devicemodel_get_list_cache" implementation="LRU">
-      <flushInterval hours="2"/>
+      <flushInterval minutes="30"/>
       <flushOnExecute  statement="devicemodel_delete"/>
       <flushOnExecute  statement="devicemodel_update"/>
       <flushOnExecute  statement="devicemodel_insert"/>

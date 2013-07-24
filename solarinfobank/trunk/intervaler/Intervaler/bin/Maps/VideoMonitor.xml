@@ -11,12 +11,14 @@
       <result property="name"			column="name"/>
       <result property="url"			column="url"/>
       <result property="plantId"			column="plantId"/>
+      <result property="folder"			column="folder"/>
+      <result property="videofolder"			column="videofolder"/>
     </resultMap>
   </resultMaps>
 
   <cacheModels>
     <cacheModel id="monitor_cache" implementation="LRU"  readOnly="true" serialize="false">
-      <flushInterval hours="2"/>
+      <flushInterval minutes="30"/>
       <flushOnExecute  statement="videomonitor_delete"/>
       <flushOnExecute  statement="videomonitor_insert"/>
       <property name="CacheSize" value="1000"/>
@@ -38,8 +40,8 @@
     </delete>
 
     <insert id="videomonitor_insert">
-        insert into video_monitor (plantId,name,url) values(#plantId#,#name#,#url#)
-        <selectKey resultClass="int" property="id" type="post" >
+      insert into video_monitor (plantId,name,url,folder,videofolder) values(#plantId#,#name#,#url#,#folder#,#videofolder#)
+      <selectKey resultClass="int" property="id" type="post" >
         SELECT LAST_INSERT_ID() AS id
       </selectKey>
     </insert>

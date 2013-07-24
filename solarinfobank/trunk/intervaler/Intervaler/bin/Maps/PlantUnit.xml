@@ -15,6 +15,9 @@
    
       <!--级联对象集合-->
       <result property="collector"	lazyLoad="false"	column="collectorID" select="collector_get" />
+      <!--单元关联的物理设备，和单元对应的采集器的数据设备区别-->
+      <result property="devices"	lazyLoad="true"	column="id" select="device_get_plantunitid_lazy" />
+      <result property="plant" lazyLoad="true"	column="plantID" select="plant_get_lazy" />
     </resultMap>
 
     <resultMap id="plant_unit_result_lazy" class="PlantUnit">
@@ -24,12 +27,12 @@
           <result property="collectorID"	column="collectorID"/>
           <!--级联对象集合-->
           <result property="collector" lazyLoad="true"	column="collectorID" select="collector_get" />
-        </resultMap>
+    </resultMap>
   </resultMaps>
   
   <cacheModels>
     <cacheModel id="plantunit_cache" implementation="LRU"  readOnly="true" serialize="false">
-      <flushInterval hours="12"/>
+      <flushInterval minutes="300"/>
       <flushOnExecute  statement="plantunit_delete"/>
       <flushOnExecute  statement="plantunit_delete_by_plantid"/>
       <flushOnExecute  statement="plantunit_insert"/>
@@ -44,11 +47,10 @@
     </cacheModel>
   </cacheModels>
   
-  
   <statements>
     <!--根据电站id和单元id，删除该电站的单元 （张月）-->
     <delete id="plantunit_delete" parameterClass="Hashtable">
-      DELETE FROM plant_unit WHERE plantID=#plantID# and collectorID=#unitId#
+      DELETE FROM plant_unit WHERE plantID=#plantID# and collectorID=#collectorId#
     </delete>
     <!--根据电站id和单元id，删除该电站的单元 （张月）-->
     <delete id="plantunit_delete_by_plantid" parameterClass="int">
@@ -68,11 +70,11 @@
     </select>
       
     <!--根据电站Id和单元ID获取当前电站单元 （张月）-->
-    <select id="plantunit_get_list_by_plantid_plantunitid"  resultMap="plant_unit_result" parameterClass="Hashtable"  cacheModel="plantunit_cache">
-      select *  from  plant_unit where plantID=#plantID# and collectorID=#unitId#
+    <select id="plantunit_get_list_by_plantid_collectorid"  resultMap="plant_unit_result" parameterClass="Hashtable"  cacheModel="plantunit_cache">
+      select *  from  plant_unit where plantID=#plantID# and collectorID=#collectorId#
     </select>
     <!--根据单元ID获取当前电站单元 （张月）-->
-    <select id="plantunit_get_by_collectorID"  resultMap="plant_unit_result" parameterClass="int"  cacheModel="plantunit_cache">
+    <select id="plantunit_get_by_collectorID"  resultMap="plant_unit_result" parameterClass="int" >
       select *  from  plant_unit where collectorID=#value#
     </select>
 

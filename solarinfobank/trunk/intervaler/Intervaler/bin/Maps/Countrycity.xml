@@ -8,7 +8,13 @@
   <resultMaps>
     <resultMap id="countrycity_result" class="CountryCity">
       <result property="id"			column="id"/>
+      <result property="pid"			column="pid"/>
       <result property="name"			column="name"/>
+      <result property="weather_code"			column="weather_code"/>
+      <result property="startdate"			column="startdate"/>
+      <result property="enddate"			column="enddate"/>
+      <result property="hours"			column="hours"/>
+      <result property="latlon"			column="latlon"/>
       <result property="sort_order"			column="sort_order"/>
       <result property="Cities"   column="id" lazyLoad="true" select="cities_get_lazy" />
       <result property="Country"   column="pid" lazyLoad="true" select="country_get_lazy" />
@@ -17,38 +23,46 @@
 
   <cacheModels>
     <cacheModel id="countrycity_cache" implementation="LRU" readOnly="true" serialize="true">
-      <flushInterval hours="2"/>
-      <flushOnExecute  statement="countrycity_insert"/>
-      <flushOnExecute  statement="countrycity_delete"/>      
+      <flushInterval minutes="30"/>
       <property name="CacheSize" value="100"/>
     </cacheModel>
   </cacheModels>
 
   <statements>
-    <select id="cities_get_lazy" resultClass="CountryCity" cacheModel="collector_cache">
+    <select id="cities_get_lazy" resultClass="CountryCity">
       select * from countrycity where pid=#value#
     </select>
- 
-    <select id="country_get_lazy" resultClass="CountryCity" cacheModel="collector_cache">
+
+    <select id="country_get_lazy" resultClass="CountryCity">
       select * from countrycity where id=#value#
     </select>
-    
-    <select id="countrycity_get_list" resultMap="countrycity_result" cacheModel="collector_cache">
+
+    <select id="countrycity_get_list" resultMap="countrycity_result">
       select * from countrycity where pid=0
     </select>
 
+    <select id="city_get" resultClass="CountryCity">
+      select * from countrycity where name=#value#
+    </select>
+
+    <select id="countrycity_get" resultMap="countrycity_result">
+      select * from countrycity where id=#id#
+    </select>
+
     <insert id="countrycity_insert">
-      insert into countrycity (pid,name,sort_order) values (#pid#,#name#,#sort_order#)
+      insert into countrycity (pid,name,sort_order,weather_code,startdate,enddate,hours,latlon) values (#pid#,#name#,#sort_order#,#weather_code#,#startdate#,#enddate#,#hours#,#latlon#)
     </insert>
 
-    <select id="cities_get_list" resultMap="countrycity_result" cacheModel="collector_cache">
+    <select id="cities_get_list" resultMap="countrycity_result">
       select * from countrycity where pid>0
     </select>
 
     <delete id="countrycity_delete">
       delete  from countrycity where id=#id#
     </delete>
-    
-    
+
+    <update id="countrycity_update">
+      update countrycity set name=#name#, weather_code=#weather_code#,latlon=#latlon# ,pid=#pid#,startdate=#startdate#,enddate=#enddate#,hours=#hours# where id=#id#
+    </update>
   </statements>
 </sqlMap>

@@ -18,7 +18,7 @@
   
   <cacheModels>
     <cacheModel id="monitoritem_cache" implementation="LRU" readOnly="true" serialize="true">
-      <flushInterval hours="2"/>
+      <flushInterval minutes="30"/>
       <flushOnExecute  statement="monitoritem_delete"/>
       <flushOnExecute  statement="monitoritem_update"/>
       <flushOnExecute  statement="monitoritem_insert"/>

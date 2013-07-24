@@ -14,18 +14,18 @@
       <result property="langInstance"   column="language" lazyLoad="true" select="language_get_by_code" />
     </resultMap>
   </resultMaps>
- 
+
   <cacheModels>
     <cacheModel id="adpic_cache" implementation="LRU" readOnly="true" serialize="true">
-      <flushInterval hours="2"/>
+      <flushInterval minutes="30"/>
       <flushOnExecute  statement="adpic_insert"/>
       <flushOnExecute  statement="adpic_update"/>
       <flushOnExecute  statement="adpic_delete"/>
       <property name="CacheSize" value="100"/>
     </cacheModel>
   </cacheModels>
-  
-  <statements>  
+
+  <statements>
     <!--根据language获取所有的宣传图片-->
     <select id="adpic_get_by_language"  resultMap="adpic_info_result" parameterClass="Adpic" cacheModel="adpic_cache">
       select *  from  adpic where language=#language#
@@ -54,13 +54,13 @@
       DELETE FROM adpic WHERE id=#id#
     </delete>
 
-      <select id="loading_adpics_page_list" resultMap="adpic_info_result" cacheModel="adpic_cache">
-          <![CDATA[  SELECT * from adpic limit $Start$,$End$]]>
-      </select>
+    <select id="loading_adpics_page_list" resultMap="adpic_info_result" cacheModel="adpic_cache">
+      <![CDATA[  SELECT * from adpic limit $Start$,$End$]]>
+    </select>
 
-      <select id="loading_adpics_page_count" resultClass="int" cacheModel="adpic_cache">
-          <![CDATA[SELECT COUNT(1) from adpic]]>
-      </select>
+    <select id="loading_adpics_page_count" resultClass="int" cacheModel="adpic_cache">
+      <![CDATA[SELECT COUNT(1) from adpic]]>
+    </select>
 
   </statements>
 </sqlMap>

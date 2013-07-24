@@ -22,7 +22,7 @@
 
   <cacheModels>
     <cacheModel id="report_config_cache" implementation="LRU" readOnly="false" serialize="true">
-      <flushInterval hours="2"/>
+      <flushInterval minutes="30"/>
       <flushOnExecute  statement="reportconfig_update"/>
       <flushOnExecute  statement="delete_event_report_by_reportId"/>
       <flushOnExecute  statement="reportconfig_insert"/>

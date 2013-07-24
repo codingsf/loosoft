@@ -52,7 +52,7 @@
       SELECT * FROM device_monthday_data_$year$
       where deviceID=#deviceID# and month=#month#
     </select>
-    
+
     <!--更新某个记录的某个字段的值-->
     <update id="UpdateDeviceMonthDayData"  parameterClass="Hashtable">
       UPDATE device_monthday_data_$year$
@@ -64,7 +64,7 @@
       INSERT device_monthday_data_$year$ (deviceID,month,$d_Column$)
       VALUE(#deviceID#,#month#,#d_Value#)
     </insert>
-    
+
     <!--根据年度，起止月份取得月天发电量数据-->
     <select id="devicemonthdaydata_list_by_year_startendmm" resultMap="DeviceMonthDayDataResult" parameterClass="Hashtable">
       <![CDATA[SELECT * FROM device_monthday_data_$year$ WHERE deviceID=#deviceId# AND month>=#startMM#  and month<=#endMM#]]>

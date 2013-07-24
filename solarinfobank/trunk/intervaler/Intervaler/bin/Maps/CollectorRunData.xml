@@ -20,7 +20,7 @@
   </resultMaps>
   <cacheModels>
     <cacheModel id="collector_rundata_cache" implementation="LRU">
-      <flushInterval hours="2"/>
+      <flushInterval minutes="30"/>
       <property name="CacheSize" value="1000"/>
     </cacheModel>
   </cacheModels>
@@ -32,11 +32,15 @@
       select *  from  collector_run_data where collectorID=#value#
     </select>
 
-     <select id="collectorrundata_get_dayenergy"  resultClass="float"  parameterClass="string">
-        <![CDATA[Select case  when count(*)=0 then 0 else Sum(day_energy) end as dayEenergy From collector_run_data where DATE_FORMAT(sendtime,'%Y%m%d') = #value#]]>
-     </select>
-      <!-- 测试-->
-        <!--<select id="collectorrundata_get_dayenergy"  resultClass="int">
+    <select id="collectorrundata_get_dayenergy"  resultClass="float"  parameterClass="string">
+      <![CDATA[Select case  when count(*)=0 then 0 else Sum(day_energy) end as dayEenergy from collector_run_data where DATE_FORMAT(sendtime,'%Y%m%d') = #value#]]>
+    </select>
+    <!--add by qian hb in 20120204 for取得今日总实时功率-->
+    <select id="collectorrundata_get_power"  resultClass="float"  parameterClass="string">
+      <![CDATA[Select case  when count(*)=0 then 0 else Sum(power) end as power from collector_run_data where DATE_FORMAT(sendtime,'%Y%m%d') = #value#]]>
+    </select>
+    <!-- 测试-->
+    <!--<select id="collectorrundata_get_dayenergy"  resultClass="int">
         <![CDATA[Select case  when count(*)  = 0 then 0 else Sum(day_energy) end as dayEenergy From collector_run_data where DATE_FORMAT(now(), 
 '%Y-%m-%d')=DATE_FORMAT(sendtime, '%Y-%m-%d')]]>
       </select>-->

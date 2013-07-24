@@ -13,16 +13,53 @@
       <result property="username"			column="username"/>
       <result property="ip"			column="ip"/>
       <result property="loginTime"			column="loginTime"/>
+      <result property="localZone"			column="localZone"/>
     </resultMap>
   </resultMaps>
 
   <statements>
     <select id="loginrecord_get" resultClass="LoginRecord">
-      select * from LoginRecord where id=#id#
+      select * FROM loginrecord  where id=#id# order by  date_add(logintime ,INTERVAL localzone hour)  desc
     </select>
     <insert id="loginrecord_insert">
-      <![CDATA[insert into loginrecord (userId,username,ip,loginTime) 
-      values(#userId#,#username#,#ip#,#loginTime#)]]>
+      <![CDATA[insert into loginrecord (userId,username,ip,loginTime,localZone) 
+      values(#userId#,#username#,#ip#,#loginTime#,#localZone#)]]>
     </insert>
+    <select id="loginrecord_get_list" resultClass="LoginRecord">
+      select * from loginrecord where userid=#userId#  order by date_add(logintime ,INTERVAL localzone hour) desc
+    </select>
+
+    <select id="loading_loginrecord_page_list" resultClass="LoginRecord">
+      <![CDATA[  SELECT * from loginrecord ]]>
+      <dynamic prepend="WHERE">
+        <isNotEmpty prepend="AND"  property="uname">
+          <![CDATA[  username like '%$uname$%'  ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="endDate">
+          <![CDATA[  loginTime <= #endDate# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="startDate">
+          <![CDATA[  loginTime >= #startDate#  ]]>
+        </isNotEmpty>
+      </dynamic>
+    <![CDATA[ order by date_add(logintime ,INTERVAL localzone hour) desc limit $page.Start$,$page.End$]]>
+    </select>
+
+    
+    <select id="loading_loginrecord_page_count" resultClass="int" >
+      <![CDATA[SELECT COUNT(1) from loginrecord 　]]>
+      <dynamic prepend="WHERE">
+        <isNotEmpty prepend="AND"  property="uname">
+          <![CDATA[ username like '%$uname$%' ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="endDate">
+          <![CDATA[  loginTime <= #endDate# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="startDate">
+          <![CDATA[  loginTime >= #startDate#  ]]>
+        </isNotEmpty>
+      </dynamic>
+    </select>
+
   </statements>
 </sqlMap>

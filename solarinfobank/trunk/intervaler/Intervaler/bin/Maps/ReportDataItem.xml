@@ -7,7 +7,7 @@
 
   <resultMaps>
     <resultMap id="DataItemResult" class="ReportDataItem">
-      <result property="code"			column="code"/>
+      <result property="id"			column="id"/>
       <result property="name"			column="name"/>
       <result property="Enabled" column="enabled" />     
     </resultMap>
@@ -15,15 +15,14 @@
 
   <cacheModels>
     <cacheModel id="report_dateitem_cache" implementation="LRU">
-      <flushInterval hours="2"/>
+      <flushInterval minutes="30"/>
       <flushOnExecute  statement="dataitem_update"/>
       <property name="CacheSize" value="1000"/>
     </cacheModel>
   </cacheModels>
   
-  
   <statements>
-    <select id="loading_dataitem_page_list" resultMap="DataItemResult" cacheModel="report_dateitem_cache">
+    <!--<select id="loading_dataitem_page_list" resultMap="DataItemResult" cacheModel="report_dateitem_cache">
       <![CDATA[  SELECT * from dataItem limit $Start$,$End$]]>
     </select>
     <select id="loading_dataitem_page_count"  resultClass="int" cacheModel="report_dateitem_cache">
@@ -37,6 +36,17 @@
     </select>
     <select id="get_unenabled_dataitem_list" resultMap="DataItemResult" cacheModel="report_dateitem_cache">
       select * from dataItem where enabled=0
+    </select>-->
+
+    <select id="reportdataitem_get" resultClass="ReportDataItem">
+      select * from dataitem where id=#id#
     </select>
+    
+    <insert id="reportdataitem_insert">
+      insert into dataItem (id,name) values(#id#,#name#)
+    </insert>
+    <delete id="reportdataitem_delete">
+      delete from dataItem where id=#id#
+    </delete>
   </statements>
 </sqlMap>

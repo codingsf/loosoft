@@ -57,13 +57,13 @@
       FROM collector_monthday_data_$year$
       where collectorID=#collectorID# and month=#month#
     </select>
-    
+
     <update id="UpdateCollectorMonthDayData" parameterClass="Hashtable">
       UPDATE collector_monthday_data_$year$
       SET $d_Column$=#d_Value#
       where id=#id#
     </update>
-    
+
     <insert id="InsertCollectorMonthDayData" parameterClass="Hashtable">
       INSERT collector_monthday_data_$year$ (collectorID,month,$d_Column$)
       VALUE(#collectorID#,#month#,#d_Value#)

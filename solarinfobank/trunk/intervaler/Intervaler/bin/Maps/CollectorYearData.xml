@@ -20,22 +20,22 @@
     </cacheModel>
   </cacheModels>
   <statements>
- 
+
     <select id="collectoryeardata_get" resultMap="CollectorYearDataResult" parameterClass="CollectorYearData">
       SELECT * FROM collector_year_data WHREE id = #id# and year= #year#
     </select>
-    
+
     <insert id="collectoryeardata_insert" parameterClass="CollectorYearData">
       INSERT INTO  collector_year_data (collectorID,year,dataValue) VALUES(#collectorID#,#year#,#dataValue#)
       <selectKey resultClass="int" property="id" type="post">
         SELECT LAST_INSERT_ID() AS Id
       </selectKey>
     </insert>
-    
+
     <delete id="collectoryeardata_DELETE" parameterClass="int">
       DELETE FROM collector_year_data WHERE id=#value#
     </delete>
-    
+
     <update id="collectoryeardata_update" parameterClass="CollectorYearData">
       UPDATE  collector_year_data SET collectorID=#collectorID#,year=#year#,dataValue=#dataValue#
       WHERE id=#id#

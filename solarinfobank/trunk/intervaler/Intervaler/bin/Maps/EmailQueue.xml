@@ -13,9 +13,9 @@
   <statements>
     <insert id="emailqueue_insert" parameterClass="EmailQueue">
       <![CDATA[insert into email_queue (title,content,receiver,sender,state)values(#title#,#content#,#receiver#,#sender#,#state#) ]]>
-        <selectKey resultClass="int" property="id" type="post" >
-            SELECT LAST_INSERT_ID() AS id
-        </selectKey>
+      <selectKey resultClass="int" property="id" type="post" >
+        SELECT LAST_INSERT_ID() AS id
+      </selectKey>
     </insert>
   </statements>
 

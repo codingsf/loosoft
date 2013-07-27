@@ -350,7 +350,9 @@
     --%>
 </head>
 <body>
-<%User curUser = UserUtil.getCurUser(); %>
+<%User curUser = UserUtil.getCurUser(); 
+       ItemConfig config = ItemConfigService.GetInstance().GetItemConfigByName(ItemConfig.Payment);
+        %>
     <%= Html.HiddenFor(model=>model.id) %>
     <div class="mainbody">
         <% Html.RenderPartial("header"); %>
@@ -392,13 +394,15 @@
                                         <ul>
                                             <li><a href="/user/allplants"><%=Resources.SunResource.PAGESHARED_ALLPLANTS%></a></li>
                                             <li>
-                                            <a class="lefttabclick" href='<%= (Model.Expired) ? "javascript:alert('请续费');" : "/plant/overview/"+Model.id%>' title="<%=Model.name %>" id="plantname">
+                                            <a class="lefttabclick" href='<%= (Model.Expired) ? "javascript:alert('电站到期请续费');" : "/plant/overview/"+Model.id%>' title="<%=Model.name %>" id="plantname">
                                                 <%= StringUtil.cutStr(Model.name, 16, "...")%>
                                                 <%if (Model.hasFaultDevice)
                                                 { 
                                                 %>
                                                 <img src="/images/warning_16.gif" alt=""/>
                                                 <%} %>
+                                             
+                                                
                                             </a>
                                             </li>
                                         </ul>
@@ -422,12 +426,13 @@
                                                         break;
                                             %>
                                             <li>
-                                            <a href="<%=plant.childs.Count>0?"/virtual/plantrelationstruct/"+plant.id :( plant.Expired) ? "javascript:alert('请续费');" : "/plant/overview/"+plant.id%>" title="<%=plant.name %>" id="plantname">
+                                            <a href="<%=plant.childs.Count>0?"/virtual/plantrelationstruct/"+plant.id :( plant.Expired) ? "javascript:alert('电站到期请续费');" : "/plant/overview/"+plant.id%>" title="<%=plant.name %>" id="plantname">
                                                 <%= StringUtil.cutStr(plant.name, 16, "...")%>
                                                 <%if (plant.hasFaultDevice)
                                                   {%>
                                                 <img src="/images/warning_16.gif" alt=""/>
                                                 <%} %>
+                                                   <%= plant.PaymentNoticeImg((int)config.value)%>
                                             </a>
                                             </li>
                                             <%}

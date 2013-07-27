@@ -69,7 +69,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             else
             {
-               
+
                 base.OnActionExecuting(filterContext);
             }
         }
@@ -184,11 +184,22 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
     [SetLanAttribute]
     public abstract class BaseController : Controller
     {
-       
+
         protected CollectorYearDataService collectorYearDataService = CollectorYearDataService.GetInstance();
         public BaseController()
         {
 
+        }
+
+        protected int PaymentDelayMonth
+        {
+            get
+            {
+                string delayString = System.Configuration.ConfigurationManager.AppSettings["payment_delay_month"];
+                int delayMonth = 0;
+                int.TryParse(delayString, out delayMonth);
+                return delayMonth <= 0 ? 3 : delayMonth;
+            }
         }
 
         /// <summary>

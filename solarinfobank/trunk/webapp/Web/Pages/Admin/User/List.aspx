@@ -185,7 +185,7 @@
                                     <td width="30%">
                                         <%if (AuthService.isAllow("admin", "users_output"))
                                           { %>
-                                        <a href="/admin/users_output/<%=(ViewData["page"]  as Pager).PageIndex %>">
+                                        <a href="/admin/users_output/<%=(ViewData["page"]  as Pager).PageIndex %>?sd=<%=Request["sd"] %>&ed=<%=Request["ed"] %>&hasplants=<%=Request["hasplants"] %>">
                                             <img src="/images/am/ad_bu01.gif" width="131" height="28" /></a>
                                         <%} %>
                                     </td>

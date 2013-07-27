@@ -238,7 +238,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("    $('" + "#aGroupDel" + rg.id + "').click(function() {");
-            sb.Append("            if (confirm(\"删除改组将会同时删除改组下的自定义报表; 确定删除'" + rg.groupName + "'？\") == \"0\") {");
+            sb.Append("            if (confirm(\"'" + Resources.SunResource.PLANT_ADDPLANT_DELETE + rg.groupName + "'？\") == \"0\") {");
             sb.Append("              return;");
             sb.Append("             } else {");
             sb.Append("             $.ajax({");
@@ -274,7 +274,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             StringBuilder sb = new StringBuilder();
 
             sb.Append("   $('#aReporDel" + cr.id + "').click(function() {");
-            sb.Append("       if (confirm(\"确定删除自定义报表'" + cr.reportName + "'？\") == \"0\") {");
+            sb.Append("       if (confirm(\"'" + Resources.SunResource.PLANT_ADDPLANT_DELETE + cr.reportName + "'？\") == \"0\") {");
             sb.Append("           return;");
             sb.Append("         } else {");
             sb.Append("         $.ajax({");

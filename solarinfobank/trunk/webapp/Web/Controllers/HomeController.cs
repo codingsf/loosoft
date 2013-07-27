@@ -301,7 +301,7 @@ namespace Web.Controllers
             //验证用户名输入项
             if (user == null || user.username == null)
             {
-                ModelState.AddModelError("Error", "请输入用户名!");
+                ModelState.AddModelError("Error", Resources.SunResource.HOME_INDEX_USERNAME_REQUIRED);
                 System.Web.HttpContext.Current.Response.Cookies["a_login"].Expires = DateTime.Now.AddDays(-1);
                 loadIndexData();
                 return View(user);

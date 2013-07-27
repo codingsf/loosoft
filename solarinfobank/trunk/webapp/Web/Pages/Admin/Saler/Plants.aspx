@@ -74,13 +74,13 @@
                     <td width="20%">
                         从:
                         <input id="install_start" name="install_start" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'zh-cn'})"
-                            readonly="readonly" size="13" type="text" value='<%=Request.QueryString["install_start"]==null? DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd"):Request.QueryString["install_start"] %>'
+                            readonly="readonly" size="13" type="text" value='<%=Request.QueryString["install_start"]==null?"":Request.QueryString["install_start"] %>'
                             class="txtbu04 Wdate" />
                     </td>
                     <td width="20%" id="country_ctl">
                         到:
                         <input id="install_end" name="install_end" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'zh-cn'})"
-                            readonly="readonly" size="13" type="text" value='<%=Request.QueryString["install_end"]==null?DateTime.Now.ToString("yyyy-MM-dd"):Request.QueryString["install_end"] %>'
+                            readonly="readonly" size="13" type="text" value='<%=Request.QueryString["install_end"]==null?"":Request.QueryString["install_end"] %>'
                             class="txtbu04 Wdate" />
                     </td>
                     <td width="20%">
@@ -185,11 +185,8 @@
                             <table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td width="30%">
-                                        <%if (AuthService.isAllow("admin", "users_output"))
-                                          { %>
-                                        <a href="/admin/users_output/<%=(ViewData["page"]  as Pager).PageIndex %>">
+                                        <a href="/saler/plants_output/?index=<%=(ViewData["page"]  as Pager).PageIndex %>&uname=<%=Request["uname"] %>&install_start=<%=Request["install_start"] %>&install_end=<%=Request["install_end"] %>&plantname=<%=Request["plantname"] %>">
                                             <img src="/images/am/ad_bu01.gif" width="131" height="28" /></a>
-                                        <%} %>
                                     </td>
                                     <td width="70%">
                                         <%Html.RenderPartial("mpage"); %>

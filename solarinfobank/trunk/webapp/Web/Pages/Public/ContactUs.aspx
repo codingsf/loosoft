@@ -19,8 +19,8 @@
    <strong>Add: </strong>No.2 Tianhu Rd., New &amp; High Technology Industrial Development                 <br />
     <strong>Zone:</strong> Hefei, P.R.China. <br />
     <strong>Post Zip:</strong> 230088                                                                                                               <br />
-    <strong>Tel:</strong> +86 551 532 7834 / 532 7845 <br />
-    <strong>Fax:</strong> +86 551 532 7856                                                                                                       <br />
+    <strong>Tel:</strong> +86 551 6532 7834 / 6532 7845 <br />
+    <strong>Fax:</strong> +86 551 6532 7856                                                                                                       <br />
     <strong>International Business:</strong> info@sungrow.cn <br />
     <strong>After-Sales:</strong> service@sungrow.cn                                                                                  <br />
     <strong>Website:</strong>  www.sungrowpower.com  </div>
@@ -31,11 +31,11 @@
   <div class="lx_ab"><strong>阳光电源股份有限公司(总部：安徽)</strong><br />
     <strong>地址：</strong>安徽省合肥市高新区天湖路2号<br />
     <strong>邮编：</strong>230088<br />
-    <strong>总机：</strong>0551- 5327878，5327877<br />
-    <strong>太阳能电力部：</strong>  0551- 5327827，5327828，5327851（传真）    0551- 5327821，5327870（传真）<br />
-    <strong>软件及接口部：</strong>  0551- 5328972<br />
+    <strong>总机：</strong>0551- 65327878，65327877<br />
+    <strong>太阳能电力部：</strong>  0551- 65327827，65327828，65327851（传真）    0551- 65327821，65327870（传真）<br />
+    <strong>软件及接口部：</strong>  0551- 65328972<br />
     <strong>客户服务中心：</strong>  400-880-5578<br />
-    <strong>客户投诉电话：</strong> 0551-5327830<br />
+    <strong>客户投诉电话：</strong> 0551-65327830<br />
     <strong>网址：</strong> www.sungrowpower.com<br />
     <strong>电邮：</strong> 国内业务    Sales@sungrowpower.com     （太阳能产品销售）     windysale@sungrowpower.com （风电产品销售） <br />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;

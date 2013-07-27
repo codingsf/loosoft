@@ -437,6 +437,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         {
             plant.userID = UserUtil.getCurUser().id;
             if (plant.energyRate == null || plant.energyRate.Value == 0) plant.energyRate = 1;
+            if (plant.id == 0)//添加电站设置其过期时间延迟3M
+                plant.PaymentLimitDate = DateTime.Now.AddMonths(PaymentDelayMonth);
             int plantid = plantService.AddPlantInfo(plant);
             //添加电站时，向电站用户关系表中加记录
             plantUserService.AddPlantUser(new PlantUser { plantID = plantid, userID = plant.userID, shared = false, roleId = Role.ROLE_SYSMANAGER });
@@ -2189,7 +2191,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             TempData["hdndid"] = relation.parentDeviceId;
             TempData["name"] = relation.name;
             if (relation.deviceId.Equals(relation.parentDeviceId))
-                TempData["error"] = "相关联的设备是同一设备";
+                TempData["error"] = Resources.SunResource.DEVICE_RELATION_NOTICE3;
             else
             {
                 //查询当前设备的下级设备
@@ -2198,7 +2200,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
                 string ids = childDeviceIds(drs);
                 if (ids.Contains(relation.parentDeviceId + ","))
                 {
-                    TempData["error"] = "同一设备不能循环关联";
+                    TempData["error"] = Resources.SunResource.DEVICE_RELATION_NOTICE3;
                 }
                 else
                 {
@@ -2684,7 +2686,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
         public ActionResult SaveCompensation(int id, int plantid, int type, string value, string date, bool isplant)
         {
             if (plantid.Equals(0))
-                return Content("请选择一个设备");
+                return Content(Resources.SunResource.DEVICE_RELATION_NOTICE1);
             double dtemp = 0;
             double.TryParse(value, out dtemp);
             if (date.Length.Equals(4))

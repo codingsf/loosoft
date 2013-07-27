@@ -38,16 +38,22 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         [HttpPost]
         public ActionResult PostAsk(QA qa)
         {
-            User user = UserUtil.getCurUser();
-            string username = user == null ? string.Empty : user.username;
-            qa.createip = Request.UserHostAddress;
-            qa.status = QA.NORMAL;
-            qa.username = user == null ? "匿名" : user.username;
-            qa.qid = 0;
-            qa.pubdate = DateTime.Now;
-            QAService.GetInstance().Save(qa);
-            ViewData["message"] = "提问成功，请耐心等待管理员的解答！";
-            return Redirect("/qa/ask");
+            string validatecode = Request["validatecode"];
+            if (ValidateCodeUtil.Validated(validatecode))
+            {
+                User user = UserUtil.getCurUser();
+                string username = user == null ? string.Empty : user.username;
+                qa.createip = Request.UserHostAddress;
+                qa.status = QA.NORMAL;
+                qa.username = user == null ? "匿名" : user.username;
+                qa.qid = 0;
+                qa.pubdate = DateTime.Now;
+                QAService.GetInstance().Save(qa);
+                TempData["message"] = "提问成功，请耐心等待管理员的解答！";
+            }
+            else
+                TempData["message"] = "验证码输入错误!";
+            return Redirect("/qa/ask#ask");
         }
 
 

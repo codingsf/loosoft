@@ -446,7 +446,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             int.TryParse(id, out no);
             Pager page = new Pager() { PageSize = ComConst.PageSize, PageIndex = no };
             UserService userInfoService = UserService.GetInstance();
-            IList<User> users = userInfoService.GetUsersByPage(page);
+            Hashtable para = new Hashtable();
+            para["page"] = page;
+            para["startDate"] = Request.QueryString["sd"];
+            para["endDate"] = Request.QueryString["ed"];
+            para["hasplants"] = Request.QueryString["hasplants"];
+            IList<User> users = userInfoService.GetUsersByPage(para);
 
 
             IList<ExcelData> eDatas = new List<ExcelData>();

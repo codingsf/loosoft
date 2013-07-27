@@ -8237,6 +8237,7 @@
     <Content Include="Images\bz\nopico02.gif" />
     <Content Include="Images\bz\pic01.gif" />
     <Content Include="Images\clibg.gif" />
+    <Content Include="Images\clock.png" />
     <Content Include="Images\dg.gif" />
     <Content Include="Images\eng.gif" />
     <Content Include="Images\fbg.gif" />
@@ -8322,6 +8323,7 @@
     <Content Include="Pages\Shared\EmptyInside.Master" />
     <Content Include="Pages\Shared\Virtual.Master" />
     <Content Include="script\dtree1.js" />
+    <Content Include="script\jquery.scroll.js" />
     <Content Include="style\dtree1.css" />
     <Content Include="template\azureblue\Images\app_click.gif" />
     <Content Include="template\azureblue\Images\bg001.gif" />

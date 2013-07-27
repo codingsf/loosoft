@@ -152,22 +152,22 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         {
             //if (ModelState.IsValid)
             //{
-                //创建用户服务
+            //创建用户服务
 
-                if (string.IsNullOrEmpty(user.password))
-                {
-                    userservice.save(user);
-                    UserUtil.ResetLogin(user);
-                }
-                else
-                    userservice.save(user);
+            if (string.IsNullOrEmpty(user.password))
+            {
+                userservice.save(user);
+                UserUtil.ResetLogin(user);
+            }
+            else
+                userservice.save(user);
 
-                ViewData["error"] = "<em><span id=\"serverError\" class='success'>" + Resources.SunResource.AUTH_REG_SUCCESS + "</span></em>";
+            ViewData["error"] = "<em><span id=\"serverError\" class='success'>" + Resources.SunResource.AUTH_REG_SUCCESS + "</span></em>";
 
-                //Language language = LanguageService.GetInstance().Get((int)user.languageId);
-                //CultureInfo cultureInfo = new CultureInfo(language.codename);
-                //Session["Culture"] = cultureInfo;
-                //Session["display"] = language.name;
+            //Language language = LanguageService.GetInstance().Get((int)user.languageId);
+            //CultureInfo cultureInfo = new CultureInfo(language.codename);
+            //Session["Culture"] = cultureInfo;
+            //Session["display"] = language.name;
             //}
             return edit();
         }
@@ -456,6 +456,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             plant.userID = UserUtil.getCurUser().id;
             CountryCity area = CountryCityService.GetInstance().GetCity(plant.country);
             plant.area = area == null ? string.Empty : area.weather_code;
+            if (plant.id <= 0)
+                plant.PaymentLimitDate = DateTime.Now.AddMonths(PaymentDelayMonth);
             int plantid = plantService.AddPlantInfo(plant);
             //将自己创建的电站和自己的关系加入关系表shared默认为false
             PlantUserService.GetInstance().AddPlantUser(new PlantUser { plantID = plantid, userID = plant.userID, roleId = Role.ROLE_SYSMANAGER });
@@ -512,7 +514,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 foreach (PlantUnit unit in plant.plantUnits)
                 {
-                    
+
                     unit.collector.isUsed = false;
                     CollectorInfoService.GetInstance().Save(unit.collector);
                 }
@@ -531,13 +533,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 //将该电站下的子电站和当前操作人重新建立关联
                 foreach (Plant subplant in plant.childs)
                 {
-                    PlantUserService.GetInstance().AddPlantUser(new PlantUser() { plantID = subplant.id, userID = (int)plant.userID , roleId = Role.ROLE_SYSMANAGER });
+                    PlantUserService.GetInstance().AddPlantUser(new PlantUser() { plantID = subplant.id, userID = (int)plant.userID, roleId = Role.ROLE_SYSMANAGER });
                 }
             }
 
             //删除电站本身
             plantService.DeletePlantById(id);
-            User user=UserUtil.getCurUser();
+            User user = UserUtil.getCurUser();
             if (user.ownPlants.Count == 0)
             {
                 user.HasPlants = false;
@@ -910,7 +912,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             table.Add("endTime", endDate);
             table.Add("items", errorType);
             table.Add("state", state);
-            table.Add("fromview",startTime.Year.Equals(endTime.Year));
+            table.Add("fromview", startTime.Year.Equals(endTime.Year));
             Pager page = new Pager() { PageIndex = pindex, PageSize = ComConst.PageSize };
             table.Add("page", page);
             ViewData["page"] = table["page"];
@@ -1043,10 +1045,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         public ActionResult Save(Plant plant)
         {
             if (plant.id <= 0)//添加
-            {
-                plant.createDate = DateTime.Now;
-                plant.PaymentLimitDate = plant.createDate.AddMonths(3);
-            }
+                plant.PaymentLimitDate = DateTime.Now.AddMonths(PaymentDelayMonth);
             plant.description = Server.HtmlDecode(Request.Form["ctl00$MainContent$description"]);
             plantService.UpdatePlantInfo(plant);
             UserUtil.ResetLogin(UserUtil.getCurUser());
@@ -1897,7 +1896,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             if (isNew)
             {
                 //建立虚拟电站与建立者直接的创建的
-                PlantUserService.GetInstance().AddPlantUser(new PlantUser() { plantID = vid, userID = user.id, shared=false,roleId=Role.ROLE_SYSMANAGER });
+                PlantUserService.GetInstance().AddPlantUser(new PlantUser() { plantID = vid, userID = user.id, shared = false, roleId = Role.ROLE_SYSMANAGER });
             }
 
             return Content("ok");
@@ -2123,20 +2122,20 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 {
                     //if (device.isWork(plant.timezone))
                     //{
-                        dmdd = DeviceMonthDayDataService.GetInstance().GetDeviceMonthDayData(year, device.id, month);
-                        totalEnergy += dmdd.getDayData(day);
-                        deviceNum++;
+                    dmdd = DeviceMonthDayDataService.GetInstance().GetDeviceMonthDayData(year, device.id, month);
+                    totalEnergy += dmdd.getDayData(day);
+                    deviceNum++;
                     //}
                 }
                 //double aveageEnergy = 0;
                 //有设备才计算平均值
                 //if (deviceNum > 0)
                 //{
-                    //aveageEnergy = totalEnergy / deviceNum;
+                //aveageEnergy = totalEnergy / deviceNum;
                 //}
 
                 //电站平均kwp发电量
-                double avgRate = plant.design_power==0?0:totalEnergy / plant.design_power;
+                double avgRate = plant.design_power == 0 ? 0 : totalEnergy / plant.design_power;
                 if (avgRate > 0)
                 {
                     //获取每个设备的发电量比率
@@ -2292,7 +2291,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 {
                     if (string.IsNullOrEmpty(p))
                         continue;
-                    PlantUserService.GetInstance().AddPlantUser(new PlantUser() { userID = id, plantID = int.Parse(p), roleId = int.Parse(role), shared=true });
+                    PlantUserService.GetInstance().AddPlantUser(new PlantUser() { userID = id, plantID = int.Parse(p), roleId = int.Parse(role), shared = true });
                 }
             }
 
@@ -2445,7 +2444,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 {
                     if (string.IsNullOrEmpty(p))
                         break;
-                    PlantUserService.GetInstance().AddPlantUser(new PlantUser() { plantID = int.Parse(p), userID = userId, shared = true, roleId = user.userRole.roleId});
+                    PlantUserService.GetInstance().AddPlantUser(new PlantUser() { plantID = int.Parse(p), userID = userId, shared = true, roleId = user.userRole.roleId });
                 }
             }
             return Redirect("/user/plantuser");
@@ -2480,7 +2479,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     string filename = string.Format("{0}_{1}", user.id, "logo.") + bigscreenlogo.FileName.Substring(bigscreenlogo.FileName.LastIndexOf('.') + 1);
                     string filePath = Path.Combine(HttpContext.Server.MapPath(floder), filename);
                     bigscreenlogo.SaveAs(filePath);
-                    user.BigScreenLogoPath=floder + filename;
+                    user.BigScreenLogoPath = floder + filename;
                     userservice.UpdateBigScreenLogo(user.id, user.BigScreenLogoPath);
                 }
             }

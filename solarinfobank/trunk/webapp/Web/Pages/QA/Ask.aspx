@@ -30,6 +30,10 @@
            // document.getElementById("wordLength").innerHTML = length;
 
         }
+          function reloadcode(img) {
+            img.src = img.src + "?" + new Date().getMilliseconds();
+        }
+        
         function checkform() {
             if (document.getElementById("title").value.length == 0) {
                 alert("<%=Resources.SunResource.QA_NOTICE_TITLE%>");
@@ -41,6 +45,12 @@
                 document.getElementById("descr").focus();
                 return false;
             }
+             if (document.getElementById("validatecode").value.length != 4) {
+                alert("请正确输入验证码");
+                document.getElementById("validatecode").focus();
+                return false;
+            }
+            
             return true;
         }
     </script>
@@ -92,6 +102,7 @@
                             </ul>
                             <%Html.RenderPartial("page"); %>
                         </div>
+                        <a name="ask" id="ask"></a>
                         <div class="faq_ask">
                             <span class="tname"><strong>
                                 <%=Resources.SunResource.QA_NOTICE%></strong> <font color='red'>(<%=Resources.SunResource.MONITORITEM_NOTE %>:*
@@ -119,6 +130,16 @@
                                         <textarea id="descr" name="descr" rows="6" class="faq_input02" onkeyup="checkwords(this);"><%=qa==null?"":qa.descr %></textarea>
                                     </td>
                                 </tr>
+                                 <tr>
+                                    <td width="82" height="70" align="right">
+                                        <font class="redzi">* </font><strong>
+                                            <%=Resources.SunResource.HOME_INDEX_VALIDATECODE%>：</strong>
+                                    </td>
+                                    <td width="558">
+                                        <input type="text" style="width:50px" name="validatecode" id="validatecode" class="faq_input01" value="" /><img src="/content/ashx/validatecode.ashx" width="60" height="19"  style="vertical-align:middle; cursor:pointer; " title="<%= Resources.SunResource.HOME_INDEX_RELOAD_VALIDATECODE%>" onclick="reloadcode(this)" />
+                                    </td>
+                                </tr>
+                                
                                 <tr>
                                     <td height="60" align="right">
                                         &nbsp;
@@ -133,7 +154,7 @@
                         </div>
                         <div class="faq_ask">
                             <span class="succok">
-                                <%=ViewData["message"] %></span>
+                                <%=TempData["message"]%></span>
                         </div>
                         <p>
                             &nbsp;</p>

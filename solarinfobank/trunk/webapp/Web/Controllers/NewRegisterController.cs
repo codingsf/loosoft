@@ -373,6 +373,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             else
             {
+                plant.PaymentLimitDate = DateTime.Now.AddMonths(PaymentDelayMonth);
                 plantid = PlantService.GetInstance().AddPlantInfo(plant);
                 //添加电站时，向电站用户关系表中加记录,shared=false表示是自己创建的
                 PlantUserService.GetInstance().AddPlantUser(new PlantUser { plantID = plantid, userID = plant.userID, shared = false, roleId = Role.ROLE_SYSMANAGER});

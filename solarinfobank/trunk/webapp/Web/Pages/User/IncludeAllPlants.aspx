@@ -125,7 +125,7 @@
                                     <td>
                                         <table width="100%" height="25" border="0" cellpadding="0" cellspacing="0" class="subline02">
                                             <tr>
-                                                <td width="1%" align="center">&nbsp;
+                                                <td width="4%" align="center">&nbsp;
                                                 </td>                                            
                                                 <td width="18%" align="center">
                                                     <strong>
@@ -168,7 +168,7 @@
                                     <td>
                                         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="down_line0<%=i%2 %>">
                                             <tr>
-                                                <td width="1%" height="35" align="center" style="padding-left: 2px;">
+                                                <td width="4%" height="35" align="center" style="padding-left: 0px;">
                                                     <%if (plant.hasFaultDevice)
                                                       { %>
                                                     <img src="/images/warning_16.gif" alt="" style="float: left;">
@@ -190,7 +190,7 @@
                                                           {
                                                               if (plant.Expired)
                                                               {%>
-                                                                 <a href="javascript:alert('请续费');" class="dbl">
+                                                                 <a href="javascript:alert('电站到期请续费');" class="dbl">
                                                               <%}else
                                                               { %>
                                                             <a target="_blank" href="/plant/overview/<%=plant.id %>" class="dbl">

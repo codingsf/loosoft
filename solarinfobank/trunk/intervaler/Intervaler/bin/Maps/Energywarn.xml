@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="Energywarn" type="Cn.Loosoft.Zhisou.SunPower.Domain.Energywarn, Domain" />
+  </alias>
+  <resultMaps>
+    <resultMap id="EnergywarnResult" class="Energywarn">
+      <result property="id"			column="id"/>
+      <result property="deviceId"			column="deviceId"/>
+      <result property="averageValue"			column="averageValue"/>
+      <result property="factValue"			column="factValue"/>
+      <result property="upRate"			column="upRate"/>
+      <result property="downRate"			column="downRate"/>
+      <result property="factRate"			column="factRate"/>
+      <result property="warndate"			column="warndate"/>
+      <result property="device"	lazyLoad="true"	column="deviceId" select="device_get" />
+    </resultMap>
+  </resultMaps>
+
+  <cacheModels>
+    <cacheModel id="energywarn_cache"  implementation="LRU" readOnly="true" serialize="true">
+      <flushInterval minutes="30"/>
+      <flushOnExecute  statement="energywarn_insert"/>
+      <flushOnExecute  statement="energywarn_update"/>
+    </cacheModel>
+  </cacheModels>
+
+  <statements>
+    <insert id="energywarn_insert" parameterClass="Energywarn">
+      insert into energywarn(deviceId,averageValue,factValue,upRate,downRate,factRate,warndate) values(#deviceId#,#averageValue#,#factValue#,#upRate#,#downRate#,#factRate#,#warndate#)
+      <selectKey resultClass="int" property="id" type="post">
+        select last_insert_id() as id
+      </selectKey>
+    </insert>
+
+    <update id="energywarn_update" parameterClass="Energywarn">
+      update energywarn set averageValue=#averageValue#,factValue=#factValue#,upRate=#upRate#,downRate=#downRate#,factRate=#factRate# where id=#id#
+    </update>
+    
+    <delete id="energywarn_delete" parameterClass="Energywarn">
+      delete from energywarn where id=#id#
+    </delete>
+
+    <select id="energywarn_get_list" resultMap="EnergywarnResult">
+      select * from energywarn
+    </select>
+    
+    <select id="energywarn_get_search" resultMap="EnergywarnResult" parameterClass="Hashtable">
+      <![CDATA[select * from energywarn where deviceId in ($deviceIds$) ]]>
+      <dynamic prepend="">
+        <isParameterPresent>
+          <isNotEmpty prepend="and" property="startDate">
+            <![CDATA[warndate >= #startDate#]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="endDate">
+            <![CDATA[warndate <= #endDate#]]>
+           </isNotEmpty>
+        </isParameterPresent>
+      </dynamic>
+      <![CDATA[ order by warndate asc limit $page.Start$,$page.End$ ]]>
+    </select>
+    
+    <select id="energywarn_get_search_count" resultClass="int" parameterClass="Hashtable">
+      <![CDATA[SELECT COUNT(1) FROM energywarn where deviceId in ($deviceIds$)]]>
+      <dynamic prepend="">
+        <isParameterPresent>
+          <isNotEmpty prepend="and" property="startDate">
+            <![CDATA[warndate >= #startDate#]]>
+          </isNotEmpty>
+          <isNotEmpty prepend="and" property="endDate">
+            <![CDATA[warndate <= #endDate#]]>
+          </isNotEmpty>
+        </isParameterPresent>
+      </dynamic>
+    </select>
+
+    <select id="energywarn_get" resultMap="EnergywarnResult">
+      select * from energywarn where id=#id#
+    </select>
+
+    <!--根据设备，天 取得设发电量告警-->
+    <select id="getbydeviceIdandwarndate" resultClass="Energywarn" parameterClass="Hashtable" >
+      <![CDATA[select *  from energywarn where deviceId=#deviceId# and warndate=#warndate#]]>
+    </select>
+  </statements>
+</sqlMap>

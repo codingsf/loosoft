@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="EnergyYearMonthForecast" type="Cn.Loosoft.Zhisou.SunPower.Domain.EnergyYearMonthForecast, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="energyyearmonthforecast_result" class="EnergyYearMonthForecast">
+      <result property="id"			column="id"/>
+      <result property="plantId"			column="plantid"/>
+      <result property="yearId"			column="yearid"/>
+      <result property="dataKey"   column="data_key"/>
+      <result property="dataValue"   column="data_value"/>
+    </resultMap>
+  </resultMaps>
+
+  <cacheModels>
+    <cacheModel id="energyyearmonthforecast_cache" implementation="LRU" readOnly="true" serialize="true">
+      <flushInterval minutes="30"/>
+      <flushOnExecute  statement="energyyearmonthforecast_insert"/>
+      <flushOnExecute  statement="energyyearmonthforecast_update"/>
+      <flushOnExecute  statement="energyyearmonthforecast_delete"/>
+      <property name="CacheSize" value="100"/>
+    </cacheModel>
+  </cacheModels>
+
+  <statements>
+    <select id="energyyearmonthforecast_get"  resultMap="energyyearmonthforecast_result" parameterClass="EnergyYearMonthForecast" cacheModel="energyyearmonthforecast_cache">
+      select *  from  energy_year_month_forecast where id=#id#
+    </select>
+    <select id="energyyearmonthforecast_get_list"  resultMap="energyyearmonthforecast_result" cacheModel="energyyearmonthforecast_cache">
+      select *  from  energy_year_month_forecast where plantid=#plantId# order by id desc
+    </select>
+    
+    <insert id="energyyearmonthforecast_insert" parameterClass="EnergyYearMonthForecast">
+      delete from energy_year_month_forecast where data_key=#dataKey# and plantid=#plantId#;
+      insert into  energy_year_month_forecast(plantid,yearid,data_key,data_value) VALUES( #plantId#,#yearId#,#dataKey#,#dataValue#)
+      <selectKey resultClass="int" property="id" type="post">
+        select last_insert_id() as id
+      </selectKey>
+    </insert>
+    <update id="energyyearmonthforecast_update" paramentClass="EnergyYearMonthForecast">
+      UPDATE  energy_year_month_forecast SET plantid=#plantId#,yearid=#yearId#,data_key=#dataKey# ,data_value=#dataValue# WHERE id=#id#
+    </update>
+    <delete id="energyyearmonthforecast_delete" paramentClass="EnergyYearMonthForecast">
+      DELETE FROM energy_year_month_forecast WHERE id=#id#
+    </delete>
+  </statements>
+</sqlMap>

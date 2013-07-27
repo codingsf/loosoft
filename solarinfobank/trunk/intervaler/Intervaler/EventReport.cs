@@ -29,11 +29,8 @@ namespace Intervaler
                 eventConfigs.Clear();
                 eventConfigs = ReportConfigService.GetInstance().GetEventReportConfigs();
                // Console.WriteLine(eventConfigs.Count);
-
             }
         }
-
-
       
         private void UpdataLastModified(ReportConfig config)
         {

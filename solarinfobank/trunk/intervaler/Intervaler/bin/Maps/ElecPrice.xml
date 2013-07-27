@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="ElecPrice" type="Cn.Loosoft.Zhisou.SunPower.Domain.ElecPrice, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="elecprice_result" class="ElecPrice">
+      <result property="id"			column="id"/>
+      <result property="ptype"			column="ptype"/>
+      <result property="plantId"			column="plantid"/>
+      <result property="fromHm"   column="fromHm"/>
+      <result property="toHm"   column="toHm"/>
+      <result property="price"   column="price"/>
+    </resultMap>
+  </resultMaps>
+
+  <cacheModels>
+
+  </cacheModels>
+
+  <statements>
+    <select id="elecprice_list_lazy" resultMap="elecprice_result">
+      select * from elec_price where plantid=#value#
+    </select>
+
+    <insert id="elecprice_insert">
+      delete from elec_price where plantid=#plantId# and ptype=#ptype#;
+      insert into elec_price (ptype,plantId,fromHm,toHm,price) values(#ptype#,#plantId#,#fromHm#,#toHm#,#price#)
+    </insert>
+  </statements>
+</sqlMap>

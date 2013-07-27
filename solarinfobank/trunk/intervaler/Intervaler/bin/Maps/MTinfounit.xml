@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="MTinfounit" type="Cn.Loosoft.Zhisou.SunPower.Domain.MTinfounit, Domain" />
+  </alias>
+
+  <resultMaps>
+    <resultMap id="mtinfounitresult" class="MTinfounit">
+      <result property="id"			column="id"/>
+      <result property="deviceTypeCode"			column="devicetypecode"/>
+      <result property="addressCode"			column="addresscode"/>
+      <result property="name"			column="name"/>
+      <result property="defaultName"			column="defaultname"/>
+      <result property="valueDataType.typeValue"			column="valuedatatype"/>
+      <result property="unit.unitValue"			column="unit"/>
+      <result property="monitroType.monitorTypeValue"			column="monitortype"/>
+      <result property="precision"			column="_precision"/>
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+
+    <insert id="mtinfounit_insert" parameterClass="MTinfounit">
+      insert into mtinfounit(devicetypecode,addresscode,defaultname,name,valuedatatype,unit,monitortype,_precision) values(#deviceTypeCode#,#addressCode#,#defaultName#,#name#,#valueDataType.typeValue#,#unit.unitValue#,#monitroType.monitorTypeValue#,#precision#)
+      <selectKey resultClass="int" property="id" type="post">
+        select last_insert_id() as id
+      </selectKey>
+    </insert>
+    
+    <select id="mtinfounit_get_list" resultMap="mtinfounitresult">
+      select * from mtinfounit
+    </select>
+
+    <select id="mtinfounit_get" resultMap="mtinfounitresult">
+      select * from mtinfounit where id=#id#
+    </select>
+
+    <update id="mtinfounit_update" parameterClass="MTinfounit">
+      update mtinfounit set devicetypecode=#deviceTypeCode#, addresscode=#addressCode#,defaultname=#defaultName# ,name=#name#,valuedatatype=#valueDataType.typeValue#,unit=#unit.unitValue#,monitortype=#monitroType.monitorTypeValue#,_precision=#precision# where id=#id#
+    </update>
+
+    <delete id="mtinfounit_delete" parameterClass="MTinfounit">
+      delete from mtinfounit where id=#id#
+    </delete>
+    
+  </statements>
+</sqlMap>

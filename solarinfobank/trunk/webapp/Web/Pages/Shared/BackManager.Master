@@ -10,7 +10,7 @@
         <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
     </title>
     <% Html.RenderPartial("css"); %>
-<%if (Session[ComConst.Manager] == null)
+    <%if (Session[ComConst.Manager] == null)
       Response.Redirect("/?", true); %>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -73,7 +73,7 @@
                                         <ul>
                                              <%if (AuthService.isAllow("saler", "plants"))
                                               { %>
-                                         <li><a href="/saler/plants">电站列表</a></li>
+                                         <li><a href="/saler/plants">电站收费设置</a></li>
                                          <%} %>
                                          
                                          <%if (AuthService.isAllow("admin", "userrecords"))

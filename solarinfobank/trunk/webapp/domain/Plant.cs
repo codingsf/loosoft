@@ -658,7 +658,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             get
             {
                 if (allFactUnits == null) return null;
-                float? tmp = null;
+                double? tmp = null;
                 foreach (PlantUnit unit in allFactUnits)
                 {
                     if (unit.collector.runData != null && unit.collector.runData.sunStrength != null && unit.collector.runData.sendTime.AddHours(1) >= CalenderUtil.curDateWithTimeZone(this.timezone))
@@ -668,7 +668,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                     }
                 }
                 //如果没有电站数据才取设备数据
-                if (tmp == null || float.IsNaN(tmp.Value))
+                if (tmp == null || double.IsNaN(tmp.Value))
                 {
                     //先取得环境监测仪日照强度
                     Device detector = getFirstDetector();
@@ -678,7 +678,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                         tmp = detector.getMonitorValue(MonitorType.MIC_DETECTOR_SUNLINGHT);
                     }
                 }
-                return tmp == null || float.IsNaN(tmp.Value) ? null : tmp; ;
+                if (tmp == null || double.IsNaN(tmp.Value))
+                {
+                    tmp = Math.Round(tmp.Value, 2);
+                    return tmp;
+                }
+                else
+                    return null;
             }
         }
 

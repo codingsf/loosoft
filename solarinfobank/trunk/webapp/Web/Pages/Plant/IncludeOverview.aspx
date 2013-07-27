@@ -552,7 +552,7 @@
                                 <%=Resources.SunResource.PLANT_OVERVIEW_SOLAR_RADIATION_INTENSITY%>
                                 <br />
                                 <span class="sz_fb" id="sunstrength">
-                                    <%=(Model.Sunstrength!=null)?Model.Sunstrength.ToString():""%></span> W/m2
+                                    <%=(Model.Sunstrength != null) ? Model.Sunstrength.ToString(): ""%></span> W/m2
                             </td>
                         </tr>
                     </table>

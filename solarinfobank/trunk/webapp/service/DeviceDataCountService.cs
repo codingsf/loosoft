@@ -285,12 +285,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         {
             foreach (DeviceDataCount deviceDataCount in deviceDataCounts)
             {
+                //LogUtil.writeline("deviceDataCount info:" + deviceDataCount.deviceTable + "_" + deviceDataCount.year);
                 try
                 {
                     Cache(deviceDataCount);
                 }
                 catch (Exception onee) {
-                    LogUtil.writeline("handle one deviceDataCount of " + deviceDataCount.deviceId + "error:" +onee.Message);
+                    LogUtil.writeline("handle one deviceDataCount of " + deviceDataCount.deviceId + " error:" +onee.Message);
                 }
             }
         }
@@ -301,12 +302,16 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
         /// <param name="deviceDataCount"></param>
         private void Cache(DeviceDataCount deviceDataCount)
         {
+            if (deviceDataCount.year == 0 || string.IsNullOrEmpty(deviceDataCount.deviceTable))
+            {
+                return;
+            }
             string cacheKey = CacheKeyUtil.buildDeviceDataCountKey(deviceDataCount.year, deviceDataCount.month, deviceDataCount.day, deviceDataCount.deviceId, deviceDataCount.monitorCode);
-
+            DeviceDataCount ddc = null;
             object obj = MemcachedClientSatat.getInstance().Get(cacheKey);
             if (obj != null && !string.IsNullOrEmpty(obj.ToString()))//存在即修改
             {
-                DeviceDataCount ddc = (DeviceDataCount)obj;
+                ddc = (DeviceDataCount)obj;
                 if (ddc.maxValue < deviceDataCount.maxValue)
                 {
                     ddc.maxValue = deviceDataCount.maxValue;
@@ -317,22 +322,49 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             }
             else
             {
-                DeviceDataCount ddc = _ReportGroupDao.Get(deviceDataCount);
+                //modify by hbqian for 如果原来数据有则用数据库的恢复到memcached at 2013-07-25 start
+                //这里代码好像有问题，如果memcached重启了重数据库获取后不能用数据库的放到memcached中而是把新对象放到数据库了 造成了
+                //数据库同一天有多笔数据出现
+                //below is orign code start
+                //DeviceDataCount ddc = _ReportGroupDao.Get(deviceDataCount);
 
-                if (ddc != null && deviceDataCount.maxValue < ddc.maxValue)
+                //if (ddc != null && deviceDataCount.maxValue < ddc.maxValue)
+                //{
+                //    deviceDataCount.maxValue = ddc.maxValue;
+                //    deviceDataCount.maxTime = ddc.maxTime;
+                //}
+
+                //deviceDataCount.localAcceptTime = DateTime.Now;
+                //mcs.Add(cacheKey, deviceDataCount);
+                //above is origin code end
+                //modify to new start
+                ddc = _ReportGroupDao.Get(deviceDataCount);
+
+                if (ddc != null)
                 {
-                    deviceDataCount.maxValue = ddc.maxValue;
-                    deviceDataCount.maxTime = ddc.maxTime;
+                    if (deviceDataCount.maxValue > ddc.maxValue)
+                    {
+                        ddc.maxValue = deviceDataCount.maxValue;
+                        ddc.maxTime = deviceDataCount.maxTime;
+                    }
+                }
+                else {
+                    ddc = deviceDataCount;
                 }
 
-                deviceDataCount.localAcceptTime = DateTime.Now;
-                mcs.Add(cacheKey, deviceDataCount);
+                ddc.localAcceptTime = DateTime.Now;
+                mcs.Add(cacheKey, ddc);
+                //modify to new end
+                //modify by hbqian for 如果原来数据有则用数据库的恢复到memcached at 2013-07-25 end
             }
             if (!persistentListKey.Contains(cacheKey)) persistentListKey.Add(cacheKey);
-            //设置月度最大
-            SetMonthMax(deviceDataCount);
-            //设置年度最大
-            SetYearMax(deviceDataCount);
+            //设置取得天的最大时间后重新设置月度最大
+            //重新设置持久化信息，前面的ddc里面会丢失非持久化属性
+            ddc.year = deviceDataCount.year;
+            ddc.deviceTable = deviceDataCount.deviceTable;
+            SetMonthMax(ddc);
+            //设置取得天的最大时间后重新设置年度最大
+            SetYearMax(ddc);
         }
 
         /// <summary>
@@ -344,37 +376,46 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             String[] keyArr = persistentListKey.ToArray();
             foreach (string key in keyArr)
             {
-                object obj = MemcachedClientSatat.getInstance().Get(key);
-                if (obj == null || string.IsNullOrEmpty(obj.ToString())) {
-                    LogUtil.warn(key + "in cache is empty of divice data count");
-                    return; 
-                }
-                deviceDataCount = (DeviceDataCount)obj;
-                if (deviceDataCount.year == 0 || string.IsNullOrEmpty(deviceDataCount.deviceTable)) {
-                    MemcachedClientSatat.getInstance().Delete(key);
-                    continue;
-                }
                 try
                 {
-                    if (deviceDataCount.id > 0)
+                    object obj = MemcachedClientSatat.getInstance().Get(key);
+                    if (obj == null || string.IsNullOrEmpty(obj.ToString()))
                     {
-                        this.Update(deviceDataCount);
+                        LogUtil.warn(key + "in cache is empty of divice data count");
+                        return;
                     }
-                    else
+                    deviceDataCount = (DeviceDataCount)obj;
+                    if (deviceDataCount.year == 0 || string.IsNullOrEmpty(deviceDataCount.deviceTable))
                     {
-                        this.Insert(deviceDataCount);
-
-                        MemcachedClientSatat.getInstance().Set(key, deviceDataCount);
+                        // MemcachedClientSatat.getInstance().Delete(key);
+                        continue;
+                    }
+                    try
+                    {
+                        if (deviceDataCount.id > 0)
+                        {
+                            this.Update(deviceDataCount);
+                        }
+                        else
+                        {
+                            this.Insert(deviceDataCount);
+                            //把有id的对象更新到缓存
+                            MemcachedClientSatat.getInstance().Set(key, deviceDataCount);
+                        }
+                    }
+                    catch (Exception ee)
+                    {
+                        LogUtil.error("save device data count to db error:" + ee.Message);
+                    }
+                    //判断是否不在持久化
+                    if (deviceDataCount.localAcceptTime.Day != DateTime.Now.Day)
+                    {
+                        deviceDataCount.dontPersitent = true;
+                        persistentListKey.Remove(key);
                     }
                 }
-                catch (Exception ee) {
-                    LogUtil.error("save device data count error:" + ee.Message);
-                }
-                //判断是否不在持久化
-                if (deviceDataCount.localAcceptTime.Day != DateTime.Now.Day)
-                {
-                    deviceDataCount.dontPersitent = true;
-                    persistentListKey.Remove(key);
+                catch (Exception eee) {
+                    LogUtil.error("save device data count error:" + eee.Message);
                 }
             }
         }
@@ -450,6 +491,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
 
         /// <summary>
         /// 设置月度的最大值发生时间
+        /// modify by hbqian for memcached没有数据则从数据库的放入memcached at 2013-07-25
+        /// 另外参数用每天最大时间的传入而不是实时最大，如果memcached中期实时最大就不是每天最大了 
         /// </summary>
         /// <param name="deviceDataCount"></param>
         /// <returns></returns>
@@ -458,17 +501,20 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             object obj = MemcachedClientSatat.getInstance().Get(cacheKey);
             DeviceDataCount ddc;
             if (obj == null || string.IsNullOrEmpty(obj.ToString()))
-            {
+            {//如果memached中为空从数据库中取得
                 ddc = _ReportGroupDao.GetMonthMax(deviceDataCount);
                 if (ddc != null)
                 {
-                    if (deviceDataCount.maxValue < ddc.maxValue)
+                    if (deviceDataCount.maxValue > ddc.maxValue)
                     {
-                        deviceDataCount.maxValue = ddc.maxValue;
-                        deviceDataCount.maxTime = ddc.maxTime;
+                        ddc.maxValue = deviceDataCount.maxValue;
+                        ddc.maxTime = deviceDataCount.maxTime;
                     }
                 }
-                mcs.Add(cacheKey, deviceDataCount, DateTime.Now.AddDays(7));
+                else {
+                    ddc = deviceDataCount;
+                }
+                mcs.Add(cacheKey, ddc, DateTime.Now.AddDays(7));
             }
             else {
                 ddc = (DeviceDataCount)obj;
@@ -483,6 +529,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
 
         /// <summary>
         /// 设置年度的最大值发生时间
+        /// modify by hbqian for memcached没有数据则从数据库的放入memcached at 2013-07-25
+        /// 另外参数用每天最大时间的传入而不是实时最大，如果memcached中期实时最大就不是每天最大了
         /// </summary>
         /// <param name="deviceDataCount"></param>
         /// <returns></returns>
@@ -496,14 +544,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 ddc = _ReportGroupDao.GetYearMax(deviceDataCount);
                 if (ddc != null)
                 {
-                    if (deviceDataCount.maxValue < ddc.maxValue)
+                    if (deviceDataCount.maxValue > ddc.maxValue)
                     {
-                        deviceDataCount.maxValue = ddc.maxValue;
-                        deviceDataCount.maxTime = ddc.maxTime;
-             
+                        ddc.maxValue = deviceDataCount.maxValue;
+                        ddc.maxTime = deviceDataCount.maxTime;
+
                     }
                 }
-                MemcachedClientSatat.getInstance().Add(cacheKey, deviceDataCount, DateTime.Now.AddDays(7));
+                else
+                    ddc = deviceDataCount;
+
+                MemcachedClientSatat.getInstance().Add(cacheKey, ddc, DateTime.Now.AddDays(7));
             }
             else
             {

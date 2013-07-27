@@ -1400,10 +1400,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public string PaymentNoticeImg(int days)
         {
             if (this.Expired)
-                return "<img src='' alt='Expire'/>";
+                return "<img src='/images/clock.png' alt='Expire'/>";
             else
                 if (this.ExpireSoon(days))
-                    return "<img src='' alt='ExpireSoon'/>";
+                    return "<img src='/images/clock.png' alt='ExpireSoon' />";
             return string.Empty;
         }
 

@@ -17,6 +17,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common.vo
         public string Name { get; set; }
         public int Type { get; set; }
         public DateTime LimitDate { get; set; }
+
+        public int Days
+        {
+            get
+            {
+                return (int)(LimitDate - DateTime.Now).TotalDays;
+            }
+        }
     }
 
 }

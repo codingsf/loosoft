@@ -316,7 +316,12 @@
                 <ul>
                 <%foreach (PlantPaymentVO plant in curUser.UnPaymentPlants((int)config.value))
                   { %>
-			        <li><img style="vertical-align:middle" alt='<%=plant.Type==1?"Expired":"Expire Soon" %>' src="/images/clock.png"/><%=plant.Name %>电站<%=plant.Type==1?"已经":"即将" %>到期,到期时间 :<%=plant.LimitDate.ToString("yyyy-MM-dd") %></li>
+			        <li><img style="vertical-align:middle" alt='' src="/images/clock.png"/>
+			        <% if (plant.Type == 1)
+                  Response.Write(string.Format(Resources.SunResource.FEE_MESSAGETIPS_DONE , plant.Name));
+              else
+                  Response.Write(string.Format(Resources.SunResource.FEE_MESSAGETIPS_WILL, plant.Name, plant.Days));
+                   %>
 			      <%} %>
 		        </ul>
                 </div>
@@ -357,12 +362,14 @@
                                                     int idx = 0;
                                                     int configCount = user.menuDisplayCount;
                                                     int totalPlant = user.displayPlants.Count;
+                                                    string alertMsg = string.Empty;
                                                     foreach (Plant plant in user.displayPlants)
                                                     {
                                                         if (idx++ >= configCount)
                                                             break;
+                                                        alertMsg = string.Format(Resources.SunResource.FEE_XUFEI, plant.name);
                                                 %>
-                                                <li><a href="<%=plant.childs.Count>0?"/virtual/plantrelationstruct/"+plant.id:(plant.Expired) ? "javascript:alert('电站到期请续费');" : "/plant/overview/"+plant.id%>"
+                                                <li><a href="<%=plant.childs.Count>0?"/virtual/plantrelationstruct/"+plant.id:(plant.Expired) ? "javascript:alert('"+alertMsg+"');" : "/plant/overview/"+plant.id%>"
                                                     title="<%=plant.name%>">
                                                     <%=StringUtil.cutStr(plant.name.ToString(), 16, "...")%>
                                                     <%if (plant.hasFaultDevice)

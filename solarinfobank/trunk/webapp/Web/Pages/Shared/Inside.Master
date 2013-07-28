@@ -420,13 +420,16 @@
                                                 int configCount = user.menuDisplayCount;
                                                 IList<Plant> plants = user.displayPlants;
                                                 int totalPlants = plants.Count;
+                                                string alertMsg = string.Empty;
+                                                
                                                 foreach (Plant plant in plants)
                                                 {
                                                     if (idx++ >= configCount)
                                                         break;
+                                                    alertMsg = string.Format(Resources.SunResource.FEE_XUFEI, plant.name);
                                             %>
                                             <li>
-                                            <a href="<%=plant.childs.Count>0?"/virtual/plantrelationstruct/"+plant.id :( plant.Expired) ? "javascript:alert('电站到期请续费');" : "/plant/overview/"+plant.id%>" title="<%=plant.name %>" id="plantname">
+                                            <a href="<%=plant.childs.Count>0?"/virtual/plantrelationstruct/"+plant.id :( plant.Expired) ? "javascript:alert('"+alertMsg+"');" : "/plant/overview/"+plant.id%>" title="<%=plant.name %>" id="plantname">
                                                 <%= StringUtil.cutStr(plant.name, 16, "...")%>
                                                 <%if (plant.hasFaultDevice)
                                                   {%>

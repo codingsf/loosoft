@@ -5861,6 +5861,60 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 {0}电站管理员你好！ 感谢您使用SolarInfo Bank系统管理您的电站。您所使用的下列电站服务已经到期，为不影响您的使用请及时联系客服人员续租您的服务。联系电话：086-0551-XXXXXXXX 电子邮箱:service@sungrowpower.com “{1}电站” 已于 {2} 到期。 的本地化字符串。
+        /// </summary>
+        internal static string FEE_EMAILTIPS_DONE {
+            get {
+                return ResourceManager.GetString("FEE_EMAILTIPS_DONE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 {0}电站管理员你好！ 感谢您使用SolarInfo Bank系统管理您的电站。您所使用的下列电站服务即将到期，为不影响您的使用请及时联系客服人员续租您的服务，以避免对您使用上造成不便。 “{1}电站” 到期时间：{2} 。 的本地化字符串。
+        /// </summary>
+        internal static string FEE_EMAILTIPS_WILL {
+            get {
+                return ResourceManager.GetString("FEE_EMAILTIPS_WILL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 您的{0}电站服务已到期。 的本地化字符串。
+        /// </summary>
+        internal static string FEE_EXPRIE {
+            get {
+                return ResourceManager.GetString("FEE_EXPRIE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 您所使用的{0}电站服务已经到期，请及时续租您的服务。 的本地化字符串。
+        /// </summary>
+        internal static string FEE_MESSAGETIPS_DONE {
+            get {
+                return ResourceManager.GetString("FEE_MESSAGETIPS_DONE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 您所使用的{0}电站服务还剩{1}天到期，请及时续租您的服务。 的本地化字符串。
+        /// </summary>
+        internal static string FEE_MESSAGETIPS_WILL {
+            get {
+                return ResourceManager.GetString("FEE_MESSAGETIPS_WILL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 您的{0}电站服务已到期,请及时续租您的服务。 的本地化字符串。
+        /// </summary>
+        internal static string FEE_XUFEI {
+            get {
+                return ResourceManager.GetString("FEE_XUFEI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Friday 的本地化字符串。
         /// </summary>
         internal static string FRIDAY {

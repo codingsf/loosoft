@@ -161,9 +161,13 @@
                                     </td>
                                 </tr>
                                 <% int i = 0;
+                                   string alertMsg = string.Empty;
                                    foreach (Plant plant in Model.displayPlants)
                                    {
-                                       i++; %>
+                                       i++;
+                                       alertMsg = string.Format(Resources.SunResource.FEE_XUFEI, plant.name);
+                                       
+                                       %>
                                 <tr>
                                     <td>
                                         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="down_line0<%=i%2 %>">
@@ -190,7 +194,7 @@
                                                           {
                                                               if (plant.Expired)
                                                               {%>
-                                                                 <a href="javascript:alert('电站到期请续费');" class="dbl">
+                                                                 <a href="javascript:alert('<%=alertMsg %>');" class="dbl">
                                                               <%}else
                                                               { %>
                                                             <a target="_blank" href="/plant/overview/<%=plant.id %>" class="dbl">

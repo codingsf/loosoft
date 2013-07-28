@@ -5559,4 +5559,22 @@ The average value of coefficient will trigger warning
   <data name="SHARED_INSIDEMASTERPAGE_UNITDATA" xml:space="preserve">
     <value>Données cellulaires</value>
   </data>
+  <data name="FEE_EMAILTIPS_DONE" xml:space="preserve">
+    <value>{0}电站管理员你好！ 感谢您使用SolarInfo Bank系统管理您的电站。您所使用的下列电站服务已经到期，为不影响您的使用请及时联系客服人员续租您的服务。联系电话：086-0551-XXXXXXXX 电子邮箱:service@sungrowpower.com “{1}电站” 已于 {2} 到期。</value>
+  </data>
+  <data name="FEE_EMAILTIPS_WILL" xml:space="preserve">
+    <value>{0}电站管理员你好！ 感谢您使用SolarInfo Bank系统管理您的电站。您所使用的下列电站服务即将到期，为不影响您的使用请及时联系客服人员续租您的服务，以避免对您使用上造成不便。 “{1}电站” 到期时间：{2} 。</value>
+  </data>
+  <data name="FEE_EXPRIE" xml:space="preserve">
+    <value>您的{0}电站服务已到期。</value>
+  </data>
+  <data name="FEE_MESSAGETIPS_DONE" xml:space="preserve">
+    <value>您所使用的{0}电站服务已经到期，请及时续租您的服务。</value>
+  </data>
+  <data name="FEE_MESSAGETIPS_WILL" xml:space="preserve">
+    <value>您所使用的{0}电站服务还剩{1}天到期，请及时续租您的服务。</value>
+  </data>
+  <data name="FEE_XUFEI" xml:space="preserve">
+    <value>您的{0}电站服务已到期,请及时续租您的服务。</value>
+  </data>
 </root>

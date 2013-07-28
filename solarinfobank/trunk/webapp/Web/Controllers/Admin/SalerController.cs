@@ -48,16 +48,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         public ActionResult Warningpayment()
         {
             IList<Plant> plants = PlantService.GetInstance().GetPaymentExpiredList();
+            User user=null;
             foreach (Plant plant in plants)
             {
                 MailServerPoolObject obj = EmailConnectionPool.getMailServerPoolObject();
-
+                user=plant.User;
                 try
                 {
                     Message message = new Message();
-                    message.BodyText = "这是一封续费邮件";
+                    message.BodyText = string.Format(Resources.SunResource.FEE_EMAILTIPS_WILL, user.username, plant.name, plant.PaymentLimitDate.ToString("yyyy-MM-dd"));
                     message.From.Email = obj.accountName;
-                    message.To.Add("bochins@163.com");
+                    message.To.Add(user.email);
                     message.Subject = "续费了";
                     obj.SendMail(message);
                     obj.close();

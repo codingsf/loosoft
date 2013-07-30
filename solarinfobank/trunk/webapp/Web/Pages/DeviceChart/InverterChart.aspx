@@ -18,10 +18,10 @@
             $('#DayChart').click(displayDayChart);
             $('#DaykWpChart').click(displayDaykWpChart);
             $('#pScatterMonthChart').click(displayPScatterMonthChart);            
-            $("#startYYYYMMDDHH").val("<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>00")
-            $("#endYYYYMMDDHH").val("<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>23")
-            $("#kwpStartYYYYMMDDHH").val("<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>00")
-            $("#kwpEndYYYYMMDDHH").val("<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>23")
+            $("#startYYYYMMDDHH").val("<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>00")
+            $("#endYYYYMMDDHH").val("<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>23")
+            $("#kwpStartYYYYMMDDHH").val("<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>00")
+            $("#kwpEndYYYYMMDDHH").val("<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>23")
             $("#pScatterStartYYYYMMDDHH").val("<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")%>0100")
             $("#pScatterEndYYYYMMDDHH").val("<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")+CalenderUtil.getCurMonthDays()%>23")            
             displayDayChart();

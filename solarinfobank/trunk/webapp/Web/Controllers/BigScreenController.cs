@@ -67,9 +67,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 value = plant.id.ToString();
             }
             else
+            {   
+                //只有为到期的才显示
                 foreach (Plant plant in user.relatedPlants)
+                {
+                    if (plant.PaymentLimitDate != null && plant.PaymentLimitDate < CalenderUtil.curDateWithTimeZone(plant.timezone)) continue;
                     value += plant.id + ",";
-
+                }
+            }
             value = value.EndsWith(",") ? value.Substring(0, value.Length - 1) : value;
             ViewData["plantIds"] = value;
             ViewData["plantArray"] = value.Split(',');
@@ -89,7 +94,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         /// </summary>
         /// <param name="dataType"></param>
         /// <returns></returns>
-        public ActionResult loadData(int dataType)
+        public ActionResult loadData(int dataType, int curUserId)
         {
             string plantId = Request["plantid"];
             int iplantId = 0;
@@ -99,7 +104,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 case 0:
                     return PlantData(iplantId);
                 case 1:
-                    return PlantDayChart(iplantId, 5);
+                    return PlantDayChart(iplantId, 5, curUserId);
                 case 2:
                     return MonthDDChart(iplantId);
                 case 3:
@@ -174,15 +179,24 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
 
         }
-        public ActionResult PlantDayChart(int pid, int intervalMins)
+        public ActionResult PlantDayChart(int pid, int intervalMins,int curUserId)
         {
-            string startYYYYMMDDHH = DateTime.Now.AddDays(-1).ToString("yyyyMMdd00");
-            string endYYYYMMDDHH = DateTime.Now.ToString("yyyyMMdd23");
             string chartType = "area";
             string reportCode = string.Empty;
             Plant plant = PlantService.GetInstance().GetPlantInfoById(pid);
             if (plant != null && plant.allFactUnits.Count > 0)
             {
+                //找出电站的创建者，用当前操作用户而不是电站创建者的规矩
+                User user = null;
+                if(curUserId>0)
+                    user = UserService.GetInstance().Get(curUserId);
+                string startYYYYMMDDHH = DateTime.Now.AddDays(-1).ToString("yyyyMMdd00");
+                string endYYYYMMDDHH = DateTime.Now.ToString("yyyyMMdd23");
+                if (user != null && user.FullscreenChartDays>0)
+                {
+                    startYYYYMMDDHH = DateTime.Now.AddDays(-1 * (user.FullscreenChartDays-1)).ToString("yyyyMMdd00");
+                    endYYYYMMDDHH = DateTime.Now.ToString("yyyyMMdd23");
+                }
                 IList<DeviceStuct> devices = new List<DeviceStuct>();
                 string deviceId = plant.id.ToString();
                 string[] chartTypes = chartType.Split(',');

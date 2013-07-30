@@ -56,7 +56,7 @@
       <result property="childPortalUsers" lazyLoad="true"	column="id"         select="get_child_portaluser_by_userid" />
       <result property="Roles" lazyLoad="true"	column="id"          select="get_role_uid" />
       <result property="createToplevelPlants" lazyLoad="true"	column="id"         select="toplevelplant_get_uid" />
-      <result property="configs" lazyLoad="true"	column="id"         select="relationconfig_get_uid_lazy" />
+      <result property="configs" lazyLoad="true"	column="id" select="relationconfig_get_uid_lazy" />
     </resultMap>
   </resultMaps>
   <cacheModels>
@@ -87,22 +87,21 @@
       <property name="CacheSize" value="10000"/>
     </cacheModel>
   </cacheModels>
-
   <statements>
     <!--根据用户id取得用户 或单位不能及时缓过来 但是没道理的啊 先注释掉cacheModel="user_get_object_cache"-->
-    <select id="user_get"  resultMap="user_info_result"  paramterClass="User" cacheModel="user_cache">
+    <select id="user_get" resultMap="user_info_result" paramterClass="User" cacheModel="user_cache">
       select *  from  userinfo where id=#id#
     </select>
 
-    <select id="user_get_lazy_class"  resultClass="User"   cacheModel="user_cache">
+    <select id="user_get_lazy_class" resultMap="user_info_result" cacheModel="user_cache">
       SELECT *  FROM  userinfo where id=#value#
     </select>
     
-    <select id="user_get_lazy"  resultMap="user_info_result" cacheModel="user_cache">
+    <select id="user_get_lazy" resultMap="user_info_result" cacheModel="user_cache">
       SELECT *  FROM  userinfo where id=#value#
     </select>
 
-    <select id="define_report_lazy"  resultMap="user_info_result" cacheModel="user_cache">
+    <select id="define_report_lazy" resultMap="user_info_result" cacheModel="user_cache">
       SELECT *  FROM  userinfo where id=#value#
     </select>
 

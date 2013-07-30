@@ -135,7 +135,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                         {
                             collector.isUsed = false;
                             collectorInfoService.Save(collector);
-                            //删除单元要将单元的物理设备的planunitid属性值null，即接触物理关系
+                            //删除单元要将单元的物理设备的planunitid属性值null，即解除物理关系
                             foreach (Device device in devices)
                             {
                                 if (device.plantUnitId != plantUnit.id) continue;//已有属主则不纳入该单元

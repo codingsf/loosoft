@@ -10,9 +10,6 @@
       <result property="id"			column="id"/>
       <result property="name"			column="name"/>
       <result property="codename"			column="codename"/>
-      <!--
-      <result property="packagename"			column="package_name"/>
-      -->
       <result property="isenabled"			column="isenabled"/>
       <result property="displayName"			column="displayName"/>
       <result property="currencies"   column="currencies"/>
@@ -35,15 +32,15 @@
     <select id="language_get_list" resultMap="language_result" cacheModel="language_cache">
       select * from language where isenabled=1
     </select>
-    <select id="language_get" resultClass="Language" cacheModel="language_cache">
+    <select id="language_get" resultMap="language_result" cacheModel="language_cache">
       select * from language where id=#id#
     </select>
     
-    <select id="language_get_lazy" resultClass="Language" cacheModel="language_cache">
+    <select id="language_get_lazy" resultMap="language_result" cacheModel="language_cache">
         select * from language where id=#value#
     </select>
       
-    <select id="language_get_by_code" resultClass="Language" cacheModel="language_cache">
+    <select id="language_get_by_code" resultMap="language_result" cacheModel="language_cache">
         select * from language where codename=#value#
     </select>
       

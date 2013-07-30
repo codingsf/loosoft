@@ -2451,16 +2451,22 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             ViewData["plantID"] = plant.id;
             if (plant.plantUnits.Count > 0)
             {
+                bool isHasDevice = false;
                 foreach (PlantUnit pu in plant.plantUnits)
                 {
+                    isHasDevice = false;
                     if (pu.displayDevices.Count > 0)
                     {
+                        isHasDevice=true;
                         ViewData["unitID"] = pu.id;//第一个单元
                         ViewData["deviceID"] = pu.displayDevices.OrderByDescending(m => m.deviceModelCode).ToList<Device>()[0].id;//第一个设备
                         break;
                     }
+                    if (!isHasDevice)
+                        bindDeviceToUnit(pu.collectorID,pu.id);
                 }
             }
+
             string startYM = (DateTime.Now.Year - 1) + "" + DateTime.Now.Month.ToString("00");
             string endYM = DateTime.Now.Year + "" + DateTime.Now.Month.ToString("00");
 
@@ -2592,7 +2598,32 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             return View();
         }
 
-
+        /// <summary>
+        /// 将采集器下面的设备和单元做物理关联
+        /// </summary>
+        /// <param name="collector"></param>
+        /// <param name="plantUnitId"></param>
+        private void bindDeviceToUnit(int collectorId, int plantUnitId)
+        {
+            Collector collector = CollectorInfoService.GetInstance().GetCollectorById(collectorId);
+            if (collector == null) return;
+            //绑定采集器要更新没有plantunitid的设备的plantunitid parenid
+            PlantUnit tmpPU = null;
+            foreach (Device device in collector.devices)
+            {
+                //判断原有属主是否存在，如果不存在，并且不是自己
+                if (device.plantUnitId != null && device.plantUnitId.Value > 0 && device.plantUnitId.Value != plantUnitId)
+                {
+                    tmpPU = plantUnitService.GetPlantUnitById(device.plantUnitId.Value);//根据unitid去查询，判断是否存在
+                    if (tmpPU != null)//已有属主并且属主不是当前单元则不纳入该单元
+                        continue;
+                }
+                device.parentId = 0;
+                device.plantUnitId = plantUnitId;
+                if (device.deviceModel == null) device.deviceModel = new DeviceModel();
+                DeviceService.GetInstance().Save(device);
+            }
+        }
         /// <summary>
         /// 补偿设置
         /// </summary>

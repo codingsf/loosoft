@@ -304,7 +304,8 @@
     <script src="/script/jquery.scroll.js" type="text/javascript"></script>
 </head>
 <body>
-    <% User curUser = UserUtil.getCurUser();
+    <% 
+       User curUser = UserUtil.getCurUser();
        ItemConfig config = ItemConfigService.GetInstance().GetItemConfigByName(ItemConfig.Payment);
         %>
 
@@ -322,7 +323,7 @@
               else
                   Response.Write(string.Format(Resources.SunResource.FEE_MESSAGETIPS_WILL, plant.Name, plant.Days));
                    %>
-			      <%} %>
+			      <%}%>
 		        </ul>
                 </div>
                 <div style="float:right; text-align:right;">

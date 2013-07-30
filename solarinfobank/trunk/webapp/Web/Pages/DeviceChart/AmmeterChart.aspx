@@ -11,8 +11,8 @@
 <body> 
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#startYYYYMMDDHH").val("<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>00")
-            $("#endYYYYMMDDHH").val("<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>23")
+            $("#startYYYYMMDDHH").val("<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>00")
+            $("#endYYYYMMDDHH").val("<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>23")
             displayDayChart();
             changeALT();
         });

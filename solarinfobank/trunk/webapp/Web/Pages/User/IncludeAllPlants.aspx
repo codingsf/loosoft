@@ -224,7 +224,6 @@
                                                 <td width="10%" align="center">
                                                     <div style="overflow: hidden;" title="<%=plant.TodayTotalPower%>">
                                                         <%=plant.TodayTotalPower%>
-                                                       
                                                     </div>
                                                 </td>
                                                 <td width="15%" align="center">

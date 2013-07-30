@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
-
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Service" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
@@ -57,7 +57,7 @@
                     $.ajax({
                         type: "post",
                         url: "/bigscreen/loaddata",
-                        data: { plantid: tplantid, datatype: tpageindex },
+                        data: { plantid: tplantid, datatype: tpageindex ,curUserId:<%=UserUtil.getCurUser().id %>},
                         success: function(data) {
                             if (data == undefined || data == null || data == "") {
                                 return false;
@@ -82,7 +82,7 @@
 
             },
             this.play = function() {
-                $.post("/bigscreen/loaddata", { plantid: this.idarray[0], datatype: 0 }, function(data) {
+                $.post("/bigscreen/loaddata", { plantid: this.idarray[0], datatype: 0,curUserId:<%=UserUtil.getCurUser().id %> }, function(data) {
                     $("#data_" + bigscreen.idarray[0] + "_page_0").val(data);
                     $("#cache_" + bigscreen.idarray[0] + "_page_0").val(new Date());
                     if (!lazyApplyData)

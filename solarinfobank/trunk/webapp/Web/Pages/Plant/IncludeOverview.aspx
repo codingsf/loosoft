@@ -11,13 +11,15 @@
    <%--此处用于切换语言跳转到当前页面--%>
    <%if (Session["initurl"] != null&&(string.IsNullOrEmpty(Session["initurl"].ToString())==false))
       { %>
-    <script>
+    <script type="text/javascript">
         $('a[href="<%=Session["initurl"] %>"]', window.parent.document).addClass("lefttabclick");
         $("#current_uri").val('<%=Session["initurl"] %>');
         parent.loadContent('content_ajax', '<%=Session["initurl"] %>', '<%=Session["loading_type"] %>', 'GET');
     </script>
-    <%Session["initurl"] = null; Session["loading_type"] = null; Response.End();
-    } %>
+    <%
+         Session["initurl"] = null; Session["loading_type"] = null; Response.End();
+    } 
+    %>
    
 <style type="text/css">
     .lb
@@ -358,33 +360,34 @@
     function refreshChartData()
     {
         if(curchart==1)//刷新日
-        displayDayChart();
-         if(curchart==2)//刷新月
-         displayMonthDDChart();
-          if(curchart==3)//刷新年
-          displayyearMMChart();
-           if(curchart==4)//刷新总体
-          displayyearChart();
+            displayDayChart();
+        if(curchart==2)//刷新月
+            displayMonthDDChart();
+        if(curchart==3)//刷新年
+            displayyearMMChart();
+        if(curchart==4)//刷新总体
+            displayyearChart();
     }
+    
     function loadoverviewData()
     {
-    $.ajax({ 
-       url: "/plant/includeoverviewdatajson/"+$("#pid").val(), 
-        data: { rnd: Math.random() }, 
-        success: function (data, textStatus) {
-            var result=eval("("+data+")");
-            $("#displaytotaldayenergy").html(result.DisplayTotalDayEnergy); 
-            $("#totaldayenergyunit").html(result.TotalDayEnergyUnit); 
-            $("#temperature").html(result.Temperature); 
-            $("#temperaturetype").html(result.TemperatureType); 
-            $("#sunstrength").html(result.Sunstrength); 
-            $("#totalenergy").html(result.totalEnergy); 
-            $("#totalenergyunit").html(result.TotalEnergyUnit); 
-            $("#reductiong").html(result.Reductiong); 
-            $("#reductiongunit").html(result.ReductiongUnit); 
-            $("#displayrevenue").html(result.DisplayRevenue); 
+        $.ajax({ 
+            url: "/plant/includeoverviewdatajson/"+$("#pid").val(), 
+            data: { rnd: Math.random() }, 
+            success: function (data, textStatus) {
+                var result=eval("("+data+")");
+                $("#displaytotaldayenergy").html(result.DisplayTotalDayEnergy); 
+                $("#totaldayenergyunit").html(result.TotalDayEnergyUnit); 
+                $("#temperature").html(result.Temperature); 
+                $("#temperaturetype").html(result.TemperatureType); 
+                $("#sunstrength").html(result.Sunstrength); 
+                $("#totalenergy").html(result.totalEnergy); 
+                $("#totalenergyunit").html(result.TotalEnergyUnit); 
+                $("#reductiong").html(result.Reductiong); 
+                $("#reductiongunit").html(result.ReductiongUnit); 
+                $("#displayrevenue").html(result.DisplayRevenue); 
             }, 
-       complete: function (XHR, TS) { XHR = null } 
+            complete: function (XHR, TS) { XHR = null } 
         }); 
         //refreshChartData();
     }
@@ -396,16 +399,16 @@
 <input type="hidden" value="<%=System.DateTime.Now.Year%>" id="year" />
 <input type="hidden" value="column" id="chartType" />
 <input type="hidden" value="5" id="intervalMins" />
-<input type="hidden" value="<%=CalenderUtil.getBeforeDay(DateTime.Now,"yyyyMMdd")%>00"
+<input type="hidden" value="<%=CalenderUtil.curBeforeDateWithTimeZone(Model.timezone,"yyyyMMdd")%>00"
     id="startYYYYMMDDHH" />
-<input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+(DateTime.Now.Day).ToString("00") %>23"
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMMdd")%>23"
     id="endYYYYMMDDHH" />
-<input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")%>01"
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")%>01"
     id="startYYYYMMDD" />
-<input type="hidden" value="<%=DateTime.Now.Year+DateTime.Now.Month.ToString("00")+CalenderUtil.getCurMonthDays()%>"
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyyMM")+CalenderUtil.getCurMonthDays()%>"
     id="endYYYYMMDD" />
-<input type="hidden" value="<%=DateTime.Now.Year%>01" id="startYM" />
-<input type="hidden" value="<%=DateTime.Now.Year%>12" id="endYM" />
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy")%>01" id="startYM" />
+<input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy")%>12" id="endYM" />
 <table width="100%" height="63" border="0" cellpadding="0" cellspacing="0" background="/images/kj/kjbg02.jpg">
     <tr>
         <td width="8">

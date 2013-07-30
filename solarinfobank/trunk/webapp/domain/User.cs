@@ -49,6 +49,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         private string _firstName;
         private string _lastName;
         private int _parentUserId;  //创建者id
+        private int _fullscreenchartdays = 2;  //全屏图表显示天数,默认2天
         /// <summary>
         /// auto_increment
         /// 编号  非空  主键自增
@@ -979,6 +980,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public bool HasPlants { get; set; }//是否注册电站  持久化
 
 
-        public int FullscreenChartDays { get; set; }//全屏图表显示天数
+        //全屏图表显示天数,默认2天
+        public int FullscreenChartDays
+        {
+            get { return _fullscreenchartdays; }
+            set { _fullscreenchartdays = value; }
+        }
     }
 }

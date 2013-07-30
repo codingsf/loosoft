@@ -680,11 +680,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 }
                 if (tmp == null || double.IsNaN(tmp.Value))
                 {
-                    tmp = Math.Round(tmp.Value, 2);
-                    return tmp;
+                    return null;
                 }
                 else
-                    return null;
+                {
+                    return Math.Round(tmp.Value, 2);
+                }
             }
         }
 
@@ -1383,7 +1384,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             get
             {
-                return (!this.isVirtualPlant) && DateTime.Now.AddHours(this.timezone) > PaymentLimitDate;
+                return (!this.isVirtualPlant) && CalenderUtil.curDateWithTimeZone(this.timezone) > PaymentLimitDate;
             }
         }
         /// <summary>
@@ -1393,7 +1394,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// <returns></returns>
         public bool ExpireSoon(int days)
         {
-            return ((!this.isVirtualPlant) && (PaymentLimitDate - DateTime.Now.AddHours(this.timezone)).TotalDays <= days);
+            return ((!this.isVirtualPlant) && (PaymentLimitDate - CalenderUtil.curDateWithTimeZone(this.timezone)).TotalDays <= days);
         }
 
 

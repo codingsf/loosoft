@@ -312,7 +312,15 @@ namespace DataAnalyze
                             //非持久化属性赋值，用于指定所在表
                             mdd.yearmonth = messageHeader.year + messageHeader.month;
                             float newValue = ddb.historyMonitorMap[key] == null ? 0 : float.Parse(ddb.historyMonitorMap[key].ToString());
-                            mdd.dataContent += "#" + messageHeader.hour + messageHeader.minute + messageHeader.second + ":" + newValue;
+                            string tmpvalue = "#" + messageHeader.hour + messageHeader.minute + messageHeader.second + ":" + newValue;
+                            if (mdd.dataContent != null){//避免数据串有重复数据过大
+                                if (!mdd.dataContent.Contains(tmpvalue))
+                                    mdd.dataContent += tmpvalue;
+                            }
+                            else
+                            {
+                                mdd.dataContent = tmpvalue;
+                            }
                             mdd.sendtime = messageHeader.TimeNow;
                             mdd.localAcceptTime = DateTime.Now;
                             mdd.deviceType = ddb.tableType;
@@ -323,6 +331,7 @@ namespace DataAnalyze
                             //将功率和关照的最大发生时间记录下来,稍后在优化下
                             if (key == MonitorType.MIC_INVERTER_TOTALYGPOWER || key == MonitorType.MIC_DETECTOR_SUNLINGHT || key == MonitorType.MIC_BUSBAR_TOTALCURRENT)
                             {
+                                //LogUtil.warn("deviceDataCounts.Add(new DeviceDataCount(): id is " +deviceID+"-"+ messageHeader.year.ToString() + messageHeader + "");
                                 deviceDataCounts.Add(new DeviceDataCount() { deviceId = deviceID, monitorCode = key, year = int.Parse(messageHeader.year), month = int.Parse(messageHeader.month), day = int.Parse(messageHeader.day), deviceTable = TableUtil.DEVICE, maxValue = newValue, maxTime = messageHeader.TimeNow, localAcceptTime = DateTime.Now });
                             }
 
@@ -390,14 +399,32 @@ namespace DataAnalyze
                     mdd = collectordayDataMap[mapObjectKey];
                 }
                 float newValue = historyMonitorMap[key]==null?0:float.Parse(historyMonitorMap[key].ToString());
-                mdd.dataContent += "#" + messageHeader.hour + messageHeader.minute + messageHeader.second + ":" + newValue;
+                string tmpStr = "#" + messageHeader.hour + messageHeader.minute + messageHeader.second + ":" + newValue;
+                if (mdd.dataContent != null)
+                {//避免数据串有重复数据过大
+                    if (!mdd.dataContent.Contains(tmpStr))
+                        mdd.dataContent += tmpStr;
+                }
+                else
+                {
+                    mdd.dataContent = tmpStr;
+                }
                 mdd.sendtime = messageHeader.TimeNow;
                 mdd.localAcceptTime = DateTime.Now;
                 mdd.yearmonth = messageHeader.year + messageHeader.month;
                 mdd.changed = true;
                 //add by qhb in 20121028 for 会写到memcahced 以便持久化能取到改数据.采集器天数据集中缓存处有点问题，和设备天数据一样的问题。
                 //导致曲线数据有丢失现象
-                MemcachedClientSatat.getInstance().Set(mapObjectKey, mdd);
+                try
+                {
+                    MemcachedClientSatat.getInstance().Set(mapObjectKey, mdd);
+                }
+                catch (Exception e) {
+                    Console.WriteLine("set collector day data to memecached error:" + e.Message);
+                    //出现错误，可能是mdd太大，所以整理下mdd，去掉重复数据，减少size，因为memached内存有2m限制
+
+
+                }
                 //将功率和关照的最大发生时间记录下来.稍后优化下
                 if (key == MonitorType.PLANT_MONITORITEM_POWER_CODE)
                 {
@@ -405,6 +432,7 @@ namespace DataAnalyze
                     //{
                     //    LogUtil.writeline(messageHeader.TimeNow + "-" + newValue);
                     //}
+                    //LogUtil.warn("collectorDataCount = new DeviceDataCount(): collectorID is " + collectorID + "-" + messageHeader.year.ToString() + messageHeader + "");
                     collectorDataCount = new DeviceDataCount() { deviceId = collectorID, monitorCode = key, year = int.Parse(messageHeader.year), month = int.Parse(messageHeader.month), day = int.Parse(messageHeader.day), deviceTable = TableUtil.PLANT, maxValue = newValue, maxTime = messageHeader.TimeNow, localAcceptTime = DateTime.Now };
                 }
   
@@ -499,6 +527,11 @@ namespace DataAnalyze
             {
                 dsrd = collectorRunDataMap[collectorID];
             }
+
+            //modify by hbqian for 历史数据不更新实时数据，只有当原有数据是超前的才会被历史数据替换 at 2013-07-29
+            //比如他现在传输的应该是 17号11点30的数据，传输完了后，又传了个历史数据是17号6点的数据，那么这个时候实时数据显示的是17号6点的历史数据，而不是17号11点30的实时数据，要显示为最新的即11:30的数据，这个地方请加个判断
+            //旧的数据不再更新实时数据,20130729修改为 当原有时间是超前的仍然更新，这里用服务器时间判断没有考虑时差，还是有点不准确，非超前则不更新，即实时数据始终显示最新的
+            if (messageHeader.TimeNow < dsrd.sendTime && dsrd.sendTime < DateTime.Now) return;
 
             if ((messageHeader.DayEnergy!=null && dsrd.dayEnergy < messageHeader.DayEnergy) || (messageHeader.DayEnergy!=null && dsrd.sendTime.Day != messageHeader.TimeNow.Day))
                 dsrd.dayEnergy = messageHeader.DayEnergy.Value;
@@ -667,7 +700,7 @@ namespace DataAnalyze
                     mdd = deviceRunDataMap[deviceID];
                 }
 
-                //就的数据不再更新实时数据,20120714修改为 当原有时间是超前的仍然更新，这里用服务器时间判断没有考虑时差，还是有点不准确
+                //旧的数据不再更新实时数据,20120714修改为 当原有时间是超前的仍然更新，这里用服务器时间判断没有考虑时差，还是有点不准确，非超前则不更新，即实时数据始终显示最新的
                 if (messageHeader.TimeNow < mdd.updateTime && mdd.updateTime < DateTime.Now) continue;
 
                 mdd.energy = 0;
@@ -937,7 +970,7 @@ namespace DataAnalyze
             //if (day == 2) day = 4;
             //else if (day == 3) day = 5;
             this.TimeNow = new DateTime(year, moth, day, hh, mm, ss);
-
+            LogUtil.info("collector TimeNow " + TimeNow.ToString());
             string dayestr = SystemCode.ReversionAll(this._Header.Substring(31 * 2, 4 * 2));
             _dayEnergy = (float)SystemCode.HexNumberToDenary(dayestr, false, 32, 'u');
             //add in 8/6  for 原来是4字节无符号整形，改为无符号带一位小数整形

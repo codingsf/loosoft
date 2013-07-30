@@ -47,16 +47,6 @@ namespace DataAnalyze
             Thread m_thread3 = new Thread(new ThreadStart(persistProcess.Processing));
             m_thread3.Start();
 
-            //启动发电量告警线程
-            string energywarn = ConfigurationSettings.AppSettings["energywarn"];//是否启动发电量告警生成
-            Thread m_thread4 = null;
-            if (energywarn != null || energywarn.Equals("true"))
-            {
-                EnergywarnProcesser energywarnProcesser = new EnergywarnProcesser();
-                m_thread4 = new Thread(new ThreadStart(energywarnProcesser.Processing));
-                m_thread4.Start();
-            }
-
             //设置最后成功处理时间到memcached，以便检测监控程序能判断是否正常运行
             MemcachedClientSatat.getInstance().Set("monitor_analyze_run_lasttime", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 
@@ -88,10 +78,6 @@ namespace DataAnalyze
                         if (m_thread3 != null)
                             if (m_thread3.IsAlive)
                                 m_thread3.Abort();
-
-                        if (m_thread4 != null)
-                            if (m_thread4!=null && m_thread4.IsAlive)
-                                m_thread4.Abort();
 
                         LogUtil.info("软件已经停止服务！");
                     }

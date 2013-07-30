@@ -83,8 +83,6 @@ namespace DataAnalyze
                             continue;
                         }
                          
-
-                        
                         //持久化将数据保存到缓存
                         DateTime curdt = DateTime.Now;
                         CacheHandler.LocalCacheData(tcpmessage);

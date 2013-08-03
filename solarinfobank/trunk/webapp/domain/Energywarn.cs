@@ -16,11 +16,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         public int deviceId { get; set; }//设备id
         public double averageValue { get; set; }//平均值
         public double factValue { get; set; }//实际值
-        public double upRate { get; set; }//高系数
-        public double downRate { get; set; }//低系数
-        public String factRate { get; set; }//实际系数
-        public String warndate { get; set; }//告警日期yyyy-MM-dd
-        public Device device{ get; set; }//告警设备
+        public double upRate { get; set; }   //高系数
+        public double downRate { get; set; } //低系数
+        public String factRate { get; set; } //实际系数
+        public String warndate { get; set; } //告警日期yyyy-MM-dd
+        public Device device{ get; set; }    //告警设备
 
     }
 }

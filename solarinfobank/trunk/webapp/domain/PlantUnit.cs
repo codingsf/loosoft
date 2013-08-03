@@ -55,6 +55,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// 1.有设备新增时要将没有plantunitid关系的设备的plantunitid赋值
         /// 2.在进行单元绑定将所绑定采集器没有plantunitid关系的设备赋值
         /// 3.解除绑定时要将设备的plantunitid清空置null
+        /// 因为devices和device有取得plantunit有循环引用关系，所有现在devices里面取得是resultClass即通过plantunit.devices取得的device是不能在里面取得plantuint的避免循环引用
         /// </summary>
         public IList<Device> devices { get; set; }
 

@@ -1393,7 +1393,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// <returns></returns>
         public bool ExpireSoon(int days)
         {
-            return ((!this.isVirtualPlant) && (PaymentLimitDate - CalenderUtil.curDateWithTimeZone(this.timezone)).TotalDays <= days);
+            return ((!this.isVirtualPlant) && Expired == false && (PaymentLimitDate - DateTime.Now.AddHours(this.timezone)).TotalDays <= days);
         }
 
 

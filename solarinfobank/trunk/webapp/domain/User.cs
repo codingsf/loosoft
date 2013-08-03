@@ -306,7 +306,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
-        /// 获取自己付款已经到期的电站
+        /// 获取自己付款已经到期或者将要到期的电站的电站
         /// </summary>
         public IList<PlantPaymentVO> UnPaymentPlants(int days)
         {
@@ -321,6 +321,40 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             }
             return _plantList;
         }
+
+
+
+        /// <summary>
+        /// 获取自己付款即将到期的电站
+        /// </summary>
+        public IList<Plant> ExpireSoonPlants(int days)
+        {
+            IList<Plant> _plantList = new List<Plant>();
+            foreach (Plant plant in this.allRelatedFactPlants)
+            {
+                if (plant.ExpireSoon(days))
+                    _plantList.Add(plant);
+            }
+            return _plantList;
+        }
+
+        /// <summary>
+        /// 获取自己付款已经到期的电站
+        /// </summary>
+        public IList<Plant> ExpiredPlants
+        {
+            get
+            {
+                IList<Plant> _plantList = new List<Plant>();
+                foreach (Plant plant in this.allRelatedFactPlants)
+                {
+                    if (plant.Expired)
+                        _plantList.Add(plant);
+                }
+                return _plantList;
+            }
+        }
+
 
         /// <summary>
         /// 
@@ -849,7 +883,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         /// <returns></returns>
         public bool Exists(int plantId)
         {
-            return allRelatedFactPlants.Where(m => m.id.Equals(plantId)).Count() > 0; 
+            return allRelatedFactPlants.Where(m => m.id.Equals(plantId)).Count() > 0;
         }
 
 
@@ -986,5 +1020,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             get { return _fullscreenchartdays; }
             set { _fullscreenchartdays = value; }
         }
+
     }
 }

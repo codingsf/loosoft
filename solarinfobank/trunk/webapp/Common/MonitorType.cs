@@ -1154,7 +1154,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             monitorMap.Add(MIC_AMMETER_PHASEAPPARENTPOWER1, new MonitorType() { code = MIC_AMMETER_PHASEAPPARENTPOWER1, unit = "VA", zerotoline = false });
             monitorMap.Add(MIC_AMMETER_PHASEAPPARENTPOWER2, new MonitorType() { code = MIC_AMMETER_PHASEAPPARENTPOWER2, unit = "VA", zerotoline = false });
             monitorMap.Add(MIC_AMMETER_PHASEAPPARENTPOWER3, new MonitorType() { code = MIC_AMMETER_PHASEAPPARENTPOWER3, unit = "VA", zerotoline = false });
-            monitorMap.Add(MIC_AMMETER_SYSAPPARENTPOWER, new MonitorType() { code = MIC_AMMETER_SYSAPPARENTPOWER, unit = "", zerotoline = false });
+            monitorMap.Add(MIC_AMMETER_SYSAPPARENTPOWER, new MonitorType() { code = MIC_AMMETER_SYSAPPARENTPOWER, unit = "VA", zerotoline = false });
             monitorMap.Add(MIC_AMMETER_PHASEPOWERFACTOR1, new MonitorType() { code = MIC_AMMETER_PHASEPOWERFACTOR1, unit = "", zerotoline = false });
             monitorMap.Add(MIC_AMMETER_PHASEPOWERFACTOR2, new MonitorType() { code = MIC_AMMETER_PHASEPOWERFACTOR2, unit = "", zerotoline = false });
             monitorMap.Add(MIC_AMMETER_PHASEPOWERFACTOR3, new MonitorType() { code = MIC_AMMETER_PHASEPOWERFACTOR3, unit = "", zerotoline = false });

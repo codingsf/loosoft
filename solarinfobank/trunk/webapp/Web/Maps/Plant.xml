@@ -92,6 +92,7 @@
       <flushOnExecute  statement="updateDevice"/>
       <flushOnExecute  statement="device_insert"/>
       <flushOnExecute  statement="plant_update_paymentlimitdate"/>
+      <flushOnExecute  statement="plant_update_last_email_remind_date"/>
       <flushOnExecute  statement="videomonitor_delete"/>
       <flushOnExecute  statement="videomonitor_insert"/>
       <flushOnExecute  statement="plant_payment_expired"/>

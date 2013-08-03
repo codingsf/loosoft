@@ -1434,7 +1434,7 @@
     <value>联系我们</value>
   </data>
   <data name="SHARED_MAINMASTREPAGE_COPYRIGHT" xml:space="preserve">
-    <value>版权 &amp;copy; 2012 {0} , v1.0.18 Beta, 分辨率: 1024x768</value>
+    <value>版权 &amp;copy; 2013 {0} , v1.0.19 Beta, 分辨率: 1024x768</value>
   </data>
   <data name="SHARED_MAINMASTREPAGE_HOME" xml:space="preserve">
     <value>首页</value>
@@ -4853,7 +4853,7 @@
     <value>费率峰正向有功电度</value>
   </data>
   <data name="DEVICEMONITORITEM_937" xml:space="preserve">
-    <value>费率峰反向有功度</value>
+    <value>费率峰反向有功电度</value>
   </data>
   <data name="DEVICEMONITORITEM_938" xml:space="preserve">
     <value>费率峰正向无功电度</value>
@@ -5610,10 +5610,10 @@
     <value>单元数据</value>
   </data>
   <data name="FEE_EMAILTIPS_DONE" xml:space="preserve">
-    <value>{0}电站管理员你好！ 感谢您使用SolarInfo Bank系统管理您的电站。您所使用的下列电站服务已经到期，为不影响您的使用请及时联系客服人员续租您的服务。联系电话：086-0551-XXXXXXXX 电子邮箱:service@sungrowpower.com “{1}电站” 已于 {2} 到期。</value>
+    <value>{0}电站管理员你好!&lt;br /&gt;&amp;nbsp;&amp;nbsp;感谢您使用SolarInfo Bank系统管理您的电站。您所使用的下列电站服务已经到期，为不影响您的使用请及时联系客服人员续租您的服务。&lt;br /&gt;电子邮箱:Service@sungrowpower.com Service@sungrow.cn。{1}。</value>
   </data>
   <data name="FEE_EMAILTIPS_WILL" xml:space="preserve">
-    <value>{0}电站管理员你好！ 感谢您使用SolarInfo Bank系统管理您的电站。您所使用的下列电站服务即将到期，为不影响您的使用请及时联系客服人员续租您的服务，以避免对您使用上造成不便。 “{1}电站” 到期时间：{2} 。</value>
+    <value>{0}电站管理员你好!&lt;br /&gt;&amp;nbsp;&amp;nbsp;感谢您使用SolarInfo Bank系统管理您的电站。您所使用的下列电站服务即将到期，为不影响您的使用请及时联系客服人员续租您的服务，以避免对您使用上造成不便。{1}。</value>
   </data>
   <data name="FEE_EXPRIE" xml:space="preserve">
     <value>您的{0}电站服务已到期。</value>
@@ -5626,5 +5626,14 @@
   </data>
   <data name="FEE_XUFEI" xml:space="preserve">
     <value>您的{0}电站服务已到期,请及时续租您的服务。</value>
+  </data>
+  <data name="USER_BIGSCREEN_LOGO_INTERVAL_DAYS" xml:space="preserve">
+    <value>全屏日图表间隔</value>
+  </data>
+  <data name="FEE_EMAILTIPS_DONE_FOMART" xml:space="preserve">
+    <value>&lt;br /&gt;“{0}电站” 已于 {1} 到期</value>
+  </data>
+  <data name="FEE_EMAILTIPS_WILL_FOMART" xml:space="preserve">
+    <value>&lt;br /&gt;“{0}电站” 到期时间：{1}</value>
   </data>
 </root>

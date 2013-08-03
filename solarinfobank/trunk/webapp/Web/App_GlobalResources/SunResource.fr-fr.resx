@@ -1437,7 +1437,7 @@
     <value>Contactez</value>
   </data>
   <data name="SHARED_MAINMASTREPAGE_COPYRIGHT" xml:space="preserve">
-    <value>Copyright &amp;copy; 2012 {0} , v1.0.18 Beta , Browse Resolution: 1024x768</value>
+    <value>Copyright &amp;copy; 2013 {0} , v1.0.19 Beta , Browse Resolution: 1024x768</value>
   </data>
   <data name="SHARED_MAINMASTREPAGE_HOME" xml:space="preserve">
     <value>Accueil</value>
@@ -5560,21 +5560,30 @@ The average value of coefficient will trigger warning
     <value>Données cellulaires</value>
   </data>
   <data name="FEE_EMAILTIPS_DONE" xml:space="preserve">
-    <value>{0}电站管理员你好！ 感谢您使用SolarInfo Bank系统管理您的电站。您所使用的下列电站服务已经到期，为不影响您的使用请及时联系客服人员续租您的服务。联系电话：086-0551-XXXXXXXX 电子邮箱:service@sungrowpower.com “{1}电站” 已于 {2} 到期。</value>
+    <value>{0} directeur de la station Bonjour! &lt;br /&gt;&amp;nbsp;&amp;nbsp;Merci d'utiliser système bancaire SolarInfo pour gérer votre station. Vous utilisez le service de l'usine suivante avait expiré, pour ne pas affecter votre utilisation, veuillez contacter le service client de renouveler votre service. E-mail: service@sungrowpower.com Service@sungrow.cn {1}.</value>
   </data>
   <data name="FEE_EMAILTIPS_WILL" xml:space="preserve">
-    <value>{0}电站管理员你好！ 感谢您使用SolarInfo Bank系统管理您的电站。您所使用的下列电站服务即将到期，为不影响您的使用请及时联系客服人员续租您的服务，以避免对您使用上造成不便。 “{1}电站” 到期时间：{2} 。</value>
+    <value>{0} directeur de la station Bonjour! &lt;br /&gt;&amp;nbsp;&amp;nbsp;Merci d'utiliser système bancaire SolarInfo pour gérer votre station. Vous utilisez le service de l'usine qui suit est sur le point d'expirer, afin de ne pas affecter votre utilisation, veuillez contacter le service client pour renouveler vos services, afin d'éviter tout désagrément à votre utilisation. {1}.</value>
   </data>
   <data name="FEE_EXPRIE" xml:space="preserve">
     <value>您的{0}电站服务已到期。</value>
   </data>
   <data name="FEE_MESSAGETIPS_DONE" xml:space="preserve">
-    <value>您所使用的{0}电站服务已经到期，请及时续租您的服务。</value>
+    <value>Vous utilisez une station-service {0} a expiré, s'il vous plaît renouveler votre service.</value>
   </data>
   <data name="FEE_MESSAGETIPS_WILL" xml:space="preserve">
-    <value>您所使用的{0}电站服务还剩{1}天到期，请及时续租您的服务。</value>
+    <value>Vous utilisez une station-service {0}, gauche {1} jours expire, veuillez renouveler votre service.</value>
   </data>
   <data name="FEE_XUFEI" xml:space="preserve">
-    <value>您的{0}电站服务已到期,请及时续租您的服务。</value>
+    <value>Votre service de la station de {0} a expiré, s'il vous plaît renouveler votre service.</value>
+  </data>
+  <data name="USER_BIGSCREEN_LOGO_INTERVAL_DAYS" xml:space="preserve">
+    <value>Tableau des intervalles de la journée</value>
+  </data>
+  <data name="FEE_EMAILTIPS_DONE_FOMART" xml:space="preserve">
+    <value>&lt;br /&gt; "station {0}" a Expire {1}</value>
+  </data>
+  <data name="FEE_EMAILTIPS_WILL_FOMART" xml:space="preserve">
+    <value>&lt;br /&gt; "Station {0}" Expiration Date: {1}</value>
   </data>
 </root>

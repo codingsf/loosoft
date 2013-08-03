@@ -5861,7 +5861,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 {0}电站管理员你好！ 感谢您使用SolarInfo Bank系统管理您的电站。您所使用的下列电站服务已经到期，为不影响您的使用请及时联系客服人员续租您的服务。联系电话：086-0551-XXXXXXXX 电子邮箱:service@sungrowpower.com “{1}电站” 已于 {2} 到期。 的本地化字符串。
+        ///   查找类似  {0} station manager Hello! &lt;br /&gt;&amp;nbsp;&amp;nbsp;Thank you for using SolarInfo Bank System to manage your station. You are using the following plant service had expired, to not affect your use, please contact customer service to renew your service. E-mail: service@sungrowpower.com,Service@sungrow.cn. {1}. 的本地化字符串。
         /// </summary>
         internal static string FEE_EMAILTIPS_DONE {
             get {
@@ -5870,11 +5870,29 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 {0}电站管理员你好！ 感谢您使用SolarInfo Bank系统管理您的电站。您所使用的下列电站服务即将到期，为不影响您的使用请及时联系客服人员续租您的服务，以避免对您使用上造成不便。 “{1}电站” 到期时间：{2} 。 的本地化字符串。
+        ///   查找类似 &lt;br /&gt;&quot;{0} station&quot; has Expire  {1} 的本地化字符串。
+        /// </summary>
+        internal static string FEE_EMAILTIPS_DONE_FOMART {
+            get {
+                return ResourceManager.GetString("FEE_EMAILTIPS_DONE_FOMART", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 {0} station manager Hello! &lt;br /&gt;&amp;nbsp;&amp;nbsp;Thank you for using SolarInfo Bank System to manage your station. You are using the following plant service is about to expire, in order not to affect your use, please contact customer service to renew your services, in order to avoid inconvenience to your use. {1}. 的本地化字符串。
         /// </summary>
         internal static string FEE_EMAILTIPS_WILL {
             get {
                 return ResourceManager.GetString("FEE_EMAILTIPS_WILL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 &lt;br /&gt; &quot;{0} station&quot; Expiry Date: {1} 的本地化字符串。
+        /// </summary>
+        internal static string FEE_EMAILTIPS_WILL_FOMART {
+            get {
+                return ResourceManager.GetString("FEE_EMAILTIPS_WILL_FOMART", resourceCulture);
             }
         }
         
@@ -5888,7 +5906,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 您所使用的{0}电站服务已经到期，请及时续租您的服务。 的本地化字符串。
+        ///   查找类似 You are using {0} station service has expired, please renew your service. 的本地化字符串。
         /// </summary>
         internal static string FEE_MESSAGETIPS_DONE {
             get {
@@ -5897,7 +5915,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 您所使用的{0}电站服务还剩{1}天到期，请及时续租您的服务。 的本地化字符串。
+        ///   查找类似 You are using {0} station service, left {1} days expire, please renew your service. 的本地化字符串。
         /// </summary>
         internal static string FEE_MESSAGETIPS_WILL {
             get {
@@ -5906,7 +5924,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 您的{0}电站服务已到期,请及时续租您的服务。 的本地化字符串。
+        ///   查找类似 Your {0} station service has expired, please renew your service. 的本地化字符串。
         /// </summary>
         internal static string FEE_XUFEI {
             get {
@@ -11517,7 +11535,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Copyright &amp;copy; 2012 {0} , v1.0.18 Beta , Browse Resolution: 1024x768 的本地化字符串。
+        ///   查找类似 Copyright &amp;copy; 2013 {0} , v1.0.19 Beta , Browse Resolution: 1024x768 的本地化字符串。
         /// </summary>
         internal static string SHARED_MAINMASTREPAGE_COPYRIGHT {
             get {
@@ -12976,6 +12994,15 @@ namespace Resources {
         internal static string USER_APPLAY_COLLECTOR_NOTICE {
             get {
                 return ResourceManager.GetString("USER_APPLAY_COLLECTOR_NOTICE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Day Chart interval 的本地化字符串。
+        /// </summary>
+        internal static string USER_BIGSCREEN_LOGO_INTERVAL_DAYS {
+            get {
+                return ResourceManager.GetString("USER_BIGSCREEN_LOGO_INTERVAL_DAYS", resourceCulture);
             }
         }
         

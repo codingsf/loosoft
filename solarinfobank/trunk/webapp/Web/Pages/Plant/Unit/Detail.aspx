@@ -66,26 +66,27 @@
                         </td>
                     </tr>
                     <%
-                                    if (ViewData["plantUnits"] != null)
-                                    {
-                                        int i = 1;
+                    if (ViewData["plantUnits"] != null)
+                    {
+                        int i = 1;
 
-                                        CollectorMonthDayData cmData = null;
-                                        CollectorYearData cyData = null;
-                                        float designPower = 1;
-                                        foreach (PlantUnit plantUnit in ViewData["plantUnits"] as IList<PlantUnit>)
-                                        {
-                                            float currentMonthEnergy = 0;
-                                            float currentYearEnergy = 0;
-                                            cmData  = CollectorMonthDayDataService.GetInstance().GetCollectorMonthDayData(DateTime.Now.Year, plantUnit.collector.id, DateTime.Now.Month);
-                                            currentMonthEnergy = cmData == null ? 0 : cmData.count();
-                                                cyData=CollectorYearDataService.GetInstance().GetCollectorYearData(plantUnit.collector.id,DateTime.Now.Year);
-                                                currentYearEnergy = cyData == null ? 0 : cyData.dataValue;
-                                                designPower = Model.unitPower(plantUnit.id);
-                                            i++;
+                        CollectorMonthDayData cmData = null;
+                        CollectorYearData cyData = null;
+                        float designPower = 1;
+                        foreach (PlantUnit plantUnit in ViewData["plantUnits"] as IList<PlantUnit>)
+                        {
+                            float currentMonthEnergy = 0;
+                            float currentYearEnergy = 0;
+                            cmData  = CollectorMonthDayDataService.GetInstance().GetCollectorMonthDayData(DateTime.Now.Year, plantUnit.collector.id, DateTime.Now.Month);
+                            currentMonthEnergy = cmData == null ? 0 : cmData.count();
+                            cyData=CollectorYearDataService.GetInstance().GetCollectorYearData(plantUnit.collector.id,DateTime.Now.Year);
+                            currentYearEnergy = cyData == null ? 0 : cyData.dataValue;
+                            designPower = Model.unitPower(plantUnit.id);
+                            
+                            i++;
                                             
                     %>
-                 <tr>
+                    <tr>
                         <td>
                             <table class="down_line0<%= i%2 %>" border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tbody><tr>
@@ -133,10 +134,10 @@
                                         <%=currentMonthEnergy%>
                                     </td>
                                     <td width="135px" align="center">
-                                       <%=Math.Round(currentMonthEnergy / designPower, 2).Equals(double.NaN) ? 0 : Math.Round(currentMonthEnergy / designPower, 2)%>
+                                       <%=(designPower == 0 || Math.Round(currentMonthEnergy / designPower, 2).Equals(double.NaN)) ? 0 : Math.Round(currentMonthEnergy / designPower, 2)%>
                                     </td>
                                     <td width="135px" align="center">
-                                        <%=Math.Round(currentYearEnergy / designPower, 2).Equals(double.NaN) ? 0 : Math.Round(currentYearEnergy / designPower, 2)%>
+                                        <%=(designPower==0 || Math.Round(currentYearEnergy / designPower, 2).Equals(double.NaN)) ? 0 : Math.Round(currentYearEnergy / designPower, 2)%>
                                     </td>
                                 </tr>
                             </tbody></table>

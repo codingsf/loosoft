@@ -47,9 +47,8 @@
     </cacheModel>
   </cacheModels>
 
-  
   <statements>
-    <select id="device_get_plantunitid_lazy"  resultMap="DeviceResult" parameterClass="int" cacheModel="device_cache_lazy">
+    <select id="device_get_plantunitid_lazy"  resultClass="Device" parameterClass="int" cacheModel="device_cache_lazy">
       SELECT *  FROM  device WHERE plantunitId=#value# and (parentId is null or parentId=0)
     </select>
     

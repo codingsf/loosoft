@@ -2088,7 +2088,14 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 handlePlants = plants;
                 timezone = user.timezone;
-                //timezone = plants[0].timezone;
+            }
+            string deviceIds = "";
+            foreach (Plant plant in handlePlants)
+            {
+                foreach (Device device in plant.displayDevices())
+                {
+                    deviceIds += "," + device.id;
+                }
             }
 
             ViewData["plants"] = plants;
@@ -2098,82 +2105,23 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             int month = int.Parse(yyyyMMdd.Split('-')[1]);
             int day = int.Parse(yyyyMMdd.Split('-')[2]);
             ViewData["yyyyMMdd"] = yyyyMMdd;
-            //循环处理多个电站
-            IList<Hashtable> datas = new List<Hashtable>();
-            Hashtable data = null;
-            DeviceMonthDayData dmdd = null;
-            foreach (Plant plant in handlePlants)
+            int pageNo = 1;
+
+            Pager page = new Pager() { PageSize = 2000, PageIndex = pageNo };
+            Hashtable table = new Hashtable();
+            table.Add("page", page);
+            table.Add("startDate", yyyyMMdd);
+            table.Add("endDate", yyyyMMdd);
+            if (deviceIds.Length > 0) deviceIds = deviceIds.Substring(1);
+            table.Add("deviceIds", deviceIds);
+            IList<Energywarn> lists = new List<Energywarn>();
+            if (!deviceIds.Equals(""))
             {
-                //如果该电站没有设置系数，那么不处理
-                if (!plant.rateEnable)
-                    continue;
-
-                if (plant.energyRate == null || double.IsNaN(plant.energyRate.Value))
-                    continue;
-
-                //找出电站非隐藏的逆变器
-                IList<Device> devices = plant.typeDevices(DeviceData.INVERTER_CODE);
-
-                //逐个判断逆变器设备是否有发电量比例告警，并将有告警的设备放入Hashtable中
-                //首先取得电站设备的平均发电量
-                double totalEnergy = 0;
-                int deviceNum = 0;
-                foreach (Device device in devices)
-                {
-                    //if (device.isWork(plant.timezone))
-                    //{
-                    dmdd = DeviceMonthDayDataService.GetInstance().GetDeviceMonthDayData(year, device.id, month);
-                    totalEnergy += dmdd.getDayData(day);
-                    deviceNum++;
-                    //}
-                }
-                //double aveageEnergy = 0;
-                //有设备才计算平均值
-                //if (deviceNum > 0)
-                //{
-                //aveageEnergy = totalEnergy / deviceNum;
-                //}
-
-                //电站平均kwp发电量
-                double avgRate = plant.design_power == 0 ? 0 : totalEnergy / plant.design_power;
-                if (avgRate > 0)
-                {
-                    //获取每个设备的发电量比率
-                    double rate = 0;
-                    double bizhi = 1;
-                    foreach (Device device in devices)
-                    {
-                        //if (device.isWork(plant.timezone))
-                        //{
-                        data = new Hashtable();
-                        dmdd = DeviceMonthDayDataService.GetInstance().GetDeviceMonthDayData(year, device.id, month);
-                        //rate = (dmdd.getDayData(day) - aveageEnergy) / aveageEnergy;
-                        rate = device.designPower == 0 ? 0 : dmdd.getDayData(day) / device.designPower;
-
-                        bizhi = avgRate == 0 ? 0 : rate / avgRate;
-                        if (bizhi < plant.maxEnergyRate && bizhi > plant.energyRate) continue;
-
-                        bizhi = Math.Round(bizhi, 2);
-                        data["plantName"] = plant.name;
-                        data["deviceName"] = device.fullName;
-                        data["energy"] = Math.Round(rate, 2);//Math.Round(dmdd.getDayData(day), 2);
-                        data["average"] = Math.Round(avgRate, 2);// Math.Round(aveageEnergy, 2);
-                        if (bizhi < plant.energyRate)
-                        {
-                            data["rate"] = plant.energyRate;
-                            data["prate"] = bizhi + "/" + plant.energyRate;
-                        }
-                        else
-                        {
-                            data["rate"] = plant.maxEnergyRate;
-                            data["prate"] = bizhi + "/" + plant.maxEnergyRate;
-                        }
-                        datas.Add(data);
-                        //}
-                    }
-                }
+                lists = EnergywarnService.GetInstance().GetEnergywarnPage(table);
             }
-            ViewData["datas"] = datas;
+
+            ViewData["page"] = page;
+            ViewData["datas"] = lists;
             return View();
         }
 

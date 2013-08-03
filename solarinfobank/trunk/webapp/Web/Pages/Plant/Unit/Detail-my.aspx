@@ -126,10 +126,10 @@
                                         <%=currentMonthEnergy%>
                                     </td>
                                     <td width="120px" align="center">
-                                       <%=Math.Round(currentMonthEnergy / plantUnit.chartPower, 2).Equals(double.NaN) ? 0 : Math.Round(currentMonthEnergy / plantUnit.chartPower, 2)%>
+                                       <%=plantUnit.chartPower==0 || Math.Round(currentMonthEnergy / plantUnit.chartPower, 2).Equals(double.NaN) ? 0 : Math.Round(currentMonthEnergy / plantUnit.chartPower, 2)%>
                                     </td>
                                     <td width="120px" align="center">
-                                        <%=Math.Round(currentYearEnergy / plantUnit.chartPower, 2).Equals(double.NaN) ? 0 : Math.Round(currentYearEnergy / plantUnit.chartPower, 2)%>
+                                        <%=plantUnit.chartPower==0 || Math.Round(currentYearEnergy / plantUnit.chartPower, 2).Equals(double.NaN) ? 0 : Math.Round(currentYearEnergy / plantUnit.chartPower, 2)%>
                                     </td>
                                 </tr>
                             </tbody></table>

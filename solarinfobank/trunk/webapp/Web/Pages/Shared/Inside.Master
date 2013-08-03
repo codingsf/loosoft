@@ -518,8 +518,8 @@
                                                 href="/unit/list/<%=Model.id%>">
                                                 <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_UNIT_LIST%>(<%=Model.plantUnits.Count%>)
                                                 <%
-                                                    if (Model.isUnitFault)
-                                                    {
+                                                if (Model.isUnitFault)
+                                                {
                                                 %>
                                                 <img src="/images/warning_16.gif" alt="" />
                                                 <%} %>
@@ -708,7 +708,6 @@
                                             <%
                                             if (AuthService.isAllow(AuthorizationCode.CREATE_CHART) && !UserUtil.isDemoUser)
                                               { 
-                                                
                                                 %>
                                             <li><a onclick="loadContent('content_ajax','/plant/includecustomcharts/<%=Model.id%>','iframe','GET');setcurrent(this);return false;"
                                                 href="/plant/includecustomcharts/<%=Model.id%>">

@@ -155,7 +155,7 @@
                                         <%=plant.name %>
                                     </td>
                                     <td width="12%" align="center" class="am_line0<%=i%2 %>">
-                                        <%= plant.User.username %>
+                                        <%=plant.User==null?"":plant.User.username %>
                                     </td>
                                     <td width="12%" align="center" class="am_line0<%=i%2 %>">
                                         <%=plant.installdate.ToShortDateString() %>

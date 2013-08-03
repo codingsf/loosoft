@@ -118,31 +118,30 @@
                               <td width="100" align="center"><strong><%=Resources.SunResource.USER_LOG_DEVICE %></strong> </td>
                               <td width="150" align="center"><strong><%=Resources.SunResource.USER_OVERVIEW_ENERGY%></strong></td>
                               <td width="70" align="center"><strong><%=Resources.SunResource.CUSTOMREPORT_AVG%></strong></td>
-                              <td width="175" align="center"><strong> <%=Resources.SunResource.ENERGYWARN_PERCENT%></strong></td>
+                              <td width="175" align="center"><strong><%=Resources.SunResource.ENERGYWARN_PERCENT%></strong></td>
                               </tr>
                           </table></td>
                         </tr>
                         
                          <%
                              int i=0;
-                             foreach (Hashtable data in ViewData["datas"] as IList<Hashtable>)
+                             foreach (Energywarn data in ViewData["datas"] as IList<Energywarn>)
                              {
                                  i++;
-
                          %>        
                          <tr>
                           <td>
                           <table width="730" style="word-break:break-all;word-wrap:break-word; line-height:24px;"  border="0" cellpadding="0" cellspacing="0" class="down_line0<%=i%2 %>">
                             <tr>
                               <td width="170" align="center" style="width:170px; overflow:hidden; white-space:normal;">
-                              <%=data["plantName"]%>
+                              <%=data.device.plant.name%>
                               </td>
                               <td width="100" align="center">
-                              <%=data["deviceName"]%>
+                              <%=data.device.fullName%>
                               </td>
-                              <td width="150" align="center"> <%=data["energy"]%></td>
-                              <td width="70" align="center"><%=data["average"]%></td>                  
-                              <td width="175" align="center"><%=data["prate"]%></td>
+                              <td width="150" align="center"> <%=data.factValue%></td>
+                              <td width="70" align="center"><%=data.averageValue%></td>                  
+                              <td width="175" align="center"><%=data.factRate%></td>
                               </tr>
                           </table>
                           </td>

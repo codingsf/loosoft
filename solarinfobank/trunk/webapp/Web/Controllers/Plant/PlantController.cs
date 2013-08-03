@@ -86,7 +86,19 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             User curUser = UserUtil.getCurUser();
             if (curUser.Exists(id) == false)
                 return Redirect("/auth/deny");
+
             Plant plant = PlantService.GetInstance().GetPlantInfoById(id);
+           
+            //add by hbqian for 增加判断是否有设备关系处理，确保设备和单元进行绑定 at 2013-07-31
+            foreach (PlantUnit pu in plant.plantUnits)
+            {
+                Collector collector = CollectorInfoService.GetInstance().GetCollectorById(pu.collectorID);
+                if (collector.devices.Count > 0)
+                {
+                    bindDeviceToUnit(collector, pu.id);
+                }
+            }
+
             SetPaymentLimitDate(plant.PaymentLimitDate);
             return View(plant);
         }
@@ -2451,19 +2463,14 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             ViewData["plantID"] = plant.id;
             if (plant.plantUnits.Count > 0)
             {
-                bool isHasDevice = false;
                 foreach (PlantUnit pu in plant.plantUnits)
                 {
-                    isHasDevice = false;
                     if (pu.displayDevices.Count > 0)
                     {
-                        isHasDevice=true;
                         ViewData["unitID"] = pu.id;//第一个单元
                         ViewData["deviceID"] = pu.displayDevices.OrderByDescending(m => m.deviceModelCode).ToList<Device>()[0].id;//第一个设备
                         break;
                     }
-                    if (!isHasDevice)
-                        bindDeviceToUnit(pu.collectorID,pu.id);
                 }
             }
 
@@ -2603,19 +2610,14 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
         /// </summary>
         /// <param name="collector"></param>
         /// <param name="plantUnitId"></param>
-        private void bindDeviceToUnit(int collectorId, int plantUnitId)
+        private void bindDeviceToUnit(Collector collector, int plantUnitId)
         {
-            Collector collector = CollectorInfoService.GetInstance().GetCollectorById(collectorId);
             if (collector == null) return;
-            //绑定采集器要更新没有plantunitid的设备的plantunitid parenid
-            PlantUnit tmpPU = null;
             foreach (Device device in collector.devices)
             {
-                //判断原有属主是否存在，如果不存在，并且不是自己
-                if (device.plantUnitId != null && device.plantUnitId.Value > 0 && device.plantUnitId.Value != plantUnitId)
+                //已有属主的话就不在更新了
+                if (device.plantUnitId != null && device.plantUnitId.Value > 0)
                 {
-                    tmpPU = plantUnitService.GetPlantUnitById(device.plantUnitId.Value);//根据unitid去查询，判断是否存在
-                    if (tmpPU != null)//已有属主并且属主不是当前单元则不纳入该单元
                         continue;
                 }
                 device.parentId = 0;
@@ -2624,6 +2626,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
                 DeviceService.GetInstance().Save(device);
             }
         }
+
         /// <summary>
         /// 补偿设置
         /// </summary>

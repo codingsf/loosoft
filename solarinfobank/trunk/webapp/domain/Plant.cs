@@ -421,7 +421,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                     {
                         total += cplant.TotalDayEnergy;
                     }
-
                 }
                 else//没子电站则累加单元发电量
                 {

@@ -11,7 +11,7 @@
     <title>
         <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
     </title>
-    <% Html.RenderPartial("css"); %>
+    <% Html.RenderPartial("css"); %>    
     <meta http-equiv="pragma" content="cache" />
     <asp:ContentPlaceHolder ID="CustomHead" runat="server" />
     <%--<style type="text/css">
@@ -54,7 +54,13 @@
             background: #fff;
         }
     </style>--%>
-      <style>
+    <% 
+    User curUser = UserUtil.getCurUser();
+    ItemConfig config = ItemConfigService.GetInstance().GetItemConfigByName(ItemConfig.Payment);
+    IList<PlantPaymentVO> unPayPlants = curUser.UnPaymentPlants((int)config.value);
+    int unPayPlantNum = unPayPlants.Count();
+    %>
+    <style type="text/css">
     #scrollDiv{height:23px;overflow:hidden; float:left; width:700px;  }
     #scrollDiv ul{ float:left; list-style:None; margin:0px; padding:0px;}
     #scrollDiv ul li{ text-align:left; line-height:23px;}
@@ -244,8 +250,9 @@
 
     <script src="/Script/jquery.colorbox.js" type="text/javascript"></script>
 
-    <script src="../../script/jquery.fullscreen.js" type="text/javascript"></script>
-    
+    <script src="/script/jquery.fullscreen.js" type="text/javascript"></script>
+    <%if (unPayPlantNum > 1)
+    {%>
     <script type="text/javascript">
         (function($) {
             $.fn.myScroll = function(options) {
@@ -297,33 +304,33 @@
             }
 
         })(jQuery);
-
-
-</script>	
-
-    <script src="/script/jquery.scroll.js" type="text/javascript"></script>
+    </script>	
+    <%}%>
+<script src="/script/jquery.scroll.js" type="text/javascript"></script>
 </head>
 <body>
-    <% 
-       User curUser = UserUtil.getCurUser();
-       ItemConfig config = ItemConfigService.GetInstance().GetItemConfigByName(ItemConfig.Payment);
-        %>
-
         <div class="mainbody">
             <% Html.RenderPartial("header"); %>
             <div class="mainbox">
                 <div class="main_wz">
                 <div id="scrollDiv">
                 <ul>
-                <%foreach (PlantPaymentVO plant in curUser.UnPaymentPlants((int)config.value))
-                  { %>
+                <%
+                    User curUser = UserUtil.getCurUser();
+                    ItemConfig config = ItemConfigService.GetInstance().GetItemConfigByName(ItemConfig.Payment);
+                    IList<PlantPaymentVO> unPayPlants = curUser.UnPaymentPlants((int)config.value);
+                    foreach (PlantPaymentVO plant in unPayPlants)
+                    { %>
 			        <li><img style="vertical-align:middle" alt='' src="/images/clock.png"/>
+			        <font style=" color:#EF5808;">
 			        <% if (plant.Type == 1)
-                  Response.Write(string.Format(Resources.SunResource.FEE_MESSAGETIPS_DONE , plant.Name));
-              else
-                  Response.Write(string.Format(Resources.SunResource.FEE_MESSAGETIPS_WILL, plant.Name, plant.Days));
-                   %>
-			      <%}%>
+                        Response.Write(string.Format(Resources.SunResource.FEE_MESSAGETIPS_DONE , plant.Name));
+                       else
+                        Response.Write(string.Format(Resources.SunResource.FEE_MESSAGETIPS_WILL, plant.Name, plant.Days));
+                    %>
+                    </font>
+                    </li>
+			    <%}%>
 		        </ul>
                 </div>
                 <div style="float:right; text-align:right;">
@@ -334,7 +341,7 @@
                     <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_WELCOME_TO_COME  %>! | <a onclick="return logout()"
                         href="/auth/loginout">
                         <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_LOGOUT  %></a>
-                        </div>
+                </div>
                 </div>
                 <div>
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">

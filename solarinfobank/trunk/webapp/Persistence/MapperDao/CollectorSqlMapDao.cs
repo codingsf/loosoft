@@ -40,7 +40,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
         /// <returns>采集器对象</returns>
         public Collector GetCollectorById(int id)
         {
-            return ExecuteQueryForObject<Collector>("GET_COLLECTORINFO_BY_ID", id);
+            return ExecuteQueryForObject<Collector>("collector_get", id);
         }
 
         /// <summary>

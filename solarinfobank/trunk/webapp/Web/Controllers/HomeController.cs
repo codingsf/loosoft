@@ -206,7 +206,10 @@ namespace Web.Controllers
             ViewData["AllPlant"] = PlantService.GetInstance().GetPlantNum();
 
             double alltotalenergy = DeviceRunDataService.GetInstance().GetAllTotalEnergy();
-            double dayEnergy = CollectorRunDataService.GetInstance().GetAllDayEnergy();
+            //modify by hbqian at 2013-08-02 for 同一时刻 2个值结果不一致 ,首页和内部所有电站日发电量统计值不一致
+            //double dayEnergy = CollectorRunDataService.GetInstance().GetAllDayEnergy();
+            double dayEnergy = getAllPlantTodayEnergy();
+            //modify by hbqian at 2013-08-02 for 同一时刻 2个值结果不一致 ,首页和内部所有电站日发电量统计值不一致 end
             double co2Value = alltotalenergy * co2Rate;
             ViewData["co2Unit"] = Util.upCo2Unit(co2Value);
             ViewData["energyUnit"] = Util.upEnergyUnit(alltotalenergy);
@@ -216,6 +219,18 @@ namespace Web.Controllers
             ViewData["AllCO2"] = StringUtil.formatDouble(Util.upDigtal(co2Value));
             getPPics();
             getAdPics();
+        }
+        /// <summary>
+        /// 计算所有一级电站的总今日发电量
+        /// </summary>
+        /// <returns></returns>
+        private double getAllPlantTodayEnergy() {
+            double totalTotayEnergy = 0;
+            IList<Plant> plants = PlantService.GetInstance().GetPlantInfoList();
+            foreach(Plant plant in plants){
+                totalTotayEnergy += plant.TotalDayEnergy;
+            }
+            return totalTotayEnergy;
         }
 
         /// <summary>

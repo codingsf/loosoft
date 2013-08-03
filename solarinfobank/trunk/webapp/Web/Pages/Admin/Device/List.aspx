@@ -151,7 +151,7 @@
                                     <img src="/images/sub/subico010.gif" width="18" height="19" />
                                 </td>
                                 <td width="96%" class="dblack">
-                                    <a href="#" id="download" class="dbl">导出Execl文件</a>
+                                    <a href="#" id="download" class="dbl">导出Excel文件</a>
                                 </td>
                             </tr>
                         </table>

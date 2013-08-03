@@ -69,12 +69,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             CacheService.GetInstance().flushCaches();
             IList<Plant> plants = PlantService.GetInstance().GetPlantInfoList();
 
-            //循环灭个电站分别对其下面的逆变器设备进行处理
+            //循环每个电站分别对其下面的逆变器设备进行处理
             int timezone = 0;//电站时区
             int smallestYear = 0;
             DeviceMonthDayData dmdd = null;
             foreach (Plant plant in plants)
             {
+                if (plant.id != 178) continue;
                 timezone = plant.timezone;
                 //如果该电站没有设置系数，那么不处理
                 if (!plant.rateEnable)
@@ -89,7 +90,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     smallestYear = CollectorYearDataService.GetInstance().GetSmalledtWorkYear(plant);
                     //表示以前没有处理过，那么用电站的开始工作年度第一天开始处理
                     waitHandleDate = new DateTime(smallestYear, 1, 1);
-                    //waitHandleDate = CalenderUtil.curBeforeDateWithTimeZone(plant.timezone);
                 }
 
                 //如果上一次处理的时间和电站是同一天那么就要小时来间隔处理了
@@ -175,7 +175,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                             energywarn.factValue = Math.Round(rate, 2);
                             energywarn.downRate = plant.energyRate.Value;
                             energywarn.upRate = plant.maxEnergyRate.Value;
-                            energywarn.warndate = warndate;
+                            energywarn.warndate = warndate; 
                             energywarn.averageValue = Math.Round(avgRate, 2);
                             //创建一笔告警日志，存库
                             if (energywarn.id > 0)

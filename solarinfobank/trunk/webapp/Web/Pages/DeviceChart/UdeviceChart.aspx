@@ -48,7 +48,8 @@
             $('#unit').change(unitDeviceInit);
             //单元下面不在线时设备列表进行选择查看设备的信息了，不在需要18升级修改
             //unitDeviceInit();
-            loadInvertCompare(1);
+            var tabIndex= <%= (ViewData["hashlx"]!=null &&  bool.Parse( ViewData["hashlx"].ToString()))?0:1 %>;
+            loadInvertCompare(tabIndex);
            
         }
         

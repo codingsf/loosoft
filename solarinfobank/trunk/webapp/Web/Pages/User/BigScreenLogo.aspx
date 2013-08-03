@@ -105,7 +105,7 @@
                         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                         <tr>
                                 <td width="29%" height="35" class="pr_10">
-                                   全屏日图表间隔：
+                                   <%=Resources.SunResource.USER_BIGSCREEN_LOGO_INTERVAL_DAYS%>：
                                 </td>
                                 <td width="27%">
                                    <select class="txtbu01" name="fullscreenChartDays" id="fullscreenChartDays">

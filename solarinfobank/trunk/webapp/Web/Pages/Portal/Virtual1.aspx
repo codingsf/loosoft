@@ -351,7 +351,7 @@
     <div class="gf_footer">
         <div class="gf_boxb">
             <span class="tspanl">
-                <%=ViewData["footer"] %></span> <span class="tspanr">版权 @ 2012 SolarInfo Bank , v1.0.18
+                <%=ViewData["footer"] %></span> <span class="tspanr">版权 @ 2013 SolarInfo Bank , v1.0.19
                     Alpha, 分辨率: 1024x768 </span>
         </div>
     </div>

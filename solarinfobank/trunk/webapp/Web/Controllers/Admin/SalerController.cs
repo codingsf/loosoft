@@ -9,6 +9,7 @@ using Cn.Loosoft.Zhisou.SunPower.Common;
 using System.Collections;
 using Dimac.JMail;
 using Common;
+using Cn.Loosoft.Zhisou.SunPower.Common.vo;
 
 namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 {
@@ -45,25 +46,86 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             return View(plants);
         }
 
+        public class PlantUserIdComparer : IEqualityComparer<Plant>
+        {
+            public bool Equals(Plant x, Plant y)
+            {
+                if (x == null)
+                    return y == null;
+                return x.userID == y.userID;
+            }
+
+            public int GetHashCode(Plant obj)
+            {
+                if (obj == null)
+                    return 0;
+                return obj.userID.GetHashCode();
+            }
+        }
+
         public ActionResult Warningpayment()
         {
+            #region 获取配置电站付费提醒天数
+            int limitDays = 30;
+            ItemConfig config = ItemConfigService.GetInstance().GetItemConfigByName(ItemConfig.Payment);
+            if (config != null && config.value > 0) limitDays = (int)config.value;
+            #endregion
+
+            //过滤相同的用户ID  Userid
             IList<Plant> plants = PlantService.GetInstance().GetPaymentExpiredList();
-            User user=null;
+            plants = plants.Distinct(new PlantUserIdComparer()).ToList<Plant>();
+
+            User user = null;
             foreach (Plant plant in plants)
             {
+                if (plant.userID.Equals(0)) continue;
+                user = UserService.GetInstance().Get(plant.userID);//根据电站取用户
+                if (string.IsNullOrEmpty(user.email))//邮箱不对跳过
+                    continue;
+
+                IList<Plant> expiredPlants = user.ExpiredPlants;
+                string msg = string.Empty;
+                foreach (Plant vo in expiredPlants)
+                    msg += string.Format(Resources.SunResource.FEE_EMAILTIPS_DONE_FOMART, vo.name, vo.PaymentLimitDate.ToString("yyyy-MM-dd"));
                 MailServerPoolObject obj = EmailConnectionPool.getMailServerPoolObject();
-                user=plant.User;
+                Message message = null;
                 try
                 {
-                    Message message = new Message();
-                    message.BodyText = string.Format(Resources.SunResource.FEE_EMAILTIPS_WILL, user.username, plant.name, plant.PaymentLimitDate.ToString("yyyy-MM-dd"));
+
+                    message = new Message();
+                    message.BodyHtml = string.Format(Resources.SunResource.FEE_EMAILTIPS_DONE, user.username, msg);
                     message.From.Email = obj.accountName;
                     message.To.Add(user.email);
-                    message.Subject = "续费了";
+                    message.Subject = "SolarInfoBank";
+                    if (expiredPlants.Count > 0)
+                    {
+                        obj.SendMail(message);
+                        //更新电站邮件最后发送时间
+                        foreach (Plant vo in expiredPlants)
+                        {
+                            vo.LastEmailRemindDate = DateTime.Now;
+                            PlantService.GetInstance().UpdateLastEmailRemindDate(vo);
+                        }
+                    }
+                    obj.close();
+
+                    expiredPlants = user.ExpireSoonPlants(limitDays);
+                    if (expiredPlants.Count.Equals(0))
+                        continue;
+                    msg = string.Empty;
+                    foreach (Plant vo in expiredPlants)
+                        msg += string.Format(Resources.SunResource.FEE_EMAILTIPS_WILL_FOMART, vo.name, vo.PaymentLimitDate.ToString("yyyy-MM-dd"));
+                    //下面发送即将到期电站邮件
+                    obj = EmailConnectionPool.getMailServerPoolObject();
+                    message.BodyHtml = string.Format(Resources.SunResource.FEE_EMAILTIPS_WILL, user.username, msg);
                     obj.SendMail(message);
                     obj.close();
-                    plant.LastEmailRemindDate = DateTime.Now;
-                    PlantService.GetInstance().UpdateLastEmailRemindDate(plant);
+                    //更新电站邮件最后发送时间
+                    foreach (Plant vo in expiredPlants)
+                    {
+                        vo.LastEmailRemindDate = DateTime.Now;
+                        PlantService.GetInstance().UpdateLastEmailRemindDate(vo);
+                    }
                 }
                 catch
                 {

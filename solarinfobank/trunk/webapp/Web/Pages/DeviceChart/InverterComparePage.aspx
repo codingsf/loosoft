@@ -426,7 +426,6 @@
             }
         }
 </script>
-
 <input type="hidden" value="<%=(ViewData["plantUnit"] as PlantUnit).id%>" id="uid" />
 <input type="hidden" value="<%=CalenderUtil.curDateWithTimeZone(Model.timezone,"yyyy")%>" id="year" />
 <input type="hidden" value="<%=ChartType.line %>" id="chartType" />
@@ -449,8 +448,11 @@
 <div class="subrbox01">
     <div class="bitab">
         <ul id="bitab">
+        <%if (bool.Parse(ViewData["hasinverter"].ToString()))
+              { %>
             <li><a href="javascript:void(0);" class="onclick" onclick="loadInvertCompare(1);">
                 <%=Resources.SunResource.DEVICETYPE_1 %></a></li>
+                <%} %>
             <%if (bool.Parse(ViewData["hashlx"].ToString()))
               { %>
             <li><a href="javascript:void(0);" onclick="loadInvertCompare(2);">

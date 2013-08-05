@@ -9,7 +9,7 @@
     <resultMap id="elecprice_result" class="ElecPrice">
       <result property="id"			column="id"/>
       <result property="ptype"			column="ptype"/>
-      <result property="plantId"			column="plantid"/>
+      <result property="plantId"			column="plantId"/>
       <result property="fromHm"   column="fromHm"/>
       <result property="toHm"   column="toHm"/>
       <result property="price"   column="price"/>

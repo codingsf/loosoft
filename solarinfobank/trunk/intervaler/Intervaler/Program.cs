@@ -43,7 +43,6 @@ namespace Intervaler
                 deviceSenderTimer.Enabled = true;
             };
 
-
             reportTimer.AutoReset = true;
             reportTimer.Enabled = true;
             eventTimer.AutoReset = true;

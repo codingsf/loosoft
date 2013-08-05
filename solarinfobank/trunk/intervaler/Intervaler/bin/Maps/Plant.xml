@@ -70,8 +70,7 @@
 
       <result property="User" lazyLoad="true" column="userID" select="user_get_lazy_class" />
       <!--
-      <result property="yearCompensation" lazyLoad="false" column="id" select="plant_yearcompensation_lazy_getlist" />
-      -->
+      <result property="yearCompensation" lazyLoad="false" column="id" select="plant_yearcompensation_lazy_getlist" />-->
     </resultMap>
   </resultMaps>
 

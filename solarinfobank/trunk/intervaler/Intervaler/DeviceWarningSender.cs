@@ -20,11 +20,10 @@ namespace Intervaler
         private static DateTime lastModified;
         private readonly string domainUrl = System.Configuration.ConfigurationSettings.AppSettings["url"];
         /// <summary>
-        /// 获取所有定义报表
+        /// 获取所有电站
         /// </summary>
         private void InitData()
         {
-
             if (allPlants == null || allPlants.Count == 0 || (DateTime.Now - lastModified).TotalMinutes > cacheMinutes)
             {
                 lastModified = DateTime.Now;
@@ -32,9 +31,7 @@ namespace Intervaler
                     allPlants.Clear();
                 allPlants = plantService.GetPlantInfoList();
             }
-            Console.WriteLine("loading plant successed "+ allPlants.Count);
-
-
+            Console.WriteLine("loading plant successed " + allPlants.Count);
         }
 
         public void Run()
@@ -69,6 +66,7 @@ namespace Intervaler
                         }
                         if (collectorString.Length > 1)
                             collectorString = collectorString.Substring(0, collectorString.Length - 1);
+                        if (string.IsNullOrEmpty(collectorString)) continue;
                         fault.collectorString = collectorString;
                         IList<Fault> plantFaults = null;
                         try

@@ -46,6 +46,12 @@ namespace Intervaler
             ReportConfigService.GetInstance().UPdateReportLastSendTime(config);
         }
 
+        /// <summary>
+        /// 取出某个时间之后的日志
+        /// </summary>
+        /// <param name="pid"></param>
+        /// <param name="lastModified"></param>
+        /// <returns></returns>
         private IList<Fault> LoadEventLogs(int pid, DateTime lastModified)
         {
             return faultService.GetEventReportLogs(PidToCids(pid), lastModified);
@@ -122,11 +128,14 @@ namespace Intervaler
                 if (plant == null)
                     continue;
                 Console.WriteLine("start handle event report of "+plant.name+" last send time is :"+config.lastSendTime);
+                //取出lastSendTime时间之后的日志
                 faults = LoadEventLogs(config.plantId, config.lastSendTime);
                 //Console.WriteLine("fault count is :"+faults.Count);
                 //if (faults == null || faults.Count < logLength)
                 if (faults == null || faults.Count == 0)
+                {
                     continue;
+                }
                 string lang = "en-us";
                 User user = UserService.GetInstance().Get(int.Parse(config.sendMode));
                 if (user!=null&&user.Language != null && string.IsNullOrEmpty(user.Language.codename) == false)
@@ -173,7 +182,7 @@ namespace Intervaler
                     {
                         Console.WriteLine("fail insert");
                     }
-                    config.lastSendTime = (DateTime)resArr[1];
+                    config.lastSendTime = (DateTime)resArr[1];//将最近的一个日志时间作为上次处理时间，后续再从这个时间之后的日志处理
                     Thread.Sleep(1000);
                     if(faults.Last().id.Equals(temp.Last().id))
                     {

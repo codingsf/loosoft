@@ -1515,7 +1515,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
         }
 
         [HttpPost]
-        public ActionResult AllPlants(string country, string city, string items, string design_power_start, string design_power_end, int? index, string area, string estartdate, string eenddate, string uname, string sdayenergy, string edayenergy, string bindcollector, string sttlenergy, string ettlenergy)
+        public ActionResult AllPlants(string country, string city, string items, string design_power_start, string design_power_end, int? index, string area, string estartdate, string eenddate, string uname, string sdayenergy, string edayenergy, string bindcollector, string sttlenergy, string ettlenergy,string pname)
         {
             string uids = "0,";
             if (string.IsNullOrEmpty(uname) == false)
@@ -1545,6 +1545,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             table.Add("sttlenergy", sttlenergy);
             table.Add("ettlenergy", ettlenergy);
             table.Add("bindcollector", bindcollector);
+            table.Add("pname", pname);
             table.Add("uids", uids);
             table.Add("page", page);
             IList<Plant> plants = plantService.QueryPagePlants(table);
@@ -1554,7 +1555,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
         }
 
         [HttpPost]
-        public ActionResult AllPlants_Counter(string country, string city, string items, string design_power_start, string design_power_end, int? index, string area, string estartdate, string eenddate, string uname)
+        public ActionResult AllPlants_Counter(string country, string city, string items, string design_power_start, string design_power_end, int? index, string area, string estartdate, string eenddate, string uname,string pname)
         {
             string uids = "0,";
             if (string.IsNullOrEmpty(uname) == false)
@@ -1579,6 +1580,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             table.Add("design_power_start", design_power_start);
             table.Add("uids", uids);
             table.Add("design_power_end", design_power_end);
+            table.Add("pname", pname);
             table.Add("page", page);
             IList<Plant> plants = plantService.QueryPagePlants(table);
             ExcelData eData = BuildPlantDetails(plants, items, estartdate, eenddate);

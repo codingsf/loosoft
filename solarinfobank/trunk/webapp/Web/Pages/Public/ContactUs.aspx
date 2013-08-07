@@ -16,7 +16,7 @@
 <div class="xcy_pr">
 <div class="xcy_ico01">Foreign contact </div>
 <div class="lx_ab">
-   <strong>Add: </strong>No.2 Tianhu Rd., New &amp; High Technology Industrial Development                 <br />
+   <strong>Add: </strong>No.1699 Xiyou Rd.,New & High Technology Industrial Development Zone, 230088,Hefei, P. R. China.              <br />
     <strong>Zone:</strong> Hefei, P.R.China. <br />
     <strong>Post Zip:</strong> 230088                                                                                                               <br />
     <strong>Tel:</strong> +86 551 6532 7834 / 6532 7845 <br />
@@ -29,7 +29,7 @@
 <div class="xcy_pr">
   <div class="xcy_ico01">国内 </div>
   <div class="lx_ab"><strong>阳光电源股份有限公司(总部：安徽)</strong><br />
-    <strong>地址：</strong>安徽省合肥市高新区天湖路2号<br />
+    <strong>地址：</strong>安徽省合肥市高新区习友路1699号<br />
     <strong>邮编：</strong>230088<br />
     <strong>总机：</strong>0551- 65327878，65327877<br />
     <strong>太阳能电力部：</strong>  0551- 65327827，65327828，65327851（传真）    0551- 65327821，65327870（传真）<br />

@@ -109,8 +109,8 @@
                                 </td>
                                 <td width="27%">
                                    <select class="txtbu01" name="fullscreenChartDays" id="fullscreenChartDays">
-                                   <option value="2">2日</option>
-                                   <option value="1">1日</option>
+                                   <option value="2">2 <%=Resources.SunResource.REPORT_TYPE_DAY%></option>
+                                   <option value="1">1 <%=Resources.SunResource.REPORT_TYPE_DAY%></option>
                                    </select>
                                 </td>
                                 <td width="44%">

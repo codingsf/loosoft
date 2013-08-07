@@ -74,6 +74,7 @@
       <flushOnExecute  statement="plantuser_delete"/>
       <flushOnExecute  statement="plantportaluser_delete_by_plantid"/>
       <flushOnExecute  statement="plantportaluser_delete_by_userid"/>
+      <flushOnExecute  statement="plant_update_paymentlimitdate"/>
       <flushOnExecute  statement="plant_insert"/>
       <flushOnExecute  statement="plant_delete"/>
       <flushOnExecute  statement="plant_update_pic"/>

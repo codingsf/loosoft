@@ -142,6 +142,12 @@
                         index: pageIndex,
                         estartdate: $("#estartdate").val(),
                         uname: $("#uname").val(),
+                        pname: $("#pname").val(),
+                        sdayenergy: $("#sdayenergy").val(),
+                        edayenergy: $("#edayenergy").val(),
+                        sttlenergy: $("#sttlenergy").val(),
+                        ettlenergy: $("#ettlenergy").val(),
+                        bindcollector: $("#bindcollector").val(),
                         eenddate: $("#eenddate").val()
                     },
                     success: function(result) {
@@ -256,6 +262,7 @@
                         edayenergy: $("#edayenergy").val(),
                         sttlenergy: $("#sttlenergy").val(),
                         ettlenergy: $("#ettlenergy").val(),
+                        pname: $("#pname").val(),
                         bindcollector: $("#bindcollector").val()
                     },
                     success: function(result) {
@@ -352,15 +359,28 @@
                                 <option value="0">否</option>
                             </select></span>
                     </td>
+                    <td></td>
                       <td>
                         <span style="white-space: nowrap">用户名
                             <input id="uname" type="text" class="txtbu01" style="width: 100px;" />
                         </span>
                     </td>
+                    
+                    
                     <td width="25%"  align="left" valign="bottom" style="padding-bottom: 5px;">
-                        <input name="Submit" id="checking" type="button" class="subbu01" value="查询" onclick="changePage(1);" />
+                       
                     </td>
                   
+                </tr>
+                <tr>
+                  <td>
+                        <span style="white-space: nowrap">电站名
+                            <input id="pname" type="text" class="txtbu01" style="width: 100px;" />
+                        </span>
+                    </td>
+                    <td>
+                     <input name="Submit" id="checking" type="button" class="subbu01" value="查询" onclick="changePage(1);" />
+                    </td>
                 </tr>
                 <tr>
                     

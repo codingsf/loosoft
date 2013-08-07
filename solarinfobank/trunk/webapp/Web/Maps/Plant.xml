@@ -207,6 +207,9 @@
           <isNotEqual prepend="and" property="uids" compareValue="0,0">
             <![CDATA[ userid in ($uids$)]]>
           </isNotEqual>
+          <isNotEmpty prepend="and" property="pname">
+           <![CDATA[ name like '%$pname$%']]>
+          </isNotEmpty>
           <isNotEmpty property="orderby">
             <![CDATA[ order by $orderby$]]>
           </isNotEmpty>
@@ -262,6 +265,9 @@
           <isNotEqual prepend="and" property="uids" compareValue="0,0">
             <![CDATA[ userid in ($uids$)]]>
           </isNotEqual>
+          <isNotEmpty prepend="and" property="pname">
+            <![CDATA[ name like '%$pname$%']]>
+          </isNotEmpty>
         </isParameterPresent>
       </dynamic>
     </select>

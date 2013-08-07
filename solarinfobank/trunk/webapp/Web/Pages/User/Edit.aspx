@@ -506,7 +506,7 @@
                                     &nbsp;
                                 </td>
                             </tr>
-                            <%--<tr>
+                          <tr>
                         <td height="35" class="pr_10">
                             <%=Resources.SunResource.AUTH_REG_LANGUAGE %>:
                         </td>
@@ -533,7 +533,7 @@
                         <td>
                             &nbsp;
                         </td>
-                    </tr>--%>
+                    </tr>
                             <tr>
                                 <td height="35" class="pr_10">
                                     <%=Resources.SunResource.AUTH_REG_TEMPERATE_UNIT %>:

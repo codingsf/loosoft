@@ -117,6 +117,13 @@
                             <span id="error_refreshInterval"></span>
                         </td>
                     </tr>
+                    <tr>
+                    <td>
+                    </td>
+                    <td colspan="2">
+                  <font color='red'><%= TempData["msg"]%></font>  
+                    </td>
+                    </tr>
                 </table>
             </div>
             <div class="sb_down">

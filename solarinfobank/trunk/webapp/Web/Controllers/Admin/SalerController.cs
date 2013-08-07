@@ -152,6 +152,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         public ActionResult SavePayment(Plant plant)
         {
             PlantService.GetInstance().UpdatePaymentLimitDate(plant);
+            TempData["msg"] = "延期成功!";
             return Redirect(string.Format("/saler/plant_extend/{0}", plant.id));
         }
 
@@ -164,6 +165,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         public ActionResult SavePaymentconfig(ItemConfig itemConfig)
         {
             ItemConfigService.GetInstance().UpdateValue(itemConfig);
+          
             return Redirect("/saler/paymentconfig/");
         }
 

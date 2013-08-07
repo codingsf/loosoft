@@ -12,7 +12,7 @@ namespace DataAnalyze
     class CacheHandler
     {
         public static string syndata = ConfigurationSettings.AppSettings["syndata"];//是否同步数据
-        private static DateTime lastClear = DateTime.Now; //天数据map上次清理时间
+        private static DateTime lastClear = DateTime.Now;                           //天数据map上次清理时间
         private static IDictionary<int, DeviceDayDataCacheHandler> cacheDayOjectMap = new Dictionary<int, DeviceDayDataCacheHandler>();
 
         /// <summary>

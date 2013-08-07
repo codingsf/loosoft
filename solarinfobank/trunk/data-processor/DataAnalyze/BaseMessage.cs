@@ -422,8 +422,6 @@ namespace DataAnalyze
                 catch (Exception e) {
                     Console.WriteLine("set collector day data to memecached error:" + e.Message);
                     //出现错误，可能是mdd太大，所以整理下mdd，去掉重复数据，减少size，因为memached内存有2m限制
-
-
                 }
                 //将功率和关照的最大发生时间记录下来.稍后优化下
                 if (key == MonitorType.PLANT_MONITORITEM_POWER_CODE)

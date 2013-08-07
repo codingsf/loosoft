@@ -65,7 +65,9 @@ namespace DataAnalyze
                         {
                             tcpmessage = new TCPMessage(messageVO.key,messageVO.message);
                             //add by hbqian int 20130418 for其实0。1分的发电量是昨天，按道理不应该发的，但是现在LOG有个换存，导致0：到15分的这个时间发的发电量可能还是上一天的
-                            if (tcpmessage.messageHeader.TimeNow.Hour == 0 && tcpmessage.messageHeader.TimeNow.Minute < 15) {
+                            //modify by hbqian at 2013-08-06 for 时间不对超过24小时的自动抛弃，
+                            if ((tcpmessage.messageHeader.TimeNow - DateTime.Now).TotalHours>24 ||(tcpmessage.messageHeader.TimeNow.Hour == 0 && tcpmessage.messageHeader.TimeNow.Minute < 15))
+                            {
                                 continue;
                             }
                         }

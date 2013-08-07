@@ -236,6 +236,7 @@ namespace DataAnalyze
                         //string[] sortKeys = Keys.ToArray();
                         object tcp = null;
                         string tcpMessage;
+                        IList<string> hasList = (IList<string>)MemcachedClientSatat.getInstance().Get(MemcachedClientSatat.analyzedkey);
                         for (int i = 0; i < sortKeys.Length; i++)
                         //for (int i = 0; i < 1; i++)
                         //for (int i = sortKeys.Length-1; i >sortKeys.Length-2000; i--)
@@ -248,8 +249,9 @@ namespace DataAnalyze
                                     if (!string.IsNullOrEmpty(debug_collector) && !key.Contains(debug_collector)) continue;
                                 }
 
+                                //modify by hbqian for 改进为先取出所有解析过的，然后比较，而不是没次都取出已经解析过的key list 减少与memcached交互 at 2013-08-06
                                 //判断此key是否已经被解析过了
-                                if (MemcachedClientSatat.getInstance().isAnalyzed(key))
+                                if (MemcachedClientSatat.getInstance().isAnalyzed(key, hasList))
                                 {
                                     //modify by  sungrow for 删除联必要的调试信息 at 2013-7-24
                                     //LogUtil.info("message key is:" + key + " has been analyzed");

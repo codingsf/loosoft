@@ -9,7 +9,6 @@
     <%=Model.ReportName%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
     <script src="/script/DatePicker/WdatePicker.js" type="text/javascript"></script>
 
     <script src="/script/jquery-1.3.2.min.js" type="text/javascript"></script>
@@ -17,7 +16,6 @@
     <script src="/script/SetChart.js" type="text/javascript"></script>
 
     <script src="/script/SetDateTime.js" type="text/javascript"></script>
-
     <div style="width: 98%; padding: 10px 10px 10px 10px; font-family: Verdana, Arial, Helvetica, sans-serif;
         font-size: 12px;">
         <%=Html.Hidden("reportId", ViewData["rId"])%>

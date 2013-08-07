@@ -125,7 +125,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             Language language = languageservice.GetNameByLanguageId(languageId);
             IList<Language> languages = languageservice.GetList();
             if (language == null)
-                language = new Language() {  };
+                language = new Language() { };
             ViewData["lang"] = language;
             ViewData["languages"] = languages;
             UserService userservice = UserService.GetInstance();

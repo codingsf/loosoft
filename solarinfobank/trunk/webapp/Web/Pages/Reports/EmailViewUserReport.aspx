@@ -1,11 +1,4 @@
-﻿
-<%@ Page Title="" Language="C#"  Inherits="System.Web.Mvc.ViewPage<Cn.Loosoft.Zhisou.SunPower.Domain.DefineReport>" %>
-
-<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
-
-<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
-
-    <div style=" width:98%; padding:10px 10px 10px 10px;font-family: Verdana, Arial, Helvetica, sans-serif;font-size:12px;" >
+﻿<div style=" width:98%; padding:10px 10px 10px 10px;font-family: Verdana, Arial, Helvetica, sans-serif;font-size:12px;" >
     <%=Html.Hidden("reportId", ViewData["rId"])%>
     <%=Html.Hidden("tId", ViewData["tId"])%>
     <%=Html.Hidden("plantId", ViewData["pId"])%>
@@ -76,5 +69,8 @@
    <%}%>
     
 </div>
+<%@ Page Title="" Language="C#"  Inherits="System.Web.Mvc.ViewPage<Cn.Loosoft.Zhisou.SunPower.Domain.DefineReport>" %>
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Common" %>
+<%@ Import Namespace="Cn.Loosoft.Zhisou.SunPower.Domain" %>
 
 

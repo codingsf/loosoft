@@ -446,7 +446,7 @@ namespace Web.Controllers
 
 
             //登录失败
-            ModelState.AddModelError("Error", "username or password is not validated");
+            ModelState.AddModelError("Error", Resources.SunResource.HOME_INDEX_VALIDATED);
             System.Web.HttpContext.Current.Response.Cookies["a_login"].Expires = DateTime.Now.AddDays(-1);
             loadIndexData();
             return View(user);

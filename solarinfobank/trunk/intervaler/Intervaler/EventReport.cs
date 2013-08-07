@@ -173,7 +173,7 @@ namespace Intervaler
                     queue.receiver = config.email;
                     queue.state = 0;
                     queue.title = plant.name + " event report " + CalenderUtil.formatDate(DateTime.Now, "yyyy-MM-dd");
-                    queue.sender = "admin@suninfobank.com";
+                    queue.sender = "admin@solarinfobank.com";
                     if (Save(queue))
                     {
                         Console.WriteLine(string.Format("a event report has been created {0}", DateTime.Now));

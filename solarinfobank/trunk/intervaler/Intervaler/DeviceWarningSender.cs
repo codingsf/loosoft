@@ -122,7 +122,7 @@ namespace Intervaler
             queue.content = html;
             queue.receiver = email;
             queue.state = 0;
-            queue.sender = "admin@suninfobank.com";
+            queue.sender = "admin@solarinfobank.com";
             EmailQueueService.GetInstance().Save(queue);
         }
     }

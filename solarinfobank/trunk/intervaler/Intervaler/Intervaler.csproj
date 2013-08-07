@@ -57,11 +57,11 @@
     </Reference>
     <Reference Include="Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>G:\suninfobank\Web\bin\Common.dll</HintPath>
+      <HintPath>..\..\webapp\Common\bin\Debug\Common.dll</HintPath>
     </Reference>
     <Reference Include="Domain, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>G:\suninfobank\Web\bin\Domain.dll</HintPath>
+      <HintPath>..\..\webapp\domain\bin\Debug\Domain.dll</HintPath>
     </Reference>
     <Reference Include="IBatisNet.Common, Version=1.4.1.0, Culture=neutral, PublicKeyToken=ed781d9fc396c6ca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -83,21 +83,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>E:\working\SunInfoBank\trunk\dll\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Memcached.ClientLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=42c0400964dcc297, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dll\Memcached.ClientLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="MySql.Data, Version=6.3.2.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>E:\working\SunInfoBank\trunk\dll\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="Persistence, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>G:\suninfobank\Web\bin\Persistence.dll</HintPath>
+      <HintPath>..\..\webapp\Persistence\bin\Debug\Persistence.dll</HintPath>
     </Reference>
     <Reference Include="Service, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>G:\suninfobank\Web\bin\Service.dll</HintPath>
+      <HintPath>..\..\webapp\service\bin\Debug\Service.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -156,7 +152,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="bin\App.config" />
-    <None Include="bin\dao.config" />
+    <Content Include="bin\dao.config" />
     <None Include="bin\Maps\.svn\entries" />
     <None Include="bin\Maps\.svn\text-base\AdminControllerAction.xml.svn-base" />
     <None Include="bin\Maps\.svn\text-base\AdminControllerActionRole.xml.svn-base" />
@@ -206,7 +202,7 @@
     <None Include="bin\Maps\.svn\text-base\VideoMonitor.xml.svn-base" />
     <None Include="bin\Maps\.svn\text-base\VirtualPlant.xml.svn-base" />
     <None Include="bin\providers.config" />
-    <None Include="bin\SqlMap.config" />
+    <Content Include="bin\SqlMap.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Maps\AdminControllerAction.xml" />
@@ -221,18 +217,25 @@
     <Content Include="bin\Maps\CollectorYearData.xml" />
     <Content Include="bin\Maps\CollectorYearMonthData.xml" />
     <Content Include="bin\Maps\CommonInfo.xml" />
+    <Content Include="bin\Maps\Compensation.xml" />
     <Content Include="bin\Maps\Countrycity.xml" />
     <Content Include="bin\Maps\CustomChart.xml" />
+    <Content Include="bin\Maps\DayCompensation.xml" />
     <Content Include="bin\Maps\Dbconfig.xml" />
     <Content Include="bin\Maps\Device.xml" />
     <Content Include="bin\Maps\DeviceDataCount.xml" />
     <Content Include="bin\Maps\DeviceDayData.xml" />
     <Content Include="bin\Maps\DeviceModel.xml" />
     <Content Include="bin\Maps\DeviceMonthDayData.xml" />
+    <Content Include="bin\Maps\DeviceRelation.xml" />
     <Content Include="bin\Maps\DeviceRunData.xml" />
     <Content Include="bin\Maps\DeviceYearData.xml" />
     <Content Include="bin\Maps\DeviceYearMonthData.xml" />
+    <Content Include="bin\Maps\ElecPrice.xml" />
     <Content Include="bin\Maps\EmailQueue.xml" />
+    <Content Include="bin\Maps\Energywarn.xml" />
+    <Content Include="bin\Maps\EnergyYearMonthForecast.xml" />
+    <Content Include="bin\Maps\Errorcode.xml" />
     <Content Include="bin\Maps\Fault.xml" />
     <Content Include="bin\Maps\ItemConfig.xml" />
     <Content Include="bin\Maps\Language.xml" />
@@ -242,19 +245,27 @@
     <Content Include="bin\Maps\ManagerMonitorCode.xml" />
     <Content Include="bin\Maps\MonitorConfig.xml" />
     <Content Include="bin\Maps\MonitorItem.xml" />
+    <Content Include="bin\Maps\MonthCompensation.xml" />
+    <Content Include="bin\Maps\MTinfounit.xml" />
     <Content Include="bin\Maps\Plant.xml" />
+    <Content Include="bin\Maps\PlantPortalUser.xml" />
     <Content Include="bin\Maps\PlantUnit.xml" />
     <Content Include="bin\Maps\PlantUser.xml" />
     <Content Include="bin\Maps\ProductPicture.xml" />
+    <Content Include="bin\Maps\Protal.xml" />
+    <Content Include="bin\Maps\QA.xml" />
+    <Content Include="bin\Maps\RelationConfig.xml" />
     <Content Include="bin\Maps\report.xml" />
     <Content Include="bin\Maps\ReportConfig.xml" />
     <Content Include="bin\Maps\ReportDataItem.xml" />
     <Content Include="bin\Maps\Role.xml" />
     <Content Include="bin\Maps\RoleFunction.xml" />
+    <Content Include="bin\Maps\Template.xml" />
     <Content Include="bin\Maps\User.xml" />
     <Content Include="bin\Maps\UserRole.xml" />
     <Content Include="bin\Maps\VideoMonitor.xml" />
     <Content Include="bin\Maps\VirtualPlant.xml" />
+    <Content Include="bin\Maps\YearCompensation.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Maps\.svn\prop-base\" />

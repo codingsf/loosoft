@@ -54,15 +54,17 @@ namespace Intervaler
                 {
                     case "1":
                         Console.WriteLine("处理模式1运行时报告" + report.config.id);
-                        if ((DateTime.Now - report.config.lastSendTime).TotalHours > Convert.ToDouble(report.config.tinterval))
+                        //if ((DateTime.Now - report.config.lastSendTime).TotalHours > Convert.ToDouble(report.config.tinterval))
+                        if ((DateTime.Now > report.config.lastSendTime))
                         {
-                            report.config.lastSendTime = DateTime.Now.AddSeconds(0 - DateTime.Now.Second);
+                            //report.config.lastSendTime = DateTime.Now.AddSeconds(0 - DateTime.Now.Second);
+                            report.config.lastSendTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, 0).AddHours(Convert.ToDouble(report.config.tinterval));
                             isSuccess = true;
                         }
-                        Console.WriteLine("处理模式1运行时报告,isSuccess is " + isSuccess);
+                        //Console.WriteLine("处理模式1运行时报告,isSuccess is " + isSuccess);
                         break;
                     case "2":
-                        string[] para = new string[6];
+                        string[] para = new string[6];//年 月 日 时  分 周
                         string[] t = null;
                         t = report.config.fixedTime.Split(',');
                         switch (report.ReportType)
@@ -72,8 +74,8 @@ namespace Intervaler
                                 para[4] = t[1];
                                 break;
                             case 2://周报表
-                                para[5] = t[0];
                                 para[3] = t[1];
+                                para[5] = t[0];
                                 break;
                             case 3://月报表
                                 para[2] = t[0];
@@ -97,7 +99,7 @@ namespace Intervaler
                             report.config.lastSendTime = update;
                             isSuccess = true;
                         }
-                        Console.WriteLine("处理模式2运行时报告,isSuccess is " + isSuccess);
+                        //Console.WriteLine("处理模式2运行时报告,isSuccess is " + isSuccess);
                         break;
                 }
                 if (isSuccess)
@@ -121,7 +123,7 @@ namespace Intervaler
                     if (string.IsNullOrEmpty(queue.content)) continue;
                     queue.receiver = report.config.email;
                     queue.state = 0;
-                    queue.sender = "admin@suninfobank.com";
+                    queue.sender = "admin@solarinfobank.com";
                     EmailQueueService.GetInstance().Save(queue);
                     ReportConfigService.GetInstance().UPdateReportLastSendTime(report.config);//更新最后发送时间
                     Console.WriteLine(string.Format("{0}-({1})-{2}", url, report.ReportName, DateTime.Now));

@@ -428,8 +428,11 @@
                                                         break;
                                                     alertMsg = string.Format(Resources.SunResource.FEE_XUFEI, plant.name);
                                             %>
+                                              <script>
+                                              var msg<%=plant.id %>="<%=alertMsg %>";
+                                              </script>
                                             <li>
-                                            <a href="<%=plant.childs.Count>0?"/virtual/plantrelationstruct/"+plant.id :( plant.Expired) ? "javascript:alert('"+alertMsg+"');" : "/plant/overview/"+plant.id%>" title="<%=plant.name %>" id="plantname">
+                                            <a href="<%=plant.childs.Count>0?"/virtual/plantrelationstruct/"+plant.id :( plant.Expired) ? "javascript:alert(msg"+plant.id+");" : "/plant/overview/"+plant.id%>" title="<%=plant.name %>" id="plantname">
                                                 <%= StringUtil.cutStr(plant.name, 16, "...")%>
                                                 <%if (plant.hasFaultDevice)
                                                   {%>

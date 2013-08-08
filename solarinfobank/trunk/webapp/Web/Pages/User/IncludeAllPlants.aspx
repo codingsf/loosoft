@@ -194,7 +194,10 @@
                                                           {
                                                               if (plant.Expired)
                                                               {%>
-                                                                 <a href='javascript:alert("<%=alertMsg %>");' class="dbl">
+                                                              <script>
+                                                              var msg<%=plant.id %>="<%=alertMsg %>";
+                                                              </script>
+                                                                 <a href='javascript:alert(msg<%=plant.id %>);' class="dbl">
                                                               <%}else
                                                               { %>
                                                             <a target="_blank" href="/plant/overview/<%=plant.id %>" class="dbl">

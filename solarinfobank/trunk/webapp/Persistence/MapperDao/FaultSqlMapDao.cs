@@ -18,7 +18,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
         public void LoadingPageCount(Hashtable page)
         {
             if (page.ContainsKey("page"))
-                (page["page"] as Pager).RecordCount = (int)base.ExecuteQueryForObject("loading_hashtable_page_count", page);
+            {
+                try
+                {
+                    (page["page"] as Pager).RecordCount = (int)base.ExecuteQueryForObject("loading_hashtable_page_count", page);
+                }
+                catch (Exception ee) {
+                    Console.WriteLine(ee.Message);
+                }
+            }
 
         }
         public void LoadingPageCount(Pager page)

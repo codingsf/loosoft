@@ -17,7 +17,7 @@
 
         function changePage(pageNo) {
             plantId = $("#plant").val();
-            window.location.href = "/plant/energyFilter?id=<%=Model.id %>" + "&startDate=" + $("#startDate").val() + "&endDate=" + $("#endDate").val() + "&pageNo=" + pageNo;
+            window.location.href = "/plant/energyFilter?id=<%=Model.id %>" + "&searchDate=" + $("#searchDate").val() + "&pageNo=" + pageNo;
         }
     </script>
 
@@ -64,12 +64,13 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                     <td width="10%" align=right>
-                       <span style="white-space:nowrap"> <%=Resources.SunResource.SUMMER_LINGSHI_ENABLED_START_DATE%>:</span>
+                       <span style="white-space:nowrap"> <%=Resources.SunResource.REPORT_TIME%>:</span>
                     </td>
                     <td width="25%">
-                    <input id="startDate" name="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})" readonly="readonly" size="15" type="text"
-                        value='<%=ViewData["startDate"]%>' class="txtbu04 Wdate" />
+                    <input id="searchDate" name="searchDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})" readonly="readonly" size="15" type="text"
+                        value='<%=ViewData["searchDate"]%>' class="txtbu04 Wdate" />
                     </td>
+                    <!--
                     <td width="10%"  align=right>
                         <span style="white-space:nowrap"> <%=Resources.SunResource.SUMMER_LINGSHI_ENABLED_END_DATE%>:</span>
                        
@@ -78,12 +79,12 @@
                         <input id="endDate" name="endDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'<%= (Session["Culture"] as System.Globalization.CultureInfo).Name.ToLower()%>'})" readonly="readonly" size="15" type="text"
                         value='<%=ViewData["endDate"]%>' class="txtbu04 Wdate" />                     
                     </td>
+                    -->
                     <td width="30%">
                         &nbsp;
                     </td>
                     <td width="10%" valign="bottom">
-                     <input name="load" class="subbu01" id="load" value="<%=Resources.SunResource.MONITORITEM_SEARCH %>"
-                            type="button" />
+                     <input name="load" class="subbu01" id="load" value="<%=Resources.SunResource.MONITORITEM_SEARCH %>" type="button" />
                     </td>
                 </tr>
             </table>

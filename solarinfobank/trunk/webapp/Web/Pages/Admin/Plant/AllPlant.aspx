@@ -301,7 +301,7 @@
             <%} %>
             <table width="100%" height="40" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td width="33%" height="40">
+                    <td width="30%" height="40">
                         <span style="white-space: nowrap">区域
                             <%=Html.DropDownList("area", new List<SelectListItem> {
                                                 new SelectListItem { Text = "全部", Value = ""},
@@ -314,18 +314,21 @@
                                                 new SelectListItem { Text = "南极洲", Value = "南极洲"}
                                                 }, new { onchange = "getcountries()", @class="txtbu01" })%></span>
                     </td>
-                    <td width="33%" height="40">
+                    <td width="30%" height="40">
                         <span style="white-space: nowrap">国家 <span id="country_ctl">
                             <%=Html.DropDownList("country", ViewData["countries"] as IList<SelectListItem>, new { @class = "txtbu01" })%>
                         </span></span>
                     </td>
-                    <td width="" align="center">
+                    <td width="" align="left">
                         <span style="white-space: nowrap">城市 <span id="city_ctl">
                             <select id="city" name="city" class="txtbu01">
                                 <option value="">全部</option>
                             </select>
                         </span></span>
                     </td>
+                    <td width="10%">
+                       
+                    </td>                    
                 </tr>
                 <tr>
                     <td>
@@ -351,36 +354,26 @@
                     </td>
                 </tr>
                 <tr>
-                    <td width="33%" height="50">
+                    <td width="13%" height="50">
                      <span style="white-space: nowrap">接入数据采集器
-                            <select class="txtbu01" id="bindcollector">
+                            <select id="bindcollector">
                                 <option value="">选择</option>
                                 <option value="1">是</option>
                                 <option value="0">否</option>
                             </select></span>
                     </td>
-                    <td></td>
-                      <td>
+                    <td>
                         <span style="white-space: nowrap">用户名
                             <input id="uname" type="text" class="txtbu01" style="width: 100px;" />
                         </span>
                     </td>
-                    
-                    
-                    <td width="25%"  align="left" valign="bottom" style="padding-bottom: 5px;">
-                       
-                    </td>
-                  
-                </tr>
-                <tr>
-                  <td>
-                        <span style="white-space: nowrap">电站名
-                            <input id="pname" type="text" class="txtbu01" style="width: 100px;" />
-                        </span>
-                    </td>
                     <td>
-                     <input name="Submit" id="checking" type="button" class="subbu01" value="查询" onclick="changePage(1);" />
-                    </td>
+                    电站名
+                            <input id="pname" type="text" class="txtbu01" style="width: 150px;" />
+                    </td>  
+                    <td>
+                    <input name="Submit" id="Button1" type="button" class="subbu01" value="查询" onclick="changePage(1);"  style="width:80px;"/>
+                    </td>                                                          
                 </tr>
                 <tr>
                     

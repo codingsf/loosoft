@@ -2012,18 +2012,23 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
         /// <param name="yyyyMMdd"></param>
         /// <param name="?"></param>
         /// <returns></returns>
-        public ActionResult EnergyFilter(int? id, string startDate, String endDate, int? pageNo)
+        public ActionResult EnergyFilter(int? id, string searchDate, int? pageNo)
         {
             Plant plant = PlantService.GetInstance().GetPlantInfoById(id.Value);
-            if (string.IsNullOrEmpty(endDate)) endDate = CalenderUtil.curDateWithTimeZone(plant.timezone, "yyyy-MM-dd");
-            if (string.IsNullOrEmpty(startDate)) startDate = CalenderUtil.curBeforeDateWithTimeZone(plant.timezone, "yyyy-MM-dd");
+            string curDate = CalenderUtil.curDateWithTimeZone(plant.timezone, "yyyy-MM-dd");
+            if (string.IsNullOrEmpty(searchDate)) searchDate = curDate;
             if (pageNo == null) pageNo = 1;
-
             Pager page = new Pager() { PageSize = ComConst.PageSize, PageIndex = pageNo.Value };
             Hashtable table = new Hashtable();
             table.Add("page", page);
-            table.Add("startDate", startDate);
-            table.Add("endDate", endDate);
+            table.Add("startDate", searchDate);
+            table.Add("endDate", searchDate);
+
+            //如果时间是当天的就重新计算下
+            if (curDate.Equals(searchDate))
+            {
+                EnergywarnService.GetInstance().generateEnergywarn(plant);
+            }
             string deviceIds = "";
             foreach (Device device in plant.displayDevices())
             {
@@ -2038,10 +2043,7 @@ device.runData.updateTime.ToString("MM-dd HH:mm:ss")
             }
 
             ViewData["page"] = page;
-
-            ViewData["startDate"] = startDate;
-            ViewData["endDate"] = endDate;
-
+            ViewData["searchDate"] = searchDate;
             ViewData["datas"] = lists;
             return View(plant);
         }

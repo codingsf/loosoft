@@ -212,6 +212,24 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         }
 
         /// <summary>
+        /// 判断是否已经被解析过了
+        /// </summary>
+        /// <param name="newKey"></param>
+        /// <returns></returns>
+        public bool isAnalyzed(string newKey, IList<string> hasList)
+        {
+            if (msgnum == 0)
+            {
+                return false;
+            }
+            if (hasList != null)
+            {
+                return hasList.Contains(newKey);
+            }
+            return false;
+        }
+
+        /// <summary>
         /// 删除最早的一个，为了保留msgnum个历史数据
         /// </summary>
         public void deleteAnalyzed(string newKey, IList<string> hasList)

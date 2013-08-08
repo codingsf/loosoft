@@ -956,6 +956,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
         {
             Plant plantInfo = plantService.GetPlantInfoById(id);
             User user = userService.GetUserByName(UserUtil.demousername);
+            if (user == null)
+            {
+                ViewData["error"] = "示例用户不存在！";
+                return RedirectToAction(@"plants", "admin");
+            }
             PlantUser plantUser = new PlantUser();
             plantUser.userID = user.id;
             plantUser.plantID = id;
@@ -968,12 +973,19 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             if (tmpPlantUser == null)
             {
                 plantUserService.AddPlantUser(plantUser);
+                //清理缓存，测试版不知道是不是这个原因引起的
+                CacheService.GetInstance().flushCaches();
+                tmpPlantUser = plantUserService.GetPlantUserByPlantIDUserID(plantUser);
+                if (tmpPlantUser == null) {
+                    ViewData["error"] = "添加示例电站失败!";
+                }
             }
             else
-                ViewData["error"] = "This plant is exampleplant!";
+              ViewData["error"] = "已经是示例电站了!";  
 
             return RedirectToAction(@"plants", "admin");
         }
+
         /// <summary>
         /// 取消示例电站
         /// </summary>

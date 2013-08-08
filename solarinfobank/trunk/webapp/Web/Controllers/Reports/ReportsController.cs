@@ -92,7 +92,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         public ActionResult EventReport(int id)
         {
             ViewData["plantId"] = id;
-            ReportConfig eventConfig = reportConfigService.GetEventReportConfigByIdAndReportId((id));
+            ReportConfig eventConfig = reportConfigService.GetEventReportConfigByIdAndReportId(id);
             if (eventConfig != null && string.IsNullOrEmpty(eventConfig.email) == false)
                 eventConfig.email = eventConfig.email.Replace(",", ";");
             ViewData["config"] = eventConfig;

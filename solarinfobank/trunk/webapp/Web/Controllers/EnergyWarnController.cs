@@ -18,7 +18,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         /// <returns></returns>
         public ActionResult gen()
         {
-            EnergywarnService.GetInstance().GenerateEnergywarn();
+            EnergywarnService.GetInstance().generateEnergywarn();
             return Content("true");
         }
     }

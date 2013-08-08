@@ -40,15 +40,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             return _faultDao.GetEventReportLogs(table);
         }
 
-
         public IList<Fault> GetPlantLoglist(Hashtable page)
         {
             _faultDao.LoadingPageCount(page);
             return _faultDao.Getlist(page);
         }
-
-
-
-
     }
 }

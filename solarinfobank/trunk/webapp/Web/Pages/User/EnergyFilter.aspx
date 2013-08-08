@@ -166,7 +166,7 @@
                           
                       </table>
 		            </div>      
-		            <div class="sb_down"></div>
+		            <div class="sb_down"></div><%Html.RenderPartial("page"); %>
 		            <br/>
 		            </div>		            
         </div>

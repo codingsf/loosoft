@@ -2073,8 +2073,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         /// <param name="yyyyMMdd"></param>
         /// <param name="?"></param>
         /// <returns></returns>
-        public ActionResult EnergyFilter(int id, int? pid, string yyyyMMdd)
+        public ActionResult EnergyFilter(int id, int? pid, string yyyyMMdd, int? pageNo)
         {
+            if (pageNo == null) pageNo = 1;
             User user = UserService.GetInstance().Get(id);
             IList<Plant> plants = user.allRelatedFactPlants;
             IList<Plant> handlePlants = null;
@@ -2091,6 +2092,17 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 handlePlants = plants;
                 timezone = user.timezone;
             }
+            if (yyyyMMdd == null) yyyyMMdd = CalenderUtil.curDateWithTimeZone(timezone, "yyyy-MM-dd");
+            int year = int.Parse(yyyyMMdd.Split('-')[0]);
+            int month = int.Parse(yyyyMMdd.Split('-')[1]);
+            int day = int.Parse(yyyyMMdd.Split('-')[2]);
+            ViewData["yyyyMMdd"] = yyyyMMdd;
+
+            //如果时间是当天的就重新计算下
+            if (yyyyMMdd.Equals(CalenderUtil.curDateWithTimeZone(user.timezone, "yyyy-MM-dd")))
+            {
+                EnergywarnService.GetInstance().generateEnergywarn(plants);
+            }
             string deviceIds = "";
             foreach (Plant plant in handlePlants)
             {
@@ -2102,14 +2114,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
             ViewData["plants"] = plants;
 
-            if (yyyyMMdd == null) yyyyMMdd = CalenderUtil.curDateWithTimeZone(timezone, "yyyy-MM-dd");
-            int year = int.Parse(yyyyMMdd.Split('-')[0]);
-            int month = int.Parse(yyyyMMdd.Split('-')[1]);
-            int day = int.Parse(yyyyMMdd.Split('-')[2]);
-            ViewData["yyyyMMdd"] = yyyyMMdd;
-            int pageNo = 1;
-
-            Pager page = new Pager() { PageSize = 2000, PageIndex = pageNo };
+            Pager page = new Pager() { PageSize = ComConst.PageSize, PageIndex = pageNo.Value };
             Hashtable table = new Hashtable();
             table.Add("page", page);
             table.Add("startDate", yyyyMMdd);

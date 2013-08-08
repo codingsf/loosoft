@@ -78,6 +78,7 @@
 
     var curDeviceId;
     function loadHistoryRunData(deviceId) {
+        if (deviceId == null || deviceId == undefined || deviceId == "") return;
         var yyyyMMdd = $("#curYYYYMMDD").val();
         curDeviceId = deviceId;
         $.ajax({
@@ -116,6 +117,7 @@
 
     function downLoadData() {
         curDeviceId = $("#dces").val();
+        if (curDeviceId == null || curDeviceId == undefined || curDeviceId == "") return;
         var yyyyMMdd = $("#curYYYYMMDD").val();
         window.open("/DataDownLoad/DownLoadRundata?deviceId=" + curDeviceId + "&yyyyMMdd=" + yyyyMMdd + "&type=" + $("#type").val());
     }

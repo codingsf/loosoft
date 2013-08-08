@@ -154,7 +154,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         }
 
         /// <summary>
-        /// 超过一小时
+        /// 超过一小时或者未到点
         /// </summary>
         /// <param name="timezone"></param>
         /// <returns></returns>
@@ -162,8 +162,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             if (this.collector == null || this.collector.runData == null)
                 return true;
-            else
-                return (CalenderUtil.curDateWithTimeZone(timezone) - this.collector.runData.sendTime).TotalHours > 1;
+            else{
+                double cha = (CalenderUtil.curDateWithTimeZone(timezone) - this.collector.runData.sendTime).TotalHours;
+                return  cha>1 || cha<0;
+            }
         }
 
         /// <summary>

@@ -51,7 +51,6 @@
       <result property="plantPortalUsers" lazyLoad="true"	column="id"         select="plantportaluser_get_by_userid" />
       <!--一般用户和那些电站建立了关系-->
       <result property="plantUsers" lazyLoad="true"	column="id"         select="plantuser_get_by_userid" />
-
       <result property="childUsers" lazyLoad="true"	column="id"         select="get_child_user_by_userid" />
       <result property="childPortalUsers" lazyLoad="true"	column="id"         select="get_child_portaluser_by_userid" />
       <result property="Roles" lazyLoad="true"	column="id"          select="get_role_uid" />

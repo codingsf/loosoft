@@ -31,11 +31,11 @@
 <body>
     <div class="mainbody">
         <!--header开始-->
-        <div style="background: url(/images/tc_topbg.jpg); height: 57px;">
+        <div style="background: url(http://www.solarinfobank.com/images/tc_topbg.jpg); height: 57px;">
             <div style="float: left; height: 57px; padding: 0px 0px 0px 20px; width: 300px;">
-                <img src="/images/tc_logo.gif" width="206" height="57" /></div>
+                <img src="http://www.solarinfobank.com/images/tc_logo.gif" width="206" height="57" /></div>
             <div style="float: right; padding-right: 10px;">
-                <img src="/images/rlogo.gif" width="137" height="57" /></div>
+                <img src="http://www.solarinfobank.com/images/rlogo.gif" width="137" height="57" /></div>
         </div>
         <!--结束-->
         <!--main开始-->
@@ -45,7 +45,7 @@
             <table>
                 <tr xmlns="http://www.w3.org/1999/xhtml">
                     <td align="left" width="2%">
-                        <img width="18" height="19" src="/images/sub/subico010.gif" />
+                        <img width="18" height="19" src="http://www.solarinfobank.com/images/sub/subico010.gif" />
                     </td>
                     <td width="98%" class="dblack">
                         <p>
@@ -56,15 +56,15 @@
             <div>
                 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                     <tr>
-                        <td width="9" height="9" background="/images/tc01.gif">
+                        <td width="9" height="9" background="http://www.solarinfobank.com/images/tc01.gif">
                         </td>
-                        <td background="/images/tc02.gif">
+                        <td background="http://www.solarinfobank.com/images/tc02.gif">
                         </td>
-                        <td width="9" height="9" background="/images/tc03.gif">
+                        <td width="9" height="9" background="http://www.solarinfobank.com/images/tc03.gif">
                         </td>
                     </tr>
                     <tr>
-                        <td background="/images/tc04.gif">
+                        <td background="http://www.solarinfobank.com/images/tc04.gif">
                             &nbsp;
                         </td>
                         <td bgcolor="#FFFFFF">
@@ -146,18 +146,18 @@
                                 <%}%>
                             </table>
                         </td>
-                        <td background="/images/tc05.gif">
+                        <td background="http://www.solarinfobank.com/images/tc05.gif">
                             &nbsp;
                         </td>
                     </tr>
                     <tr>
                         <td width="9" height="9">
-                            <img src="/images/tc/tc06.gif" width="9" height="9" />
+                            <img src="http://www.solarinfobank.com/images/tc/tc06.gif" width="9" height="9" />
                         </td>
-                        <td background="/images/tc/tc07.gif">
+                        <td background="http://www.solarinfobank.com/images/tc/tc07.gif">
                         </td>
                         <td>
-                            <img src="/images/tc/tc08.gif" width="9" height="9" />
+                            <img src="http://www.solarinfobank.com/images/tc/tc08.gif" width="9" height="9" />
                         </td>
                     </tr>
                 </table>
@@ -170,7 +170,7 @@
             <table>
                 <tr xmlns="http://www.w3.org/1999/xhtml">
                     <td align="left" width="2%">
-                        <img width="18" height="19" src="/images/sub/subico010.gif" />
+                        <img width="18" height="19" src="http://www.solarinfobank.com/images/sub/subico010.gif" />
                     </td>
                     <td width="98%" class="dblack">
                         <p>
@@ -181,15 +181,15 @@
             <div>
                 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                     <tr>
-                        <td width="9" height="9" background="/images/tc01.gif">
+                        <td width="9" height="9" background="http://www.solarinfobank.com/images/tc01.gif">
                         </td>
-                        <td background="/images/tc02.gif">
+                        <td background="http://www.solarinfobank.com/images/tc02.gif">
                         </td>
-                        <td width="9" height="9" background="/images/tc03.gif">
+                        <td width="9" height="9" background="http://www.solarinfobank.com/images/tc03.gif">
                         </td>
                     </tr>
                     <tr>
-                        <td background="/images/tc04.gif">
+                        <td background="http://www.solarinfobank.com/images/tc04.gif">
                             &nbsp;
                         </td>
                         <td bgcolor="#FFFFFF">
@@ -236,18 +236,18 @@
                                 <%}%>
                             </table>
                         </td>
-                        <td background="/images/tc05.gif">
+                        <td background="http://www.solarinfobank.com/images/tc05.gif">
                             &nbsp;
                         </td>
                     </tr>
                     <tr>
                         <td width="9" height="9">
-                            <img src="/images/tc/tc06.gif" width="9" height="9" />
+                            <img src="http://www.solarinfobank.com/images/tc/tc06.gif" width="9" height="9" />
                         </td>
-                        <td background="/images/tc/tc07.gif">
+                        <td background="http://www.solarinfobank.com/images/tc/tc07.gif">
                         </td>
                         <td>
-                            <img src="/images/tc/tc08.gif" width="9" height="9" />
+                            <img src="http://www.solarinfobank.com/images/tc/tc08.gif" width="9" height="9" />
                         </td>
                     </tr>
                 </table>
@@ -260,7 +260,7 @@
             <table>
                 <tr xmlns="http://www.w3.org/1999/xhtml">
                     <td align="left" width="2%">
-                        <img width="18" height="19" src="/images/sub/subico010.gif" />
+                        <img width="18" height="19" src="http://www.solarinfobank.com/images/sub/subico010.gif" />
                     </td>
                     <td width="98%" class="dblack">
                         <p>
@@ -271,15 +271,15 @@
             <div>
                 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                     <tr>
-                        <td width="9" height="9" background="/images/tc01.gif">
+                        <td width="9" height="9" background="http://www.solarinfobank.com/images/tc01.gif">
                         </td>
-                        <td background="/images/tc02.gif">
+                        <td background="http://www.solarinfobank.com/images/tc02.gif">
                         </td>
-                        <td width="9" height="9" background="/images/tc03.gif">
+                        <td width="9" height="9" background="http://www.solarinfobank.com/images/tc03.gif">
                         </td>
                     </tr>
                     <tr>
-                        <td background="/images/tc04.gif">
+                        <td background="http://www.solarinfobank.com/images/tc04.gif">
                             &nbsp;
                         </td>
                         <td bgcolor="#FFFFFF">
@@ -326,18 +326,18 @@
                                 <%}%>
                             </table>
                         </td>
-                        <td background="/images/tc05.gif">
+                        <td background="http://www.solarinfobank.com/images/tc05.gif">
                             &nbsp;
                         </td>
                     </tr>
                     <tr>
                         <td width="9" height="9">
-                            <img src="/images/tc/tc06.gif" width="9" height="9" />
+                            <img src="http://www.solarinfobank.com/images/tc/tc06.gif" width="9" height="9" />
                         </td>
-                        <td background="/images/tc/tc07.gif">
+                        <td background="http://www.solarinfobank.com/images/tc/tc07.gif">
                         </td>
                         <td>
-                            <img src="/images/tc/tc08.gif" width="9" height="9" />
+                            <img src="http://www.solarinfobank.com/images/tc/tc08.gif" width="9" height="9" />
                         </td>
                     </tr>
                 </table>
@@ -350,7 +350,7 @@
             <table>
                 <tr xmlns="http://www.w3.org/1999/xhtml">
                     <td align="left" width="2%">
-                        <img width="18" height="19" src="/images/sub/subico010.gif" />
+                        <img width="18" height="19" src="http://www.solarinfobank.com/images/sub/subico010.gif" />
                     </td>
                     <td width="98%" class="dblack">
                         <p>
@@ -361,15 +361,15 @@
             <div>
                 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                     <tr>
-                        <td width="9" height="9" background="/images/tc01.gif">
+                        <td width="9" height="9" background="http://www.solarinfobank.com/images/tc01.gif">
                         </td>
-                        <td background="/images/tc02.gif">
+                        <td background="http://www.solarinfobank.com/images/tc02.gif">
                         </td>
-                        <td width="9" height="9" background="/images/tc03.gif">
+                        <td width="9" height="9" background="http://www.solarinfobank.com/images/tc03.gif">
                         </td>
                     </tr>
                     <tr>
-                        <td background="/images/tc04.gif">
+                        <td background="http://www.solarinfobank.com/images/tc04.gif">
                             &nbsp;
                         </td>
                         <td bgcolor="#FFFFFF">
@@ -416,18 +416,18 @@
                                 <%}%>
                             </table>
                         </td>
-                        <td background="/images/tc05.gif">
+                        <td background="http://www.solarinfobank.com/images/tc05.gif">
                             &nbsp;
                         </td>
                     </tr>
                     <tr>
                         <td width="9" height="9">
-                            <img src="/images/tc/tc06.gif" width="9" height="9" />
+                            <img src="http://www.solarinfobank.com/images/tc/tc06.gif" width="9" height="9" />
                         </td>
-                        <td background="/images/tc/tc07.gif">
+                        <td background="http://www.solarinfobank.com/images/tc/tc07.gif">
                         </td>
                         <td>
-                            <img src="/images/tc/tc08.gif" width="9" height="9" />
+                            <img src="http://www.solarinfobank.com/images/tc/tc08.gif" width="9" height="9" />
                         </td>
                     </tr>
                 </table>
@@ -440,7 +440,7 @@
             <table>
                 <tr xmlns="http://www.w3.org/1999/xhtml">
                     <td align="left" width="2%">
-                        <img width="18" height="19" src="/images/sub/subico010.gif" />
+                        <img width="18" height="19" src="http://www.solarinfobank.com/images/sub/subico010.gif" />
                     </td>
                     <td width="98%" class="dblack">
                         <p>
@@ -451,15 +451,15 @@
             <div>
                 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                     <tr>
-                        <td width="9" height="9" background="/images/tc01.gif">
+                        <td width="9" height="9" background="http://www.solarinfobank.com/images/tc01.gif">
                         </td>
-                        <td background="/images/tc02.gif">
+                        <td background="http://www.solarinfobank.com/images/tc02.gif">
                         </td>
-                        <td width="9" height="9" background="/images/tc03.gif">
+                        <td width="9" height="9" background="http://www.solarinfobank.com/images/tc03.gif">
                         </td>
                     </tr>
                     <tr>
-                        <td background="/images/tc04.gif">
+                        <td background="http://www.solarinfobank.com/images/tc04.gif">
                             &nbsp;
                         </td>
                         <td bgcolor="#FFFFFF">
@@ -514,18 +514,18 @@
                                 <%}%>
                             </table>
                         </td>
-                        <td background="/images/tc05.gif">
+                        <td background="http://www.solarinfobank.com/images/tc05.gif">
                             &nbsp;
                         </td>
                     </tr>
                     <tr>
                         <td width="9" height="9">
-                            <img src="/images/tc/tc06.gif" width="9" height="9" />
+                            <img src="http://www.solarinfobank.com/images/tc/tc06.gif" width="9" height="9" />
                         </td>
-                        <td background="/images/tc/tc07.gif">
+                        <td background="http://www.solarinfobank.com/images/tc/tc07.gif">
                         </td>
                         <td>
-                            <img src="/images/tc/tc08.gif" width="9" height="9" />
+                            <img src="http://www.solarinfobank.com/images/tc/tc08.gif" width="9" height="9" />
                         </td>
                     </tr>
                 </table>
@@ -536,7 +536,7 @@
         <div style="clear: both">
         </div>
         <!--footer开始-->
-        <div style="width: 100%; background: url(/images/fbg.jpg); height: 34px; line-height: 34px;
+        <div style="width: 100%; background: url(http://www.solarinfobank.com/images/fbg.jpg); height: 34px; line-height: 34px;
             margin-top: 10px; text-align: center; color: #7E7E7E; margin: 0px auto;">
             <span>
                 <%= string.Format( Resources.SunResource.SHARED_MAINMASTREPAGE_COPYRIGHT ,UserUtil.SysName) %></span>

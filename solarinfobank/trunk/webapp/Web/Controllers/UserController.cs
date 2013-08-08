@@ -609,7 +609,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 Resources.SunResource.USER_ALLPLANTS_ENERGY));
             foreach (Plant plant in curUser.displayPlants)
             {
-                dataList.Add(string.Format("{0},{1},{2},{3}", plant.name,
+                dataList.Add(string.Format("\t{0},{1},{2},{3}", plant.name,
            plant.country,
            plant.city,
            string.Format("{0}({1})", plant.DisplayTotalEnergy, plant.TotalEnergyUnit)));

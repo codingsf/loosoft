@@ -1172,7 +1172,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
          fault ? "0" : device.runData.getMonitorValueWithStatus(MonitorType.MIC_INVERTER_TOTALYGPOWER),
          device.runData.getMonitorValueWithStatus(MonitorType.MIC_INVERTER_DEVICESTATUS),
          value == null ? "0" : value.ToString(),
-         curMonthEnergy.ToString("0.00"),
+         StringUtil.formatFloat(curMonthEnergy,"0.0"),
+         //curMonthEnergy.ToString("0.00"),
          Math.Round(curMonthEnergy / device.chartPower, 2).ToString(),
          device.TotalEnergy.ToString(),
          device.runData.updateTime.ToString("MM-dd HH:mm:ss")
@@ -1198,7 +1199,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
          fault ? "0" : device.runData.getMonitorValueWithStatus(MonitorType.MIC_INVERTER_TOTALYGPOWER),
          device.runData.getMonitorValueWithStatus(MonitorType.MIC_INVERTER_DEVICESTATUS),
          value == null ? "0" : value.ToString(),
-         curMonthEnergy.ToString("0.00"),
+         //curMonthEnergy.ToString("0.00"),
+         StringUtil.formatFloat(curMonthEnergy, "0.0"),
          Math.Round(curMonthEnergy / device.chartPower, 2).ToString(),
          device.TotalEnergy.ToString(),
          device.runData.updateTime.ToString("MM-dd HH:mm:ss")
@@ -1223,7 +1225,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
          fault ? "0" : device.runData.getMonitorValueWithStatus(MonitorType.MIC_INVERTER_TOTALYGPOWER),
          device.runData.getMonitorValueWithStatus(MonitorType.MIC_INVERTER_DEVICESTATUS),
          value == null ? "0" : value.ToString(),
-         curMonthEnergy.ToString("0.00"),
+         //curMonthEnergy.ToString("0.00"),
+         StringUtil.formatFloat(curMonthEnergy, "0.0"),
          Math.Round(curMonthEnergy / device.chartPower, 2).ToString(),
          device.TotalEnergy.ToString(),
          device.runData.updateTime.ToString("MM-dd HH:mm:ss")

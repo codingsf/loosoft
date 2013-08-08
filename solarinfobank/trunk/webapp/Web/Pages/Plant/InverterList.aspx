@@ -142,7 +142,7 @@
                                   
                                     </td> 
                                     <td width="150" align="center">
-                                    <%=curMonthEnergy.ToString("0.00")%>
+                                    <%= StringUtil.formatFloat( curMonthEnergy,"0.00")%>
                                     
                                     </td>
                                     <td width="100" align="center">
@@ -250,7 +250,7 @@
                                         <%=device.TodayEnergy(Model.timezone)%>
                                     </td> 
                                     <td width="150" align="center">
-                                    <%=curMonthEnergy.ToString("0.00")%>
+                                    <%= StringUtil.formatFloat( curMonthEnergy,"0.00")%>
                                     
                                     </td>
                                     <td width="100" align="center">
@@ -360,7 +360,7 @@
                                     <%=device.TodayEnergy(Model.timezone)%>
                                     </td> 
                                     <td width="150" align="center">
-                                    <%=curMonthEnergy.ToString("0.00")%>
+                                    <%= StringUtil.formatFloat( curMonthEnergy,"0.00")%>
                                     
                                     </td>
                                     <td width="100" align="center">

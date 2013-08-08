@@ -61,7 +61,7 @@
     int unPayPlantNum = unPayPlants.Count();
     %>
     <style type="text/css">
-    #scrollDiv{height:23px;overflow:hidden; float:left; width:700px;  }
+    #scrollDiv{height:23px;overflow:hidden; float:left; width:620px;  }
     #scrollDiv ul{ float:left; list-style:None; margin:0px; padding:0px;}
     #scrollDiv ul li{ text-align:left; line-height:23px;}
     </style>
@@ -486,7 +486,7 @@
                                     <a href="/help/<%=(Session["Culture"] as CultureInfo).Name%>/SolarInfo Bank User Manual.pdf"
                                         target="_blank" style="text-decoration: underline;">
                                         <%=Resources.SunResource.SHARED_INSIDEMASTERPAGE_CLICK_HERE_FOR_HELP  %>!</a>--%>
-                                        <a style="text-decoration: underline;" href="javascript:<%=!UserUtil.BigScreenEnable?"alert('"+Resources.SunResource.BIG_SCREEN_NOFUNCTION+"');":"void(0);"%>" id="<%=!UserUtil.BigScreenEnable?"":"linkfullscreen"%>" rel="/bigscreen/execute"><img alt="" src="/images/fullscreen.png" /><br /><%=Resources.SunResource.BIG_SCREEN_MENU%></a>
+                                        <a style="text-decoration: underline;" href='javascript:<%=!UserUtil.BigScreenEnable?string.Format("alert(\"{0}\")", Resources.SunResource.BIG_SCREEN_NOFUNCTION):"void(0);"%>' id="<%=!UserUtil.BigScreenEnable?"":"linkfullscreen"%>" rel="/bigscreen/execute"><img alt="" src="/images/fullscreen.png" /><br /><%=Resources.SunResource.BIG_SCREEN_MENU%></a>
                                 </div>
                             </td>
                             <asp:ContentPlaceHolder ID="MainContent" runat="server">

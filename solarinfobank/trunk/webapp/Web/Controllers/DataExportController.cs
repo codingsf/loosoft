@@ -198,7 +198,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 iTextSharp.text.Font font = new iTextSharp.text.Font(baseFont, 9, iTextSharp.text.Font.NORMAL);
 
                 PdfWriter.GetInstance(doc, new FileStream(fullPdfPath, FileMode.Create));
-                
+
                 doc.Open();
                 //散列图暂不生成
                 if (chartData.series.Length > 0 && !"scatter".Equals(chartData.series[0].type))
@@ -214,10 +214,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 }
                 PdfPTable table = new PdfPTable(chartData.series.Count() + 1);
                 string xname = Resources.SunResource.CUSTOMREPORT_CHART_TIME;
-                if(chartData.names.Length>0 && !string.IsNullOrEmpty(chartData.names[0])){
+                if (chartData.names.Length > 0 && !string.IsNullOrEmpty(chartData.names[0]))
+                {
                     xname = chartData.names[0] + "[" + chartData.units[0] + "]";
                 }
-                
+
                 table.AddCell(new PdfPCell(new Phrase(xname, font)));
                 string unit = string.Empty;
                 bool isprocessUnit = true;
@@ -314,9 +315,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     }
 
                     DateTime dNow = DateTime.Now;
-                    try{
-                        dNow= new DateTime(yy, mm, dd, hh, MM, ss);
-                    }catch(Exception ee){
+                    try
+                    {
+                        dNow = new DateTime(yy, mm, dd, hh, MM, ss);
+                    }
+                    catch (Exception ee)
+                    {
 
                     }
                     table.AddCell(new PdfPCell(new Phrase(dStr, font)));
@@ -326,7 +330,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     {
                         if (years.Count > 1)//说明多年比较
                             dNow = new DateTime(years[index - 1], mm, dd, hh, MM, ss);
-                        table.AddCell(new PdfPCell(new Phrase(chartData.series[index - 1].data[y] == null ? dNow < DateTime.Now ? "None" : string.Empty : ((double)chartData.series[index - 1].data[y]).ToString("0.00"), font)));
+                        table.AddCell(new PdfPCell(new Phrase(chartData.series[index - 1].data[y] == null ? dNow < DateTime.Now ? "None" : string.Empty : StringUtil.formatDouble(((double)chartData.series[index - 1].data[y]), "0.0"), font)));
                     }
                 }
                 doc.Add(table);
@@ -463,7 +467,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     for (int k = 0; k < chartData.series[i].data.Length; k = k + n)
                     {
                         float? f = chartData.series[i].data[k];
-                        tmps.Add(f == null ? string.Empty : double.Parse(f.ToString()).ToString("0.00"));
+                        tmps.Add(f == null ? string.Empty : StringUtil.formatDouble(double.Parse(f.ToString()), "0.00"));
                     }
                     data.Rows.Add(tmps);
                     if (isMulti)
@@ -512,7 +516,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 xlsWriter.Save(false);
             }
-            else {
+            else
+            {
                 xlsWriter.Save(true);
             }
             return File(xlsWriter.FullName, "text/xls; charset=UTF-8", urlcode(xlsWriter.FileName));

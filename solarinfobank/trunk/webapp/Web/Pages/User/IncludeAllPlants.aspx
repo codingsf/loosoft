@@ -194,7 +194,7 @@
                                                           {
                                                               if (plant.Expired)
                                                               {%>
-                                                                 <a href="javascript:alert('<%=alertMsg %>');" class="dbl">
+                                                                 <a href='javascript:alert("<%=alertMsg %>");' class="dbl">
                                                               <%}else
                                                               { %>
                                                             <a target="_blank" href="/plant/overview/<%=plant.id %>" class="dbl">
@@ -212,18 +212,18 @@
                                                         <%=plant.city%></div>
                                                 </td>
                                                 <td width="10%" align="center">
-                                                    <div style="overflow: hidden;" title="<%=plant.TotalDayEnergy%>">
-                                                        <%=plant.TotalDayEnergy.ToString("0.00")%>
+                                                    <div style="overflow: hidden;" title=" <%= StringUtil.formatFloat( plant.TotalDayEnergy,"0.00")%>">
+                                                        <%= StringUtil.formatFloat( plant.TotalDayEnergy,"0.00")%>
                                                     </div>
                                                 </td>
                                                 <td width="10%" align="center">
-                                                    <div style="overflow: hidden;" title="<%=plant.TotalEnergy%>">
-                                                        <%=plant.TotalEnergy.ToString("0.00")%>
+                                                    <div style="overflow: hidden;" title=" <%= StringUtil.formatFloat( plant.TotalEnergy,"0.00")%>">
+                                                         <%= StringUtil.formatFloat( plant.TotalEnergy,"0.00")%>
                                                     </div>
                                                 </td>
                                                 <td width="10%" align="center">
-                                                    <div style="overflow: hidden;" title="<%=plant.TodayTotalPower%>">
-                                                        <%=plant.TodayTotalPower%>
+                                                    <div style="overflow: hidden;" title="<%= StringUtil.formatFloat( plant.TodayTotalPower,"0.00")%>">
+                                                        <%= StringUtil.formatFloat( plant.TodayTotalPower)%>
                                                     </div>
                                                 </td>
                                                 <td width="15%" align="center">

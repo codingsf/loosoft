@@ -11535,7 +11535,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Copyright &amp;copy; 2013 {0} , v1.0.19 Beta , Browse Resolution: 1024x768 的本地化字符串。
+        ///   查找类似 Copyright &amp;copy; 2013 {0} , v1.0.19 Beta , Browse Resolution: 1024x768,No IE6 的本地化字符串。
         /// </summary>
         internal static string SHARED_MAINMASTREPAGE_COPYRIGHT {
             get {

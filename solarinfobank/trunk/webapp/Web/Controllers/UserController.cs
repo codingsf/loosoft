@@ -13,6 +13,7 @@ using Dimac.JMail;
 using System.IO;
 using System.Drawing;
 using Cn.Loosoft.Zhisou.SunPower.Common.vo;
+using Cn.Loosoft.Zhisou.SunPower.Service.vo;
 namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 {
     public class UserController : BaseController
@@ -2207,6 +2208,35 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         public ActionResult PlantUsers()
         {
             User user = UserUtil.getCurUser();
+            //更加用户拥有的电站找出所有有电站有关系的用户
+            IList<Plant> plants = user.ownPlants;
+            IList<User> users = new List<User>();
+            string pIds = "";
+            foreach (Plant plant in plants)
+            {
+                {
+                    pIds += "," + plant.id;
+                }
+                if (pIds.Length > 0) pIds = pIds.Substring(1);
+            }
+            IList<PlantUser> plantUsers = PlantUserService.GetInstance().GetusersByplantid(pIds);
+            IList<long> userIds = new List<long>();
+            IList<PlantUserVO> puvos = new List<PlantUserVO>();
+            //剔除重复的用户
+            foreach (PlantUser pu in plantUsers)
+            {
+                if (!userIds.Contains(pu.userID))
+                {
+                    Role role = RoleService.GetInstance().Get(pu.roleId);
+                    User tmpUser = userservice.Get(pu.userID);
+                    if (tmpUser != null)
+                    {
+                        userIds.Add(pu.userID);
+                        puvos.Add(new PlantUserVO(tmpUser, role));
+                    }
+                }
+            }
+            ViewData["puvos"] = puvos;
             return View(user);
         }
 
@@ -2232,14 +2262,37 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         public ActionResult AddUser(User user, bool mail, string role)
         {
             string plants = Request.Form["plants"];
-            user.ParentUserId = UserUtil.getCurUser().id;
-            user.TemperatureType = "C";
-            user.currencies = "$";
-            user.languageId = 1;
-            user.sex = "0";
-            string password = user.password;
-            user.password = EncryptUtil.EncryptDES(user.password, EncryptUtil.defaultKey);
-            int id = userservice.save(user);
+            //先判断用户是否存在
+            User existUser = userservice.GetUserByName(user.username);
+            int id = 0;
+            if (existUser == null)
+            {
+                user.ParentUserId = UserUtil.getCurUser().id;
+                user.TemperatureType = "C";
+                user.currencies = "$";
+                user.languageId = 1;
+                user.sex = "0";
+                string password = user.password;
+                user.password = EncryptUtil.EncryptDES(user.password, EncryptUtil.defaultKey);
+                id = userservice.save(user);
+                UserRoleService.GetInstance().Insert(new UserRole() { userId = id, roleId = int.Parse(role) });
+                if (mail)
+                {
+                    try
+                    {
+                        EmailQueue queue = new EmailQueue();
+                        queue.content = string.Format(Resources.SunResource.USER_CONTROLLER_FINDPASSWORD_EMAIL_BODY, user.username, password);
+                        queue.receiver = user.email;
+                        queue.title = Resources.SunResource.USER_CONTROLLER_FINDPASSWORD_EMAIL_SUBJECT;
+                        SendUserMail(queue);
+                    }
+                    catch { }
+
+                }
+            }
+            else {
+                id = existUser.id;
+            }
             if (string.IsNullOrEmpty(plants) == false)
             {
                 foreach (string p in plants.Split(','))
@@ -2250,21 +2303,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 }
             }
 
-            UserRoleService.GetInstance().Insert(new UserRole() { userId = id, roleId = int.Parse(role) });
-
-            if (mail)
-            {
-                try
-                {
-                    EmailQueue queue = new EmailQueue();
-                    queue.content = string.Format(Resources.SunResource.USER_CONTROLLER_FINDPASSWORD_EMAIL_BODY, user.username, password);
-                    queue.receiver = user.email;
-                    queue.title = Resources.SunResource.USER_CONTROLLER_FINDPASSWORD_EMAIL_SUBJECT;
-                    SendUserMail(queue);
-                }
-                catch { }
-
-            }
             return Redirect("/user/plantuser");
         }
 
@@ -2284,10 +2322,23 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         [IsLoginAttribute]
         public ActionResult DeleteUser()
         {
+            User curUser = UserUtil.getCurUser();
             string uid = Request.QueryString["uid"];
             int id = 0;
             int.TryParse(uid, out id);
-            userservice.Delete(id);
+            User user = userservice.Get(id);
+            if (user.ParentUserId == curUser.id)
+            {
+                userservice.Delete(id);
+            }
+            else {
+                //先删除当前用户电站已有关系
+                foreach (Plant plant in curUser.ownPlants)
+                {
+                    PlantUserService.GetInstance().ClosePlant(plant.id, id);
+                }
+            }
+
             return Redirect("/user/plantuser");
         }
         /// <summary>
@@ -2384,22 +2435,28 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         [IsLoginAttribute]
         public ActionResult UserPlantEdit()
         {
+            int roleId = int.Parse(Request.Form["roleId"]);
+            User curUser = UserUtil.getCurUser();
             string str = Request.Form["plants"];
             string uid = Request.Form["uid"];
             int userId = 0;
             int.TryParse(uid, out userId);
             //要分配的一般用户
             User user = userservice.Get(userId);
-            //先删除已有关系
-            PlantUserService.GetInstance().DelPlantUserByUserId(userId);
+            //先删除当前用户电站已有关系
+            foreach (Plant plant in curUser.ownPlants)
+            {
+                PlantUserService.GetInstance().ClosePlant(plant.id,user.id);
+            }
             //再创建新关系
             if (!string.IsNullOrEmpty(str))
             {
-                foreach (string p in str.Split(','))
+                string[] parr = str.Split(',');
+                foreach (string p in parr)
                 {
                     if (string.IsNullOrEmpty(p))
-                        break;
-                    PlantUserService.GetInstance().AddPlantUser(new PlantUser() { plantID = int.Parse(p), userID = userId, shared = true, roleId = user.userRole.roleId });
+                        continue;
+                    PlantUserService.GetInstance().AddPlantUser(new PlantUser() { plantID = int.Parse(p), userID = userId, shared = true, roleId = roleId});
                 }
             }
             return Redirect("/user/plantuser");

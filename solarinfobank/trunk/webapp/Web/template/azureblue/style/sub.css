@@ -1,5 +1,4 @@
-
-/*ÓïÑÔÇĞ»»*/
+/*è¯­è¨€åˆ‡æ¢*/
 .ensel {width:134px; height:30px; background:url(../Images/ensel.GIF) no-repeat; color:FFFFFF;}
 .lansel {width:134px;}
 .lansel_down { background:url(../Images/lansel_down.gif) no-repeat; height:6px;}
@@ -91,11 +90,11 @@
 .dropDownList span.over{background-position:left bottom;border-color:#B4C91A;} 
 .dropDownList ul{width:154px;display:none;position:absolute;margin:0;padding:0;list-style:none;} 
 .dropDownList ul li{background:#eee;height:20px;width:100%;padding:3px 0;text-indent:12px;cursor:default;line-height:20px;} 
-/*ÆÕÍ¨×´Ì¬ÏÂµÄÑùÊ½*/ 
+/*æ™®é€šçŠ¶æ€ä¸‹çš„æ ·å¼*/ 
 .dropDownList ul li.normal{background:#eee;} 
-/*Êó±êÒÆÉÏµÄÑùÊ½*/ 
+/*é¼ æ ‡ç§»ä¸Šçš„æ ·å¼*/ 
 .dropDownList ul li.over{background:#ccc;} 
-/*±»Ñ¡ÖĞµÄÑùÊ½*/ 
+/*è¢«é€‰ä¸­çš„æ ·å¼*/ 
 .dropDownList ul li.current{background:#c2c2c2;font-weight:bold;} 
 .dropDownList ul.show{display:block;}
     
@@ -114,7 +113,7 @@
 .kjdbd{ background:url(../Images/kj/kjbg08.gif) no-repeat; height:8px;}
 .kjdpic{ border:5px solid #425441;}
 
-/*·¢µçÁ¿Êı¾İÍ³¼ÆĞÅÏ¢*/
+/*å‘ç”µé‡æ•°æ®ç»Ÿè®¡ä¿¡æ¯*/
 .kjrb{ width:210px; height:64px; margin-bottom:30px; margin-right:30px; background:url(../Images/kj/kjbg04.gif) no-repeat; padding-top:10px; padding-left:5px; float:left;}
 .kjli{ line-height:18px; font-size:14px;}
 
@@ -155,7 +154,7 @@
 .bitab03 ul li a:active {float:left; height:28px; line-height:28px; border:1px solid #D4D4D4; color:#413931; font-weight:bold; display:block; padding:0px 15px; margin:0px 5px; background: #F0F0F0;}
 
 
-/*Ä£°åÉèÖÃ¿ªÊ¼*/
+/*æ¨¡æ¿è®¾ç½®å¼€å§‹*/
 .mbts{ color:#EB5106; background:#FFF1CA; border:1px solid #F6C97C; padding:5px; line-height:20px; margin-bottom:10px;}
 .mblogo{ border:1px solid #D7D7D7; text-align:center; width:250px;}
 .mblogo span{ display:block; height:20px; line-height:20px; text-align:center; background:#EEEEEE;}
@@ -165,4 +164,4 @@
 .mbchange li img{ border:3px solid #DFDFDF;}
 .mbchange li span{ display:block; text-align:center; height:25px; line-height:25px;}
 .mbchange li input{ vertical-align:middle;}
-/*Ä£°åÉèÖÃ½áÊø*/
+/*æ¨¡æ¿è®¾ç½®ç»“æŸ*/

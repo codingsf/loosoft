@@ -26,7 +26,6 @@
 |     Last updated: October 26th, 2006
 |     Version: 1.0
 \------------------------------------------------------------------------------------------*/
-
 ECONode = function (id, pid, dsc, w, h, c, bc, target, meta) {
 	this.id = id;
 	this.pid = pid;

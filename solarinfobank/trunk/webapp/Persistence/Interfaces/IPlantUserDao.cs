@@ -53,5 +53,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.Interfaces
         /// <param name="pid"></param>
         /// <returns></returns>
         IList<User> GetusersByplantid(int pid);
+
+        IList<PlantUser> GetusersByplantid(string pids);
     }
 }

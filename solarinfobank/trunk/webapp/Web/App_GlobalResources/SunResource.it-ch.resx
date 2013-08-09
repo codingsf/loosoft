@@ -1852,7 +1852,7 @@
     <comment>联系我们</comment>
   </data>
   <data name="SHARED_MAINMASTREPAGE_COPYRIGHT" xml:space="preserve">
-    <value>Diritto d'autore &amp;copy; 2013 {0} , v1.0.19 Beta , sfoglia della risoluzione:1024x768</value>
+    <value>Diritto d'autore &amp;copy; 2013 {0} , v1.0.19 Beta , sfoglia della risoluzione:1024x768,No IE6</value>
     <comment>版权 @ 2013 SolarInfo Bank , v1.0.19 Alpha, 分辨率: 1024x768</comment>
   </data>
   <data name="SHARED_MAINMASTREPAGE_HOME" xml:space="preserve">

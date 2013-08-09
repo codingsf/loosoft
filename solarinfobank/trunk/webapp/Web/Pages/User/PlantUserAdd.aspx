@@ -15,15 +15,15 @@
                   username: {
                       required: true,
                       minlength: 2,
-                      maxlength: 30,
-                      remote: {
-                          type: "POST",
-                          url: "/user/checkuser",
-                          data: {
-                              uname: function() { return $("#username").val(); },
-                              oldname: ""
-                          }
-                      }
+                      maxlength: 30
+                      //remote: {
+                          //type: "POST",
+                          //url: "/user/checkuser",
+                          //data: {
+                              //uname: function() { return $("#username").val(); },
+                              //oldname: ""
+                          //}
+                      //}
                   },
                   password: {
                       required: true,
@@ -64,10 +64,7 @@
                   username: {
                       required: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_USERNAME_REQUIRED %></span>",
                       minlength: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_USERNAME_MINLENGTH %></span>",
-                      maxlength: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_TIP_USERNAME %></span>",
-
-                      remote: "<span class='error'>&nbsp;<%=Resources.SunResource.AJAX_CHACKING_USERNAME%></span>"
-
+                      maxlength: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_TIP_USERNAME %></span>"
                   },
                   password: {
                       required: "<span class='error'>&nbsp;<%=Resources.SunResource.AUTH_REG_PASSWORD_REQUIRED%></span>",

@@ -22,6 +22,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             this.plantID = plantID;
             this.userID = userID;
         }
+
+        public PlantUser(int plantID, int userID)
+        {
+            this.plantID = plantID;
+            this.userID = userID;
+        }
         private int _id;//id 自增
         public int id
         {
@@ -57,19 +63,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             set
             {
                 _userID = value;
-            }
-        }
-
-        private string _username;
-        public string username
-        {
-            get
-            {
-                return _username;
-            }
-            set
-            {
-                _username = value;
             }
         }
         private Plant _plant;

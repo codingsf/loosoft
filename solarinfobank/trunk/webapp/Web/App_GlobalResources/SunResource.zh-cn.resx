@@ -1434,7 +1434,7 @@
     <value>联系我们</value>
   </data>
   <data name="SHARED_MAINMASTREPAGE_COPYRIGHT" xml:space="preserve">
-    <value>版权 &amp;copy; 2013 {0} , v1.0.19 Beta, 分辨率: 1024x768</value>
+    <value>版权 &amp;copy; 2013 {0} , v1.0.19 Beta, 分辨率: 1024x768,非IE6</value>
   </data>
   <data name="SHARED_MAINMASTREPAGE_HOME" xml:space="preserve">
     <value>首页</value>

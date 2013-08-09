@@ -65,7 +65,7 @@
     #scrollDiv ul{ float:left; list-style:None; margin:0px; padding:0px;}
     #scrollDiv ul li{ text-align:left; line-height:23px;}
     </style>
-    <script src="../../script/cookie.js" type="text/javascript"></script>
+    <script src="/script/cookie.js" type="text/javascript"></script>
 
     <link href="/style/colorbox.css" rel="stylesheet" type="text/css" />
 

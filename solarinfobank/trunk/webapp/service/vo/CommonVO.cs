@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Cn.Loosoft.Zhisou.SunPower.Domain;
 
 namespace Cn.Loosoft.Zhisou.SunPower.Service.vo
 {
@@ -46,5 +47,28 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service.vo
         /// </summary>
         public IList<TIMEFGPJVO> timevos { get; set; }
 
+    }
+
+    /// <summary>
+    /// 电站用户vo
+    /// </summary>
+    public class PlantUserVO {
+
+        public PlantUserVO(User user, Role role)
+        {
+            this.user = user;
+            this.plantRole = role;
+        }
+        /// <summary>
+        /// 用户
+        /// </summary>
+        public User user { get; set; }
+
+        /// <summary>
+        /// 电站角色
+        /// </summary>
+        public Role plantRole { get; set; }
+
+    
     }
 }

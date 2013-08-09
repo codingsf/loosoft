@@ -1,9 +1,9 @@
-.greenbtu{ background:url(../images/faq/faq_btu01.jpg); height:30px; padding:0 15px; border:1px solid #5DB306; color:#FFFFFF; font-size:14px; font-family:"Î¢ÈíÑÅºÚ"; cursor:pointer; vertical-align:middle;}
+.greenbtu{ background:url(../images/faq/faq_btu01.jpg); height:30px; padding:0 15px; border:1px solid #5DB306; color:#FFFFFF; font-size:14px; font-family:"å¾®è½¯é›…é»‘"; cursor:pointer; vertical-align:middle;}
 .faq_input01{ background:url(../images/faq/faq_bg03.jpg) top repeat-x; height:28px; line-height:28px; border:1px solid #95C754; width:550px; padding-left:5px; vertical-align:middle;}
 .faq_input02{ background:url(../images/faq/faq_bg03.jpg) top repeat-x; line-height:28px; border-left:1px solid #95C754; border-right:1px solid #95C754; border-top:1px solid #CEDEC1; border-bottom:1px solid #DDDDDD; width:546px; vertical-align:middle; padding:5px;}
 
 .faq_top{ background:url(../images/faq/faq_top.jpg); width:703px; height:127px; margin:10px auto;}
-.faq_top p{ margin:0 0 0 130px; font-size:30px; font-family: "Î¢ÈíÑÅºÚ";}
+.faq_top p{ margin:0 0 0 130px; font-size:30px; font-family: "å¾®è½¯é›…é»‘";}
 .faq_top span{ margin-left:130px; display:block; line-height:20px; color:#6B6B6B;}
 
 .faq_search{ padding:20px 0px; text-align:center;}

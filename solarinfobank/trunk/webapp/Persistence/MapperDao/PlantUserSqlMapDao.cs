@@ -97,5 +97,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Persistence.MapperDao
         {
             return ExecuteQueryForList<User>("getusers_byplantid", pid);
         }
+
+        /// <summary>
+        /// 取得某个共享电站取得对应的电站用户
+        /// </summary>
+        /// <param name="pid"></param>
+        /// <returns></returns>
+        public IList<PlantUser> GetusersByplantid(string pids)
+        {
+            return ExecuteQueryForList<PlantUser>("getusers_byplants", pids);
+        }
     }
 }

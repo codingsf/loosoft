@@ -8,6 +8,7 @@ function getExpDate(days, hours, minutes) {
     }
 }
 
+
 //utility function called by getCookie()
 function getCookieVal(offset) {
     var endstr = document.cookie.indexOf(";", offset);

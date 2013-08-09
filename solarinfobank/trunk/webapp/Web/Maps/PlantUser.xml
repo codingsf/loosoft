@@ -84,9 +84,12 @@
     <delete id="plantuser_delete_by_userid" paramentClass="int">
       DELETE FROM plant_user WHERE  userid=#value#
     </delete>
-
     <select id="getusers_byplantid" resultClass="User">
       select * from userinfo where id in ( select userid from plant_user where plantid in ($value$) and shared=1)
+    </select>
+    <!--取得多个电站对应的电站用户-->
+    <select id="getusers_byplants" resultClass="PlantUser">
+    select * from plant_user where plantid in ($value$)
     </select>
   </statements>
 </sqlMap>

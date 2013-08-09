@@ -1434,7 +1434,7 @@
     <value>連絡</value>
   </data>
   <data name="SHARED_MAINMASTREPAGE_COPYRIGHT" xml:space="preserve">
-    <value>著作権 &amp;copy; 2013 {0} v1.0.19 Beta、解像度： 1024×768</value>
+    <value>著作権 &amp;copy; 2013 {0} v1.0.19 Beta、解像度： 1024×768、No IE6</value>
   </data>
   <data name="SHARED_MAINMASTREPAGE_HOME" xml:space="preserve">
     <value>ホーム</value>

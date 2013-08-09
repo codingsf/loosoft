@@ -51,13 +51,16 @@
                   </style>
                   <ul class="txtbu55">
                   <!--从用户创建的电站中分配给一般用户-->
-                  <%foreach (Plant plant in Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().ownPlants)
+                  <%
+                  int roleId = 0;
+                  foreach (Plant plant in Cn.Loosoft.Zhisou.SunPower.Service.UserUtil.getCurUser().ownPlants)
                   {
                     var select=false;
                     foreach(var item in Model)
                     {
                         if (item.plantID.Equals(plant.id))
                         {
+                            roleId = item.roleId;
                             select = true;
                             break;
                         }
@@ -74,6 +77,7 @@
                      }
                  }%>
                   </ul>
+                  <%=Html.Hidden("roleId", roleId)%>
                   </td>
                 </tr>
               </tbody>

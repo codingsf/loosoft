@@ -1,11 +1,11 @@
-/* Ö÷ÒªÍ¨ÓÃÑùÊ½ */
+/* ä¸»è¦é€šç”¨æ ·å¼ */
 body{font-family: Verdana, Arial, Helvetica, sans-serif; margin:0px; font-size:12px; background:url(/images/gf/gf_bodybg.jpg) repeat-x top;}
 #ul,li,input,td,th {margin:0px; padding:0px;}
 .gf_boxb{ width:1003px; margin:0 auto; clear:both;}
 .xxtab{ border-top:1px dotted #E0DDDD; background:url(/images/gf/xxbg.jpg); height:34px;}
 .xxtab0{background:url(/images/gf/llbg.jpg); height:37px; background-position:right;}
-.xxtab01{ font-size:14px; font-family:"Î¢ÈíÑÅºÚ","ºÚÌå"; color:#000;}
-.xxtab03{ font-size:12px; font-family:"Î¢ÈíÑÅºÚ","ºÚÌå"; color:#B3B3B3; padding-right:10px;}
+.xxtab01{ font-size:14px; font-family:"å¾®è½¯é›…é»‘","é»‘ä½“"; color:#000;}
+.xxtab03{ font-size:12px; font-family:"å¾®è½¯é›…é»‘","é»‘ä½“"; color:#B3B3B3; padding-right:10px;}
 
 .yellowbu{ background: url(/images/gf/clickm.gif); width:150px; cursor:pointer; height:24px; color:#fff; font-size:12px; font-weight:bold; line-height:24px; padding-left:25px; padding-bottom:5px; border:none; text-align:left;cursor:pointer}
 
@@ -33,14 +33,14 @@ a:active { color:#000; text-decoration:none;}
 #change .onclick{ float:left; background:url(/images/gf/subtb1.gif); height:27px; line-height:27px; border:1px solid #727171; padding:0px 10px; text-align:center; color:#FFFFFF; font-weight:bold; display:block;}
 
 
-/* Í·²¿Óëµ¼º½²¿·Ö */
+/* å¤´éƒ¨ä¸å¯¼èˆªéƒ¨åˆ† */
 .gf_top{height:115px; }
 
 .gf_toptittle{ height:66px;}
-.gf_toptittlen{font-size:32px; width:750px; padding-left:40px; padding-top:15px; float:left; font-family:"Î¢ÈíÑÅºÚ","ºÚÌå";}
+.gf_toptittlen{font-size:32px; width:750px; padding-left:40px; padding-top:15px; float:left; font-family:"å¾®è½¯é›…é»‘","é»‘ä½“";}
 .gf_toptittlel{float:right; width:140px; padding-right:40px; padding-top:20px; height:40px;}
 .gf_toptittle2{float:right; width:140px; padding-right:40px; padding-top:20px; height:40px;}
-/* add by qhb for logoÍ¼Æ¬´óĞ¡²»¹Ì¶¨*/
+/* add by qhb for logoå›¾ç‰‡å¤§å°ä¸å›ºå®š*/
 .gf_toptittle20{ padding-right:40px; padding-top:30px; height:40px; text-align:right;} 
 .gf_dh{ height:39px; padding-right:40px;}
 .gf_dhl{width:700px; height:39px; float:left; padding-left:20px; line-height:39px; font-size:14px; color:#FFF;}
@@ -48,9 +48,9 @@ a:active { color:#000; text-decoration:none;}
 .gf_dhl a:visited{text-decoration:none;color:#FFF;}
 .gf_dhl a:hover{text-decoration:underline; font-weight:bold;color:#FFF;}
 .gf_dhl a:active{text-decoration:none;color:#FFF;}
-.gf_dhr{width:200px; height:39px; background:url(/images/gf/gf_dh03.jpg); padding-right:20px; float:right; text-align:right; color:#FFF; line-height:39px; font-family:"Î¢ÈíÑÅºÚ","ºÚÌå";}
+.gf_dhr{width:200px; height:39px; background:url(/images/gf/gf_dh03.jpg); padding-right:20px; float:right; text-align:right; color:#FFF; line-height:39px; font-family:"å¾®è½¯é›…é»‘","é»‘ä½“";}
 
-/* ÖĞ¼ä */
+/* ä¸­é—´ */
 .gf_midbody{ width:100%; background:url(/images/gf/gf_midbg.jpg) repeat-x bottom;}
 .tjxx{ background:url(/images/gf/tjxnbg.jpg) no-repeat top; padding:10px 10px 10px 30px; }
 .plr{ padding:0 40px;}
@@ -76,12 +76,12 @@ a:active { color:#000; text-decoration:none;}
 .xxbox_tt{ font-size:14px; font-weight:bold;}
 
 .down_line01{ border-bottom:1px solid #E6E6E6; background:#F8F8F8; line-height:28px;}
-.down_line02{ border-bottom:1px solid #E6E6E6; background:#fff; line-height:25px;}/*Êó±êÒÆÉÏ±äÎª°×É«*/
+.down_line02{ border-bottom:1px solid #E6E6E6; background:#fff; line-height:25px;}/*é¼ æ ‡ç§»ä¸Šå˜ä¸ºç™½è‰²*/
 
 .fgp{ background:#D2D7DC; padding:3px;}
 
 
-.cimg{ background:url(/images/gf/wbg.gif) no-repeat; width:293px; height:184px; text-align:center; padding-top:12px; cursor:pointer;}/*Í¼Æ¬Àı±íÑùÊ½*/
+.cimg{ background:url(/images/gf/wbg.gif) no-repeat; width:293px; height:184px; text-align:center; padding-top:12px; cursor:pointer;}/*å›¾ç‰‡ä¾‹è¡¨æ ·å¼*/
 .fystyle{ height:28px; padding-left:325px;}
 .fystyle ul{margin:0px; padding:0px;list-style:none; color:#FF8000;}
 .fystyle ul li{ float:left; height:20px; line-height:20px; display:block; margin:0px 5px;}
@@ -98,13 +98,13 @@ a:active { color:#000; text-decoration:none;}
 .gftb{ background:url(/images/gf/tbbg01.jpg) repeat-x top; border-top:2px solid #CACFD5;}
 
 
-/* Î²²¿ */
+/* å°¾éƒ¨ */
 .gf_footer{ background:#F2F2F2; width:100%x; height:39px; color:#A6A1A1; line-height:39px;}
 .f_footertext{width:1003px; height:39px; color:#A6A1A1;}
 .tspanl{ float:left; padding-left:40px;}
 .tspanr{ float:right; padding-right:40px;}
 
-/* µ¯³öÒ³ */
+/* å¼¹å‡ºé¡µ */
 .gftcy{padding:60px 20px 90px 20px;}
 .lbtt{ background:url(/images/gf/tittlebg.jpg) repeat-x bottom; line-height:22px; border:1px solid #EAEAEA;}
 /*

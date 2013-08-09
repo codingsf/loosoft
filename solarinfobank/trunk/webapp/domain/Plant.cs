@@ -739,7 +739,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
             if (month >= values.Length) return null;
             string temp = values[month];
             if (string.IsNullOrEmpty(temp)) return null;
-            double res = double.Parse(temp);
+            double res = StringUtil.stringtoDouble(temp);
             return res;
         }
 

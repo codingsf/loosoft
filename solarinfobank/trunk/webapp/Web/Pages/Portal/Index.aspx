@@ -231,8 +231,8 @@
                                                 //将坐标换算成地图坐标
                                                 CountryCity cc = CountryCityService.GetInstance().GetCity(plant.city);
                                                 if (cc == null || string.IsNullOrEmpty(cc.lon) || string.IsNullOrEmpty(cc.lat)) continue;
-                                                int x = int.Parse(((float.Parse(cc.lon) - 73.6666) * lonrate).ToString("0"))+37;
-                                                int y = int.Parse(((53.5583 - float.Parse(cc.lat)) * latrate).ToString("0"))+13;
+                                                int x = int.Parse(((StringUtil.stringtoFloat(cc.lon) - 73.6666) * lonrate).ToString("0")) + 37;
+                                                int y = int.Parse(((53.5583 - StringUtil.stringtoFloat(cc.lat)) * latrate).ToString("0")) + 13;
                                             %>
                                             <div style="top:<%=y%>px; left:<%=x%>px;position:absolute;">
                                             <%if (plant.isVirtualPlant)

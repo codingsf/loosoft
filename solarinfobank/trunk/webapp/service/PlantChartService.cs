@@ -842,7 +842,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 float? total = 0;
                 for (int k = 0; k < 4; k++)
                 {
-                    newFeeValues[k] = newValues[k] * float.Parse(x.price);
+                    newFeeValues[k] = newValues[k] * StringUtil.stringtoFloat(x.price);
                     total += newFeeValues[k];
                 }
                 //总电费
@@ -1028,7 +1028,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 float? total = 0;
                 for (int k = 0; k < 4; k++)
                 {
-                    newFeeValues[k] = newValues[k] * float.Parse(x.price);
+                    newFeeValues[k] = newValues[k] * StringUtil.stringtoFloat(x.price);
                     total += newFeeValues[k];
                 }
                 //总电费
@@ -1177,7 +1177,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 float? total = 0;
                 for (int k = 0; k < 4; k++)
                 {
-                    newFeeValues[k] = newValues[k] * float.Parse(x.price);
+                    newFeeValues[k] = newValues[k] * StringUtil.stringtoFloat(x.price);
                     total += newFeeValues[k];
                 }
                 //总电费

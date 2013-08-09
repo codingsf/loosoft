@@ -347,7 +347,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 {
                     try
                     {
-                        value = Math.Round((double.Parse(value) / 1000), 2).ToString();
+                        value = Math.Round((StringUtil.stringtoDouble(value) / 1000), 2).ToString();
                     }
                     catch (Exception e)
                     {
@@ -360,7 +360,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 {
                     try
                     {
-                        if (double.Parse(value) == 0)
+                        if (StringUtil.stringtoDouble(value) == 0)
                             continue;
                     }
                     catch { }
@@ -505,7 +505,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 datas = data.Split(':');
                 if (code == int.Parse(datas[0]))
                 {
-                    return float.Parse(datas[1]);
+                    return StringUtil.stringtoFloat(datas[1]);
                 }
             }
             //没有该测点的值则返回-
@@ -576,7 +576,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 //工作状态和数字输入老钱 14:25:13 这样只要有一个红灯 就名字红色？
                 if (int.Parse(datas[0]) == MonitorType.MIC_BUSBAR_JNTEMPRATURE)
                 {
-                    float value = float.Parse(datas[1]);
+                    float value = (datas[1]);
                     if (value > 80) return true;
                 }
                 //判断数字输入

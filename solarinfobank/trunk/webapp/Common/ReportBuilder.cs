@@ -274,7 +274,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         {
             float? max = datas.Max();
             double newvalue = max == null ? 0 : (max.Value > 0 ? max.Value * 1.2 : max.Value * 0.8);
-            return float.Parse(newvalue.ToString());
+            return StringUtil.stringtoFloat(newvalue.ToString());
         }
 
 
@@ -287,7 +287,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         {
             float? min = datas.Min();
             double newvalue = min == null ? 0 : (min.Value > 0 ? min.Value * 0.8 : min.Value * 1.2);
-            return float.Parse(newvalue.ToString());
+            return StringUtil.stringtoFloat(newvalue.ToString());
         }
 
         /// <summary>

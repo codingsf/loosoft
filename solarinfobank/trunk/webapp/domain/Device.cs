@@ -51,7 +51,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                         return deviceModel.designPower;
                 }
                 else
-                    return float.Parse(currentPower, new CultureInfo("en-us"));
+                    return StringUtil.stringtoFloat(currentPower, new CultureInfo("en-us"));
             }
         }
         public string faulttype { get; set; }
@@ -299,7 +299,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
         {
             get
             {
-                return float.Parse(Util.upDigtal(TotalEnergy).ToString());
+                return StringUtil.stringtoFloat(Util.upDigtal(TotalEnergy).ToString());
             }
         }
 

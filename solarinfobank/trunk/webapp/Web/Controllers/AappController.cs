@@ -847,7 +847,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     float totalCurrent = device.runData == null ? 0 : device.runData.getMonitorValue(mt.code);
                     string str = mt.name + " :" + totalCurrent + " " + mt.unit;
                     //mt = MonitorType.getMonitorTypeByCode(MonitorType.MIC_BUSBAR_JNTEMPRATURE);
-                    //float tempr = device.runData == null ? 0 : float.Parse(device.runData.getMonitorValue(mt.code));
+                    //float tempr = device.runData == null ? 0 : StringUtil.stringtoFloat(device.runData.getMonitorValue(mt.code));
                     //str += "," + mt.name + " :" + tempr + " " + mt.unit;
                     vo.displayField = str;
                 }

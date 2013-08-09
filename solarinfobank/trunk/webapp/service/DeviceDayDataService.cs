@@ -218,7 +218,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     {
                         try
                         {
-                            value = Math.Round((double.Parse(value) / 1000), 2).ToString();
+                            value = Math.Round((StringUtil.stringtoDouble(value) / 1000), 2).ToString();
                         }
                         catch (Exception e)
                         {
@@ -230,7 +230,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     {
                         try
                         {
-                            if (double.Parse(value) == 0)
+                            if (StringUtil.stringtoDouble(value) == 0)
                                 value="";
                             else
                             {

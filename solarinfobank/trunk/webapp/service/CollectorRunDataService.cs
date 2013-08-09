@@ -218,7 +218,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 String todayTotalEnergyStr = todayTotalEnergyObj.ToString();
                 if (todayTotalEnergyStr.StartsWith(""))
                     todayTotalEnergyStr = todayTotalEnergyStr.Substring(1);
-                return float.Parse(todayTotalEnergyStr);
+                return StringUtil.stringtoFloat(todayTotalEnergyStr);
             }
             else
             {

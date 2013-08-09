@@ -35,6 +35,7 @@
                 if (tryAgain)
                     setTimeout("bigscreen.loadnextpage()", interval);
             },
+            
             this.displaypage = function() {
                 var plantid = this.idarray[this.plantindex];
                 $(".plant").hide();
@@ -143,8 +144,6 @@
             $("#" + curContainer + " label[id='tempratureunit']").html(obj.tempratureUnit);
         }
 
-
-
         //月日图表
         function monthChart(curContainer, ajaxImgTop, isLarge, result) {
             if (appendChartError(curContainer, result, ajaxImgTop)) {
@@ -215,6 +214,7 @@
 <body>
     <div id="container">
     
+    
     </div>
     <%foreach (string plantid in (ViewData["plantArray"] as string[]))
       {
@@ -228,7 +228,7 @@
             <% Html.RenderAction("renderpage", new { @id = i, @plantid = plantid });%>
         </div>
         <%}%></div>
-    <% } %>
+    <%}%>
 
     <script src="/script/Highcharts-2.1.3/js/highcharts.js" type="text/javascript"></script>
 

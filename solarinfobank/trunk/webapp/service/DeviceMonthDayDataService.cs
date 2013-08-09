@@ -109,9 +109,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 System.Object obj = monthDataMap[key];
 
                 object tmpvalue = deviceMonthData.GetType().GetProperty("d_" + i).GetValue(deviceMonthData, null);
-                float value = tmpvalue == null ? 0 : float.Parse(tmpvalue.ToString());
+                float value = tmpvalue == null ? 0 : StringUtil.stringtoFloat(tmpvalue.ToString());
                 if (obj != null || tmpvalue != null)
-                    monthDataMap[key] = (obj == null ? 0 : float.Parse(obj.ToString())) + value * rate ;
+                    monthDataMap[key] = (obj == null ? 0 : StringUtil.stringtoFloat(obj.ToString())) + value * rate ;
             }
         }
 

@@ -140,8 +140,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 if (obj == null) { obj = 0; }
                 object curValue = unitMonthData.GetType().GetProperty("d_" + i).GetValue(unitMonthData, null);
                 if(curValue == null)continue;
-                float value = float.Parse(curValue.ToString());
-                monthDataMap[key] = float.Parse(obj.ToString()) + value;
+                float value = StringUtil.stringtoFloat(curValue.ToString());
+                monthDataMap[key] = StringUtil.stringtoFloat(obj.ToString()) + value;
             }
         }
 

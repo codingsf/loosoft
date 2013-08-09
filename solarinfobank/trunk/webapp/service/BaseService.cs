@@ -154,12 +154,12 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     object ovalue = oncerHas[key];
                     if (ovalue == null)
                     {
-                        oncerHas[key] = data.Equals("0") ? 0 : float.Parse(data);//?为何要将0赋为null?
+                        oncerHas[key] = data.Equals("0") ? 0 : StringUtil.stringtoFloat(data);//?为何要将0赋为null?
                     }
                     else
                     {
-                        if (float.Parse(data.Trim()) > float.Parse(ovalue.ToString().Trim()))
-                            oncerHas[key] = float.Parse(data);
+                        if (StringUtil.stringtoFloat(data.Trim()) > StringUtil.stringtoFloat(ovalue.ToString().Trim()))
+                            oncerHas[key] = StringUtil.stringtoFloat(data);
                     }
                 }
             }
@@ -182,7 +182,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                     {
                         if (curValue != null)
                         {
-                            float cha = float.Parse(curValue.ToString()) - float.Parse(preValue.ToString());
+                            float cha = StringUtil.stringtoFloat(curValue.ToString()) - StringUtil.stringtoFloat(preValue.ToString());
                             if (cha >= 0)
                             {
                                 preValue = curValue;
@@ -201,7 +201,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 }
                 else
                 {
-                    float newValue = float.Parse(ovalue.ToString()) + (curValue == null ? 0 : float.Parse(curValue.ToString()));
+                    float newValue = StringUtil.stringtoFloat(ovalue.ToString()) + (curValue == null ? 0 : StringUtil.stringtoFloat(curValue.ToString()));
                     hhpowerHash[key] = newValue;
                 }
             }
@@ -239,7 +239,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                             if (int.Parse(XAxis[nextX].Substring(2, 4)) - int.Parse(XAxis[i].Substring(2, 4)) < 100)
                             {
                                 //当前值
-                                float curValue = float.Parse(dataHash[XAxis[nextX]].ToString());
+                                float curValue = StringUtil.stringtoFloat(dataHash[XAxis[nextX]].ToString());
                                 float? avg = computAvg(curValue, lastValue, nextX - i + 1);
                                 if (curValue < lastValue) avg = avg * -1;
                                 for (int n = i; n < nextX; n++)
@@ -255,7 +255,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 else
                 {
                     dataHash[XAxis[i]] = obj;
-                    lastValue = float.Parse(obj.ToString());
+                    lastValue = StringUtil.stringtoFloat(obj.ToString());
                 }
                 i++;
             }
@@ -317,7 +317,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 foreach (Compensation comp in comps)
                 {
                     dayKey = year+month + comp.day.ToString("00");
-                    energyHash[dayKey] = (energyHash.ContainsKey(dayKey) && energyHash[dayKey]!=null) ? double.Parse(energyHash[dayKey].ToString()) + comp.dataValue : comp.dataValue;
+                    energyHash[dayKey] = (energyHash.ContainsKey(dayKey) && energyHash[dayKey]!=null) ? StringUtil.stringtoDouble(energyHash[dayKey].ToString()) + comp.dataValue : comp.dataValue;
                 }
             }
         }
@@ -344,7 +344,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             foreach (Compensation comp in comps)
             {
                 dayKey = comp.year.ToString("00") + comp.month.ToString("00");
-                energyHash[dayKey] = (energyHash.ContainsKey(dayKey) && energyHash[dayKey] != null) ? double.Parse(energyHash[dayKey].ToString()) + comp.dataValue : comp.dataValue;
+                energyHash[dayKey] = (energyHash.ContainsKey(dayKey) && energyHash[dayKey] != null) ? StringUtil.stringtoDouble(energyHash[dayKey].ToString()) + comp.dataValue : comp.dataValue;
             }
         }
 
@@ -362,7 +362,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             foreach (Compensation comp in comps)
             {
                 dayKey = comp.year.ToString("00");
-                energyHash[dayKey] = (energyHash.ContainsKey(dayKey) && energyHash[dayKey] != null) ? double.Parse(energyHash[dayKey].ToString()) + comp.dataValue : comp.dataValue;
+                energyHash[dayKey] = (energyHash.ContainsKey(dayKey) && energyHash[dayKey] != null) ? StringUtil.stringtoDouble(energyHash[dayKey].ToString()) + comp.dataValue : comp.dataValue;
             }
         }
 
@@ -380,7 +380,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             foreach (Compensation comp in comps)
             {
                 dayKey = year + month + comp.day.ToString("00");
-                energyHash[dayKey] = (energyHash.ContainsKey(dayKey) && energyHash[dayKey] != null) ? double.Parse(energyHash[dayKey].ToString()) + comp.dataValue : comp.dataValue;
+                energyHash[dayKey] = (energyHash.ContainsKey(dayKey) && energyHash[dayKey] != null) ? StringUtil.stringtoDouble(energyHash[dayKey].ToString()) + comp.dataValue : comp.dataValue;
             }
         }
 
@@ -398,7 +398,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             foreach (Compensation comp in comps)
             {
                 dayKey = comp.year.ToString("00") + comp.month.ToString("00");
-                energyHash[dayKey] = (energyHash.ContainsKey(dayKey) && energyHash[dayKey] != null) ? double.Parse(energyHash[dayKey].ToString()) + comp.dataValue : comp.dataValue;
+                energyHash[dayKey] = (energyHash.ContainsKey(dayKey) && energyHash[dayKey] != null) ? StringUtil.stringtoDouble(energyHash[dayKey].ToString()) + comp.dataValue : comp.dataValue;
             }
         }
 
@@ -415,7 +415,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
             foreach (Compensation comp in comps)
             {
                 dayKey = comp.year.ToString("00");
-                energyHash[dayKey] = (energyHash.ContainsKey(dayKey) && energyHash[dayKey] != null) ? double.Parse(energyHash[dayKey].ToString()) + comp.dataValue : comp.dataValue;
+                energyHash[dayKey] = (energyHash.ContainsKey(dayKey) && energyHash[dayKey] != null) ? StringUtil.stringtoDouble(energyHash[dayKey].ToString()) + comp.dataValue : comp.dataValue;
             }
         }
     }

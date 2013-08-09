@@ -400,7 +400,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 for (int i = 0; i < oArr.Length; i++)
                 {
                     if (oArr[i] != null && newArr[i] != null)
-                        oArr[i] = (float?)Math.Round(double.Parse((oArr[i] + newArr[i]).ToString()), 2);
+                        oArr[i] = (float?)Math.Round(StringUtil.stringtoDouble((oArr[i] + newArr[i]).ToString()), 2);
                 }
             }
             return oArr;
@@ -427,7 +427,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 }
                 else
                 {
-                    datas[i] = (float)Math.Round(double.Parse(obj.ToString()) * rate, 2);
+                    datas[i] = (float)Math.Round(StringUtil.stringtoDouble(obj.ToString()) * rate, 2);
 
                     if (rate != 1.0 && datas[i] > 1.1 && ic.Count == 24) datas[i] = null;//对于做kwh/kwp的值大于1.1的日数据抛弃，这个用坐标是24和rate=1判断不严谨，如果日坐标变了就会有问题。暂时这么处理
                 }
@@ -565,7 +565,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 float? obj = newdatas[i];
                 if (obj != null)
                 {
-                    newdatas[i] = (float)Math.Round(double.Parse((newdatas[i] / newdatalengths[i]).ToString()), 2);
+                    newdatas[i] = (float)Math.Round(StringUtil.stringtoDouble((newdatas[i] / newdatalengths[i]).ToString()), 2);
                 }
             }
             return newdatas;
@@ -590,7 +590,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Service
                 float? obj2 = tmpdata2[i];
                 if (obj != null)
                 {
-                    newdatas[i] = (obj2 == null ? null : (float?)Math.Round(double.Parse((obj/obj2).ToString()), 2));
+                    newdatas[i] = (obj2 == null ? null : (float?)Math.Round(StringUtil.stringtoDouble((obj/obj2).ToString()), 2));
                 }
             }
  

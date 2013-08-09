@@ -76,7 +76,7 @@
           <td width="33%" class="lbk">
           <%if (MonitorType.MIC_BUSBAR_TOTALCURRENT == rundatas[i].Key.code)
                { %>
-              <%=Math.Round(double.Parse(rundatas[i].Value),2)%> <%=rundatas[i + 1].Key.unit%>
+              <%=Math.Round(StringUtil.stringtoDouble(rundatas[i].Value),2)%> <%=rundatas[i + 1].Key.unit%>
               <%}
                else
                { %>

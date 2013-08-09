@@ -72,7 +72,7 @@
               </td>
              <%if (MonitorType.MIC_BUSBAR_TOTALCURRENT == rundatas[i].Key.code)
                { %>
-              <td width="15%" valign="center" class="pl1501" align="right"><span class="" id="lbl<%=rundatas[i].Key.code%>"><%=Math.Round(double.Parse(rundatas[i].Value),2)%></span></td>
+              <td width="15%" valign="center" class="pl1501" align="right"><span class="" id="lbl<%=rundatas[i].Key.code%>"><%=Math.Round(StringUtil.stringtoDouble(rundatas[i].Value),2)%></span></td>
               <%}
                else
                { %>
@@ -104,7 +104,7 @@
               </td>
               <%if (MonitorType.MIC_BUSBAR_TOTALCURRENT == rundatas[i+1].Key.code)
                 { %>
-              <td width="15%" valign="center" class="pl1501" align="right" ><span id="lbl<%=rundatas[i+1].Key.code%>"><%=Math.Round(double.Parse(rundatas[i+1].Value),2)%></span></td>
+              <td width="15%" valign="center" class="pl1501" align="right" ><span id="lbl<%=rundatas[i+1].Key.code%>"><%=Math.Round(StringUtil.stringtoDouble(rundatas[i+1].Value),2)%></span></td>
                <%}
                 else
                 { %>

@@ -467,7 +467,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                     for (int k = 0; k < chartData.series[i].data.Length; k = k + n)
                     {
                         float? f = chartData.series[i].data[k];
-                        tmps.Add(f == null ? string.Empty : StringUtil.formatDouble(double.Parse(f.ToString()), "0.00"));
+                        tmps.Add(f == null ? string.Empty : StringUtil.formatDouble(StringUtil.stringtoDouble(f.ToString()), "0.00"));
                     }
                     data.Rows.Add(tmps);
                     if (isMulti)

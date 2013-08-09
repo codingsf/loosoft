@@ -1,9 +1,8 @@
-﻿/* 
+/* 
 Native FullScreen JavaScript API
 -------------
 Assumes Mozilla naming conventions instead of W3C for now
 */
-
 (function() {
     var 
 		fullScreenApi = {
@@ -81,10 +80,9 @@ $().ready(function() {
 
     $().bind(fullScreenApi.fullScreenEventName, function() {
         if (fullScreenApi.isFullScreen()) {
-            $("#bigscreen").append('<iframe src="' + $('#linkfullscreen').attr("rel") + '" id="bigscreeniframe" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>');
+            $("#bigscreen").append('<iframe src="' + $('#linkfullscreen').attr("rel") + '" id="bigscreeniframe" width="100%" height="'+window.screen.height+'" frameborder="1" scrolling="no"></iframe>');
         } else {
             $("#bigscreen").empty();
         }
     });
-
 })

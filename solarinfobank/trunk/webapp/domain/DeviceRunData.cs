@@ -576,7 +576,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 //工作状态和数字输入老钱 14:25:13 这样只要有一个红灯 就名字红色？
                 if (int.Parse(datas[0]) == MonitorType.MIC_BUSBAR_JNTEMPRATURE)
                 {
-                    float value = (datas[1]);
+                    float value = StringUtil.stringtoFloat(datas[1]);
                     if (value > 80) return true;
                 }
                 //判断数字输入

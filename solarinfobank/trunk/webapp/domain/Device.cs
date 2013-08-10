@@ -51,7 +51,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                         return deviceModel.designPower;
                 }
                 else
-                    return StringUtil.stringtoFloat(currentPower, new CultureInfo("en-us"));
+                    return StringUtil.stringtoFloat(currentPower);
             }
         }
         public string faulttype { get; set; }

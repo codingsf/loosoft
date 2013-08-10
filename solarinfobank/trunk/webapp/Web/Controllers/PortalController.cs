@@ -183,11 +183,11 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                             break;
                         case ProtalItems.Income://收益
                             //先将门户的设置的收益转化率付给门户用户，即所有门户用户的采用同一个换算率
-                            portalUser.revenueRate = double.Parse(portal.rate);
+                            portalUser.revenueRate = StringUtil.stringtoDouble(portal.rate);
                             portalUser.currencies = "￥";
                             if (plant != null)
                             {
-                                plant.revenueRate = double.Parse(portal.rate);
+                                plant.revenueRate = StringUtil.stringtoDouble(portal.rate);
                                 plant.currencies = parentUser.currencies;
                             }
                             ico.Add(string.Format("data"), plant == null ? portalUser.DisplayRevenue : plant.DisplayRevenue);

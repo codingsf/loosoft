@@ -1291,10 +1291,10 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         /// 邮件
         /// </summary>
         /// <param name="queue"></param>
-        private void SendUserMail(EmailQueue queue)
+        private bool SendUserMail(EmailQueue queue)
         {
             MailServerPoolObject obj = EmailConnectionPool.getMailServerPoolObject();
-
+            bool successed = false;
             try
             {
                 Message message = new Message();
@@ -1302,13 +1302,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 message.From.Email = obj.accountName;
                 message.To.Add(queue.receiver);
                 message.Subject = queue.title;
-                obj.SendMail(message);
+                successed = obj.SendMail(message);
                 obj.close();
             }
             catch
             {
+                successed = false;
                 obj.close();
             }
+            return successed;
         }
 
         /// <summary>
@@ -2217,8 +2219,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 {
                     pIds += "," + plant.id;
                 }
-                if (pIds.Length > 0) pIds = pIds.Substring(1);
             }
+            if (pIds.Length > 0) pIds = pIds.Substring(1);
+
             IList<PlantUser> plantUsers = PlantUserService.GetInstance().GetusersByplantid(pIds);
             IList<long> userIds = new List<long>();
             IList<PlantUserVO> puvos = new List<PlantUserVO>();
@@ -2229,7 +2232,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 {
                     Role role = RoleService.GetInstance().Get(pu.roleId);
                     User tmpUser = userservice.Get(pu.userID);
-                    if (tmpUser != null)
+                    if (tmpUser != null && role != null)
                     {
                         userIds.Add(pu.userID);
                         puvos.Add(new PlantUserVO(tmpUser, role));
@@ -2264,6 +2267,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             string plants = Request.Form["plants"];
             //先判断用户是否存在
             User existUser = userservice.GetUserByName(user.username);
+            string password = string.Empty;
+            string email = string.Empty;
             int id = 0;
             if (existUser == null)
             {
@@ -2272,27 +2277,36 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 user.currencies = "$";
                 user.languageId = 1;
                 user.sex = "0";
-                string password = user.password;
+                password = user.password;
+                email = user.email;
                 user.password = EncryptUtil.EncryptDES(user.password, EncryptUtil.defaultKey);
                 id = userservice.save(user);
                 UserRoleService.GetInstance().Insert(new UserRole() { userId = id, roleId = int.Parse(role) });
-                if (mail)
+            }
+            else
+            {
+                id = existUser.id;
+                email = existUser.email;
+                password = EncryptUtil.DecryptDES(existUser.password, EncryptUtil.defaultKey);
+            }
+
+            if (mail)
+            {
+                try
                 {
-                    try
+                    if (string.IsNullOrEmpty(email) == false)
                     {
                         EmailQueue queue = new EmailQueue();
                         queue.content = string.Format(Resources.SunResource.USER_CONTROLLER_FINDPASSWORD_EMAIL_BODY, user.username, password);
-                        queue.receiver = user.email;
+                        queue.receiver = email;
                         queue.title = Resources.SunResource.USER_CONTROLLER_FINDPASSWORD_EMAIL_SUBJECT;
                         SendUserMail(queue);
                     }
-                    catch { }
-
                 }
+                catch { }
+
             }
-            else {
-                id = existUser.id;
-            }
+
             if (string.IsNullOrEmpty(plants) == false)
             {
                 foreach (string p in plants.Split(','))
@@ -2331,7 +2345,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             {
                 userservice.Delete(id);
             }
-            else {
+            else
+            {
                 //先删除当前用户电站已有关系
                 foreach (Plant plant in curUser.ownPlants)
                 {
@@ -2446,7 +2461,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             //先删除当前用户电站已有关系
             foreach (Plant plant in curUser.ownPlants)
             {
-                PlantUserService.GetInstance().ClosePlant(plant.id,user.id);
+                PlantUserService.GetInstance().ClosePlant(plant.id, user.id);
             }
             //再创建新关系
             if (!string.IsNullOrEmpty(str))
@@ -2456,7 +2471,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 {
                     if (string.IsNullOrEmpty(p))
                         continue;
-                    PlantUserService.GetInstance().AddPlantUser(new PlantUser() { plantID = int.Parse(p), userID = userId, shared = true, roleId = roleId});
+                    PlantUserService.GetInstance().AddPlantUser(new PlantUser() { plantID = int.Parse(p), userID = userId, shared = true, roleId = roleId });
                 }
             }
             return Redirect("/user/plantuser");

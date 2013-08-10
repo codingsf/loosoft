@@ -9,7 +9,6 @@ using Cn.Loosoft.Zhisou.SunPower.Common;
 
 namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 {
-
     public class AdminAuthorizeAttribute : AuthorizeAttribute
     {
         public override void OnAuthorization(AuthorizationContext filterContext)
@@ -28,7 +27,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         }
     }
 
-
     [AdminAuthorizeAttribute]
     public class AdminBaseController : Controller
     {
@@ -40,7 +38,6 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
         protected string urlcode(string strname)
         {
             //火狐不处理
-
             string btype = Request.UserAgent;
             if (btype.IndexOf("MSIE") > 0)
                 return Server.UrlEncode(strname);

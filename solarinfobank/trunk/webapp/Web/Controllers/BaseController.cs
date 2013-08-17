@@ -614,7 +614,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             string jsstr = string.Empty;
             int curLevel = 1;
             int uplevel = -1;
-            jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '{4}');", curLevel, uplevel, plant.name, "javascript:void(0);", "");
+            jsstr += string.Format(" d.add({0}, {1}, \"{2}\", '{3}', '', '', '{4}');", curLevel, uplevel, plant.name, "javascript:void(0);", "");
             int topLevel = 1;
             int deviceLevel = 1;
             int unitLevel = 1;
@@ -627,7 +627,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 IList<Device> devices = pu.displayDevices;
                 unitLevel = unitLevel * 100 + i;
                 string warnimg = pu.isDeviceFault(plant.timezone) && warn ? "/images/warning_16_small.gif" : "";
-                jsstr += string.Format(" d.add({0}, {1}, '{2}', '{3}', '', '', '{4}');", unitLevel, topLevel, pu.displayname + "(" + devices.Count + ")", string.Format("javascript:setPara({0},{1},{2});", pu.id, "true", pu.id), warnimg);
+                jsstr += string.Format(" d.add({0}, {1}, \"{2}\", '{3}', '', '', '{4}');", unitLevel, topLevel, pu.displayname + "(" + devices.Count + ")", string.Format("javascript:setPara({0},{1},{2});", pu.id, "true", pu.id), warnimg);
 
                 devices = devices.OrderByDescending(m => m.deviceModelCode).ToList<Device>();
                 if (devices != null && devices.Count > 0)

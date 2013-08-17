@@ -6,6 +6,7 @@ using System.Timers;
 using System.Text.RegularExpressions;
 using Cn.Loosoft.Zhisou.SunPower.Domain;
 using Cn.Loosoft.Zhisou.SunPower.Service;
+using System.IO;
 
 namespace Intervaler
 {
@@ -18,6 +19,11 @@ namespace Intervaler
 
         static void Main(string[] args)
         {
+            //先设置当前工作目录为进程目录
+            Console.WriteLine("原工作目录：" + Directory.GetCurrentDirectory());
+            Directory.SetCurrentDirectory(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName));
+            Console.WriteLine("现在工作目录：" + Directory.GetCurrentDirectory());
+
             Console.WriteLine("starting ... ");
             RunReport runReport = new RunReport();
             EventReport eventReport = new EventReport();

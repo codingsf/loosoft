@@ -21,7 +21,7 @@
         <script>
             function changePage(page) {
               //  window.location.href = '/admin/users/' + page;
-                window.location.href = '/admin/users/' + page + "?sd=" + $("#estartdate").val() + "&ed=" + $("#eenddate").val() + "&hasplants=" + $("#hasplants").val();
+                window.location.href = '/admin/users/' + page + "?sd=" + $("#estartdate").val() + "&ed=" + $("#eenddate").val() + "&hasplants=" + $("#hasplants").val() + "&uname=" + $("#uname").val();
                 
             }
         </script>
@@ -63,12 +63,12 @@
                         </td>
                         <td width="20%">
                            从: <input id="estartdate" name="estartdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'zh-cn'})"
-                                readonly="readonly" size="13" type="text" value='<%=Request.QueryString["sd"]==null? DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd"):Request.QueryString["sd"] %>'
+                                readonly="readonly" size="13" type="text" value='<%=Request.QueryString["sd"]==null? "":Request.QueryString["sd"] %>'
                                 class="txtbu04 Wdate" />
                         </td>
                         <td width="20%" id="country_ctl">
                             到:  <input id="eenddate" name="eenddate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,lang:'zh-cn'})"
-                                readonly="readonly" size="13" type="text" value='<%=Request.QueryString["ed"]==null?DateTime.Now.ToString("yyyy-MM-dd"):Request.QueryString["ed"] %>'
+                                readonly="readonly" size="13" type="text" value='<%=Request.QueryString["ed"]==null?"":Request.QueryString["ed"] %>'
                                 class="txtbu04 Wdate" />
                         </td>
                         
@@ -81,8 +81,19 @@
                         </td>
                         
                         <td width="20%" rowspan="2" align="center" valign="bottom" style="padding-bottom: 5px;">
-                            <input name="Submit" id="checking" type="button" class="subbu01" value="查询" onclick="changePage(1);" />
+                            
                         </td>
+                    </tr>
+                    <tr height="30">
+                    <td>用户名:</td>
+                    <td>
+                    <input type="text" name="uname" id="uname" value="<%=Request.QueryString["uname"]%>" class="txtbu04"/>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                    <input name="Submit" id="checking" type="button" class="subbu01" value="查询" onclick="changePage(1);" />
+                    </td>
                     </tr>
                 </table>
                 

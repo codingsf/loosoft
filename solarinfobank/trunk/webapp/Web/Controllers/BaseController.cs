@@ -18,6 +18,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            //判断是否是后台匿名登录访问电站
+            if (filterContext.HttpContext.Session[ComConst.Session_Anonymous] != null && filterContext.HttpContext.Session[ComConst.Session_Anonymous].ToString().ToLower().Equals("true"))
+                return;
             if (filterContext.HttpContext.Session[ComConst.Session_PaymentLimitTime] != null)
             {
                 var controller = filterContext.RouteData.Values["controller"].ToString().ToLower();

@@ -176,6 +176,9 @@
         <isNotEmpty prepend="AND"  property="hasplants">
           <![CDATA[ hasplants = #hasplants# ]]>
         </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="uname">
+          <![CDATA[ username = #uname# ]]>
+        </isNotEmpty>
       </dynamic>
       <![CDATA[ order by id desc limit $page.Start$,$page.End$]]>
     </select>
@@ -191,6 +194,9 @@
         </isNotEmpty>
         <isNotEmpty prepend="AND"  property="hasplants">
           <![CDATA[ hasplants = #hasplants# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="uname">
+          <![CDATA[ username = #uname# ]]>
         </isNotEmpty>
       </dynamic>
       

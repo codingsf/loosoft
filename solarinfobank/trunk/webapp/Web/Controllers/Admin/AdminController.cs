@@ -393,6 +393,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             para["startDate"] = Request.QueryString["sd"];
             para["endDate"] = Request.QueryString["ed"];
             para["hasplants"] = Request.QueryString["hasplants"];
+            para["uname"] = Request.QueryString["uname"];
             IList<User> users = userInfoService.GetUsersByPage(para);
             ViewData["page"] = page;
             ViewData["pageNo"] = page.PageIndex;
@@ -434,7 +435,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             if (user.userRole != null && user.userRole.id > 0)
                 UserRoleService.GetInstance().Remove(user.userRole.id);
 
-            return Redirect("/admin/users/"+pageNo);
+            return Redirect("/admin/users/" + pageNo);
         }
 
 
@@ -651,7 +652,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
         /// <returns></returns>
         [IsLoginAttributeAdmin]
 
-        public ActionResult Collectors(string id, string isd, string ied,string bsd,string bed,string code,string bt)
+        public ActionResult Collectors(string id, string isd, string ied, string bsd, string bed, string code, string bt)
         {
             int no = 0;
             int.TryParse(id, out no);
@@ -976,12 +977,13 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                 //清理缓存，测试版不知道是不是这个原因引起的
                 CacheService.GetInstance().flushCaches();
                 tmpPlantUser = plantUserService.GetPlantUserByPlantIDUserID(plantUser);
-                if (tmpPlantUser == null) {
+                if (tmpPlantUser == null)
+                {
                     ViewData["error"] = "添加示例电站失败!";
                 }
             }
             else
-              ViewData["error"] = "已经是示例电站了!";  
+                ViewData["error"] = "已经是示例电站了!";
 
             return RedirectToAction(@"plants", "admin");
         }
@@ -1527,7 +1529,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
         }
 
         [HttpPost]
-        public ActionResult AllPlants(string country, string city, string items, string design_power_start, string design_power_end, int? index, string area, string estartdate, string eenddate, string uname, string sdayenergy, string edayenergy, string bindcollector, string sttlenergy, string ettlenergy,string pname)
+        public ActionResult AllPlants(string country, string city, string items, string design_power_start, string design_power_end, int? index, string area, string estartdate, string eenddate, string uname, string sdayenergy, string edayenergy, string bindcollector, string sttlenergy, string ettlenergy, string pname)
         {
             string uids = "0,";
             if (string.IsNullOrEmpty(uname) == false)
@@ -1557,7 +1559,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             table.Add("sttlenergy", sttlenergy);
             table.Add("ettlenergy", ettlenergy);
             table.Add("bindcollector", bindcollector);
-            table.Add("pname", pname);
+            table.Add("pname", pname.Replace("'", "\\'"));
             table.Add("uids", uids);
             table.Add("page", page);
             IList<Plant> plants = plantService.QueryPagePlants(table);
@@ -1567,7 +1569,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
         }
 
         [HttpPost]
-        public ActionResult AllPlants_Counter(string country, string city, string items, string design_power_start, string design_power_end, int? index, string area, string estartdate, string eenddate, string uname,string pname)
+        public ActionResult AllPlants_Counter(string country, string city, string items, string design_power_start, string design_power_end, int? index, string area, string estartdate, string eenddate, string uname, string pname)
         {
             string uids = "0,";
             if (string.IsNullOrEmpty(uname) == false)
@@ -1592,7 +1594,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             table.Add("design_power_start", design_power_start);
             table.Add("uids", uids);
             table.Add("design_power_end", design_power_end);
-            table.Add("pname", pname);
+            table.Add("pname", pname.Replace("'", "\\'"));
             table.Add("page", page);
             IList<Plant> plants = plantService.QueryPagePlants(table);
             ExcelData eData = BuildPlantDetails(plants, items, estartdate, eenddate);
@@ -1774,7 +1776,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                             break;
 
                         case "9"://温度
-                            rowData.Add(double.IsNaN(plant.Temperature)?"":plant.Temperature.ToString("0"));
+                            rowData.Add(double.IsNaN(plant.Temperature) ? "" : plant.Temperature.ToString("0"));
 
                             break;
 
@@ -2644,6 +2646,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
 
         public ActionResult Anonymous(int id)
         {
+            Session[ComConst.Session_Anonymous] = true;
             Plant plant = plantService.GetPlantInfoById(id);
             int uid = 0;
 

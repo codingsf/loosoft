@@ -35,7 +35,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             }
             catch(Exception e)
             {
-                System.Console.WriteLine(e.Message);
+                System.Console.WriteLine("EncryptDES"+e.Message);
                 return encryptString;
             }
         }
@@ -62,7 +62,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             }
             catch (Exception e)
             {
-                System.Console.WriteLine(e.Message);
+                System.Console.WriteLine("DecryptDES"+e.Message);
                 return decryptString;
             }
         }

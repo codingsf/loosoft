@@ -21,7 +21,8 @@ namespace Common
 
     public class ExcelStreamWriter
     {
-        private string excelPath = System.Configuration.ConfigurationSettings.AppSettings["sys_path"]+"\\tempexportfile";
+        public bool align = false;
+        private string excelPath = System.Configuration.ConfigurationSettings.AppSettings["sys_path"] + "\\tempexportfile";
         private bool isMulti;
         private string chartName;
         private string xName;
@@ -112,7 +113,10 @@ namespace Common
                                 rowIndex++;
                                 for (int i = 0; i < column.Count; i++)
                                 {
-                                    xlSheet.Cells[i + 1, rowIndex] = column[i];// string.Format("'{0}", column[i]);
+                                    if (align)
+                                        xlSheet.Cells[rowIndex, i + 1] = column[i];// string.Format("'{0}", column[i]);
+                                    else
+                                        xlSheet.Cells[i + 1, rowIndex] = column[i];// string.Format("'{0}", column[i]);
                                 }
                                 rowLength = column.Count;
                             }
@@ -130,7 +134,7 @@ namespace Common
                             }
                         }
 
-                        if (cs.dataRange!=null)
+                        if (cs.dataRange != null)
                         {
                             cs.dataRange.NumberFormat = "@";
                             cs.dataRange.HorizontalAlignment = Excel.XlVAlign.xlVAlignCenter;
@@ -151,7 +155,7 @@ namespace Common
                     }
                     catch (Exception ee)
                     {
-                        Console.WriteLine(ee.Message);
+                        Console.WriteLine(" ExcelUtil.createInnerChart" + ee.Message);
                     }
                 }
 
@@ -168,7 +172,7 @@ namespace Common
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("Save" + e.Message);
                 return false;
             }
             finally

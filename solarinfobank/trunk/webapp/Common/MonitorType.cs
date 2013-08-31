@@ -321,9 +321,58 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         /// <summary>
         /// 环境温度2 add by qhb in 20120823
         /// </summary>
-        public static readonly int MIC_INVERTER_ENVTEMP2 = int.Parse(DeviceData.INVERTER_CODE + "51");
+        public static readonly int MIC_INVERTER_ENVTEMP2 = int.Parse(DeviceData.INVERTER_CODE + "51");  
 
+ 
+        /// <summary>
+        /// 直流电流1 add by zhouhui in 20130828 for 逆变器10路电流
+        /// </summary>
+        public static readonly int MIC_INVERTER_IDC1 = int.Parse(DeviceData.INVERTER_CODE + "52");
 
+        /// <summary>
+        /// 直流电流2 add by zhouhui in 20130828 for 逆变器10路电流
+        /// </summary>
+        public static readonly int MIC_INVERTER_IDC2 = int.Parse(DeviceData.INVERTER_CODE + "53");
+
+        /// <summary>
+        /// 直流电流3 add by zhouhui in 20130828 for 逆变器10路电流
+        /// </summary>
+        public static readonly int MIC_INVERTER_IDC3 = int.Parse(DeviceData.INVERTER_CODE + "54");
+
+        /// <summary>
+        /// 直流电流4 add by zhouhui in 20130828 for 逆变器10路电流
+        /// </summary>
+        public static readonly int MIC_INVERTER_IDC4 = int.Parse(DeviceData.INVERTER_CODE + "55");
+
+        /// <summary>
+        /// 直流电流5 add by zhouhui in 20130828 for 逆变器10路电流
+        /// </summary>
+        public static readonly int MIC_INVERTER_IDC5 = int.Parse(DeviceData.INVERTER_CODE + "56");
+
+        /// <summary>
+        /// 直流电流6 add by zhouhui in 20130828 for 逆变器10路电流
+        /// </summary>
+        public static readonly int MIC_INVERTER_IDC6 = int.Parse(DeviceData.INVERTER_CODE + "57");
+
+        /// <summary>
+        /// 直流电流7 add by zhouhui in 20130828 for 逆变器10路电流
+        /// </summary>
+        public static readonly int MIC_INVERTER_IDC7 = int.Parse(DeviceData.INVERTER_CODE + "58");
+
+        /// <summary>
+        /// 直流电流8 add by zhouhui in 20130828 for 逆变器10路电流
+        /// </summary>
+        public static readonly int MIC_INVERTER_IDC8 = int.Parse(DeviceData.INVERTER_CODE + "59");
+
+        /// <summary>
+        /// 直流电流9 add by zhouhui in 20130828 for 逆变器10路电流
+        /// </summary>
+        public static readonly int MIC_INVERTER_IDC9 = int.Parse(DeviceData.INVERTER_CODE + "60");
+
+        /// <summary>
+        /// 直流电流10 add by zhouhui in 20130828 for 逆变器10路电流
+        /// </summary>
+        public static readonly int MIC_INVERTER_IDC10 = int.Parse(DeviceData.INVERTER_CODE + "61");
         //--------------------inveter  end-----------------------------------------------
 
         //--------------------huiliuxiang-----------------------------------------------
@@ -1133,6 +1182,18 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             monitorMap.Add(MIC_INVERTER_ENVTEMP1, new MonitorType() { code = MIC_INVERTER_ENVTEMP1, unit = "℃", zerotoline = false });
             monitorMap.Add(MIC_INVERTER_ENVTEMP2, new MonitorType() { code = MIC_INVERTER_ENVTEMP2, unit = "℃", zerotoline = false });
 
+            // add by zhouhui in 20130828 for 逆变器10路电流
+            monitorMap.Add(MIC_INVERTER_IDC1, new MonitorType() { code = MIC_INVERTER_IDC1, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_IDC2, new MonitorType() { code = MIC_INVERTER_IDC2, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_IDC3, new MonitorType() { code = MIC_INVERTER_IDC3, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_IDC4, new MonitorType() { code = MIC_INVERTER_IDC4, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_IDC5, new MonitorType() { code = MIC_INVERTER_IDC5, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_IDC6, new MonitorType() { code = MIC_INVERTER_IDC6, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_IDC7, new MonitorType() { code = MIC_INVERTER_IDC7, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_IDC8, new MonitorType() { code = MIC_INVERTER_IDC8, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_IDC9, new MonitorType() { code = MIC_INVERTER_IDC9, unit = "A", zerotoline = false });
+            monitorMap.Add(MIC_INVERTER_IDC10, new MonitorType() { code = MIC_INVERTER_IDC10, unit = "A", zerotoline = false });
+
             //电表
             monitorMap.Add(MIC_AMMETER_SYSFREQUENCY, new MonitorType() { code = MIC_AMMETER_SYSFREQUENCY, unit = "Hz", zerotoline = false });
             monitorMap.Add(MIC_AMMETER_PHASEVOLTAGE1, new MonitorType() { code = MIC_AMMETER_PHASEVOLTAGE1, unit = "V", zerotoline = false });
@@ -1315,6 +1376,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
 
             historyMonitorList.Add(MIC_INVERTER_INVETERTEMPRATURE);
 
+
             //ADD BY QHB IN 20120824
             historyMonitorList.Add(MIC_INVERTER_DKQTEMPRATURE);
             historyMonitorList.Add(MIC_INVERTER_ENVTEMP1);
@@ -1326,6 +1388,19 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             historyMonitorList.Add(MIC_INVERTER_MODULETEMP5);
             historyMonitorList.Add(MIC_INVERTER_MODULETEMP6);
             //ADD BY QHB IN 20120824 END
+
+            // add by zhouhui in 20130828 for 逆变器10路电流
+            historyMonitorList.Add(MIC_INVERTER_IDC1);
+            historyMonitorList.Add(MIC_INVERTER_IDC2);
+            historyMonitorList.Add(MIC_INVERTER_IDC3);
+            historyMonitorList.Add(MIC_INVERTER_IDC4);
+            historyMonitorList.Add(MIC_INVERTER_IDC5);
+            historyMonitorList.Add(MIC_INVERTER_IDC6);
+            historyMonitorList.Add(MIC_INVERTER_IDC7);
+            historyMonitorList.Add(MIC_INVERTER_IDC8);
+            historyMonitorList.Add(MIC_INVERTER_IDC9);
+            historyMonitorList.Add(MIC_INVERTER_IDC10);
+
 
             historyMonitorList.Add(MIC_AMMETER_PHASEVOLTAGE1);
             historyMonitorList.Add(MIC_AMMETER_PHASEVOLTAGE2);
@@ -1512,6 +1587,33 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             /// 状态数据3
             /// </summary>
             inverterMonitors.Add(monitorMap[MIC_INVERTER_STATUSDATA3]);
+
+
+            inverterMonitors.Add(monitorMap[MIC_INVERTER_STATUSDATA3]);
+
+            // add by zhouhui in 20130828 for 逆变器10路电流
+            inverterMonitors.Add(monitorMap[MIC_INVERTER_DKQTEMPRATURE]);
+            inverterMonitors.Add(monitorMap[MIC_INVERTER_ENVTEMP1]);
+            inverterMonitors.Add(monitorMap[MIC_INVERTER_ENVTEMP2]);
+            inverterMonitors.Add(monitorMap[MIC_INVERTER_MODULETEMP1]);
+            inverterMonitors.Add(monitorMap[MIC_INVERTER_MODULETEMP2]);
+            inverterMonitors.Add(monitorMap[MIC_INVERTER_MODULETEMP3]);
+            inverterMonitors.Add(monitorMap[MIC_INVERTER_MODULETEMP4]);
+            inverterMonitors.Add(monitorMap[MIC_INVERTER_MODULETEMP5]);
+            inverterMonitors.Add(monitorMap[MIC_INVERTER_MODULETEMP6]);
+
+            inverterMonitors.Add(monitorMap[MIC_INVERTER_IDC1]);
+            inverterMonitors.Add(monitorMap[MIC_INVERTER_IDC2]);
+            inverterMonitors.Add(monitorMap[MIC_INVERTER_IDC3]);
+            inverterMonitors.Add(monitorMap[MIC_INVERTER_IDC4]);
+            inverterMonitors.Add(monitorMap[MIC_INVERTER_IDC5]);
+            inverterMonitors.Add(monitorMap[MIC_INVERTER_IDC6]);
+            inverterMonitors.Add(monitorMap[MIC_INVERTER_IDC7]);
+            inverterMonitors.Add(monitorMap[MIC_INVERTER_IDC8]);
+            inverterMonitors.Add(monitorMap[MIC_INVERTER_IDC9]);
+            inverterMonitors.Add(monitorMap[MIC_INVERTER_IDC10]);
+
+
             typeMonitorsMap.Add(DeviceData.INVERTER_CODE, inverterMonitors);
 
 

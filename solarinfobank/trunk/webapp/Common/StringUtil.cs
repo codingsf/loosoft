@@ -192,11 +192,15 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             //string s = ByteArray2HexString(byteArray);
             //byte[] array = HexString2ByteArray(s);
             // Convert.ToInt32("FF", 16);
+
             string xx = "中国";
+            
             byte[] trmp = UTF8Encode(xx);
             string hex = ByteArray2HexString(trmp);
             string yy = UTF8Decode(trmp);
+
         }
+
 
         /// <summary>
         /// 将十进制数值，转换为二进制字符串并前面用0补齐到指定位数

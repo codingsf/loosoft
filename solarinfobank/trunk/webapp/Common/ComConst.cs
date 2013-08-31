@@ -28,6 +28,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         public const string Session_CurPlantId = "session_curplantid";
         public const string Session_PaymentLimitTime = "session_paymentlimittime";
         public const string Session_Anonymous = "anonymous";
+        public const string DateFormat = "yyyy/MM/dd";
         /// <summary>
         /// 图表div名称
         /// </summary>

@@ -182,8 +182,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
         public static string Hex2UTF8(string hex){
             byte[] trmp = HexString2ByteArray(hex);
             return UTF8Decode(trmp);
-        }
 
+        }
         public void Main(string[] args)
         {
             //string xx = "68 49 32 12";
@@ -191,7 +191,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             //byte[] byteArray = new byte[] { 0x01, 0x20 };
             //string s = ByteArray2HexString(byteArray);
             //byte[] array = HexString2ByteArray(s);
-            // Convert.ToInt32("FF", 16);
+           // Convert.ToInt32("FF", 16);
 
             string xx = "中国";
             

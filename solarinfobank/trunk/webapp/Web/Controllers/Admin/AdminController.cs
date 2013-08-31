@@ -459,19 +459,24 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             ExcelData data = new ExcelData();
             IList<string> temp = new List<string>();
             temp.Add("用户名");
+            temp.Add("注册电站");
             temp.Add("国家");
             temp.Add("性别");
+            temp.Add("创建时间");
             data.Rows.Add(temp);
             foreach (User user in users)
             {
                 temp = new List<string>();
                 temp.Add(user.username);
+                temp.Add(user.HasPlantsStr);
                 temp.Add(user.country);
                 temp.Add(user.sex.Equals("0") ? "男" : "女");
+                temp.Add(user.createDate.ToString(ComConst.DateFormat));
                 data.Rows.Add(temp);
             }
             eDatas.Add(data);
             ExcelStreamWriter writer = new ExcelStreamWriter(eDatas);
+            writer.align = true;
             writer.Save("用户列表");
             return File(writer.FullName, "text/xlsx; charset=UTF-8", urlcode(writer.FileName));
 

@@ -177,7 +177,7 @@
           <![CDATA[ hasplants = #hasplants# ]]>
         </isNotEmpty>
         <isNotEmpty prepend="AND"  property="uname">
-          <![CDATA[ username = #uname# ]]>
+          <![CDATA[ username like '%$uname$%']]>
         </isNotEmpty>
       </dynamic>
       <![CDATA[ order by id desc limit $page.Start$,$page.End$]]>
@@ -196,7 +196,7 @@
           <![CDATA[ hasplants = #hasplants# ]]>
         </isNotEmpty>
         <isNotEmpty prepend="AND"  property="uname">
-          <![CDATA[ username = #uname# ]]>
+          <![CDATA[ username like '%$uname$%']]>
         </isNotEmpty>
       </dynamic>
       

@@ -5168,6 +5168,46 @@ No matter what system you have, can use SolarInfo Bank via mobile phone to acces
     <value>Environment  temperature 2</value>
     <comment>环境温度2</comment>
   </data>
+  <data name="DEVICEMONITORITEM_152" xml:space="preserve">
+    <value>NO.1 Current</value>
+    <comment>直流电流1</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_153" xml:space="preserve">
+    <value>No.2 Current</value>
+    <comment>直流电流2</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_154" xml:space="preserve">
+    <value>No.3 Current</value>
+    <comment>直流电流3</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_155" xml:space="preserve">
+    <value>No.4 Current</value>
+    <comment>直流电流4</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_156" xml:space="preserve">
+    <value>No.5 Current</value>
+    <comment>直流电流5</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_157" xml:space="preserve">
+    <value>No.6 Current</value>
+    <comment>直流电流6</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_158" xml:space="preserve">
+    <value>No.7 Current</value>
+    <comment>直流电流7</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_159" xml:space="preserve">
+    <value>No.8 Current</value>
+    <comment>直流电流8</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_160" xml:space="preserve">
+    <value>No.9 Current</value>
+    <comment>直流电流9</comment>
+  </data>
+  <data name="DEVICEMONITORITEM_161" xml:space="preserve">
+    <value>No.10 Current</value>
+    <comment>直流电流10</comment>
+  </data>
   <data name="workstatusdlgd" xml:space="preserve">
     <value>Current are too low</value>
     <comment>电流过低</comment>

@@ -216,7 +216,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
                 temp.Add(item.name);
                 temp.Add(item.User.username);
                 temp.Add(item.installdate.ToShortDateString());
-                temp.Add(item.country);
+                temp.Add(item.design_power.ToString("0 kWp"));
                 temp.Add(item.city);
                 temp.Add(item.country);
                 temp.Add(item.PaymentLimitDate.ToShortDateString());

@@ -174,23 +174,23 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
             invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_run, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "运行" });
             invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_ajgj, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "按键关机" });
             invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_byqgw, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "变压器过温" });
-            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_chshidj, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "变压器过温" });
-            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_daiji, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "变压器过温" });
+            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_chshidj, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "初始待机" });
+            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_daiji, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "待机" });
             invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_dwgy, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "按键关机" });
-            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_dygp, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "变压器过温" });
-            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_dyqp, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "变压器过温" });
-            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_dyqy, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "变压器过温" });
+            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_dygp, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "电网过频" });
+            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_dyqp, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "电网欠频" });
+            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_dyqy, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "电网欠压" });
             invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_gudgzh, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "按键关机" });
-            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_jchqgzh, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "变压器过温" });
-            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_jdgzh, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "变压器过温" });
-            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_jjtj, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "变压器过温" });
+            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_jchqgzh, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "接触器故障" });
+            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_jdgzh, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "接地故障" });
+            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_jjtj, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "紧急停机" });
             invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_mkgzh, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "按键关机" });
-            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_nbgy, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "变压器过温" });
-            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_plych, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "变压器过温" });
-            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_shchgzh, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "变压器过温" });
+            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_nbgy, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "逆变过压" });
+            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_plych, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "频率异常" });
+            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_shchgzh, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "输出过载" });
             invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_startuping, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "按键关机" });
-            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_tingji, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "变压器过温" });
-            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_xdchgy, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "变压器过温" });
+            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_tingji, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "停机" });
+            invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_xdchgy, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "蓄电池过压" });
             invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_xdchqy, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "蓄电池欠压" });
             invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_yjgzh, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "硬件故障" });
             invertStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.inverter_status_zlgy, monitorCode = MonitorType.MIC_INVERTER_DEVICESTATUS, name = "直流过压" });
@@ -219,7 +219,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common
 
             //汇流箱sungrow设备状态测点
             IList<DeviceStatusType> BusbarSungrowStatusList = new List<DeviceStatusType>();
-            BusbarSungrowStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.busbar_sungrow_txlx_hlx, monitorCode = MonitorType.MIC_BUSBAR_COMMUNICATION, name = "变压器过温" });
+            BusbarSungrowStatusList.Add(new DeviceStatusType() { code = DeviceStatusType.busbar_sungrow_txlx_hlx, monitorCode = MonitorType.MIC_BUSBAR_COMMUNICATION, name = "通讯类型" });
             monitorStatusMap.Add(MonitorType.MIC_BUSBAR_COMMUNICATION, BusbarSungrowStatusList);
         }
 

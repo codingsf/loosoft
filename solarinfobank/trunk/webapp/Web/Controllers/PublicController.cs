@@ -122,5 +122,12 @@ namespace Web.Controllers
             string path = Server.MapPath("/app/SolarInfo bank_v1.2.apk");
             return File(path, "apk File; charset=UTF-8", urlcode("SolarInfo bank_v1.2.apk"));
         }
+
+        public ActionResult Notfound()
+        {
+            return View();
+        }
     }
+
+
 }

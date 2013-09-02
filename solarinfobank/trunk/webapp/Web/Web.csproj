@@ -8195,6 +8195,8 @@
     <EmbeddedResource Include="App_GlobalResources\SunInfoResource.fr-fr.resources" />
     <EmbeddedResource Include="App_GlobalResources\SunInfoResource.it-ch.resources" />
     <EmbeddedResource Include="App_GlobalResources\SunInfoResource.ja-jp.resources" />
+    <EmbeddedResource Include="App_GlobalResources\SunInfoResource.resources" />
+    <EmbeddedResource Include="App_GlobalResources\SunInfoResource.zh-cn.resources" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app\SolarInfo bank_v1.0.apk" />
@@ -8883,6 +8885,7 @@
     <Content Include="Pages\Admin\Saler\Plants.aspx" />
     <Content Include="Pages\Admin\Saler\PaymentConfig.aspx" />
     <Content Include="Pages\Auth\Expired.aspx" />
+    <Content Include="Pages\Public\Notfound.aspx" />
     <Content Include="Pages\Shared\ContentInside.Master" />
     <Content Include="Pages\Shared\EmptyInside.Master" />
     <Content Include="Pages\Shared\Virtual.Master" />

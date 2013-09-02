@@ -161,17 +161,19 @@ namespace Web
         {
             if (isDebug == null || isDebug.Equals("false"))
             {
-                if (Session[ComConst.User] == null)
+
+                if (HttpContext.Current.Session[ComConst.User] == null)
                 {
                     object lastLoginTime = Application[Session.SessionID];
                     if (lastLoginTime != null)
-                    {
                         Application.Remove(Session.SessionID);
-                    }
                 }
-
                 Response.Clear();
-                Response.Write("<script>if (window.parent != null) {window.parent.document.location.href = '/?t';}else {window.document.href = '/?t';}</script>");
+                Exception objErr = Server.GetLastError().GetBaseException();
+                //如果是404 单独处理 见web.config文件
+                if (objErr is HttpException && (objErr as HttpException).GetHttpCode().Equals(404))
+                    return;
+                Response.Write("<script>if (window.parent.parent != null){window.parent.parent.document.location.href = '/?t';} else if (window.parent != null) {window.parent.document.location.href = '/?t';}else {window.document.href = '/?t';}</script>");
                 Response.End();
                 return;
             }

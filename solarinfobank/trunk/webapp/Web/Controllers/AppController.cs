@@ -817,9 +817,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             return Content(data);
         }
-
-
-
+        
         /// <summary>
         /// 将电站列表转换成
         /// </summary>

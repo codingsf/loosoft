@@ -276,4 +276,42 @@ namespace Cn.Loosoft.Zhisou.SunPower.Common.vo
 
     }
 
+    /// <summary>
+    /// 用户VO信息
+    /// </summary>
+    [DataContract(Namespace = " http://www.solarinfobank.com ")]
+    public class UserPlantVO
+    {
+        [DataMember(Order = 0)]
+        public int userId { get; set; }
+        [DataMember(Order = 1)]
+        public string username { get; set; }
+        [DataMember(Order = 2)]
+        public double totalEnergy { get; set; }
+        [DataMember(Order = 3)]
+        public string totalEnergyUnit { get; set; }   //总发电量单位
+        [DataMember(Order = 4)]
+        public double todayEnergy { get; set; }
+        [DataMember(Order = 5)]
+        public string todayEnergyUnit { get; set; }   //今日发电量单位
+        [DataMember(Order = 6)]
+        public double power { get; set; }
+        [DataMember(Order = 7)]
+        public string powerUnit { get; set; }   //功率单位
+        [DataMember(Order = 8)]
+        public double co2Reduction { get; set; }//CO2减排
+        [DataMember(Order = 9)]
+        public string co2ReductionUnit { get; set; }//CO2减排单位
+        [DataMember(Order = 10)]
+        public double revenue { get; set; }//收益
+        [DataMember(Order = 11)]
+        public string revenueUnit { get; set; }//收益单位
+        [DataMember(Order = 12)]
+        public string families { get; set; }//家庭日用电户数
+        [DataMember(Order = 13)]
+        public int warnNums { get; set; }//告警数量
+        [DataMember(Order = 14)]
+        public IList<SimplePlantVO> plants { get; set; }//电站列表
+    }
+
 }

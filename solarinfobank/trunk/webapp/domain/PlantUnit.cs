@@ -164,7 +164,9 @@ namespace Cn.Loosoft.Zhisou.SunPower.Domain
                 return true;
             else{
                 double cha = (CalenderUtil.curDateWithTimeZone(timezone) - this.collector.runData.sendTime).TotalHours;
-                return  cha>1 || cha<0;
+                //by zhouhui at 20130904 将原来的cha<0改成cha<-1，因为现场有部分设备的时间比实际时间稍微快点是正常的，也是允许的
+                //return  cha>1 || cha<0;
+                return cha > 1 || cha < -1;
             }
         }
 

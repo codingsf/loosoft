@@ -266,10 +266,10 @@
         $("#larget").val(temp);
         changeMonitorDay(document.getElementById('larget'))
         
-    }
+       }
     
     
-         function changeMonitorDay(obj) {
+       function changeMonitorDay(obj) {
              var aimDay = obj.value;
              if (aimDay) {
                  aimDay = aimDay.replace("-", "").replace("-", "");

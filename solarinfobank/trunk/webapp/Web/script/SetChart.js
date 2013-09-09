@@ -82,6 +82,7 @@ function createSerie() {
 }
 
 function createxAxis() {
+    xAxis = null;
     xAxis = {
         categories: [],
         labels: {
@@ -103,11 +104,14 @@ var globalOldYvalue = new Array(); //原始y轴的值，包括多维
 var globalSeries = new Array(); //原始y轴序列，包括多维
 //设置y轴属性
 function setyAxis(data) {
+    chartTitle = null;//先释放
     chartTitle = data.name;
     var names = data.names;
     var colors = data.colors;
     var units = data.units;
+    globalCategories = null; //先释放
     globalCategories = data.categories;
+    yAxisArr = null;
     yAxisArr = new Array();
     var yAxisText
     for (var i = 0; i < names.length; i++) {
@@ -274,10 +278,15 @@ function getMin(series, yAxis) {
 
 //设置y序列
 function setySeriesArr(series) {
+    globalNames = null;
     globalNames = new Array();
+    globalUnits = null;
     globalUnits = new Array();
+    seriesArr = null;
     seriesArr = new Array();
+    globalOldYvalue = null;
     globalOldYvalue = new Array();
+    globalSeries = null;
     globalSeries = new Array();
     for (var i = 0; i < series.length; i++) {
         var tmpSerie = series[i];
@@ -302,7 +311,6 @@ function setySeriesArr(series) {
         }else{
             globalUnits.push("");
         }
-
     }
 }
 
@@ -413,9 +421,13 @@ var curFilename;
 var curChartname;
 //设置导出参数
 function setExportChart(url, serieNo, filename, chartname) {
+    curUrl = null;
     curUrl = url;
+    curSerieNo = null;
     curSerieNo = serieNo;
+    curFilename = null;
     curFilename = filename;
+    curChartname = null;
     curChartname = chartname;
 }
 
@@ -425,8 +437,6 @@ var yAxisArr = new Array();
 var seriesArr = new Array();
 var xAxis;
 var chart;
-
-
 var extbuttons = {
     //    largeButton: {
     //        enabled: true,
@@ -551,6 +561,14 @@ function defineChartWithDetail(curContainer, isDetail) {
     else
         exportButton = exportButtonNoDetail;
 
+    //先释放内存
+    if (chart != 'undefined' && chart!=null) {
+        //alert(chart+"chart")
+        //alert(chart.renderTo + "chart.renderTo")
+        //chart.renderTo = null;
+        chart = null;
+    }
+    //在构建新对象
     chart = new Highcharts.Chart({
         chart: {
             renderTo: curContainer,
@@ -720,7 +738,9 @@ function defineChartWithScatter(curContainer, isDetail, data) {
         exportButton = exportButtonNoDetail;
 
     //准备数据
+    globalCategories = null;
     globalCategories = data.categories;
+    seriesArr = null;
     seriesArr = new Array();
     for (var i = 0; i < data.series.length; i++) {
         var tmpSerie = data.series[i];
@@ -738,25 +758,32 @@ function defineChartWithScatter(curContainer, isDetail, data) {
     var units = data.units;
     var xAxisName = names[0] + "[" + units[0] + "]";
     var yAxisName = names[1] + "[" + units[1] + "]";
+    //先释放内存
+    if (chart != 'undefined' && chart != null) {
+        //alert(chart+"chart")
+        //alert(chart.renderTo + "chart.renderTo")
+        //chart.renderTo = null;
+        chart = null;
+    }
     chart = new Highcharts.Chart({
-        chart: {
+        chart:{
             renderTo: curContainer,
             type: 'scatter',
             zoomType: 'xy'
         },
-        title: {
+        title:{
             text: '',
             align: 'center',
             x: 0,
             floating: true
         },
-        subtitle: {
+        subtitle:{
             text: '  '
         },
-        tooltip: {
+        tooltip:{
             formatter: formatterFunc
         },
-        xAxis: {
+        xAxis:{
             title: {
                 enabled: true,
                 text: xAxisName,
@@ -769,7 +796,7 @@ function defineChartWithScatter(curContainer, isDetail, data) {
             endOnTick: true,
             showLastLabel: true
         },
-        yAxis: {
+        yAxis:{
             title: {
                 text: yAxisName,
                 style: {
@@ -778,7 +805,7 @@ function defineChartWithScatter(curContainer, isDetail, data) {
                 }
             }
         },
-        legend: {
+        legend:{
             enabled: false,
             layout: 'horizontal',
             align: 'center',
@@ -788,31 +815,31 @@ function defineChartWithScatter(curContainer, isDetail, data) {
             borderWidth: 1,
             margin: 20
         },
-        plotOptions: {
-            scatter: {
-                marker: {
+        plotOptions:{
+            scatter:{
+                marker:{
                     radius: 2,
-                    states: {
-                        hover: {
+                    states:{
+                        hover:{
                             enabled: true,
                             lineColor: 'rgb(100,100,100)'
                         }
                     }
                 },
-                states: {
-                    hover: {
-                        marker: {
+                states:{
+                    hover:{
+                        marker:{
                             enabled: false
                         }
                     }
                 },
-                tooltip: {
+                tooltip:{
                     headerFormat: '<b>{series.name}dfd</b><br>',
                     pointFormat: '{point.x} cm, {point.y} kg'
                 }
             }
         },
-        exporting: {
+        exporting:{
             filename: curFilename,
             url: curUrl,
             buttons: {
@@ -890,7 +917,6 @@ function getBeforDay(aimDay) {
 
 //将错误或无数据提示 显示出来
 function appendChartError(curContainer, result, ajaxImgTop) {
-
     if (result.indexOf("error:") > -1 || result.indexOf("Error:") > -1) {
         $('#' + curContainer).empty();
         $('#' + curContainer).append("<center><div style='padding-top:" + (ajaxImgTop + 40) + "px;  font-size: large;' >" + result.substring(result.indexOf("Error:") + 7) + "</div></center>");
@@ -959,7 +985,6 @@ function changeDate(oper, inputname) {
 }
 
 function changeShowMonth(oper, monthinput, yearinput) {
-
     var index1 = document.getElementById(monthinput).selectedIndex;
     var index2 = document.getElementById(yearinput).selectedIndex;
     if (oper == "right") {
@@ -1081,7 +1106,6 @@ function changeShowMonth(oper, monthinput, yearinput) {
                     document.getElementById(yearinput).options[0].innerHTML = min;
                     document.getElementById(monthinput).options[0].selected = true;
                     document.getElementById(monthinput).options[0].innerHTML = "01";
-                    1010707
                 }
             } else {
                 if (year != min) {
@@ -1104,7 +1128,6 @@ function changeShowMonth(oper, monthinput, yearinput) {
                     document.getElementById(yearinput).options[0].innerHTML = min;
                     document.getElementById(monthinput).options[0].selected = true;
                     document.getElementById(monthinput).options[0].innerHTML = "01";
-
                 }
             }
         } else if (year != min) {
@@ -1138,7 +1161,6 @@ function changeShowYear(oper, inputname) {
 
     var year = parseInt($("#" + inputname).val());
     var max = years[0], min = years[0];
-
 
     for (var i = 0; i < years.length - 1; i++) {
         if (max < years[i]) {
@@ -1179,14 +1201,12 @@ function showDetails(data, date) {
 
     h_data = data;
     h_date = date;
-
 }
 
 function clearDetails() {
     $("#chart_detail_grid").empty();
     //  $("#chart_detail_grid").html("<img src=\"/Images/ajax_loading_min.gif\" style=\"margin-left:48%\"/>");
 }
-
 
 var h_date = null;
 var h_data = null;
@@ -1229,7 +1249,6 @@ function exportpdfchart() {
     h2.name = "data";
     h2.id = "data";
     f.appendChild(h2);
-
 
     var h3 = document.createElement("input");
     h3.type = "hidden";

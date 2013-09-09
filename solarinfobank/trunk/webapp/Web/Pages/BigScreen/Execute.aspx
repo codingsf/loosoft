@@ -166,8 +166,8 @@
             setCategories(data.categories, isLarge);
             defineChart(curContainer);
             chart.setTitle({ text: data.name, x: 0, align: 'center' }, { text: '', x: 0, align: 'center' });
-
         }
+        
         //功率图表
         function dayChart(curContainer, ajaxImgTop, isLarge, result) {
             if (appendChartError(curContainer, result, ajaxImgTop)) {

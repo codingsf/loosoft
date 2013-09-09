@@ -333,23 +333,23 @@
     }
     function loadoverviewData()
     {
-    $.ajax({ 
-       url: "/user/includeoverviewdatajson", 
-        data: { rnd: Math.random() }, 
-        success: function (data, textStatus) { 
-            var result=eval("("+data+")");
-            $("#displaytotaldayenergy").html(result.DisplayTotalDayEnergy); 
-            $("#totaldayenergyunit").html(result.TotalDayEnergyUnit); 
-            $("#totalenergy").html(result.totalEnergy); 
-            $("#totalenergyunit").html(result.TotalEnergyUnit); 
-            $("#totaltrees").html(result.TotalTrees); 
-            $("#displayrevenue").html(result.DisplayRevenue); 
-            $("#totalreductiong").html(result.Reductiong); 
-            $("#totalreductiongunit").html(result.ReductiongUnit);  
+        $.ajax({ 
+            url: "/user/includeoverviewdatajson", 
+            data: { rnd: Math.random() }, 
+            success: function (data, textStatus) { 
+                var result=eval("("+data+")");
+                $("#displaytotaldayenergy").html(result.DisplayTotalDayEnergy); 
+                $("#totaldayenergyunit").html(result.TotalDayEnergyUnit); 
+                $("#totalenergy").html(result.totalEnergy); 
+                $("#totalenergyunit").html(result.TotalEnergyUnit); 
+                $("#totaltrees").html(result.TotalTrees); 
+                $("#displayrevenue").html(result.DisplayRevenue); 
+                $("#totalreductiong").html(result.Reductiong); 
+                $("#totalreductiongunit").html(result.ReductiongUnit);  
             }, 
-       complete: function (XHR, TS) { XHR = null } 
+            complete: function (XHR, TS) { XHR = null } 
         }); 
-       // refreshChartData();
+       refreshChartData();
     }
     
 </script>

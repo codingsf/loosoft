@@ -39,7 +39,7 @@
         var isFirst = true;
         function readyinit() {
             deviceChartInit();
-            //autoreload();
+            autoreload();
         }
         function deviceChartInit() {
             //没有设备不做处理

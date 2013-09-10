@@ -23,7 +23,8 @@
                     var nameValue = escape("1" + "#N1" + "1" + "#N2" + "61.190.35.174" + "#N3" + "sz160sa120sb116sc0");
                     document.cookie = "ID=" + nameValue + ";expires=" + now.toGMTString();
                 }
-
+                if (url.indexOf("http:") == -1 && url.indexOf('/') != 0)
+                    url = '/' + url;
                 $('#monitorwindow').attr('src', url);
             });
             $('#monitormenu').show();
@@ -46,6 +47,16 @@
                     }
                 })
             });
+            function checkurlFormat(url) {
+                var strRegex = "^((https|http|ftp|rtsp|mms)://)?[a-z0-9A-Z]{3}\.[a-z0-9A-Z][a-z0-9A-Z]{0,61}?[a-z0-9A-Z]\.com|net|cn|cc (:s[0-9]{1-4})?/$";
+                var re = new RegExp(strRegex);
+                if (re.test(url)) {
+                    return true;
+                } else {
+                    alert("请输入正确的URL地址");
+                    return false;
+                }
+            }
 
             $('#btnadd').click(function() {
                 if ($("#tboxname").val() == "") {
@@ -68,7 +79,11 @@
                     }
                 })
             })
-            $('#monitorwindow').attr('src', $("#monitor").val() == null ? "" : $("#monitor").val());
+
+            var firstUrl = $("#monitor").val();
+            if (firstUrl.indexOf("http:") == -1 && firstUrl.indexOf('/') != 0)
+                firstUrl = '/' + firstUrl;
+            $('#monitorwindow').attr('src', firstUrl == null ? "" : firstUrl);
         })
     </script>
 

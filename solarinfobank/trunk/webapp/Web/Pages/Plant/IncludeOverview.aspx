@@ -141,7 +141,9 @@
             success: function(result) {
                 $('#countDataDiv').empty();
                 $('#countDataDiv').html(result);
-            }
+            },
+            complete: function (XHR, TS) { XHR = null } ,
+            error:function(XHR, status, data) {  XHR.abort();  }
         });
     }
 
@@ -182,7 +184,9 @@
             beforeSend: function() {
                 $('#' + curContainer).empty();
                 $('#' + curContainer).append("<center><img src=\"../../Images/ajax_loading.gif\" style=\"margin-top: " + ajaxImgTop + "px;\" /></center>");
-            }
+            },
+            complete: function (XHR, TS) { XHR = null } ,
+            error:function(XHR, status, data) {  XHR.abort();  }
         });
     }
 
@@ -210,7 +214,9 @@
             beforeSend: function() {
                 $('#' + curContainer).empty();
                 $('#' + curContainer).append("<center><img src=\"../../Images/ajax_loading.gif\" style=\"margin-top: " + ajaxImgTop + "px;\" /></center>");
-            }
+            },
+            complete: function (XHR, TS) { XHR = null } ,
+            error:function(XHR, status, data) {  XHR.abort();  }
         });
     }
 
@@ -237,7 +243,9 @@
             beforeSend: function() {
                 $('#' + curContainer).empty();
                 $('#' + curContainer).append("<center><img src=\"../../Images/ajax_loading.gif\" style=\"margin-top: " + ajaxImgTop + "px;\" /></center>");
-            }
+            },
+            complete: function (XHR, TS) { XHR = null } ,
+            error:function(XHR, status, data) {  XHR.abort();  }
         });
     }
 
@@ -265,11 +273,14 @@
                 showDetails(result, $("#startYYYYMMDDHH").val());
                 //天数据统计加载
                 loadCountData();
+                data=null;
             },
             beforeSend: function() {
                 $('#' + curContainer).empty();
                 $('#' + curContainer).append("<center><img src=\"../../Images/ajax_loading.gif\" style=\"margin-top: " + ajaxImgTop + "px;\" /></center>");
-            }
+            },
+            complete: function (XHR, TS) { XHR = null } ,
+            error:function(XHR, status, data) {  XHR.abort();  }
         });
     }
     function changeStyle(curId) {
@@ -387,9 +398,10 @@
                 $("#reductiongunit").html(result.ReductiongUnit); 
                 $("#displayrevenue").html(result.DisplayRevenue); 
             }, 
-            complete: function (XHR, TS) { XHR = null } 
+            complete: function (XHR, TS) { XHR = null } ,
+            error:function(XHR, status, data) {  XHR.abort();  }
         }); 
-        refreshChartData();
+       refreshChartData();
     }
     
 </script>

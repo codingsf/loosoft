@@ -7145,6 +7145,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 很抱歉，您要访问的页面不存在。 的本地化字符串。
+        /// </summary>
+        internal static string PAGE_404_NOTFOUND {
+            get {
+                return ResourceManager.GetString("PAGE_404_NOTFOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Please enter Start time 的本地化字符串。
         /// </summary>
         internal static string PAGE_ADDPLANT_ENDDATE {
@@ -11625,7 +11634,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Copyright &amp;copy; 2013 {0} , v1.0.19 Beta , Browse Resolution: 1024x768 的本地化字符串。
+        ///   查找类似 Copyright &amp;copy; 2013 {0} , v1.0.19 Beta , Browse Resolution: 1024x768,No IE6 的本地化字符串。
         /// </summary>
         internal static string SHARED_MAINMASTREPAGE_COPYRIGHT {
             get {

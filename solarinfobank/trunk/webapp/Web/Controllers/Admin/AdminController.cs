@@ -725,6 +725,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             }
             eDatas.Add(data);
             ExcelStreamWriter writer = new ExcelStreamWriter(eDatas);
+            writer.align = true;
             writer.Save("采集器列表");
             return File(writer.FullName, "text/xlsx; charset=UTF-8", urlcode(writer.FileName));
 
@@ -1644,6 +1645,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                 eData.Rows[eData.Rows.Count - 1][i] = eData.Rows[eData.Rows.Count - 1][i].Replace("<br />", string.Empty);
             eDatas.Add(eData);
             ExcelStreamWriter exlWriter = new ExcelStreamWriter(eDatas);
+            exlWriter.align = true;
             exlWriter.Save("查询电站列表");
 
             return File(exlWriter.FullName, "text/xlsx; charset=UTF-8", urlcode(exlWriter.FileName));
@@ -1972,6 +1974,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             }
             eDatas.Add(eData);
             ExcelStreamWriter writer = new ExcelStreamWriter(eDatas);
+            writer.align = true;
+
             writer.Save("汇流箱列表");
             return File(writer.FullName, "text/xlsx; charset=UTF-8", urlcode(writer.FileName));
 
@@ -2014,6 +2018,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             }
             eDatas.Add(eData);
             ExcelStreamWriter writer = new ExcelStreamWriter(eDatas);
+            writer.align = true;
+
             writer.Save("环境检测仪列表");
             return File(writer.FullName, "text/xlsx; charset=UTF-8", urlcode(writer.FileName));
 
@@ -2047,6 +2053,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             }
             eDatas.Add(eData);
             ExcelStreamWriter writer = new ExcelStreamWriter(eDatas);
+            writer.align = true;
             writer.Save("电表列表");
             return File(writer.FullName, "text/xlsx; charset=UTF-8", urlcode(writer.FileName));
 
@@ -2098,6 +2105,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
             }
             eDatas.Add(eData);
             ExcelStreamWriter writer = new ExcelStreamWriter(eDatas);
+            writer.align = true;
+
             writer.Save("配电柜列表");
             return File(writer.FullName, "text/xlsx; charset=UTF-8", urlcode(writer.FileName));
 
@@ -2218,6 +2227,8 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers.Admin
                 eData.Rows[eData.Rows.Count - 1][i] = eData.Rows[eData.Rows.Count - 1][i].Replace("<br />", string.Empty);
             eDatas.Add(eData);
             ExcelStreamWriter writer = new ExcelStreamWriter(eDatas);
+            writer.align = true;
+
             writer.Save("逆变器列表");
             return File(writer.FullName, "text/xlsx; charset=UTF-8", urlcode(writer.FileName));
 

@@ -11,7 +11,7 @@
                 <img src="/images/gk.gif" width="68" height="67" />
             </td>
             <td width="71%" style="font-size: 26px;">
-                抱歉!您访问的页面没找到。
+                <%=Resources.SunResource.PAGE_404_NOTFOUND%>
             </td>
         </tr>
     </table>

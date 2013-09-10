@@ -5626,4 +5626,7 @@ The average value of coefficient will trigger warning
   <data name="FEE_EMAILTIPS_WILL_FOMART" xml:space="preserve">
     <value>&lt;br /&gt; "Station {0}" Expiration Date: {1}</value>
   </data>
+  <data name="PAGE_404_NOTFOUND" xml:space="preserve">
+    <value>很抱歉，您要访问的页面不存在。</value>
+  </data>
 </root>

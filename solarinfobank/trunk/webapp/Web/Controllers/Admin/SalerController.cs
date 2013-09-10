@@ -224,6 +224,7 @@ namespace Cn.Loosoft.Zhisou.SunPower.Web.Controllers
             }
             eDatas.Add(data);
             ExcelStreamWriter writer = new ExcelStreamWriter(eDatas);
+            writer.align = true;
             writer.Save("电站列表");
             return File(writer.FullName, "text/xlsx; charset=UTF-8", urlcode(writer.FileName));
 
